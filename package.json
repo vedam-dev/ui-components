@@ -1,6 +1,6 @@
 {
   "name": "@vedam-dev/ui-components",
-  "version": "1.0.0",
+  "version": "1.1.1",
   "publishConfig": {
     "registry": "https://npm.pkg.github.com",
     "access": "restricted"
@@ -9,6 +9,7 @@
     "jackspeak": "2.1.1"
   },
   "scripts": {
+    "publish": "npm publish",
     "test": "jest --coverage --logHeapUsage -w=2 --passWithNoTests",
     "build": "npm run build:lib",
     "build:lib": "tsc --p ./tsconfig.lib.json",
