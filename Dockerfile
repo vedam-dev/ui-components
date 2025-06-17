@@ -1,11 +1,8 @@
 FROM node:20-alpine
-
 WORKDIR /app
-
-ADD . /app
-
-RUN yarn install
-
+COPY package.json yarn.lock ./
+RUN yarn install --frozen-lockfile
+COPY . .
+RUN yarn build
 EXPOSE 6006
-
 CMD ["yarn", "storybook"]
