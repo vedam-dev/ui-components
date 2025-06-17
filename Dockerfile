@@ -1,4 +1,4 @@
-FROM docker-registry.pblbde.com/ds-node-lts:20
+FROM node:20-alpine
 
 WORKDIR /app
 
