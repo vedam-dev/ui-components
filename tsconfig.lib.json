@@ -1,0 +1,27 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "./lib",
+    "incremental": true,
+    "tsBuildInfoFile": "./.build-cache",
+    "target": "ESNext",
+    "module": "ESNext",
+    "noEmit": false,
+    "strict": true,
+    "jsx": "react-jsx",
+    "lib": ["ESNext", "DOM", "DOM.Iterable"],
+    "types": ["react", "react/jsx-runtime"]
+  },
+  "include": ["src"],
+  "exclude": [
+    "src/stories",
+    "src/stories/*",
+    "src/stories/**/*",
+    "*/stories/*",
+    "node_modules",
+    "**/__tests__/*",
+    "lib",
+    "src/index.tsx",
+    "src/sample/*"
+  ]
+}

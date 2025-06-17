@@ -1,0 +1,229 @@
+import { createCoreTheme } from '../../core-theme';
+import defaultTheme from '../default';
+import colors from './colors';
+
+const defaultFont = { fontFamily: 'system-ui', letterSpacing: 0 };
+
+const index = createCoreTheme({
+  isStorybook: true,
+  pbl: {
+    useMaterialButtons: false,
+    shadows: {
+      none: 'none',
+      y8: `0 8px 16px 0 ${colors.shadowsY8}`,
+      y12: `0 12px 24px 0 ${colors.shadowsY12}`,
+      y16: `0 16px 32px -4px ${colors.shadowsY16}`
+    },
+    typography: {
+      avatar: { fontFamily: `Satoshi`, fontWeight: 'bold', fontSize: '14pt', lineHeight: '24pt' },
+      buttonS: {
+        ...defaultTheme.typography.button,
+        fontStretch: `normal`,
+        fontStyle: `normal`,
+        textTransform: 'none',
+        fontFamily: 'Satoshi, system-ui',
+        lineHeight: '1.71',
+        fontSize: '14px',
+        letterSpacing: 1.5,
+        fontWeight: 'bold'
+      }
+    }
+  },
+  spacing: 4,
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 600,
+      md: 900,
+      lg: 1200,
+      xl: 1536,
+      //@ts-expect-error - Mobile is not defined in the breakpoints
+      mobile: 0,
+      tablet: 900,
+      web: 1200,
+      'web-xl': 1536
+    }
+  },
+  typography: {
+    fontSize: 14,
+    fontWeightMedium: 500,
+    fontWeightRegular: 400,
+    fontWeightLight: 300,
+    fontFamily: 'Roboto',
+    button: {
+      fontFamily: 'SatoshiBold, system-ui',
+      lineHeight: '24px',
+      fontSize: '16px',
+      letterSpacing: 1.5,
+      fontWeight: 'bold',
+      textTransform: 'none'
+    },
+    h1: {
+      fontFamily: 'SatoshiBold, system-ui',
+      lineHeight: '80px',
+      fontSize: '60px',
+      letterSpacing: -1.5,
+      fontWeight: 'bold'
+    },
+    h2: {
+      fontFamily: 'SatoshiBold, system-ui',
+      fontSize: '50px',
+      letterSpacing: -1,
+      lineHeight: '42px',
+      fontWeight: 'bold'
+    },
+    h3: {
+      fontFamily: 'SatoshiBold, system-ui',
+      lineHeight: '44px',
+      fontSize: '32px',
+      letterSpacing: 0,
+      fontWeight: 'bold'
+    },
+    h4: {
+      fontFamily: 'SatoshiBold, system-ui',
+      lineHeight: '32px',
+      fontSize: '24px',
+      letterSpacing: 0,
+      fontWeight: 'bold'
+    },
+    h5: {
+      fontFamily: 'SatoshiMedium, system-ui',
+      lineHeight: '26px',
+      fontSize: '18px',
+      letterSpacing: 0,
+      fontWeight: 'bold'
+    },
+    h6: {
+      fontFamily: 'SatoshiMedium, system-ui',
+      lineHeight: '24px',
+      fontSize: '16px',
+      letterSpacing: 1,
+      fontWeight: 'bold'
+    },
+    subtitle1: {
+      fontFamily: 'SatoshiBold, system-ui',
+      lineHeight: '24px',
+      fontSize: '16px',
+      fontWeight: 'bold',
+      letterSpacing: `normal`,
+      fontStretch: `normal`,
+      fontStyle: `normal`
+    },
+    subtitle2: {
+      fontFamily: 'SatoshiMedium, system-ui',
+      lineHeight: '22px',
+      fontSize: '14px',
+      fontWeight: 'bold',
+      letterSpacing: `normal`,
+      fontStretch: `normal`,
+      fontStyle: `normal`
+    },
+    body1: {
+      ...defaultFont,
+      lineHeight: '24px',
+      fontSize: '16px',
+      letterSpacing: `normal`,
+      fontWeight: `normal`,
+      fontStretch: `normal`,
+      fontStyle: `normal`
+    },
+    body2: {
+      ...defaultFont,
+      lineHeight: '22px',
+      fontSize: '14px',
+      letterSpacing: `normal`,
+      fontWeight: `normal`,
+      fontStretch: `normal`,
+      fontStyle: `normal`
+    },
+    caption: { ...defaultFont, lineHeight: '20px', fontSize: '12px', letterSpacing: 0.3 },
+    overline: {
+      ...defaultFont,
+      lineHeight: '20px',
+      fontSize: '12px',
+      letterSpacing: 1.2,
+      textTransform: 'uppercase'
+    }
+  },
+  palette: {
+    mode: 'light',
+    primary: {
+      main: colors.primaryP600Primary,
+      dark: colors.primaryP700,
+      100: colors.primaryP100,
+      200: colors.primaryP200,
+      300: colors.primaryP300,
+      400: colors.primaryP400,
+      500: colors.primaryP500,
+      600: colors.primaryP600Primary,
+      700: colors.primaryP700,
+      800: colors.primaryP800
+    },
+    secondary: {
+      main: colors.secondaryS500Secondary,
+      dark: colors.secondaryS700,
+      100: colors.secondaryS100,
+      200: colors.secondaryS200,
+      300: colors.secondaryS300,
+      400: colors.secondaryS400,
+      500: colors.secondaryS500Secondary,
+      600: colors.secondaryS600,
+      700: colors.secondaryS700,
+      800: colors.secondaryS800
+    },
+    error: {
+      main: colors.dangerD400Danger,
+      100: colors.dangerD100,
+      200: colors.dangerD200,
+      300: colors.dangerD300,
+      400: colors.dangerD400Danger
+    },
+    warning: {
+      main: colors.warningW400Warning,
+      100: colors.warningW100,
+      200: colors.warningW200,
+      300: colors.warningW300,
+      400: colors.warningW400Warning
+    },
+    info: {
+      main: colors.infoI400Info,
+      100: colors.infoI100,
+      200: colors.infoI200,
+      300: colors.infoI300,
+      400: colors.infoI400Info
+    },
+    success: {
+      main: colors.successSc400Success,
+      100: colors.successSc100,
+      200: colors.successSc200,
+      300: colors.successSc300,
+      400: colors.successSc400Success
+    },
+    text: {
+      primary: colors.textColors1TxPrimary,
+      secondary: colors.textColors2TxSecondary,
+      disabled: colors.textColors3TxDisabled
+    },
+    common: { white: colors.neutralsNWhite, black: colors.neutralsNBlack },
+    grey: {
+      50: colors.neutralsNWhite,
+      100: colors.neutralsN100,
+      200: colors.neutralsN200,
+      300: colors.neutralsN300,
+      400: colors.neutralsN400,
+      500: colors.neutralsN500,
+      600: colors.neutralsN600,
+      700: colors.neutralsN700,
+      800: colors.neutralsN800,
+      900: colors.neutralsN900
+    }
+  },
+  components: {
+    MuiButton: {
+      defaultProps: { disableFocusRipple: true, disableTouchRipple: true, disableRipple: true }
+    },
+    MuiCard: { defaultProps: { sx: { boxShadow: colors.shadowsY8 } } }
+  }
+});
+
+export default index;
