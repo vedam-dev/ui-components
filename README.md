@@ -1,50 +1,38 @@
-# pbl-core-react-web-components #
+🚀 Getting Started with Storybook
+Prerequisites
+Node.js (v16 or higher recommended)
 
-This README would normally document whatever steps are necessary to get your application up and running.
+Yarn (v1 or v2)
 
-### What is this repository for? ###
+Installation
+Install dependencies
+Run the following command to install all required dependencies:
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+**yarn install**
+Run Storybook locally
+Start the Storybook development server with:
 
-### How do I commit? ###
+**yarn storybook**
+This will:
 
-    git init
-    git add --all
-    git commit -m 'Initial commit'
-    git remote add origin git@bitbucket.org:pbl_digital_solutions/pbl-core-react-web-components.git
-    git push -u origin master
+Compile your components and stories
 
-### Get your local Git repository on Bitbucket ###
+Start a local development server
 
-  Step 1: Switch to your repository's directory
+Open Storybook in your default browser (usually at http://localhost:6006)
 
-    cd /path/to/your/repo
+Access Storybook
+Once the server starts, you can view your Storybook at:
+🔗 http://localhost:6006
 
-  Step 2: Connect your existing repository to Bitbucket
+Additional Scripts
+**yarn build-storybook** - Builds a static version of Storybook in the storybook-static directory
 
-      git remote add origin git@bitbucket.org:pbl_deployment/delete_me.git
-      git push -u origin master
+**yarn storybook --port 9000** - Run Storybook on a custom port (e.g., 9000)
 
-  Need more information? [Learn more](https://confluence.atlassian.com/x/Ep1IN)
+Development Tips
+The server will automatically reload when you make changes to your components or stories
 
-### How do I get set up? ###
+Use the controls panel in Storybook UI to interact with your components dynamically
 
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
-
-### Contribution guidelines ###
-
-* Writing tests
-* Code review
-* Other guidelines
-
-### Who do I talk to? ###
-
-* Repo owner or admin
-* Other community or team contact      
+Check the browser's console for any warnings or errors
