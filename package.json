@@ -15,6 +15,7 @@
     "url": "https://github.com/vedam-dev/ui-components/issues"
   },
   "homepage": "https://github.com/vedam-dev/ui-components#readme",
+  "license": "MIT",
   "publishConfig": {
     "registry": "https://npm.pkg.github.com",
     "access": "restricted"
@@ -34,9 +35,13 @@
     "storybook": "storybook dev -p 6006",
     "storybook -no-open": "storybook dev -p 6006 --no-open",
     "build-storybook": "storybook build",
-    "build:storybook": "storybook build",
+    "storybook:build": "storybook build",
     "test-storybook": "test-storybook",
-    "prepare": "husky"
+    "prepare": "husky",
+    "loki": "loki --requireReference",
+    "loki:update": "loki update",
+    "loki:test": "loki test",
+    "loki:approve": "loki approve"
   },
   "browserslist": {
     "production": [
@@ -58,9 +63,12 @@
     "@fontsource/material-icons": "^5.1.1",
     "@fontsource/montserrat": "^5.1.1",
     "@fontsource/roboto": "^5.1.1",
+    "@loki/browser": "0.35.0",
+    "@loki/core": "0.35.0",
     "@mui/icons-material": "7.1.0",
     "@mui/material": "^7.1.0",
     "add": "^2.0.6",
+    "loki": "^0.35.1",
     "react": "^19.0.0",
     "react-docgen-typescript": "^2.4.0",
     "react-dom": "^19.0.0",
