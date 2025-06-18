@@ -1,7 +1,7 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "outDir": "./lib",
+    "outDir": "./dist",
     "incremental": true,
     "tsBuildInfoFile": "./.build-cache",
     "target": "ESNext",
