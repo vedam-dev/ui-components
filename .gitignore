@@ -1,3 +1,7 @@
+# Ignore other scripts, but not the Husky one
+scripts/*
+!scripts/check-branch-name.sh
+
 # Dependencies
 node_modules/
 .pnp
