@@ -22,7 +22,8 @@
     "build-storybook": "storybook build",
     "build:storybook": "storybook build",
     "test-storybook": "test-storybook",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "commitlint": "ts-node --esm commitlint.config.ts"
   },
   "browserslist": {
     "production": [
@@ -99,7 +100,8 @@
     "react-scripts": "^5.0.1",
     "storybook": "^8.4.2",
     "ts-jest": "^29.2.5",
-    "typescript": "^5.6.3",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3",
     "typescript-eslint": "^8.32.0",
     "webpack": "^5.96.1"
   },

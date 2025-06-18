@@ -1,5 +1,5 @@
 #!/bin/sh
-# . "$(dirname "$0")/_/husky.sh"
+. "$(dirname "$0")/_/husky.sh"
 
+# Only run linter or tests here, not commitlint
 echo "✅ Husky pre-commit hook triggered"
-npx --no-install commitlint --edit "$1"
