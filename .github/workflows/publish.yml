@@ -17,13 +17,15 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     permissions:
-      contents: read
+      contents: write 
       packages: write
       id-token: write  # Required for GitHub token
 
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
+      with:
+        fetch-depth: 0 
 
     - name: Setup Node.js
       uses: actions/setup-node@v4
@@ -37,6 +39,9 @@ jobs:
 
     - name: Build package
       run: yarn build
+
+    - name: Bump version
+      run: yarn version --patch
 
     - name: Run tests
       run: yarn test
