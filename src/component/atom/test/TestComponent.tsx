@@ -7,7 +7,7 @@ const TestComponent: FC = () => {
 
   return (
     <Typography variant={isStorybook ? 'h1' : 'body1'} component="h2" color={palette.primary.dark}>
-      This component is for storybook, not to use in production.Are you getting my point
+      This component is for storybook, not to use in production.Are you
     </Typography>
   );
 };
