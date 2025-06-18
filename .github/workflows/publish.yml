@@ -4,7 +4,8 @@ on:
   push:
     branches:  
      - master
-     - feature/deployment-package  
+     - feature/deployment-package
+     - feature/indexing
     paths:
       - 'src/**'
       - 'dist/**'
