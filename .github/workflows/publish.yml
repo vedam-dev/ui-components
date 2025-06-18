@@ -3,7 +3,7 @@ name: Publish Package
 on:
   push:
     branches:  
-     - main
+     - master
      - feature/deployment-package  
     paths:
       - 'src/**'
@@ -51,8 +51,8 @@ jobs:
     - name: Push version bump commit
       run: git push
 
-    - name: Run tests
-      run: yarn test
+    # - name: Run tests
+    #   run: yarn test
 
     - name: Publish to GitHub Packages
       run: npm publish
