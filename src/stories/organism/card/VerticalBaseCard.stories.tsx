@@ -21,7 +21,7 @@ export const WithSingleImage: Story = {
   args: {
     sx: { height: 200, width: 300 },
     cardHeader: (
-      <CardMedia sx={{ height: 200 }} image="https://via.placeholder.com/300x200" title="300x200" />
+      <CardMedia sx={{ height: 200 }} image="https://placehold.co/600x400" title="300x200" />
     )
   }
 };
@@ -30,7 +30,7 @@ export const WithImageContentTitle: Story = {
   args: {
     sx: { height: 'auto', width: 300 },
     cardHeader: (
-      <CardMedia sx={{ height: 200 }} image="https://via.placeholder.com/300x200" title="300x200" />
+      <CardMedia sx={{ height: 200 }} image="https://placehold.co/600x400" title="300x200" />
     ),
     cardContent: (
       <CardContent>
@@ -46,7 +46,7 @@ export const WithImageContentTitleDescription: Story = {
   args: {
     sx: { height: 'auto', width: 300 },
     cardHeader: (
-      <CardMedia sx={{ height: 200 }} image="https://via.placeholder.com/300x200" title="300x200" />
+      <CardMedia sx={{ height: 200 }} image="https://placehold.co/600x400" title="300x200" />
     ),
     cardContent: (
       <CardContent>
@@ -67,7 +67,7 @@ export const WithImageContentTitleAction: Story = {
       alert('clicked on card');
     },
     cardHeader: (
-      <CardMedia sx={{ height: 200 }} image="https://via.placeholder.com/300x200" title="300x200" />
+      <CardMedia sx={{ height: 200 }} image="https://placehold.co/600x400" title="300x200" />
     ),
     cardContent: (
       <CardContent>

@@ -10,7 +10,7 @@ const config: StorybookConfig = {
     '@storybook/addon-essentials',
     '@storybook/addon-interactions',
     '@storybook/addon-themes',
-    //👈 The a11y addon goes here
+    'storybook-addon-loki',
     '@storybook/addon-a11y'
   ],
   core: {

@@ -51,6 +51,7 @@ yarn-error.log*
 .turbo/
 .next/
 out/
+.loki/
 
 # OS generated files
 Thumbs.db
@@ -58,4 +59,7 @@ ehthumbs.db
 Desktop.ini
 
 .npmrc
-.npmrc
+lib/
+.loki
+.loki/
+lib

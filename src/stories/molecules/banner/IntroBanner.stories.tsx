@@ -21,15 +21,15 @@ export const BannerCard: Story = {
       buttonColor: '#9b3cbe',
       buttonText: 'Buy Now',
       logoAlt: 'Megamillions',
-      logoUrl: 'https://picsum.photos/512/282',
+      logoUrl: 'https://placehold.co/600x400',
       title: 'Mega Millions',
       secondaryTitle: 'Secondary Title',
       titleColor: '#ee3a3a'
     },
     outlineStyle: 'Gradient',
-    desktopUrl: 'https://picsum.photos/1434/380',
-    mobileUrl: 'https://picsum.photos/369/328',
-    tabletUrl: 'https://picsum.photos/764/325',
+    desktopUrl: 'https://placehold.co/600x400',
+    mobileUrl: 'https://placehold.co/600x400',
+    tabletUrl: 'https://placehold.co/600x400',
     onClick: (): void => {},
     decorativeBanner: true
   }
