@@ -17,7 +17,7 @@ export const BannerCard: Story = {
   args: {
     sx: { width: '100%' },
     title: 'Banner',
-    imageUrl: 'https://via.placeholder.com/1024x250',
+    imageUrl: 'https://placehold.co/600x400',
     label: 'banner image',
     altText: 'banner-image'
   }

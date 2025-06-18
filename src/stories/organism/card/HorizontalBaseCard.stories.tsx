@@ -21,7 +21,7 @@ export const WithDescription: Story = {
     cardMedia: (
       <CardMedia
         sx={{ width: 90, height: 90, margin: '1.5rem 1rem' }}
-        image="https://via.placeholder.com/90x90"
+        image="https://placehold.co/600x400"
         title="90x90"
       />
     ),
@@ -40,7 +40,7 @@ export const WithoutDescription: Story = {
     cardMedia: (
       <CardMedia
         sx={{ width: 90, height: 90, margin: '1.5rem 1rem' }}
-        image="https://via.placeholder.com/90x90"
+        image="https://placehold.co/600x400"
         title="90x90"
       />
     ),
@@ -58,7 +58,7 @@ export const WithoutMediaMargin: Story = {
     cardMedia: (
       <CardMedia
         sx={{ width: 150, height: 150 }}
-        image="https://via.placeholder.com/90x90"
+        image="https://placehold.co/600x400"
         title="90x90"
       />
     ),
@@ -78,7 +78,7 @@ export const MediaLeft: Story = {
     cardMedia: (
       <CardMedia
         sx={{ width: 150, height: 150 }}
-        image="https://via.placeholder.com/90x90"
+        image="https://placehold.co/600x400"
         title="90x90"
       />
     ),
