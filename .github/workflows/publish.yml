@@ -27,6 +27,12 @@ jobs:
       with:
         fetch-depth: 0 
 
+    - name: Setup Git identity
+      run: |
+        git config user.name "github-actions[bot]"
+        git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+
     - name: Setup Node.js
       uses: actions/setup-node@v4
       with:
@@ -42,6 +48,9 @@ jobs:
 
     - name: Bump version
       run: yarn version --patch
+
+    - name: Push version bump commit
+      run: git push
 
     - name: Run tests
       run: yarn test
