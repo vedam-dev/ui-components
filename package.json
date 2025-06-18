@@ -1,14 +1,17 @@
 {
   "name": "@vedam-dev/ui-components",
-  "version": "1.1.5",
-  "main":"dist/index.js",
-  "types":"dist/index.d.ts",
-  "files":["dist","src"],
+  "version": "1.1.6",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "src"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/vedam-dev/ui-components.git"
-  }, 
-   "bugs": {
+  },
+  "bugs": {
     "url": "https://github.com/vedam-dev/ui-components/issues"
   },
   "homepage": "https://github.com/vedam-dev/ui-components#readme",
@@ -20,8 +23,7 @@
     "jackspeak": "2.1.1"
   },
   "scripts": {
-   
-    "prepack":"yarn build",
+    "prepack": "yarn build",
     "test": "jest --coverage --logHeapUsage -w=2 --passWithNoTests",
     "build": "npm run build:lib",
     "build:lib": "tsc --p ./tsconfig.lib.json",
