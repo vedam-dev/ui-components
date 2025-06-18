@@ -1,6 +1,17 @@
 {
   "name": "@vedam-dev/ui-components",
-  "version": "1.1.1",
+  "version": "1.1.5",
+  "main":"dist/index.js",
+  "types":"dist/index.d.ts",
+  "files":["dist","src"],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vedam-dev/ui-components.git"
+  }, 
+   "bugs": {
+    "url": "https://github.com/vedam-dev/ui-components/issues"
+  },
+  "homepage": "https://github.com/vedam-dev/ui-components#readme",
   "publishConfig": {
     "registry": "https://npm.pkg.github.com",
     "access": "restricted"
@@ -9,7 +20,8 @@
     "jackspeak": "2.1.1"
   },
   "scripts": {
-    "publish": "npm publish",
+   
+    "prepack":"yarn build",
     "test": "jest --coverage --logHeapUsage -w=2 --passWithNoTests",
     "build": "npm run build:lib",
     "build:lib": "tsc --p ./tsconfig.lib.json",
@@ -59,6 +71,9 @@
     "@commitlint/cli": "^19.8.1",
     "@commitlint/config-conventional": "^19.8.1",
     "@eslint/js": "^9.26.0",
+    "@rollup/plugin-commonjs": "^28.0.6",
+    "@rollup/plugin-node-resolve": "^16.0.1",
+    "@rollup/plugin-typescript": "^12.1.3",
     "@storybook/addon-a11y": "^8.4.2",
     "@storybook/addon-essentials": "^8.4.2",
     "@storybook/addon-interactions": "^8.4.2",
@@ -97,6 +112,9 @@
     "prettier": "^3.2.5",
     "prop-types": "15.8.1",
     "react-scripts": "^5.0.1",
+    "rollup": "^4.43.0",
+    "rollup-plugin-peer-deps-external": "^2.2.4",
+    "rollup-plugin-terser": "^7.0.2",
     "storybook": "^8.4.2",
     "ts-jest": "^29.2.5",
     "typescript": "^5.6.3",
