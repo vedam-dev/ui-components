@@ -2,9 +2,12 @@ name: Publish Package
 
 on:
   push:
-    branches: [main]
+    branches:  
+     - main
+     - feature/deployment-package  
     paths:
       - 'src/**'
+      - 'lib/**'
       - 'package.json'
       - 'tsconfig*'
   release:
