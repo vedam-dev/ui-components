@@ -22,7 +22,7 @@
     "build-storybook": "storybook build",
     "build:storybook": "storybook build",
     "test-storybook": "test-storybook",
-    "prepare": "husky install",
+    "prepare": "husky",
     "commitlint": "ts-node --esm commitlint.config.ts"
   },
   "browserslist": {
@@ -113,6 +113,7 @@
   "jestSonar": {
     "reportPath": "build/reports"
   },
+
   "lint-staged": {
     "{,src/**/}*.{md,json,ts,tsx,css,scss,yml}": [
       "yarn lint:fix",
