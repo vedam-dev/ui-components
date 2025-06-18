@@ -5,7 +5,7 @@ on:
     branches:  
      - master
      - feature/deployment-package
-     - feature/indexing
+     - feature/VF-25-indexing
     paths:
       - 'src/**'
       - 'dist/**'
