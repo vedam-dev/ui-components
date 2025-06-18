@@ -4,7 +4,7 @@ const config: UserConfig = {
   extends: [], // remove '@commitlint/config-conventional'
   parserPreset: {
     parserOpts: {
-      headerPattern: /^([A-Z]+-\d+):\s(.+)$/,
+      headerPattern: /^([A-Z]+-\d+):\s?(.+)$/,
       headerCorrespondence: ['scope', 'subject']
     }
   },

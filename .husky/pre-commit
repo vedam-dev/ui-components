@@ -12,3 +12,5 @@
 
 echo "✅ Husky pre-commit hook triggered"
 # Add your command here, like lint-staged
+
+bash .husky/check-branch-name.sh
