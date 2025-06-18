@@ -2,6 +2,7 @@
   "name": "@vedam-dev/ui-components",
   "version": "1.4.0",
   "main": "src/index.js",
+  "types": "dist/index.d.ts",
   "files": [
     "dist",
     "src"
@@ -140,7 +141,6 @@
   "jestSonar": {
     "reportPath": "build/reports"
   },
-
   "lint-staged": {
     "{,src/**/}*.{md,json,ts,tsx,css,scss,yml}": [
       "yarn lint:fix",
