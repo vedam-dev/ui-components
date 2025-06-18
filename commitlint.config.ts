@@ -1,17 +1,19 @@
 import type { UserConfig } from '@commitlint/types';
 
 const config: UserConfig = {
-  extends: ['@commitlint/config-conventional'],
+  extends: [], // remove '@commitlint/config-conventional'
   parserPreset: {
     parserOpts: {
-      headerPattern: /^([a-z]+)\(([A-Z]+-\d+)\):\s(.+)$/,
-      headerCorrespondence: ['type', 'scope', 'subject']
+      headerPattern: /^([A-Z]+-\d+)\s?(.+)$/,
+      headerCorrespondence: ['scope', 'subject']
     }
   },
   rules: {
-    'scope-empty': [2, 'never']
+    'type-empty': [0], // disable this rule
+    'scope-empty': [2, 'never'],
+    'subject-empty': [2, 'never'],
+    // add any other rules you want
   },
-  // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
   ignores: [message => message.includes('[jenkins-commit]')]
 };
 
