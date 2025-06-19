@@ -21,7 +21,7 @@ type Story = StoryObj<typeof meta>;
 // More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
 export const Letter: Story = {
   args: {
-    children: 'BD',
+    children: 'XD',
     backgroundColor: 'primary'
   }
 };
@@ -29,7 +29,7 @@ export const Letter: Story = {
 export const Image: Story = {
   args: {
     src: '/1.png',
-    children: 'BD',
+    children: 'VD',
     backgroundColor: 'secondary'
   }
 };
@@ -37,7 +37,7 @@ export const Image: Story = {
 export const Square: Story = {
   args: {
     variant: 'square',
-    children: 'BD',
+    children: 'VD',
     backgroundColor: 'error'
   }
 };
@@ -45,7 +45,7 @@ export const Square: Story = {
 export const Rounded: Story = {
   args: {
     variant: 'rounded',
-    children: 'BD',
+    children: 'VD',
     backgroundColor: 'success'
   }
 };
