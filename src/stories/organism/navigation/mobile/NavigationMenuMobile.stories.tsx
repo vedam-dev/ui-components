@@ -1,5 +1,5 @@
 import { Box, Typography } from '@mui/material';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-webpack5';
 import MonoToneToken from '../../../../component/atom/icon/MonoToneToken';
 import MonoToneWallet from '../../../../component/atom/icon/MonoToneWallet';
 import React from 'react';

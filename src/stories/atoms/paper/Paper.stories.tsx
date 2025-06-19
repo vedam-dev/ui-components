@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-webpack5';
 import { Paper } from '../../../component/atom/paper';
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export

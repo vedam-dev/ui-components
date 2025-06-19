@@ -36,13 +36,13 @@ import '@fontsource/montserrat/700-italic.css';
 import '@fontsource/montserrat/800-italic.css';
 import '@fontsource/montserrat/900-italic.css';
 
-import type { Preview } from '@storybook/react';
+import type { Preview } from '@storybook/react-webpack5';
 
 import { CssBaseline } from '@mui/material';
 import { withThemeFromJSXProvider } from '@storybook/addon-themes';
 import { defaultTheme, wvTheme, ksTheme, ks3Theme } from '../src/theme/customer';
 import { CoreThemeProvider } from '../src/theme/core-theme';
-import { INITIAL_VIEWPORTS, MINIMAL_VIEWPORTS, DEFAULT_VIEWPORT } from '@storybook/addon-viewport';
+import { INITIAL_VIEWPORTS, MINIMAL_VIEWPORTS, DEFAULT_VIEWPORT } from 'storybook/viewport';
 
 const preview: Preview = {
   parameters: {

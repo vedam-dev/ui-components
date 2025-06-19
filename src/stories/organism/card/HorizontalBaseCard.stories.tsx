@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-webpack5';
 import HorizontalBaseCard from '../../../component/organism/card/HorizontalBaseCard';
 import { CardContent, CardMedia } from '../../../component/atom/card';
 import { Box } from '../../../component/atom/box';

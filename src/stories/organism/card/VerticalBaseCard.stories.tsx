@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-webpack5';
 import VerticalBaseCard from '../../../component/organism/card/VerticalBasecard';
 import { CardActions, CardContent, CardMedia } from '../../../component/atom/card';
 import { Typography } from '../../../component/atom/typography';

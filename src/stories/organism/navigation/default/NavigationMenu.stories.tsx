@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-webpack5';
 import NavigationMenu from '../../../../component/organism/navigation/default/NavigationMenu';
 import WVRed80 from '../../../../component/atom/icon/lottery/wv/WVRed80';
 import { NavigationMenuItems } from '../../../../component/organism/navigation/types';
