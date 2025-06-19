@@ -47,7 +47,7 @@ jobs:
     - name: Setup Git identity
       run: |
          git config --global user.name "Praz-Vedam"
-         git config --global user.email "prasana.swain@vedam.org"
+         git config --global user.email "prasanna.swain@vedam.org"
         
     - name: Setup Node.js
       uses: actions/setup-node@v4
