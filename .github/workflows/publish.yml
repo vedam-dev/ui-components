@@ -4,8 +4,6 @@ on:
   push:
     branches:  
      - master
-     - feature/deployment-package
-     - feature/VF-25-indexing
     paths:
       - 'src/**'
       - 'dist/**'

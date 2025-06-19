@@ -4,8 +4,7 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
-    "dist",
-    "src"
+    "dist"
   ],
   "repository": {
     "type": "git",
@@ -26,7 +25,7 @@
   "scripts": {
     "prepack": "yarn build",
     "test": "jest --coverage --logHeapUsage -w=2 --passWithNoTests",
-    "build": "npm run build:lib",
+    "build": "tsc",
     "build:lib": "tsc --p ./tsconfig.lib.json",
     "watch": "tsc -w",
     "lint": "eslint \"**/*.{js,ts,tsx}\"",
@@ -37,7 +36,7 @@
     "build-storybook": "storybook build",
     "storybook:build": "storybook build",
     "test-storybook": "test-storybook",
-    "prepare": "husky install",
+    "prepare": "yarn build && husky install",
     "commitlint": "ts-node --esm commitlint.config.ts",
     "loki": "loki --requireReference",
     "loki:update": "loki update",
