@@ -3,14 +3,13 @@
   "compilerOptions": {
     "outDir": "./dist",
     "incremental": true,
-    "tsBuildInfoFile": "./.build-cache",
     "target": "ESNext",
     "module": "ESNext",
     "noEmit": false,
     "emitDeclarationOnly": false,  // Add this to ensure JS files are emitted
     "strict": true,
     "jsx": "react-jsx",
-    "dist": ["ESNext", "DOM", "DOM.Iterable"],
+    "lib": ["ESNext", "DOM", "DOM.Iterable"],
     "types": ["react", "react/jsx-runtime"],
     "declaration": true  // Keep this if you want both .js and .d.ts files
   },
