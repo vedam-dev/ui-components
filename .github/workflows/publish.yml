@@ -30,17 +30,6 @@ jobs:
       - name: Build package
         run: yarn build:lib
 
-      - name: Setup Git identity
-        run: |
-         git config --global user.name "github-actions[bot]"
-         git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
-
-      - name: Bump version
-        run: yarn version --minor
-        
-      - name: Push version bump commit
-        run: git push
-
   publish:
     if: github.event_name != 'pull_request'
     runs-on: ubuntu-latest
@@ -57,8 +46,8 @@ jobs:
 
     - name: Setup Git identity
       run: |
-         git config --global user.name "github-actions[bot]"
-         git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+         git config --global user.name "Praz-Vedam"
+         git config --global user.email "prasana.swain@vedam.org"
         
     - name: Setup Node.js
       uses: actions/setup-node@v4
@@ -72,6 +61,12 @@ jobs:
 
     - name: Build package
       run: yarn build:lib
+
+    - name: Bump version
+      run: yarn version --minor
+        
+    - name: Push version bump commit
+      run: git push
 
     # - name: Run tests
     #   run: yarn test
