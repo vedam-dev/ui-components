@@ -1,7 +1,7 @@
 import { Testable } from '../src/testable';
 
 describe('Simple expression tests', () => {
-  test('Check literal values', () => {
+  test('Check literal value', () => {
     const data = 'Hello World';
 
     const testable = new Testable(data);
