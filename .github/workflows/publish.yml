@@ -37,6 +37,8 @@ jobs:
   publish:
     if: github.event_name != 'pull_request'
     runs-on: ubuntu-latest
+    env:
+      HUSKY: 0  # Disable Husky hooks in CI
     permissions:
       contents: write 
       packages: write
