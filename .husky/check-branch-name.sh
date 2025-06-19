@@ -6,7 +6,7 @@ PATTERN="^(HEAD|master|dev|prod|uat|(feature|bugfix|hotfix)\/[A-Z]+-[0-9]+(-[A-Z
 if [[ ! "$BRANCH_NAME" =~ $PATTERN ]]; then
   echo "❌ Invalid branch name: '$BRANCH_NAME'"
   echo "👉 Expected format: feature/ABC-123-summary"
-  echo "✔️  Allowed prefixes: feature, fix, chore, hotfix"
-  echo "✔️  Ticket format: ABC-123 (now accepts lowercase too)"
+  echo "✔️  Allowed prefixes: feature, bugfix, hotfix"
+  echo "✔️  Ticket format: ABC-123"
   exit 1
 fi
