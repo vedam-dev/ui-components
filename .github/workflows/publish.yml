@@ -12,7 +12,7 @@ on:
 
 jobs:
   ci:
-    if: github.event_name == 'pull_request' || github.ref == 'refs/heads/master'
+    if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
     name: PR CI Checks
     steps:
@@ -28,7 +28,13 @@ jobs:
         run: yarn install --frozen-lockfile
 
       - name: Build package
-        run: yarn build
+        run: yarn build:lib
+
+      - name: Bump version
+        run: yarn version --minor
+        
+      - name: Push version bump commit
+        run: git push
 
   publish:
     if: github.event_name != 'pull_request'
@@ -60,13 +66,7 @@ jobs:
       run: yarn install --frozen-lockfile
 
     - name: Build package
-      run: yarn build
-
-    - name: Bump version
-      run: yarn version --minor
-
-    - name: Push version bump commit
-      run: git push
+      run: yarn build:lib
 
     # - name: Run tests
     #   run: yarn test
