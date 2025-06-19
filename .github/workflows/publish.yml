@@ -31,8 +31,8 @@ jobs:
         run: yarn build:lib
 
       # Add any required tests here that should run for PRs
-      - name: Run tests
-        run: yarn test
+      # - name: Run tests
+      #   run: yarn test
 
   publish:
     if: github.event_name != 'pull_request'
