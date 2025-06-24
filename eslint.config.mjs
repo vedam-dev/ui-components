@@ -1,7 +1,7 @@
 // .eslintrc.mjs
 import { FlatCompat } from '@eslint/eslintrc';
 import js from '@eslint/js';
-import pblConfigRecommended from '@pbl/engagement-lib-fe-eslint-config';
+
 import tsPlugin from '@typescript-eslint/eslint-plugin';
 import tsParser from '@typescript-eslint/parser';
 import prettierPlugin from 'eslint-plugin-prettier';
@@ -18,8 +18,7 @@ const compat = new FlatCompat({
 });
 
 export default [
-  // pbl custom eslint config
-  ...pblConfigRecommended,
+  
 
   { ignores: ['public/**', 'node_modules/**', 'build/**', 'package.json', 'lib'] },
 
