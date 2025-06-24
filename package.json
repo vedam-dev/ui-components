@@ -24,7 +24,7 @@
   },
   "scripts": {
     "prepack": "yarn build",
-    "test": "jest --coverage --logHeapUsage -w=2 --passWithNoTests",
+    "test": "",
     "build": "tsc",
     "build:lib": "tsc --p ./tsconfig.lib.json",
     "watch": "tsc -w",

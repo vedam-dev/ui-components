@@ -85,24 +85,5 @@ export default [
     settings: { react: { version: '18' } }
   },
 
-  // Separate override for CommonJS config files (jest.config.js, etc.)
-  {
-    files: ['jest.config.js'],
-    languageOptions: {
-      sourceType: 'script',
-      globals: {
-        module: 'writable',
-        require: 'readonly',
-        __dirname: 'readonly',
-        process: 'readonly'
-      },
-      parserOptions: {
-        ecmaVersion: 'latest'
-      }
-    },
-    rules: {
-      '@typescript-eslint/no-unused-vars': 'off',
-      '@typescript-eslint/no-explicit-any': 'off'
-    }
-  }
+
 ];
