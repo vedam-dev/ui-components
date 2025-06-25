@@ -79,26 +79,20 @@ import babel from '@rollup/plugin-babel';
 
 // Main bundle configuration
 
-const mainConfig: RollupOptions = {
-  input: './src/index.ts',
-  output: [
-    {
-      file: 'dist/index.js',
-      format: 'cjs',
-      exports: 'named',
-      sourcemap: true,
-      inlineDynamicImports: true
-    },
-    {
-      file: 'dist/index.esm.js',
-      format: 'esm',
-      exports: 'named',
-      sourcemap: true,
-      inlineDynamicImports: true
-    }
-  ],
+const createFormatConfig = (format: 'cjs' | 'esm'): RollupOptions => ({
+  input: {
+    components: './src/index.ts',
+    theme: './src/theme/customer/index.ts'
+  },
+  output: {
+    dir: `dist/${format}`,
+    format,
+    exports: 'named',
+    sourcemap: true,
+    preserveModules: true // This maintains the original file structure
+  },
   plugins: [
-    peerDepsExternal() as Plugin, // Explicit type assertion
+    peerDepsExternal() as Plugin,
     resolve({
       browser: true,
       preferBuiltins: false,
@@ -106,21 +100,17 @@ const mainConfig: RollupOptions = {
     }),
     commonjs(),
     typescript({
-      jsx: 'preserve', // or 'react' depending on your needs
       tsconfig: './tsconfig.json',
-      include: ['**/*.ts', '**/*.tsx'],
       declaration: true,
-      declarationDir: 'dist/types',
+      declarationDir: `dist/${format}/types`, // Output types alongside the format
+      outDir: `dist/${format}`, // Match Rollup's output dir
       rootDir: 'src',
       exclude: ['./src/stories', '**/*.stories.tsx']
     }),
     babel({
       babelHelpers: 'bundled',
-      extensions: ['.ts', '.tsx'], // Process both TS and TSX
-      presets: [
-        '@babel/preset-react', // Transform JSX
-        '@babel/preset-typescript' // Handle TypeScript
-      ]
+      extensions: ['.ts', '.tsx'],
+      presets: ['@babel/preset-react', '@babel/preset-typescript']
     }),
     replace({
       preventAssignment: true,
@@ -143,18 +133,22 @@ const mainConfig: RollupOptions = {
     '@emotion/styled',
     'next'
   ]
-};
+});
 
 // TypeScript declaration bundling configuration
 const dtsConfig: RollupOptions = {
-  input: 'dist/types/index.d.ts',
+  input: './src/index.ts',
   output: {
     file: 'dist/index.d.ts',
     format: 'esm'
   },
   plugins: [
     dts({
-      respectExternal: true
+      respectExternal: true,
+      compilerOptions: {
+        skipLibCheck: true,
+        incremental: false
+      }
     })
   ],
   external: [
@@ -171,5 +165,6 @@ const dtsConfig: RollupOptions = {
   ]
 };
 
-const configs: RollupOptions[] = [mainConfig, dtsConfig];
+const configs: RollupOptions[] = [createFormatConfig('cjs'), createFormatConfig('esm'), dtsConfig];
+
 export default configs;
