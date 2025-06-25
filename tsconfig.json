@@ -5,6 +5,7 @@
     "allowJs": true,
     "skipLibCheck": true,
     "declaration": true,
+    "typeRoots": ["./node_modules/@types", "./src/types"],
     "emitDeclarationOnly": true,
     "outDir": "./dist",
     "esModuleInterop": true,
@@ -16,13 +17,13 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx",
+    "jsx": "preserve",
     "baseUrl": ".",
     "paths": {
       "@component/*": ["src/component/*"],
       "@theme/*": ["src/theme/*"]
     }
   },
-  "include": ["src", ".storybook"],
+  "include": ["src", ".storybook","src/types"],
   "exclude": ["node_modules"]
 }
