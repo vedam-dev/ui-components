@@ -23,12 +23,15 @@
     "jackspeak": "2.1.1"
   },
   "scripts": {
-    "g:index":"node ./generateIndex.mjs",
+    "g:index": "node ./generateIndex.mjs",
     "prepack": "yarn build",
     "test": "",
-    "build": "tsc",
-    "build:rollup": "rollup -c rollup.config.ts --configPlugin typescript",
+    "build": "NODE_OPTIONS='--max-old-space-size=8192' tsc",
+    "build:rollup": "NODE_OPTIONS='--max-old-space-size=4096' rollup -c rollup.config.ts --configPlugin typescript",
     "build:rollup:watch": "rollup -c rollup.config.ts --configPlugin typescript -w",
+   "build:js": "NODE_OPTIONS='--max-old-space-size=4096' rollup -c rollup.config.ts --configPlugin typescript --environment BUILD_ONLY:true",
+  "build:types": "NODE_OPTIONS='--max-old-space-size=8192' rollup -c rollup.config.ts --configPlugin typescript --environment TYPES_ONLY:true",
+  "build:full": "NODE_OPTIONS='--max-old-space-size=8192' rollup -c rollup.config.ts --configPlugin typescript",
     "build:lib": "tsc --p ./tsconfig.lib.json",
     "watch": "tsc -w",
     "lint": "eslint \"**/*.{js,ts,tsx}\"",
