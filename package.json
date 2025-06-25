@@ -1,6 +1,6 @@
 {
   "name": "@vedam-dev/ui-components",
-  "version": "1.15.0",
+  "version": "1.16.0",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
@@ -110,6 +110,10 @@
     "node": "22",
     "prettier": "^3.2.5",
     "prop-types": "15.8.1",
+    "react-scripts": "^5.0.1",
+    "rollup": "^4.43.0",
+    "rollup-plugin-peer-deps-external": "^2.2.4",
+    "rollup-plugin-terser": "^7.0.2",
     "storybook": "^8.4.2",
     "ts-node": "^10.9.2",
     "typescript": "^4.9.5",
