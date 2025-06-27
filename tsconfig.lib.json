@@ -1,26 +1,27 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "outDir": "./lib",
+    "outDir": "./dist",
     "incremental": true,
-    "tsBuildInfoFile": "./.build-cache",
     "target": "ESNext",
     "module": "ESNext",
     "noEmit": false,
+    "emitDeclarationOnly": false,  // Add this to ensure JS files are emitted
     "strict": true,
     "jsx": "react-jsx",
     "lib": ["ESNext", "DOM", "DOM.Iterable"],
-    "types": ["react", "react/jsx-runtime"]
+    "types": ["react", "react/jsx-runtime"],
+    "declaration": true  // Keep this if you want both .js and .d.ts files
   },
   "include": ["src"],
   "exclude": [
     "src/stories",
     "src/stories/*",
     "src/stories/**/*",
-    "*/stories/*",
+    "/stories/",
     "node_modules",
     "**/__tests__/*",
-    "lib",
+    "dist",
     "src/index.tsx",
     "src/sample/*"
   ]
