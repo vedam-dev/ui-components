@@ -7,45 +7,28 @@ type PaletteColorKeys = 'primary' | 'secondary' | 'error' | 'info' | 'success' |
 
 export interface ISelectProps {
   autoWidth?: boolean;
-
   variant?: 'filled' | 'outlined' | 'standard';
-
   displayEmpty?: boolean;
-
   IconComponent?: React.ElementType;
-
   id?: string;
-
   input?: React.ReactElement;
-
   label?: React.ReactNode;
-
   labelId?: string;
-
   MenuProps?: object;
-
   multiple?: boolean;
-
   native?: boolean;
-
-  onChange?: BaseSelectProps['onChange'];
-
+  onChange?: BaseSelectProps<string>['onChange'] | BaseSelectProps<string[]>['onChange'];
   onClose?: (event: React.SyntheticEvent) => void;
-
   onOpen?: (event: React.SyntheticEvent) => void;
-
   open?: boolean;
-
   renderValue?: (value: unknown) => React.ReactNode;
-
   SelectDisplayProps?: object;
-
   color?: PaletteColorKeys | 'default' | string;
-
   size?: 'small' | 'medium';
+  value?: unknown;
 }
 
-export type SelectProps = ComponentProps<typeof BaseSelect> & ISelectProps;
+export type SelectProps = Omit<ComponentProps<typeof BaseSelect>, 'color'> & ISelectProps;
 
 const Select: FC<SelectProps> = ({
   autoWidth = false,
@@ -54,9 +37,16 @@ const Select: FC<SelectProps> = ({
   color,
   size = 'medium',
   sx,
+  multiple,
+  value,
   ...props
 }) => {
   const { palette } = useCoreTheme() as CoreTheme;
+
+  // Validate value when multiple is true
+  if (multiple && !Array.isArray(value)) {
+    value = [];
+  }
 
   const getColor = (): string | undefined => {
     if (!color || color === 'primary') return undefined;
@@ -99,6 +89,8 @@ const Select: FC<SelectProps> = ({
       displayEmpty={displayEmpty}
       size={size}
       sx={sxValue}
+      multiple={multiple}
+      value={value}
       {...props}
     />
   );
