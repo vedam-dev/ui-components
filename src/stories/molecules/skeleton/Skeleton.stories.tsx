@@ -32,31 +32,32 @@ type Story = StoryObj<typeof meta>;
 
 export const Text: Story = {
   args: {
-    variant: 'text'
+    variant: 'text',
+    width: 310
   }
 };
 
 export const Rectangular: Story = {
   args: {
     variant: 'rectangular',
-    width: 210,
-    height: 60
+    width: 310,
+    height: 160
   }
 };
 
 export const Rounded: Story = {
   args: {
     variant: 'rounded',
-    width: 210,
-    height: 60
+    width: 310,
+    height: 160
   }
 };
 
 export const Circular: Story = {
   args: {
     variant: 'circular',
-    width: 40,
-    height: 40
+    width: 100,
+    height: 100
   }
 };
 
@@ -64,8 +65,8 @@ export const WaveAnimation: Story = {
   args: {
     animation: 'wave',
     variant: 'rectangular',
-    width: 210,
-    height: 60
+    width: 310,
+    height: 160
   }
 };
 
@@ -73,8 +74,8 @@ export const NoAnimation: Story = {
   args: {
     animation: false,
     variant: 'rectangular',
-    width: 210,
-    height: 60
+    width: 310,
+    height: 160
   }
 };
 
@@ -85,7 +86,7 @@ export const WithChildren: Story = {
         <img
           src="https://unsplash.com/photos/young-asian-travel-woman-is-enjoying-with-beautiful-place-in-bangkok-thailand-_Fqoswmdmoo"
           alt="placeholder"
-          width={210}
+          width={310}
           height={120}
         />
       </Skeleton>
@@ -93,7 +94,7 @@ export const WithChildren: Story = {
   ),
   args: {
     variant: 'rectangular',
-    width: 210,
+    width: 310,
     height: 120
   }
 };
