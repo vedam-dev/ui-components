@@ -10,6 +10,7 @@ export { default as CardActions } from './component/atom/card/CardActions';
 export { default as CardContent } from './component/atom/card/CardContent';
 export { default as CardHeader } from './component/atom/card/CardHeader';
 export { default as CardMedia } from './component/atom/card/CardMedia';
+export { default as Drawer } from './component/atom/drawer/Drawer';
 
 //  Molecule Components
 export { default as Banner } from './component/molecule/banner/Banner';
