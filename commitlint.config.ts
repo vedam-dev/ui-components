@@ -11,7 +11,7 @@ const config: UserConfig = {
   rules: {
     'type-empty': [0], // disable this rule
     'scope-empty': [2, 'never'],
-    'subject-empty': [2, 'never'],
+    'subject-empty': [2, 'never']
     // add any other rules you want
   },
   ignores: [message => message.includes('[jenkins-commit]')]
