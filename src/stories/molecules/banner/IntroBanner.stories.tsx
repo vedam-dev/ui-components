@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import IntroBanner from '../../../component/molecule/IntroBanner/IntroBanner';
 
 const meta = {
-  title: 'Moluecule/banner/IntroBanner',
+  title: 'Molecule/banner/IntroBanner',
   component: IntroBanner,
   parameters: {
     layout: 'centered'

@@ -6,23 +6,20 @@
     "target": "ESNext",
     "module": "ESNext",
     "noEmit": false,
-    "emitDeclarationOnly": false,  // Add this to ensure JS files are emitted
+    "emitDeclarationOnly": false, 
     "strict": true,
     "jsx": "react-jsx",
     "lib": ["ESNext", "DOM", "DOM.Iterable"],
     "types": ["react", "react/jsx-runtime"],
-    "declaration": true  // Keep this if you want both .js and .d.ts files
+    "declaration": true  
   },
   "include": ["src"],
   "exclude": [
-    "src/stories",
-    "src/stories/*",
-    "src/stories/**/*",
-    "/stories/",
+    "src/stories/**",
     "node_modules",
-    "**/__tests__/*",
+    "**/__tests__/**",
     "dist",
     "src/index.tsx",
-    "src/sample/*"
+    "src/sample/**"  
   ]
 }
