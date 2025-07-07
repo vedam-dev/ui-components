@@ -64,6 +64,7 @@ const Chip: FC<ChipProps> = ({
   const sxValue = SxOverride(
     {
       padding: '0px 10px',
+      borderRadius: '100px',
       ...(baseVariant === 'filled' && {
         backgroundColor: getColorValue(),
         color: palette.common.white,
@@ -87,6 +88,7 @@ const Chip: FC<ChipProps> = ({
       variant={baseVariant}
       onClick={handleClick}
       onDelete={onDelete ? handleDelete : undefined}
+      clickable={false}
       sx={sxValue}
       {...props}
     />

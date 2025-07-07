@@ -26,8 +26,8 @@ const meta: Meta<IChipProps> = {
       options: ['filled', 'outlined', 'success', 'error', 'warning'],
     },
     label: { control: 'text' },
-    onClick: { action: 'clicked' },
-    onDelete: { action: 'deleted' },
+    // onClick: { action: 'clicked' },
+    // onDelete: { action: 'deleted' },
   },
 };
 

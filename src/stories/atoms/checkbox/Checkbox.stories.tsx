@@ -33,6 +33,7 @@ export const Primary: Story = {
 export const Secondary: Story = {
   args: {
     color: 'secondary',
+    checked: true
   },
 };
 

@@ -26,6 +26,6 @@ export { default as VerticalBasecard } from './component/organism/card/VerticalB
 
 //  Theme Component's
 export { default as defaultTheme } from './theme/customer/default';
-export { default as wvTheme } from './theme/customer/wv';
+export { default as vedamTheme } from './theme/customer/vedam';
 export { default as ksTheme } from './theme/customer/ks';
 export { default as ks3Theme } from './theme/customer/ks3';

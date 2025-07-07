@@ -36,11 +36,30 @@ import '@fontsource/montserrat/700-italic.css';
 import '@fontsource/montserrat/800-italic.css';
 import '@fontsource/montserrat/900-italic.css';
 
+import "@fontsource/outfit/100.css";
+import "@fontsource/outfit/200.css"; 
+import "@fontsource/outfit/300.css"; 
+import "@fontsource/outfit/400.css";
+import "@fontsource/outfit/500.css"; 
+import "@fontsource/outfit/600.css"; 
+import "@fontsource/outfit/700.css";
+import "@fontsource/outfit/800.css"; 
+import "@fontsource/outfit/900.css"; 
+
+import "@fontsource/nunito-sans/200.css"; 
+import "@fontsource/nunito-sans/300.css"; 
+import "@fontsource/nunito-sans/400.css";
+import "@fontsource/nunito-sans/600.css";
+import "@fontsource/nunito-sans/700.css"; 
+import "@fontsource/nunito-sans/800.css"; 
+import "@fontsource/nunito-sans/900.css"; 
+
+
 import type { Preview } from '@storybook/react';
 
 import { CssBaseline } from '@mui/material';
 import { withThemeFromJSXProvider } from '@storybook/addon-themes';
-import { defaultTheme, wvTheme, ksTheme, ks3Theme } from '../src/theme/customer';
+import { defaultTheme, vedamTheme, ksTheme, ks3Theme } from '../src/theme/customer';
 import { CoreThemeProvider } from '../src/theme/core-theme';
 import { INITIAL_VIEWPORTS, MINIMAL_VIEWPORTS, DEFAULT_VIEWPORT } from '@storybook/addon-viewport';
 
@@ -75,7 +94,7 @@ const preview: Preview = {
       Provider: CoreThemeProvider,
       themes: {
         // Provide your custom themes here
-        wv: wvTheme,
+        vedam: vedamTheme,
         ks: ksTheme,
         ks3: ks3Theme,
         default: defaultTheme
