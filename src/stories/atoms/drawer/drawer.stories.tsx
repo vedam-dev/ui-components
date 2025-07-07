@@ -16,6 +16,142 @@
         },
         width: { control: 'text' },
         title: { control: 'text' },
+        transitionDuration: {
+      table: {
+        disable: true,
+      },
+    },
+    container: {
+      table: {
+        disable: true,
+      },
+    },
+    componentsProps: {
+      table: {
+        disable: true,
+      },
+    },
+    slotProps: {
+      table: {
+        disable: true,
+      },
+    },
+    slots: {
+      table: {
+        disable: true,
+      },
+    },
+    paperSx: {
+      table: {
+        disable: true,
+      },
+    },
+    components: {
+      table: {
+        disable: true,
+      },
+    },
+    classes: {
+      table: {
+        disable: true,
+      },
+    },
+    component: {
+      table: {
+        disable: true,
+      },
+    },
+    elevation: {
+      table: {
+        disable: true,
+      },
+    },
+    BackdropComponent: {
+      table: {
+        disable: true,
+      },
+    },
+    closeAfterTransition: {
+      table: {
+        disable: true,
+      },
+    },
+    disableEnforceFocus: {
+      table: {
+        disable: true,
+      },
+    },
+    disableEscapeKeyDown: {
+      table: {
+        disable: true,
+      },
+    },
+    disablePortal: {
+      table: {
+        disable: true,
+      },
+    },
+    hideBackdrop: {
+      table: {
+        disable: true,
+      },
+    },
+    keepMounted: {
+      table: {
+        disable: true,
+      },
+    },
+    onTransitionExited: {
+      table: {
+        disable: true,
+      },
+    },
+    ModalProps: {
+      table: {
+        disable: true,
+      },
+    },
+    PaperProps: {
+      table: {
+        disable: true,
+      },
+    },
+    SlideProps: {
+      table: {
+        disable: true,
+      },
+    },
+     onTransitionEnter: {
+      table: {
+        disable: true,
+      },
+    },
+    disableRestoreFocus: {
+      table: {
+        disable: true,
+      },
+    },
+    disableScrollLock: {
+      table: {
+        disable: true,
+      },
+    },
+    disableAutoFocus: {
+      table: {
+        disable: true,
+      },
+    },
+   BackdropProps: {
+      table: {
+        disable: true,
+      },
+    },
+    children: {
+      table: {
+        disable: true,
+      },
+    },
+
     },
     };
 
