@@ -175,24 +175,26 @@ const index = createCoreTheme({
   palette: {
     mode: 'light',
     primary: {
-      main: colors.primaryP600Primary,
-      dark: colors.primaryP700,
-      50: colors.primaryP800,
+      main: colors.primaryP500Primary,
+      dark: colors.primaryP800,
+      light: colors.primaryP050,
+      50: colors.primaryP050,
       100: colors.primaryP100,
       200: colors.primaryP200,
       300: colors.primaryP300,
       400: colors.primaryP400,
-      500: colors.primaryP500,
-      600: colors.primaryP600Primary,
+      500: colors.primaryP500Primary,
+      600: colors.primaryP600,
       700: colors.primaryP700,
       800: colors.primaryP800,
-      900: colors.primaryP800,
+      900: colors.primaryP900,
       
     },
      
     secondary: {
       main: colors.secondaryS500Secondary,
-      dark: colors.secondaryS700,
+      dark: colors.secondaryS800,
+      light: colors.secondaryS100,
       50: colors.secondaryS050,
       100: colors.secondaryS100,
       200: colors.secondaryS200,
