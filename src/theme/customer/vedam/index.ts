@@ -27,8 +27,8 @@ const index = createCoreTheme({
       avatar: { fontFamily: `Montserrat`, fontWeight: 'bold', fontSize: '14pt', lineHeight: '24pt' }
     },
     palette: {
-      wvRed: colors.wvRed,
-      wvBlue: colors.wvBlue,
+      vedamRed: colors.vedamRed,
+      vedamBlue: colors.vedamBlue,
       maintenanceBanner: colors.warningW100,
       errorModalBackground: colors.dangerD100,
       powerball: colors.powerball,
