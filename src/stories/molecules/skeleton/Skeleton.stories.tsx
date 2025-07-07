@@ -84,7 +84,7 @@ export const WithChildren: Story = {
     <Box sx={{ width: 210 }}>
       <Skeleton {...args}>
         <img
-          src="https://unsplash.com/photos/young-asian-travel-woman-is-enjoying-with-beautiful-place-in-bangkok-thailand-_Fqoswmdmoo"
+          src="https://images.unsplash.com/photo-1636690498207-d7b393423b9a?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
           alt="placeholder"
           width={310}
           height={120}
