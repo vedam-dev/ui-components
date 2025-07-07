@@ -22,6 +22,7 @@ export { default as Sekeleton } from './component/molecule/skeleton/Skeleton';
 //  Organism Components
 export { default as HorizontalBaseCard } from './component/organism/card/HorizontalBaseCard';
 export { default as VerticalBasecard } from './component/organism/card/VerticalBasecard';
+export { default as LoginModal } from './component/organism/loginModal/LoginModal'
 
 //  Theme Component's
 export { default as defaultTheme } from './theme/customer/default';

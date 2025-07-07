@@ -59,6 +59,8 @@ const Button: FC<ButtonProps> = ({
       style={{ ...styles, ...style }}
       variant={variant}
       color={color}
+      
+      
     >
       {children}
       {useMaterialButtons ? null : (
@@ -118,7 +120,8 @@ const buttonStyles = (
 
   const defaultStyles: SystemStyleObject<Theme> = {
     borderRadius: borderRadius,
-    padding: isV2 ? v2Paddings.large : theme.spacing(3),
+    paddingY: isV2 ? v2Paddings.large : theme.spacing(3),
+    paddingX: isV2 ? v2Paddings.large : theme.spacing(6),
     borderWidth: 2,
     boxShadow: 'none',
     '&:disabled': {
