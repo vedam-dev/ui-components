@@ -14,6 +14,7 @@ export { default as Chip } from './component/atom/chip/Chip';
 export { default as Accordion } from './component/atom/accordion/Accordion';
 export { default as Checkbox } from './component/atom/checkbox/Checkbox';
 export { default as TextField } from './component/atom/text-field/TextField'
+export { default as Drawer } from './component/atom/drawer/Drawer';
 
 //  Molecule Components
 export { default as Banner } from './component/molecule/banner/Banner';
