@@ -5,17 +5,17 @@ import SxOverride from '../../../util/SxOverride';
 import { CoreTheme, useCoreTheme } from '../../../theme/core-theme';
 
 export interface DrawerProps extends Omit<MuiDrawerProps, 'open' | 'onClose'> {
-  /** Whether the drawer is open */
+
   open: boolean;
-  /** Callback fired when the drawer should close */
+  
   onClose: () => void;
-  /** Drawer title shown in header */
+
   title?: string;
-  /** Content to render inside drawer */
+
   children?: ReactNode;
-  /** Width of the drawer (only for left/right anchors) */
+
   width?: number | string;
-  /** Custom sx overrides for drawer paper */
+
   paperSx?: MuiDrawerProps['sx'];
 }
 
