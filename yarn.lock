@@ -1744,6 +1744,16 @@
   resolved "https://registry.yarnpkg.com/@fontsource/montserrat/-/montserrat-5.2.6.tgz#083aba8d818c843cd2bb461c7f455680a12ad2ce"
   integrity sha512-AfFxq1q5tgkOsjQfMFsh95uMXh39VbGOuBLlHLFg16/txv93lqK7Sr6jev0neuJzZy1kqRG16SH6xpUYnk4cZg==
 
+"@fontsource/nunito-sans@^5.2.6":
+  version "5.2.6"
+  resolved "https://registry.yarnpkg.com/@fontsource/nunito-sans/-/nunito-sans-5.2.6.tgz#f7977fc1de069a4022354b2fb353c927077525b1"
+  integrity sha512-f3qQqoZXtJPqhrh1M/CTeFZnRsZj7fEnILmGmbyNdlx9GrddQ3avQWwsa0cnBkG5UFGWvnzcfuJp1s+PNHjBsg==
+
+"@fontsource/outfit@^5.2.6":
+  version "5.2.6"
+  resolved "https://registry.yarnpkg.com/@fontsource/outfit/-/outfit-5.2.6.tgz#7439022469b6bc0a2b0cbc0bb65f20cc158a387e"
+  integrity sha512-fXkIBhYAFJ2VU+PcPd/xi4vCdXHUaGMgSlJ0KCXcwEHqayMwzoExuoharIVgnae9wd5/QtcepFKXtmabsqIoEQ==
+
 "@fontsource/roboto@^5.1.1":
   version "5.2.6"
   resolved "https://registry.yarnpkg.com/@fontsource/roboto/-/roboto-5.2.6.tgz#93a2a5ef98cc79880355de0aac71def215b873e7"
