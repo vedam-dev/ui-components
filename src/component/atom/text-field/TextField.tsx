@@ -92,19 +92,14 @@ const TextField: FC<TextFieldProps> = ({
   value: propValue,
   variant = 'outlined',
   validate,
-  FormHelperTextProps,
-  InputLabelProps,
-  inputProps,
-  InputProps,
   inputRef,
-  SelectProps,
   slotProps,
   slots,
   sx,
   ...props
 }) => {
   const { palette } = useCoreTheme() as CoreTheme;
-  const [internalValue, setInternalValue] = useState(propValue || defaultValue || '');
+  const [internalValue, setInternalValue] = useState(propValue ?? defaultValue ?? '');
   const [validationError, setValidationError] = useState<string | null>(null);
 
   useEffect(() => {
@@ -125,18 +120,18 @@ const TextField: FC<TextFieldProps> = ({
     if (!validate) return null;
 
     if (required && !inputValue.trim()) {
-      return validate.requiredMessage || 'This field is required';
+      return validate.requiredMessage ?? 'This field is required';
     }
 
     if (validate.type === 'email') {
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       if (!emailRegex.test(inputValue)) {
-        return validate.emailMessage || 'Incorrect email id entered!';
+        return validate.emailMessage ?? 'Incorrect email id entered!';
       }
     }
 
     if (validate.sameAs && inputValue !== validate.sameAs) {
-      return validate.matchMessage || 'Values do not match';
+      return validate.matchMessage ?? 'Values do not match';
     }
 
     if (validate.customValidator) {
@@ -159,7 +154,7 @@ const TextField: FC<TextFieldProps> = ({
   };
 
   const error = validationError !== null || propError;
-  const displayHelperText = validationError || helperText;
+  const displayHelperText = validationError ?? helperText;
 
   const sxValue = SxOverride(
     {
@@ -213,12 +208,7 @@ const TextField: FC<TextFieldProps> = ({
       type={type}
       value={internalValue}
       variant={variant}
-      FormHelperTextProps={FormHelperTextProps}
-      InputLabelProps={InputLabelProps}
-      inputProps={inputProps}
-      InputProps={InputProps}
       inputRef={inputRef}
-      SelectProps={SelectProps}
       slotProps={slotProps}
       slots={slots}
       sx={sxValue}
