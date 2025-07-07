@@ -35,11 +35,9 @@ export interface ITextFieldProps {
   variant?: Variant;
   validate?: {
     type?: 'email' | 'password' | 'text';
-    sameAs?: string;
     customValidator?: (value: string) => string | null;
     requiredMessage?: string;
     emailMessage?: string;
-    matchMessage?: string;
   };
   FormHelperTextProps?: object;
   InputLabelProps?: object;
@@ -128,10 +126,6 @@ const TextField: FC<TextFieldProps> = ({
       if (!emailRegex.test(inputValue)) {
         return validate.emailMessage ?? 'Incorrect email id entered!';
       }
-    }
-
-    if (validate.sameAs && inputValue !== validate.sameAs) {
-      return validate.matchMessage ?? 'Values do not match';
     }
 
     if (validate.customValidator) {
