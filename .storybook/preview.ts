@@ -40,7 +40,7 @@ import type { Preview } from '@storybook/react';
 
 import { CssBaseline } from '@mui/material';
 import { withThemeFromJSXProvider } from '@storybook/addon-themes';
-import { defaultTheme, wvTheme, ksTheme, ks3Theme } from '../src/theme/customer';
+import { defaultTheme, vedamTheme, ksTheme, ks3Theme } from '../src/theme/customer';
 import { CoreThemeProvider } from '../src/theme/core-theme';
 import { INITIAL_VIEWPORTS, MINIMAL_VIEWPORTS, DEFAULT_VIEWPORT } from '@storybook/addon-viewport';
 
@@ -75,7 +75,7 @@ const preview: Preview = {
       Provider: CoreThemeProvider,
       themes: {
         // Provide your custom themes here
-        wv: wvTheme,
+        vedam: vedamTheme,
         ks: ksTheme,
         ks3: ks3Theme,
         default: defaultTheme

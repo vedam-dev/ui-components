@@ -4,7 +4,6 @@ import { DefaultComponentProps, OverridableTypeMap } from '@mui/material/Overrid
 import { Theme } from '@mui/material/styles';
 import { SystemStyleObject } from '@mui/system/styleFunctionSx/styleFunctionSx';
 import React, { ComponentProps, FC } from 'react';
-import '../../../theme/core-theme';
 import { CoreTheme, useCoreTheme } from '../../../theme/core-theme';
 export type { BoxProps } from '@mui/material/Box';
 
@@ -114,7 +113,7 @@ const buttonStyles = (
   isV2: boolean
 ): SystemStyleObject<Theme> => {
   const roundBorderRadius = small ? theme.spacing(4) : theme.spacing(6);
-  const borderRadius = isRound ? roundBorderRadius : theme.spacing(1);
+  const borderRadius = isRound ? roundBorderRadius : theme.spacing(2);
   const v2Paddings = { small: theme.spacing(1.5, 3), large: theme.spacing(2.5, 4) };
 
   const defaultStyles: SystemStyleObject<Theme> = {
