@@ -177,6 +177,7 @@ const index = createCoreTheme({
     primary: {
       main: colors.primaryP600Primary,
       dark: colors.primaryP700,
+      50: colors.primaryP800,
       100: colors.primaryP100,
       200: colors.primaryP200,
       300: colors.primaryP300,
@@ -184,11 +185,15 @@ const index = createCoreTheme({
       500: colors.primaryP500,
       600: colors.primaryP600Primary,
       700: colors.primaryP700,
-      800: colors.primaryP800
+      800: colors.primaryP800,
+      900: colors.primaryP800,
+      
     },
+     
     secondary: {
       main: colors.secondaryS500Secondary,
       dark: colors.secondaryS700,
+      50: colors.secondaryS050,
       100: colors.secondaryS100,
       200: colors.secondaryS200,
       300: colors.secondaryS300,
@@ -196,7 +201,8 @@ const index = createCoreTheme({
       500: colors.secondaryS500Secondary,
       600: colors.secondaryS600,
       700: colors.secondaryS700,
-      800: colors.secondaryS800
+      800: colors.secondaryS800,
+      900: colors.secondaryS900
     },
     error: {
       main: colors.dangerD400Danger,
