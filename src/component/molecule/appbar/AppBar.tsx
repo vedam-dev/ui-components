@@ -26,7 +26,12 @@ export interface AppBarProps extends MuiAppBarProps {
 }
 
 const AppBar: FC<AppBarProps> = ({
-  color = 'primary',
+  color = {
+    primary: 'red',
+    secondary: 'blue',
+    tertiary: 'green',
+    main: 'grey'
+  },
   enableColorOnDark = false,
   sx,
   ...props
@@ -37,7 +42,12 @@ const AppBar: FC<AppBarProps> = ({
     {
       ...(enableColorOnDark && {
         '@media (prefers-color-scheme: dark)': {
-          backgroundColor: palette[color as keyof typeof palette]?.main || color
+          backgroundColor:
+            typeof palette[color as keyof typeof palette] === 'object' &&
+            palette[color as keyof typeof palette] !== null &&
+            'main' in (palette[color as keyof typeof palette] as object)
+              ? (palette[color as keyof typeof palette] as { main: string }).main
+              : color
         }
       })
     },

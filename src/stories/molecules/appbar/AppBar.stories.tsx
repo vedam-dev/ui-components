@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import AppBar from '@component/molecule/appbar/AppBar';
+import AppBar from '../../../component/molecule/appbar/AppBar';
 import { Toolbar, Typography, Button, IconButton, Box } from '@mui/material';
 import { Menu as MenuIcon } from '@mui/icons-material';
 
@@ -94,7 +94,7 @@ export const Transparent: Story = {
   }
 };
 
-export const Error: Story = {
+export const AppError: Story = {
   args: {
     color: 'error',
     position: 'static',
