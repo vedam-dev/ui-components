@@ -157,6 +157,7 @@ const index = createCoreTheme({
       500: colors.primaryP500,
       600: colors.primaryP600Primary,
       700: colors.primaryP700,
+
       800: colors.primaryP800
     },
     secondary: {
