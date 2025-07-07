@@ -6,8 +6,8 @@ import { TypographyStyle } from '@mui/material/styles/createTypography';
 export type CoreTypographyVariant = 'buttonS' | 'avatar';
 
 interface CustomPalette {
-  wvRed?: string;
-  wvBlue?: string;
+  vedamRed?: string;
+  vedamBlue?: string;
   maintenanceBanner?: string;
   errorModalBackground?: string;
   powerball?: string;

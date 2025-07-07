@@ -10,6 +10,10 @@ export { default as CardActions } from './component/atom/card/CardActions';
 export { default as CardContent } from './component/atom/card/CardContent';
 export { default as CardHeader } from './component/atom/card/CardHeader';
 export { default as CardMedia } from './component/atom/card/CardMedia';
+export { default as Chip } from './component/atom/chip/Chip';
+export { default as Accordion } from './component/atom/accordion/Accordion';
+export { default as Checkbox } from './component/atom/checkbox/Checkbox';
+export { default as TextField } from './component/atom/text-field/TextField'
 export { default as Drawer } from './component/atom/drawer/Drawer';
 
 //  Molecule Components
@@ -23,6 +27,6 @@ export { default as VerticalBasecard } from './component/organism/card/VerticalB
 
 //  Theme Component's
 export { default as defaultTheme } from './theme/customer/default';
-export { default as wvTheme } from './theme/customer/wv';
+export { default as vedamTheme } from './theme/customer/vedam';
 export { default as ksTheme } from './theme/customer/ks';
 export { default as ks3Theme } from './theme/customer/ks3';
