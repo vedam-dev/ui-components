@@ -54,10 +54,6 @@ const FeeStatusList: React.FC<FeeStatusListProps> = ({
     const semesterItem = feeItems.find(item => item.label.toLowerCase() === 'semester');
     const otherItems = feeItems.filter(item => item.label.toLowerCase() !== 'semester');
 
-    // Split other items into two groups for the two parts
-    const firstPartItems = otherItems.slice(0, 2);
-    const secondPartItems = otherItems.slice(2, 4);
-
     const statusColor = getStatusColor(status);
 
     return (
@@ -171,115 +167,78 @@ const FeeStatusList: React.FC<FeeStatusListProps> = ({
                 </Box>
             </Box>
 
-            {/* Middle Section - Container with 2 parts, each having 2 boxes */}
+            {/* Amount Box */}
             <Box
                 sx={{
                     display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'space-between',
+                    flexDirection: 'column',
+                    alignItems: 'flex-start',
+                    justifyContent: 'center',
+                    textAlign: 'left',
+                    minHeight: '60px',
+                    minWidth: '120px',
                     flex: 1,
-                    gap: theme.spacing(4),
                 }}
             >
-                {/* First Part - First 2 boxes */}
-                <Box
+                <Typography
+                    variant="body2"
                     sx={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'space-between',
-                        flex: 1,
-                        gap: theme.spacing(3),
+                        color: theme.palette.text.secondary,
+                        fontWeight: 500,
+                        marginBottom: theme.spacing(0.5),
+                        lineHeight: 1.2,
                     }}
                 >
-                    {firstPartItems.map((item, index) => (
-                        <Box
-                            key={`first-${item.label}-${index}`}
-                            sx={{
-                                display: 'flex',
-                                flexDirection: 'column',
-                                alignItems: 'flex-start',
-                                justifyContent: 'center',
-                                textAlign: 'left',
-                                minHeight: '60px',
-                                minWidth: '100px',
-                                flex: 1,
-                            }}
-                        >
-                            <Typography
-                                variant="body2"
-                                sx={{
-                                    color: theme.palette.text.secondary,
-                                    fontWeight: 500,
-                                    marginBottom: theme.spacing(0.5),
-                                    lineHeight: 1.2,
-                                }}
-                            >
-                                {item.label}
-                            </Typography>
-                            
-                            <Typography
-                                variant="h6"
-                                sx={{
-                                    color: theme.palette.text.primary,
-                                    fontWeight: 'bold',
-                                    lineHeight: 1.2,
-                                }}
-                            >
-                                {item.value}
-                            </Typography>
-                        </Box>
-                    ))}
-                </Box>
+                    {otherItems[0]?.label || 'Amount'}
+                </Typography>
+                
+                <Typography
+                    variant="h6"
+                    sx={{
+                        color: theme.palette.text.primary,
+                        fontWeight: 'bold',
+                        lineHeight: 1.2,
+                    }}
+                >
+                    {otherItems[0]?.value || '₹50,000'}
+                </Typography>
+            </Box>
 
-                {/* Second Part - Last 2 boxes */}
-                <Box
+            {/* Date Box */}
+            <Box
+                sx={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'flex-start',
+                    justifyContent: 'center',
+                    textAlign: 'left',
+                    minHeight: '60px',
+                    minWidth: '120px',
+                    flex: 1,
+                }}
+            >
+                <Typography
+                    variant="body2"
                     sx={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'space-between',
-                        flex: 1,
-                        gap: theme.spacing(3),
+                        color: theme.palette.text.secondary,
+                        fontWeight: 500,
+                        marginBottom: theme.spacing(0.5),
+                        lineHeight: 1.2,
                     }}
                 >
-                    {secondPartItems.map((item, index) => (
-                        <Box
-                            key={`second-${item.label}-${index}`}
-                            sx={{
-                                display: 'flex',
-                                flexDirection: 'column',
-                                alignItems: 'flex-start',
-                                justifyContent: 'center',
-                                textAlign: 'left',
-                                minHeight: '60px',
-                                minWidth: '100px',
-                                flex: 1,
-                            }}
-                        >
-                            <Typography
-                                variant="body2"
-                                sx={{
-                                    color: theme.palette.text.secondary,
-                                    fontWeight: 500,
-                                    marginBottom: theme.spacing(0.5),
-                                    lineHeight: 1.2,
-                                }}
-                            >
-                                {item.label}
-                            </Typography>
-                            
-                            <Typography
-                                variant="h6"
-                                sx={{
-                                    color: theme.palette.text.primary,
-                                    fontWeight: 'bold',
-                                    lineHeight: 1.2,
-                                }}
-                            >
-                                {item.value}
-                            </Typography>
-                        </Box>
-                    ))}
-                </Box>
+                    {otherItems[1]?.label || 'Due Date'}
+                </Typography>
+                
+                <Typography
+                    variant="h6"
+                    sx={{
+                        color: theme.palette.text.primary,
+                        fontWeight: 'bold',
+                        lineHeight: 1.2,
+                    }}
+                >
+                    {otherItems[1]?.value || '15 Jan 2024'}
+                </Typography>
             </Box>
 
             {/* Right Section - Pay Button */}
