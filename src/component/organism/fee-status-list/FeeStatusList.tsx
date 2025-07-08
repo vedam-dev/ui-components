@@ -36,7 +36,6 @@ const FeeStatusList: React.FC<FeeStatusListProps> = ({
 }) => {
     const theme = useCoreTheme();
 
-    // Define status colors using theme
     const getStatusColor = (status: FeeStatus) => {
         switch (status) {
             case FeeStatus.OVERDUE:
@@ -50,10 +49,8 @@ const FeeStatusList: React.FC<FeeStatusListProps> = ({
         }
     };
 
-    // Extract semester info
     const semesterItem = feeItems.find(item => item.label.toLowerCase() === 'semester');
     const otherItems = feeItems.filter(item => item.label.toLowerCase() !== 'semester');
-
     const statusColor = getStatusColor(status);
 
     return (
@@ -61,7 +58,6 @@ const FeeStatusList: React.FC<FeeStatusListProps> = ({
             {...props}
             sx={{
                 display: 'flex',
-                flexDirection: 'row',
                 alignItems: 'center',
                 justifyContent: 'space-between',
                 background: 'linear-gradient(180deg, #EDDBFF 0%, #FFE6CE 100%)',
@@ -76,7 +72,7 @@ const FeeStatusList: React.FC<FeeStatusListProps> = ({
                 ...props.sx,
             }}
         >
-            {/* Status Badge - Positioned on top border */}
+            {/* Status Badge */}
             <Box
                 sx={{
                     position: 'absolute',
@@ -89,9 +85,9 @@ const FeeStatusList: React.FC<FeeStatusListProps> = ({
                     border: `1px solid ${statusColor}`,
                     display: 'flex',
                     alignItems: 'center',
-                    justifyContent: 'center',
-                    width:'100px',
+                    justifyContent:'center',
                     gap: theme.spacing(0.5),
+                    width: '100px',
                     zIndex: 1,
                 }}
             >
@@ -108,16 +104,8 @@ const FeeStatusList: React.FC<FeeStatusListProps> = ({
                 </Typography>
             </Box>
 
-            {/* Left Section - Icon and Semester Info */}
-            <Box
-                sx={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: theme.spacing(2),
-                    minWidth: '250px',
-                    marginTop: theme.spacing(1),
-                }}
-            >
+            {/* Semester Info */}
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: theme.spacing(2), minWidth: '250px' }}>
                 <Box
                     sx={{
                         backgroundImage: `url('https://acjlsquedaotbhbxmtee.storage.supabase.co/v1/object/public/vedam-website-assets/images/certificate/Group%201261155605.png')`,
@@ -126,29 +114,16 @@ const FeeStatusList: React.FC<FeeStatusListProps> = ({
                         borderRadius: '50%',
                         width: 69,
                         height: 69,
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        fontSize: '1.5rem',
                         border: `2px solid ${theme.palette.divider}`,
                     }}
                 />
-                <Box
-                    sx={{
-                        display: 'flex',
-                        flexDirection: 'column',
-                        alignItems: 'flex-start',
-                        justifyContent: 'center',
-                        minHeight: '60px',
-                    }}
-                >
+                <Box>
                     <Typography
                         variant="body2"
                         sx={{
                             color: theme.palette.text.secondary,
                             textTransform: 'capitalize',
                             fontWeight: 500,
-                            lineHeight: 1.2,
                         }}
                     >
                         {semesterItem?.label || 'Semester'}
@@ -159,7 +134,6 @@ const FeeStatusList: React.FC<FeeStatusListProps> = ({
                             color: theme.palette.text.primary,
                             fontWeight: 'bold',
                             marginTop: theme.spacing(0.5),
-                            lineHeight: 1.2,
                         }}
                     >
                         {semesterItem?.value || 'Semester 1 Fees'}
@@ -167,114 +141,68 @@ const FeeStatusList: React.FC<FeeStatusListProps> = ({
                 </Box>
             </Box>
 
-            {/* Amount Box */}
-            <Box
-                sx={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'flex-start',
-                    justifyContent: 'center',
-                    textAlign: 'left',
-                    minHeight: '60px',
-                    minWidth: '120px',
-                    flex: 1,
-                }}
-            >
+            {/* Fee Amount */}
+            <Box sx={{ minWidth: '120px', flex: 1 }}>
                 <Typography
                     variant="body2"
                     sx={{
                         color: theme.palette.text.secondary,
                         fontWeight: 500,
                         marginBottom: theme.spacing(0.5),
-                        lineHeight: 1.2,
                     }}
                 >
                     {otherItems[0]?.label || 'Amount'}
                 </Typography>
-                
                 <Typography
                     variant="h6"
                     sx={{
                         color: theme.palette.text.primary,
                         fontWeight: 'bold',
-                        lineHeight: 1.2,
                     }}
                 >
                     {otherItems[0]?.value || '₹50,000'}
                 </Typography>
             </Box>
 
-            {/* Date Box */}
-            <Box
-                sx={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'flex-start',
-                    justifyContent: 'center',
-                    textAlign: 'left',
-                    minHeight: '60px',
-                    minWidth: '120px',
-                    flex: 1,
-                }}
-            >
+            {/* Due Date */}
+            <Box sx={{ minWidth: '120px', flex: 1 }}>
                 <Typography
                     variant="body2"
                     sx={{
                         color: theme.palette.text.secondary,
                         fontWeight: 500,
                         marginBottom: theme.spacing(0.5),
-                        lineHeight: 1.2,
                     }}
                 >
                     {otherItems[1]?.label || 'Due Date'}
                 </Typography>
-                
                 <Typography
                     variant="h6"
                     sx={{
                         color: theme.palette.text.primary,
                         fontWeight: 'bold',
-                        lineHeight: 1.2,
                     }}
                 >
                     {otherItems[1]?.value || '15 Jan 2024'}
                 </Typography>
             </Box>
 
-            {/* Right Section - Pay Button */}
-            <Box
+            {/* Pay Button */}
+            <Button
+                variant="contained"
+                onClick={onPayNow}
                 sx={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    minWidth: '200px',
-                    justifyContent: 'flex-end',
-                    minHeight: '60px',
+                    minWidth: '120px',
+                    textTransform: 'none',
+                    fontWeight: 'bold',
+                    backgroundColor: '#7C3AED',
+                    '&:hover': {
+                        backgroundColor: '#6D28D9',
+                    },
                 }}
             >
-                <Box
-                    sx={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                    }}
-                >
-                    <Button
-                        variant="contained"
-                        onClick={onPayNow}
-                        sx={{
-                            minWidth: '120px',
-                            textTransform: 'none',
-                            fontWeight: 'bold',
-                            backgroundColor: '#7C3AED',
-                            '&:hover': {
-                                backgroundColor: '#6D28D9',
-                            },
-                        }}
-                    >
-                        Pay Now
-                    </Button>
-                </Box>
-            </Box>
+                Pay Now
+            </Button>
         </Box>
     );
 };
