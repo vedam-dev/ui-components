@@ -1,7 +1,6 @@
 import { Meta, StoryObj } from '@storybook/react';
 import FeeStatusList, { FeeStatus } from '../../../component/organism/fee-status-list/FeeStatusList';
 
-
 const meta: Meta<typeof FeeStatusList> = {
   title: 'Components/FeeStatusList',
   component: FeeStatusList,
@@ -57,6 +56,17 @@ export const Paid: Story = {
 };
 
 
+export const MultipleFeesExample: Story = {
+  args: {
+    status: FeeStatus.DUE,
+    feeItems: [
+      { label: 'Semester', value: 'Semester 3 Fees' },
+      { label: 'Tuition Fee', value: '₹ 80,000' },
+      { label: 'Lab Fee', value: '₹ 15,000' },
+      { label: 'Due Date', value: '30/09/2025' },
+    ],
+  },
+};
 
 export const ResponsiveExample: Story = {
   args: {
@@ -65,7 +75,7 @@ export const ResponsiveExample: Story = {
   },
   parameters: {
     viewport: {
-      defaultViewport: 'tablet',
+      defaultViewport: 'mobile',
     },
   },
 };
