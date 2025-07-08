@@ -6,16 +6,12 @@ import { CoreTheme, useCoreTheme } from '../../../theme/core-theme';
 
 export interface DrawerProps extends Omit<MuiDrawerProps, 'open' | 'onClose'> {
 
+
   open: boolean;
-  
   onClose: () => void;
-
   title?: string;
-
   children?: ReactNode;
-
   width?: number | string;
-
   paperSx?: MuiDrawerProps['sx'];
 }
 
