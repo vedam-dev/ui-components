@@ -53,8 +53,6 @@ const FeeStatusList: React.FC<FeeStatusListProps> = ({
   const semesterItem = feeItems.find(item => item.label.toLowerCase() === 'semester');
   const otherItems = feeItems.filter(item => item.label.toLowerCase() !== 'semester');
 
-  const totalColumns = 1 + otherItems.length + 1;
-
   return (
     <Box
       {...props}
@@ -187,9 +185,7 @@ const FeeStatusList: React.FC<FeeStatusListProps> = ({
       <Box
         sx={{
           flex: 1,
-        //   minWidth: 200,
           display: 'flex',
-        //   justifyContent: 'flex-end',
         }}
       >
         <Button
