@@ -1,4 +1,4 @@
-import { Select as BaseSelect, SelectProps as BaseSelectProps } from '@mui/material';
+import { Select as BaseSelect } from '@mui/material';
 import { ComponentProps, FC } from 'react';
 import { CoreTheme, useCoreTheme } from '../../../theme/core-theme';
 import SxOverride from '../../../util/SxOverride';
@@ -17,13 +17,13 @@ export interface ISelectProps {
   MenuProps?: object;
   multiple?: boolean;
   native?: boolean;
-  onChange?: BaseSelectProps<string>['onChange'] | BaseSelectProps<string[]>['onChange'];
+  onChange?: (event: unknown, child?: React.ReactNode) => void;
   onClose?: (event: React.SyntheticEvent) => void;
   onOpen?: (event: React.SyntheticEvent) => void;
   open?: boolean;
   renderValue?: (value: unknown) => React.ReactNode;
   SelectDisplayProps?: object;
-  color?: PaletteColorKeys | 'default' | string;
+  color?: PaletteColorKeys;
   size?: 'small' | 'medium';
   value?: unknown;
 }
