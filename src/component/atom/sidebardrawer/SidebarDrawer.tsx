@@ -1,28 +1,17 @@
-import React, { FC, ReactNode, useState } from 'react';
-import { 
-  Drawer as MuiDrawer, 
-  DrawerProps as MuiDrawerProps, 
-  Box, 
-  IconButton, 
-  Typography,
+import React, { FC, ReactNode, useState } from "react";
+import {
+  Drawer as MuiDrawer,
+  DrawerProps as MuiDrawerProps,
+  Box,
   List,
   ListItem,
   ListItemButton,
   ListItemIcon,
   ListItemText,
-  Tooltip
-} from '@mui/material';
-import { 
-  Menu as MenuIcon,
-  Dashboard as DashboardIcon,
-  People as PeopleIcon,
-  Settings as SettingsIcon,
-  Analytics as AnalyticsIcon,
-  Notifications as NotificationsIcon,
-  Help as HelpIcon
-} from '@mui/icons-material';
-import SxOverride from '../../../util/SxOverride';
-import { CoreTheme, useCoreTheme } from '../../../theme/core-theme';
+  Tooltip,
+} from "@mui/material";
+import SxOverride from "../../../util/SxOverride";
+import { CoreTheme, useCoreTheme } from "../../../theme/core-theme";
 
 export interface SidebarItem {
   id: string;
@@ -32,20 +21,21 @@ export interface SidebarItem {
   disabled?: boolean;
 }
 
-export interface SidebarDrawerProps extends Omit<MuiDrawerProps, 'open' | 'onClose'> {
+export interface SidebarDrawerProps
+  extends Omit<MuiDrawerProps, "open" | "onClose"> {
   items?: SidebarItem[];
   collapsedWidth?: number;
   expandedWidth?: number;
   defaultExpanded?: boolean;
-  paperSx?: MuiDrawerProps['sx'];
+  paperSx?: MuiDrawerProps["sx"];
   onItemClick?: (item: SidebarItem) => void;
 }
 
 const SidebarDrawer: FC<SidebarDrawerProps> = ({
   items = [],
-  anchor = 'left',
+  anchor = "left",
   collapsedWidth = 64,
-  expandedWidth = 240,
+  expandedWidth = 200,
   defaultExpanded = false,
   paperSx,
   onItemClick,
@@ -53,31 +43,34 @@ const SidebarDrawer: FC<SidebarDrawerProps> = ({
 }) => {
   const { palette } = useCoreTheme() as CoreTheme;
   const [expanded, setExpanded] = useState(defaultExpanded);
-
-  const handleToggle = () => {
-    setExpanded(!expanded);
-  };
+  const [activeId, setActiveId] = useState<string | null>(null);
+  const theme = useCoreTheme() as CoreTheme;
 
   const handleItemClick = (item: SidebarItem) => {
-    if (item.onClick) {
-      item.onClick();
+    if (item.id === activeId) {
+      setExpanded(!expanded);
+    } else {
+      if (!expanded) {
+        setExpanded(true);
+      }
+      setActiveId(item.id);
     }
-    if (onItemClick) {
-      onItemClick(item);
-    }
+    item.onClick?.();
+    onItemClick?.(item);
   };
 
   const currentWidth = expanded ? expandedWidth : collapsedWidth;
-
   const defaultPaperSx = SxOverride(
     {
-      width: anchor === 'left' || anchor === 'right' ? currentWidth : 'auto',
-      display: 'flex',
-      flexDirection: 'column',
+      width: anchor === "left" || anchor === "right" ? currentWidth : "auto",
+      display: "flex",
+      flexDirection: "column",
       backgroundColor: palette.background.paper,
       borderRight: `1px solid ${palette.divider}`,
-      transition: 'width 0.3s ease-in-out',
-      overflow: 'hidden',
+      transition: "width 0.3s ease-in-out",
+      overflow: "hidden",
+      borderTopRightRadius: "24px",
+      borderBottomRightRadius: "24px",
     },
     paperSx
   );
@@ -89,123 +82,101 @@ const SidebarDrawer: FC<SidebarDrawerProps> = ({
       PaperProps={{ sx: defaultPaperSx }}
       {...rest}
     >
-      {/* Header with toggle button */}
-      <Box 
-        display="flex" 
-        alignItems="center" 
-        justifyContent={expanded ? "space-between" : "center"} 
-        p={1}
-        minHeight={64}
+      <Box
+        flexGrow={1}
+        sx={{
+          marginTop: theme.spacing(9),
+          marginX: theme.spacing(3),
+          padding: expanded ? "8px" : "0px",
+        }}
       >
-        {expanded && (
-          <Typography variant="h6" sx={{ ml: 1 }}>
-            Menu
-          </Typography>
-        )}
-        <IconButton onClick={handleToggle} size="small">
-          <MenuIcon />
-        </IconButton>
-      </Box>
-
-      {/* Navigation Items */}
-      <Box flexGrow={1}>
-        <List sx={{ px: 1 }}>
-          {items.map((item) => (
-            <ListItem key={item.id} disablePadding sx={{ mb: 0.5 }}>
-              <Tooltip 
-                title={expanded ? "" : item.text} 
-                placement="right"
-                arrow
-              >
-                <ListItemButton
-                  onClick={() => handleItemClick(item)}
-                  disabled={item.disabled}
-                  sx={{
-                    minHeight: 48,
-                    justifyContent: expanded ? 'initial' : 'center',
-                    px: 2.5,
-                    borderRadius: 1,
-                    '&:hover': {
-                      backgroundColor: palette.action.hover,
-                    },
-                  }}
+        <List sx={{ px: 0 }}>
+          {" "}
+          {items.map((item) => {
+            const isActive = item.id === activeId;
+            return (
+              <ListItem key={item.id} disablePadding sx={{ mb: 1 }}>
+                <Tooltip
+                  title={expanded ? "" : item.text}
+                  placement="right"
+                  arrow
                 >
-                  <ListItemIcon
+                  <ListItemButton
+                    onClick={() => handleItemClick(item)}
+                    selected={isActive}
                     sx={{
-                      minWidth: 0,
-                      mr: expanded ? 3 : 'auto',
-                      justifyContent: 'center',
+                      minHeight: 48,
+                      justifyContent: expanded?"left":"center",
+                      padding: "8px 12px",
+                      borderRadius: expanded ? "8px" : "50%",
+                      transition: "all 0.3s",
+                      flexDirection: expanded ? "row" : "column",
+                      alignItems: "center",
+                      gap: expanded ? "8px" : 0,
+                      width: "100%",
+                      maxWidth: "100%",
+                      minWidth: "auto",
+                      "&.Mui-selected": {
+                        backgroundColor: theme.palette.primary.dark, // todo: update this to [900] when color issue
+                        color: palette.primary.contrastText,
+                        "& .MuiListItemIcon-root, & .MuiListItemText-root": {
+                          color: palette.primary.contrastText,
+                        },
+                        "&:hover": {
+                          backgroundColor: theme.palette.primary.dark, // todo: update this to [900] when color issue
+                        },
+                      },
+                      "&:hover": {
+                        backgroundColor: isActive
+                          ? theme.palette.primary.dark // todo: update this to [900] when color issue
+                          : palette.action.hover,
+                      },
                     }}
                   >
-                    {item.icon}
-                  </ListItemIcon>
-                  <ListItemText 
-                    primary={item.text} 
-                    sx={{ 
-                      opacity: expanded ? 1 : 0,
-                      transition: 'opacity 0.3s ease-in-out',
-                    }} 
-                  />
-                </ListItemButton>
-              </Tooltip>
-            </ListItem>
-          ))}
+                    <ListItemIcon
+                      sx={{
+                        minWidth: 0,
+                        margin: 0,
+
+                        justifyContent: "center",
+                        color: isActive
+                          ? palette.primary.contrastText
+                          : palette.text.secondary,
+                      }}
+                    >
+                      {item.icon}
+                    </ListItemIcon>
+                    {expanded && (
+                      <ListItemText
+                        primary={item.text}
+                        sx={{
+                          opacity: 1,
+                          transition: "opacity 0.3s",
+                          margin: 0,
+                          flex: "none",
+                          minWidth: 0,
+                          "& .MuiTypography-root": {
+                            textAlign: "left",
+                            whiteSpace: "nowrap",
+                            overflow: "hidden",
+                            textOverflow: "ellipsis",
+                            fontSize: "0.875rem",
+                            fontWeight: 500,
+                            display: "block",
+                            width: "fit-content",
+                            lineHeight: 1.5,
+                          },
+                        }}
+                      />
+                    )}
+                  </ListItemButton>
+                </Tooltip>
+              </ListItem>
+            );
+          })}
         </List>
       </Box>
     </MuiDrawer>
-  );
-};
-
-
-export const ExampleSidebarUsage: FC = () => {
-  const sidebarItems: SidebarItem[] = [
-    {
-      id: 'dashboard',
-      icon: <DashboardIcon />,
-      text: 'Dashboard',
-      onClick: () => console.log('Dashboard clicked'),
-    },
-    {
-      id: 'users',
-      icon: <PeopleIcon />,
-      text: 'Users',
-      onClick: () => console.log('Users clicked'),
-    },
-    {
-      id: 'analytics',
-      icon: <AnalyticsIcon />,
-      text: 'Analytics',
-      onClick: () => console.log('Analytics clicked'),
-    },
-    {
-      id: 'notifications',
-      icon: <NotificationsIcon />,
-      text: 'Notifications',
-      onClick: () => console.log('Notifications clicked'),
-    },
-    {
-      id: 'settings',
-      icon: <SettingsIcon />,
-      text: 'Settings',
-      onClick: () => console.log('Settings clicked'),
-    },
-    {
-      id: 'help',
-      icon: <HelpIcon />,
-      text: 'Help',
-      onClick: () => console.log('Help clicked'),
-    },
-  ];
-
-  return (
-    <Box sx={{ display: 'flex', height: '100vh' }}>
-      <SidebarDrawer 
-        items={sidebarItems}
-        defaultExpanded={false}
-        onItemClick={(item) => console.log(`Item clicked: ${item.text}`)}
-      />
-      
-    </Box>
   );
 };
 

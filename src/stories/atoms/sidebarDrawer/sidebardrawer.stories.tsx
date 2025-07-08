@@ -1,10 +1,7 @@
-import React, { useState } from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 import SidebarDrawer, { SidebarDrawerProps, SidebarItem } from "../../../component/atom/sidebardrawer/SidebarDrawer";
 import {
-  Button,
   Box,
-  Typography,
 } from "@mui/material";
 import {
   Dashboard as DashboardIcon,
@@ -201,24 +198,7 @@ const defaultItems: SidebarItem[] = [
     text: 'Analytics',
     onClick: () => console.log('Analytics clicked'),
   },
-  {
-    id: 'notifications',
-    icon: <NotificationsIcon />,
-    text: 'Notifications',
-    onClick: () => console.log('Notifications clicked'),
-  },
-  {
-    id: 'settings',
-    icon: <SettingsIcon />,
-    text: 'Settings',
-    onClick: () => console.log('Settings clicked'),
-  },
-  {
-    id: 'help',
-    icon: <HelpIcon />,
-    text: 'Help',
-    onClick: () => console.log('Help clicked'),
-  },
+  
 ];
 
 const Template: Story = {
@@ -334,15 +314,6 @@ export const InitiallyExpanded: Story = {
   args: {
     ...Default.args,
     defaultExpanded: true,
-  },
-};
-
-export const RightAnchor: Story = {
-  ...Default,
-  name: "Anchor Right",
-  args: {
-    ...Default.args,
-    anchor: "right",
   },
 };
 
