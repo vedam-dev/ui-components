@@ -1,4 +1,5 @@
-import { Box, Typography, SxProps, Theme } from '@mui/material';
+import React, { ComponentProps } from 'react';
+import { Box, Typography } from '@mui/material';
 import { useCoreTheme } from '../../../theme/core-theme';
 import { Button } from '../../atom/button';
 
@@ -13,12 +14,13 @@ export interface FeeItem {
     value: string | React.ReactNode;
 }
 
-export interface FeeStatusListProps {
+export interface IFeeStatusListProps {
     status: FeeStatus;
     feeItems: FeeItem[];
-    sx?: SxProps<Theme>;
     onPayNow?: () => void;
 }
+
+export type FeeStatusListProps = ComponentProps<typeof Box> & IFeeStatusListProps;
 
 const statusIcons = {
     [FeeStatus.OVERDUE]: '⚠️',
@@ -26,13 +28,12 @@ const statusIcons = {
     [FeeStatus.PAID]: '✅',
 };
 
-export const FeeStatusList = ({
+const FeeStatusList: React.FC<FeeStatusListProps> = ({
     status,
     feeItems,
-    sx,
     onPayNow,
-    ...rest
-}: FeeStatusListProps) => {
+    ...props
+}) => {
     const theme = useCoreTheme();
 
     // Define status colors using theme
@@ -57,6 +58,7 @@ export const FeeStatusList = ({
 
     return (
         <Box
+            {...props}
             sx={{
                 display: 'flex',
                 flexDirection: 'row',
@@ -71,9 +73,8 @@ export const FeeStatusList = ({
                 border: '1px solid #7B2CBF',
                 boxShadow: '0px 0px 20px 1px rgba(0, 0, 0, 0.10)',
                 position: 'relative',
-                ...sx,
+                ...props.sx,
             }}
-            {...rest}
         >
             {/* Status Badge - Positioned on top border */}
             <Box
@@ -251,3 +252,5 @@ export const FeeStatusList = ({
         </Box>
     );
 };
+
+export default FeeStatusList;

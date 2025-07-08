@@ -1,5 +1,5 @@
 import { Meta, StoryObj } from '@storybook/react';
-import { FeeStatusList, FeeStatus } from '../../../component/organism/fee-status-list/FeeStatusList';
+import FeeStatusList, { FeeStatus } from '../../../component/organism/fee-status-list/FeeStatusList';
 import { Typography } from '@mui/material';
 
 const meta: Meta<typeof FeeStatusList> = {
