@@ -24,6 +24,7 @@ interface TopBarProps {
   sx?: SxProps<Theme>;
   onLogoClick?: () => void;
   onProfileClick?: () => void;
+  onMenuClick?: () => void;
 }
 
 const TopBarContainer = styled(Box)({
@@ -89,6 +90,7 @@ const TopBar: React.FC<TopBarProps> = ({
   streakCount = 0,
   coinCount = 0,
   notificationCount = 0,
+  onMenuClick,
   sx,
   onLogoClick,
   onProfileClick,
@@ -112,7 +114,7 @@ const TopBar: React.FC<TopBarProps> = ({
           }}
         >
           <IconButton
-            // onClick={...}
+            onClick={onMenuClick}
             sx={{
               color: "#000",
               "&:hover": { backgroundColor: "transparent" },

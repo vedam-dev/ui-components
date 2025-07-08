@@ -15,7 +15,7 @@ export { default as Accordion } from './component/atom/accordion/Accordion';
 export { default as Checkbox } from './component/atom/checkbox/Checkbox';
 export { default as TextField } from './component/atom/text-field/TextField'
 export { default as Drawer } from './component/atom/drawer/Drawer';
-export { default as SidebarDrawer } from './component/atom/sidebardrawer/SidebarDrawer';
+export { default as SidebarDrawer } from './component/organism/sidebardrawer/SidebarDrawer';
 
 //  Molecule Components
 export { default as Banner } from './component/molecule/banner/Banner';
