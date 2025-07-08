@@ -40,7 +40,7 @@ export const Due: Story = {
     feeItems: [
       { label: 'Semester', value: 'Semester 2 Fees' },
       { label: 'Fees', value: '₹ 75,000' },
-      { label: 'Due Date', value: '08/15/2025' },
+      { label: 'Due Date', value: '15/08/2025' },
     ],
   },
 };
@@ -51,7 +51,7 @@ export const Paid: Story = {
     feeItems: [
       { label: 'Semester', value: 'Semester 1 Fees' },
       { label: 'Fees', value: '₹ 1,00,000' },
-      { label: 'Paid On', value: '06/30/2025' },
+      { label: 'Paid On', value: '30/06/2025' },
     ],
   },
 };
@@ -82,7 +82,7 @@ export const MultipleFeesExample: Story = {
       { label: 'Tuition Fee', value: '₹ 80,000' },
       { label: 'Lab Fee', value: '₹ 15,000' },
       { label: 'Library Fee', value: '₹ 5,000' },
-      { label: 'Due Date', value: '09/30/2025' },
+      { label: 'Due Date', value: '30/09/2025' },
     ],
   },
 };

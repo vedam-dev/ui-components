@@ -26,18 +26,6 @@ const statusIcons = {
     [FeeStatus.PAID]: '✅',
 };
 
-const statusColors = {
-    [FeeStatus.OVERDUE]: 'error.main',
-    [FeeStatus.DUE]: 'warning.main',
-    [FeeStatus.PAID]: 'success.main',
-};
-
-const statusBackgrounds = {
-    [FeeStatus.OVERDUE]: 'linear-gradient(135deg, #FFE5E5 0%, #F8D7DA 100%)',
-    [FeeStatus.DUE]: 'linear-gradient(135deg, #FFF3CD 0%, #FCF4A3 100%)',
-    [FeeStatus.PAID]: 'linear-gradient(135deg, #D4EDDA 0%, #C3E6CB 100%)',
-};
-
 export const FeeStatusList = ({
     status,
     feeItems,
@@ -47,9 +35,25 @@ export const FeeStatusList = ({
 }: FeeStatusListProps) => {
     const theme = useCoreTheme();
 
+    // Define status colors using theme
+    const getStatusColor = (status: FeeStatus) => {
+        switch (status) {
+            case FeeStatus.OVERDUE:
+                return theme.palette.error.main;
+            case FeeStatus.DUE:
+                return theme.palette.warning.main;
+            case FeeStatus.PAID:
+                return theme.palette.success.main;
+            default:
+                return theme.palette.text.primary;
+        }
+    };
+
     // Extract semester info
     const semesterItem = feeItems.find(item => item.label.toLowerCase() === 'semester');
     const otherItems = feeItems.filter(item => item.label.toLowerCase() !== 'semester');
+
+    const statusColor = getStatusColor(status);
 
     return (
         <Box
@@ -60,7 +64,7 @@ export const FeeStatusList = ({
                 justifyContent: 'space-between',
                 background: 'linear-gradient(180deg, #EDDBFF 0%, #FFE6CE 100%)',
                 borderRadius: '36px',
-                padding: theme.spacing(3, 4),
+                padding: theme.spacing(5, 10),
                 marginBottom: theme.spacing(2),
                 width: '100%',
                 maxWidth: '1200px',
@@ -76,14 +80,16 @@ export const FeeStatusList = ({
                 sx={{
                     position: 'absolute',
                     top: -12,
-                    left: theme.spacing(4),
+                    left: theme.spacing(10),
                     backgroundColor: theme.palette.common.white,
-                    color: statusColors[status],
+                    color: statusColor,
                     padding: theme.spacing(0.5, 1.5),
                     borderRadius: theme.spacing(3),
-                    border: `1px solid ${statusColors[status]}`,
+                    border: `1px solid ${statusColor}`,
                     display: 'flex',
                     alignItems: 'center',
+                    justifyContent: 'center',
+                    width:'100px',
                     gap: theme.spacing(0.5),
                     zIndex: 1,
                 }}
@@ -108,7 +114,7 @@ export const FeeStatusList = ({
                     alignItems: 'center',
                     gap: theme.spacing(2),
                     minWidth: '250px',
-                    marginTop: theme.spacing(1), 
+                    marginTop: theme.spacing(1),
                 }}
             >
                 <Box
@@ -117,8 +123,8 @@ export const FeeStatusList = ({
                         backgroundSize: 'cover',
                         backgroundPosition: 'center',
                         borderRadius: '50%',
-                        width: 56,
-                        height: 56,
+                        width: 69,
+                        height: 69,
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
@@ -223,27 +229,23 @@ export const FeeStatusList = ({
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
-                        minWidth: '120px',
                     }}
                 >
-                    {/* Pay Now Button (only for overdue/due) */}
-                    {status !== FeeStatus.PAID && (
-                        <Button
-                            variant="contained"
-                            onClick={onPayNow}
-                            sx={{
-                                minWidth: '120px',
-                                textTransform: 'none',
-                                fontWeight: 'bold',
-                                backgroundColor: '#7C3AED',
-                                '&:hover': {
-                                    backgroundColor: '#6D28D9',
-                                },
-                            }}
-                        >
-                            Pay Now
-                        </Button>
-                    )}
+                    <Button
+                        variant="contained"
+                        onClick={onPayNow}
+                        sx={{
+                            minWidth: '120px',
+                            textTransform: 'none',
+                            fontWeight: 'bold',
+                            backgroundColor: '#7C3AED',
+                            '&:hover': {
+                                backgroundColor: '#6D28D9',
+                            },
+                        }}
+                    >
+                        Pay Now
+                    </Button>
                 </Box>
             </Box>
         </Box>
