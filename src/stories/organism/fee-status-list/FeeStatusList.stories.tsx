@@ -60,7 +60,7 @@ export const WithCustomValue: Story = {
   args: {
     status: FeeStatus.OVERDUE,
     feeItems: [
-      { label: 'Semester', value: 'Advanced Computer Science' },
+      { label: 'Semester', value: 'Computer Science' },
       {
         label: 'Amount',
         value: (
