@@ -54,6 +54,10 @@ const FeeStatusList: React.FC<FeeStatusListProps> = ({
     const semesterItem = feeItems.find(item => item.label.toLowerCase() === 'semester');
     const otherItems = feeItems.filter(item => item.label.toLowerCase() !== 'semester');
 
+    // Split other items into two groups for the two parts
+    const firstPartItems = otherItems.slice(0, 2);
+    const secondPartItems = otherItems.slice(2, 4);
+
     const statusColor = getStatusColor(status);
 
     return (
@@ -167,52 +171,115 @@ const FeeStatusList: React.FC<FeeStatusListProps> = ({
                 </Box>
             </Box>
 
-            {/* Middle Section - Fee Items */}
+            {/* Middle Section - Container with 2 parts, each having 2 boxes */}
             <Box
                 sx={{
                     display: 'flex',
                     alignItems: 'center',
-                    gap: theme.spacing(6),
+                    justifyContent: 'space-between',
                     flex: 1,
-                    justifyContent: 'center',
+                    gap: theme.spacing(4),
                 }}
             >
-                {otherItems.map((item, index) => (
-                    <Box
-                        key={`${item.label}-${index}`}
-                        sx={{
-                            display: 'flex',
-                            flexDirection: 'column',
-                            alignItems: 'flex-start',
-                            justifyContent: 'center',
-                            textAlign: 'left',
-                            minHeight: '60px',
-                            minWidth: '100px',
-                        }}
-                    >
-                        <Typography
-                            variant="body2"
+                {/* First Part - First 2 boxes */}
+                <Box
+                    sx={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'space-between',
+                        flex: 1,
+                        gap: theme.spacing(3),
+                    }}
+                >
+                    {firstPartItems.map((item, index) => (
+                        <Box
+                            key={`first-${item.label}-${index}`}
                             sx={{
-                                color: theme.palette.text.secondary,
-                                fontWeight: 500,
-                                marginBottom: theme.spacing(0.5),
-                                lineHeight: 1.2,
+                                display: 'flex',
+                                flexDirection: 'column',
+                                alignItems: 'flex-start',
+                                justifyContent: 'center',
+                                textAlign: 'left',
+                                minHeight: '60px',
+                                minWidth: '100px',
+                                flex: 1,
                             }}
                         >
-                            {item.label}
-                        </Typography>
-                        <Typography
-                            variant="h6"
+                            <Typography
+                                variant="body2"
+                                sx={{
+                                    color: theme.palette.text.secondary,
+                                    fontWeight: 500,
+                                    marginBottom: theme.spacing(0.5),
+                                    lineHeight: 1.2,
+                                }}
+                            >
+                                {item.label}
+                            </Typography>
+                            
+                            <Typography
+                                variant="h6"
+                                sx={{
+                                    color: theme.palette.text.primary,
+                                    fontWeight: 'bold',
+                                    lineHeight: 1.2,
+                                }}
+                            >
+                                {item.value}
+                            </Typography>
+                        </Box>
+                    ))}
+                </Box>
+
+                {/* Second Part - Last 2 boxes */}
+                <Box
+                    sx={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'space-between',
+                        flex: 1,
+                        gap: theme.spacing(3),
+                    }}
+                >
+                    {secondPartItems.map((item, index) => (
+                        <Box
+                            key={`second-${item.label}-${index}`}
                             sx={{
-                                color: theme.palette.text.primary,
-                                fontWeight: 'bold',
-                                lineHeight: 1.2,
+                                display: 'flex',
+                                flexDirection: 'column',
+                                alignItems: 'flex-start',
+                                justifyContent: 'center',
+                                textAlign: 'left',
+                                minHeight: '60px',
+                                minWidth: '100px',
+                                flex: 1,
                             }}
                         >
-                            {item.value}
-                        </Typography>
-                    </Box>
-                ))}
+                            <Typography
+                                variant="body2"
+                                sx={{
+                                    color: theme.palette.text.secondary,
+                                    fontWeight: 500,
+                                    marginBottom: theme.spacing(0.5),
+                                    lineHeight: 1.2,
+                                }}
+                            >
+                                {item.label}
+                            </Typography>
+                            
+                            <Typography
+                                variant="h6"
+                                sx={{
+                                    color: theme.palette.text.primary,
+                                    fontWeight: 'bold',
+                                    lineHeight: 1.2,
+                                }}
+                            >
+                                {item.value}
+                            </Typography>
+                        </Box>
+                    ))}
+                </Box>
             </Box>
 
             {/* Right Section - Pay Button */}
