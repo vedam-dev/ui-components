@@ -26,6 +26,7 @@ export { default as Sekeleton } from './component/molecule/skeleton/Skeleton';
 export { default as HorizontalBaseCard } from './component/organism/card/HorizontalBaseCard';
 export { default as VerticalBasecard } from './component/organism/card/VerticalBasecard';
 export { default as FeeStatusField} from './component/organism/fee-status-list/FeeStatusList'
+export { default as FeeStatusModal} from './component/organism/fee-status-modal/FeeStatusModal'
 
 //  Theme Component's
 export { default as defaultTheme } from './theme/customer/default';

@@ -1,0 +1,134 @@
+import React, { ComponentProps } from 'react';
+import { Modal, Box, Typography, IconButton } from '@mui/material';
+import { Close } from '@mui/icons-material';
+import { Button } from '../../atom/button';
+
+export type StatusType = 'success' | 'failure' | 'pending';
+
+export interface IFeeStatusModalProps {
+  open: boolean;
+  onClose: () => void;
+  status: StatusType;
+  infoText: string;
+  showDownloadButton?: boolean;
+  onDownloadClick?: () => void;
+}
+
+export type FeeStatusModalProps = ComponentProps<typeof Modal> & IFeeStatusModalProps;
+
+const statusIconMap: Record<StatusType, string> = {
+  success: 'https://acjlsquedaotbhbxmtee.supabase.co/storage/v1/object/public/vedam-website-assets/images/certificate/Group%201261155609-2.jpg',
+  failure: '/icons/failure.png',
+  pending: '/icons/pending.png',
+};
+
+const downloadIconUrl =
+  'https://acjlsquedaotbhbxmtee.supabase.co/storage/v1/object/public/vedam-website-assets/images/certificate/Vector-removebg-preview.png';
+
+const FeeStatusModal: React.FC<FeeStatusModalProps> = ({
+  open,
+  onClose,
+  status,
+  infoText,
+  showDownloadButton = false,
+  onDownloadClick,
+  ...props
+}) => {
+  return (
+    <Modal open={open} onClose={onClose} {...props}>
+      <Box
+        sx={{
+          position: 'absolute',
+          top: '50%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
+          width: '30%',
+          bgcolor: 'transparent',
+          outline: 'none',
+        }}
+      >
+        {/* Modal Body */}
+        <Box
+          sx={{
+            position: 'relative',
+            p: 4,
+            pt: 6,
+            borderRadius: '36px',
+            background: 'linear-gradient(180deg, #FFA26B 0%, #8C2BE0 100%)',
+            textAlign: 'center',
+          }}
+        >
+          {/* Top Icon */}
+          <Box
+            component="img"
+            src={statusIconMap[status]}
+            alt={`${status} icon`}
+            sx={{
+              width: 64,
+              height: 64,
+              position: 'absolute',
+              top: -32,
+              left: '50%',
+              transform: 'translateX(-50%)',
+              borderRadius: '50%',
+              backgroundColor: '#fff',
+              padding: 1,
+              boxShadow: 2,
+            }}
+          />
+
+          {/* Close Button */}
+          <IconButton
+            onClick={onClose}
+            sx={{
+              position: 'absolute',
+              top: 15,
+              right: 15,
+              color: '#fff',
+              border: '1px solid white',
+              borderRadius: '50%',
+              height: '27px',
+              width: '27px',
+            }}
+          >
+            <Close sx={{ fontSize: 16 }} />
+          </IconButton>
+
+          {/* Info Text */}
+          <Typography variant="h6" sx={{ color: '#fff', mt: 6 }}>
+            {infoText}
+          </Typography>
+
+          {/* Optional Button with Download Icon */}
+          {showDownloadButton && (
+            <Box sx={{ display: 'flex', justifyContent: 'center', mt: 4 }}>
+              <Button
+                variant="outlined"
+                onClick={onDownloadClick}
+                sx={{
+                  borderColor: '#fff',
+                  color: '#fff',
+                  py: 1,
+                  borderRadius: '12px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: 1.5,
+                }}
+              >
+                <Box
+                  component="img"
+                  src={downloadIconUrl}
+                  alt="download icon"
+                  sx={{ width: 15, height: 15 }}
+                />
+                Download Receipt
+              </Button>
+            </Box>
+          )}
+        </Box>
+      </Box>
+    </Modal>
+  );
+};
+
+export default FeeStatusModal;
