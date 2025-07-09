@@ -10,27 +10,23 @@ export interface IFeeStatusModalProps {
   onClose: () => void;
   status: StatusType;
   infoText: string;
-  onDownloadClick?: () => void;
   customDownloadButton?: React.ReactNode;
 }
 
 export type FeeStatusModalProps = ComponentProps<typeof Modal> & IFeeStatusModalProps;
 
 const statusIconMap: Record<StatusType, string> = {
-  success: 'https://acjlsquedaotbhbxmtee.supabase.co/storage/v1/object/public/vedam-website-assets/images/certificate/Group%201261155609-2.jpg',
+  success:
+    'https://acjlsquedaotbhbxmtee.supabase.co/storage/v1/object/public/vedam-website-assets/images/certificate/Group%201261155609-2.jpg',
   failure: '/icons/failure.png',
   pending: '/icons/pending.png',
 };
-
-const downloadIconUrl =
-  'https://acjlsquedaotbhbxmtee.supabase.co/storage/v1/object/public/vedam-website-assets/images/certificate/Vector-removebg-preview.png';
 
 const FeeStatusModal: React.FC<FeeStatusModalProps> = ({
   open,
   onClose,
   status,
   infoText,
-  onDownloadClick,
   customDownloadButton,
   ...props
 }) => {
@@ -47,6 +43,7 @@ const FeeStatusModal: React.FC<FeeStatusModalProps> = ({
           outline: 'none',
         }}
       >
+        {/* Modal Content Box */}
         <Box
           sx={{
             position: 'relative',
@@ -98,32 +95,12 @@ const FeeStatusModal: React.FC<FeeStatusModalProps> = ({
             {infoText}
           </Typography>
 
-          {/* Button Area */}
-          <Box sx={{ display: 'flex', justifyContent: 'center', mt: 4 }}>
-            {customDownloadButton ?? (
-              <Button
-                variant="outlined"
-                onClick={onDownloadClick}
-                sx={{
-                  borderColor: '#fff',
-                  color: '#fff',
-                  py: 1,
-                  borderRadius: '12px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: 1.5,
-                }}
-              >
-                <Box
-                  component="img"
-                  src={downloadIconUrl}
-                  alt="download icon"
-                  sx={{ width: 15, height: 15 }}
-                />
-                Download Receipt
-              </Button>
-            )}
-          </Box>
+          {/* Optional Custom Button */}
+          {customDownloadButton && (
+            <Box sx={{ display: 'flex', justifyContent: 'center', mt: 4 }}>
+              {customDownloadButton}
+            </Box>
+          )}
         </Box>
       </Box>
     </Modal>

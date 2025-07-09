@@ -24,6 +24,7 @@ const meta: Meta<typeof FeeStatusModal> = {
 export default meta;
 type Story = StoryObj<typeof FeeStatusModal>;
 
+// Wrapper to control open/close within Storybook
 const ModalWrapper = (args: FeeStatusModalProps) => {
   const [open, setOpen] = useState(false);
 
@@ -32,21 +33,17 @@ const ModalWrapper = (args: FeeStatusModalProps) => {
       <Button variant="contained" onClick={() => setOpen(true)}>
         Open Fee Status Modal
       </Button>
-      <FeeStatusModal
-        {...args}
-        open={open}
-        onClose={() => setOpen(false)}
-      />
+      <FeeStatusModal {...args} open={open} onClose={() => setOpen(false)} />
     </>
   );
 };
 
+// ✅ No button
 export const Success: Story = {
   render: (args) => <ModalWrapper {...args} />,
   args: {
     status: 'success',
     infoText: 'Your Payment receipt is ready to download',
-    onDownloadClick: () => alert('Download Receipt Clicked'),
   },
 };
 
@@ -66,6 +63,7 @@ export const Pending: Story = {
   },
 };
 
+// ✅ With custom button
 export const WithCustomButton: Story = {
   render: (args) => <ModalWrapper {...args} />,
   args: {
