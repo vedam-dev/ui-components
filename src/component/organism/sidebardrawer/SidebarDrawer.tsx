@@ -26,9 +26,11 @@ export interface SidebarDrawerProps
   items?: SidebarItem[];
   collapsedWidth?: number;
   expandedWidth?: number;
+  expanded?: boolean;
   defaultExpanded?: boolean;
   paperSx?: MuiDrawerProps["sx"];
   onItemClick?: (item: SidebarItem) => void;
+  onToggleExpand?: (expanded: boolean) => void;
 }
 
 const SidebarDrawer: FC<SidebarDrawerProps> = ({
@@ -36,30 +38,38 @@ const SidebarDrawer: FC<SidebarDrawerProps> = ({
   anchor = "left",
   collapsedWidth = 64,
   expandedWidth = 200,
+  expanded,
   defaultExpanded = false,
   paperSx,
   onItemClick,
+  onToggleExpand,
   ...rest
 }) => {
   const { palette } = useCoreTheme() as CoreTheme;
-  const [expanded, setExpanded] = useState(defaultExpanded);
+  const [internalExpanded, setInternalExpanded] = useState(defaultExpanded);
   const [activeId, setActiveId] = useState<string | null>(null);
   const theme = useCoreTheme() as CoreTheme;
 
+  const isExpanded = expanded !== undefined ? expanded : internalExpanded;
+
   const handleItemClick = (item: SidebarItem) => {
-    if (item.id === activeId) {
-      setExpanded(!expanded);
-    } else {
-      if (!expanded) {
-        setExpanded(true);
+
+    if (!isExpanded) {
+      if (expanded === undefined) {
+        setInternalExpanded(true);
       }
-      setActiveId(item.id);
+      onToggleExpand?.(true);
     }
+
+
+    setActiveId(item.id);
+    
+
     item.onClick?.();
     onItemClick?.(item);
   };
 
-  const currentWidth = expanded ? expandedWidth : collapsedWidth;
+  const currentWidth = isExpanded ? expandedWidth : collapsedWidth;
   const defaultPaperSx = SxOverride(
     {
       width: anchor === "left" || anchor === "right" ? currentWidth : "auto",
@@ -69,8 +79,14 @@ const SidebarDrawer: FC<SidebarDrawerProps> = ({
       borderRight: `1px solid ${palette.divider}`,
       transition: "width 0.3s ease-in-out",
       overflow: "hidden",
-      borderTopRightRadius: "24px",
-      borderBottomRightRadius: "24px",
+      boxShadow: isExpanded 
+      ? `
+        0 -4px 10px -2px rgba(0, 0, 0, 0.08),  // Top shadow
+        0 4px 10px -2px rgba(0, 0, 0, 0.08)   
+      `
+      : "none", 
+      borderTopRightRadius: isExpanded ?"24px":"0px",
+      borderBottomRightRadius: isExpanded ?"24px":"0px",
     },
     paperSx
   );
@@ -87,17 +103,16 @@ const SidebarDrawer: FC<SidebarDrawerProps> = ({
         sx={{
           marginTop: theme.spacing(9),
           marginX: theme.spacing(3),
-          padding: expanded ? "8px" : "0px",
+          // padding: isExpanded ? "8px" : "0px",
         }}
       >
         <List sx={{ px: 0 }}>
-          {" "}
           {items.map((item) => {
             const isActive = item.id === activeId;
             return (
               <ListItem key={item.id} disablePadding sx={{ mb: 1 }}>
                 <Tooltip
-                  title={expanded ? "" : item.text}
+                  title={isExpanded ? "" : item.text}
                   placement="right"
                   arrow
                 >
@@ -106,29 +121,29 @@ const SidebarDrawer: FC<SidebarDrawerProps> = ({
                     selected={isActive}
                     sx={{
                       minHeight: 48,
-                      justifyContent: expanded?"left":"center",
-                      padding: "8px 12px",
-                      borderRadius: expanded ? "8px" : "50%",
+                      justifyContent: isExpanded ? "left" : "center",
+                      padding: "8px",
+                      borderRadius: isExpanded ? "8px" : "50%",
                       transition: "all 0.3s",
-                      flexDirection: expanded ? "row" : "column",
+                      flexDirection: isExpanded ? "row" : "column",
                       alignItems: "center",
-                      gap: expanded ? "8px" : 0,
+                      gap: isExpanded ? "8px" : 0,
                       width: "100%",
-                      maxWidth: "100%",
+                      maxWidth: isExpanded ? 'auto' :48,
                       minWidth: "auto",
                       "&.Mui-selected": {
-                        backgroundColor: theme.palette.primary.dark, // todo: update this to [900] when color issue
+                        backgroundColor: theme.palette.primary.dark,
                         color: palette.primary.contrastText,
                         "& .MuiListItemIcon-root, & .MuiListItemText-root": {
                           color: palette.primary.contrastText,
                         },
                         "&:hover": {
-                          backgroundColor: theme.palette.primary.dark, // todo: update this to [900] when color issue
+                          backgroundColor: theme.palette.primary.dark,
                         },
                       },
                       "&:hover": {
                         backgroundColor: isActive
-                          ? theme.palette.primary.dark // todo: update this to [900] when color issue
+                          ? theme.palette.primary.dark
                           : palette.action.hover,
                       },
                     }}
@@ -137,16 +152,16 @@ const SidebarDrawer: FC<SidebarDrawerProps> = ({
                       sx={{
                         minWidth: 0,
                         margin: 0,
-
                         justifyContent: "center",
                         color: isActive
                           ? palette.primary.contrastText
                           : palette.text.secondary,
+                            
                       }}
                     >
                       {item.icon}
                     </ListItemIcon>
-                    {expanded && (
+                    {isExpanded && (
                       <ListItemText
                         primary={item.text}
                         sx={{
