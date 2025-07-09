@@ -9,6 +9,7 @@ const meta: Meta<typeof FeeStatusModal> = {
   parameters: {
     layout: 'centered',
   },
+  tags: ['autodocs'],
   argTypes: {
     status: {
       control: 'radio',
@@ -39,7 +40,6 @@ const ModalWrapper = (args: FeeStatusModalProps) => {
   );
 };
 
-// ✅ Default Success Modal
 export const Success: Story = {
   render: (args) => <ModalWrapper {...args} />,
   args: {
@@ -50,7 +50,6 @@ export const Success: Story = {
   },
 };
 
-// ✅ Failure Modal
 export const Failure: Story = {
   render: (args) => <ModalWrapper {...args} />,
   args: {
@@ -60,7 +59,6 @@ export const Failure: Story = {
   },
 };
 
-// ✅ Pending Modal
 export const Pending: Story = {
   render: (args) => <ModalWrapper {...args} />,
   args: {
