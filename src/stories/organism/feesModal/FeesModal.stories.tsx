@@ -109,4 +109,41 @@ export const SingleItem: Story = {
   },
   args: {},
 };
+export const MultipleItem: Story = {
+  render: (args) => {
+    const [open, setOpen] = useState(false);
+    const feeItems = [
+      {
+        id: 'tuition',
+        description: 'Tuition Fees',
+        amount: '1,25,000'
+      },
+      {
+        id: 'upskilling',
+        description: 'upskilling Fees',
+        amount: '1,25,000'
+      },
+      {
+        id: 'hostel',
+        description: 'Hostel Fees',
+        amount: '1,25,000'
+      }
+    ];
+
+    return (
+      <div>
+        <Button variant="contained" onClick={() => setOpen(true)}>
+          Open Single Item Modal
+        </Button>
+        <FeeSelectionModal
+          {...args}
+          open={open}
+          onClose={() => setOpen(false)}
+          feeItems={feeItems}
+        />
+      </div>
+    );
+  },
+  args: {},
+};
 
