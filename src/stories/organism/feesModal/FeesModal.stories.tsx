@@ -1,17 +1,20 @@
-// FeeSelectionModal.stories.tsx
 import type { Meta, StoryObj } from '@storybook/react';
 import FeeSelectionModal from '../../../component/organism/feesModal/FeesModal';
 import { useState } from 'react';
-import Button from '@mui/material/Button';
+import Button from "../../../component/atom/button/Button";
 
 const meta: Meta<typeof FeeSelectionModal> = {
-  title: 'Components/FeeSelectionModal',
+  title: 'Organism/FeeSelectionModal',
   component: FeeSelectionModal,
   tags: ['autodocs'],
   argTypes: {
     open: { control: 'boolean' },
     onClose: { action: 'closed' },
     onPayNow: { action: 'payNowClicked' },
+    title: { 
+      control: 'text',
+      defaultValue: 'Select Fees to Pay' 
+    },
   },
 };
 
@@ -19,7 +22,6 @@ export default meta;
 
 type Story = StoryObj<typeof FeeSelectionModal>;
 
-// Template for stories
 const Template = (args: any) => {
   const [open, setOpen] = useState(false);
   
@@ -46,18 +48,17 @@ const Template = (args: any) => {
         open={open}
         onClose={() => setOpen(false)}
         feeItems={feeItems}
+        title={args.title}
       />
     </div>
   );
 };
 
-// Default story
 export const Default: Story = {
   render: Template,
   args: {},
 };
 
-// Empty state story
 export const EmptyState: Story = {
   render: (args) => {
     const [open, setOpen] = useState(false);
@@ -76,14 +77,14 @@ export const EmptyState: Story = {
       </div>
     );
   },
-  args: {},
+    args: {
+    title: 'Single Fee Payment' 
+  },
 };
 
-// Single item story
 export const SingleItem: Story = {
   render: (args) => {
     const [open, setOpen] = useState(false);
-    
     const feeItems = [
       {
         id: 'tuition',
@@ -109,38 +110,3 @@ export const SingleItem: Story = {
   args: {},
 };
 
-// Many items story
-export const ManyItems: Story = {
-  render: (args) => {
-    const [open, setOpen] = useState(false);
-    
-    const feeItems = [
-      {
-        id: 'tuition',
-        description: 'Tuition Fees',
-        amount: '1,25,000'
-      },
-      {
-        id: 'upskilling',
-        description: 'Upskilling Fees',
-        amount: '1,25,000'
-      },
-     
-    ];
-
-    return (
-      <div>
-        <Button variant="contained" onClick={() => setOpen(true)}>
-          Open Many Items Modal
-        </Button>
-        <FeeSelectionModal
-          {...args}
-          open={open}
-          onClose={() => setOpen(false)}
-          feeItems={feeItems}
-        />
-      </div>
-    );
-  },
-  args: {},
-};
