@@ -3,7 +3,7 @@ import FeeStatusModal, {
   FeeStatusModalProps,
 } from '../../../component/organism/fee-status-modal/FeeStatusModal';
 import { useState } from 'react';
-import { Button } from '@mui/material';
+import Button  from '../../../component/atom/button/Button';
 
 const meta: Meta<typeof FeeStatusModal> = {
   title: 'Organism/Modal/FeeStatusModal',

@@ -1,7 +1,6 @@
 import React, { ComponentProps } from 'react';
 import { Modal, Box, Typography, IconButton } from '@mui/material';
 import { Close } from '@mui/icons-material';
-import { Button } from '../../atom/button';
 
 export type StatusType = 'success' | 'failure' | 'pending';
 
@@ -96,11 +95,8 @@ const FeeStatusModal: React.FC<FeeStatusModalProps> = ({
           </Typography>
 
           {/* Optional Custom Button */}
-          {customDownloadButton && (
-            <Box sx={{ display: 'flex', justifyContent: 'center', mt: 4 }}>
               {customDownloadButton}
-            </Box>
-          )}
+              
         </Box>
       </Box>
     </Modal>
