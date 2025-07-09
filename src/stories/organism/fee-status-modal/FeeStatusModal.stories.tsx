@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { Button } from '@mui/material';
 
 const meta: Meta<typeof FeeStatusModal> = {
-  title: 'Components/Modal/FeeStatusModal',
+  title: 'Organism/Modal/FeeStatusModal',
   component: FeeStatusModal,
   parameters: {
     layout: 'centered',
