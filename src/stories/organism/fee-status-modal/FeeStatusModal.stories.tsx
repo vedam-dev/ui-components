@@ -1,5 +1,7 @@
 import { Meta, StoryObj } from '@storybook/react';
-import FeeStatusModal, { FeeStatusModalProps } from '../../../component/organism/fee-status-modal/FeeStatusModal';
+import FeeStatusModal, {
+  FeeStatusModalProps,
+} from '../../../component/organism/fee-status-modal/FeeStatusModal';
 import { useState } from 'react';
 import { Button } from '@mui/material';
 
@@ -16,7 +18,6 @@ const meta: Meta<typeof FeeStatusModal> = {
       options: ['success', 'failure', 'pending'],
     },
     infoText: { control: 'text' },
-    showDownloadButton: { control: 'boolean' },
   },
 };
 
@@ -45,7 +46,6 @@ export const Success: Story = {
   args: {
     status: 'success',
     infoText: 'Your Payment receipt is ready to download',
-    showDownloadButton: true,
     onDownloadClick: () => alert('Download Receipt Clicked'),
   },
 };
@@ -55,7 +55,6 @@ export const Failure: Story = {
   args: {
     status: 'failure',
     infoText: 'Payment failed! Please try again.',
-    showDownloadButton: false,
   },
 };
 
@@ -64,6 +63,22 @@ export const Pending: Story = {
   args: {
     status: 'pending',
     infoText: 'Your payment is under processing.',
-    showDownloadButton: false,
+  },
+};
+
+export const WithCustomButton: Story = {
+  render: (args) => <ModalWrapper {...args} />,
+  args: {
+    status: 'success',
+    infoText: 'Download from your profile dashboard.',
+    customDownloadButton: (
+      <Button
+        variant="contained"
+        sx={{ mt: 4, px: 3, borderRadius: '12px' }}
+        onClick={() => alert('Custom download action')}
+      >
+        Custom Button Label
+      </Button>
+    ),
   },
 };

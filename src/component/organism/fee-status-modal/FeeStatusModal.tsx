@@ -10,8 +10,8 @@ export interface IFeeStatusModalProps {
   onClose: () => void;
   status: StatusType;
   infoText: string;
-  showDownloadButton?: boolean;
   onDownloadClick?: () => void;
+  customDownloadButton?: React.ReactNode;
 }
 
 export type FeeStatusModalProps = ComponentProps<typeof Modal> & IFeeStatusModalProps;
@@ -30,8 +30,8 @@ const FeeStatusModal: React.FC<FeeStatusModalProps> = ({
   onClose,
   status,
   infoText,
-  showDownloadButton = false,
   onDownloadClick,
+  customDownloadButton,
   ...props
 }) => {
   return (
@@ -47,7 +47,6 @@ const FeeStatusModal: React.FC<FeeStatusModalProps> = ({
           outline: 'none',
         }}
       >
-        {/* Modal Body */}
         <Box
           sx={{
             position: 'relative',
@@ -58,7 +57,7 @@ const FeeStatusModal: React.FC<FeeStatusModalProps> = ({
             textAlign: 'center',
           }}
         >
-          {/* Top Icon */}
+          {/* Status Icon */}
           <Box
             component="img"
             src={statusIconMap[status]}
@@ -99,9 +98,9 @@ const FeeStatusModal: React.FC<FeeStatusModalProps> = ({
             {infoText}
           </Typography>
 
-          {/* Optional Button with Download Icon */}
-          {showDownloadButton && (
-            <Box sx={{ display: 'flex', justifyContent: 'center', mt: 4 }}>
+          {/* Button Area */}
+          <Box sx={{ display: 'flex', justifyContent: 'center', mt: 4 }}>
+            {customDownloadButton ?? (
               <Button
                 variant="outlined"
                 onClick={onDownloadClick}
@@ -123,8 +122,8 @@ const FeeStatusModal: React.FC<FeeStatusModalProps> = ({
                 />
                 Download Receipt
               </Button>
-            </Box>
-          )}
+            )}
+          </Box>
         </Box>
       </Box>
     </Modal>
