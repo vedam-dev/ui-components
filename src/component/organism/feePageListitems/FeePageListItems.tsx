@@ -1,4 +1,3 @@
-// src/components/molecules/feeListItem/FeeListItem.tsx
 import React from "react";
 import { Box, Typography, Card, CardContent } from "@mui/material";
 import Chip from "../../atom/chip/Chip";
