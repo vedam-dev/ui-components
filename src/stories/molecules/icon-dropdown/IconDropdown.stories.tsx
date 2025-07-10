@@ -1,4 +1,3 @@
-import React from 'react';
 import { Meta, StoryObj } from '@storybook/react';
 import IconDropdown from '../../../component/molecule/icon-dropdown/IconDropdown';
 

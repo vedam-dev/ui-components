@@ -21,6 +21,7 @@ export { default as SidebarDrawer } from './component/organism/sidebardrawer/Sid
 export { default as Banner } from './component/molecule/banner/Banner';
 export { default as Select } from './component/molecule/dropdown/Select';
 export { default as Sekeleton } from './component/molecule/skeleton/Skeleton';
+export { default as IconDropdown} from './component/molecule/icon-dropdown/IconDropdown'
 
 //  Organism Components
 export { default as HorizontalBaseCard } from './component/organism/card/HorizontalBaseCard';
