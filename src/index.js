@@ -32,6 +32,7 @@ export { default as TopBar } from './component/organism/topbar/TopBar';
 export { default as FeeStatusModal} from './component/organism/fee-status-modal/FeeStatusModal'
 export { default as SidebarDrawer } from './component/organism/sidebardrawer/SidebarDrawer';
 export { default as SidebarWrapper } from './component/organism/sidebarWrapper/SidebarWrapper';
+export { default as LoginModal } from './component/organism/loginModal/LoginModal'
 
 //  Theme Component's
 export { default as defaultTheme } from './theme/customer/default';
