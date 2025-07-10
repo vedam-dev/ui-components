@@ -13,43 +13,43 @@ interface LoginModalProps {
 }
 
 const LoginModal: React.FC<LoginModalProps> = ({
-  logo = "https://www.edtechreview.in/wp-content/uploads/vedam-sot-aims-to-transform-computer-science-education-909x487.webp",
+  logo = "https://images.ctfassets.net/wrc4czfp4sk8/4LUdrH0t4U1C85faXgaj8O/3a268801a825ddb4652e1a33d91df655/a19c08cf0281aa052e17edc302ef904b1c753e86.png",
   logoAlt = "School Logo",
-  logoHeight = 118,
+  logoHeight = 117,
   logoWidth = 208,
   subtitle = "Login",
   onGoogleLoginClick,
 }) => {
   const theme = useCoreTheme() as CoreTheme;
+
   return (
     <Paper
       elevation={3}
       sx={{
         p: 1,
         borderRadius: "40px",
-        maxWidth: 400,
-        margin: "auto",
+        maxWidth: "550px",
+        mx: "auto",
         background: "linear-gradient(to bottom, #FF7829, #8A18FF)",
       }}
     >
       <Box
         sx={{
-          py:theme.spacing(7),
-          px:theme.spacing(6),
+          py: theme.spacing(8),
+          px: theme.spacing(7),
           textAlign: "center",
           borderRadius: "36px",
           backgroundColor: "white",
         }}
       >
         {logo && (
-          <Box mb={2} sx={{ display: "flex", justifyContent: "flex-start" }}>
+          <Box mb={1} sx={{ display: "flex", justifyContent: "flex-start" }}>
             <img
               src={logo}
               alt={logoAlt}
-              style={{
-                height: `${logoHeight}px`,
-                width: `${logoWidth}px`,
-              }}
+              height={logoHeight}
+              width={logoWidth}
+              style={{ objectFit: "contain" }}
             />
           </Box>
         )}
@@ -59,11 +59,11 @@ const LoginModal: React.FC<LoginModalProps> = ({
             color: "#000",
             fontFamily: "Outfit",
             fontSize: "32px",
-            fontStyle: "normal",
             fontWeight: 500,
             lineHeight: "36px",
             letterSpacing: "-0.64px",
             textAlign: "left",
+            pl: theme.spacing(3),
           }}
         >
           {subtitle}
@@ -72,36 +72,37 @@ const LoginModal: React.FC<LoginModalProps> = ({
         <Button
           fullWidth
           variant="outlined"
+          onClick={onGoogleLoginClick}
           sx={{
-            position: "relative", 
-            justifyContent: "center",
-            textTransform: "none",
+            mt: 8,
+            py: theme.spacing(2),
+            px: theme.spacing(3),
+            fontSize: "22px",
             fontWeight: 600,
             fontFamily: "Outfit",
-            fontSize: "22px",
-            paddingLeft: "40px", 
-            py:theme.spacing(4),
-            px:theme.spacing(2),
-            marginTop:'24px',
-            color:'#E11C1C;',
-            borderRadius:'16px' 
+            color: "#E11C1C",
+            border: "1px solid #C5C5C5",
+            borderRadius: "16px",
+            textTransform: "none",
+            justifyContent: "left",
+            display: "flex",
+            textWrap: "nowrap",
+            gap: 11,
+            mb: 5,
           }}
         >
-       
-          <img
-            src="https://image.similarpng.com/file/similarpng/very-thumbnail/2020/06/Logo-google-icon-PNG.png"
+          <Box
+            component="img"
+            src="https://images.ctfassets.net/wrc4czfp4sk8/MlLQWcd5d2243FkvhCHsg/b35a214792ec2c7836fffb81e7e237ab/ce354349ec958587fa057b673078953452f344e9.png"
             alt="Google"
-            width={24}
-            height={24}
-            style={{
-              position: "absolute",
-              left: 16,
-              top: "50%",
-              transform: "translateY(-50%)",
-              
+            sx={{
+              width: 76,
+              height: 72,
             }}
           />
-          Sign in with Google
+          <Box sx={{ textAlign: "left", mr: "130px" }}>
+            Continue with Google
+          </Box>
         </Button>
       </Box>
     </Paper>
