@@ -28,6 +28,7 @@ export { default as VerticalBasecard } from './component/organism/card/VerticalB
 export { default as FeeStatusField} from './component/organism/fee-status-list/FeeStatusList'
 export { default as FeeSelectionModal} from './component/organism/feesModal/FeesModal'
 export { default as TopBar } from './component/organism/topbar/TopBar';
+export { default as FeeStatusModal} from './component/organism/fee-status-modal/FeeStatusModal'
 export { default as SidebarDrawer } from './component/organism/sidebardrawer/SidebarDrawer';
 export { default as SidebarWrapper } from './component/organism/sidebarWrapper/SidebarWrapper';
 
