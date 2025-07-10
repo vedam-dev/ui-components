@@ -84,7 +84,7 @@ const buttonInnerStyles = (
     pointerEvents: 'none',
     position: 'absolute',
     padding: theme.spacing(0),
-    borderRadius: theme.spacing(2),
+    borderRadius: theme.spacing(4),
     zIndex: 0,
     top: buttonOuterValue,
     left: buttonOuterValue,
@@ -115,13 +115,13 @@ const buttonStyles = (
   isV2: boolean
 ): SystemStyleObject<Theme> => {
   const roundBorderRadius = small ? theme.spacing(4) : theme.spacing(6);
-  const borderRadius = isRound ? roundBorderRadius : theme.spacing(2);
+  const borderRadius = isRound ? roundBorderRadius : theme.spacing(4);
   const v2Paddings = { small: theme.spacing(1.5, 3), large: theme.spacing(2.5, 4) };
 
   const defaultStyles: SystemStyleObject<Theme> = {
     borderRadius: borderRadius,
-    paddingY: isV2 ? v2Paddings.large : theme.spacing(3),
     paddingX: isV2 ? v2Paddings.large : theme.spacing(6),
+    paddingY: isV2 ? v2Paddings.large : theme.spacing(3),
     borderWidth: 2,
     boxShadow: 'none',
     '&:disabled': {
@@ -153,7 +153,7 @@ const buttonStyles = (
   }
 
   if (isRound) {
-    defaultStyles.padding = isV2 ? v2Paddings.large : theme.spacing(3, 4);
+    defaultStyles.padding = isV2 ? v2Paddings.large : theme.spacing(3, 6);
   }
 
   if (small) {
