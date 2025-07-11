@@ -96,7 +96,7 @@ const preview: Preview = {
         ks3: ks3Theme,
         default: defaultTheme
       },
-      defaultTheme: 'default'
+      defaultTheme: 'vedam'
     })
   ]
 };
