@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import SidebarDrawer, { SidebarDrawerProps, SidebarItem } from "../../../component/atom/sidebardrawer/SidebarDrawer";
+import SidebarDrawer, { SidebarDrawerProps, SidebarItem } from "../../../component/organism/sidebardrawer/SidebarDrawer";
 import {
   Box,
 } from "@mui/material";
@@ -19,7 +19,7 @@ import {
 } from "@mui/icons-material";
 
 const meta: Meta<SidebarDrawerProps> = {
-  title: "Atom/SidebarDrawer",
+  title: "Organism/SidebarDrawer",
   component: SidebarDrawer,
   parameters: {
     layout: "fullscreen",

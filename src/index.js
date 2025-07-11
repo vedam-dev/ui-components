@@ -15,17 +15,24 @@ export { default as Accordion } from './component/atom/accordion/Accordion';
 export { default as Checkbox } from './component/atom/checkbox/Checkbox';
 export { default as TextField } from './component/atom/text-field/TextField'
 export { default as Drawer } from './component/atom/drawer/Drawer';
-export { default as SidebarDrawer } from './component/atom/sidebardrawer/SidebarDrawer';
+
 
 //  Molecule Components
 export { default as Banner } from './component/molecule/banner/Banner';
 export { default as Select } from './component/atom/dropdown/Select';
 export { default as Sekeleton } from './component/atom/skeleton/Skeleton';
+export { default as IconDropdown} from './component/molecule/icon-dropdown/IconDropdown'
 
 //  Organism Components
 export { default as HorizontalBaseCard } from './component/organism/card/HorizontalBaseCard';
 export { default as VerticalBasecard } from './component/organism/card/VerticalBasecard';
 export { default as FeeStatusField} from './component/organism/fee-status-list/FeeStatusList'
+export { default as FeeSelectionModal} from './component/organism/feesModal/FeesModal'
+export { default as TopBar } from './component/organism/topbar/TopBar';
+export { default as FeeStatusModal} from './component/organism/fee-status-modal/FeeStatusModal'
+export { default as SidebarDrawer } from './component/organism/sidebardrawer/SidebarDrawer';
+export { default as SidebarWrapper } from './component/organism/sidebarWrapper/SidebarWrapper';
+export { default as LoginModal } from './component/organism/loginModal/LoginModal'
 
 //  Theme Component's
 export { default as defaultTheme } from './theme/customer/default';
