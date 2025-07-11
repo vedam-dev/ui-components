@@ -24,7 +24,8 @@ export interface IChipProps {
   variant?: BaseVariants | StatusVariants;
 }
 
-export type ChipProps = ComponentProps<typeof BaseChip> & IChipProps;
+// Exclude variant from BaseChip props to avoid conflict
+export type ChipProps = Omit<ComponentProps<typeof BaseChip>, 'variant'> & IChipProps;
 
 const STATUS_COLORS: Record<StatusVariants, string> = {
   success: '#42B657',
@@ -42,7 +43,6 @@ const Chip: FC<ChipProps> = ({
   ...props
 }) => {
   const { palette } = useCoreTheme() as CoreTheme;
-
 
   const getColorValue = () => {
     if ((['success', 'error', 'warning'] as StatusVariants[]).includes(variant as StatusVariants)) {
