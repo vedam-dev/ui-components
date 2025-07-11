@@ -18,8 +18,8 @@ export { default as Drawer } from "./component/atom/drawer/Drawer";
 
 //  Molecule Components
 export { default as Banner } from './component/molecule/banner/Banner';
-export { default as Select } from './component/molecule/dropdown/Select';
-export { default as Sekeleton } from './component/molecule/skeleton/Skeleton';
+export { default as Select } from './component/atom/dropdown/Select';
+export { default as Sekeleton } from './component/atom/skeleton/Skeleton';
 export { default as IconDropdown} from './component/molecule/icon-dropdown/IconDropdown'
 
 //  Organism Components
