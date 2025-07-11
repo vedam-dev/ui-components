@@ -60,15 +60,14 @@ const FeeStatusList: React.FC<FeeStatusListProps> = ({
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
-        flexWrap: 'wrap',
         background: 'linear-gradient(180deg, #EDDBFF 0%, #FFE6CE 100%)',
         borderRadius: '36px',
-        padding: theme.spacing(5, 4),
+        padding: theme.spacing(10, 12),
+        gap:theme.spacing(5),
         marginBottom: theme.spacing(2),
-        width: '100%',
-        maxWidth: '1200px',
         border: '1px solid #7B2CBF',
         position: 'relative',
+        width: '100%',
         ...props.sx,
       }}
     >
@@ -77,7 +76,7 @@ const FeeStatusList: React.FC<FeeStatusListProps> = ({
         sx={{
           position: 'absolute',
           top: -12,
-          left: theme.spacing(4),
+          left: theme.spacing(10),
           backgroundColor: theme.palette.common.white,
           color: statusColor,
           padding: theme.spacing(0.5, 1.5),
@@ -86,7 +85,7 @@ const FeeStatusList: React.FC<FeeStatusListProps> = ({
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          width: '100px',
+          width: '124px',
           gap: theme.spacing(0.5),
           zIndex: 1,
         }}
@@ -100,11 +99,10 @@ const FeeStatusList: React.FC<FeeStatusListProps> = ({
       {/* Column 1: Semester + Icon */}
       <Box
         sx={{
-          flex: 1,
-          minWidth: 200,
           display: 'flex',
           alignItems: 'center',
-          gap: theme.spacing(2),
+          gap: theme.spacing(3),
+          minWidth: '200px',
         }}
       >
         <Box
@@ -113,8 +111,8 @@ const FeeStatusList: React.FC<FeeStatusListProps> = ({
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             borderRadius: '50%',
-            width: 60,
-            height: 60,
+            width: 69,
+            height: 69,
             border: `2px solid ${theme.palette.divider}`,
           }}
         />
@@ -126,6 +124,8 @@ const FeeStatusList: React.FC<FeeStatusListProps> = ({
               whiteSpace: 'nowrap',
               overflow: 'hidden',
               textOverflow: 'ellipsis',
+              fontSize:'20px',
+              fontWeight:'500',
             }}
           >
             {semesterItem?.label || 'Semester'}
@@ -133,10 +133,13 @@ const FeeStatusList: React.FC<FeeStatusListProps> = ({
           <Typography
             variant="h6"
             sx={{
-              fontWeight: 'bold',
+              color:'#1E1E1E',
+              fontWeight: '600',
+              fontSize:'26px',
               whiteSpace: 'nowrap',
               overflow: 'hidden',
               textOverflow: 'ellipsis',
+              lineHeight:'33px',
             }}
           >
             {semesterItem?.value || 'Semester 1 Fees'}
@@ -144,16 +147,15 @@ const FeeStatusList: React.FC<FeeStatusListProps> = ({
         </Box>
       </Box>
 
-      {/* Dynamic Fields */}
+      {/* Individual columns for each otherItem */}
       {otherItems.map((item, index) => (
         <Box
           key={`${item.label}-${index}`}
           sx={{
-            flex: 1,
-            minWidth: 200,
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'center',
+            textAlign: 'left',
           }}
         >
           <Typography
@@ -163,6 +165,8 @@ const FeeStatusList: React.FC<FeeStatusListProps> = ({
               whiteSpace: 'nowrap',
               overflow: 'hidden',
               textOverflow: 'ellipsis',
+              fontSize:'20px',
+              fontWeight:'500'
             }}
           >
             {item.label}
@@ -170,10 +174,12 @@ const FeeStatusList: React.FC<FeeStatusListProps> = ({
           <Typography
             variant="h6"
             sx={{
-              fontWeight: 'bold',
+              fontWeight: '500',
               whiteSpace: 'nowrap',
               overflow: 'hidden',
               textOverflow: 'ellipsis',
+              color:'#1E1E1E',
+              fontSize:'20px',
             }}
           >
             {item.value}
@@ -183,18 +189,16 @@ const FeeStatusList: React.FC<FeeStatusListProps> = ({
 
       {/* Pay Now Button */}
       <Box
-        sx={{
-          flex: 1,
-          display: 'flex',
-        }}
       >
         <Button
           variant="contained"
           onClick={onPayNow}
           sx={{
-            minWidth: '200px',
+            height: '44px',
+            px:theme.spacing(25),
             textTransform: 'none',
             fontWeight: 'bold',
+            fontSize: '16px',
             backgroundColor: '#7C3AED',
             '&:hover': {
               backgroundColor: '#6D28D9',
