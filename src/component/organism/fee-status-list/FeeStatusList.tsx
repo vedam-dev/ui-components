@@ -63,8 +63,6 @@ const FeeStatusList: React.FC<FeeStatusListProps> = ({
         background: 'linear-gradient(180deg, #EDDBFF 0%, #FFE6CE 100%)',
         borderRadius: '36px',
         padding: theme.spacing(10, 12),
-        gap:theme.spacing(5),
-        marginBottom: theme.spacing(2),
         border: '1px solid #7B2CBF',
         position: 'relative',
         width: '100%',
@@ -194,8 +192,7 @@ const FeeStatusList: React.FC<FeeStatusListProps> = ({
           variant="contained"
           onClick={onPayNow}
           sx={{
-            height: '44px',
-            px:theme.spacing(25),
+            minWidth:'250px'
           }}
         >
           Pay Now
