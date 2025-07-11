@@ -196,13 +196,6 @@ const FeeStatusList: React.FC<FeeStatusListProps> = ({
           sx={{
             height: '44px',
             px:theme.spacing(25),
-            textTransform: 'none',
-            fontWeight: 'bold',
-            fontSize: '16px',
-            backgroundColor: '#7C3AED',
-            '&:hover': {
-              backgroundColor: '#6D28D9',
-            },
           }}
         >
           Pay Now
