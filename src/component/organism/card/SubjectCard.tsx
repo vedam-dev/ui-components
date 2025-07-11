@@ -143,6 +143,7 @@ const SubjectCard: FC<SubjectCardProps> = ({
     padding: '24px',
     borderRadius: '12px',
     borderColor: '#8a18ff',
+    backgroundColor: '#FFFFFF',
     color: '#8a18ff',
     fontFamily: 'Poppins, Helvetica',
     fontWeight: 500,

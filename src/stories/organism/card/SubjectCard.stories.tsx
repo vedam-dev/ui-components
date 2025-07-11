@@ -122,7 +122,11 @@ export const WebDevelopment: Story = {
     teacher: 'Priya Sharma',
     duration: '4 months',
     lectureCount: 24,
-    description: 'Advanced calculus, algebra, and mathematical analysis'
+    description: 'Advanced calculus, algebra, and mathematical analysis',
+    cardSx: {
+      background: 'linear-gradient(180deg, rgba(183,239,245,1) 0%, rgba(255,255,255,1) 100%)',
+      border: '1px solid #4fc3f7'
+    }
   }
 };
 
@@ -132,7 +136,11 @@ export const Mathematics: Story = {
     teacher: 'Priya Sharma',
     duration: '4 months',
     lectureCount: 24,
-    description: 'Advanced calculus, algebra, and mathematical analysis'
+    description: 'Advanced calculus, algebra, and mathematical analysis',
+    cardSx: {
+      background: 'linear-gradient(180deg, rgba(255,201,154,1) 0%, rgba(255,255,255,1) 100%)',
+      border: '1px solid #4fc3f7'
+    }
   }
 };
 
@@ -142,7 +150,11 @@ export const Unix: Story = {
     teacher: 'Priya Sharma',
     duration: '4 months',
     lectureCount: 24,
-    description: 'Advanced calculus, algebra, and mathematical analysis'
+    description: 'Advanced calculus, algebra, and mathematical analysis',
+    cardSx: {
+      background: 'linear-gradient(180deg, rgba(226,198,255,1) 0%, rgba(255,255,255,1) 100%)',
+      border: '1px solid #4fc3f7'
+    }
   }
 };
 
@@ -175,7 +187,6 @@ export const CustomButton: Story = {
     }
   }
 };
-
 
 export const DarkTheme: Story = {
   args: {
