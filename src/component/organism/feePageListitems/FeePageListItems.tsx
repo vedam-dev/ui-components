@@ -42,7 +42,6 @@ export const FeeListItemStatus: React.FC<FeeListItemStatusProps> = ({
   status,
 }) => {
   const theme = useCoreTheme() as CoreTheme;
-  // Map our status to our Chip variants
   const chipVariant =
     status === "Success"
       ? "success"
@@ -95,8 +94,6 @@ export const FeeListItemButton: React.FC<FeeListItemButtonProps> = ({
     sx={{
       display: "flex",
       justifyContent: "flex-end",
-      //   flex: 1,
-      //   px: 1,
     }}
   >
     <Button
