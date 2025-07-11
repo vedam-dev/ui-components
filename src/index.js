@@ -19,8 +19,8 @@ export { default as SidebarDrawer } from './component/atom/sidebardrawer/Sidebar
 
 //  Molecule Components
 export { default as Banner } from './component/molecule/banner/Banner';
-export { default as Select } from './component/molecule/dropdown/Select';
-export { default as Sekeleton } from './component/molecule/skeleton/Skeleton';
+export { default as Select } from './component/atom/dropdown/Select';
+export { default as Sekeleton } from './component/atom/skeleton/Skeleton';
 
 //  Organism Components
 export { default as HorizontalBaseCard } from './component/organism/card/HorizontalBaseCard';

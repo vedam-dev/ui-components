@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import Select from '../../../component/molecule/dropdown/Select';
+import Select from '../../../component/atom/dropdown/Select';
 import { MenuItem, FormControl, InputLabel } from '@mui/material';
 import { useState } from 'react';
 
