@@ -15,14 +15,6 @@ import '@fontsource/lato/300.css';
 import '@fontsource/lato/400.css';
 import '@fontsource/lato/700.css';
 import '@fontsource/lato/900.css';
-
-import '@fontsource/montserrat/100.css';
-import '@fontsource/montserrat/200.css';
-import '@fontsource/montserrat/300.css';
-import '@fontsource/montserrat/400.css';
-import '@fontsource/montserrat/500.css';
-import '@fontsource/montserrat/600.css';
-import '@fontsource/montserrat/700.css';
 import '@fontsource/montserrat/800.css';
 import '@fontsource/montserrat/900.css';
 
@@ -36,27 +28,33 @@ import '@fontsource/montserrat/700-italic.css';
 import '@fontsource/montserrat/800-italic.css';
 import '@fontsource/montserrat/900-italic.css';
 
-import "@fontsource/outfit/100.css";
-import "@fontsource/outfit/200.css"; 
-import "@fontsource/outfit/300.css"; 
-import "@fontsource/outfit/400.css";
-import "@fontsource/outfit/500.css"; 
-import "@fontsource/outfit/600.css"; 
-import "@fontsource/outfit/700.css";
-import "@fontsource/outfit/800.css"; 
-import "@fontsource/outfit/900.css"; 
+import '@fontsource/outfit/100.css';
+import '@fontsource/outfit/200.css';
+import '@fontsource/outfit/300.css';
+import '@fontsource/outfit/400.css';
+import '@fontsource/outfit/500.css';
+import '@fontsource/outfit/600.css';
+import '@fontsource/outfit/700.css';
+import '@fontsource/outfit/800.css';
+import '@fontsource/outfit/900.css';
 
-import "@fontsource/nunito-sans/200.css"; 
-import "@fontsource/nunito-sans/300.css"; 
-import "@fontsource/nunito-sans/400.css";
-import "@fontsource/nunito-sans/600.css";
-import "@fontsource/nunito-sans/700.css"; 
-import "@fontsource/nunito-sans/800.css"; 
-import "@fontsource/nunito-sans/900.css"; 
+import '@fontsource/nunito-sans/200.css';
+import '@fontsource/nunito-sans/300.css';
+import '@fontsource/nunito-sans/400.css';
+import '@fontsource/nunito-sans/600.css';
+import '@fontsource/nunito-sans/700.css';
+import '@fontsource/nunito-sans/800.css';
+import '@fontsource/nunito-sans/900.css';
 
+import '@fontsource/montserrat/100.css';
+import '@fontsource/montserrat/200.css';
+import '@fontsource/montserrat/300.css';
+import '@fontsource/montserrat/400.css';
+import '@fontsource/montserrat/500.css';
+import '@fontsource/montserrat/600.css';
+import '@fontsource/montserrat/700.css';
 
 import type { Preview } from '@storybook/react';
-
 import { CssBaseline } from '@mui/material';
 import { withThemeFromJSXProvider } from '@storybook/addon-themes';
 import { defaultTheme, vedamTheme, ksTheme, ks3Theme } from '../src/theme/customer';
@@ -93,13 +91,12 @@ const preview: Preview = {
       GlobalStyles: CssBaseline,
       Provider: CoreThemeProvider,
       themes: {
-        // Provide your custom themes here
         vedam: vedamTheme,
         ks: ksTheme,
         ks3: ks3Theme,
         default: defaultTheme
       },
-      defaultTheme: 'default'
+      defaultTheme: 'vedam'
     })
   ]
 };

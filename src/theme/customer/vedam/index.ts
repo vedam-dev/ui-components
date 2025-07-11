@@ -107,6 +107,7 @@
         letterSpacing: `normal`
       },
       button: {
+        ...defaultTheme.typography.button,
         fontFamily: `Nunito Sans, Outfit, system-ui`,
         fontSize: `16px`,
         fontWeight: `bold`,
@@ -114,7 +115,8 @@
         fontStyle: `normal`,
         lineHeight: `1.5`,
         letterSpacing: `normal`,
-        textTransform: 'none'
+        textTransform: 'none',
+        padding:'24px'
       },
       subtitle1: {
         fontFamily: `Outfit, system-ui`,

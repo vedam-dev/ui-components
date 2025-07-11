@@ -2,7 +2,7 @@ import { Meta, StoryObj } from '@storybook/react';
 import FeeStatusList, { FeeStatus } from '../../../component/organism/fee-status-list/FeeStatusList';
 
 const meta: Meta<typeof FeeStatusList> = {
-  title: 'Organism/FeeStatusList',
+  title: 'Components/FeeStatusList',
   component: FeeStatusList,
   parameters: {
     layout: 'centered',
