@@ -4,7 +4,7 @@ import { MenuItem, FormControl, InputLabel } from '@mui/material';
 import { useState } from 'react';
 
 const meta = {
-  title: 'Molecule/Select',
+  title: 'Atom/Select',
   component: Select,
   parameters: {
     layout: 'centered',
