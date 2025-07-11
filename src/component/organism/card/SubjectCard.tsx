@@ -40,18 +40,15 @@ const SubjectCard: FC<SubjectCardProps> = ({
   duration,
   lectureCount,
   description,
-  iconUrl = 'https://cdn-icons-png.flaticon.com/512/2103/2103633.png',
+  iconUrl = 'https://cdn-icons-png.flaticon.com/512/226/226777.png',
   iconAlt = 'Subject icon',
   buttonText = 'Go to Class',
 
-  // Action
   onGoToClass,
 
-  // Dimensions
   width = 303,
   height = 265,
 
-  // Styles
   cardSx,
   iconContainerSx,
   subjectTextSx,
@@ -61,13 +58,15 @@ const SubjectCard: FC<SubjectCardProps> = ({
   descriptionTextSx,
   buttonSx
 }) => {
-  // Default styles that can be overridden by props
   const defaultCardSx: SxProps<Theme> = {
     width: typeof width === 'number' ? `${width}px` : width,
     height: typeof height === 'number' ? `${height}px` : height,
     borderRadius: '28px',
-    border: '1px solid #cecece',
+    border: 'none',
     background: 'linear-gradient(180deg, rgba(255,230,205,1) 0%, rgba(226,198,255,1) 100%)',
+    boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.1)',
+    display: 'flex',
+    flexDirection: 'column',
     ...cardSx
   };
 
@@ -77,53 +76,64 @@ const SubjectCard: FC<SubjectCardProps> = ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
+    borderRadius: '8px',
+    border: '1px solid transparent',
+    padding: '11px 13px',
     bgcolor: 'white',
-    borderRadius: 2,
+    backgroundImage: 'linear-gradient(white, white), linear-gradient(to right, #FF6B35, #B026FF)',
+    backgroundOrigin: 'border-box',
+    backgroundClip: 'padding-box, border-box',
     ...iconContainerSx
   };
 
   const defaultSubjectTextSx: SxProps<Theme> = {
-    fontFamily: "'Outfit-Medium', Helvetica",
+    fontFamily: "'Outfit', sans-serif",
     fontWeight: 500,
-    color: '#1e1e1e',
+    color: '#1A1A1A',
     fontSize: '22px',
-    lineHeight: 'normal',
+    lineHeight: '24px',
+    letterSpacing: '0.15px',
+    marginBottom: '4px',
     ...subjectTextSx
   };
 
   const defaultTeacherTextSx: SxProps<Theme> = {
-    fontFamily: "'Outfit-Regular', Helvetica",
+    fontFamily: 'Outfit, Helvetica',
     fontWeight: 400,
-    color: 'text.secondary',
-    fontSize: '18px',
-    lineHeight: 'normal',
+    color: '#666666',
+    fontSize: '1.125rem',
+    lineHeight: '20px',
+    width: '164px',
     ...teacherTextSx
   };
 
   const defaultDurationTextSx: SxProps<Theme> = {
     fontFamily: 'Outfit-Medium, Helvetica',
     fontWeight: 500,
+    color: '#4c4c4c',
     fontSize: '13px',
     lineHeight: '18px',
-    color: '#4c4c4c',
+    whiteSpace: 'nowrap',
     ...durationTextSx
   };
 
   const defaultLectureTextSx: SxProps<Theme> = {
     fontFamily: 'Outfit-Medium, Helvetica',
     fontWeight: 500,
+    color: '#4c4c4c',
     fontSize: '13px',
     lineHeight: '18px',
-    color: '#4c4c4c',
+    whiteSpace: 'nowrap',
     ...lectureTextSx
   };
 
   const defaultDescriptionTextSx: SxProps<Theme> = {
     fontFamily: 'Outfit-Regular, Helvetica',
     color: '#1e1e1e',
-    fontSize: '16px',
+    fontSize: 16,
     lineHeight: '18px',
     width: 236,
+    marginTop: '12px',
     ...descriptionTextSx
   };
 
@@ -145,54 +155,80 @@ const SubjectCard: FC<SubjectCardProps> = ({
   };
 
   return (
-    <Card shadow="y12" sx={defaultCardSx}>
+    <Card shadow="none" sx={defaultCardSx}>
       <CardActionArea
         sx={{
           display: 'flex',
           flexDirection: 'column',
-          justifyContent: 'start',
-          alignContent: 'space-evenly',
-          height: '100%'
+          justifyContent: 'space-between',
+          height: '100%',
+          padding: '16px'
         }}
       >
-        <Stack direction="row" spacing={2.5} alignItems="center" width="238px">
-          <Box sx={defaultIconContainerSx}>
-            <Box component="img" src={iconUrl} alt={iconAlt} width="33.72px" height="35.41px" />
-          </Box>
-          <Box width="164px">
-            <Typography variant="h6" sx={defaultSubjectTextSx}>
-              {subject}
-            </Typography>
-            <Typography variant="body1" sx={defaultTeacherTextSx}>
-              {teacher}
-            </Typography>
-          </Box>
-        </Stack>
-
-        <CardContent sx={{ padding: 3 }}>
-          <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-            <Stack direction="row" alignItems="center" spacing={1}>
-              <AccessTimeIcon sx={{ width: 13, height: 13, color: '#4c4c4c' }} />
-              <Typography sx={defaultDurationTextSx}>{duration}</Typography>
+        <Box>
+          <Stack direction="row" spacing={4} alignItems="center" mb={3}>
+            <Box sx={defaultIconContainerSx}>
+              <Box
+                component="img"
+                src={iconUrl}
+                alt={iconAlt}
+                sx={{ width: '24px', height: '24px' }}
+              />
+            </Box>
+            <Stack>
+              <Typography variant="h6" sx={defaultSubjectTextSx}>
+                {subject}
+              </Typography>
+              <Typography variant="body1" color="text.secondary" sx={defaultTeacherTextSx}>
+                {teacher}
+              </Typography>
             </Stack>
+          </Stack>
 
-            <Typography variant="caption" color="text.secondary">
-              |
+          <CardContent sx={{ padding: 0 }}>
+            <Box
+              sx={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '8px',
+                mb: '12px'
+              }}
+            >
+              <Stack direction="row" alignItems="center" spacing={0.5}>
+                <AccessTimeIcon
+                  sx={{
+                    width: '14px',
+                    height: '14px',
+                    color: '#666666'
+                  }}
+                />
+                <Typography sx={defaultDurationTextSx}>{duration}</Typography>
+              </Stack>
+
+              <Typography variant="caption" color="text.secondary">
+                |
+              </Typography>
+
+              <Stack direction="row" alignItems="center" spacing={0.5}>
+                <MenuBookOutlinedIcon
+                  sx={{
+                    width: '14px',
+                    height: '14px',
+                    color: '#666666'
+                  }}
+                />
+                <Typography sx={defaultLectureTextSx}>{lectureCount} Lectures</Typography>
+              </Stack>
+            </Box>
+
+            <Typography variant="body1" sx={defaultDescriptionTextSx}>
+              {description}
             </Typography>
+          </CardContent>
+        </Box>
 
-            <Stack direction="row" alignItems="center" spacing={1}>
-              <MenuBookOutlinedIcon sx={{ width: 15, height: 12, color: '#4c4c4c' }} />
-              <Typography sx={defaultLectureTextSx}>{lectureCount} Lectures</Typography>
-            </Stack>
-          </Box>
-
-          <Typography variant="body1" sx={defaultDescriptionTextSx}>
-            {description}
-          </Typography>
-        </CardContent>
-
-        <CardActions sx={{ padding: 3, paddingTop: 0 }}>
-          <Button variant="outlined" sx={defaultButtonSx} onClick={onGoToClass}>
+        <CardActions sx={{ padding: 0, mt: '20px' }}>
+          <Button variant="outlined" sx={defaultButtonSx} onClick={onGoToClass} disableElevation>
             {buttonText}
           </Button>
         </CardActions>

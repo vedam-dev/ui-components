@@ -116,6 +116,36 @@ export const Default: Story = {
   }
 };
 
+export const WebDevelopment: Story = {
+  args: {
+    subject: 'Web Development',
+    teacher: 'Priya Sharma',
+    duration: '4 months',
+    lectureCount: 24,
+    description: 'Advanced calculus, algebra, and mathematical analysis'
+  }
+};
+
+export const Mathematics: Story = {
+  args: {
+    subject: 'Mathematics',
+    teacher: 'Priya Sharma',
+    duration: '4 months',
+    lectureCount: 24,
+    description: 'Advanced calculus, algebra, and mathematical analysis'
+  }
+};
+
+export const Unix: Story = {
+  args: {
+    subject: 'Unix',
+    teacher: 'Priya Sharma',
+    duration: '4 months',
+    lectureCount: 24,
+    description: 'Advanced calculus, algebra, and mathematical analysis'
+  }
+};
+
 export const CustomIcon: Story = {
   args: {
     subject: 'Data Science',
@@ -146,23 +176,6 @@ export const CustomButton: Story = {
   }
 };
 
-export const Compact: Story = {
-  args: {
-    subject: 'CSS',
-    teacher: 'Sarah Johnson',
-    duration: '2 weeks',
-    lectureCount: 8,
-    description: 'Master modern CSS techniques and animations',
-    width: 280,
-    height: 240,
-    descriptionTextSx: {
-      fontSize: '14px'
-    },
-    buttonSx: {
-      width: '220px'
-    }
-  }
-};
 
 export const DarkTheme: Story = {
   args: {
