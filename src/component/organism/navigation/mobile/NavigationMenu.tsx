@@ -309,7 +309,7 @@ const NavigationMenu: FC<NavigationMobileMenuProps> = ({
                         left: '0 !important',
                         zIndex: 10,
                         borderRadius: theme.spacing(2),
-                        boxShadow: theme.pbl.shadows.y16,
+                        boxShadow: theme.vd.shadows.y16,
                         padding: 0,
                         paddingTop: theme.spacing(6)
                       }

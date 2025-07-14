@@ -27,7 +27,7 @@ export const FeeListItemRow: React.FC<FeeListItemRowProps> = ({ title, value }) 
       <Typography
         variant="caption"
         sx={{
-          color: '#5D5C5C',
+          color: theme.palette.grey[500],
           fontSize: '14px',
           fontWeight: 500,
         }}
@@ -46,6 +46,11 @@ export const FeeListItemRow: React.FC<FeeListItemRowProps> = ({ title, value }) 
     </Box>
   );
 };
+export enum FeeStatusVariant {
+  Success = 'success',
+  Pending = 'warning',
+  Failed  = 'error',
+}
 
 export interface FeeListItemStatusProps {
   status: 'Success' | 'Pending' | 'Failed';
@@ -53,8 +58,7 @@ export interface FeeListItemStatusProps {
 
 export const FeeListItemStatus: React.FC<FeeListItemStatusProps> = ({ status }) => {
   const theme = useCoreTheme() as CoreTheme;
-  const chipVariant =
-    status === 'Success' ? 'success' : status === 'Pending' ? 'warning' : 'error';
+  const chipVariant = FeeStatusVariant[status];
 
   return (
     <Box
@@ -68,7 +72,7 @@ export const FeeListItemStatus: React.FC<FeeListItemStatusProps> = ({ status }) 
       <Typography
         variant="caption"
         sx={{
-          color: '#5D5C5C',
+          color: theme.palette.grey[500],
           fontSize: '14px',
           fontWeight: 500,
         }}
@@ -119,7 +123,7 @@ export const FeeListItemButton: React.FC<FeeListItemButtonProps> = ({ onClick })
           border: '1px solid #87B3FA',
           textTransform: 'none',
           fontWeight: 500,
-          color: '#3870CA',
+          color: theme.palette.info.main,
           '&:hover': {
             border: '1px solid #5D9BFB',
             backgroundColor: 'rgba(135, 179, 250, 0.04)',
@@ -143,7 +147,7 @@ const FeeListItem: React.FC<FeeListItemProps> = ({ bgColor, children }) => {
     <Card
       sx={{
         borderRadius: theme.spacing(6),
-        boxShadow: '0px 2px 8px rgba(0,0,0,0.08)',
+        boxShadow: theme.vd.shadows.y4,
         backgroundColor: 'background.paper',
         mb: theme.spacing(2),
         width: '100%',

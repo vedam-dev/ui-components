@@ -9,7 +9,7 @@ export type CardProps = ComponentProps<typeof BaseCard> & ICardProps;
 
 const Card: FC<CardProps> = ({ children, style, shadow, sx, ...props }) => {
   const {
-    pbl: { shadows },
+    vd: { shadows },
     palette: {
       common: { white },
       grey

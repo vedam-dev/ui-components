@@ -15,21 +15,21 @@ interface CustomPalette {
   megaMillions?: string;
 }
 
-export interface IPblTheme {
+export interface IVdTheme {
   useMaterialButtons: boolean;
-  shadows: { none: 'none'; y8: string; y12: string; y16: string };
+  shadows: { none: 'none'; y4?:string; y8: string; y12: string; y16: string };
   typography: Record<CoreTypographyVariant, TypographyStyle>;
   palette?: CustomPalette;
 }
 
 export interface CoreTheme extends Theme {
   isStorybook: boolean;
-  pbl: IPblTheme;
+  vd: IVdTheme;
 }
 
 export interface CoreThemeOptions extends ThemeOptions {
   isStorybook: boolean;
-  pbl: IPblTheme;
+  vd: IVdTheme;
 }
 
 export type CoreThemeProviderProps = ThemeProviderProps;

@@ -6,7 +6,7 @@ const muiTheme = createTheme();
 const defaultTheme: CoreTheme = createCoreTheme({
   isStorybook: true,
   spacing: 4,
-  pbl: {
+  vd: {
     useMaterialButtons: true,
     shadows: {
       none: 'none',
