@@ -1,10 +1,38 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import SubjectCard from '../../../component/organism/card/SubjectCard';
 import { fn } from '@storybook/test';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { JSX } from 'react';
+
+const storybookTheme = createTheme({
+  spacing: 8,
+  palette: {
+    primary: {
+      main: '#8a18ff'
+    },
+    text: {
+      primary: '#1A1A1A',
+      secondary: '#666666'
+    },
+    background: {
+      paper: '#FFFFFF'
+    }
+  },
+  typography: {
+    fontFamily: "'Outfit', sans-serif"
+  }
+});
 
 const meta: Meta<typeof SubjectCard> = {
   title: 'Organism/SubjectCard',
   component: SubjectCard,
+  decorators: [
+    (Story): JSX.Element => (
+      <ThemeProvider theme={storybookTheme}>
+        <Story />
+      </ThemeProvider>
+    )
+  ],
   parameters: {
     layout: 'centered',
     docs: {
@@ -16,7 +44,6 @@ const meta: Meta<typeof SubjectCard> = {
   },
   tags: ['autodocs'],
   argTypes: {
-    // Content props
     subject: {
       control: 'text',
       description: 'The subject/title of the card'
@@ -179,10 +206,10 @@ export const CustomButton: Story = {
     description: 'Learn modern React with hooks and context API',
     buttonText: 'Start Learning',
     buttonSx: {
-      backgroundColor: '#8a18ff',
+      backgroundColor: 'primary.main',
       color: 'white',
       '&:hover': {
-        backgroundColor: '#6a00f0'
+        backgroundColor: 'primary.dark'
       }
     }
   }
@@ -200,25 +227,25 @@ export const DarkTheme: Story = {
       border: '1px solid #616161'
     },
     subjectTextSx: {
-      color: '#bb86fc'
+      color: 'primary.light'
     },
     teacherTextSx: {
-      color: '#bdbdbd'
+      color: 'text.disabled'
     },
     durationTextSx: {
-      color: '#9e9e9e'
+      color: 'text.disabled'
     },
     lectureTextSx: {
-      color: '#9e9e9e'
+      color: 'text.disabled'
     },
     descriptionTextSx: {
-      color: '#e0e0e0'
+      color: 'text.secondary'
     },
     buttonSx: {
-      backgroundColor: '#bb86fc',
-      color: '#121212',
+      backgroundColor: 'primary.light',
+      color: 'background.default',
       '&:hover': {
-        backgroundColor: '#9c64f4'
+        backgroundColor: 'primary.main'
       }
     }
   }
@@ -240,20 +267,20 @@ export const FullyCustomized: Story = {
       border: '1px solid #4fc3f7'
     },
     iconContainerSx: {
-      bgcolor: '#e1f5fe'
+      bgcolor: 'background.paper'
     },
     subjectTextSx: {
-      color: '#0277bd',
+      color: 'primary.dark',
       fontSize: '24px'
     },
     teacherTextSx: {
-      color: '#0288d1'
+      color: 'primary.main'
     },
     buttonSx: {
-      backgroundColor: '#0288d1',
+      backgroundColor: 'primary.main',
       color: 'white',
       '&:hover': {
-        backgroundColor: '#0277bd'
+        backgroundColor: 'primary.dark'
       }
     }
   }
