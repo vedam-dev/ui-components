@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useRef, useEffect } from "react";
-import { Box, Typography, Card, CardContent } from "@mui/material";
+import { Box, Typography, Card, CardContent, useTheme } from "@mui/material";
 
 interface ClassSession {
   date: string;
@@ -19,9 +19,39 @@ const CalendarTimeline: React.FC<CalendarTimelineProps> = ({
   events,
   visibleItems = 4,
 }) => {
+  const theme = useTheme();
   const itemHeight = 96;
   const containerRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
+  const [activeDate, setActiveDate] = useState<string | null>(null);
+
+  // Style constants
+  const styles = {
+    outerBox: {
+      width: 549,
+      height: 443,
+      borderRadius: '36px',
+      p: 3,
+      boxShadow: "0px 0px 20px 1px rgba(30, 30, 30, 0.10)",
+    },
+    dateColumn: {
+      width: 100,
+      pr: 2,
+    },
+    timelineColumn: {
+      width: 40,
+    },
+    subjectCard: {
+      width: 355,
+      height: 74,
+      borderRadius: '20px',
+      border: "1px solid #E1BFFF",
+    },
+    icon: {
+      size: 40,
+      mr: 2,
+    },
+  };
 
   // Group events by date
   const groupedEvents = events.reduce((acc, event) => {
@@ -56,6 +86,21 @@ const CalendarTimeline: React.FC<CalendarTimelineProps> = ({
     return scrollIndex;
   };
 
+  // Scroll to the first event of the selected date
+  const handleDateClick = (date: string, groupIndex: number) => {
+    setActiveDate(date);
+    const firstEventIndex = renderItems.findIndex(
+      item => item.date === date && item.isFirstInGroup
+    );
+    if (firstEventIndex >= 0 && containerRef.current) {
+      containerRef.current.scrollTo({
+        top: firstEventIndex * itemHeight,
+        behavior: 'smooth'
+      });
+      setActiveIndex(firstEventIndex);
+    }
+  };
+
   useEffect(() => {
     const container = containerRef.current;
     if (!container) return;
@@ -64,6 +109,11 @@ const CalendarTimeline: React.FC<CalendarTimelineProps> = ({
       const scrollPosition = container.scrollTop;
       const newActiveIndex = Math.round(scrollPosition / itemHeight);
       setActiveIndex(getOriginalIndex(newActiveIndex));
+      
+      // Update active date based on scroll position
+      if (renderItems[newActiveIndex]) {
+        setActiveDate(renderItems[newActiveIndex].date);
+      }
     };
 
     container.addEventListener("scroll", handleScroll);
@@ -73,37 +123,32 @@ const CalendarTimeline: React.FC<CalendarTimelineProps> = ({
   return (
     <Box
       sx={{
-        width: "549px",
-        height: "443px",
-        flexShrink: 0,
-        borderRadius: "36px",
-        background: "#FFF",
-        boxShadow: "0px 0px 20px 1px rgba(30, 30, 30, 0.10)",
-        padding: "24px",
+        ...styles.outerBox,
+        backgroundColor: "background.paper",
         boxSizing: "border-box",
       }}
     >
       <Box
         ref={containerRef}
         sx={{
-          height: `${itemHeight * visibleItems}px`,
+          height: itemHeight * visibleItems,
           overflowY: "auto",
-          "&::-webkit-scrollbar": { width: "6px" },
+          "&::-webkit-scrollbar": { width: theme.spacing(0.75) },
           "&::-webkit-scrollbar-thumb": {
-            backgroundColor: "#bdbdbd",
-            borderRadius: "3px",
+            backgroundColor: theme.palette.grey[400],
+            borderRadius: theme.spacing(0.375),
           },
         }}
       >
         <Box sx={{ position: "relative" }}>
-          {/* Continuous Purple Timeline Line */}
+          {/* Continuous Timeline Line */}
           <Box
             sx={{
               position: "absolute",
-              top: "48px",
-              left: "120px",
-              width: "2px",
-              height: `calc(100% - 96px)`,
+              top: itemHeight / 2,
+              left: styles.dateColumn.width + styles.timelineColumn.width / 2,
+              width: 2,
+              height: `calc(100% - ${itemHeight}px)`,
               backgroundColor: "#E1BFFF",
               transform: "translateX(-50%)",
             }}
@@ -114,27 +159,31 @@ const CalendarTimeline: React.FC<CalendarTimelineProps> = ({
               key={`${event.date}-${index}`}
               sx={{
                 display: "flex",
-                height: `${itemHeight}px`,
+                height: itemHeight,
               }}
             >
               {/* Date Column - only show for first event in group */}
               {event.isFirstInGroup && (
                 <Box
                   sx={{
-                    width: "100px",
+                    ...styles.dateColumn,
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "flex-end",
-                    paddingRight: "16px",
+                    cursor: 'pointer',
+                    '&:hover': {
+                      backgroundColor: 'rgba(0, 0, 0, 0.04)'
+                    }
                   }}
+                  onClick={() => handleDateClick(event.date, event.groupIndex)}
                 >
                   <Typography
                     variant="body2"
                     sx={{
-                      color: "#4F4F4F",
+                      color: activeDate === event.date ? "#7B2CBF" : "text.secondary",
                       fontFamily: "Poppins",
-                      fontSize: "18px",
-                      fontWeight: 500,
+                      fontSize: 18,
+                      fontWeight: activeDate === event.date ? 600 : 500,
                       lineHeight: "normal",
                     }}
                   >
@@ -144,47 +193,73 @@ const CalendarTimeline: React.FC<CalendarTimelineProps> = ({
               )}
 
               {/* Empty space for date column when not first in group */}
-              {!event.isFirstInGroup && <Box sx={{ width: "100px" }} />}
+              {!event.isFirstInGroup && (
+                <Box sx={{ width: styles.dateColumn.width }} />
+              )}
 
               {/* Timeline Column */}
               <Box
                 sx={{
-                  width: "40px",
+                  ...styles.timelineColumn,
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
                   position: "relative",
                 }}
               >
-                {/* Only show dot for first event in group */}
-                {event.isFirstInGroup && (
-                  <Box
-                    sx={{
-                      width: "14px",
-                      height: "14px",
-                      borderRadius: "50%",
-                      border: "2px solid #F97D03",
-                      backgroundColor:
-                        index === activeIndex ? "#F97D03" : "#FAF9F6",
-                      zIndex: 2,
-                    }}
-                  />
-                )}
+                {/* Dot and Connector Line */}
+                <Box
+                  sx={{
+                    position: "relative",
+                    width: "1.3125rem",
+                    display: "flex",
+                    justifyContent: "center",
+                  }}
+                >
+                  {/* Dot - show for all items */}
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="1.0625rem"
+                    height="1.0625rem"
+                    viewBox="0 0 21 21"
+                    fill="none"
+                  >
+                    <circle
+                      cx="10.5"
+                      cy="10.5"
+                      r="10"
+                      fill="white"
+                      stroke={activeDate === event.date ? "#7B2CBF" : "#E0E0E0"}
+                    />
+                    <circle
+                      cx="10.5"
+                      cy="10.5"
+                      r="6"
+                      fill={activeDate === event.date ? "#F97D03" : "#E0E0E0"}
+                      stroke={activeDate === event.date ? "#F97D03" : "#E0E0E0"}
+                    />
+                  </svg>
 
-                {/* Extend the line for subsequent events in group */}
-                {!event.isFirstInGroup && (
-                  <Box
-                    sx={{
-                      position: "absolute",
-                      left: "50%",
-                      top: 0,
-                      height: "100%",
-                      width: "2px",
-                      backgroundColor: "#E1BFFF",
-                      transform: "translateX(-50%)",
-                    }}
-                  />
-                )}
+               {/* Connector Line - show for all items except last in last group */}
+{(index < renderItems.length - 1) && (
+  <Box
+    sx={{
+      position: "absolute",
+      top: "1.3125rem",
+      left: "50%",
+      transform: "translateX(-1px)",
+      width: "0.125rem",
+      height: `${itemHeight - 21}px`,
+      backgroundImage:
+        activeDate === event.date || (activeDate && renderItems.findIndex(item => item.date === activeDate) < index)
+          ? `repeating-linear-gradient(to bottom, #F97D03, #F97D03 0.625rem, transparent 0.625rem, transparent 0.875rem)`
+          : `repeating-linear-gradient(to bottom, #E0E0E0, #E0E0E0 0.625rem, transparent 0.625rem, transparent 0.875rem)`,
+      transition: "all 0.3s ease",
+      backgroundColor: "transparent", 
+    }}
+  />
+)}
+                </Box>
               </Box>
 
               {/* Subject Card */}
@@ -197,16 +272,12 @@ const CalendarTimeline: React.FC<CalendarTimelineProps> = ({
               >
                 <Card
                   sx={{
-                    width: "355px",
-                    height: "74px",
-                    flexShrink: 0,
-                    borderRadius: "20px",
-                    border: "1px solid #E1BFFF",
-                    background: "#FFF",
+                    ...styles.subjectCard,
+                    backgroundColor: activeDate === event.date ? "#F8F1FF" : "background.paper",
                     boxShadow: "none",
-                    transition: "all 0.2s ease",
+                    transition: theme.transitions.create(["box-shadow", "background-color"]),
                     "&:hover": {
-                      boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)",
+                      boxShadow: theme.shadows[2],
                     },
                   }}
                 >
@@ -215,17 +286,18 @@ const CalendarTimeline: React.FC<CalendarTimelineProps> = ({
                       display: "flex",
                       alignItems: "center",
                       height: "100%",
-                      padding: "12px 16px !important",
+                      py: 1.5,
+                      px: 2,
+                      "&:last-child": { pb: 1.5 },
                     }}
                   >
-                    {/* Replaced Avatar with Box for icon display */}
                     <Box
                       component="img"
                       src={event.iconUrl}
                       sx={{
-                        width: "40px",
-                        height: "40px",
-                        marginRight: "16px",
+                        width: styles.icon.size,
+                        height: styles.icon.size,
+                        mr: styles.icon.mr,
                         objectFit: "contain",
                       }}
                       alt="subject icon"
@@ -235,8 +307,8 @@ const CalendarTimeline: React.FC<CalendarTimelineProps> = ({
                         variant="subtitle1"
                         sx={{
                           fontWeight: 600,
-                          fontSize: "16px",
-                          color: "#333",
+                          fontSize: 16,
+                          color: "text.primary",
                           fontFamily: "Poppins",
                         }}
                       >
@@ -245,8 +317,8 @@ const CalendarTimeline: React.FC<CalendarTimelineProps> = ({
                       <Typography
                         variant="body2"
                         sx={{
-                          color: "#666",
-                          fontSize: "14px",
+                          color: "text.secondary",
+                          fontSize: 14,
                           fontFamily: "Poppins",
                         }}
                       >
