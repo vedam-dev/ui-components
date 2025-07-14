@@ -168,7 +168,7 @@ const SubjectCard: FC<SubjectCardProps> = ({
         }}
       >
         <Box>
-          <Stack direction="row" spacing={3} alignItems="center" mb={3}>
+          <Stack direction="row" spacing={3} alignItems="center" mb={2}>
             <Box sx={defaultIconContainerSx}>
               <Box
                 component="img"
