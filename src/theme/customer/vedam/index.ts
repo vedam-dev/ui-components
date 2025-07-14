@@ -209,6 +209,7 @@
       },
       error: {
         main: colors.dangerD400Danger,
+        dark:colors.dangerD300,
         100: colors.dangerD100,
         200: colors.dangerD200,
         300: colors.dangerD300,
@@ -216,6 +217,7 @@
       },
       warning: {
         main: colors.warningW400Warning,
+        dark:colors.warningW300,
         100: colors.warningW100,
         200: colors.warningW200,
         300: colors.warningW300,
@@ -230,6 +232,7 @@
       },
       success: {
         main: colors.successSc400Success,
+        dark: colors.successSc300,
         100: colors.successSc100,
         200: colors.successSc200,
         300: colors.successSc300,

@@ -34,7 +34,7 @@ const colors = {
   infoI400Info: '#0061b2',
   successSc100: '#bbffc1',
   successSc200: '#68f274',
-  successSc300: '#ECAD00', // for success chip
+  successSc300: '#42B657', // for success chip
   successSc400Success: '#287D3C',
   neutralsNWhite: '#ffffff',
   neutralsN100: '#eff3f5',

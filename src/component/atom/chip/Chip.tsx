@@ -1,4 +1,3 @@
-'use client';
 
 import React, { ComponentProps, FC, MouseEvent } from 'react';
 import { Chip as BaseChip } from '@mui/material';
@@ -54,9 +53,9 @@ const Chip: FC<ChipProps> = ({
 
 
   const STATUS_COLORS: Record<StatusVariants, string> = {
-    success: palette.success.main, // todo: change to when issue resolved [300]
-    error: palette.error.main, // todo: change to when issue resolved [300]
-    warning: palette.warning.main, // todo: change to when issue resolved [300]
+    success: palette.success.dark, 
+    error: palette.error.dark, 
+    warning: palette.warning.dark, 
   };
 
   const getColorValue = () => {
