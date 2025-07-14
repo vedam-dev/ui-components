@@ -1,8 +1,9 @@
 import { Meta, StoryObj } from '@storybook/react';
 import FeeStatusList, { FeeStatus } from '../../../component/organism/fee-status-list/FeeStatusList';
+import {Box} from '@mui/material';
 
 const meta: Meta<typeof FeeStatusList> = {
-  title: 'Components/FeeStatusList',
+  title: 'Organism/FeeStatusList',
   component: FeeStatusList,
   parameters: {
     layout: 'centered',
@@ -15,6 +16,13 @@ const meta: Meta<typeof FeeStatusList> = {
     },
     onPayNow: { action: 'Pay Now clicked' },
   },
+   decorators: [
+    (Story) => (
+      <Box sx={{ minWidth: '1000px' }}>
+        <Story />
+      </Box>
+    ),
+  ],
 };
 
 export default meta;

@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import Skeleton from '../../../component/molecule/skeleton/Skeleton';
+import Skeleton from '../../../component/atom/skeleton/Skeleton';
 import { Box } from '@mui/material';
 
 const meta = {
-  title: 'Molecule/Skeleton',
+  title: 'Atom/Skeleton',
   component: Skeleton,
   parameters: {
     layout: 'centered'
