@@ -53,7 +53,7 @@ const Chip: FC<ChipProps> = ({
 
 
   const STATUS_COLORS: Record<StatusVariants, string> = {
-    success: palette.success[300] || '#5fb6ff', 
+    success: palette.success.dark, 
     error: palette.error.dark, 
     warning: palette.warning.dark, 
   };
