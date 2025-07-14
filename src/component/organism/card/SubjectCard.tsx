@@ -1,4 +1,4 @@
-import { Card, CardActionArea, CardContent, CardActions } from '../../atom/card';
+import { Card, CardActionArea, CardActions } from '../../atom/card';
 import { Typography } from '../../atom/typography';
 import { Button } from '../../atom/button';
 import { FC } from 'react';
@@ -130,7 +130,7 @@ const SubjectCard: FC<SubjectCardProps> = ({
     fontFamily: theme.typography.fontFamily,
     color: theme.palette.text.primary,
     fontSize: theme.typography.body1.fontSize,
-    lineHeight: '18px',
+    lineHeight: theme.spacing(2.25),
     width: theme.spacing(29.5),
     marginTop: theme.spacing(1.5),
     ...descriptionTextSx
@@ -140,6 +140,7 @@ const SubjectCard: FC<SubjectCardProps> = ({
     width: theme.spacing(33.125),
     height: theme.spacing(4.5),
     padding: theme.spacing(3),
+    borderWidth: theme.spacing(0.125),
     borderRadius: theme.spacing(1.5),
     borderColor: theme.palette.primary.main,
     backgroundColor: theme.palette.background.paper,
@@ -160,13 +161,14 @@ const SubjectCard: FC<SubjectCardProps> = ({
         sx={{
           display: 'flex',
           flexDirection: 'column',
-          justifyContent: 'space-between',
+          justifyContent: 'space-around',
+          gap: theme.spacing(2),
           height: '100%',
-          padding: theme.spacing(2)
+          padding: theme.spacing(3)
         }}
       >
         <Box>
-          <Stack direction="row" spacing={4} alignItems="center" mb={3}>
+          <Stack direction="row" spacing={3} alignItems="center" mb={3}>
             <Box sx={defaultIconContainerSx}>
               <Box
                 component="img"
@@ -185,13 +187,13 @@ const SubjectCard: FC<SubjectCardProps> = ({
             </Stack>
           </Stack>
 
-          <CardContent sx={{ padding: 0 }}>
+          <Box sx={{ pb: theme.spacing(2) }}>
             <Box
               sx={{
                 display: 'flex',
                 alignItems: 'center',
                 gap: theme.spacing(1),
-                mb: theme.spacing(1.5)
+                mb: theme.spacing(0)
               }}
             >
               <Stack direction="row" alignItems="center" spacing={0.5}>
@@ -224,15 +226,14 @@ const SubjectCard: FC<SubjectCardProps> = ({
             <Typography variant="body1" sx={defaultDescriptionTextSx}>
               {description}
             </Typography>
-          </CardContent>
+          </Box>
+          <CardActions sx={{ padding: 0, mt: theme.spacing(0) }}>
+            {' '}
+            <Button variant="outlined" sx={defaultButtonSx} onClick={onGoToClass} disableElevation>
+              {buttonText}
+            </Button>
+          </CardActions>
         </Box>
-
-        <CardActions sx={{ padding: 0, mt: theme.spacing(2.5) }}>
-          {' '}
-          <Button variant="outlined" sx={defaultButtonSx} onClick={onGoToClass} disableElevation>
-            {buttonText}
-          </Button>
-        </CardActions>
       </CardActionArea>
     </Card>
   );
