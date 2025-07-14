@@ -5,9 +5,9 @@ import { FC } from 'react';
 import { Box, Stack, SxProps, Theme } from '@mui/material';
 import MenuBookOutlinedIcon from '@mui/icons-material/MenuBookOutlined';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
+import { useCoreTheme, CoreTheme } from '../../../theme/core-theme';
 
 export interface SubjectCardProps {
-  // Content props
   subject: string;
   teacher: string;
   duration: string;
@@ -17,10 +17,8 @@ export interface SubjectCardProps {
   iconAlt?: string;
   buttonText?: string;
 
-  // Action prop
   onGoToClass?: () => void;
 
-  // Style props
   width?: number | string;
   height?: number | string;
   cardSx?: SxProps<Theme>;
@@ -34,7 +32,6 @@ export interface SubjectCardProps {
 }
 
 const SubjectCard: FC<SubjectCardProps> = ({
-  // Content
   subject,
   teacher,
   duration,
@@ -58,27 +55,29 @@ const SubjectCard: FC<SubjectCardProps> = ({
   descriptionTextSx,
   buttonSx
 }) => {
+  const theme = useCoreTheme() as CoreTheme;
+
   const defaultCardSx: SxProps<Theme> = {
     width: typeof width === 'number' ? `${width}px` : width,
     height: typeof height === 'number' ? `${height}px` : height,
-    borderRadius: '28px',
+    borderRadius: theme.spacing(3.5),
     border: 'none',
     background: 'linear-gradient(180deg, rgba(255,230,205,1) 0%, rgba(226,198,255,1) 100%)',
-    boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.1)',
+    boxShadow: theme.pbl.shadows.y8,
     display: 'flex',
     flexDirection: 'column',
     ...cardSx
   };
 
   const defaultIconContainerSx: SxProps<Theme> = {
-    width: '56px',
-    height: '56px',
+    width: theme.spacing(7),
+    height: theme.spacing(7),
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    borderRadius: '8px',
+    borderRadius: theme.spacing(1),
     border: '1px solid transparent',
-    padding: '11px 13px',
+    padding: theme.spacing(1.375, 1.625),
     bgcolor: 'white',
     backgroundImage: 'linear-gradient(white, white), linear-gradient(to right, #FF6B35, #B026FF)',
     backgroundOrigin: 'border-box',
@@ -87,70 +86,70 @@ const SubjectCard: FC<SubjectCardProps> = ({
   };
 
   const defaultSubjectTextSx: SxProps<Theme> = {
-    fontFamily: "'Outfit', sans-serif",
+    fontFamily: theme.typography.fontFamily,
     fontWeight: 500,
-    color: '#1A1A1A',
+    color: theme.palette.text.primary,
     fontSize: '22px',
     lineHeight: '24px',
     letterSpacing: '0.15px',
-    marginBottom: '4px',
+    marginBottom: theme.spacing(0.5),
     ...subjectTextSx
   };
 
   const defaultTeacherTextSx: SxProps<Theme> = {
-    fontFamily: 'Outfit, Helvetica',
+    fontFamily: theme.typography.fontFamily,
     fontWeight: 400,
-    color: '#666666',
+    color: theme.palette.text.secondary,
     fontSize: '1.125rem',
     lineHeight: '20px',
-    width: '164px',
+    width: theme.spacing(20.5),
     ...teacherTextSx
   };
 
   const defaultDurationTextSx: SxProps<Theme> = {
-    fontFamily: 'Outfit-Medium, Helvetica',
+    fontFamily: theme.typography.fontFamily,
     fontWeight: 500,
-    color: '#4c4c4c',
-    fontSize: '13px',
+    color: theme.palette.text.secondary,
+    fontSize: theme.typography.caption.fontSize,
     lineHeight: '18px',
     whiteSpace: 'nowrap',
     ...durationTextSx
   };
 
   const defaultLectureTextSx: SxProps<Theme> = {
-    fontFamily: 'Outfit-Medium, Helvetica',
+    fontFamily: theme.typography.fontFamily,
     fontWeight: 500,
-    color: '#4c4c4c',
-    fontSize: '13px',
+    color: theme.palette.text.secondary,
+    fontSize: theme.typography.caption.fontSize,
     lineHeight: '18px',
     whiteSpace: 'nowrap',
     ...lectureTextSx
   };
 
   const defaultDescriptionTextSx: SxProps<Theme> = {
-    fontFamily: 'Outfit-Regular, Helvetica',
-    color: '#1e1e1e',
-    fontSize: 16,
+    fontFamily: theme.typography.fontFamily,
+    color: theme.palette.text.primary,
+    fontSize: theme.typography.body1.fontSize,
     lineHeight: '18px',
-    width: 236,
-    marginTop: '12px',
+    width: theme.spacing(29.5),
+    marginTop: theme.spacing(1.5),
     ...descriptionTextSx
   };
 
   const defaultButtonSx: SxProps<Theme> = {
-    width: '265px',
-    height: '36px',
-    padding: '24px',
-    borderRadius: '12px',
-    borderColor: '#8a18ff',
-    backgroundColor: '#FFFFFF',
-    color: '#8a18ff',
-    fontFamily: 'Poppins, Helvetica',
+    width: theme.spacing(33.125),
+    height: theme.spacing(4.5),
+    padding: theme.spacing(3),
+    borderRadius: theme.spacing(1.5),
+    borderColor: theme.palette.primary.main,
+    backgroundColor: theme.palette.background.paper,
+    color: theme.palette.primary.main,
+    fontFamily: theme.typography.fontFamily,
     fontWeight: 500,
-    fontSize: '16px',
+    fontSize: theme.typography.body1.fontSize,
     textTransform: 'none',
     '&:hover': {
-      borderColor: '#8a18ff'
+      borderColor: theme.palette.primary.main
     },
     ...buttonSx
   };
@@ -163,7 +162,7 @@ const SubjectCard: FC<SubjectCardProps> = ({
           flexDirection: 'column',
           justifyContent: 'space-between',
           height: '100%',
-          padding: '16px'
+          padding: theme.spacing(2)
         }}
       >
         <Box>
@@ -173,7 +172,7 @@ const SubjectCard: FC<SubjectCardProps> = ({
                 component="img"
                 src={iconUrl}
                 alt={iconAlt}
-                sx={{ width: '24px', height: '24px' }}
+                sx={{ width: theme.spacing(3), height: theme.spacing(3) }}
               />
             </Box>
             <Stack>
@@ -191,16 +190,16 @@ const SubjectCard: FC<SubjectCardProps> = ({
               sx={{
                 display: 'flex',
                 alignItems: 'center',
-                gap: '8px',
-                mb: '12px'
+                gap: theme.spacing(1),
+                mb: theme.spacing(1.5)
               }}
             >
               <Stack direction="row" alignItems="center" spacing={0.5}>
                 <AccessTimeIcon
                   sx={{
-                    width: '14px',
-                    height: '14px',
-                    color: '#666666'
+                    width: theme.spacing(1.75),
+                    height: theme.spacing(1.75),
+                    color: theme.palette.text.secondary
                   }}
                 />
                 <Typography sx={defaultDurationTextSx}>{duration}</Typography>
@@ -213,9 +212,9 @@ const SubjectCard: FC<SubjectCardProps> = ({
               <Stack direction="row" alignItems="center" spacing={0.5}>
                 <MenuBookOutlinedIcon
                   sx={{
-                    width: '14px',
-                    height: '14px',
-                    color: '#666666'
+                    width: theme.spacing(1.75),
+                    height: theme.spacing(1.75),
+                    color: theme.palette.text.secondary
                   }}
                 />
                 <Typography sx={defaultLectureTextSx}>{lectureCount} Lectures</Typography>
@@ -228,7 +227,8 @@ const SubjectCard: FC<SubjectCardProps> = ({
           </CardContent>
         </Box>
 
-        <CardActions sx={{ padding: 0, mt: '20px' }}>
+        <CardActions sx={{ padding: 0, mt: theme.spacing(2.5) }}>
+          {' '}
           <Button variant="outlined" sx={defaultButtonSx} onClick={onGoToClass} disableElevation>
             {buttonText}
           </Button>
