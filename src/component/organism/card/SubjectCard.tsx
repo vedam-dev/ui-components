@@ -197,7 +197,7 @@ const SubjectCard: FC<SubjectCardProps> = ({
               <Stack direction="row" alignItems="center" spacing={0.5}>
                 <AccessTimeIcon
                   sx={{
-                    width: theme.spacing(1.75),
+                    width: '14px',
                     color: theme.palette.text.secondary
                   }}
                 />
@@ -211,7 +211,7 @@ const SubjectCard: FC<SubjectCardProps> = ({
               <Stack direction="row" alignItems="center" spacing={0.5}>
                 <MenuBookOutlinedIcon
                   sx={{
-                    width: theme.spacing(1.75),
+                    width: '14px',
                     color: theme.palette.text.secondary
                   }}
                 />
