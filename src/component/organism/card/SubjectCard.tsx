@@ -70,8 +70,8 @@ const SubjectCard: FC<SubjectCardProps> = ({
   };
 
   const defaultIconContainerSx: SxProps<Theme> = {
-    width: theme.spacing(7),
-    height: theme.spacing(7),
+    width: '56px',
+    height: '56px',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
@@ -102,7 +102,8 @@ const SubjectCard: FC<SubjectCardProps> = ({
     color: theme.palette.text.secondary,
     fontSize: '1.125rem',
     lineHeight: '20px',
-    width: theme.spacing(20.5),
+    width: '100%',
+    minWidth: theme.spacing(20.5),
     ...teacherTextSx
   };
 
@@ -111,7 +112,6 @@ const SubjectCard: FC<SubjectCardProps> = ({
     fontWeight: 500,
     color: theme.palette.text.secondary,
     fontSize: theme.typography.caption.fontSize,
-    lineHeight: '18px',
     whiteSpace: 'nowrap',
     ...durationTextSx
   };
@@ -121,7 +121,6 @@ const SubjectCard: FC<SubjectCardProps> = ({
     fontWeight: 500,
     color: theme.palette.text.secondary,
     fontSize: theme.typography.caption.fontSize,
-    lineHeight: '18px',
     whiteSpace: 'nowrap',
     ...lectureTextSx
   };
@@ -131,15 +130,14 @@ const SubjectCard: FC<SubjectCardProps> = ({
     color: theme.palette.text.primary,
     fontSize: theme.typography.body1.fontSize,
     lineHeight: theme.spacing(2.25),
-    width: theme.spacing(29.5),
+    width: '100%',
     marginTop: theme.spacing(1.5),
     ...descriptionTextSx
   };
 
   const defaultButtonSx: SxProps<Theme> = {
-    width: theme.spacing(33.125),
-    height: theme.spacing(4.5),
-    padding: theme.spacing(3),
+    width: '100%',
+    padding: theme.spacing(1),
     borderWidth: theme.spacing(0.125),
     borderRadius: theme.spacing(1.5),
     borderColor: theme.palette.primary.main,
@@ -174,7 +172,7 @@ const SubjectCard: FC<SubjectCardProps> = ({
                 component="img"
                 src={iconUrl}
                 alt={iconAlt}
-                sx={{ width: theme.spacing(3), height: theme.spacing(3) }}
+                sx={{ width: '34px', height: '34px' }}
               />
             </Box>
             <Stack>
@@ -200,7 +198,6 @@ const SubjectCard: FC<SubjectCardProps> = ({
                 <AccessTimeIcon
                   sx={{
                     width: theme.spacing(1.75),
-                    height: theme.spacing(1.75),
                     color: theme.palette.text.secondary
                   }}
                 />
@@ -215,7 +212,6 @@ const SubjectCard: FC<SubjectCardProps> = ({
                 <MenuBookOutlinedIcon
                   sx={{
                     width: theme.spacing(1.75),
-                    height: theme.spacing(1.75),
                     color: theme.palette.text.secondary
                   }}
                 />
