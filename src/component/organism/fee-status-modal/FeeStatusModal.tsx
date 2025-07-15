@@ -34,6 +34,7 @@ const FeeStatusModal: React.FC<FeeStatusModalProps> = ({
     <Modal open={open} onClose={onClose} {...props} BackdropProps={{
     sx: {
       backgroundColor: 'transparent',
+       backdropFilter: 'blur(4px)'
     },
   }}>
       <Box
