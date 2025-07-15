@@ -77,13 +77,11 @@ const meta: Meta<typeof SubjectCard> = {
       description: 'Text for the action button'
     },
 
-    // Action prop
     onGoToClass: {
       action: 'Go to Class clicked',
       description: 'Callback when button is clicked'
     },
 
-    // Style props
     width: {
       control: { type: 'number', min: 200, max: 500, step: 10 },
       description: 'Width of the card in pixels'
