@@ -15,7 +15,7 @@ const Typography: FC<TypographyProps> = ({ children, isButtonS, ...props }) => {
   const theme = useCoreTheme() as CoreTheme;
   let styles: React.CSSProperties = {};
   if (isButtonS && props.variant === 'button') {
-    styles = theme.pbl.typography.buttonS;
+    styles = theme.vd.typography.buttonS;
   }
   return (
     <BaseTypography {...props} style={styles}>
