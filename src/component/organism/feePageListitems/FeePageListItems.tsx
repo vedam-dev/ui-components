@@ -2,7 +2,7 @@ import React from 'react';
 import { Box, Typography, Card, CardContent } from '@mui/material';
 import Chip from '../../atom/chip/Chip';
 import Button from '../../atom/button/Button';
-import { CoreTheme, useCoreTheme } from '../../../theme/core-theme';
+
 export interface FeeListItemRowProps {
   title: string;
   value: string;
@@ -36,7 +36,6 @@ interface FeeListItemStatusProps {
 }
 
 export const FeeListItemStatus: React.FC<FeeListItemStatusProps> = ({ status }) => {
-  const theme = useCoreTheme() as CoreTheme;
   const chipVariant = status === 'Success' ? 'success' : status === 'Pending' ? 'warning' : 'error';
 
   return (
@@ -110,11 +109,10 @@ export const FeeListItemButton: React.FC<FeeListItemButtonProps> = ({ onClick })
 );
 
 interface FeeListItemProps {
-  bgColor?: string;
   children: React.ReactNode;
 }
 
-const FeeListItem: React.FC<FeeListItemProps> = ({ bgColor, children }) => {
+const FeeListItem: React.FC<FeeListItemProps> = ({ children }) => {
   return (
     <Card
       sx={{
