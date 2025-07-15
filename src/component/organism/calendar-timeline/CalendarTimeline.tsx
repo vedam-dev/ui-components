@@ -1,8 +1,9 @@
 "use client";
 
-import React, { useEffect } from "react";
-import { Box, Typography, Card, CardContent } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import { Box, Typography } from "@mui/material";
 import { useCoreTheme } from '../../../theme/core-theme';
+import CalendarTimelineItem from './CalendarTimelineItem';
 
 interface ClassSession {
   date: string;
@@ -18,8 +19,9 @@ interface CalendarTimelineProps {
 const CalendarTimeline: React.FC<CalendarTimelineProps> = ({
   events,
 }) => {
-
   const theme = useCoreTheme();
+  const [displayEvents, setDisplayEvents] = useState<ClassSession[]>([]);
+
   // Parse date and time to check if class has passed
   const parseDateTime = (dateStr: string, timeStr: string): Date => {
     const currentYear = new Date().getFullYear();
@@ -36,31 +38,34 @@ const CalendarTimeline: React.FC<CalendarTimelineProps> = ({
     return new Date(currentYear, monthMap[month], parseInt(day), hours, minutes);
   };
 
-  // Filter out classes that have already passed
-  const currentTime = new Date();
-  const upcomingEvents = events.filter(event => {
-    const classEndTime = parseDateTime(event.date, event.time);
-    return classEndTime > currentTime;
-  });
+  // Filter and update display events
+  const updateDisplayEvents = () => {
+    const currentTime = new Date();
+    const upcomingEvents = events.filter(event => {
+      const classEndTime = parseDateTime(event.date, event.time);
+      return classEndTime > currentTime;
+    });
 
-  // Always show exactly 4 items
-  const displayEvents = upcomingEvents.slice(0, 4);
+    // Always show exactly 4 items
+    setDisplayEvents(upcomingEvents.slice(0, 4));
+  };
 
   // Update component every minute to check for passed classes
   useEffect(() => {
+    updateDisplayEvents();
+    
     const interval = setInterval(() => {
-      // Force re-render to update the filtered events
-      const now = new Date();
-      console.log('Checking for passed classes at:', now.toLocaleTimeString());
-    }, 60000); // Check every minute
+      console.log('Checking for passed classes at:', new Date().toLocaleTimeString());
+      updateDisplayEvents();
+    }, 60000); 
 
     return () => clearInterval(interval);
-  }, []);
+  }, [events]);
 
   return (
     <Box
       sx={{
-        maxWidth:'549px',
+        maxWidth: '549px',
         borderRadius: theme.spacing(9),
         p: 3,
         backgroundColor: "background.paper",
@@ -72,7 +77,7 @@ const CalendarTimeline: React.FC<CalendarTimelineProps> = ({
           fontSize: theme.spacing(6),
           fontWeight: 500,
           fontFamily: "Outfit",
-          mb:theme.spacing(3),
+          mb: theme.spacing(3),
           ml: theme.spacing(9),
           color: "text.primary",
         }}
@@ -82,143 +87,13 @@ const CalendarTimeline: React.FC<CalendarTimelineProps> = ({
 
       <Box sx={{ position: "relative" }}>
         {displayEvents.map((event, index) => (
-          <Box
+          <CalendarTimelineItem
             key={index}
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              mb: index === displayEvents.length - 1 ? 0 : 2,
-              position: "relative",
-            }}
-          >
-            {/* Date column */}
-            <Box
-              sx={{
-                ml: theme.spacing(8),
-                display: "flex",
-                alignItems: "center",
-              }}
-            >
-              <Typography
-                sx={{
-                  fontSize: theme.spacing(4.5),
-                  fontWeight: 500,
-                  fontFamily: "Poppins",
-                  color: "text.secondary",
-                }}
-              >
-                {event.date}
-              </Typography>
-            </Box>
-
-            {/* Timeline dot with connector */}
-            <Box
-              sx={{
-                position: "relative",
-                display: "flex",
-                justifyContent: "center",
-                zIndex: 2,
-                ml:theme.spacing(5),
-              }}
-            >
-              {/* Dot */}
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                height="1.0625rem"
-                viewBox="0 0 21 21"
-                fill="none"
-              >
-                <circle
-                  cx="10.5"
-                  cy="10.5"
-                  r="10"
-                  fill="white"
-                  stroke="#F97D03"
-                />
-                <circle
-                  cx="10.5"
-                  cy="10.5"
-                  r="6"
-                  fill={index === 0 ? "#F97D03" : "transparent"}
-                  stroke="#F97D03"
-                />
-              </svg>
-
-              {/* Connector Line */}
-              {index !== displayEvents.length - 1 && (
-                <Box
-                  sx={{
-                    position: "absolute",
-                    top: theme.spacing(5.5),
-                    left: "50%",
-                    transform: "translateX(-1px)",
-                    width: theme.spacing(0.5),
-                    height: theme.spacing(18),
-                    backgroundImage: `repeating-linear-gradient(to bottom, #F97D03, #F97D03 0.625rem, transparent 0.625rem, transparent 0.875rem)`,
-                  }}
-                />
-              )}
-            </Box>
-
-            {/* Subject card */}
-            <Box sx={{ flex: 1, ml: theme.spacing(6.5) }}>
-              <Card
-                sx={{
-                  height: theme.spacing(18.5),
-                  borderRadius: theme.spacing(5),
-                  border: index === 0 ? "1px solid #2196F3" : "1px solid #E1BFFF",
-                  backgroundColor: "background.paper",
-                  boxShadow: index === 0 ? "0px 2px 8px rgba(33, 150, 243, 0.2)" : "none",
-                  mb:theme.spacing(3.75),
-                }}
-              >
-                <CardContent
-                  sx={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap:theme.spacing(7),
-                    height: "100%",
-                    px: theme.spacing(2),
-                    "&:last-child": { pb: theme.spacing(4) },
-                  }}
-                >
-                  <Box
-                    component="img"
-                    src={event.iconUrl}
-                    sx={{
-                      width: theme.spacing(10),
-                      height: theme.spacing(10),
-                      ml: theme.spacing(4),
-                      objectFit: "contain",
-                    }}
-                    alt="subject icon"
-                  />
-                  <Box>
-                    <Typography
-                      sx={{
-                        fontWeight: 500,
-                        fontSize: theme.spacing(4),
-                        fontFamily: "Inter",
-                        color: "text.primary",
-                      }}
-                    >
-                      {event.subject}
-                    </Typography>
-                    <Typography
-                      sx={{
-                        fontSize: theme.spacing(3.5),
-                        fontWeight:500,
-                        color: "text.secondary",
-                        fontFamily: "Inter",
-                      }}
-                    >
-                      {event.time}
-                    </Typography>
-                  </Box>
-                </CardContent>
-              </Card>
-            </Box>
-          </Box>
+            event={event}
+            index={index}
+            isLast={index === displayEvents.length - 1}
+            isFirst={index === 0}
+          />
         ))}
       </Box>
     </Box>
