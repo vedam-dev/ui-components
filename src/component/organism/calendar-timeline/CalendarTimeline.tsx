@@ -2,6 +2,7 @@
 
 import React, { useEffect } from "react";
 import { Box, Typography, Card, CardContent } from "@mui/material";
+import { useCoreTheme } from '../../../theme/core-theme';
 
 interface ClassSession {
   date: string;
@@ -17,6 +18,8 @@ interface CalendarTimelineProps {
 const CalendarTimeline: React.FC<CalendarTimelineProps> = ({
   events,
 }) => {
+
+  const theme = useCoreTheme();
   // Parse date and time to check if class has passed
   const parseDateTime = (dateStr: string, timeStr: string): Date => {
     const currentYear = new Date().getFullYear();
@@ -58,7 +61,7 @@ const CalendarTimeline: React.FC<CalendarTimelineProps> = ({
     <Box
       sx={{
         maxWidth:'549px',
-        borderRadius: '36px',
+        borderRadius: theme.spacing(9),
         p: 3,
         backgroundColor: "background.paper",
         boxShadow: "0px 0px 20px 1px rgba(30, 30, 30, 0.10)",
@@ -66,11 +69,11 @@ const CalendarTimeline: React.FC<CalendarTimelineProps> = ({
     >
       <Typography
         sx={{
-          fontSize: '24px',
+          fontSize: theme.spacing(6),
           fontWeight: 500,
           fontFamily: "Outfit",
-          mb: 3,
-          ml:'36px',
+          mb:theme.spacing(3),
+          ml: theme.spacing(9),
           color: "text.primary",
         }}
       >
@@ -91,16 +94,14 @@ const CalendarTimeline: React.FC<CalendarTimelineProps> = ({
             {/* Date column */}
             <Box
               sx={{
-                width: 100,
-                pr: 2,
+                ml: theme.spacing(8),
                 display: "flex",
                 alignItems: "center",
-                justifyContent: "flex-end",
               }}
             >
               <Typography
                 sx={{
-                  fontSize: 18,
+                  fontSize: theme.spacing(4.5),
                   fontWeight: 500,
                   fontFamily: "Poppins",
                   color: "text.secondary",
@@ -114,17 +115,15 @@ const CalendarTimeline: React.FC<CalendarTimelineProps> = ({
             <Box
               sx={{
                 position: "relative",
-                width: "1.3125rem",
                 display: "flex",
                 justifyContent: "center",
                 zIndex: 2,
-                // ml:'25px',
+                ml:theme.spacing(5),
               }}
             >
               {/* Dot */}
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                width="1.0625rem"
                 height="1.0625rem"
                 viewBox="0 0 21 21"
                 fill="none"
@@ -150,11 +149,11 @@ const CalendarTimeline: React.FC<CalendarTimelineProps> = ({
                 <Box
                   sx={{
                     position: "absolute",
-                    top: "1.3125rem",
+                    top: theme.spacing(5.5),
                     left: "50%",
                     transform: "translateX(-1px)",
-                    width: "0.125rem",
-                    height: "4.5rem",
+                    width: theme.spacing(0.5),
+                    height: theme.spacing(18),
                     backgroundImage: `repeating-linear-gradient(to bottom, #F97D03, #F97D03 0.625rem, transparent 0.625rem, transparent 0.875rem)`,
                   }}
                 />
@@ -162,35 +161,34 @@ const CalendarTimeline: React.FC<CalendarTimelineProps> = ({
             </Box>
 
             {/* Subject card */}
-            <Box sx={{ flex: 1, ml: '26px' }}>
+            <Box sx={{ flex: 1, ml: theme.spacing(6.5) }}>
               <Card
                 sx={{
-                  width: 355,
-                  height: 74,
-                  borderRadius: "20px",
-                  border: index === 0 ? "2px solid #2196F3" : "1px solid #E1BFFF",
+                  height: theme.spacing(18.5),
+                  borderRadius: theme.spacing(5),
+                  border: index === 0 ? "1px solid #2196F3" : "1px solid #E1BFFF",
                   backgroundColor: "background.paper",
                   boxShadow: index === 0 ? "0px 2px 8px rgba(33, 150, 243, 0.2)" : "none",
-                  mb:'15px'
+                  mb:theme.spacing(3.75),
                 }}
               >
                 <CardContent
                   sx={{
                     display: "flex",
                     alignItems: "center",
+                    gap:theme.spacing(7),
                     height: "100%",
-                    py: 1.5,
-                    px: 2,
-                    "&:last-child": { pb: 1.5 },
+                    px: theme.spacing(2),
+                    "&:last-child": { pb: theme.spacing(4) },
                   }}
                 >
                   <Box
                     component="img"
                     src={event.iconUrl}
                     sx={{
-                      width: 40,
-                      height: 40,
-                      mr: 2,
+                      width: theme.spacing(10),
+                      height: theme.spacing(10),
+                      ml: theme.spacing(4),
                       objectFit: "contain",
                     }}
                     alt="subject icon"
@@ -198,9 +196,9 @@ const CalendarTimeline: React.FC<CalendarTimelineProps> = ({
                   <Box>
                     <Typography
                       sx={{
-                        fontWeight: 600,
-                        fontSize: 16,
-                        fontFamily: "Poppins",
+                        fontWeight: 500,
+                        fontSize: theme.spacing(4),
+                        fontFamily: "Inter",
                         color: "text.primary",
                       }}
                     >
@@ -208,9 +206,10 @@ const CalendarTimeline: React.FC<CalendarTimelineProps> = ({
                     </Typography>
                     <Typography
                       sx={{
-                        fontSize: 14,
+                        fontSize: theme.spacing(3.5),
+                        fontWeight:500,
                         color: "text.secondary",
-                        fontFamily: "Poppins",
+                        fontFamily: "Inter",
                       }}
                     >
                       {event.time}

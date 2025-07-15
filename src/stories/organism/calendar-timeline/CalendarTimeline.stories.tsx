@@ -59,20 +59,20 @@ export const SameDayMultipleClasses: Story = {
         iconUrl: iconUrls[0]
       },
       {
-        date: "17 July",
+        date: "16 July",
         time: "12:30 - 14:30",
         subject: "JAVA",
         iconUrl: iconUrls[1]
       },
       {
-        date: "18 July",
-        time: "10:30 - 12:30",
+        date: "16 July",
+        time: "15:30 - 18:30",
         subject: "Mathematics",
         iconUrl: iconUrls[2]
       },
       {
-        date: "18 July",
-        time: "14:00 - 16:00",
+        date: "16 July",
+        time: "20:00 - 22:00",
         subject: "Unix",
         iconUrl: iconUrls[3]
       }
