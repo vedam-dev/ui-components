@@ -4,7 +4,6 @@ import {
   Box,
   Typography,
   Card,
-  CardContent,
   IconButton,
   useTheme,
 } from "@mui/material";
