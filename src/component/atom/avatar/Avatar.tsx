@@ -11,7 +11,7 @@ export interface IAvatarProps {
 export type AvatarProps = ComponentProps<typeof BaseAvatar> & IAvatarProps;
 
 const Avatar: FC<AvatarProps> = ({ color, sx, backgroundColor, children, ...props }) => {
-  const { palette, pbl } = useCoreTheme() as CoreTheme;
+  const { palette, vd } = useCoreTheme() as CoreTheme;
 
   let backgroundColorValue: string = 'inherit';
 
@@ -23,7 +23,7 @@ const Avatar: FC<AvatarProps> = ({ color, sx, backgroundColor, children, ...prop
 
   const sxValue = SxOverride(
     {
-      ...pbl.typography.avatar,
+      ...vd.typography.avatar,
       background: backgroundColorValue,
       color: colorValue,
       alignContent: 'center'

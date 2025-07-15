@@ -4,10 +4,11 @@
 
   const index = createCoreTheme({
     isStorybook: true,
-    pbl: {
+    vd: {
       useMaterialButtons: false,
       shadows: {
         none: 'none',
+        y4: `0px 2px 8px  ${colors.shadowsY4}`,
         y8: `0 8px 16px 0 ${colors.shadowsY8}`,
         y12: `0 12px 24px 0 ${colors.shadowsY12}`,
         y16: `0 16px 32px -4px ${colors.shadowsY16}`
@@ -208,6 +209,7 @@
       },
       error: {
         main: colors.dangerD400Danger,
+        dark:colors.dangerD300,
         100: colors.dangerD100,
         200: colors.dangerD200,
         300: colors.dangerD300,
@@ -215,6 +217,7 @@
       },
       warning: {
         main: colors.warningW400Warning,
+        dark:colors.warningW300,
         100: colors.warningW100,
         200: colors.warningW200,
         300: colors.warningW300,
@@ -229,6 +232,7 @@
       },
       success: {
         main: colors.successSc400Success,
+        dark: colors.successSc300,
         100: colors.successSc100,
         200: colors.successSc200,
         300: colors.successSc300,
