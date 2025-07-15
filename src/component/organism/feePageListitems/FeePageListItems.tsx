@@ -2,7 +2,7 @@ import React from "react";
 import { Box, Typography } from "@mui/material";
 import Chip from "../../atom/chip/Chip";
 import Button from "../../atom/button/Button";
-import { useCoreTheme, CoreTheme } from "@theme/core-theme";
+import { useCoreTheme, CoreTheme } from  '../../../theme/core-theme';
 export interface FeeListItemRowProps {
   title: string;
   value: string;
