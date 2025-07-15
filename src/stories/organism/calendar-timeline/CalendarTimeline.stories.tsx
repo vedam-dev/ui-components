@@ -22,107 +22,147 @@ export const Default: Story = {
   args: {
     events: [
       {
-        date: "10 June",
-        time: "10:30 am - 12:30pm",
+        date: "16 July",
+        time: "2:00 - 5:30",
         subject: "Computer Science",
         iconUrl: iconUrls[0]
       },
       {
-        date: "13 June",
-        time: "10:30 am - 12:30pm",
-        subject: "JAVA", 
+        date: "17 July",
+        time: "10:30 - 12:30",
+        subject: "JAVA",
         iconUrl: iconUrls[1]
       },
       {
-        date: "14 June",
-        time: "10:30 am - 12:30pm",
+        date: "17 July",
+        time: "10:30 - 12:30",
         subject: "Mathematics",
         iconUrl: iconUrls[2]
       },
       {
-        date: "20 June",
-        time: "10:30 am - 12:30pm",
+        date: "20 July",
+        time: "10:30 - 12:30",
         subject: "Unix",
         iconUrl: iconUrls[3]
       }
-    ],
-    visibleItems: 4
+    ]
   }
 };
 
-export const WithMultipleEventsPerDate: Story = {
+export const SameDayMultipleClasses: Story = {
   args: {
     events: [
       {
-        date: "10 June",
-        time: "9:00 am - 10:00am",
+        date: "16 July",
+        time: "10:30 - 12:30",
         subject: "Computer Science",
         iconUrl: iconUrls[0]
       },
       {
-        date: "10 June",
-        time: "10:30 am - 12:30pm",
-        subject: "Algorithms", 
-        iconUrl: iconUrls[1]
-      },
-      {
-        date: "10 June",
-        time: "2:00 pm - 3:30pm",
-        subject: "Data Structures",
-        iconUrl: iconUrls[2]
-      },
-      
-      {
-        date: "11 June",
-        time: "8:00 am - 9:30am",
-        subject: "Operating Systems",
-        iconUrl: iconUrls[3]
-      },
-      {
-        date: "11 June",
-        time: "10:00 am - 11:30am",
-        subject: "Networking",
-        iconUrl: iconUrls[0]
-      },
-      {
-        date: "13 June",
-        time: "10:30 am - 12:30pm",
+        date: "17 July",
+        time: "12:30 - 14:30",
         subject: "JAVA",
         iconUrl: iconUrls[1]
+      },
+      {
+        date: "18 July",
+        time: "10:30 - 12:30",
+        subject: "Mathematics",
+        iconUrl: iconUrls[2]
+      },
+      {
+        date: "18 July",
+        time: "14:00 - 16:00",
+        subject: "Unix",
+        iconUrl: iconUrls[3]
       }
-    ],
-    visibleItems: 4
+    ]
   }
 };
 
-export const WithSingleDayMultipleEvents: Story = {
+export const CurrentUpcomingClasses: Story = {
   args: {
     events: [
       {
-        date: "15 June",
-        time: "8:00 am - 9:00am",
-        subject: "Morning Lecture",
+        date: "15 July",
+        time: "15:00 - 16:23",
+        subject: "Data Structures",
         iconUrl: iconUrls[0]
       },
       {
-        date: "15 June",
-        time: "9:30 am - 10:30am",
-        subject: "Lab Session", 
+        date: "17 July",
+        time: "11:00 - 12:30",
+        subject: "Algorithms",
         iconUrl: iconUrls[1]
       },
       {
-        date: "15 June",
-        time: "11:00 am - 12:00pm",
-        subject: "Group Discussion",
+        date: "18 July",
+        time: "10:30 - 12:30",
+        subject: "Operating Systems",
         iconUrl: iconUrls[2]
       },
       {
-        date: "15 June",
-        time: "1:00 pm - 2:30pm",
-        subject: "Workshop",
+        date: "18 July",
+        time: "14:00 - 15:30",
+        subject: "Database Systems",
+        iconUrl: iconUrls[3]
+      },
+       {
+        date: "18 July",
+        time: "14:00 - 15:30",
+        subject: "Database Systems",
         iconUrl: iconUrls[3]
       }
-    ],
-    visibleItems: 4
+    ]
+  }
+};
+
+export const OnlyTwoClasses: Story = {
+  args: {
+    events: [
+      {
+        date: "18 July",
+        time: "10:00 - 11:30",
+        subject: "Machine Learning",
+        iconUrl: iconUrls[0]
+      },
+      {
+        date: "19 July",
+        time: "14:00 - 15:30",
+        subject: "Web Development",
+        iconUrl: iconUrls[1]
+      }
+    ]
+  }
+};
+
+export const ExactlyFourClasses: Story = {
+  args: {
+    events: [
+      {
+        date: "22 July",
+        time: "08:00 - 09:30",
+        subject: "Network Security",
+        iconUrl: iconUrls[0]
+      },
+      {
+        date: "22 July",
+        time: "10:00 - 11:30",
+        subject: "Cloud Computing",
+        iconUrl: iconUrls[1]
+      },
+      {
+        date: "23 July",
+        time: "13:00 - 14:30",
+        subject: "Mobile Development",
+        iconUrl: iconUrls[2]
+      },
+      {
+        date: "24 July",
+        time: "15:00 - 16:30",
+        subject: "DevOps",
+        iconUrl: iconUrls[3]
+      }
+    ]
   }
 };
