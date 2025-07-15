@@ -1,8 +1,7 @@
 import React from "react";
-import { Box, Typography, Card, CardContent } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import Chip from "../../atom/chip/Chip";
 import Button from "../../atom/button/Button";
-import { CoreTheme, useCoreTheme } from "../../../theme/core-theme";
 export interface FeeListItemRowProps {
   title: string;
   value: string;
@@ -41,7 +40,6 @@ interface FeeListItemStatusProps {
 export const FeeListItemStatus: React.FC<FeeListItemStatusProps> = ({
   status,
 }) => {
-  const theme = useCoreTheme() as CoreTheme;
   const chipVariant =
     status === "Success"
       ? "success"
@@ -109,7 +107,7 @@ export const FeeListItemButton: React.FC<FeeListItemButtonProps> = ({
         border: "1px solid #87B3FA",
         textTransform: "none",
         fontWeight: 500,
-        color: "#3870CA",
+        color: "#30353cff",
         "&:hover": {
           border: "1px solid #5D9BFB",
           backgroundColor: "rgba(135, 179, 250, 0.04)",
@@ -128,7 +126,7 @@ interface FeeListItemProps {
 
 const FeeListItem: React.FC<FeeListItemProps> = ({ bgColor, children }) => {
   return (
-    <Card
+    <Box
       sx={{
         borderRadius: "24px",
         boxShadow: "0px 2px 8px rgba(0,0,0,0.08)",
@@ -139,19 +137,19 @@ const FeeListItem: React.FC<FeeListItemProps> = ({ bgColor, children }) => {
         py: 2,
       }}
     >
-      <CardContent
+      <Box
         sx={{
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
           flexWrap: "wrap",
-          p: 3,
+          py: 4,
           gap: 1,
         }}
       >
         {children}
-      </CardContent>
-    </Card>
+      </Box>
+    </Box>
   );
 };
 
