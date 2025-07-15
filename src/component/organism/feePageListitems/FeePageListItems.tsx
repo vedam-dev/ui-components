@@ -1,9 +1,8 @@
-import React from 'react';
-import { Box, Typography, Card, CardContent } from '@mui/material';
-import Chip from '../../atom/chip/Chip';
-import Button from '../../atom/button/Button';
-import { CoreTheme, useCoreTheme } from '../../../theme/core-theme';
-
+import React from "react";
+import { Box, Typography } from "@mui/material";
+import Chip from "../../atom/chip/Chip";
+import Button from "../../atom/button/Button";
+import { useCoreTheme, CoreTheme } from  '../../../theme/core-theme';
 export interface FeeListItemRowProps {
   title: string;
   value: string;
@@ -142,7 +141,7 @@ export interface FeeListItemProps {
 const FeeListItem: React.FC<FeeListItemProps> = ({ bgColor, children }) => {
    const theme = useCoreTheme() as CoreTheme;
   return (
-    <Card
+    <Box
       sx={{
         borderRadius: theme.spacing(6),
         boxShadow: theme.vd.shadows.y4,
@@ -153,7 +152,7 @@ const FeeListItem: React.FC<FeeListItemProps> = ({ bgColor, children }) => {
         py: theme.spacing(2),
       }}
     >
-      <CardContent
+      <Box
         sx={{
           display: 'flex',
           alignItems: 'center',
@@ -164,8 +163,8 @@ const FeeListItem: React.FC<FeeListItemProps> = ({ bgColor, children }) => {
         }}
       >
         {children}
-      </CardContent>
-    </Card>
+      </Box>
+    </Box>
   );
 };
 

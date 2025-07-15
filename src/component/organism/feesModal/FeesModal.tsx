@@ -57,9 +57,9 @@ const FeeSelectionModal: React.FC<FeeSelectionModalProps> = ({
           bgcolor: "background.paper",
           boxShadow: 24,
           borderRadius: "40px",
-          px: "33px",
-          pt:"30px",
-          pb: "44px",
+          px: theme.spacing(8),
+          pt:theme.spacing(7),
+          pb: theme.spacing(11),
           outline: "none",
           "&::-webkit-scrollbar": {
             display: "none",
@@ -103,13 +103,13 @@ const FeeSelectionModal: React.FC<FeeSelectionModalProps> = ({
               key={fee.id}
               variant="outlined"
               sx={{
-                borderRadius: "12px",
+                borderRadius: "20px",
                 border:
                   "1px solid ${getItemBackgroundColor(index, fee.bgColor)}",
                 boxShadow: "0px 2px 8px rgba(0,0,0,0.08)",
                 backgroundColor: getItemBackgroundColor(index, fee.bgColor),
                 px: 7,
-                py: 2.5,
+                py: 3,
               }}
             >
               <Box sx={{ p: 3 }}>

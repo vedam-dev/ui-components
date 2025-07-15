@@ -38,7 +38,7 @@ const ModalWrapper = (args: FeeStatusModalProps) => {
   );
 };
 
-// ✅ No button
+
 export const Success: Story = {
   render: (args) => <ModalWrapper {...args} />,
   args: {
@@ -63,7 +63,7 @@ export const Pending: Story = {
   },
 };
 
-// ✅ With custom button
+
 export const WithCustomButton: Story = {
   render: (args) => <ModalWrapper {...args} />,
   args: {
