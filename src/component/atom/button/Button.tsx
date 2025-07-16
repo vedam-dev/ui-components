@@ -34,7 +34,7 @@ const Button: FC<ButtonProps> = ({
 }) => {
   const theme = useCoreTheme() as CoreTheme;
 
-  const useMaterialButtons = theme.pbl.useMaterialButtons;
+  const useMaterialButtons = theme.vd.useMaterialButtons;
 
   const variant: ButtonVariant = buttonProps.variant ?? 'contained';
   const color: DefaultColorType = (buttonProps.color ?? 'primary') as DefaultColorType;
@@ -42,7 +42,7 @@ const Button: FC<ButtonProps> = ({
   const isSmall = !!small;
 
   const defaultSizeStyles: React.CSSProperties = isV2 ? theme?.typography.button : {};
-  const styles: React.CSSProperties = small ? theme?.pbl!.typography.buttonS : defaultSizeStyles;
+  const styles: React.CSSProperties = small ? theme?.vd!.typography.buttonS : defaultSizeStyles;
 
   const combinedStyles = useMaterialButtons
     ? {}

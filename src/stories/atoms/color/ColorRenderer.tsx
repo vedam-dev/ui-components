@@ -4,7 +4,7 @@ import { Typography } from '../../../component/atom/typography';
 import { CoreTheme, useCoreTheme } from '../../../theme/core-theme';
 
 const ColorRenderer: FC = () => {
-  const { palette, pbl, spacing } = useCoreTheme() as CoreTheme;
+  const { palette, vd, spacing } = useCoreTheme() as CoreTheme;
 
   function getKeys<T extends object>(obj: T): Array<keyof T> {
     return Object.keys(obj) as Array<keyof T>;
@@ -108,7 +108,7 @@ const ColorRenderer: FC = () => {
               width: '75px',
               height: '75px',
               display: 'block',
-              boxShadow: pbl.shadows.y8
+              boxShadow: vd.shadows.y8
             }}
           ></Box>
         </Grid>
@@ -123,7 +123,7 @@ const ColorRenderer: FC = () => {
               width: '75px',
               height: '75px',
               display: 'block',
-              boxShadow: pbl.shadows.y12
+              boxShadow: vd.shadows.y12
             }}
           ></Box>
         </Grid>
@@ -138,7 +138,7 @@ const ColorRenderer: FC = () => {
               width: '75px',
               height: '75px',
               display: 'block',
-              boxShadow: pbl.shadows.y16
+              boxShadow: vd.shadows.y16
             }}
           ></Box>
         </Grid>
