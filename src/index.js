@@ -32,6 +32,7 @@ export { default as TopBar } from "./component/organism/topbar/TopBar";
 export { default as FeeStatusModal } from "./component/organism/fee-status-modal/FeeStatusModal";
 export { default as SidebarDrawer } from "./component/organism/sidebardrawer/SidebarDrawer";
 export { default as SidebarWrapper } from "./component/organism/sidebarWrapper/SidebarWrapper";
+export { SidebarItem } from "./component/organism/sidebarWrapper/SidebarWrapper";
 export { default as FeeListItem } from "./component/organism/feePageListitems/FeePageListItems";
 export { default as CalendarTimeline} from "./component/organism/calendar-timeline/CalendarTimeline"
 export {

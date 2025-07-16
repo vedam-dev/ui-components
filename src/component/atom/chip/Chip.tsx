@@ -87,6 +87,7 @@ const Chip: FC<ChipProps> = ({
     {
       padding: '0px 10px',
       borderRadius: '100px',
+      minWidth: theme.spacing(17),
       ...(baseVariant === 'filled' && {
         backgroundColor: colorValue,
         color: palette.common.white,
