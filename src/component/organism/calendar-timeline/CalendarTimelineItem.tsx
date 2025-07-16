@@ -2,7 +2,8 @@
 
 import React from "react";
 import { Box, Typography, Card, CardContent } from "@mui/material";
-import { useCoreTheme } from '../../../theme/core-theme';
+import { useCoreTheme, CoreTheme } from '../../../theme/core-theme';
+
 
 interface ClassSession {
   date: string;
@@ -24,14 +25,14 @@ const CalendarTimelineItem: React.FC<CalendarTimelineItemProps> = ({
   isLast,
   isFirst,
 }) => {
-  const theme = useCoreTheme();
+  const theme = useCoreTheme() as CoreTheme;
 
   return (
     <Box
       sx={{
         display: "flex",
         alignItems: "center",
-        mb: isLast ? 0 : 2,
+        mb: isLast ? 0 : theme.spacing(2),
         position: "relative",
       }}
     >
@@ -48,7 +49,7 @@ const CalendarTimelineItem: React.FC<CalendarTimelineItemProps> = ({
             fontSize: theme.spacing(4.5),
             fontWeight: 500,
             fontFamily: "Poppins",
-            color: "text.secondary",
+            color: theme.palette.text.secondary,
           }}
         >
           {event.date}
@@ -111,8 +112,6 @@ const CalendarTimelineItem: React.FC<CalendarTimelineItemProps> = ({
             height: theme.spacing(18.5),
             borderRadius: theme.spacing(5),
             border: isFirst ? "1px solid #2196F3" : "1px solid #E1BFFF",
-            backgroundColor: "background.paper",
-            boxShadow: isFirst ? "0px 2px 8px rgba(33, 150, 243, 0.2)" : "none",
             mb: theme.spacing(3.75),
           }}
         >

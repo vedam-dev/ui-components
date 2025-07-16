@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { Box, Typography } from "@mui/material";
-import { useCoreTheme } from '../../../theme/core-theme';
+import { useCoreTheme, CoreTheme } from '../../../theme/core-theme';
 import CalendarTimelineItem from './CalendarTimelineItem';
 
 interface ClassSession {
@@ -19,7 +19,7 @@ interface CalendarTimelineProps {
 const CalendarTimeline: React.FC<CalendarTimelineProps> = ({
   events,
 }) => {
-  const theme = useCoreTheme();
+  const theme = useCoreTheme() as CoreTheme;
   const [displayEvents, setDisplayEvents] = useState<ClassSession[]>([]);
 
   // Parse date and time to check if class has passed
@@ -67,9 +67,9 @@ const CalendarTimeline: React.FC<CalendarTimelineProps> = ({
       sx={{
         maxWidth: '549px',
         borderRadius: theme.spacing(9),
-        p: 3,
-        backgroundColor: "background.paper",
-        boxShadow: "0px 0px 20px 1px rgba(30, 30, 30, 0.10)",
+        p: theme.spacing(3),
+        boxShadow: theme.pbl.shadows.y12,
+
       }}
     >
       <Typography
@@ -79,7 +79,7 @@ const CalendarTimeline: React.FC<CalendarTimelineProps> = ({
           fontFamily: "Outfit",
           mb: theme.spacing(3),
           ml: theme.spacing(9),
-          color: "text.primary",
+          color: theme.palette.text.primary
         }}
       >
         Calendar
