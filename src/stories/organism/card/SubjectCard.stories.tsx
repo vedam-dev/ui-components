@@ -6,21 +6,7 @@ import { JSX } from 'react';
 
 const storybookTheme = createTheme({
   spacing: 8,
-  palette: {
-    primary: {
-      main: '#8a18ff'
-    },
-    text: {
-      primary: '#1A1A1A',
-      secondary: '#666666'
-    },
-    background: {
-      paper: '#FFFFFF'
-    }
-  },
-  typography: {
-    fontFamily: "'Outfit', sans-serif"
-  }
+ 
 });
 
 const meta: Meta<typeof SubjectCard> = {

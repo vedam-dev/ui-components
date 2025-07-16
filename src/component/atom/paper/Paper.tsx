@@ -11,7 +11,7 @@ export type PaperProps = ComponentProps<typeof BasePaper> & IPaperProps;
 
 const Paper: FC<PaperProps> = ({ children, sx, shadow, elevation, ...props }) => {
   const {
-    pbl: { shadows }
+    vd: { shadows }
   } = useCoreTheme() as CoreTheme;
 
   const shadowVal = shadow ? shadows[shadow] : shadows.y12;
