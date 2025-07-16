@@ -66,10 +66,6 @@ const CalendarTimeline: React.FC<CalendarTimelineProps> = ({
     <Box
       sx={{
         maxWidth: '549px',
-        borderRadius: theme.spacing(9),
-        p: theme.spacing(3),
-        boxShadow: theme.shadows[8],
-
       }}
     >
       <Typography
@@ -78,7 +74,6 @@ const CalendarTimeline: React.FC<CalendarTimelineProps> = ({
           fontWeight: 500,
           fontFamily: "Outfit",
           mb: theme.spacing(3),
-          ml: theme.spacing(9),
           color: theme.palette.text.primary
         }}
       >
