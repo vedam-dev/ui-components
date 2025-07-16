@@ -25,7 +25,7 @@
           letterSpacing: `normal`,
           textTransform: 'none'
         },
-        avatar: { fontFamily: `Outfit`, fontWeight: 'bold', fontSize: '14pt', lineHeight: '24pt' }
+        avatar: { fontFamily: `Outfit, system-ui`, fontWeight: 'bold', fontSize: '14pt', lineHeight: '24pt' }
       },
       palette: {
         vedamRed: colors.vedamRed,
