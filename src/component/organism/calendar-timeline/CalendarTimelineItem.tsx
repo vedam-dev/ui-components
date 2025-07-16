@@ -28,82 +28,75 @@ const CalendarTimelineItem: React.FC<CalendarTimelineItemProps> = ({
   const theme = useCoreTheme() as CoreTheme;
 
   return (
-    <Box
+   <Box
+  sx={{
+    display: 'flex',
+    alignItems: 'center',
+    minWidth: theme.spacing(32), 
+    flexShrink: 0,
+    ml:theme.spacing(9)
+  }}
+>
+  {/* Date */}
+  <Box
+    sx={{
+      minWidth: theme.spacing(20),
+      textAlign: 'right',
+      pr: theme.spacing(2),
+    }}
+  >
+    <Typography
       sx={{
-        display: "flex",
-        alignItems: "center",
-        mb: isLast ? 0 : theme.spacing(2),
-        position: "relative",
+        fontSize: theme.spacing(4.5),
+        fontWeight: 500,
+        fontFamily: "Poppins",
+        color: theme.palette.text.secondary,
+        whiteSpace: 'nowrap',
+        overflow: 'hidden',
+        textOverflow: 'ellipsis',
+        textAlign:'left'
       }}
     >
-      {/* Date column */}
+      {event.date}
+    </Typography>
+  </Box>
+
+  {/* Dot with connector */}
+  <Box
+    sx={{
+      position: "relative",
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      minWidth: theme.spacing(10),
+    }}
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      height="1.0625rem"
+      viewBox="0 0 21 21"
+      fill="none"
+    >
+      <circle cx="10.5" cy="10.5" r="10" fill="white" stroke="#F97D03" />
+      <circle cx="10.5" cy="10.5" r="6" fill={isFirst ? "#F97D03" : "transparent"} stroke="#F97D03" />
+    </svg>
+
+    {!isLast && (
       <Box
         sx={{
-          ml: theme.spacing(8),
-          display: "flex",
-          alignItems: "center",
+          position: "absolute",
+          top: theme.spacing(5.5),
+          left: "50%",
+          transform: "translateX(-50%)",
+          width: theme.spacing(0.5),
+          height: theme.spacing(18),
+          backgroundImage: `repeating-linear-gradient(to bottom, #F97D03, #F97D03 0.625rem, transparent 0.625rem, transparent 0.875rem)`,
         }}
-      >
-        <Typography
-          sx={{
-            fontSize: theme.spacing(4.5),
-            fontWeight: 500,
-            fontFamily: "Poppins",
-            color: theme.palette.text.secondary,
-          }}
-        >
-          {event.date}
-        </Typography>
-      </Box>
+      />
+    )}
+  </Box>
 
-      {/* Timeline dot with connector */}
-      <Box
-        sx={{
-          position: "relative",
-          display: "flex",
-          justifyContent: "center",
-          zIndex: 2,
-          ml: theme.spacing(5),
-        }}
-      >
-        {/* Dot */}
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          height="1.0625rem"
-          viewBox="0 0 21 21"
-          fill="none"
-        >
-          <circle
-            cx="10.5"
-            cy="10.5"
-            r="10"
-            fill="white"
-            stroke="#F97D03"
-          />
-          <circle
-            cx="10.5"
-            cy="10.5"
-            r="6"
-            fill={isFirst ? "#F97D03" : "transparent"}
-            stroke="#F97D03"
-          />
-        </svg>
 
-        {/* Connector Line */}
-        {!isLast && (
-          <Box
-            sx={{
-              position: "absolute",
-              top: theme.spacing(5.5),
-              left: "50%",
-              transform: "translateX(-1px)",
-              width: theme.spacing(0.5),
-              height: theme.spacing(18),
-              backgroundImage: `repeating-linear-gradient(to bottom, #F97D03, #F97D03 0.625rem, transparent 0.625rem, transparent 0.875rem)`,
-            }}
-          />
-        )}
-      </Box>
 
       {/* Subject card */}
       <Box sx={{ flex: 1, ml: theme.spacing(6.5) }}>
