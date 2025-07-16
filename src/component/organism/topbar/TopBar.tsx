@@ -13,7 +13,7 @@ import {
 import MenuIcon from "@mui/icons-material/Menu";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 
-interface TopBarProps {
+export interface TopBarProps {
   collegeLogo?: string;
   studentId: string;
   studentName: string;
@@ -97,7 +97,7 @@ const TopBar: React.FC<TopBarProps> = ({
 }) => {
   return (
     <TopBarContainer sx={sx}>
-      {/* LEFT: Hamburger + Logo */}
+
       <LeftContainer>
         <Paper
           elevation={4}
@@ -139,7 +139,7 @@ const TopBar: React.FC<TopBarProps> = ({
         </CollegeInfo>
       </LeftContainer>
 
-      {/* RIGHT: Stats, Notifications, Profile */}
+    
       <StudentInfo>
         <StatsContainer>
           <StatItem>
