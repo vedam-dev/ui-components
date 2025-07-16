@@ -34,6 +34,7 @@ export { default as SidebarDrawer } from "./component/organism/sidebardrawer/Sid
 export { default as SidebarWrapper } from "./component/organism/sidebarWrapper/SidebarWrapper";
 export { SidebarItem } from "./component/organism/sidebarWrapper/SidebarWrapper";
 export { default as FeeListItem } from "./component/organism/feePageListitems/FeePageListItems";
+export { default as CalendarTimeline} from "./component/organism/calendar-timeline/CalendarTimeline"
 export {
   FeeListItemRow,
   FeeListItemStatus,
