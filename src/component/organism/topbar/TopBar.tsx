@@ -121,8 +121,8 @@ const TopBar: React.FC<TopBarProps> = ({
             onClick={onMenuClick}
             sx={{
               color: "#000",
-              transition: "transform 0.8s ease",
-              ransform: isSidebarExpanded ? "rotate(180deg)" : "rotate(0deg)",
+              transition: "transform 0.1s ease",
+              transform: isSidebarExpanded ? "rotate(90deg)" : "rotate(0deg)",
               "&:hover": { backgroundColor: "transparent" },
             }}
           >
