@@ -12,6 +12,7 @@ import {
   Paper,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
+import CloseIcon from "@mui/icons-material/Close";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 
 export interface TopBarProps {
@@ -26,6 +27,7 @@ export interface TopBarProps {
   onLogoClick?: () => void;
   onProfileClick?: () => void;
   onMenuClick?: () => void;
+  isSidebarExpanded?: boolean;
 }
 
 const TopBarContainer = styled(Box)({
@@ -95,6 +97,7 @@ const TopBar: React.FC<TopBarProps> = ({
   sx,
   onLogoClick,
   onProfileClick,
+  isSidebarExpanded = false,
 }) => {
   return (
     <TopBarContainer sx={sx}>
@@ -118,10 +121,15 @@ const TopBar: React.FC<TopBarProps> = ({
             onClick={onMenuClick}
             sx={{
               color: "#000",
+              transition: "transform 0.8s ease",
+              ransform: isSidebarExpanded ? "rotate(180deg)" : "rotate(0deg)",
               "&:hover": { backgroundColor: "transparent" },
             }}
           >
-            <MenuIcon sx={{ fontSize: 32, width: "24px", height: "20px" }} />
+              {isSidebarExpanded
+              ? <CloseIcon sx={{ fontSize: 32, width: "24px", height: "20px" }} />
+              : <MenuIcon sx={{ fontSize: 32, width: "24px", height: "20px" }} />
+            }
           </IconButton>
         </Paper>
 

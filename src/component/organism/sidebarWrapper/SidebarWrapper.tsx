@@ -49,6 +49,7 @@ const SidebarWrapper: FC<SidebarWrapperProps> = ({
         notificationCount={notificationCount}
         onMenuClick={toggleSidebar}
         onProfileClick={onProfileClick}
+        isSidebarExpanded={isSidebarExpanded}
         sx={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: isSidebarExpanded ? 0 : 20 }}
       />
 
