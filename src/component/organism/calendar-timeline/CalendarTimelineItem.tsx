@@ -96,13 +96,14 @@ const CalendarTimelineItem: React.FC<CalendarTimelineItemProps> = ({
       </Box>
 
       {/* Subject card */}
-      <Box sx={{ flex: 1, ml: theme.spacing(6.5)}}>
+
+      <Box sx={{ flex: 1, ml: theme.spacing(6.5), m: theme.spacing(2.5) }}>
         <Card
           sx={{
             height: theme.spacing(18.5),
             borderRadius: theme.spacing(5),
-            border: isFirst ? '1px solid #2196F3' : '1px solid #E1BFFF',
-            mb: theme.spacing(3.75)
+            border: '1px solid #E1BFFF'
+            // mb: theme.spacing(3.75)
           }}
         >
           <CardContent
