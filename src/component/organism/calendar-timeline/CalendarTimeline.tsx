@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import React, { useEffect, useState } from "react";
-import { Box, Typography } from "@mui/material";
+import React, { useEffect, useState } from 'react';
+import { Box, Typography } from '@mui/material';
 import { useCoreTheme, CoreTheme } from '../../../theme/core-theme';
 import CalendarTimelineItem from './CalendarTimelineItem';
 
@@ -16,9 +16,7 @@ interface CalendarTimelineProps {
   events: ClassSession[];
 }
 
-const CalendarTimeline: React.FC<CalendarTimelineProps> = ({
-  events,
-}) => {
+const CalendarTimeline: React.FC<CalendarTimelineProps> = ({ events }) => {
   const theme = useCoreTheme() as CoreTheme;
   const [displayEvents, setDisplayEvents] = useState<ClassSession[]>([]);
 
@@ -27,14 +25,24 @@ const CalendarTimeline: React.FC<CalendarTimelineProps> = ({
     const currentYear = new Date().getFullYear();
     const [day, month] = dateStr.split(' ');
     const monthMap: { [key: string]: number } = {
-      'January': 0, 'February': 1, 'March': 2, 'April': 3, 'May': 4, 'June': 5,
-      'July': 6, 'August': 7, 'September': 8, 'October': 9, 'November': 10, 'December': 11
+      January: 0,
+      February: 1,
+      March: 2,
+      April: 3,
+      May: 4,
+      June: 5,
+      July: 6,
+      August: 7,
+      September: 8,
+      October: 9,
+      November: 10,
+      December: 11
     };
-    
+
     // Get end time from the time range (e.g., "10:30 - 12:30" -> "12:30")
     const endTime = timeStr.split(' - ')[1];
     const [hours, minutes] = endTime.split(':').map(Number);
-    
+
     return new Date(currentYear, monthMap[month], parseInt(day), hours, minutes);
   };
 
@@ -53,11 +61,11 @@ const CalendarTimeline: React.FC<CalendarTimelineProps> = ({
   // Update component every minute to check for passed classes
   useEffect(() => {
     updateDisplayEvents();
-    
+
     const interval = setInterval(() => {
       console.log('Checking for passed classes at:', new Date().toLocaleTimeString());
       updateDisplayEvents();
-    }, 60000); 
+    }, 60000);
 
     return () => clearInterval(interval);
   }, [events]);
@@ -65,14 +73,14 @@ const CalendarTimeline: React.FC<CalendarTimelineProps> = ({
   return (
     <Box
       sx={{
-        maxWidth: '549px',
+        maxWidth: '549px'
       }}
     >
       <Typography
         sx={{
           fontSize: theme.spacing(6),
           fontWeight: 500,
-          fontFamily: "Outfit",
+          fontFamily: 'Outfit',
           mb: theme.spacing(3),
           color: theme.palette.text.primary
         }}
@@ -80,7 +88,7 @@ const CalendarTimeline: React.FC<CalendarTimelineProps> = ({
         Calendar
       </Typography>
 
-      <Box sx={{ position: "relative" }}>
+      <Box sx={{ position: 'relative' }}>
         {displayEvents.map((event, index) => (
           <CalendarTimelineItem
             key={index}
