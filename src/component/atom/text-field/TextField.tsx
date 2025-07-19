@@ -102,14 +102,14 @@ const TextField: React.FC<TextFieldProps> = ({
           '& .MuiOutlinedInput-root': {
             borderRadius: theme.spacing(4),
             '& fieldset': {
-              borderColor: hasError ? '#DA1414' : '#DCDCD0',
+              borderColor: hasError ? theme.palette.error[400] : '#DCDCD0',
               borderRadius: theme.spacing(4),
             },
             '&:hover fieldset': {
-              borderColor: hasError ? '#DA1414' : '#DCDCD0',
+              borderColor: hasError ? theme.palette.error[400] : '#DCDCD0',
             },
             '&.Mui-focused fieldset': {
-              borderColor: hasError ? '#DA1414' : '#DCDCD0',
+              borderColor: hasError ? theme.palette.error[400] : '#DCDCD0',
             },
             '& input': {
               color: '#1E1E1E',
@@ -119,7 +119,7 @@ const TextField: React.FC<TextFieldProps> = ({
             },
           },
           '& .MuiFormHelperText-root': {
-            color: '#DA1414',
+            color: theme.palette.error[400],
             fontFamily: 'Outfit',
             fontSize: theme.spacing(4.25),
           },
