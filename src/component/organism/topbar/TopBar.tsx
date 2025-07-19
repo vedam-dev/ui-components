@@ -14,6 +14,8 @@ import {
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import { CoreTheme, useCoreTheme } from '../../../theme/core-theme';
+
 export interface TopBarProps {
   collegeLogo?: string;
   studentId: string;
@@ -29,45 +31,45 @@ export interface TopBarProps {
   isSidebarExpanded?: boolean;
 }
 
-const TopBarContainer = styled(Box)({
+const TopBarContainer = styled(Box)(({ theme }) => ({
   display: "flex",
   justifyContent: "space-between",
   alignItems: "center",
-  padding: "0px 24px",
-  backgroundColor: "#ffffff",
+  padding: theme.spacing(0, 6),
+  backgroundColor: theme.palette.background.paper,
   width: "100%",
-  boxShadow: "0px 1px 4px rgba(0, 0, 0, 0.1)", // todo: i have to remove this before push   
-});
+  boxShadow: theme.shadows[1],
+}));
 
-// NEW
-const LeftContainer = styled(Box)({
+
+const LeftContainer = styled(Box)(({ theme }) => ({
   display: "flex",
   alignItems: "center",
-  gap: "12px",
-});
+  gap: theme.spacing(3),
+}));
 
 const CollegeInfo = styled(Box)({
   display: "flex",
   alignItems: "center",
 });
 
-const StudentInfo = styled(Box)({
+const StudentInfo = styled(Box)(({ theme }) => ({
   display: "flex",
   alignItems: "center",
-  gap: "24px",
-});
+  gap: theme.spacing(6),
+}));
 
-const StatsContainer = styled(Box)({
+const StatsContainer = styled(Box)(({ theme }) => ({
   display: "flex",
   alignItems: "center",
-  gap: "24px",
-});
+  gap: theme.spacing(6),
+}));
 
-const StatItem = styled(Box)({
+const StatItem = styled(Box)(({ theme }) => ({
   display: "flex",
   alignItems: "center",
-  gap: "8px",
-});
+  gap: theme.spacing(2),
+}));
 
 const StyledBadge = styled(Badge)(() => ({
   "& .MuiBadge-badge": {
@@ -98,6 +100,7 @@ const TopBar: React.FC<TopBarProps> = ({
   onProfileClick,
   isSidebarExpanded = false,
 }) => {
+    const theme = useCoreTheme() as CoreTheme;
   return (
     <TopBarContainer sx={sx}>
 
@@ -195,7 +198,7 @@ const TopBar: React.FC<TopBarProps> = ({
           </StyledBadge>
         </StatsContainer>
 
-        <Box display="flex" alignItems="center" gap="12px">
+        <Box display="flex" alignItems="center"sx={{ gap: theme.spacing(3) }}>
           <IconButton onClick={onProfileClick} sx={{ padding: 0 }}>
             <Avatar
               src={studentPhoto}
@@ -229,10 +232,10 @@ const TopBar: React.FC<TopBarProps> = ({
                 Student Id: {studentId}
               </Typography>
               <KeyboardArrowDownIcon
-                sx={{
-                  fontSize: "16px",
-                  color: "#A0A0A0",
-                  marginLeft: "4px",
+                 sx={{
+                  fontSize: '16px',
+                  color: theme.palette.text.secondary,
+                  marginLeft: theme.spacing(1),
                 }}
               />
             </Box>

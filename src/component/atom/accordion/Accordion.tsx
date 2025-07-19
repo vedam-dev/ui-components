@@ -38,12 +38,14 @@ const StyledAccordionSummary = styled(BaseAccordionSummary)(({ theme }) => ({
   },
 }));
 
-const StyledAccordionDetails = styled(BaseAccordionDetails)({
+const StyledAccordionDetails = styled(BaseAccordionDetails)(({ theme }) => ({
   overflow: 'hidden',
   transition: 'height 300ms ease, padding 300ms ease',
-  padding: '0 16px',
-  '&.Mui-expanded': { padding: '0 16px 16px' },
-});
+  padding: theme.spacing(0, 4),
+  '&.Mui-expanded': {
+    padding: theme.spacing(0, 4, 4),
+  },
+}));
 
 export interface AccordionComponent
   extends FC<AccordionProps> {
