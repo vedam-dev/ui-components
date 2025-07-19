@@ -85,8 +85,8 @@ const SidebarDrawer: FC<SidebarDrawerProps> = ({
         0 4px 10px -2px rgba(0, 0, 0, 0.08)   
       `
       : "none", 
-      borderTopRightRadius: isExpanded ?"24px":"0px",
-      borderBottomRightRadius: isExpanded ?"24px":"0px",
+      borderTopRightRadius: isExpanded ?theme.spacing(6):"0px",
+      borderBottomRightRadius: isExpanded ?theme.spacing(6):"0px",
     },
     paperSx
   );
@@ -103,7 +103,6 @@ const SidebarDrawer: FC<SidebarDrawerProps> = ({
         sx={{
           marginTop: theme.spacing(9),
           marginX: theme.spacing(3),
-          // padding: isExpanded ? "8px" : "0px",
         }}
       >
         <List sx={{ px: 0 }}>
@@ -122,12 +121,12 @@ const SidebarDrawer: FC<SidebarDrawerProps> = ({
                     sx={{
                       minHeight: 48,
                       justifyContent: isExpanded ? "left" : "center",
-                      padding: "8px",
-                      borderRadius: isExpanded ? "8px" : "50%",
+                      padding: theme.spacing(2),
+                      borderRadius: isExpanded ? theme.spacing(2) : "50%",
                       transition: "all 0.3s",
                       flexDirection: isExpanded ? "row" : "column",
                       alignItems: "center",
-                      gap: isExpanded ? "8px" : 0,
+                      gap: isExpanded ? theme.spacing(2) : 0,
                       width: "100%",
                       maxWidth: isExpanded ? 'auto' :48,
                       minWidth: "auto",

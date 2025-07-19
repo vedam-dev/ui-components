@@ -53,10 +53,10 @@ const FeeStatusModal: React.FC<FeeStatusModalProps> = ({
         <Box
           sx={{
             position:'relative',
-            p: 5,
-            pt: 6,
-            pb:8,
-            borderRadius: '36px',
+            p: theme.spacing(5),
+            pt: theme.spacing(6),
+            pb:theme.spacing(8),
+            borderRadius: theme.spacing(9),
             background: 'linear-gradient(180deg, #FFA26B 0%, #8C2BE0 100%)',
             textAlign: 'center',
             width:'100%',
@@ -100,7 +100,7 @@ const FeeStatusModal: React.FC<FeeStatusModalProps> = ({
           </IconButton>
 
           {/* Info Text */}
-          <Typography  sx={{ color: '#fff', mt: 6,fontSize:theme.spacing(5),maxWidth:theme.spacing(80), textAlign:'center',mx:'auto' }}>
+          <Typography  sx={{ color: '#fff', mt: theme.spacing(6),fontSize:theme.spacing(5),maxWidth:theme.spacing(80), textAlign:'center',mx:'auto' }}>
             {infoText}
           </Typography>
 
