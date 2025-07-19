@@ -233,7 +233,7 @@ const TopBar: React.FC<TopBarProps> = ({
               </Typography>
               <KeyboardArrowDownIcon
                  sx={{
-                  fontSize: theme.spacing(2),
+                  fontSize: '16px',
                   color: theme.palette.text.secondary,
                   marginLeft: theme.spacing(1),
                 }}
