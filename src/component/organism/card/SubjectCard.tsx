@@ -60,7 +60,7 @@ const SubjectCard: FC<SubjectCardProps> = ({
   const defaultCardSx: SxProps<Theme> = {
     width: typeof width === 'number' ? `${width}px` : width,
     height: typeof height === 'number' ? `${height}px` : height,
-    borderRadius: theme.spacing(3.5),
+    borderRadius: theme.spacing(7),
     border: 'none',
     background: 'linear-gradient(180deg, rgba(255,230,205,1) 0%, rgba(226,198,255,1) 100%)',
     boxShadow: theme.pbl.shadows.y8,
@@ -75,9 +75,9 @@ const SubjectCard: FC<SubjectCardProps> = ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    borderRadius: theme.spacing(1),
+    borderRadius: theme.spacing(2),
     border: '1px solid transparent',
-    padding: theme.spacing(1.375, 1.625),
+    padding: theme.spacing(2.75, 3.25),
     bgcolor: 'white',
     backgroundImage: 'linear-gradient(white, white), linear-gradient(to right, #FF6B35, #B026FF)',
     backgroundOrigin: 'border-box',
@@ -92,7 +92,8 @@ const SubjectCard: FC<SubjectCardProps> = ({
     fontSize: '22px',
     lineHeight: '24px',
     letterSpacing: '0.15px',
-    marginBottom: theme.spacing(0.5),
+    marginBottom: theme.spacing(1),
+    width: '100%',
     ...subjectTextSx
   };
 
@@ -103,7 +104,7 @@ const SubjectCard: FC<SubjectCardProps> = ({
     fontSize: '1.125rem',
     lineHeight: '20px',
     width: '100%',
-    minWidth: theme.spacing(20.5),
+    minWidth: theme.spacing(41),
     ...teacherTextSx
   };
 
@@ -129,17 +130,17 @@ const SubjectCard: FC<SubjectCardProps> = ({
     fontFamily: theme.typography.fontFamily,
     color: theme.palette.text.primary,
     fontSize: theme.typography.body1.fontSize,
-    lineHeight: theme.spacing(2.25),
+    lineHeight: theme.spacing(4.5),
     width: '100%',
-    marginTop: theme.spacing(1.5),
+    marginTop: theme.spacing(3),
     ...descriptionTextSx
   };
 
   const defaultButtonSx: SxProps<Theme> = {
     width: '100%',
-    padding: theme.spacing(1),
-    borderWidth: theme.spacing(0.125),
-    borderRadius: theme.spacing(1.5),
+    padding: theme.spacing(2),
+    borderWidth: theme.spacing(0.25),
+    borderRadius: theme.spacing(3),
     borderColor: theme.palette.primary.main,
     backgroundColor: theme.palette.background.paper,
     color: theme.palette.primary.main,
@@ -154,19 +155,25 @@ const SubjectCard: FC<SubjectCardProps> = ({
   };
 
   return (
-    <Card shadow="none" sx={defaultCardSx}>
+    <Card shadow="y12" sx={defaultCardSx}>
       <CardActionArea
         sx={{
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'space-around',
-          gap: theme.spacing(2),
+          gap: theme.spacing(4),
+          width: '100%',
           height: '100%',
-          padding: theme.spacing(3)
+          padding: theme.spacing(6)
         }}
       >
-        <Box>
-          <Stack direction="row" spacing={3} alignItems="center" mb={2}>
+        <Box
+          sx={{
+            width: '100%',
+            height: '100%'
+          }}
+        >
+          <Stack direction="row" spacing={6} alignItems="center" mb={4}>
             <Box sx={defaultIconContainerSx}>
               <Box
                 component="img"
@@ -185,16 +192,16 @@ const SubjectCard: FC<SubjectCardProps> = ({
             </Stack>
           </Stack>
 
-          <Box sx={{ pb: theme.spacing(2) }}>
+          <Box sx={{ pb: theme.spacing(4) }}>
             <Box
               sx={{
                 display: 'flex',
                 alignItems: 'center',
-                gap: theme.spacing(1),
+                gap: theme.spacing(2),
                 mb: theme.spacing(0)
               }}
             >
-              <Stack direction="row" alignItems="center" spacing={0.5}>
+              <Stack direction="row" alignItems="center" spacing={1}>
                 <AccessTimeIcon
                   sx={{
                     width: '14px',
@@ -208,7 +215,7 @@ const SubjectCard: FC<SubjectCardProps> = ({
                 |
               </Typography>
 
-              <Stack direction="row" alignItems="center" spacing={0.5}>
+              <Stack direction="row" alignItems="center" spacing={1}>
                 <MenuBookOutlinedIcon
                   sx={{
                     width: '14px',

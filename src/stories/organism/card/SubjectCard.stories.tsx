@@ -5,22 +5,7 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { JSX } from 'react';
 
 const storybookTheme = createTheme({
-  spacing: 8,
-  palette: {
-    primary: {
-      main: '#8a18ff'
-    },
-    text: {
-      primary: '#1A1A1A',
-      secondary: '#666666'
-    },
-    background: {
-      paper: '#FFFFFF'
-    }
-  },
-  typography: {
-    fontFamily: "'Outfit', sans-serif"
-  }
+  spacing: 4
 });
 
 const meta: Meta<typeof SubjectCard> = {
@@ -137,13 +122,13 @@ export const Default: Story = {
     teacher: 'Priya Sharma',
     duration: '4 months',
     lectureCount: 24,
-    description: 'Advanced calculus, algebra, and mathematical analysis'
+    description: 'Advanced calculus, algebra, and mathematical analysis.'
   }
 };
 
 export const WebDevelopment: Story = {
   args: {
-    subject: 'Web Development',
+    subject: 'Web Developmen',
     teacher: 'Priya Sharma',
     duration: '4 months',
     lectureCount: 24,
