@@ -103,7 +103,6 @@ const CalendarTimelineItem: React.FC<CalendarTimelineItemProps> = ({
             height: theme.spacing(18.5),
             borderRadius: theme.spacing(5),
             border: '1px solid #E1BFFF'
-            // mb: theme.spacing(3.75)
           }}
         >
           <CardContent

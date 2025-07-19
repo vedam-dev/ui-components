@@ -56,7 +56,7 @@ const FeeSelectionModal: React.FC<FeeSelectionModalProps> = ({
           overflowY: "auto",
           bgcolor: "background.paper",
           boxShadow: 24,
-          borderRadius: "40px",
+          borderRadius: theme.spacing(10),
           px: theme.spacing(8),
           pt:theme.spacing(7),
           pb: theme.spacing(11),
@@ -108,11 +108,11 @@ const FeeSelectionModal: React.FC<FeeSelectionModalProps> = ({
                   "1px solid ${getItemBackgroundColor(index, fee.bgColor)}",
                 boxShadow: "0px 2px 8px rgba(0,0,0,0.08)",
                 backgroundColor: getItemBackgroundColor(index, fee.bgColor),
-                px: 7,
-                py: 3,
+                px: theme.spacing(7),
+                py: theme.spacing(3),
               }}
             >
-              <Box sx={{ p: 3 }}>
+              <Box sx={{ p: theme.spacing(3) }}>
                 <Box
                   sx={{
                     display: "flex",
@@ -179,8 +179,8 @@ const FeeSelectionModal: React.FC<FeeSelectionModalProps> = ({
                         backgroundColor: "white",
                         color: theme.palette.primary.dark,
                         fontWeight: "bold",
-                        px: 20,
-                        py: 2,
+                        px: theme.spacing(20),
+                        py: theme.spacing(2),
                         textTransform: "none",
                         border: `1px solid ${theme.palette.primary.main}`,
                         "&:hover": {

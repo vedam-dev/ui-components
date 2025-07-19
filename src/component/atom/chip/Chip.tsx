@@ -85,8 +85,8 @@ const Chip: FC<ChipProps> = ({
 
   const sxValue = SxOverride(
     {
-      padding: '0px 10px',
-      borderRadius: '100px',
+      padding: theme.spacing(0,2.5),
+      borderRadius: theme.spacing(25),
       minWidth: theme.spacing(17),
       ...(baseVariant === 'filled' && {
         backgroundColor: colorValue,

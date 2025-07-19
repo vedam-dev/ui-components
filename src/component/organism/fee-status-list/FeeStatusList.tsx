@@ -66,7 +66,7 @@ const FeeStatusList: React.FC<FeeStatusListProps> = ({
         alignItems: "center",
         justifyContent: "space-between",
         background: "linear-gradient(180deg, #EDDBFF 0%, #FFE6CE 100%)",
-        borderRadius: "36px",
+        borderRadius: theme.spacing(9),
         padding: theme.spacing(10, 12),
         border: "1px solid #7B2CBF",
         position: "relative",
