@@ -131,8 +131,8 @@ const SubjectCard: FC<SubjectCardProps> = ({
     color: theme.palette.text.primary,
     fontSize: theme.typography.body1.fontSize,
     lineHeight: theme.spacing(4.5),
-    width: '100%',
     marginTop: theme.spacing(3),
+    textWrap: 'stable',
     ...descriptionTextSx
   };
 
