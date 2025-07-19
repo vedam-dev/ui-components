@@ -4,7 +4,6 @@ import {
   Box,
   Typography,
   Card,
-  CardContent,
   IconButton,
   useTheme,
 } from "@mui/material";
@@ -57,10 +56,10 @@ const FeeSelectionModal: React.FC<FeeSelectionModalProps> = ({
           overflowY: "auto",
           bgcolor: "background.paper",
           boxShadow: 24,
-          borderRadius: "40px",
-          px: "33px",
-          pt:"30px",
-          pb: "44px",
+          borderRadius: theme.spacing(10),
+          px: theme.spacing(8),
+          pt:theme.spacing(7),
+          pb: theme.spacing(11),
           outline: "none",
           "&::-webkit-scrollbar": {
             display: "none",
@@ -82,7 +81,7 @@ const FeeSelectionModal: React.FC<FeeSelectionModalProps> = ({
             variant="h5"
             sx={{
               color: "#1E1E1E",
-              fontFamily: "Outfit",
+              fontFamily: "Outfit, system-ui",
               fontSize: "24px",
               fontStyle: "normal",
               fontWeight: 500,
@@ -104,16 +103,16 @@ const FeeSelectionModal: React.FC<FeeSelectionModalProps> = ({
               key={fee.id}
               variant="outlined"
               sx={{
-                borderRadius: "12px",
+                borderRadius: "20px",
                 border:
                   "1px solid ${getItemBackgroundColor(index, fee.bgColor)}",
                 boxShadow: "0px 2px 8px rgba(0,0,0,0.08)",
                 backgroundColor: getItemBackgroundColor(index, fee.bgColor),
-                px: 7,
-                py: 2.5,
+                px: theme.spacing(7),
+                py: theme.spacing(3),
               }}
             >
-              <Box sx={{ p: 3 }}>
+              <Box sx={{ p: theme.spacing(3) }}>
                 <Box
                   sx={{
                     display: "flex",
@@ -180,8 +179,8 @@ const FeeSelectionModal: React.FC<FeeSelectionModalProps> = ({
                         backgroundColor: "white",
                         color: theme.palette.primary.dark,
                         fontWeight: "bold",
-                        px: 20,
-                        py: 2,
+                        px: theme.spacing(20),
+                        py: theme.spacing(2),
                         textTransform: "none",
                         border: `1px solid ${theme.palette.primary.main}`,
                         "&:hover": {

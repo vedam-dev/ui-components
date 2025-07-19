@@ -47,6 +47,7 @@ const colors = {
   textColors2TxSecondary: '#637179',
   textColors3TxDisabled: '#B0BEC6',
   textColors4TxWhite: '#FFFFFF',
+  shadowsY4:'rgba(145, 158, 171, 0.24)',
   shadowsY8: 'rgba(145, 158, 171, 0.24)',
   shadowsY12: 'rgba(145, 158, 171, 0.24)',
   shadowsY16: 'rgba(145, 158, 171, 0.24)',

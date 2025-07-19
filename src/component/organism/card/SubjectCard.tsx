@@ -63,7 +63,7 @@ const SubjectCard: FC<SubjectCardProps> = ({
     borderRadius: theme.spacing(7),
     border: 'none',
     background: 'linear-gradient(180deg, rgba(255,230,205,1) 0%, rgba(226,198,255,1) 100%)',
-    boxShadow: theme.pbl.shadows.y8,
+    boxShadow: theme.vd.shadows.y8,
     display: 'flex',
     flexDirection: 'column',
     ...cardSx

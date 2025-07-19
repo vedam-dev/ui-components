@@ -1,12 +1,18 @@
+
+import React, { ComponentProps, FC, MouseEvent } from 'react';
 import { Chip as BaseChip } from '@mui/material';
-import { ComponentProps, FC, MouseEvent } from 'react';
 import { CoreTheme, useCoreTheme } from '../../../theme/core-theme';
 import SxOverride from '../../../util/SxOverride';
 
 type StatusVariants = 'success' | 'error' | 'warning';
 type BaseVariants = 'filled' | 'outlined';
-
-type PaletteColorKeys = 'primary' | 'secondary' | 'error' | 'info' | 'success' | 'warning';
+type PaletteColorKeys =
+  | 'primary'
+  | 'secondary'
+  | 'error'
+  | 'info'
+  | 'success'
+  | 'warning';
 
 export interface IChipProps {
   avatar?: React.ReactElement;
@@ -20,38 +26,53 @@ export interface IChipProps {
   onDelete?: () => void;
   size?: 'small' | 'medium' | string;
   skipFocusWhenDisabled?: boolean;
-
   variant?: BaseVariants | StatusVariants;
+  sx?: any;
 }
 
-// Exclude variant from BaseChip props to avoid conflict
 export type ChipProps = Omit<ComponentProps<typeof BaseChip>, 'variant'> & IChipProps;
 
-const STATUS_COLORS: Record<StatusVariants, string> = {
-  success: '#42B657',
-  error: '#E74E2C',
-  warning: '#EEB929',
-};
-
 const Chip: FC<ChipProps> = ({
+  avatar,
+  clickable,
   color = 'default',
-  size = 'medium',
-  variant = 'filled',
+  deleteIcon,
+  disabled,
+  icon,
+  label,
   onClick,
   onDelete,
+  size = 'medium',
+  skipFocusWhenDisabled,
+  variant = 'filled',
   sx,
   ...props
 }) => {
-  const { palette } = useCoreTheme() as CoreTheme;
+  const theme = useCoreTheme() as CoreTheme;
+  const { palette } = theme;
+
+
+  const STATUS_COLORS: Record<StatusVariants, string> = {
+    success: palette.success.dark, 
+    error: palette.error.dark, 
+    warning: palette.warning.dark, 
+  };
 
   const getColorValue = () => {
     if ((['success', 'error', 'warning'] as StatusVariants[]).includes(variant as StatusVariants)) {
       return STATUS_COLORS[variant as StatusVariants];
     }
     if (color === 'default') return undefined;
-    const paletteColors: PaletteColorKeys[] = ['primary', 'secondary', 'error', 'info', 'success', 'warning'];
+    const paletteColors: PaletteColorKeys[] = [
+      'primary',
+      'secondary',
+      'error',
+      'info',
+      'success',
+      'warning',
+    ];
     if (paletteColors.includes(color as PaletteColorKeys)) {
-      return palette[color as PaletteColorKeys]?.main || color;
+      return (palette[color as PaletteColorKeys]?.main || color) as string;
     }
     return color;
   };
@@ -60,35 +81,49 @@ const Chip: FC<ChipProps> = ({
   const handleDelete = () => onDelete?.();
 
   const baseVariant: BaseVariants = variant === 'outlined' ? 'outlined' : 'filled';
+  const colorValue = getColorValue();
 
   const sxValue = SxOverride(
     {
-      padding: '0px 10px',
-      borderRadius: '100px',
+      padding: theme.spacing(0,2.5),
+      borderRadius: theme.spacing(25),
+      minWidth: theme.spacing(17),
       ...(baseVariant === 'filled' && {
-        backgroundColor: getColorValue(),
+        backgroundColor: colorValue,
         color: palette.common.white,
       }),
       ...(baseVariant === 'outlined' && {
-        color: getColorValue(),
-        borderColor: getColorValue(),
+        color: colorValue,
+        borderColor: colorValue,
       }),
       '& .MuiChip-deleteIcon': {
-        color: baseVariant === 'filled' ? palette.common.white : getColorValue(),
+        color: baseVariant === 'filled' ? palette.common.white : colorValue,
       },
-      cursor: props.clickable || !!onClick ? 'pointer' : undefined,
+      cursor: clickable || !!onClick ? 'pointer' : undefined,
     },
     sx
   );
 
   return (
     <BaseChip
-      color={(['success', 'error', 'warning'] as StatusVariants[]).includes(variant as StatusVariants) ? undefined : (color === 'default' ? undefined : (color as PaletteColorKeys))}
-      size={size}
-      variant={baseVariant}
+      avatar={avatar}
+      color={
+        (['success', 'error', 'warning'] as StatusVariants[]).includes(variant as StatusVariants)
+          ? undefined
+          : color === 'default'
+          ? undefined
+          : (color as PaletteColorKeys)
+      }
+      deleteIcon={deleteIcon}
+      disabled={disabled}
+      icon={icon}
+      label={label}
       onClick={handleClick}
       onDelete={onDelete ? handleDelete : undefined}
-      clickable={false}
+      size={size}
+      skipFocusWhenDisabled={skipFocusWhenDisabled}
+      variant={baseVariant}
+      clickable={clickable || !!onClick}
       sx={sxValue}
       {...props}
     />

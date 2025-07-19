@@ -25,8 +25,8 @@ const LoginModal: React.FC<LoginModalProps> = ({
     <Paper
       elevation={3}
       sx={{
-        p: 1,
-        borderRadius: "40px",
+        p: theme.spacing(1),
+        borderRadius: theme.spacing(10),
         maxWidth: "550px",
         mx: "auto",
         background: "linear-gradient(to bottom, #FF7829, #8A18FF)",
@@ -37,7 +37,7 @@ const LoginModal: React.FC<LoginModalProps> = ({
           py: theme.spacing(8),
           px: theme.spacing(7),
           textAlign: "center",
-          borderRadius: "36px",
+          borderRadius: theme.spacing(9),
           backgroundColor: "white",
         }}
       >
@@ -56,7 +56,7 @@ const LoginModal: React.FC<LoginModalProps> = ({
         <Typography
           sx={{
             color: "#000",
-            fontFamily: "Outfit",
+            fontFamily: "Outfit, system-ui",
             fontSize: "32px",
             fontWeight: 500,
             lineHeight: "36px",
@@ -73,21 +73,21 @@ const LoginModal: React.FC<LoginModalProps> = ({
           variant="outlined"
           onClick={onGoogleLoginClick}
           sx={{
-            mt: 8,
+            mt: theme.spacing(8),
             py: theme.spacing(2),
             px: theme.spacing(3),
             fontSize: "22px",
             fontWeight: 600,
-            fontFamily: "Outfit",
+            fontFamily: "Outfit, system-ui",
             color: "#E11C1C",
             border: "1px solid #C5C5C5",
-            borderRadius: "16px",
+            borderRadius: theme.spacing(4),
             textTransform: "none",
             justifyContent: "left",
             display: "flex",
             textWrap: "nowrap",
-            gap: 11,
-            mb: 5,
+            gap: theme.spacing(11),
+            mb: theme.spacing(5),
           }}
         >
           <Box
@@ -99,7 +99,7 @@ const LoginModal: React.FC<LoginModalProps> = ({
               height: 72,
             }}
           />
-          <Box sx={{ textAlign: "left", mr: "130px" }}>
+          <Box sx={{ textAlign: "left", mr: theme.spacing(32) }}>
             Continue with Google
           </Box>
         </Button>

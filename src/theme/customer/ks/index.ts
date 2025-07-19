@@ -6,10 +6,11 @@ const defaultFont = { fontFamily: 'system-ui', letterSpacing: 0 };
 
 const index = createCoreTheme({
   isStorybook: true,
-  pbl: {
+  vd: {
     useMaterialButtons: false,
     shadows: {
       none: 'none',
+      y4: `0px 2px 8px  ${colors.shadowsY4}`,
       y8: `0 8px 16px 0 ${colors.shadowsY8}`,
       y12: `0 12px 24px 0 ${colors.shadowsY12}`,
       y16: `0 16px 32px -4px ${colors.shadowsY16}`
