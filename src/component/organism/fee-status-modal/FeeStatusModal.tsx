@@ -77,7 +77,7 @@ const FeeStatusModal: React.FC<FeeStatusModalProps> = ({
               transform: 'translateX(-50%)',
               borderRadius: '50%',
               backgroundColor: 'white',
-              padding: 1,
+              padding: theme.spacing(2),
               boxShadow: 2,
             }}
           />

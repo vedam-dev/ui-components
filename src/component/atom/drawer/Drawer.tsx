@@ -25,12 +25,12 @@ const Drawer: FC<DrawerProps> = ({
   paperSx,
   ...rest
 }) => {
-  const { palette } = useCoreTheme() as CoreTheme;
+  const { palette, spacing } = useCoreTheme() as CoreTheme;
 
   const defaultPaperSx = SxOverride(
     {
       width: anchor === 'left' || anchor === 'right' ? width : 'auto',
-      padding: 2,
+      padding: spacing(2),
       display: 'flex',
       flexDirection: 'column',
       backgroundColor: palette.background.paper,
