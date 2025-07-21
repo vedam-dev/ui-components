@@ -1,4 +1,4 @@
-import { Card, CardActionArea, CardActions } from '../../atom/card';
+import { Card, CardActions } from '../../atom/card';
 import { Typography } from '../../atom/typography';
 import { Button } from '../../atom/button';
 import { FC } from 'react';
@@ -131,14 +131,19 @@ const SubjectCard: FC<SubjectCardProps> = ({
     color: theme.palette.text.primary,
     fontSize: theme.typography.body1.fontSize,
     lineHeight: theme.spacing(4.5),
-    marginTop: theme.spacing(3),
+    marginTop: theme.spacing(5.25),
+    mb: theme.spacing(5.25),
     textWrap: 'stable',
+    ml: theme.spacing(6),
     ...descriptionTextSx
   };
 
   const defaultButtonSx: SxProps<Theme> = {
-    width: '100%',
+    width: theme.spacing(66.25),
+    height: theme.spacing(9),
     padding: theme.spacing(2),
+    ml: theme.spacing(5),
+    mb: theme.spacing(7.5),
     borderWidth: theme.spacing(0.25),
     borderRadius: theme.spacing(3),
     borderColor: theme.palette.primary.main,
@@ -156,88 +161,77 @@ const SubjectCard: FC<SubjectCardProps> = ({
 
   return (
     <Card shadow="y12" sx={defaultCardSx}>
-      <CardActionArea
+      <Box
         sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'space-around',
-          gap: theme.spacing(4),
           width: '100%',
-          height: '100%',
-          padding: theme.spacing(6)
+          height: '100%'
         }}
       >
-        <Box
-          sx={{
-            width: '100%',
-            height: '100%'
-          }}
-        >
-          <Stack direction="row" spacing={6} alignItems="center" mb={4}>
-            <Box sx={defaultIconContainerSx}>
-              <Box
-                component="img"
-                src={iconUrl}
-                alt={iconAlt}
-                sx={{ width: '34px', height: '34px' }}
-              />
-            </Box>
-            <Stack>
-              <Typography variant="h6" sx={defaultSubjectTextSx}>
-                {subject}
-              </Typography>
-              <Typography variant="body1" color="text.secondary" sx={defaultTeacherTextSx}>
-                {teacher}
-              </Typography>
-            </Stack>
-          </Stack>
-
-          <Box sx={{ pb: theme.spacing(4) }}>
+        <Stack direction="row" spacing={6} alignItems="center" mb={4.25} mt={7} ml={5}>
+          <Box sx={defaultIconContainerSx}>
             <Box
-              sx={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: theme.spacing(2),
-                mb: theme.spacing(0)
-              }}
-            >
-              <Stack direction="row" alignItems="center" spacing={1}>
-                <AccessTimeIcon
-                  sx={{
-                    width: '14px',
-                    color: theme.palette.text.secondary
-                  }}
-                />
-                <Typography sx={defaultDurationTextSx}>{duration}</Typography>
-              </Stack>
-
-              <Typography variant="caption" color="text.secondary">
-                |
-              </Typography>
-
-              <Stack direction="row" alignItems="center" spacing={1}>
-                <MenuBookOutlinedIcon
-                  sx={{
-                    width: '14px',
-                    color: theme.palette.text.secondary
-                  }}
-                />
-                <Typography sx={defaultLectureTextSx}>{lectureCount} Lectures</Typography>
-              </Stack>
-            </Box>
-
-            <Typography variant="body1" sx={defaultDescriptionTextSx}>
-              {description}
-            </Typography>
+              component="img"
+              src={iconUrl}
+              alt={iconAlt}
+              sx={{ width: '34px', height: '34px' }}
+            />
           </Box>
-          <CardActions sx={{ padding: 0, mt: theme.spacing(0) }}>
-            {' '}
-            <Button variant="outlined" sx={defaultButtonSx} onClick={onGoToClass} disableElevation>
-              {buttonText}
-            </Button>
-          </CardActions>
+          <Stack>
+            <Typography variant="h6" sx={defaultSubjectTextSx}>
+              {subject}
+            </Typography>
+            <Typography variant="body1" color="text.secondary" sx={defaultTeacherTextSx}>
+              {teacher}
+            </Typography>
+          </Stack>
+        </Stack>
+
+        <Box>
+          <Box
+            sx={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: theme.spacing(2),
+              mb: theme.spacing(0),
+              ml: theme.spacing(6)
+            }}
+          >
+            <Stack direction="row" alignItems="center" spacing={1}>
+              <AccessTimeIcon
+                sx={{
+                  width: '14px',
+                  color: theme.palette.text.secondary
+                }}
+              />
+              <Typography sx={defaultDurationTextSx}>{duration}</Typography>
+            </Stack>
+
+            <Typography variant="caption" color="text.secondary">
+              |
+            </Typography>
+
+            <Stack direction="row" alignItems="center" spacing={1}>
+              <MenuBookOutlinedIcon
+                sx={{
+                  width: '14px',
+                  color: theme.palette.text.secondary
+                }}
+              />
+              <Typography sx={defaultLectureTextSx}>{lectureCount} Lectures</Typography>
+            </Stack>
+          </Box>
+
+          <Typography variant="body1" sx={defaultDescriptionTextSx}>
+            {description}
+          </Typography>
         </Box>
-      </CardActionArea>
+        <CardActions sx={{ padding: 0, mt: theme.spacing(0) }}>
+          {' '}
+          <Button variant="outlined" sx={defaultButtonSx} onClick={onGoToClass} disableElevation>
+            {buttonText}
+          </Button>
+        </CardActions>
+      </Box>
     </Card>
   );
 };

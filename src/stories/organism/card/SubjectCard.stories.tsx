@@ -128,7 +128,7 @@ export const Default: Story = {
 
 export const WebDevelopment: Story = {
   args: {
-    subject: 'Web Developmen',
+    subject: 'Web Development',
     teacher: 'Priya Sharma',
     duration: '4 months',
     lectureCount: 24,
