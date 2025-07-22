@@ -30,11 +30,12 @@ const SidebarWrapper: FC<SidebarWrapperProps> = ({
   streakCount = 0,
   coinCount = 0,
   notificationCount = 1,
+  hideStatsContainer = false,
   onProfileClick = () => console.log("Profile clicked"),
 }) => {
   const topbarHeight = 106;
   const [isSidebarExpanded, setIsSidebarExpanded] = useState(false);
-
+  
   const toggleSidebar = () => setIsSidebarExpanded(prev => !prev);
 
   return (
@@ -51,6 +52,7 @@ const SidebarWrapper: FC<SidebarWrapperProps> = ({
         onProfileClick={onProfileClick}
         isSidebarExpanded={isSidebarExpanded}
         sx={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: isSidebarExpanded ? 0 : 20 }}
+        hideStatsContainer = {hideStatsContainer}
       />
 
       <SidebarDrawer
