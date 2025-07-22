@@ -147,3 +147,36 @@ export const MultipleItem: Story = {
   args: {},
 };
 
+
+export const WithInfoItems: Story = {
+  render: (args) => {
+    const [open, setOpen] = useState(false);
+    const feeItems = [
+      { id: 'tuition', description: 'Tuition Fees', amount: '1,00,000' },
+      { id: 'lab', description: 'Lab Fees', amount: '20,000' },
+    ];
+    const infoItems = [
+      { label: 'Total Course Fees', value: '₹1,20,000' },
+      { label: 'Scholarship', value: '₹20,000' },
+      { label: 'Seat Block Fees', value: '₹5,000' },
+      { label: 'Final Payable', value: '₹95,000' },
+    ];
+
+    return (
+      <>
+        <Button variant="contained" onClick={() => setOpen(true)}>
+          Open Modal with Info Header
+        </Button>
+        <FeeSelectionModal
+          {...args}
+          open={open}
+          onClose={() => setOpen(false)}
+          feeItems={feeItems}
+          infoItems={infoItems}
+          title="Fees Overview"
+        />
+      </>
+    );
+  },
+  args: {},
+};

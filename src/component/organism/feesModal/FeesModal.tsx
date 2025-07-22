@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import {
   Modal,
   Box,
@@ -8,12 +8,18 @@ import {
   useTheme,
 } from "@mui/material";
 import Button from "../../../component/atom/button/Button";
-import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
+import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
+
 export interface FeeItem {
   id: string;
   description: string;
   amount: string;
-  bgColor?: string; 
+  bgColor?: string;
+}
+
+export interface InfoItem {
+  label: string;
+  value: string;
 }
 
 interface FeeSelectionModalProps {
@@ -21,7 +27,8 @@ interface FeeSelectionModalProps {
   onClose: () => void;
   feeItems: FeeItem[];
   onPayNow: (feeId: string) => void;
-  title: string;
+  title?: string;
+  infoItems?: InfoItem[];
 }
 
 const FeeSelectionModal: React.FC<FeeSelectionModalProps> = ({
@@ -29,13 +36,14 @@ const FeeSelectionModal: React.FC<FeeSelectionModalProps> = ({
   onClose,
   feeItems,
   onPayNow,
-  title = "Select Fees to Pay"
+  title = "Select Fees to Pay",
+  infoItems = [],
 }) => {
   const theme = useTheme();
 
   const getItemBackgroundColor = (index: number, bgColor?: string) => {
     if (bgColor) return bgColor;
-    return index%2===0 ? "#F6EBFF" : "#FFE8D2";
+    return index % 2 === 0 ? "#F6EBFF" : "#FFE8D2";
   };
 
   return (
@@ -58,17 +66,14 @@ const FeeSelectionModal: React.FC<FeeSelectionModalProps> = ({
           boxShadow: 24,
           borderRadius: theme.spacing(10),
           px: theme.spacing(8),
-          pt:theme.spacing(7),
+          pt: theme.spacing(7),
           pb: theme.spacing(11),
           outline: "none",
-          "&::-webkit-scrollbar": {
-            display: "none",
-          },
-          msOverflowStyle: "none", 
-          scrollbarWidth: "none", 
+          "&::-webkit-scrollbar": { display: "none" },
+          msOverflowStyle: "none",
+          scrollbarWidth: "none",
         }}
       >
-    
         <Box
           sx={{
             display: "flex",
@@ -83,20 +88,76 @@ const FeeSelectionModal: React.FC<FeeSelectionModalProps> = ({
               color: "#1E1E1E",
               fontFamily: "Outfit, system-ui",
               fontSize: "24px",
-              fontStyle: "normal",
               fontWeight: 500,
-              lineHeight: "normal",
-              letterSpacing: "normal",
             }}
           >
             {title}
           </Typography>
-          <IconButton onClick={onClose} sx={{p:0}}>
-            <CancelOutlinedIcon sx={{width:'27px',height:'27px',fill: '#1E1E1E'}}/>
+          <IconButton onClick={onClose} sx={{ p: 0 }}>
+            <CancelOutlinedIcon
+              sx={{ width: 27, height: 27, fill: "#1E1E1E" }}
+            />
           </IconButton>
         </Box>
 
-   
+        {infoItems.length > 0 && (
+          <Box
+            sx={{
+              display: "flex",
+              gap: theme.spacing(3),
+              mb: theme.spacing(7),
+            }}
+          >
+            {infoItems.map((item, i) => (
+              <Fragment key={item.label}>
+                <Box sx={{ display: "flex", flexDirection: "column" }}>
+                  <Typography
+                    variant="caption"
+                    sx={{
+                      color: theme.palette.grey[500],
+                      fontSize: "16px",
+                      fontWeight: 400,
+                    }}
+                  >
+                    {item.label}
+                  </Typography>
+                  <Typography
+                    variant="body1"
+                    sx={{
+                      fontSize: "16px",
+                      fontWeight: 500,
+                    }}
+                  >
+                    {item.value}
+                  </Typography>
+                </Box>
+
+                {i < infoItems.length - 2 ? (
+                  <Box
+                    sx={{
+                      color: theme.palette.grey[500],
+                      fontSize: "16px",
+                      fontWeight: 400,
+                    }}
+                  >
+                    -
+                  </Box>
+                ) : i === infoItems.length - 2 ? (
+                  <Box
+                    sx={{
+                      color: theme.palette.grey[500],
+                      fontSize: "16px",
+                      fontWeight: 400,
+                    }}
+                  >
+                    =
+                  </Box>
+                ) : null}
+              </Fragment>
+            ))}
+          </Box>
+        )}
+
         <Box sx={{ display: "flex", flexDirection: "column", gap: 4 }}>
           {feeItems.map((fee, index) => (
             <Card
@@ -104,10 +165,9 @@ const FeeSelectionModal: React.FC<FeeSelectionModalProps> = ({
               variant="outlined"
               sx={{
                 borderRadius: "20px",
-                border:
-                  "1px solid ${getItemBackgroundColor(index, fee.bgColor)}",
-                boxShadow: "0px 2px 8px rgba(0,0,0,0.08)",
+                border: `1px solid ${getItemBackgroundColor(index, fee.bgColor)}`,
                 backgroundColor: getItemBackgroundColor(index, fee.bgColor),
+                boxShadow: "0px 2px 8px rgba(0,0,0,0.08)",
                 px: theme.spacing(7),
                 py: theme.spacing(3),
               }}
@@ -120,8 +180,15 @@ const FeeSelectionModal: React.FC<FeeSelectionModalProps> = ({
                     alignItems: "center",
                   }}
                 >
-      
-                  <Box sx={{ display: "flex", flexDirection: "row", justifyContent:'space-between', alignItems:'center', width:'100%' }}>
+                  <Box
+                    sx={{
+                      display: "flex",
+                      flexDirection: "row",
+                      justifyContent: "space-between",
+                      alignItems: "center",
+                      width: "100%",
+                    }}
+                  >
                     <Box
                       sx={{
                         display: "flex",
@@ -133,7 +200,7 @@ const FeeSelectionModal: React.FC<FeeSelectionModalProps> = ({
                         variant="subtitle2"
                         sx={{
                           color: theme.palette.text.secondary,
-                          fontWeight: "400",
+                          fontWeight: 400,
                           fontSize: "16px",
                         }}
                       >
@@ -141,11 +208,12 @@ const FeeSelectionModal: React.FC<FeeSelectionModalProps> = ({
                       </Typography>
                       <Typography
                         variant="h6"
-                        sx={{ fontWeight: "400", fontSize: "20px" }}
+                        sx={{ fontWeight: 400, fontSize: "20px" }}
                       >
                         {fee.description}
                       </Typography>
                     </Box>
+
                     <Box
                       sx={{
                         display: "flex",
@@ -157,21 +225,20 @@ const FeeSelectionModal: React.FC<FeeSelectionModalProps> = ({
                         variant="subtitle2"
                         sx={{
                           color: theme.palette.text.secondary,
-                          fontWeight: "400",
+                          fontWeight: 400,
                           fontSize: "16px",
-                          
                         }}
                       >
                         Amount
                       </Typography>
                       <Typography
                         variant="h6"
-                        sx={{ fontWeight: "400", fontSize: "20px" }}
+                        sx={{ fontWeight: 400, fontSize: "20px" }}
                       >
                         {fee.amount}
                       </Typography>
                     </Box>
-                    
+
                     <Button
                       variant="contained"
                       onClick={() => onPayNow(fee.id)}
