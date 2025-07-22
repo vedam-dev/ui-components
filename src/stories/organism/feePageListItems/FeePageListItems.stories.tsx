@@ -5,6 +5,7 @@ import FeeListItem, {
   FeeListItemStatus,
   FeeListItemButton,
 } from "../../../component/organism/feePageListitems/FeePageListItems";
+import { Box } from "@mui/material";
 
 const meta: Meta<typeof FeeListItem> = {
   title: "Organism/FeeListItem",
@@ -147,4 +148,20 @@ export const LessItems: StoryObj = {
       <FeeListItemButton onClick={() => console.log("USD Receipt")} />
     </FeeListItem>
   ),
+};
+
+export const WithoutButton: Story = {
+  args: {
+    children: (
+      <>
+        <FeeListItemRow title="Description" value="Lab Fees" />
+        <FeeListItemRow title="Payment Mode" value="Online" />
+        <FeeListItemRow title="Payment ID" value="198026VEDAM" />
+        <FeeListItemRow title="Date" value="07/04/2025" />
+        <FeeListItemRow title="Amount" value="35000" />
+        <FeeListItemStatus status="Failed" />
+      </>
+    ),
+    bgColor: "#FFEBEE",
+  },
 };
