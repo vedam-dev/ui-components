@@ -142,8 +142,8 @@ const FeeStatusList: React.FC<FeeStatusListProps> = ({
               y2="4.5"
               gradientUnits="userSpaceOnUse"
             >
-              <stop stop-color="#F9F2FF" />
-              <stop offset="1" stop-color="#7410CA" />
+              <stop stopColor="#F9F2FF" />
+              <stop offset="1" stopColor="#7410CA" />
             </linearGradient>
             <linearGradient
               id="paint1_linear_705_5772"
@@ -153,8 +153,8 @@ const FeeStatusList: React.FC<FeeStatusListProps> = ({
               y2="60"
               gradientUnits="userSpaceOnUse"
             >
-              <stop stop-color="#55118F" />
-              <stop offset="1" stop-color="white" />
+              <stop stopColor="#55118F" />
+              <stop offset="1" stopColor="white" />
             </linearGradient>
           </defs>
         </svg>
