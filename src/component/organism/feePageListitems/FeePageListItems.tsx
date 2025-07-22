@@ -17,7 +17,6 @@ export const FeeListItemRow: React.FC<FeeListItemRowProps> = ({ title, value }) 
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'flex-start',
-        flex: 1,
         px: theme.spacing(1),
       }}
     >
@@ -63,7 +62,6 @@ export const FeeListItemStatus: React.FC<FeeListItemStatusProps> = ({ status }) 
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'flex-start',
-        flex: 1,
       }}
     >
       <Typography
@@ -159,7 +157,7 @@ const FeeListItem: React.FC<FeeListItemProps> = ({ bgColor, children }) => {
           justifyContent: 'space-between',
           flexWrap: 'wrap',
           p: theme.spacing(3),
-          gap: theme.spacing(1),
+          gap: theme.spacing(10),
         }}
       >
         {children}
