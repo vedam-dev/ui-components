@@ -29,6 +29,7 @@ export interface TopBarProps {
   onProfileClick?: () => void;
   onMenuClick?: () => void;
   isSidebarExpanded?: boolean;
+  hideStatsContainer?: boolean;
 }
 
 const TopBarContainer = styled(Box)(({ theme }) => ({
@@ -99,6 +100,8 @@ const TopBar: React.FC<TopBarProps> = ({
   onLogoClick,
   onProfileClick,
   isSidebarExpanded = false,
+  hideStatsContainer = false,
+
 }) => {
     const theme = useCoreTheme() as CoreTheme;
   return (
@@ -152,7 +155,7 @@ const TopBar: React.FC<TopBarProps> = ({
 
     
       <StudentInfo>
-        <StatsContainer>
+        <StatsContainer sx={{ display: hideStatsContainer ? 'none' : 'flex' }}>
           <StatItem>
             <img
               src="https://images.ctfassets.net/wrc4czfp4sk8/4rCsCMy8FIAN8H7YJhigCm/cf6902982ed3d5ba42b11f205c6f4016/Group_1261155655.png"

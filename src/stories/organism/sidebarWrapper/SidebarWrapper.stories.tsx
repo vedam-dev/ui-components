@@ -48,3 +48,9 @@ export const WithCustomItems: Story = {
     items: customItems,
   },
 };
+export const WithCustomItemsWithoutStats: Story = {
+  args: {
+    items: customItems,
+    hideStatsContainer: true,
+  },
+};
