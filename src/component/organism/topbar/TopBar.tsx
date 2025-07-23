@@ -13,7 +13,6 @@ import {
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import { CoreTheme, useCoreTheme } from '../../../theme/core-theme';
 
 export interface TopBarProps {
@@ -234,13 +233,7 @@ const TopBar: React.FC<TopBarProps> = ({
               >
                 Student Id: {studentId}
               </Typography>
-              <KeyboardArrowDownIcon
-                 sx={{
-                  fontSize: '16px',
-                  color: theme.palette.text.secondary,
-                  marginLeft: theme.spacing(1),
-                }}
-              />
+          
             </Box>
           </Box>
         </Box>
