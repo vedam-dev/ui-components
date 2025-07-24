@@ -15,6 +15,7 @@ export interface FeeItem {
   description: string;
   amount: string;
   bgColor?: string;
+  paid?: boolean;
 }
 
 export interface InfoItem {
@@ -29,6 +30,7 @@ interface FeeSelectionModalProps {
   onPayNow: (feeId: string) => void;
   title?: string;
   infoItems?: InfoItem[];
+  isButtonDisabled?: (feeId: string) => boolean;
 }
 
 const FeeSelectionModal: React.FC<FeeSelectionModalProps> = ({
@@ -38,6 +40,7 @@ const FeeSelectionModal: React.FC<FeeSelectionModalProps> = ({
   onPayNow,
   title = "Select Fees to Pay",
   infoItems = [],
+  isButtonDisabled,
 }) => {
   const theme = useTheme();
 
@@ -239,26 +242,33 @@ const FeeSelectionModal: React.FC<FeeSelectionModalProps> = ({
                       </Typography>
                     </Box>
 
-                    <Button
-                      variant="contained"
-                      onClick={() => onPayNow(fee.id)}
-                      sx={{
-                        backgroundColor: "white",
-                        color: theme.palette.primary.dark,
-                        fontWeight: "bold",
-                        px: theme.spacing(20),
-                        py: theme.spacing(2),
-                        textTransform: "none",
-                        border: `1px solid ${theme.palette.primary.main}`,
-                        "&:hover": {
-                          backgroundColor: "white",
-                          border: `1px solid ${theme.palette.primary.main}`,
-                          boxShadow: "none",
-                        },
-                      }}
-                    >
-                      Pay Now
-                    </Button>
+                    {isButtonDisabled ? (
+                        <Typography sx={{ fontWeight: 600, color: theme.palette.success.main }}>
+                          Paid
+                        </Typography>
+                      ) : (
+                        <Button
+                          variant="contained"
+                          onClick={() => onPayNow(fee.id)}
+                          disabled={isButtonDisabled}
+                          sx={{
+                            backgroundColor: "white",
+                            color: theme.palette.primary.dark,
+                            fontWeight: "bold",
+                            px: theme.spacing(20),
+                            py: theme.spacing(2),
+                            textTransform: "none",
+                            border: `1px solid ${theme.palette.primary.main}`,
+                            "&:hover": {
+                              backgroundColor: "white",
+                              border: `1px solid ${theme.palette.primary.main}`,
+                              boxShadow: "none",
+                            },
+                          }}
+                        >
+                          Pay Now
+                        </Button>
+                      )}
                   </Box>
                 </Box>
               </Box>
