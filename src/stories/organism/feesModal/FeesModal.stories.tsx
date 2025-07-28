@@ -15,6 +15,7 @@ const meta: Meta<typeof FeeSelectionModal> = {
       control: 'text',
       defaultValue: 'Select Fees to Pay' 
     },
+    isButtonDisabled: { action: 'checkDisabled' },
   },
 };
 
@@ -27,16 +28,23 @@ const Template = (args: any) => {
   
   const feeItems = [
     {
-      id: 'tuition',
+      id: 1,
       description: 'Tuition Fees',
-      amount: '1,25,000'
+      amount: '1,25,000',
+      status: 'UNPAID'
     },
     {
-      id: 'upskilling',
+      id: 2,
       description: 'Upskilling Fees',
-      amount: '1,25,000'
+      amount: '1,25,000',
+      status: 'UNPAID'
     }
   ];
+
+  const handlePayNow = (feeId: string) => {
+    console.log('Pay now clicked for fee:', feeId);
+    args.onPayNow?.(feeId);
+  };
 
   return (
     <div>
@@ -48,6 +56,7 @@ const Template = (args: any) => {
         open={open}
         onClose={() => setOpen(false)}
         feeItems={feeItems}
+        onPayNow={handlePayNow}
         title={args.title}
       />
     </div>
@@ -73,11 +82,12 @@ export const EmptyState: Story = {
           open={open}
           onClose={() => setOpen(false)}
           feeItems={[]}
+          onPayNow={() => {}}
         />
       </div>
     );
   },
-    args: {
+  args: {
     title: 'Single Fee Payment' 
   },
 };
@@ -87,11 +97,17 @@ export const SingleItem: Story = {
     const [open, setOpen] = useState(false);
     const feeItems = [
       {
-        id: 'tuition',
+        id: 1,
         description: 'Tuition Fees',
-        amount: '1,25,000'
+        amount: '1,25,000',
+        status: 'UNPAID'
       }
     ];
+
+    const handlePayNow = (feeId: string) => {
+      console.log('Pay now clicked for fee:', feeId);
+      args.onPayNow?.(feeId);
+    };
 
     return (
       <div>
@@ -103,43 +119,54 @@ export const SingleItem: Story = {
           open={open}
           onClose={() => setOpen(false)}
           feeItems={feeItems}
+          onPayNow={handlePayNow}
         />
       </div>
     );
   },
   args: {},
 };
+
 export const MultipleItem: Story = {
   render: (args) => {
     const [open, setOpen] = useState(false);
     const feeItems = [
       {
-        id: 'tuition',
+        id: 1,
         description: 'Tuition Fees',
-        amount: '1,25,000'
+        amount: '1,25,000',
+        status: 'UNPAID'
       },
       {
-        id: 'upskilling',
-        description: 'upskilling Fees',
-        amount: '1,25,000'
+        id: 2,
+        description: 'Upskilling Fees',
+        amount: '1,25,000',
+        status: 'PAID'
       },
       {
-        id: 'hostel',
+        id: 3,
         description: 'Hostel Fees',
-        amount: '1,25,000'
+        amount: '1,25,000',
+        status: 'UNPAID'
       }
     ];
+
+    const handlePayNow = (feeId: string) => {
+      console.log('Pay now clicked for fee:', feeId);
+      args.onPayNow?.(feeId);
+    };
 
     return (
       <div>
         <Button variant="contained" onClick={() => setOpen(true)}>
-          Open Single Item Modal
+          Open Multiple Items Modal
         </Button>
         <FeeSelectionModal
           {...args}
           open={open}
           onClose={() => setOpen(false)}
           feeItems={feeItems}
+          onPayNow={handlePayNow}
         />
       </div>
     );
@@ -147,13 +174,12 @@ export const MultipleItem: Story = {
   args: {},
 };
 
-
 export const WithInfoItems: Story = {
   render: (args) => {
     const [open, setOpen] = useState(false);
     const feeItems = [
-      { id: 'tuition', description: 'Tuition Fees', amount: '1,00,000' },
-      { id: 'lab', description: 'Lab Fees', amount: '20,000' },
+      { id: 1, description: 'Tuition Fees', amount: '1,00,000', status: 'UNPAID' },
+      { id: 2, description: 'Lab Fees', amount: '20,000', status: 'UNPAID' },
     ];
     const infoItems = [
       { label: 'Total Course Fees', value: '₹1,20,000' },
@@ -162,8 +188,13 @@ export const WithInfoItems: Story = {
       { label: 'Final Payable', value: '₹95,000' },
     ];
 
+    const handlePayNow = (feeId: string) => {
+      console.log('Pay now clicked for fee:', feeId);
+      args.onPayNow?.(feeId);
+    };
+
     return (
-      <>
+      <div>
         <Button variant="contained" onClick={() => setOpen(true)}>
           Open Modal with Info Header
         </Button>
@@ -172,10 +203,47 @@ export const WithInfoItems: Story = {
           open={open}
           onClose={() => setOpen(false)}
           feeItems={feeItems}
+          onPayNow={handlePayNow}
           infoItems={infoItems}
           title="Fees Overview"
         />
-      </>
+      </div>
+    );
+  },
+  args: {},
+};
+
+export const WithDisabledItems: Story = {
+  render: (args) => {
+    const [open, setOpen] = useState(false);
+    const feeItems = [
+      { id: 1, description: 'Tuition Fees', amount: '1,00,000', status: 'UNPAID' },
+      { id: 2, description: 'Lab Fees', amount: '20,000', status: 'PAID' },
+    ];
+
+    const isButtonDisabled = (feeId: string) => {
+      return feeId === '1'; // Disable the first item
+    };
+
+    const handlePayNow = (feeId: string) => {
+      console.log('Pay now clicked for fee:', feeId);
+      args.onPayNow?.(feeId);
+    };
+
+    return (
+      <div>
+        <Button variant="contained" onClick={() => setOpen(true)}>
+          Open Modal with Disabled Items
+        </Button>
+        <FeeSelectionModal
+          {...args}
+          open={open}
+          onClose={() => setOpen(false)}
+          feeItems={feeItems}
+          onPayNow={handlePayNow}
+          isButtonDisabled={isButtonDisabled}
+        />
+      </div>
     );
   },
   args: {},
