@@ -23,6 +23,11 @@ export interface InfoItem {
   value: string;
 }
 
+export interface InfoItem {
+  label: string;
+  value: string;
+}
+
 interface FeeSelectionModalProps {
   open: boolean;
   onClose: () => void;

@@ -16,7 +16,7 @@ const LoginModal: React.FC<LoginModalProps> = ({
   logoAlt = "School Logo",
   logoHeight = 117,
   logoWidth = 208,
-  subtitle = "Login",
+  subtitle = "Login with your registered email id with Vedam ",
   onGoogleLoginClick,
 }) => {
   const theme = useCoreTheme() as CoreTheme;
@@ -34,6 +34,7 @@ const LoginModal: React.FC<LoginModalProps> = ({
     >
       <Box
         sx={{
+          
           py: theme.spacing(8),
           px: theme.spacing(7),
           textAlign: "center",
@@ -55,11 +56,11 @@ const LoginModal: React.FC<LoginModalProps> = ({
 
         <Typography
           sx={{
-            color: "#000",
+            color: "gray",
             fontFamily: "Outfit, system-ui",
-            fontSize: "32px",
-            fontWeight: 500,
-            lineHeight: "36px",
+            fontSize: "18px",
+            fontWeight: 400,
+            lineHeight: "16px",
             letterSpacing: "-0.64px",
             textAlign: "left",
             pl: theme.spacing(3),
@@ -76,7 +77,7 @@ const LoginModal: React.FC<LoginModalProps> = ({
             mt: theme.spacing(8),
             py: theme.spacing(2),
             px: theme.spacing(3),
-            fontSize: "22px",
+            fontSize: "24px",
             fontWeight: 600,
             fontFamily: "Outfit, system-ui",
             color: "#E11C1C",
@@ -87,7 +88,7 @@ const LoginModal: React.FC<LoginModalProps> = ({
             display: "flex",
             textWrap: "nowrap",
             gap: theme.spacing(11),
-            mb: theme.spacing(5),
+            mb: theme.spacing(3),
           }}
         >
           <Box
@@ -103,6 +104,7 @@ const LoginModal: React.FC<LoginModalProps> = ({
             Continue with Google
           </Box>
         </Button>
+       
       </Box>
     </Paper>
   );
