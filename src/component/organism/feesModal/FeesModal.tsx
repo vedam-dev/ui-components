@@ -1,34 +1,33 @@
-import React, { Fragment } from "react";
-import {
-  Modal,
-  Box,
-  Typography,
-  Card,
-  IconButton,
-  useTheme,
-} from "@mui/material";
-import Button from "../../../component/atom/button/Button";
-import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
+"use client"
+
+import type React from "react"
+import { Fragment } from "react"
+import { Modal, Box, Typography, Card, IconButton, useTheme } from "@mui/material"
+import Button from "../../../component/atom/button/Button"
+import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined"
 
 export interface FeeItem {
-  id: string;
-  description: string;
-  amount: string;
-  bgColor?: string;
+  id: number 
+  description: string
+  amount: string
+  bgColor?: string
+  paid?: boolean
+  status?: string
 }
 
 export interface InfoItem {
-  label: string;
-  value: string;
+  label: string
+  value: string
 }
 
 interface FeeSelectionModalProps {
-  open: boolean;
-  onClose: () => void;
-  feeItems: FeeItem[];
-  onPayNow: (feeId: string) => void;
-  title?: string;
-  infoItems?: InfoItem[];
+  open: boolean
+  onClose: () => void
+  feeItems: FeeItem[]
+  onPayNow: (feeId: string) => void
+  title?: string
+  infoItems?: InfoItem[]
+  isButtonDisabled?: (feeId: string) => boolean
 }
 
 const FeeSelectionModal: React.FC<FeeSelectionModalProps> = ({
@@ -38,21 +37,17 @@ const FeeSelectionModal: React.FC<FeeSelectionModalProps> = ({
   onPayNow,
   title = "Select Fees to Pay",
   infoItems = [],
+  isButtonDisabled,
 }) => {
-  const theme = useTheme();
+  const theme = useTheme()
 
   const getItemBackgroundColor = (index: number, bgColor?: string) => {
-    if (bgColor) return bgColor;
-    return index % 2 === 0 ? "#F6EBFF" : "#FFE8D2";
-  };
+    if (bgColor) return bgColor
+    return index % 2 === 0 ? "#F6EBFF" : "#FFE8D2"
+  }
 
   return (
-    <Modal
-      open={open}
-      onClose={onClose}
-      aria-labelledby="fee-selection-modal"
-      aria-describedby="select-fees-to-pay"
-    >
+    <Modal open={open} onClose={onClose} aria-labelledby="fee-selection-modal" aria-describedby="select-fees-to-pay">
       <Box
         sx={{
           position: "absolute",
@@ -94,9 +89,7 @@ const FeeSelectionModal: React.FC<FeeSelectionModalProps> = ({
             {title}
           </Typography>
           <IconButton onClick={onClose} sx={{ p: 0 }}>
-            <CancelOutlinedIcon
-              sx={{ width: 27, height: 27, fill: "#1E1E1E" }}
-            />
+            <CancelOutlinedIcon sx={{ width: 27, height: 27, fill: "#1E1E1E" }} />
           </IconButton>
         </Box>
 
@@ -159,115 +152,122 @@ const FeeSelectionModal: React.FC<FeeSelectionModalProps> = ({
         )}
 
         <Box sx={{ display: "flex", flexDirection: "column", gap: 4 }}>
-          {feeItems.map((fee, index) => (
-            <Card
-              key={fee.id}
-              variant="outlined"
-              sx={{
-                borderRadius: "20px",
-                border: `1px solid ${getItemBackgroundColor(index, fee.bgColor)}`,
-                backgroundColor: getItemBackgroundColor(index, fee.bgColor),
-                boxShadow: "0px 2px 8px rgba(0,0,0,0.08)",
-                px: theme.spacing(7),
-                py: theme.spacing(3),
-              }}
-            >
-              <Box sx={{ p: theme.spacing(3) }}>
-                <Box
-                  sx={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                    alignItems: "center",
-                  }}
-                >
+          {feeItems.map((fee, index) => {
+            const isPaid = fee.status === "PAID"
+
+            return (
+              <Card
+                key={fee.id}
+                variant="outlined"
+                sx={{
+                  borderRadius: "20px",
+                  border: `1px solid ${getItemBackgroundColor(index, fee.bgColor)}`,
+                  backgroundColor: getItemBackgroundColor(index, fee.bgColor),
+                  boxShadow: "0px 2px 8px rgba(0,0,0,0.08)",
+                  px: theme.spacing(7),
+                  py: theme.spacing(3),
+                  opacity: isPaid ? 0.6 : 1, 
+                }}
+              >
+                <Box sx={{ p: theme.spacing(3) }}>
                   <Box
                     sx={{
                       display: "flex",
-                      flexDirection: "row",
                       justifyContent: "space-between",
                       alignItems: "center",
-                      width: "100%",
                     }}
                   >
                     <Box
                       sx={{
                         display: "flex",
-                        flexDirection: "column",
-                        minWidth: "130px",
+                        flexDirection: "row",
+                        justifyContent: "space-between",
+                        alignItems: "center",
+                        width: "100%",
                       }}
                     >
-                      <Typography
-                        variant="subtitle2"
+                      <Box
                         sx={{
-                          color: theme.palette.text.secondary,
-                          fontWeight: 400,
-                          fontSize: "16px",
+                          display: "flex",
+                          flexDirection: "column",
+                          minWidth: "130px",
                         }}
                       >
-                        Description
-                      </Typography>
-                      <Typography
-                        variant="h6"
-                        sx={{ fontWeight: 400, fontSize: "20px" }}
-                      >
-                        {fee.description}
-                      </Typography>
-                    </Box>
+                        <Typography
+                          variant="subtitle2"
+                          sx={{
+                            color: theme.palette.text.secondary,
+                            fontWeight: 400,
+                            fontSize: "16px",
+                          }}
+                        >
+                          Description
+                        </Typography>
+                        <Typography variant="h6" sx={{ fontWeight: 400, fontSize: "20px" }}>
+                          {fee.description}
+                        </Typography>
+                      </Box>
 
-                    <Box
-                      sx={{
-                        display: "flex",
-                        flexDirection: "column",
-                        minWidth: "130px",
-                      }}
-                    >
-                      <Typography
-                        variant="subtitle2"
+                      <Box
                         sx={{
-                          color: theme.palette.text.secondary,
-                          fontWeight: 400,
-                          fontSize: "16px",
+                          display: "flex",
+                          flexDirection: "column",
+                          minWidth: "130px",
                         }}
                       >
-                        Amount
-                      </Typography>
-                      <Typography
-                        variant="h6"
-                        sx={{ fontWeight: 400, fontSize: "20px" }}
-                      >
-                        {fee.amount}
-                      </Typography>
-                    </Box>
+                        <Typography
+                          variant="subtitle2"
+                          sx={{
+                            color: theme.palette.text.secondary,
+                            fontWeight: 400,
+                            fontSize: "16px",
+                          }}
+                        >
+                          Amount
+                        </Typography>
+                        <Typography variant="h6" sx={{ fontWeight: 400, fontSize: "20px" }}>
+                          {fee.amount}
+                        </Typography>
+                      </Box>
 
-                    <Button
-                      variant="contained"
-                      onClick={() => onPayNow(fee.id)}
-                      sx={{
-                        backgroundColor: "white",
-                        color: theme.palette.primary.dark,
-                        fontWeight: "bold",
-                        px: theme.spacing(20),
-                        py: theme.spacing(2),
-                        textTransform: "none",
-                        border: `1px solid ${theme.palette.primary.main}`,
-                        "&:hover": {
-                          backgroundColor: "white",
-                          border: `1px solid ${theme.palette.primary.main}`,
-                          boxShadow: "none",
-                        },
-                      }}
-                    >
-                      Pay Now
-                    </Button>
+                      <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+                        <Button
+                          variant="contained"
+                          onClick={() => onPayNow(fee.id.toString())}
+                          disabled={isButtonDisabled?.(fee.id.toString()) || isPaid}
+                          sx={{
+                            backgroundColor: isPaid ? theme.palette.grey[300] : "white",
+                            color: isPaid ? theme.palette.grey[500] : theme.palette.primary.dark,
+                            fontWeight: "bold",
+                            px: theme.spacing(20),
+                            py: theme.spacing(2),
+                            textTransform: "none",
+                            border: `1px solid ${isPaid ? theme.palette.grey[300] : theme.palette.primary.main}`,
+                            "&:hover": {
+                              backgroundColor: isPaid ? theme.palette.grey[300] : "white",
+                              border: `1px solid ${isPaid ? theme.palette.grey[300] : theme.palette.primary.main}`,
+                              boxShadow: "none",
+                            },
+                            "&:disabled": {
+                              backgroundColor: theme.palette.grey[300],
+                              color: theme.palette.grey[500],
+                              border: `1px solid ${theme.palette.grey[300]}`,
+                            },
+                          }}
+                        >
+                          {isPaid ? "Paid" : "Pay Now"}
+                        </Button>
+                      </Box>
+                    </Box>
                   </Box>
                 </Box>
-              </Box>
-            </Card>
-          ))}
+              </Card>
+            )
+          })}
         </Box>
       </Box>
     </Modal>
-  );
-};
+  )
+}
 
-export default FeeSelectionModal;
+export default FeeSelectionModal
