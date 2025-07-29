@@ -268,7 +268,7 @@ const FeeSelectionModal: React.FC<FeeSelectionModalProps> = ({
               fontWeight: 500,
             }}
           >
-            * Ignore if fee has been paid already, ignore
+            * Ignore, if fee has already been paid
           </Typography>
         </Box>
       </Box>
