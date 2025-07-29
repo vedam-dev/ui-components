@@ -1,4 +1,4 @@
-"use client"
+  "use client"
 
 import type React from "react"
 import { Fragment } from "react"
@@ -70,12 +70,7 @@ const FeeSelectionModal: React.FC<FeeSelectionModalProps> = ({
         }}
       >
         <Box
-          sx={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            mb: 5,
-          }}
+          sx={{ display: "flex", justifyContent: "space-between", alignItems: "end", mb: 5 }}
         >
           <Typography
             variant="h5"
@@ -88,7 +83,7 @@ const FeeSelectionModal: React.FC<FeeSelectionModalProps> = ({
           >
             {title}
           </Typography>
-          <IconButton onClick={onClose} sx={{ p: 0 }}>
+          <IconButton onClick={onClose} sx={{ p: 0, display: 'flex' }}>
             <CancelOutlinedIcon sx={{ width: 27, height: 27, fill: "#1E1E1E" }} />
           </IconButton>
         </Box>
@@ -238,7 +233,7 @@ const FeeSelectionModal: React.FC<FeeSelectionModalProps> = ({
                           sx={{
                             backgroundColor: isPaid ? theme.palette.grey[300] : "white",
                             color: isPaid ? theme.palette.grey[500] : theme.palette.primary.dark,
-                            fontWeight: "bold",
+                            fontWeight: "bold", 
                             px: theme.spacing(20),
                             py: theme.spacing(2),
                             textTransform: "none",
@@ -252,6 +247,7 @@ const FeeSelectionModal: React.FC<FeeSelectionModalProps> = ({
                               backgroundColor: theme.palette.grey[300],
                               color: theme.palette.grey[500],
                               border: `1px solid ${theme.palette.grey[300]}`,
+                              minWidth:theme.spacing(57)
                             },
                           }}
                         >
@@ -264,6 +260,17 @@ const FeeSelectionModal: React.FC<FeeSelectionModalProps> = ({
               </Card>
             )
           })}
+          <Typography
+            variant="h5"
+            sx={{
+              color: "#1E1E1E",
+              fontFamily: "Outfit, system-ui",
+              fontSize: "18px",
+              fontWeight: 500,
+            }}
+          >
+            * Ignore, if fee has already been paid
+          </Typography>
         </Box>
       </Box>
     </Modal>
