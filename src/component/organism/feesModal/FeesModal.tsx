@@ -1,4 +1,4 @@
-"use client"
+  "use client"
 
 import type React from "react"
 import { Fragment } from "react"
@@ -247,6 +247,7 @@ const FeeSelectionModal: React.FC<FeeSelectionModalProps> = ({
                               backgroundColor: theme.palette.grey[300],
                               color: theme.palette.grey[500],
                               border: `1px solid ${theme.palette.grey[300]}`,
+                              minWidth:theme.spacing(57)
                             },
                           }}
                         >
