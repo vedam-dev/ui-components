@@ -9,14 +9,14 @@ export enum FeeStatus {
   PAID = "paid",
 }
 
-export interface FeeItem {
+export interface FeeStatusItem {
   label: string;
   value: string | React.ReactNode;
 }
 
 export interface IFeeStatusListProps {
   status: FeeStatus;
-  feeItems: FeeItem[];
+  feeItems: FeeStatusItem[];
   onPayNow?: () => void;
 }
 
