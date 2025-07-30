@@ -28,13 +28,13 @@ const Template = (args: any) => {
   
   const feeItems = [
     {
-      id: 1,
+      id: '1',
       description: 'Tuition Fees',
       amount: '1,25,000',
       status: 'UNPAID'
     },
     {
-      id: 2,
+      id: '2',
       description: 'Upskilling Fees',
       amount: '1,25,000',
       status: 'UNPAID'
@@ -97,7 +97,7 @@ export const SingleItem: Story = {
     const [open, setOpen] = useState(false);
     const feeItems = [
       {
-        id: 1,
+        id: '1',
         description: 'Tuition Fees',
         amount: '1,25,000',
         status: 'UNPAID'
@@ -132,19 +132,19 @@ export const MultipleItem: Story = {
     const [open, setOpen] = useState(false);
     const feeItems = [
       {
-        id: 1,
+        id: '1',
         description: 'Tuition Fees',
         amount: '1,25,000',
         status: 'UNPAID'
       },
       {
-        id: 2,
+        id: '2',
         description: 'Upskilling Fees',
         amount: '1,25,000',
         status: 'PAID'
       },
       {
-        id: 3,
+        id: '3',
         description: 'Hostel Fees',
         amount: '1,25,000',
         status: 'UNPAID'
@@ -178,8 +178,8 @@ export const WithInfoItems: Story = {
   render: (args) => {
     const [open, setOpen] = useState(false);
     const feeItems = [
-      { id: 1, description: 'Tuition Fees', amount: '1,00,000', status: 'UNPAID' },
-      { id: 2, description: 'Lab Fees', amount: '20,000', status: 'UNPAID' },
+      { id: '1', description: 'Tuition Fees', amount: '1,00,000', status: 'UNPAID' },
+      { id: '2', description: 'Lab Fees', amount: '20,000', status: 'UNPAID' },
     ];
     const infoItems = [
       { label: 'Total Course Fees', value: '₹1,20,000' },
@@ -217,8 +217,8 @@ export const WithDisabledItems: Story = {
   render: (args) => {
     const [open, setOpen] = useState(false);
     const feeItems = [
-      { id: 1, description: 'Tuition Fees', amount: '1,00,000', status: 'UNPAID' },
-      { id: 2, description: 'Lab Fees', amount: '20,000', status: 'PAID' },
+      { id: '1', description: 'Tuition Fees', amount: '1,00,000', status: 'UNPAID' },
+      { id: '2', description: 'Lab Fees', amount: '20,000', status: 'PAID' },
     ];
 
     const isButtonDisabled = (feeId: string) => {

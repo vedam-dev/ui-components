@@ -7,7 +7,7 @@ import Button from "../../../component/atom/button/Button"
 import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined"
 
 export interface FeeItem {
-  id: number 
+  id: string 
   description: string
   amount: string
   bgColor?: string
