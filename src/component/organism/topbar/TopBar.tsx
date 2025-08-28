@@ -29,6 +29,7 @@ export interface TopBarProps {
   onMenuClick?: () => void;
   isSidebarExpanded?: boolean;
   hideStatsContainer?: boolean;
+  hideHamburger?: boolean;
 }
 
 const TopBarContainer = styled(Box)(({ theme }) => ({
@@ -100,6 +101,7 @@ const TopBar: React.FC<TopBarProps> = ({
   onProfileClick,
   isSidebarExpanded = false,
   hideStatsContainer = false,
+  hideHamburger = false,
 
 }) => {
     const theme = useCoreTheme() as CoreTheme;
@@ -107,7 +109,7 @@ const TopBar: React.FC<TopBarProps> = ({
     <TopBarContainer sx={sx}>
 
       <LeftContainer>
-        <Paper
+        {!hideHamburger && (<Paper
           elevation={4}
           sx={{
             width: 40,
@@ -135,7 +137,7 @@ const TopBar: React.FC<TopBarProps> = ({
               : <MenuIcon sx={{ fontSize: 32, width: "24px", height: "20px" }} />
             }
           </IconButton>
-        </Paper>
+        </Paper>)}
 
         <CollegeInfo>
           <IconButton onClick={onLogoClick}>
