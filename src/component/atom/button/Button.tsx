@@ -13,6 +13,8 @@ export interface IButtonProps {
   small?: boolean;
   shapeType?: ShapeType;
   isV2?: boolean; // improved paddings
+  isDownloadable?: boolean;
+  downloadIconUrl?: string;
 }
 
 export type ButtonVariant = 'text' | 'outlined' | 'contained';
@@ -30,13 +32,15 @@ const Button: FC<ButtonProps> = ({
   style,
   sx,
   isV2 = false,
+  isDownloadable = false,
+  downloadIconUrl = 'https://acjlsquedaotbhbxmtee.supabase.co/storage/v1/object/public/vedam-website-assets/images/videoInfo/Icon-3.png',
   ...buttonProps
 }) => {
   const theme = useCoreTheme() as CoreTheme;
 
   const useMaterialButtons = theme.vd.useMaterialButtons;
 
-  const variant: ButtonVariant = buttonProps.variant ?? 'contained';
+  const variant: ButtonVariant = (buttonProps.variant ?? 'contained') as ButtonVariant;
   const color: DefaultColorType = (buttonProps.color ?? 'primary') as DefaultColorType;
   const isRound = shapeType === 'round';
   const isSmall = !!small;
@@ -46,7 +50,7 @@ const Button: FC<ButtonProps> = ({
 
   const combinedStyles = useMaterialButtons
     ? {}
-    : buttonStyles(theme, isRound, isSmall, color, variant, isV2);
+    : buttonStyles(theme, isRound, isSmall, color, variant, isV2, isDownloadable);
 
   const combinedInnerStyles = useMaterialButtons
     ? {}
@@ -59,10 +63,38 @@ const Button: FC<ButtonProps> = ({
       style={{ ...styles, ...style }}
       variant={variant}
       color={color}
-      
-      
     >
-      {children}
+      {/* Center wrapper — ensures text is centered while icon sits absolutely on the right */}
+      <Box
+        sx={{
+          position: 'relative',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          width: '100%'
+        }}
+      >
+        {children}
+
+        {/* Download icon positioned 22px from right edge and vertically centered */
+        isDownloadable && (
+          <Box
+            component="img"
+            src={downloadIconUrl}
+            alt="Download icon"
+            sx={{
+              position: 'absolute',
+              right: '-110px', 
+              top: '50%',
+              transform: 'translateY(-50%)',
+              width: '38px',
+              height: '38px',
+              pointerEvents: 'none'
+            }}
+          />
+        )}
+      </Box>
+
       {useMaterialButtons ? null : (
         <Box className={`btnFocusState`} component={`span`} sx={combinedInnerStyles} />
       )}
@@ -112,7 +144,8 @@ const buttonStyles = (
   small: boolean,
   color: DefaultColorType,
   variant: ButtonVariant,
-  isV2: boolean
+  isV2: boolean,
+  isDownloadable: boolean
 ): SystemStyleObject<Theme> => {
   const roundBorderRadius = small ? theme.spacing(4) : theme.spacing(6);
   const borderRadius = isRound ? roundBorderRadius : theme.spacing(4);
@@ -143,6 +176,25 @@ const buttonStyles = (
       outline: `solid 2px ${theme.palette.grey[900]}`
     }
   };
+
+  // Downloadable variant — reserve equal left & right padding so the label stays centered
+  if (isDownloadable) {
+
+    defaultStyles.borderRadius = '18px';
+    defaultStyles.border = '1px solid #FF7829';
+    defaultStyles.background = '#FFF';
+    defaultStyles.padding = '9px 121px';
+    defaultStyles.position = 'relative';
+    defaultStyles.color = '#FF7829';
+    defaultStyles.minWidth = '200px';
+
+    // Hover / active / focus styles for downloadable
+    defaultStyles['&:hover, &:active, &:focus-visible'] = {
+      backgroundColor: '#FFF',
+      borderColor: '#FF7829',
+      color: '#FF7829'
+    };
+  }
 
   if (variant === 'text') {
     defaultStyles.textDecoration = 'underline';
