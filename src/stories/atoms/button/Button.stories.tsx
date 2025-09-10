@@ -231,3 +231,14 @@ export const SmallTextButtonDisabled: Story = {
     children: 'Button'
   }
 };
+
+// Add this to your existing stories
+
+export const Downloadable: Story = {
+  args: {
+    isDownloadable: true,
+    variant: 'outlined',
+    children: 'Document 1',
+    downloadIconUrl: 'https://acjlsquedaotbhbxmtee.supabase.co/storage/v1/object/public/vedam-website-assets/images/videoInfo/Icon-3.png'
+  }
+};
