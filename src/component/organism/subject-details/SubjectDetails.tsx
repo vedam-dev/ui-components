@@ -1,6 +1,5 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
-import Chip from "../../atom/chip/Chip";
 import { useCoreTheme, CoreTheme } from '../../../theme/core-theme';
 
 export interface ClassListItemRowProps {
@@ -23,9 +22,9 @@ export const ClassListItemRow: React.FC<ClassListItemRowProps> = ({ title, value
       <Typography
         variant="caption"
         sx={{
-          color: '#6513AC',
+          color: '#777',
           fontSize: '16px',
-          fontWeight: 600,
+          fontWeight: 500,
         }}
       >
         {title}
@@ -63,7 +62,7 @@ export const ClassListItemSubject: React.FC<ClassListItemSubjectProps> = ({ subj
         px: theme.spacing(1),
       }}
     >
-      <Typography
+      {/* <Typography
         variant="caption"
         sx={{
           color: theme.palette.grey[500],
@@ -72,7 +71,7 @@ export const ClassListItemSubject: React.FC<ClassListItemSubjectProps> = ({ subj
         }}
       >
 
-      </Typography>
+      </Typography> */}
       <Box>
           <Typography
             variant="body1"
@@ -127,8 +126,8 @@ export const ClassListItemStatus: React.FC<ClassListItemStatusProps> = ({ status
       <Typography
         variant="caption"
         sx={{
-          color: '#6B6B6B',
-          fontSize: '18px',
+          color: '#777',
+          fontSize: '16px',
           fontWeight: 500,
         }}
       >
