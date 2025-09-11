@@ -35,6 +35,16 @@ export { default as SidebarWrapper } from "./component/organism/sidebarWrapper/S
 export { default as SidebarItem } from "./component/organism/sidebardrawer/SidebarDrawer";
 export { default as FeeListItem } from "./component/organism/feePageListitems/FeePageListItems";
 export { default as CalendarTimeline} from "./component/organism/calendar-timeline/CalendarTimeline"
+export { default as ClassListItem } from "./component/organism/subject-details/SubjectDetails";
+
+export {
+  ClassListItemRow,
+  ClassListItemSubject,
+  ClassListItemStatus,
+  ClassListItemArrow,
+  ClassListItemDivider,
+} from "./component/organism/subject-details/SubjectDetails";
+
 export {
   FeeListItemRow,
   FeeListItemStatus,
