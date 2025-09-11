@@ -29,7 +29,7 @@ export const ClassWith5Columns: Story = {
   args: {
     children: (
       <>
-        <ClassListItemRow title="Class 245" value="10, June" />
+        <ClassListItemRow title="Class 245" value="10, June" highlight/>
         <ClassListItemSubject subject="Mathematics" />
         <ClassListItemDivider />
         <ClassListItemStatus status="Next Class" />
@@ -47,7 +47,7 @@ export const AssignmentItem: Story = {
   args: {
     children: (
       <>
-        <ClassListItemRow title="Assignment 245" value="10, June" />
+        <ClassListItemRow title="Assignment 245" value="10, June" highlight/>
         <ClassListItemSubject subject="Backend LLD: Machine Learning Coding" />
         <ClassListItemDivider />
         <ClassListItemStatus status="Partially Completed" />
@@ -64,7 +64,7 @@ export const CompletedAssignment: Story = {
   args: {
     children: (
       <>
-        <ClassListItemRow title="Assignment 243" value="10, June" />
+        <ClassListItemRow title="Assignment 243" value="10, June" highlight />
         <ClassListItemSubject subject="Backend LLD: Machine Learning Coding" />
         <ClassListItemDivider />
         <ClassListItemStatus status="Completed" />
@@ -82,7 +82,7 @@ export const MultipleClassItems: StoryObj = {
     <div style={{ margin: "0 auto" }}>
       {/* Class items with 5 columns */}
       <ClassListItem bgColor="#FFFFFF">
-        <ClassListItemRow title="Class 245" value="10, June" />
+        <ClassListItemRow title="Class 245" value="10, June" highlight/>
         <ClassListItemSubject subject="Mathematics" />
         <ClassListItemDivider />
         <ClassListItemStatus status="Next Class" />
@@ -92,7 +92,7 @@ export const MultipleClassItems: StoryObj = {
       </ClassListItem>
 
       <ClassListItem bgColor="#FFFFFF">
-        <ClassListItemRow title="Class 244" value="09, June" />
+        <ClassListItemRow title="Class 244" value="09, June" highlight/>
         <ClassListItemSubject subject="Mathematics" />
         <ClassListItemDivider />
         <ClassListItemStatus status="Upcoming" />
@@ -102,7 +102,7 @@ export const MultipleClassItems: StoryObj = {
       </ClassListItem>
 
       <ClassListItem bgColor="#FFFFFF">
-        <ClassListItemRow title="Class 243" value="08, June" />
+        <ClassListItemRow title="Class 243" value="08, June" highlight/>
         <ClassListItemSubject subject="Mathematics" />
         <ClassListItemDivider />
         <ClassListItemStatus status="Completed" />
@@ -112,7 +112,7 @@ export const MultipleClassItems: StoryObj = {
       </ClassListItem>
 
       <ClassListItem bgColor="#FFFFFF">
-        <ClassListItemRow title="Class 242" value="07, June" />
+        <ClassListItemRow title="Class 242" value="07, June" highlight/>
         <ClassListItemSubject subject="Mathematics" />
         <ClassListItemDivider />
         <ClassListItemStatus status="Completed" />
@@ -122,7 +122,7 @@ export const MultipleClassItems: StoryObj = {
       </ClassListItem>
 
       <ClassListItem bgColor="#FFFFFF">
-        <ClassListItemRow title="Class 241" value="06, June" />
+        <ClassListItemRow title="Class 241" value="06, June" highlight/>
         <ClassListItemSubject subject="Mathematics" />
         <ClassListItemDivider />
         <ClassListItemStatus status="Completed" />
@@ -132,7 +132,7 @@ export const MultipleClassItems: StoryObj = {
       </ClassListItem>
 
       <ClassListItem bgColor="#FFFFFF">
-        <ClassListItemRow title="Class 240" value="05, June" />
+        <ClassListItemRow title="Class 240" value="05, June" highlight />
         <ClassListItemSubject subject="Mathematics" />
         <ClassListItemDivider />
         <ClassListItemStatus status="Completed" />
@@ -149,7 +149,7 @@ export const MultipleAssignmentItems: StoryObj = {
   render: () => (
     <div style={{ margin: "0 auto" }}>
       <ClassListItem bgColor="#FFFFFF">
-        <ClassListItemRow title="Assignment 245" value="10, June" />
+        <ClassListItemRow title="Assignment 245" value="10, June" highlight />
         <ClassListItemSubject subject="Backend LLD: Machine Learning Coding" />
         <ClassListItemDivider />
         <ClassListItemStatus status="Partially Completed" />
@@ -158,7 +158,7 @@ export const MultipleAssignmentItems: StoryObj = {
       </ClassListItem>
 
       <ClassListItem bgColor="#FFFFFF">
-        <ClassListItemRow title="Assignment 244" value="10, June" />
+        <ClassListItemRow title="Assignment 244" value="10, June" highlight />
         <ClassListItemSubject subject="Backend LLD: Machine Learning Coding" />
         <ClassListItemDivider />
         <ClassListItemStatus status="Pending" />
@@ -167,7 +167,7 @@ export const MultipleAssignmentItems: StoryObj = {
       </ClassListItem>
 
       <ClassListItem bgColor="#FFFFFF">
-        <ClassListItemRow title="Assignment 243" value="10, June" />
+        <ClassListItemRow title="Assignment 243" value="10, June" highlight />
         <ClassListItemSubject subject="Backend LLD: Machine Learning Coding" />
         <ClassListItemDivider />
         <ClassListItemStatus status="Completed" />
@@ -176,7 +176,7 @@ export const MultipleAssignmentItems: StoryObj = {
       </ClassListItem>
 
       <ClassListItem bgColor="#FFFFFF">
-        <ClassListItemRow title="Assignment 242" value="10, June" />
+        <ClassListItemRow title="Assignment 242" value="10, June" highlight/>
         <ClassListItemSubject subject="Backend LLD: Machine Learning Coding" />
         <ClassListItemDivider />
         <ClassListItemStatus status="Completed" />
@@ -185,7 +185,7 @@ export const MultipleAssignmentItems: StoryObj = {
       </ClassListItem>
 
       <ClassListItem bgColor="#FFFFFF">
-        <ClassListItemRow title="Assignment 241" value="10, June" />
+        <ClassListItemRow title="Assignment 241" value="10, June" highlight/>
         <ClassListItemSubject subject="Backend LLD: Machine Learning Coding" />
         <ClassListItemDivider />
         <ClassListItemStatus status="Completed" />
@@ -194,7 +194,7 @@ export const MultipleAssignmentItems: StoryObj = {
       </ClassListItem>
 
       <ClassListItem bgColor="#FFFFFF">
-        <ClassListItemRow title="Assignment 240" value="10, June" />
+        <ClassListItemRow title="Assignment 240" value="10, June" highlight />
         <ClassListItemSubject subject="Backend LLD: Machine Learning Coding" />
         <ClassListItemDivider />
         <ClassListItemStatus status="Completed" />

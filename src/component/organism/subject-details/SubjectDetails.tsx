@@ -5,9 +5,10 @@ import { useCoreTheme, CoreTheme } from '../../../theme/core-theme';
 export interface ClassListItemRowProps {
   title: string;
   value: string;
+  highlight?: boolean; // 👈 new prop
 }
 
-export const ClassListItemRow: React.FC<ClassListItemRowProps> = ({ title, value }) => {
+export const ClassListItemRow: React.FC<ClassListItemRowProps> = ({ title, value, highlight }) => {
   const theme = useCoreTheme() as CoreTheme;
   
   return (
@@ -24,9 +25,9 @@ export const ClassListItemRow: React.FC<ClassListItemRowProps> = ({ title, value
       <Typography
         variant="caption"
         sx={{
-          color: '#777',
+          color: highlight ? '#8A18FF' : '#777', 
           fontSize: '16px',
-          fontWeight: 600,
+          fontWeight: highlight ? 600 : 500, 
           marginBottom: '4px',
         }}
       >
@@ -45,6 +46,7 @@ export const ClassListItemRow: React.FC<ClassListItemRowProps> = ({ title, value
     </Box>
   );
 };
+
 
 export interface ClassListItemSubjectProps {
   subject: string;
