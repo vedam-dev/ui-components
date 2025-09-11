@@ -5,6 +5,7 @@ import ClassListItem, {
   ClassListItemSubject,
   ClassListItemStatus,
   ClassListItemArrow,
+  ClassListItemDivider,
 } from "../../../component/organism/subject-details/SubjectDetails";
 
 const meta: Meta<typeof ClassListItem> = {
@@ -23,31 +24,16 @@ export default meta;
 
 type Story = StoryObj<typeof ClassListItem>;
 
-// Default class item with 4 columns
-export const ClassWith4Columns: Story = {
+// Class item with 5 columns (Class, Subject, Status, Assignment, Additional Problem)
+export const ClassWith5Columns: Story = {
   args: {
     children: (
       <>
         <ClassListItemRow title="Class 245" value="10, June" />
         <ClassListItemSubject subject="Mathematics" />
+        <ClassListItemDivider />
         <ClassListItemStatus status="Next Class" />
         <ClassListItemRow title="Assignment" value="0/5" />
-        <ClassListItemArrow onClick={() => console.log("Navigate to class details")} />
-      </>
-    ),
-    bgColor: "#FFFFFF",
-  },
-};
-
-// Class item with 5 columns
-export const ClassWith5Columns: Story = {
-  args: {
-    children: (
-      <>
-        <ClassListItemRow title="Class 244" value="09, June" />
-        <ClassListItemSubject subject="Mathematics" />
-        <ClassListItemStatus status="Upcoming" />
-        <ClassListItemRow title="Assignment" value="0/5" />
         <ClassListItemRow title="Additional Problem" value="0/5" />
         <ClassListItemArrow onClick={() => console.log("Navigate to class details")} />
       </>
@@ -56,47 +42,15 @@ export const ClassWith5Columns: Story = {
   },
 };
 
-// Class with two-word subject name
-export const ClassWithMultiWordSubject: Story = {
-  args: {
-    children: (
-      <>
-        <ClassListItemRow title="Class 243" value="08, June" />
-        <ClassListItemSubject subject="Machine Learning" />
-        <ClassListItemStatus status="Completed" />
-        <ClassListItemRow title="Assignment" value="0/5" />
-        <ClassListItemRow title="Additional Problem" value="0/5" />
-        <ClassListItemArrow onClick={() => console.log("Navigate to class details")} />
-      </>
-    ),
-    bgColor: "#FFFFFF",
-  },
-};
-
-// Assignment item
+// Assignment item with 4 columns (Assignment, Subject, Status, Score)
 export const AssignmentItem: Story = {
   args: {
     children: (
       <>
         <ClassListItemRow title="Assignment 245" value="10, June" />
         <ClassListItemSubject subject="Backend LLD: Machine Learning Coding" />
+        <ClassListItemDivider />
         <ClassListItemStatus status="Partially Completed" />
-        <ClassListItemRow title="Score" value="-" />
-        <ClassListItemArrow onClick={() => console.log("Navigate to assignment")} />
-      </>
-    ),
-    bgColor: "#FFFFFF",
-  },
-};
-
-// Pending assignment
-export const PendingAssignment: Story = {
-  args: {
-    children: (
-      <>
-        <ClassListItemRow title="Assignment 244" value="10, June" />
-        <ClassListItemSubject subject="Backend LLD: Machine Learning Coding" />
-        <ClassListItemStatus status="Pending" />
         <ClassListItemRow title="Score" value="-" />
         <ClassListItemArrow onClick={() => console.log("Navigate to assignment")} />
       </>
@@ -112,6 +66,7 @@ export const CompletedAssignment: Story = {
       <>
         <ClassListItemRow title="Assignment 243" value="10, June" />
         <ClassListItemSubject subject="Backend LLD: Machine Learning Coding" />
+        <ClassListItemDivider />
         <ClassListItemStatus status="Completed" />
         <ClassListItemRow title="Score" value="90/100" />
         <ClassListItemArrow onClick={() => console.log("Navigate to assignment")} />
@@ -121,14 +76,15 @@ export const CompletedAssignment: Story = {
   },
 };
 
-// Multiple items example (similar to the images you showed)
+// Multiple class items example
 export const MultipleClassItems: StoryObj = {
   render: () => (
     <div style={{ margin: "0 auto" }}>
-      {/* Class items */}
+      {/* Class items with 5 columns */}
       <ClassListItem bgColor="#FFFFFF">
         <ClassListItemRow title="Class 245" value="10, June" />
         <ClassListItemSubject subject="Mathematics" />
+        <ClassListItemDivider />
         <ClassListItemStatus status="Next Class" />
         <ClassListItemRow title="Assignment" value="0/5" />
         <ClassListItemRow title="Additional Problem" value="0/5" />
@@ -138,6 +94,7 @@ export const MultipleClassItems: StoryObj = {
       <ClassListItem bgColor="#FFFFFF">
         <ClassListItemRow title="Class 244" value="09, June" />
         <ClassListItemSubject subject="Mathematics" />
+        <ClassListItemDivider />
         <ClassListItemStatus status="Upcoming" />
         <ClassListItemRow title="Assignment" value="0/5" />
         <ClassListItemRow title="Additional Problem" value="0/5" />
@@ -147,6 +104,7 @@ export const MultipleClassItems: StoryObj = {
       <ClassListItem bgColor="#FFFFFF">
         <ClassListItemRow title="Class 243" value="08, June" />
         <ClassListItemSubject subject="Mathematics" />
+        <ClassListItemDivider />
         <ClassListItemStatus status="Completed" />
         <ClassListItemRow title="Assignment" value="0/5" />
         <ClassListItemRow title="Additional Problem" value="0/5" />
@@ -156,6 +114,7 @@ export const MultipleClassItems: StoryObj = {
       <ClassListItem bgColor="#FFFFFF">
         <ClassListItemRow title="Class 242" value="07, June" />
         <ClassListItemSubject subject="Mathematics" />
+        <ClassListItemDivider />
         <ClassListItemStatus status="Completed" />
         <ClassListItemRow title="Assignment" value="0/5" />
         <ClassListItemRow title="Additional Problem" value="0/5" />
@@ -165,6 +124,7 @@ export const MultipleClassItems: StoryObj = {
       <ClassListItem bgColor="#FFFFFF">
         <ClassListItemRow title="Class 241" value="06, June" />
         <ClassListItemSubject subject="Mathematics" />
+        <ClassListItemDivider />
         <ClassListItemStatus status="Completed" />
         <ClassListItemRow title="Assignment" value="0/5" />
         <ClassListItemRow title="Additional Problem" value="0/5" />
@@ -174,6 +134,7 @@ export const MultipleClassItems: StoryObj = {
       <ClassListItem bgColor="#FFFFFF">
         <ClassListItemRow title="Class 240" value="05, June" />
         <ClassListItemSubject subject="Mathematics" />
+        <ClassListItemDivider />
         <ClassListItemStatus status="Completed" />
         <ClassListItemRow title="Assignment" value="0/5" />
         <ClassListItemRow title="Additional Problem" value="0/5" />
@@ -190,6 +151,7 @@ export const MultipleAssignmentItems: StoryObj = {
       <ClassListItem bgColor="#FFFFFF">
         <ClassListItemRow title="Assignment 245" value="10, June" />
         <ClassListItemSubject subject="Backend LLD: Machine Learning Coding" />
+        <ClassListItemDivider />
         <ClassListItemStatus status="Partially Completed" />
         <ClassListItemRow title="Score" value="-" />
         <ClassListItemArrow onClick={() => console.log("Assignment 245")} />
@@ -198,6 +160,7 @@ export const MultipleAssignmentItems: StoryObj = {
       <ClassListItem bgColor="#FFFFFF">
         <ClassListItemRow title="Assignment 244" value="10, June" />
         <ClassListItemSubject subject="Backend LLD: Machine Learning Coding" />
+        <ClassListItemDivider />
         <ClassListItemStatus status="Pending" />
         <ClassListItemRow title="Score" value="-" />
         <ClassListItemArrow onClick={() => console.log("Assignment 244")} />
@@ -206,6 +169,7 @@ export const MultipleAssignmentItems: StoryObj = {
       <ClassListItem bgColor="#FFFFFF">
         <ClassListItemRow title="Assignment 243" value="10, June" />
         <ClassListItemSubject subject="Backend LLD: Machine Learning Coding" />
+        <ClassListItemDivider />
         <ClassListItemStatus status="Completed" />
         <ClassListItemRow title="Score" value="90/100" />
         <ClassListItemArrow onClick={() => console.log("Assignment 243")} />
@@ -214,6 +178,7 @@ export const MultipleAssignmentItems: StoryObj = {
       <ClassListItem bgColor="#FFFFFF">
         <ClassListItemRow title="Assignment 242" value="10, June" />
         <ClassListItemSubject subject="Backend LLD: Machine Learning Coding" />
+        <ClassListItemDivider />
         <ClassListItemStatus status="Completed" />
         <ClassListItemRow title="Score" value="90/100" />
         <ClassListItemArrow onClick={() => console.log("Assignment 242")} />
@@ -222,6 +187,7 @@ export const MultipleAssignmentItems: StoryObj = {
       <ClassListItem bgColor="#FFFFFF">
         <ClassListItemRow title="Assignment 241" value="10, June" />
         <ClassListItemSubject subject="Backend LLD: Machine Learning Coding" />
+        <ClassListItemDivider />
         <ClassListItemStatus status="Completed" />
         <ClassListItemRow title="Score" value="90/100" />
         <ClassListItemArrow onClick={() => console.log("Assignment 241")} />
@@ -230,26 +196,11 @@ export const MultipleAssignmentItems: StoryObj = {
       <ClassListItem bgColor="#FFFFFF">
         <ClassListItemRow title="Assignment 240" value="10, June" />
         <ClassListItemSubject subject="Backend LLD: Machine Learning Coding" />
+        <ClassListItemDivider />
         <ClassListItemStatus status="Completed" />
         <ClassListItemRow title="Score" value="90/100" />
         <ClassListItemArrow onClick={() => console.log("Assignment 240")} />
       </ClassListItem>
     </div>
   ),
-};
-
-// Without arrow (if needed)
-export const WithoutArrow: Story = {
-  args: {
-    children: (
-      <>
-        <ClassListItemRow title="Class 245" value="10, June" />
-        <ClassListItemSubject subject="Mathematics" />
-        <ClassListItemStatus status="Next Class" />
-        <ClassListItemRow title="Assignment" value="0/5" />
-        <ClassListItemRow title="Additional Problem" value="0/5" />
-      </>
-    ),
-    bgColor: "#FFFFFF",
-  },
 };

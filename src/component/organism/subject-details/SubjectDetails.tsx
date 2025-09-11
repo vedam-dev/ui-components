@@ -17,13 +17,14 @@ export const ClassListItemRow: React.FC<ClassListItemRowProps> = ({ title, value
         flexDirection: 'column',
         alignItems: 'flex-start',
         px: theme.spacing(1),
-        minWidth: '120px', // Ensure consistent width
+        minWidth: '120px',
+        flex: '0 0 auto',
       }}
     >
       <Typography
         variant="caption"
         sx={{
-          color: '#8A18FF',
+          color: '#777',
           fontSize: '16px',
           fontWeight: 600,
           marginBottom: '4px',
@@ -59,8 +60,9 @@ export const ClassListItemSubject: React.FC<ClassListItemSubjectProps> = ({ subj
         flexDirection: 'column',
         alignItems: 'flex-start',
         px: theme.spacing(1),
-        flex: 1, // Take up remaining space
-        minWidth: '200px',
+        flex: 1,
+        minWidth: '150px',
+        maxWidth: '200px',
       }}
     >
       <Box>
@@ -71,7 +73,7 @@ export const ClassListItemSubject: React.FC<ClassListItemSubjectProps> = ({ subj
               fontWeight: 600,
               color: '#3870CA',
               lineHeight: 1.2,
-              maxWidth:'250px'
+              maxWidth:'200px'
             }}
           >
             {subject}
@@ -110,13 +112,14 @@ export const ClassListItemStatus: React.FC<ClassListItemStatusProps> = ({ status
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'flex-start',
-        minWidth: '140px', // Ensure consistent width
+        minWidth: '140px',
+        flex: '0 0 auto',
       }}
     >
       <Typography
         variant="caption"
         sx={{
-          color: '#8A18FF',
+          color: '#777',
           fontSize: '16px',
           fontWeight: 600,
           marginBottom: '4px',
@@ -132,7 +135,7 @@ export const ClassListItemStatus: React.FC<ClassListItemStatusProps> = ({ status
           borderRadius: theme.spacing(25),
           fontSize: '12px',
           fontWeight: 400,
-          whiteSpace: 'nowrap', // Prevent text wrapping
+          whiteSpace: 'nowrap',
         }}
       >
         {status}
@@ -153,6 +156,7 @@ export const ClassListItemArrow: React.FC<ClassListItemArrowProps> = ({ onClick 
         display: 'flex',
         alignItems: 'center',
         cursor: onClick ? 'pointer' : 'default',
+        flex: '0 0 auto',
       }}
       onClick={onClick}
     >
@@ -195,7 +199,8 @@ export const ClassListItemDivider: React.FC = () => {
         width: '1px',
         height: '24px',
         backgroundColor: '#B6B6B6',
-        alignSelf: 'center', 
+        alignSelf: 'center',
+        flex: '0 0 auto',
       }}
     />
   );
@@ -226,9 +231,8 @@ const ClassListItem: React.FC<ClassListItemProps> = ({ bgColor, children }) => {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
-          flexWrap: 'wrap',
           p: theme.spacing(3),
-          gap: theme.spacing(10),
+          gap: theme.spacing(2),
         }}
       >
         {children}
