@@ -17,14 +17,16 @@ export const ClassListItemRow: React.FC<ClassListItemRowProps> = ({ title, value
         flexDirection: 'column',
         alignItems: 'flex-start',
         px: theme.spacing(1),
+        minWidth: '120px', // Ensure consistent width
       }}
     >
       <Typography
         variant="caption"
         sx={{
-          color: '#777',
+          color: '#8A18FF',
           fontSize: '16px',
-          fontWeight: 500,
+          fontWeight: 600,
+          marginBottom: '4px',
         }}
       >
         {title}
@@ -50,9 +52,6 @@ export interface ClassListItemSubjectProps {
 export const ClassListItemSubject: React.FC<ClassListItemSubjectProps> = ({ subject }) => {
   const theme = useCoreTheme() as CoreTheme;
   
-  // Split subject into words and handle line breaks for multi-word subjects
-//   const words = subject.split(' ');
-  
   return (
     <Box
       sx={{
@@ -60,18 +59,10 @@ export const ClassListItemSubject: React.FC<ClassListItemSubjectProps> = ({ subj
         flexDirection: 'column',
         alignItems: 'flex-start',
         px: theme.spacing(1),
+        flex: 1, // Take up remaining space
+        minWidth: '200px',
       }}
     >
-      {/* <Typography
-        variant="caption"
-        sx={{
-          color: theme.palette.grey[500],
-          fontSize: '14px',
-          fontWeight: 500,
-        }}
-      >
-
-      </Typography> */}
       <Box>
           <Typography
             variant="body1"
@@ -80,7 +71,7 @@ export const ClassListItemSubject: React.FC<ClassListItemSubjectProps> = ({ subj
               fontWeight: 600,
               color: '#3870CA',
               lineHeight: 1.2,
-              maxWidth:'200px'
+              maxWidth:'250px'
             }}
           >
             {subject}
@@ -89,8 +80,6 @@ export const ClassListItemSubject: React.FC<ClassListItemSubjectProps> = ({ subj
     </Box>
   );
 };
-
-
 
 export interface ClassListItemStatusProps {
   status: 'Next Class' | 'Upcoming' | 'Completed' | 'Pending' | 'Partially Completed';
@@ -121,14 +110,16 @@ export const ClassListItemStatus: React.FC<ClassListItemStatusProps> = ({ status
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'flex-start',
+        minWidth: '140px', // Ensure consistent width
       }}
     >
       <Typography
         variant="caption"
         sx={{
-          color: '#777',
+          color: '#8A18FF',
           fontSize: '16px',
-          fontWeight: 500,
+          fontWeight: 600,
+          marginBottom: '4px',
         }}
       >
         Status
@@ -141,6 +132,7 @@ export const ClassListItemStatus: React.FC<ClassListItemStatusProps> = ({ status
           borderRadius: theme.spacing(25),
           fontSize: '12px',
           fontWeight: 400,
+          whiteSpace: 'nowrap', // Prevent text wrapping
         }}
       >
         {status}
@@ -192,6 +184,20 @@ export const ClassListItemArrow: React.FC<ClassListItemArrowProps> = ({ onClick 
         </svg>
       </Box>
     </Box>
+  );
+};
+
+// Divider component for the vertical line
+export const ClassListItemDivider: React.FC = () => {
+  return (
+    <Box
+      sx={{
+        width: '1px',
+        height: '24px',
+        backgroundColor: '#B6B6B6',
+        alignSelf: 'center', 
+      }}
+    />
   );
 };
 
