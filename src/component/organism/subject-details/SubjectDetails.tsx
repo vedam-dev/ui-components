@@ -60,8 +60,7 @@ export const ClassListItemSubject: React.FC<ClassListItemSubjectProps> = ({ subj
         flexDirection: 'column',
         alignItems: 'flex-start',
         px: theme.spacing(1),
-        flex: 1,
-        minWidth: '150px',
+        minWidth: '120px',
         maxWidth: '200px',
       }}
     >
@@ -73,7 +72,7 @@ export const ClassListItemSubject: React.FC<ClassListItemSubjectProps> = ({ subj
               fontWeight: 600,
               color: '#3870CA',
               lineHeight: 1.2,
-              maxWidth:'200px'
+              // maxWidth:'200px'
             }}
           >
             {subject}
@@ -94,13 +93,13 @@ export const ClassListItemStatus: React.FC<ClassListItemStatusProps> = ({ status
   const getStatusColor = (status: string) => {
     switch (status) {
       case 'Completed':
-        return '#42B657'; // Green
+        return '#42B657'; 
       case 'Upcoming':
       case 'Pending':
-        return '#F97D03'; // Orange
+        return '#F97D03'; 
       case 'Next Class':
       case 'Partially Completed':
-        return '#983DF6'; // Purple
+        return '#983DF6';
       default:
         return '#42B657';
     }
