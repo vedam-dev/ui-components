@@ -28,7 +28,7 @@ export const ClassListItemRow: React.FC<ClassListItemRowProps> = ({ title, value
           color: highlight ? '#8A18FF' : '#777', 
           fontSize: '16px',
           fontWeight: highlight ? 600 : 500, 
-          marginBottom: '4px',
+          marginBottom: '3px',
         }}
       >
         {title}
@@ -123,7 +123,7 @@ export const ClassListItemStatus: React.FC<ClassListItemStatusProps> = ({ status
           color: '#777',
           fontSize: '16px',
           fontWeight: 600,
-          marginBottom: '4px',
+          marginBottom: '3px',
         }}
       >
         Status
@@ -223,8 +223,8 @@ const ClassListItem: React.FC<ClassListItemProps> = ({ bgColor, children }) => {
         backgroundColor: bgColor || 'background.paper',
         mb: theme.spacing(3.75),
         width: '100%',
-        px: theme.spacing(9),
-        py: theme.spacing(2),
+        px: theme.spacing(14.25),
+        py: theme.spacing(6),
       }}
     >
       <Box
@@ -232,7 +232,7 @@ const ClassListItem: React.FC<ClassListItemProps> = ({ bgColor, children }) => {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
-          p: theme.spacing(3),
+          p: theme.spacing(2),
           gap: theme.spacing(2),
         }}
       >
