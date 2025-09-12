@@ -5,6 +5,16 @@ const meta: Meta<typeof IconDropdown> = {
   title: 'Molecule/IconDropdown',
   component: IconDropdown,
   tags: ['autodocs'],
+  argTypes: {
+    autoWidth: {
+      control: 'boolean',
+      description: 'Automatically adjust width based on content length',
+    },
+    minWidth: {
+      control: 'number',
+      description: 'Minimum width when autoWidth is enabled',
+    },
+  },
 };
 
 export default meta;
@@ -27,5 +37,36 @@ export const SemesterDropdown: Story = {
     iconUrl:
       'https://acjlsquedaotbhbxmtee.supabase.co/storage/v1/object/public/vedam-website-assets/images/certificate/Vector-3.jpg',
     options: ['Semester 1', 'Semester 2', 'Semester 3'],
+  },
+};
+
+// New variant without icon
+export const TextOnlyDropdown: Story = {
+  render: (args) => <IconDropdown {...args} />,
+  args: {
+    label: 'Select Status',
+    options: ['Active', 'Inactive', 'Pending', 'Completed'],
+  },
+};
+
+// New variant with auto width
+export const AutoWidthDropdown: Story = {
+  render: (args) => <IconDropdown {...args} />,
+  args: {
+    label: 'Short',
+    options: ['Short', 'Medium Length Option', 'Very Long Option Name Here'],
+    autoWidth: true,
+    minWidth: 100,
+  },
+};
+
+// Combined variant: No icon + auto width
+export const TextOnlyAutoWidth: Story = {
+  render: (args) => <IconDropdown {...args} />,
+  args: {
+    label: 'Choose',
+    options: ['Choose', 'A longer option text', 'Even much longer option text that extends further'],
+    autoWidth: true,
+    minWidth: 120,
   },
 };
