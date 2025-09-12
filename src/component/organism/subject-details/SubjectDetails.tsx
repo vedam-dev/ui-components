@@ -221,7 +221,7 @@ const ClassListItem: React.FC<ClassListItemProps> = ({ bgColor, children }) => {
         borderRadius: theme.spacing(6),
         boxShadow: theme.vd.shadows.y4,
         backgroundColor: bgColor || 'background.paper',
-        mb: theme.spacing(2),
+        mb: theme.spacing(3.75),
         width: '100%',
         px: theme.spacing(9),
         py: theme.spacing(2),
