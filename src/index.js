@@ -41,7 +41,8 @@ export {
   FeeListItemButton,
 } from "./component/organism/feePageListitems/FeePageListItems";
 export { default as LoginModal } from './component/organism/loginModal/LoginModal'
-
+export { default as Tabs } from './component/organism/tabs/Tabs'
+export {default as LectureCard} from './component/organism/lectureCard/LectureCard'
 //  Theme Component's
 export { default as defaultTheme } from "./theme/customer/default";
 export { default as vedamTheme } from "./theme/customer/vedam";
