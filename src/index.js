@@ -36,7 +36,7 @@ export { default as SidebarItem } from "./component/organism/sidebardrawer/Sideb
 export { default as FeeListItem } from "./component/organism/feePageListitems/FeePageListItems";
 export { default as CalendarTimeline} from "./component/organism/calendar-timeline/CalendarTimeline"
 export { default as ClassListItem } from "./component/organism/subject-details/SubjectDetails";
-export {default as SurveyOptions} from './component/organism/surveyOptions/SurveyOptions'
+export {default as SurveyOptions} from './component/organism/surveyOptions/SurveyOptions';
 
 export {
   ClassListItemRow,
