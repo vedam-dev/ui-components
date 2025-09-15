@@ -51,8 +51,7 @@ const OptionRow: React.FC<{
         py: theme.spacing(4),
         borderRadius: theme.shape.borderRadius,
         border: (t) => (selected ? `2px solid #8A18FF` : `1px solid #CDCDCD`),
-        backgroundColor: (t) =>
-          selected ? t.palette.action.hover : "transparent",
+        backgroundColor: (t) => (selected ? t.palette.action.hover : "white"),
         cursor: "pointer",
       }}
     >
@@ -226,6 +225,7 @@ const SurveyOptions: React.FC<SurveyOptionsProps> = ({
       {showGlobalOther && (
         <Box sx={{ mt: theme.spacing(6) }}>
           <TextField
+            variant="outlined"
             placeholder={textPlaceholder}
             value={text ?? ""}
             onChange={(e) => onTextChange(e.target.value)}
@@ -233,26 +233,16 @@ const SurveyOptions: React.FC<SurveyOptionsProps> = ({
             fullWidth
             minRows={3}
             inputProps={{ maxLength: textMaxLength }}
-            sx={{
-              borderRadius: theme.shape.borderRadius,
-              "& .MuiInputBase-root": {
-                bgcolor: "background.paper",
+            helperText={null} // <- remove any helper text / counter
+            sx={(theme) => ({
+              "& .MuiOutlinedInput-root": {
+                borderRadius: theme.shape.borderRadius,
+                bgcolor: "white",
+                "& fieldset": { borderRadius: theme.shape.borderRadius },
               },
-            }}
+            })}
             aria-label="Other"
           />
-          <Box
-            sx={{
-              display: "flex",
-              justifyContent: "space-between",
-              mt: theme.spacing(0.5),
-            }}
-          >
-            <Typography variant="caption" color="text.secondary"></Typography>
-            <Typography variant="caption" color="text.secondary">
-              {String((text ?? "").length)}/{textMaxLength}
-            </Typography>
-          </Box>
         </Box>
       )}
     </Box>
