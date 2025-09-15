@@ -233,7 +233,7 @@ const SurveyOptions: React.FC<SurveyOptionsProps> = ({
             fullWidth
             minRows={3}
             inputProps={{ maxLength: textMaxLength }}
-            helperText={null} // <- remove any helper text / counter
+            helperText={null}
             sx={(theme) => ({
               "& .MuiOutlinedInput-root": {
                 borderRadius: theme.shape.borderRadius,
