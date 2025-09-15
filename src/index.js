@@ -38,6 +38,8 @@ export { default as CalendarTimeline } from "./component/organism/calendar-timel
 export { default as ClassListItem } from "./component/organism/subject-details/SubjectDetails";
 export { default as SurveyOptions } from "./component/organism/surveyOptions/SurveyOptions";
 export { default as RatingCard } from "./component/organism/rating/Rating";
+export { default as VideoPlayerModal} from "./component/organism/video-player-modal/VideoPlayerModal"
+
 
 export {
   ClassListItemRow,

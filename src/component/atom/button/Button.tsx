@@ -187,6 +187,8 @@ const buttonStyles = (
     defaultStyles.position = 'relative';
     defaultStyles.color = '#FF7829';
     defaultStyles.minWidth = '200px';
+    defaultStyles.fontWeight=600;
+    defaultStyles.fontSize='20px';
 
     // Hover / active / focus styles for downloadable
     defaultStyles['&:hover, &:active, &:focus-visible'] = {
