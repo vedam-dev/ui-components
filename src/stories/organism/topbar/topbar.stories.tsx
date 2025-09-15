@@ -1,4 +1,3 @@
-// TopBar.stories.tsx
 import type { Meta, StoryObj } from "@storybook/react";
 import TopBar from "../../../component/organism/topbar/TopBar";
 import { School } from "@mui/icons-material";
