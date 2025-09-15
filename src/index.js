@@ -36,6 +36,8 @@ export { default as SidebarItem } from "./component/organism/sidebardrawer/Sideb
 export { default as FeeListItem } from "./component/organism/feePageListitems/FeePageListItems";
 export { default as CalendarTimeline} from "./component/organism/calendar-timeline/CalendarTimeline"
 export { default as ClassListItem } from "./component/organism/subject-details/SubjectDetails";
+export { default as VideoPlayerModal} from "./component/organism/video-player-modal/VideoPlayerModal"
+
 
 export {
   ClassListItemRow,
