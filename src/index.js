@@ -17,10 +17,10 @@ export { default as TextField } from "./component/atom/text-field/TextField";
 export { default as Drawer } from "./component/atom/drawer/Drawer";
 
 //  Molecule Components
-export { default as Banner } from './component/molecule/banner/Banner';
-export { default as Select } from './component/atom/dropdown/Select';
-export { default as Sekeleton } from './component/atom/skeleton/Skeleton';
-export { default as IconDropdown} from './component/molecule/icon-dropdown/IconDropdown'
+export { default as Banner } from "./component/molecule/banner/Banner";
+export { default as Select } from "./component/atom/dropdown/Select";
+export { default as Sekeleton } from "./component/atom/skeleton/Skeleton";
+export { default as IconDropdown } from "./component/molecule/icon-dropdown/IconDropdown";
 
 //  Organism Components
 export { default as HorizontalBaseCard } from "./component/organism/card/HorizontalBaseCard";
@@ -34,9 +34,10 @@ export { default as SidebarDrawer } from "./component/organism/sidebardrawer/Sid
 export { default as SidebarWrapper } from "./component/organism/sidebarWrapper/SidebarWrapper";
 export { default as SidebarItem } from "./component/organism/sidebardrawer/SidebarDrawer";
 export { default as FeeListItem } from "./component/organism/feePageListitems/FeePageListItems";
-export { default as CalendarTimeline} from "./component/organism/calendar-timeline/CalendarTimeline"
+export { default as CalendarTimeline } from "./component/organism/calendar-timeline/CalendarTimeline";
 export { default as ClassListItem } from "./component/organism/subject-details/SubjectDetails";
-export {default as SurveyOptions} from './component/organism/surveyOptions/SurveyOptions';
+export { default as SurveyOptions } from "./component/organism/surveyOptions/SurveyOptions";
+export { default as RatingCard } from "./component/organism/rating/Rating";
 
 export {
   ClassListItemRow,
@@ -51,9 +52,9 @@ export {
   FeeListItemStatus,
   FeeListItemButton,
 } from "./component/organism/feePageListitems/FeePageListItems";
-export { default as LoginModal } from './component/organism/loginModal/LoginModal'
-export { default as Tabs } from './component/organism/tabs/Tabs'
-export {default as LectureCard} from './component/organism/lectureCard/LectureCard'
+export { default as LoginModal } from "./component/organism/loginModal/LoginModal";
+export { default as Tabs } from "./component/organism/tabs/Tabs";
+export { default as LectureCard } from "./component/organism/lectureCard/LectureCard";
 //  Theme Component's
 export { default as defaultTheme } from "./theme/customer/default";
 export { default as vedamTheme } from "./theme/customer/vedam";
