@@ -17,6 +17,8 @@ export interface CalendarEvent {
   name: string;
   description?: string;
   isImportant?: boolean;
+  color?: string; // Add custom background color property
+  borderColor?: string; // Add custom border color property
 }
 
 export interface ReusableCalendarProps {
@@ -30,8 +32,6 @@ export interface ReusableCalendarProps {
 const Container = styled(Paper)(({ theme }) => ({
   padding: 0,
   overflow: "hidden",
-  width: "80%",
-
   boxShadow: "none",
   backgroundColor: "white",
 }));
@@ -47,6 +47,7 @@ const DayHeader = styled(Box)(({ theme }) => ({
   textAlign: "center",
   display: "flex",
   alignItems: "center",
+  justifyContent: "center",
   minHeight: 60,
 }));
 
@@ -54,11 +55,11 @@ const TimeSlot = styled(Box)(({ theme }) => ({
   textAlign: "center",
   display: "flex",
   alignItems: "center",
-  justifyContent: "center", // Changed to center to better fit narrower width
+  justifyContent: "center",
   fontWeight: 600,
   color: "#1E1E1E",
   fontFamily: "Outfit",
-  fontSize: "16px", // Slightly smaller font for narrower space
+  fontSize: "16px",
   fontStyle: "normal",
   lineHeight: "normal",
   minHeight: 72,
@@ -71,12 +72,45 @@ const DayCell = styled(Box)(({ theme }) => ({
 }));
 
 const EventCard = styled(Box, {
-  shouldForwardProp: (p) => p !== "important" && p !== "eventType",
+  shouldForwardProp: (p) => p !== "important" && p !== "eventType" && p !== "customColor" && p !== "customBorderColor",
 })<{
   important?: boolean;
   eventType?: string;
-}>(({ theme, important, eventType }) => {
-  let backgroundColor = "#F3F4F6";
+  customColor?: string;
+  customBorderColor?: string;
+}>(({ theme, important, eventType, customColor, customBorderColor }) => {
+  // If custom color is provided, use it
+  if (customColor || customBorderColor) {
+    const bgColor = customColor || "#F2F2F2";
+    const borderColor = customBorderColor || customColor || "#E5E7EB";
+    
+    return {
+      position: "absolute",
+      left: 4,
+      right: 4,
+      borderRadius: 12,
+      padding: theme.spacing(1, 1.5),
+      backgroundColor: bgColor,
+      borderLeft: `4px solid ${borderColor}`,
+      cursor: "pointer",
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "center",
+      zIndex: 2,
+      minHeight: 48,
+      fontSize: "13px",
+      fontWeight: 600,
+      color: customColor ? "#FFFFFF" : "#374151", // Use white text for custom background colors
+      boxShadow: "0 2px 8px rgba(22, 27, 33, 0.06)",
+      "&:hover": {
+        opacity: 0.9,
+        boxShadow: `0 4px 12px rgba(0,0,0,0.15)`,
+      },
+    };
+  }
+
+  // Default color logic
+  let backgroundColor = "#F2F2F2";
   let borderColor = "#E5E7EB";
   let textColor = "#374151";
   let borderLeftWidth = "2px";
@@ -105,7 +139,6 @@ const EventCard = styled(Box, {
     borderRadius: 12,
     padding: theme.spacing(1, 1.5),
     backgroundColor,
-    border: `1px solid ${borderColor}`,
     borderLeft: `${borderLeftWidth} solid ${borderColor}`,
     cursor: "pointer",
     display: "flex",
@@ -126,9 +159,9 @@ const EventCard = styled(Box, {
 
 const SemesterPill = styled(Box)(({ theme }) => ({
   color: "#8A18FF",
-  padding: theme.spacing(1, 2), // Reduced padding for narrower column
+  padding: theme.spacing(1, 2),
   fontWeight: 600,
-  fontSize: "16px", // Slightly smaller font
+  fontSize: "16px",
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
@@ -164,7 +197,6 @@ const ReusableCalendar: React.FC<ReusableCalendarProps> = ({
     weekStart ? startOfWeek(weekStart) : startOfWeek(new Date())
   );
 
-  // Update internal state when weekStart prop changes
   React.useEffect(() => {
     if (weekStart) {
       const newStart = startOfWeek(weekStart);
@@ -237,7 +269,6 @@ const ReusableCalendar: React.FC<ReusableCalendarProps> = ({
       <CalendarGrid>
         <SemesterPill>Semester 1</SemesterPill>
 
-        {/* Day headers */}
         {days.map((day, index) => (
           <DayHeader key={index}>
             <Typography
@@ -248,6 +279,7 @@ const ReusableCalendar: React.FC<ReusableCalendarProps> = ({
                 lineHeight: "normal",
                 px: "35px",
                 py: "26px",
+                  
               }}
             >
               {formatDayNumber(day)}, {formatMonth(day)}
@@ -255,7 +287,6 @@ const ReusableCalendar: React.FC<ReusableCalendarProps> = ({
           </DayHeader>
         ))}
 
-        {/* Time slots and day cells */}
         {timeSlots.map((timeLabel, timeIndex) => (
           <React.Fragment key={timeIndex}>
             <TimeSlot>
@@ -300,6 +331,8 @@ const ReusableCalendar: React.FC<ReusableCalendarProps> = ({
                         <EventCard
                           eventType={eventType}
                           important={event.isImportant}
+                          customColor={event.color} // Pass custom background color
+                          customBorderColor={event.borderColor} // Pass custom border color
                           onClick={() => onEventClick?.(event)}
                           sx={{
                             top: top - timeIndex * HOUR_HEIGHT,
@@ -311,7 +344,7 @@ const ReusableCalendar: React.FC<ReusableCalendarProps> = ({
                               fontSize: "16px",
                               fontWeight: 600,
                               lineHeight: 1.2,
-                              color: "#3870CA",
+                              color: event.color ? "#FFFFFF" : "#3870CA", // Use white text for custom colors
                             }}
                           >
                             {event.name}
@@ -323,6 +356,7 @@ const ReusableCalendar: React.FC<ReusableCalendarProps> = ({
                                 lineHeight: "normal",
                                 fontWeight: 400,
                                 mt: 0.25,
+                                color: event.color ? "#FFFFFF" : "inherit", // Use white text for custom colors
                               }}
                             >
                               {event.description}

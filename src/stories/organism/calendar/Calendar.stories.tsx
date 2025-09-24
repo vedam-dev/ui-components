@@ -100,7 +100,7 @@ const sampleEvents: CalendarEvent[] = [
   { id: 40, name: "Career Talk", description: "(All)", start: "2024-06-05T15:00:00", end: "2024-06-05T16:00:00" },
   { id: 41, name: "Code Review", description: "(Team B)", start: "2024-06-10T11:30:00", end: "2024-06-10T12:30:00" },
   { id: 42, name: "Practice", description: "(Year I)", start: "2024-06-11T12:00:00", end: "2024-06-11T13:00:00" },
-  { id: 43, name: "Seminar: Security", description: "(All)", start: "2024-06-12T08:30:00", end: "2024-06-12T10:00:00", isImportant: true },
+  { id: 43, name: "Seminar: Security", description: "(All)", start: "2024-06-12T08:30:00", end: "2024-06-12T10:00:00", isImportant: true, color:'red' },
   { id: 44, name: "Exam Review", description: "(Year II)", start: "2024-06-13T10:00:00", end: "2024-06-13T11:30:00" },
 ];
 
@@ -160,7 +160,7 @@ export const MixedEventTypes: Story = {
         name: "Contest", 
         description: "Programming contest", 
         start: "2024-06-11T10:00:00", 
-        end: "2024-06-11T12:00:00" 
+        end: "2024-06-11T12:00:00", 
       },
       { 
         id: 4, 
