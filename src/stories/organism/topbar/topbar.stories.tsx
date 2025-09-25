@@ -24,6 +24,10 @@ const meta: Meta<typeof TopBar> = {
       control: "text",
       description: "Student identification number",
     },
+    label: {
+      control: "text",
+      description: "Label for student identification number",
+    },
     studentName: {
       control: "text",
       description: "Full name of the student",
@@ -63,6 +67,7 @@ type Story = StoryObj<typeof TopBar>;
 export const Default: Story = {
   args: {
     studentId: "VED2025",
+    label: "Student Id:",
     studentName: "Sameeksha Kapoor",
     studentPhoto:
       "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=987&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -76,6 +81,7 @@ export const Custom_Logo: Story = {
   args: {
     collegeLogo: 'https://via.placeholder.com/40',
     studentId: "ENG2024",
+    label: "Student Id:",
     studentName: "Alex Johnson",
     studentPhoto:
       "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=987&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
