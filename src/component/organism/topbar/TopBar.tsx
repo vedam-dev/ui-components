@@ -17,7 +17,8 @@ import { CoreTheme, useCoreTheme } from '../../../theme/core-theme';
 
 export interface TopBarProps {
   collegeLogo?: string;
-  studentId: string;
+  studentId?: string;
+  label?: string;
   studentName: string;
   studentPhoto?: string;
   streakCount?: number;
@@ -90,6 +91,7 @@ const StyledBadge = styled(Badge)(() => ({
 const TopBar: React.FC<TopBarProps> = ({
   collegeLogo,
   studentId,
+  label = '',
   studentName,
   studentPhoto,
   streakCount = 0,
@@ -104,7 +106,7 @@ const TopBar: React.FC<TopBarProps> = ({
   hideHamburger = false,
 
 }) => {
-    const theme = useCoreTheme() as CoreTheme;
+  const theme = useCoreTheme() as CoreTheme;
   return (
     <TopBarContainer sx={sx}>
 
@@ -132,7 +134,7 @@ const TopBar: React.FC<TopBarProps> = ({
               "&:hover": { backgroundColor: "transparent" },
             }}
           >
-              {isSidebarExpanded
+            {isSidebarExpanded
               ? <CloseIcon sx={{ fontSize: 32, width: "24px", height: "20px" }} />
               : <MenuIcon sx={{ fontSize: 32, width: "24px", height: "20px" }} />
             }
@@ -154,7 +156,7 @@ const TopBar: React.FC<TopBarProps> = ({
         </CollegeInfo>
       </LeftContainer>
 
-    
+
       <StudentInfo>
         <StatsContainer sx={{ display: hideStatsContainer ? 'none' : 'flex' }}>
           <StatItem>
@@ -202,7 +204,7 @@ const TopBar: React.FC<TopBarProps> = ({
           </StyledBadge>
         </StatsContainer>
 
-        <Box display="flex" alignItems="center"sx={{ gap: theme.spacing(3) }}>
+        <Box display="flex" alignItems="center" sx={{ gap: theme.spacing(3) }}>
           <IconButton onClick={onProfileClick} sx={{ padding: 0 }}>
             <Avatar
               src={studentPhoto}
@@ -233,9 +235,9 @@ const TopBar: React.FC<TopBarProps> = ({
                   color: "#A0A0A0",
                 }}
               >
-                Student Id: {studentId}
+                {label} {studentId}
               </Typography>
-          
+
             </Box>
           </Box>
         </Box>
