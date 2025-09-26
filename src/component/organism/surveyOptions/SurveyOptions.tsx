@@ -82,7 +82,7 @@ const OptionRow: React.FC<{
 
       <Box sx={{ flex: 1 }}>
         <Typography
-          sx={{ fontWeight: 400, fontFamily: "inter", fontSize: "20px" }}
+          sx={{ fontWeight: 400, fontFamily: "Outfit", fontSize: "20px" }}
         >
           {option.label}
         </Typography>
