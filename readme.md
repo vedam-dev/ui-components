@@ -1,199 +1,339 @@
 # @vedam-dev/ui-components
 
-A comprehensive React component library built with Material-UI, featuring a Storybook showcase and visual regression testing with Loki.
+A comprehensive React component library built with Material-UI, featuring atomic design principles, multi-brand theming, and comprehensive testing suite.
+
+[![NPM Version](https://img.shields.io/npm/v/@vedam-dev/ui-components)](https://www.npmjs.com/package/@vedam-dev/ui-components)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![TypeScript](https://img.shields.io/badge/TypeScript-Ready-blue.svg)](https://www.typescriptlang.org/)
+[![Storybook](https://img.shields.io/badge/Storybook-Ready-ff69b4.svg)](https://storybook.js.org/)
+
+## ✨ Features
+
+- 🧩 **Atomic Design System** - Organized component hierarchy (Atoms → Molecules → Organisms)
+- 🎨 **Multi-Brand Theming** - Support for multiple brand themes (KS, KS3, WV)
+- ♿ **Accessibility First** - WCAG 2.1 compliant components
+- 📱 **Responsive Design** - Mobile-first responsive components
+- 🧪 **Comprehensive Testing** - Unit, visual regression, and accessibility testing
+- 📖 **Storybook Documentation** - Interactive component documentation
+- 🔧 **TypeScript Support** - Fully typed components and APIs
+- 🐳 **Docker Ready** - Containerized development environment
 
 ## 🚀 Quick Start
 
+### Installation
+
+```bash
+# Using npm
+npm install @vedam-dev/ui-components
+
+# Using yarn
+yarn add @vedam-dev/ui-components
+```
+
+### Basic Usage
+
+```tsx
+import React from 'react';
+import { Button, Card, Typography } from '@vedam-dev/ui-components';
+import { ThemeProvider } from '@mui/material/styles';
+import { ksTheme } from '@vedam-dev/ui-components/theme';
+
+function App() {
+  return (
+    <ThemeProvider theme={ksTheme}>
+      <Card>
+        <Typography variant="h5">Welcome to UI Components</Typography>
+        <Button variant="contained" color="primary">
+          Get Started
+        </Button>
+      </Card>
+    </ThemeProvider>
+  );
+}
+```
+
+## 📚 Documentation
+
+### Storybook
+
+Explore our interactive component documentation:
+
+- **Production**: [Storybook Documentation](https://your-storybook-url.com)
+- **Local Development**: http://localhost:6006
+
+### Developer Documentation
+
+For detailed development guidelines, see [DEVELOPER_README.md](DEVELOPER_README.md)
+
+## 🧩 Component Library
+
+### Atomic Components
+
+Basic building blocks of the design system:
+
+- **Button** - Various button styles and states
+- **Avatar** - User profile images and initials
+- **Typography** - Text components with brand typography
+- **Card** - Container components with elevation
+- **Icon** - SVG icon components
+- **Paper** - Surface components with shadows
+
+### Molecular Components
+
+Simple combinations of atomic components:
+
+- **Banner** - Promotional and informational banners
+- **AppBar** - Application navigation bar
+- **Icon Dropdown** - Dropdown with icon trigger
+
+### Organism Components
+
+Complex UI sections:
+
+- **Navigation** - Full navigation systems (desktop/mobile)
+- **Cards** - Complex card layouts (horizontal/vertical)
+- **Modals** - Various modal implementations
+- **Forms** - Complete form components
+
+## 🎨 Theming
+
+### Available Themes
+
+The library supports multiple brand themes:
+
+```tsx
+import { 
+  defaultTheme, 
+  ksTheme, 
+  ks3Theme, 
+  wvTheme 
+} from '@vedam-dev/ui-components/theme';
+
+// Use with Material-UI ThemeProvider
+<ThemeProvider theme={ksTheme}>
+  <App />
+</ThemeProvider>
+```
+
+### Custom Theme
+
+Create your own brand theme:
+
+```tsx
+import { createCoreTheme } from '@vedam-dev/ui-components/theme';
+
+const customTheme = createCoreTheme({
+  palette: {
+    primary: { main: '#your-primary-color' },
+    secondary: { main: '#your-secondary-color' }
+  },
+  typography: {
+    fontFamily: 'Your Font Family'
+  }
+});
+```
+
+## 🔧 Development Setup
+
 ### Prerequisites
 
-- Node.js v20 or higher
-- Yarn package manager
-- Docker and Docker Compose (for containerized development)
+- **Node.js**: v20 or higher
+- **Package Manager**: Yarn (preferred) or npm
+- **Docker**: For containerized development (optional)
 
-### Local Development Setup
+### Local Development
 
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/vedam-dev/ui-components.git
-   cd ui-components
-   ```
+```bash
+# Clone repository
+git clone https://github.com/vedam-dev/ui-components.git
+cd ui-components
 
-2. Install dependencies:
-   ```bash
-   yarn install
-   ```
+# Install dependencies
+yarn install
 
-3. Start Storybook development server:
-   ```bash
-   yarn storybook
-   ```
+# Start Storybook development server
+yarn storybook
 
-### Docker Setup
+# Run tests
+yarn test
 
-1. Build and run using Docker Compose:
-   ```bash
-   docker-compose up --build
-   ```
-
-This will start:
-- Storybook server on port 6006
-- Loki visual regression testing service on port 3100
-
-## 🏗️ Project Structure
-
+# Build library
+yarn build
 ```
-ui-components/
-├── src/                    # Source code
-│   ├── component/         # React components
-│   │   ├── atom/         # Atomic components
-│   │   ├── molecule/     # Molecular components
-│   │   └── organism/     # Organism components
-│   ├── stories/          # Storybook stories
-│   ├── theme/            # Theme configurations
-│   └── util/             # Utility functions
-├── .storybook/           # Storybook configuration
-├── test/                 # Test files
-└── scripts/              # Build and utility scripts
+
+### Docker Development
+
+```bash
+# Build and run with Docker Compose
+docker-compose up --build
+
+# Access Storybook at http://localhost:6006
 ```
 
 ## 📦 Available Scripts
 
-- `yarn build`: Build the component library
-- `yarn test`: Run Jest tests
-- `yarn storybook`: Start Storybook development server
-- `yarn build-storybook`: Build static Storybook site
-- `yarn lint`: Run ESLint
-- `yarn lint:fix`: Fix ESLint issues
-- `yarn loki`: Run visual regression tests
-- `yarn loki:update`: Update visual regression test references
-- `yarn loki:approve`: Approve visual changes
+### Development
+- `yarn storybook` - Start Storybook development server
+- `yarn storybook --no-open` - Start Storybook without opening browser
 
-## 🐳 Docker Configuration
+### Building
+- `yarn build` - Build the component library
+- `yarn build:lib` - Build library with TypeScript configuration
+- `yarn build-storybook` - Build static Storybook site
 
-The project includes a multi-stage Dockerfile that:
-1. Builds the component library
-2. Builds the Storybook static site
-3. Serves the Storybook site using http-server
+### Testing
+- `yarn test` - Run Jest unit tests
+- `yarn test --coverage` - Run tests with coverage report
+- `yarn loki` - Run visual regression tests
+- `yarn loki:update` - Update visual regression references
+- `yarn loki:approve` - Approve visual changes
 
-Docker Compose configuration includes:
-- Storybook service with hot-reloading
-- Loki service for visual regression testing
+### Code Quality
+- `yarn lint` - Run ESLint
+- `yarn lint:fix` - Fix ESLint issues automatically
+- `yarn prettier:format` - Format code with Prettier
 
-### Environment Variables
+## 🧪 Testing Strategy
 
-- `NODE_ENV`: Set to 'development' by default in Docker
+The project uses a comprehensive testing approach:
 
-## 🔧 Tech Stack
+### 1. Unit Testing (Jest + React Testing Library)
+```bash
+yarn test
+```
 
-- React 19
-- Material-UI 7
-- TypeScript
-- Storybook 8
-- Jest for testing
-- ESLint + Prettier for code quality
-- Husky for git hooks
-- Loki for visual regression testing
+### 2. Visual Regression Testing (Loki)
+```bash
+yarn loki:test
+```
 
-## 📚 Documentation
+### 3. Accessibility Testing (Storybook a11y addon)
+Automated accessibility checks in Storybook interface
 
-Component documentation is available through Storybook. After starting the Storybook server, visit:
-- Local development: http://localhost:6006
-- Docker: http://localhost:6006
+### 4. Integration Testing (Storybook Test Runner)
+```bash
+yarn test-storybook
+```
 
-## 🧪 Testing
+## 📦 Publishing & Distribution
 
-The project uses multiple testing approaches:
-1. Unit tests with Jest
-2. Component testing with React Testing Library
-3. Visual regression testing with Loki
-4. Accessibility testing with Storybook a11y addon
+### GitHub Packages
 
-## 📦 Publishing
+This package is published to GitHub Packages:
 
-This package is published to GitHub Packages. Here's how to publish and use the package:
+```bash
+# Set up authentication
+echo "//npm.pkg.github.com/:_authToken=YOUR_GITHUB_TOKEN" >> ~/.npmrc
 
-### Publishing to GitHub Packages
+# Install from GitHub Packages
+npm install @vedam-dev/ui-components
+```
 
-1. Set up authentication:
-   ```bash
-   # Create or edit ~/.npmrc
-   echo "//npm.pkg.github.com/:_authToken=YOUR_GITHUB_TOKEN" >> ~/.npmrc
-   ```
+### Publishing Process
 
-2. Login to GitHub Packages:
-   ```bash
-   npm login --registry=https://npm.pkg.github.com
-   ```
+```bash
+# 1. Version bump
+npm version patch|minor|major
 
-3. Prepare for publishing:
-   ```bash
-   # Ensure you're on the main branch
-   git checkout main
-   git pull
+# 2. Build library
+yarn build
 
-   # Install dependencies
-   yarn install
-
-   # Run tests
-   yarn test
-
-   # Build the package
-   yarn build
-   ```
-
-4. Update version (choose one):
-   ```bash
-   npm version patch  # for bug fixes (0.0.x)
-   npm version minor  # for new features (0.x.0)
-   npm version major  # for breaking changes (x.0.0)
-   ```
-
-5. Publish the package:
-   ```bash
-   npm publish
-   ```
-
-### Using the Package
-
-1. Authenticate with GitHub Packages:
-   ```bash
-   # Create or edit ~/.npmrc in your project
-   @vedam-dev:registry=https://npm.pkg.github.com
-   //npm.pkg.github.com/:_authToken=YOUR_GITHUB_TOKEN
-   ```
-
-2. Install the package:
-   ```bash
-   yarn add @vedam-dev/ui-components
-   # or
-   npm install @vedam-dev/ui-components
-   ```
-
-3. Import and use components:
-   ```typescript
-   import { Button, Card } from '@vedam-dev/ui-components';
-   ```
+# 3. Publish
+npm publish
+```
 
 ### Version Management
 
-- The package follows Semantic Versioning (SemVer)
-- Version history is available in the GitHub releases page
-- Pre-release versions are tagged with `-alpha`, `-beta`, or `-rc` suffixes
-- Release notes are automatically generated from commit messages
+- Follows [Semantic Versioning](https://semver.org/)
+- Automated release notes from conventional commits
+- Pre-release versions available with alpha/beta/rc tags
+
+## 🏗️ Project Architecture
+
+```
+ui-components/
+├── src/
+│   ├── component/          # React components
+│   │   ├── atom/          # Basic building blocks
+│   │   ├── molecule/      # Simple combinations
+│   │   └── organism/      # Complex components
+│   ├── stories/           # Storybook stories
+│   ├── theme/             # Theme system
+│   │   ├── core-theme.tsx # Base theme structure
+│   │   └── customer/      # Brand-specific themes
+│   └── util/              # Utility functions
+├── .storybook/            # Storybook configuration
+├── test/                  # Test configurations
+└── dist/                  # Built library output
+```
+
+## 🔧 Tech Stack
+
+- **React 19** - UI library
+- **Material-UI 7** - Component foundation
+- **TypeScript** - Type safety
+- **Storybook 8** - Component documentation
+- **Jest** - Unit testing
+- **Loki** - Visual regression testing
+- **ESLint + Prettier** - Code quality
+- **Husky** - Git hooks
+- **Docker** - Containerization
 
 ## 🤝 Contributing
 
-1. Create a feature branch from `main`
-2. Make your changes
-3. Run tests: `yarn test`
-4. Run visual regression tests: `yarn loki`
-5. Submit a pull request
+We welcome contributions! Please read our contributing guidelines:
+
+### Development Process
+
+1. **Fork** the repository
+2. **Create** a feature branch: `git checkout -b feature/amazing-feature`
+3. **Follow** our [coding standards](DEVELOPER_README.md#code-standards)
+4. **Test** your changes: `yarn test && yarn loki`
+5. **Commit** using [conventional commits](https://www.conventionalcommits.org/)
+6. **Submit** a pull request
+
+### Code Standards
+
+- TypeScript with strict mode
+- ESLint + Prettier for code formatting
+- Conventional commit messages
+- Comprehensive testing required
+- Documentation updates for new features
+
+## 🐛 Issue Reporting
+
+Found a bug or have a feature request?
+
+1. **Search** existing issues first
+2. **Use** our issue templates
+3. **Provide** reproduction steps
+4. **Include** environment details
 
 ## 📄 License
 
-MIT License
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 🔗 Links
+## 🔗 Links & Resources
 
-- [GitHub Repository](https://github.com/vedam-dev/ui-components)
-- [Issue Tracker](https://github.com/vedam-dev/ui-components/issues)
+- **Repository**: [GitHub](https://github.com/vedam-dev/ui-components)
+- **Issues**: [Issue Tracker](https://github.com/vedam-dev/ui-components/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/vedam-dev/ui-components/discussions)
+- **Changelog**: [Releases](https://github.com/vedam-dev/ui-components/releases)
+
+## 📊 Package Information
+
+- **Current Version**: 1.13.0
+- **Bundle Size**: Check [Bundle Phobia](https://bundlephobia.com/package/@vedam-dev/ui-components)
+- **Dependencies**: React 19+, Material-UI 7+
+- **Browser Support**: Modern browsers (ES2019+)
+
+---
+
+<div align="center">
+  <p>Made with ❤️ by the Vedam Development Team</p>
+  <p>
+    <a href="https://github.com/vedam-dev/ui-components/stargazers">⭐ Star us on GitHub</a> •
+    <a href="https://github.com/vedam-dev/ui-components/issues">🐛 Report Bug</a> •
+    <a href="https://github.com/vedam-dev/ui-components/discussions">💬 Discussions</a>
+  </p>
+</div>
