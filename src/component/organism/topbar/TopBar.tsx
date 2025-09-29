@@ -16,7 +16,8 @@ import { CoreTheme, useCoreTheme } from '../../../theme/core-theme';
 
 export interface TopBarProps {
   collegeLogo?: string;
-  studentId: string;
+  studentId?: string;
+  label?: string;
   studentName: string;
   studentPhoto?: string;
   streakCount?: number;
@@ -88,6 +89,7 @@ const StyledBadge = styled(Badge)(() => ({
 const TopBar: React.FC<TopBarProps> = ({
   collegeLogo,
   studentId,
+  label = '',
   studentName,
   studentPhoto,
   streakCount = 0,
@@ -101,6 +103,7 @@ const TopBar: React.FC<TopBarProps> = ({
   hideStatsContainer = false,
   hideHamburger = false,
 }) => {
+  const theme = useCoreTheme() as CoreTheme;
   const theme = useCoreTheme() as CoreTheme;
   return (
     <TopBarContainer sx={sx}>
@@ -200,6 +203,7 @@ const TopBar: React.FC<TopBarProps> = ({
         </StatsContainer>
 
         <Box display="flex" alignItems="center" sx={{ gap: theme.spacing(3) }}>
+        <Box display="flex" alignItems="center" sx={{ gap: theme.spacing(3) }}>
           <IconButton onClick={onProfileClick} sx={{ padding: 0 }}>
             <Avatar src={studentPhoto} alt={studentName} sx={{ width: '48px', height: '48px' }}>
               {!studentPhoto && studentName.charAt(0)}
@@ -226,7 +230,7 @@ const TopBar: React.FC<TopBarProps> = ({
                   color: '#A0A0A0',
                 }}
               >
-                Student Id: {studentId}
+                {label} {studentId}
               </Typography>
             </Box>
           </Box>

@@ -57,6 +57,7 @@ const SidebarWrapper: FC<SidebarWrapperProps> = ({
       <TopBar
         collegeLogo={collegeLogo}
         studentId={studentId}
+        label={label}
         studentName={studentName}
         studentPhoto={studentPhoto}
         streakCount={streakCount}
