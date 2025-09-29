@@ -1,6 +1,6 @@
 {
 	"name": "@vedam-dev/ui-components",
-	"version": "1.64.0",
+	"version": "1.65.0",
 	"main": "dist/index.js",
 	"types": "dist/index.d.ts",
 	"files": [
@@ -28,7 +28,7 @@
 		"build": "tsc",
 		"build:lib": "tsc --p ./tsconfig.lib.json",
 		"watch": "tsc -w",
-			"lint": "eslint .",
+		"lint": "eslint .",
 		"lint:fix": "eslint . --fix",
 		"prettier:format": "prettier --write \"{,src/**/}*.{md,json,ts,tsx,css,scss,yml}\"",
 		"storybook": "storybook dev -p 6006",
