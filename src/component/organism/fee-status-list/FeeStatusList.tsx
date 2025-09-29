@@ -1,12 +1,12 @@
-import React, { ComponentProps } from "react";
-import { Box, Typography } from "@mui/material";
-import { useCoreTheme } from "../../../theme/core-theme";
-import { Button } from "../../atom/button";
+import React, { ComponentProps } from 'react';
+import { Box, Typography } from '@mui/material';
+import { useCoreTheme } from '../../../theme/core-theme';
+import { Button } from '../../atom/button';
 
 export enum FeeStatus {
-  OVERDUE = "overdue",
-  DUE = "due",
-  PAID = "paid",
+  OVERDUE = 'overdue',
+  DUE = 'due',
+  PAID = 'paid',
 }
 
 export interface FeeStatusItem {
@@ -20,21 +20,15 @@ export interface IFeeStatusListProps {
   onPayNow?: () => void;
 }
 
-export type FeeStatusListProps = ComponentProps<typeof Box> &
-  IFeeStatusListProps;
+export type FeeStatusListProps = ComponentProps<typeof Box> & IFeeStatusListProps;
 
 const statusIcons = {
-  [FeeStatus.OVERDUE]: "⚠️",
-  [FeeStatus.DUE]: "⏳",
-  [FeeStatus.PAID]: "✅",
+  [FeeStatus.OVERDUE]: '⚠️',
+  [FeeStatus.DUE]: '⏳',
+  [FeeStatus.PAID]: '✅',
 };
 
-const FeeStatusList: React.FC<FeeStatusListProps> = ({
-  status,
-  feeItems,
-  onPayNow,
-  ...props
-}) => {
+const FeeStatusList: React.FC<FeeStatusListProps> = ({ status, feeItems, onPayNow, ...props }) => {
   const theme = useCoreTheme();
 
   const getStatusColor = (status: FeeStatus) => {
@@ -51,33 +45,29 @@ const FeeStatusList: React.FC<FeeStatusListProps> = ({
   };
 
   const statusColor = getStatusColor(status);
-  const semesterItem = feeItems.find(
-    (item) => item.label.toLowerCase() === "semester"
-  );
-  const otherItems = feeItems.filter(
-    (item) => item.label.toLowerCase() !== "semester"
-  );
+  const semesterItem = feeItems.find((item) => item.label.toLowerCase() === 'semester');
+  const otherItems = feeItems.filter((item) => item.label.toLowerCase() !== 'semester');
 
   return (
     <Box
       {...props}
       sx={{
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "space-between",
-        background: "linear-gradient(180deg, #EDDBFF 0%, #FFE6CE 100%)",
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        background: 'linear-gradient(180deg, #EDDBFF 0%, #FFE6CE 100%)',
         borderRadius: theme.spacing(9),
         padding: theme.spacing(10, 12),
-        border: "1px solid #7B2CBF",
-        position: "relative",
-        width: "100%",
+        border: '1px solid #7B2CBF',
+        position: 'relative',
+        width: '100%',
         ...props.sx,
       }}
     >
       {/* Status Badge */}
       <Box
         sx={{
-          position: "absolute",
+          position: 'absolute',
           top: -12,
           left: theme.spacing(10),
           backgroundColor: theme.palette.common.white,
@@ -85,21 +75,21 @@ const FeeStatusList: React.FC<FeeStatusListProps> = ({
           padding: theme.spacing(0.5, 1.5),
           borderRadius: theme.spacing(3),
           border: `1px solid ${statusColor}`,
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          width: "124px",
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          width: '124px',
           gap: theme.spacing(0.5),
           zIndex: 1,
         }}
       >
-        <Box sx={{ fontSize: "0.875rem" }}>{statusIcons[status]}</Box>
+        <Box sx={{ fontSize: '0.875rem' }}>{statusIcons[status]}</Box>
         <Typography
           variant="body2"
           sx={{
-            textTransform: "capitalize",
-            fontWeight: "bold",
-            fontSize: "0.75rem",
+            textTransform: 'capitalize',
+            fontWeight: 'bold',
+            fontSize: '0.75rem',
           }}
         >
           {status}
@@ -109,10 +99,10 @@ const FeeStatusList: React.FC<FeeStatusListProps> = ({
       {/* Column 1: Semester + Icon */}
       <Box
         sx={{
-          display: "flex",
-          alignItems: "center",
+          display: 'flex',
+          alignItems: 'center',
           gap: theme.spacing(3),
-          minWidth: "200px",
+          minWidth: '200px',
         }}
       >
         <svg
@@ -163,28 +153,28 @@ const FeeStatusList: React.FC<FeeStatusListProps> = ({
             variant="body2"
             sx={{
               color: theme.palette.text.secondary,
-              whiteSpace: "nowrap",
-              overflow: "hidden",
-              textOverflow: "ellipsis",
-              fontSize: "20px",
-              fontWeight: "500",
+              whiteSpace: 'nowrap',
+              overflow: 'hidden',
+              textOverflow: 'ellipsis',
+              fontSize: '20px',
+              fontWeight: '500',
             }}
           >
-            {semesterItem?.label || "Semester"}
+            {semesterItem?.label || 'Semester'}
           </Typography>
           <Typography
             variant="h6"
             sx={{
-              color: "#1E1E1E",
-              fontWeight: "600",
-              fontSize: "26px",
-              whiteSpace: "nowrap",
-              overflow: "hidden",
-              textOverflow: "ellipsis",
-              lineHeight: "33px",
+              color: '#1E1E1E',
+              fontWeight: '600',
+              fontSize: '26px',
+              whiteSpace: 'nowrap',
+              overflow: 'hidden',
+              textOverflow: 'ellipsis',
+              lineHeight: '33px',
             }}
           >
-            {semesterItem?.value || "Semester 1 Fees"}
+            {semesterItem?.value || 'Semester 1 Fees'}
           </Typography>
         </Box>
       </Box>
@@ -194,21 +184,21 @@ const FeeStatusList: React.FC<FeeStatusListProps> = ({
         <Box
           key={`${item.label}-${index}`}
           sx={{
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            textAlign: "left",
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            textAlign: 'left',
           }}
         >
           <Typography
             variant="body2"
             sx={{
               color: theme.palette.text.secondary,
-              whiteSpace: "nowrap",
-              overflow: "hidden",
-              textOverflow: "ellipsis",
-              fontSize: "20px",
-              fontWeight: "500",
+              whiteSpace: 'nowrap',
+              overflow: 'hidden',
+              textOverflow: 'ellipsis',
+              fontSize: '20px',
+              fontWeight: '500',
             }}
           >
             {item.label}
@@ -216,12 +206,12 @@ const FeeStatusList: React.FC<FeeStatusListProps> = ({
           <Typography
             variant="h6"
             sx={{
-              fontWeight: "500",
-              whiteSpace: "nowrap",
-              overflow: "hidden",
-              textOverflow: "ellipsis",
-              color: "#1E1E1E",
-              fontSize: "20px",
+              fontWeight: '500',
+              whiteSpace: 'nowrap',
+              overflow: 'hidden',
+              textOverflow: 'ellipsis',
+              color: '#1E1E1E',
+              fontSize: '20px',
             }}
           >
             {item.value}
@@ -235,7 +225,7 @@ const FeeStatusList: React.FC<FeeStatusListProps> = ({
           variant="contained"
           onClick={onPayNow}
           sx={{
-            minWidth: "250px",
+            minWidth: '250px',
           }}
         >
           Pay Now

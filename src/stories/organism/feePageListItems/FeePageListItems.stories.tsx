@@ -1,20 +1,19 @@
-import React from "react";
-import { Meta, StoryObj } from "@storybook/react";
+import React from 'react';
+import { Meta, StoryObj } from '@storybook/react';
 import FeeListItem, {
   FeeListItemRow,
   FeeListItemStatus,
   FeeListItemButton,
-} from "../../../component/organism/feePageListitems/FeePageListItems";
-import { Box } from "@mui/material";
+} from '../../../component/organism/feePageListitems/FeePageListItems';
 
 const meta: Meta<typeof FeeListItem> = {
-  title: "Organism/FeeListItem",
+  title: 'Organism/FeeListItem',
   component: FeeListItem,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   argTypes: {
     bgColor: {
-      control: "color",
-      description: "Background color for the card",
+      control: 'color',
+      description: 'Background color for the card',
     },
   },
 };
@@ -24,7 +23,7 @@ export default meta;
 type Story = StoryObj<typeof FeeListItem>;
 
 // Mock environment variable
-process.env.REACT_APP_CURRENCY = "INR";
+process.env.REACT_APP_CURRENCY = 'INR';
 
 // Default fee item
 const DefaultFeeItem = (
@@ -35,14 +34,14 @@ const DefaultFeeItem = (
     <FeeListItemRow title="Date" value="07/06/2025" />
     <FeeListItemRow title="Amount" value="15000" />
     <FeeListItemStatus status="Success" />
-    <FeeListItemButton onClick={() => console.log("View Receipt")} />
+    <FeeListItemButton onClick={() => console.log('View Receipt')} />
   </>
 );
 
 export const Default: Story = {
   args: {
     children: DefaultFeeItem,
-    bgColor: "#FFFFFF",
+    bgColor: '#FFFFFF',
   },
 };
 
@@ -54,9 +53,9 @@ export const SuccessStatus: Story = {
         <FeeListItemRow title="Payment Mode" value="Online" />
         <FeeListItemRow title="Payment ID" value="198026VEDAM" />
         <FeeListItemRow title="Date" value="07/06/2025" />
-        <FeeListItemRow title="Amount" value='75000' />
+        <FeeListItemRow title="Amount" value="75000" />
         <FeeListItemStatus status="Success" />
-        <FeeListItemButton onClick={() => console.log("View Receipt")} />
+        <FeeListItemButton onClick={() => console.log('View Receipt')} />
       </>
     ),
   },
@@ -72,10 +71,10 @@ export const PendingStatus: Story = {
         <FeeListItemRow title="Date" value="07/05/2025" />
         <FeeListItemRow title="Amount" value="25000" />
         <FeeListItemStatus status="Pending" />
-        <FeeListItemButton onClick={() => console.log("View Receipt")} />
+        <FeeListItemButton onClick={() => console.log('View Receipt')} />
       </>
     ),
-    bgColor: "#FFF8E1",
+    bgColor: '#FFF8E1',
   },
 };
 
@@ -89,16 +88,16 @@ export const FailedStatus: Story = {
         <FeeListItemRow title="Date" value="07/04/2025" />
         <FeeListItemRow title="Amount" value="35000" />
         <FeeListItemStatus status="Failed" />
-        <FeeListItemButton onClick={() => console.log("View Receipt")} />
+        <FeeListItemButton onClick={() => console.log('View Receipt')} />
       </>
     ),
-    bgColor: "#FFEBEE",
+    bgColor: '#FFEBEE',
   },
 };
 
 export const MultipleItems: StoryObj = {
   render: () => (
-    <div style={{  margin: "0 auto" }}>
+    <div style={{ margin: '0 auto' }}>
       <FeeListItem>
         <FeeListItemRow title="Description" value="College Fees" />
         <FeeListItemRow title="Payment Mode" value="Online" />
@@ -106,7 +105,7 @@ export const MultipleItems: StoryObj = {
         <FeeListItemRow title="Date" value="07/06/2025" />
         <FeeListItemRow title="Amount" value="15000" />
         <FeeListItemStatus status="Success" />
-        <FeeListItemButton onClick={() => console.log("Receipt 1")} />
+        <FeeListItemButton onClick={() => console.log('Receipt 1')} />
       </FeeListItem>
 
       <FeeListItem bgColor="#FFF8E1">
@@ -114,9 +113,9 @@ export const MultipleItems: StoryObj = {
         <FeeListItemRow title="Payment Mode" value="Offline" />
         <FeeListItemRow title="Payment ID" value="198026VEDAM" />
         <FeeListItemRow title="Date" value="07/05/2025" />
-        <FeeListItemRow title="Amount" value="12500"/>
+        <FeeListItemRow title="Amount" value="12500" />
         <FeeListItemStatus status="Pending" />
-        <FeeListItemButton onClick={() => console.log("Receipt 2")} />
+        <FeeListItemButton onClick={() => console.log('Receipt 2')} />
       </FeeListItem>
 
       <FeeListItem bgColor="#FFEBEE">
@@ -126,7 +125,7 @@ export const MultipleItems: StoryObj = {
         <FeeListItemRow title="Date" value="07/04/2025" />
         <FeeListItemRow title="Amount" value="10500" />
         <FeeListItemStatus status="Failed" />
-        <FeeListItemButton onClick={() => console.log("Receipt 3")} />
+        <FeeListItemButton onClick={() => console.log('Receipt 3')} />
       </FeeListItem>
     </div>
   ),
@@ -135,17 +134,17 @@ export const MultipleItems: StoryObj = {
 export const LessItems: StoryObj = {
   parameters: {
     env: {
-      REACT_APP_CURRENCY: "USD",
+      REACT_APP_CURRENCY: 'USD',
     },
   },
   render: () => (
     <FeeListItem>
       <FeeListItemRow title="Description" value="International Fees" />
       <FeeListItemRow title="Payment Mode" value="Online" />
-    
-      <FeeListItemRow title="Amount" value="5000"/>
+
+      <FeeListItemRow title="Amount" value="5000" />
       <FeeListItemStatus status="Success" />
-      <FeeListItemButton onClick={() => console.log("USD Receipt")} />
+      <FeeListItemButton onClick={() => console.log('USD Receipt')} />
     </FeeListItem>
   ),
 };
@@ -162,6 +161,6 @@ export const WithoutButton: Story = {
         <FeeListItemStatus status="Failed" />
       </>
     ),
-    bgColor: "#FFEBEE",
+    bgColor: '#FFEBEE',
   },
 };

@@ -7,7 +7,7 @@ const meta = {
   title: 'Molecule/AppBar',
   component: AppBar,
   parameters: {
-    layout: 'fullscreen'
+    layout: 'fullscreen',
   },
   tags: ['autodocs'],
   argTypes: {
@@ -22,17 +22,17 @@ const meta = {
         'error',
         'info',
         'success',
-        'warning'
-      ]
+        'warning',
+      ],
     },
     position: {
       control: 'select',
-      options: ['absolute', 'fixed', 'relative', 'static', 'sticky']
+      options: ['absolute', 'fixed', 'relative', 'static', 'sticky'],
     },
     enableColorOnDark: {
-      control: 'boolean'
-    }
-  }
+      control: 'boolean',
+    },
+  },
 } satisfies Meta<typeof AppBar>;
 
 export default meta;
@@ -48,8 +48,8 @@ export const Primary: Story = {
           Primary AppBar
         </Typography>
       </Toolbar>
-    )
-  }
+    ),
+  },
 };
 
 export const Secondary: Story = {
@@ -62,8 +62,8 @@ export const Secondary: Story = {
           Secondary AppBar
         </Typography>
       </Toolbar>
-    )
-  }
+    ),
+  },
 };
 
 export const Default: Story = {
@@ -76,8 +76,8 @@ export const Default: Story = {
           Default AppBar
         </Typography>
       </Toolbar>
-    )
-  }
+    ),
+  },
 };
 
 export const Transparent: Story = {
@@ -90,8 +90,8 @@ export const Transparent: Story = {
           Transparent AppBar
         </Typography>
       </Toolbar>
-    )
-  }
+    ),
+  },
 };
 
 export const AppError: Story = {
@@ -104,8 +104,8 @@ export const AppError: Story = {
           Error AppBar
         </Typography>
       </Toolbar>
-    )
-  }
+    ),
+  },
 };
 
 export const Success: Story = {
@@ -118,8 +118,8 @@ export const Success: Story = {
           Success AppBar
         </Typography>
       </Toolbar>
-    )
-  }
+    ),
+  },
 };
 
 export const Warning: Story = {
@@ -132,8 +132,8 @@ export const Warning: Story = {
           Warning AppBar
         </Typography>
       </Toolbar>
-    )
-  }
+    ),
+  },
 };
 
 export const Info: Story = {
@@ -146,8 +146,8 @@ export const Info: Story = {
           Info AppBar
         </Typography>
       </Toolbar>
-    )
-  }
+    ),
+  },
 };
 
 export const WithButtons: Story = {
@@ -164,12 +164,12 @@ export const WithButtons: Story = {
         </Typography>
         <Button color="inherit">Login</Button>
       </Toolbar>
-    )
-  }
+    ),
+  },
 };
 
 export const Fixed: Story = {
-  render: args => (
+  render: (args) => (
     <Box sx={{ height: '100vh' }}>
       <AppBar {...args}>
         <Toolbar>
@@ -187,12 +187,12 @@ export const Fixed: Story = {
   ),
   args: {
     color: 'primary',
-    position: 'fixed'
-  }
+    position: 'fixed',
+  },
 };
 
 export const Sticky: Story = {
-  render: args => (
+  render: (args) => (
     <Box sx={{ height: '200vh' }}>
       <Box sx={{ p: 2, mb: 2 }}>
         <Typography variant="body1">
@@ -216,8 +216,8 @@ export const Sticky: Story = {
   ),
   args: {
     color: 'primary',
-    position: 'sticky'
-  }
+    position: 'sticky',
+  },
 };
 
 export const EnableColorOnDark: Story = {
@@ -231,6 +231,6 @@ export const EnableColorOnDark: Story = {
           Color on Dark Mode
         </Typography>
       </Toolbar>
-    )
-  }
+    ),
+  },
 };

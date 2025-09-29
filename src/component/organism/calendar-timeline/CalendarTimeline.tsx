@@ -36,7 +36,7 @@ const CalendarTimeline: React.FC<CalendarTimelineProps> = ({ events }) => {
       September: 8,
       October: 9,
       November: 10,
-      December: 11
+      December: 11,
     };
 
     // Get end time from the time range (e.g., "10:30 - 12:30" -> "12:30")
@@ -49,7 +49,7 @@ const CalendarTimeline: React.FC<CalendarTimelineProps> = ({ events }) => {
   // Filter and update display events
   const updateDisplayEvents = () => {
     const currentTime = new Date();
-    const upcomingEvents = events.filter(event => {
+    const upcomingEvents = events.filter((event) => {
       const classEndTime = parseDateTime(event.date, event.time);
       return classEndTime > currentTime;
     });
@@ -73,7 +73,7 @@ const CalendarTimeline: React.FC<CalendarTimelineProps> = ({ events }) => {
   return (
     <Box
       sx={{
-        maxWidth: '549px'
+        maxWidth: '549px',
       }}
     >
       <Typography
@@ -82,7 +82,7 @@ const CalendarTimeline: React.FC<CalendarTimelineProps> = ({ events }) => {
           fontWeight: 500,
           fontFamily: 'Outfit',
           mb: theme.spacing(3),
-          color: theme.palette.text.primary
+          color: theme.palette.text.primary,
         }}
       >
         Calendar

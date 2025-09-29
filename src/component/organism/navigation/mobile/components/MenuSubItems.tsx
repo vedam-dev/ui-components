@@ -24,7 +24,7 @@ const MenuSubItems: React.FC<{
   isSelected,
   sx = {},
   index,
-  itemsCount
+  itemsCount,
 }) => {
   const theme = useCoreTheme();
   const handleToggle = (e: SyntheticEvent): void => {
@@ -45,8 +45,8 @@ const MenuSubItems: React.FC<{
           width: '100%',
           '&:focus-visible': {
             border: `1px solid ${theme.palette.primary.main}`,
-            outline: `1px solid ${theme.palette.primary.main}`
-          }
+            outline: `1px solid ${theme.palette.primary.main}`,
+          },
         }}
       >
         <Typography
@@ -71,7 +71,7 @@ const MenuSubItems: React.FC<{
               key={`accountText-subMenu`}
               sx={{
                 ...sx,
-                display: 'block'
+                display: 'block',
               }}
             >
               {mobileAccountSection}
@@ -96,8 +96,8 @@ const MenuSubItems: React.FC<{
                   textAlign: 'left',
                   '&:focus-visible': {
                     border: `1px solid ${theme.palette.primary.main}`,
-                    outline: `1px solid ${theme.palette.primary.main}`
-                  }
+                    outline: `1px solid ${theme.palette.primary.main}`,
+                  },
                 }}
               >
                 <Typography variant="body1">{item.label}</Typography>
@@ -112,10 +112,10 @@ const MenuSubItems: React.FC<{
 
 export default MenuSubItems;
 
-const iconStyle: (theme: Theme) => SystemStyleObject<Theme> = theme => {
+const iconStyle: (theme: Theme) => SystemStyleObject<Theme> = (theme) => {
   return {
     height: `16px`,
     width: `16px`,
-    color: theme.palette.grey[500]
+    color: theme.palette.grey[500],
   };
 };

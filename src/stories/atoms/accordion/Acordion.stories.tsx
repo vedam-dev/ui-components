@@ -4,7 +4,6 @@ import Accordion from '../../../component/atom/accordion/Accordion';
 import { Typography, Box } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
-
 type AccordionStoryArgs = React.ComponentProps<typeof Accordion> & {
   summary?: ReactNode;
   children?: ReactNode;
@@ -62,8 +61,8 @@ type Story = StoryObj<AccordionStoryArgs>;
 
 const sampleContent = (
   <Typography variant="body1">
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
-    sit amet blandit leo lobortis eget.
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit
+    amet blandit leo lobortis eget.
   </Typography>
 );
 
@@ -80,9 +79,7 @@ const Template: Story['render'] = (args) => (
         )}
       </Box>
     </Accordion.Summary>
-    <Accordion.Details>
-      {args.children}
-    </Accordion.Details>
+    <Accordion.Details>{args.children}</Accordion.Details>
   </Accordion>
 );
 

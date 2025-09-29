@@ -1,4 +1,3 @@
-
 import React, { ComponentProps, FC, MouseEvent } from 'react';
 import { Chip as BaseChip } from '@mui/material';
 import { CoreTheme, useCoreTheme } from '../../../theme/core-theme';
@@ -6,13 +5,7 @@ import SxOverride from '../../../util/SxOverride';
 
 type StatusVariants = 'success' | 'error' | 'warning';
 type BaseVariants = 'filled' | 'outlined';
-type PaletteColorKeys =
-  | 'primary'
-  | 'secondary'
-  | 'error'
-  | 'info'
-  | 'success'
-  | 'warning';
+type PaletteColorKeys = 'primary' | 'secondary' | 'error' | 'info' | 'success' | 'warning';
 
 export interface IChipProps {
   avatar?: React.ReactElement;
@@ -51,11 +44,10 @@ const Chip: FC<ChipProps> = ({
   const theme = useCoreTheme() as CoreTheme;
   const { palette } = theme;
 
-
   const STATUS_COLORS: Record<StatusVariants, string> = {
-    success: palette.success.dark, 
-    error: palette.error.dark, 
-    warning: palette.warning.dark, 
+    success: palette.success.dark,
+    error: palette.error.dark,
+    warning: palette.warning.dark,
   };
 
   const getColorValue = () => {
@@ -85,7 +77,7 @@ const Chip: FC<ChipProps> = ({
 
   const sxValue = SxOverride(
     {
-      padding: theme.spacing(0,2.5),
+      padding: theme.spacing(0, 2.5),
       borderRadius: theme.spacing(25),
       minWidth: theme.spacing(17),
       ...(baseVariant === 'filled' && {
@@ -111,8 +103,8 @@ const Chip: FC<ChipProps> = ({
         (['success', 'error', 'warning'] as StatusVariants[]).includes(variant as StatusVariants)
           ? undefined
           : color === 'default'
-          ? undefined
-          : (color as PaletteColorKeys)
+            ? undefined
+            : (color as PaletteColorKeys)
       }
       deleteIcon={deleteIcon}
       disabled={disabled}

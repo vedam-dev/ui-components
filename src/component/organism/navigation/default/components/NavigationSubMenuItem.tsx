@@ -23,7 +23,7 @@ const NavigationSubMenuItem: FC<NavigationSubMenuItemProps> = ({
   key,
   item,
   onItemClick,
-  ariaProps
+  ariaProps,
 }) => {
   const theme = useCoreTheme();
   const onClick = (e: SyntheticEvent): void => {
@@ -36,8 +36,8 @@ const NavigationSubMenuItem: FC<NavigationSubMenuItemProps> = ({
       sx={{
         '&:hover, &:active': { backgroundColor: 'transparent' },
         '&:focus-visible': {
-          border: getIsWindows() ? `2px solid ${theme.palette.text.primary} !important` : 'none'
-        }
+          border: getIsWindows() ? `2px solid ${theme.palette.text.primary} !important` : 'none',
+        },
       }}
       onClick={onClick}
       role="link"
@@ -54,7 +54,7 @@ const NavigationSubMenuItem: FC<NavigationSubMenuItemProps> = ({
           textDecoration: 'none',
           borderRadius: theme.spacing(0),
           width: '100%',
-          justifyContent: 'flex-start'
+          justifyContent: 'flex-start',
         }}
         href={item.uri}
         component={`a`}
@@ -70,7 +70,7 @@ const NavigationSubMenuItem: FC<NavigationSubMenuItemProps> = ({
 
 export default NavigationSubMenuItem;
 
-const buttonStyle: (theme: Theme) => SystemStyleObject<Theme> = theme => {
+const buttonStyle: (theme: Theme) => SystemStyleObject<Theme> = (theme) => {
   return {
     color: theme.palette.text.primary,
     fontWeight: 'bold',
@@ -79,6 +79,6 @@ const buttonStyle: (theme: Theme) => SystemStyleObject<Theme> = theme => {
     borderRadius: 0,
     lineHeight: 1,
     padding: `${theme.spacing(2)} 0`,
-    '&:hover, &:active': { color: theme.palette.text.primary, textDecoration: 'underline' }
+    '&:hover, &:active': { color: theme.palette.text.primary, textDecoration: 'underline' },
   };
 };

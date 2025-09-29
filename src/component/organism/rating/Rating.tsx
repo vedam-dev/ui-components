@@ -1,7 +1,7 @@
-import React from "react";
-import { Box, Typography, Rating as MuiRating } from "@mui/material";
-import StarIcon from "@mui/icons-material/Star";
-import StarBorderIcon from "@mui/icons-material/StarBorder";
+import React from 'react';
+import { Box, Typography, Rating as MuiRating } from '@mui/material';
+import StarIcon from '@mui/icons-material/Star';
+import StarBorderIcon from '@mui/icons-material/StarBorder';
 
 type Props = {
   title?: string;
@@ -14,63 +14,62 @@ type Props = {
 };
 
 const RatingCard: React.FC<Props> = ({
-  title = "Overall Rating",
+  title = 'Overall Rating',
   value = 4,
   onChange,
   readOnly = true,
   max = 5,
-  backgroundImage = "https://acjlsquedaotbhbxmtee.supabase.co/storage/v1/object/public/vedam-website-assets/images/videoInfo/Container-2.png",
+  backgroundImage = 'https://acjlsquedaotbhbxmtee.supabase.co/storage/v1/object/public/vedam-website-assets/images/videoInfo/Container-2.png',
   sx,
 }) => {
   return (
     <Box
       sx={{
-        width: "100%",
+        width: '100%',
         minHeight: 200,
         borderRadius: 4,
-        overflow: "hidden",
-        position: "relative",
+        overflow: 'hidden',
+        position: 'relative',
         backgroundImage: `url(${backgroundImage})`,
-        backgroundRepeat: "no-repeat",
-        backgroundSize: "100% 100%",
-        boxShadow: "0 4px 18px rgba(10,10,10,0.06)",
+        backgroundRepeat: 'no-repeat',
+        backgroundSize: '100% 100%',
+        boxShadow: '0 4px 18px rgba(10,10,10,0.06)',
         p: 4,
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "flex-start",
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'flex-start',
         gap: 3,
-        maxWidth: "235px",
-        maxHeight: "250px",
+        maxWidth: '235px',
+        maxHeight: '250px',
         ...sx,
 
-        "& .MuiRating-root": {
+        '& .MuiRating-root': {
           zIndex: 2,
-          position: "relative",
+          position: 'relative',
         },
-        "& .MuiRating-iconFilled": {
-          color: "#FBBC01",
+        '& .MuiRating-iconFilled': {
+          color: '#FBBC01',
         },
-        "& .MuiRating-iconHover": {
-          color: "#FBBC01",
+        '& .MuiRating-iconHover': {
+          color: '#FBBC01',
         },
-        "& .MuiRating-iconEmpty": {
-          color: "#e5e7eb",
+        '& .MuiRating-iconEmpty': {
+          color: '#e5e7eb',
         },
       }}
       aria-label={title}
     >
-      <Box sx={{ width: "100%", textAlign: "center" }}>
+      <Box sx={{ width: '100%', textAlign: 'center' }}>
         <Typography
           sx={{
             fontWeight: 500,
-            color: (theme) =>
-              theme.palette.mode === "light" ? "#111" : "#fff",
+            color: (theme) => (theme.palette.mode === 'light' ? '#111' : '#fff'),
             zIndex: 2,
-            position: "relative",
-            textAlign: "center",
-            fontSize: "20px",
-            fontFamily: "Outfit",
+            position: 'relative',
+            textAlign: 'center',
+            fontSize: '20px',
+            fontFamily: 'Outfit',
             mt: 1,
           }}
         >

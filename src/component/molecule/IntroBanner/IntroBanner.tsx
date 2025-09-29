@@ -52,7 +52,7 @@ const ResponsiveImages: FC<{
   );
 };
 
-const bannerContentWrapper: (theme: Theme) => SystemStyleObject<Theme> = theme => ({
+const bannerContentWrapper: (theme: Theme) => SystemStyleObject<Theme> = (theme) => ({
   position: 'absolute',
   top: '50%',
   transform: 'translateY(-50%)',
@@ -64,14 +64,14 @@ const bannerContentWrapper: (theme: Theme) => SystemStyleObject<Theme> = theme =
     xs: theme.spacing(6),
     sm: theme.spacing(8),
     md: theme.spacing(8),
-    lg: 0
-  }
+    lg: 0,
+  },
 });
 
 const StyledImage = styled('img')({
   width: '100%',
   height: '100%',
-  objectFit: 'cover'
+  objectFit: 'cover',
 });
 
 const IntroBanner: FC<IIntroBannerProps> = ({
@@ -87,7 +87,7 @@ const IntroBanner: FC<IIntroBannerProps> = ({
   desktopUrl,
   tabletUrl,
   mobileUrl,
-  role = 'separator' // Option to change role for accessibility, separator is default
+  role = 'separator', // Option to change role for accessibility, separator is default
 }) => {
   const isMobile = useMediaQuery((theme: Theme) => theme.breakpoints.down('sm'));
   const styleIsGradient = outlineStyle === 'Gradient';
@@ -98,8 +98,8 @@ const IntroBanner: FC<IIntroBannerProps> = ({
         position: 'relative',
         height: {
           xs: '330px',
-          lg: '384px'
-        }
+          lg: '384px',
+        },
       }}
     >
       <ResponsiveImages
@@ -123,7 +123,7 @@ const IntroBanner: FC<IIntroBannerProps> = ({
             width: '100%',
             height: '100%',
             left: 0,
-            top: 0
+            top: 0,
           }}
         />
       )}

@@ -5,7 +5,7 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { JSX } from 'react';
 
 const storybookTheme = createTheme({
-  spacing: 4
+  spacing: 4,
 });
 
 const meta: Meta<typeof SubjectCard> = {
@@ -16,101 +16,101 @@ const meta: Meta<typeof SubjectCard> = {
       <ThemeProvider theme={storybookTheme}>
         <Story />
       </ThemeProvider>
-    )
+    ),
   ],
   parameters: {
     layout: 'centered',
     docs: {
       description: {
         component:
-          'A customizable subject card component with support for various styling options and content configurations.'
-      }
-    }
+          'A customizable subject card component with support for various styling options and content configurations.',
+      },
+    },
   },
   tags: ['autodocs'],
   argTypes: {
     subject: {
       control: 'text',
-      description: 'The subject/title of the card'
+      description: 'The subject/title of the card',
     },
     teacher: {
       control: 'text',
-      description: 'The teacher/instructor name'
+      description: 'The teacher/instructor name',
     },
     duration: {
       control: 'text',
-      description: 'Duration of the course'
+      description: 'Duration of the course',
     },
     lectureCount: {
       control: { type: 'number', min: 0 },
-      description: 'Number of lectures in the course'
+      description: 'Number of lectures in the course',
     },
     description: {
       control: 'text',
-      description: 'Course description'
+      description: 'Course description',
     },
     iconUrl: {
       control: 'text',
-      description: 'URL for the subject icon'
+      description: 'URL for the subject icon',
     },
     iconAlt: {
       control: 'text',
-      description: 'Alt text for the subject icon'
+      description: 'Alt text for the subject icon',
     },
     buttonText: {
       control: 'text',
-      description: 'Text for the action button'
+      description: 'Text for the action button',
     },
 
     onGoToClass: {
       action: 'Go to Class clicked',
-      description: 'Callback when button is clicked'
+      description: 'Callback when button is clicked',
     },
 
     width: {
       control: { type: 'number', min: 200, max: 500, step: 10 },
-      description: 'Width of the card in pixels'
+      description: 'Width of the card in pixels',
     },
     height: {
       control: { type: 'number', min: 200, max: 500, step: 10 },
-      description: 'Height of the card in pixels'
+      description: 'Height of the card in pixels',
     },
     cardSx: {
       control: 'object',
-      description: 'Custom styles for the card container'
+      description: 'Custom styles for the card container',
     },
     iconContainerSx: {
       control: 'object',
-      description: 'Custom styles for the icon container'
+      description: 'Custom styles for the icon container',
     },
     subjectTextSx: {
       control: 'object',
-      description: 'Custom styles for the subject text'
+      description: 'Custom styles for the subject text',
     },
     teacherTextSx: {
       control: 'object',
-      description: 'Custom styles for the teacher text'
+      description: 'Custom styles for the teacher text',
     },
     durationTextSx: {
       control: 'object',
-      description: 'Custom styles for the duration text'
+      description: 'Custom styles for the duration text',
     },
     lectureTextSx: {
       control: 'object',
-      description: 'Custom styles for the lecture count text'
+      description: 'Custom styles for the lecture count text',
     },
     descriptionTextSx: {
       control: 'object',
-      description: 'Custom styles for the description text'
+      description: 'Custom styles for the description text',
     },
     buttonSx: {
       control: 'object',
-      description: 'Custom styles for the button'
-    }
+      description: 'Custom styles for the button',
+    },
   },
   args: {
-    onGoToClass: fn()
-  }
+    onGoToClass: fn(),
+  },
 };
 
 export default meta;
@@ -122,8 +122,8 @@ export const Default: Story = {
     teacher: 'Priya Sharma',
     duration: '4 months',
     lectureCount: 24,
-    description: 'Advanced calculus, algebra, and mathematical analysis.'
-  }
+    description: 'Advanced calculus, algebra, and mathematical analysis.',
+  },
 };
 
 export const WebDevelopment: Story = {
@@ -135,9 +135,9 @@ export const WebDevelopment: Story = {
     description: 'Advanced calculus, algebra, and mathematical analysis',
     cardSx: {
       background: 'linear-gradient(180deg, rgba(183,239,245,1) 0%, rgba(255,255,255,1) 100%)',
-      border: '1px solid #4fc3f7'
-    }
-  }
+      border: '1px solid #4fc3f7',
+    },
+  },
 };
 
 export const Mathematics: Story = {
@@ -149,9 +149,9 @@ export const Mathematics: Story = {
     description: 'Advanced calculus, algebra, and mathematical analysis',
     cardSx: {
       background: 'linear-gradient(180deg, rgba(255,201,154,1) 0%, rgba(255,255,255,1) 100%)',
-      border: '1px solid #4fc3f7'
-    }
-  }
+      border: '1px solid #4fc3f7',
+    },
+  },
 };
 
 export const Unix: Story = {
@@ -163,9 +163,9 @@ export const Unix: Story = {
     description: 'Advanced calculus, algebra, and mathematical analysis',
     cardSx: {
       background: 'linear-gradient(180deg, rgba(226,198,255,1) 0%, rgba(255,255,255,1) 100%)',
-      border: '1px solid #4fc3f7'
-    }
-  }
+      border: '1px solid #4fc3f7',
+    },
+  },
 };
 
 export const CustomIcon: Story = {
@@ -176,8 +176,8 @@ export const CustomIcon: Story = {
     lectureCount: 32,
     description: 'Machine learning fundamentals and data analysis techniques',
     iconUrl: 'https://cdn-icons-png.flaticon.com/512/2103/2103633.png',
-    iconAlt: 'Data science icon'
-  }
+    iconAlt: 'Data science icon',
+  },
 };
 
 export const CustomButton: Story = {
@@ -192,10 +192,10 @@ export const CustomButton: Story = {
       backgroundColor: 'primary.main',
       color: 'white',
       '&:hover': {
-        backgroundColor: 'primary.dark'
-      }
-    }
-  }
+        backgroundColor: 'primary.dark',
+      },
+    },
+  },
 };
 
 export const DarkTheme: Story = {
@@ -207,31 +207,31 @@ export const DarkTheme: Story = {
     description: 'Backend development with Node.js and Express',
     cardSx: {
       background: 'linear-gradient(180deg, #424242 0%, #212121 100%)',
-      border: '1px solid #616161'
+      border: '1px solid #616161',
     },
     subjectTextSx: {
-      color: 'primary.light'
+      color: 'primary.light',
     },
     teacherTextSx: {
-      color: 'text.disabled'
+      color: 'text.disabled',
     },
     durationTextSx: {
-      color: 'text.disabled'
+      color: 'text.disabled',
     },
     lectureTextSx: {
-      color: 'text.disabled'
+      color: 'text.disabled',
     },
     descriptionTextSx: {
-      color: 'text.secondary'
+      color: 'text.secondary',
     },
     buttonSx: {
       backgroundColor: 'primary.light',
       color: 'background.default',
       '&:hover': {
-        backgroundColor: 'primary.main'
-      }
-    }
-  }
+        backgroundColor: 'primary.main',
+      },
+    },
+  },
 };
 
 export const FullyCustomized: Story = {
@@ -247,24 +247,24 @@ export const FullyCustomized: Story = {
     buttonText: 'Enroll Now',
     cardSx: {
       background: 'linear-gradient(180deg, #e1f5fe 0%, #b3e5fc 100%)',
-      border: '1px solid #4fc3f7'
+      border: '1px solid #4fc3f7',
     },
     iconContainerSx: {
-      bgcolor: 'background.paper'
+      bgcolor: 'background.paper',
     },
     subjectTextSx: {
       color: 'primary.dark',
-      fontSize: '24px'
+      fontSize: '24px',
     },
     teacherTextSx: {
-      color: 'primary.main'
+      color: 'primary.main',
     },
     buttonSx: {
       backgroundColor: 'primary.main',
       color: 'white',
       '&:hover': {
-        backgroundColor: 'primary.dark'
-      }
-    }
-  }
+        backgroundColor: 'primary.dark',
+      },
+    },
+  },
 };

@@ -7,10 +7,10 @@ const meta = {
   component: SvgIcon,
   parameters: {
     // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/configure/story-layout
-    layout: 'centered'
+    layout: 'centered',
   },
   // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/writing-docs/autodocs
-  tags: ['autodocs']
+  tags: ['autodocs'],
   // More on argTypes: https://storybook.js.org/docs/api/argtypes
   // Use `fn` to spy on the onClick arg, which will appear in the actions panel once invoked: https://storybook.js.org/docs/essentials/actions#action-args
 } satisfies Meta<typeof SvgIcon>;
@@ -22,152 +22,152 @@ type Story = StoryObj<typeof meta>;
 export const MonoToneCart: Story = {
   args: {
     iconName: 'monoToneCart',
-    color: 'primary'
-  }
+    color: 'primary',
+  },
 };
 
 export const MonoToneCartLarge: Story = {
   args: {
     iconName: 'monoToneCart',
     color: 'primary',
-    fontSize: 'large'
-  }
+    fontSize: 'large',
+  },
 };
 
 export const MonotoneChevronLeft: Story = {
   args: {
-    iconName: 'monotoneChevronLeft'
-  }
+    iconName: 'monotoneChevronLeft',
+  },
 };
 
 export const MonotoneChevronRight: Story = {
   args: {
-    iconName: 'monotoneChevronRight'
-  }
+    iconName: 'monotoneChevronRight',
+  },
 };
 
 export const MonotoneChevronDown: Story = {
   args: {
-    iconName: 'monotoneChevronDown'
-  }
+    iconName: 'monotoneChevronDown',
+  },
 };
 
 export const MonotoneNumber: Story = {
   args: {
-    iconName: 'monotoneNumber'
-  }
+    iconName: 'monotoneNumber',
+  },
 };
 
 export const MonotoneCircle: Story = {
   args: {
-    iconName: 'monotoneCircle'
-  }
+    iconName: 'monotoneCircle',
+  },
 };
 
 export const MonotoneClose: Story = {
   args: {
-    iconName: 'monotoneClose'
-  }
+    iconName: 'monotoneClose',
+  },
 };
 
 export const MonotoneCheck: Story = {
   args: {
-    iconName: 'monotoneCheck'
-  }
+    iconName: 'monotoneCheck',
+  },
 };
 
 export const MonotoneFilter: Story = {
   args: {
-    iconName: 'monotoneFilter'
-  }
+    iconName: 'monotoneFilter',
+  },
 };
 
 export const MonotoneMenu: Story = {
   args: {
     sx: {
       width: `3em`,
-      height: `3em`
+      height: `3em`,
     },
-    iconName: 'monotoneMenu'
-  }
+    iconName: 'monotoneMenu',
+  },
 };
 
 export const MonotoneWallet: Story = {
   args: {
     sx: {
       width: `3em`,
-      height: `3em`
+      height: `3em`,
     },
-    iconName: 'monotoneWallet'
-  }
+    iconName: 'monotoneWallet',
+  },
 };
 
 export const MonotoneToken: Story = {
   args: {
     sx: {
       width: `3em`,
-      height: `3em`
+      height: `3em`,
     },
-    iconName: 'monotoneToken'
-  }
+    iconName: 'monotoneToken',
+  },
 };
 
 export const LotteryWVRed80: Story = {
   args: {
     sx: {
       width: `3em`,
-      height: `3em`
+      height: `3em`,
     },
-    iconName: 'lottery.WVRed80'
-  }
+    iconName: 'lottery.WVRed80',
+  },
 };
 
 export const YouTube: Story = {
   args: {
     sx: {
       width: `3em`,
-      height: `3em`
+      height: `3em`,
     },
-    iconName: 'youtube'
-  }
+    iconName: 'youtube',
+  },
 };
 
 export const X: Story = {
   args: {
     sx: {
       width: `3em`,
-      height: `3em`
+      height: `3em`,
     },
-    iconName: 'x'
-  }
+    iconName: 'x',
+  },
 };
 
 export const Instagram: Story = {
   args: {
     sx: {
       width: `3em`,
-      height: `3em`
+      height: `3em`,
     },
-    iconName: 'instagram'
-  }
+    iconName: 'instagram',
+  },
 };
 
 export const Facebook: Story = {
   args: {
     sx: {
       width: `3em`,
-      height: `3em`
+      height: `3em`,
     },
-    iconName: 'facebook'
-  }
+    iconName: 'facebook',
+  },
 };
 
 export const OpenNewWindow: Story = {
   args: {
     sx: {
       width: `3em`,
-      height: `3em`
+      height: `3em`,
     },
-    iconName: 'openNewWindow'
-  }
+    iconName: 'openNewWindow',
+  },
 };

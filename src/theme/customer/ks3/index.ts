@@ -10,7 +10,7 @@ const defaultButtonTypography: CSSProperties = {
   textTransform: 'none',
   letterSpacing: 0,
   lineHeight: 1.5,
-  fontWeight: 'bold'
+  fontWeight: 'bold',
 };
 
 const index = createCoreTheme({
@@ -22,12 +22,12 @@ const index = createCoreTheme({
       y4: `0px 2px 8px  ${colors.shadowsY4}`,
       y8: `0 8px 16px 0 ${colors.shadowsY8}`,
       y12: `0 12px 24px 0 ${colors.shadowsY12}`,
-      y16: `0 16px 32px -4px ${colors.shadowsY16}`
+      y16: `0 16px 32px -4px ${colors.shadowsY16}`,
     },
     typography: {
       avatar: { fontFamily: `Satoshi`, fontWeight: 'bold', fontSize: '14pt', lineHeight: '24pt' },
-      buttonS: { ...defaultTheme.typography.button, ...defaultButtonTypography, fontSize: '14px' }
-    }
+      buttonS: { ...defaultTheme.typography.button, ...defaultButtonTypography, fontSize: '14px' },
+    },
   },
   spacing: 4,
   breakpoints: {
@@ -41,8 +41,8 @@ const index = createCoreTheme({
       mobile: 0,
       tablet: 900,
       web: 1200,
-      'web-xl': 1536
-    }
+      'web-xl': 1536,
+    },
   },
   typography: {
     fontSize: 14,
@@ -56,42 +56,42 @@ const index = createCoreTheme({
       lineHeight: '80px',
       fontSize: '60px',
       letterSpacing: -1.5,
-      fontWeight: 'bold'
+      fontWeight: 'bold',
     },
     h2: {
       fontFamily: 'SatoshiBold, system-ui',
       fontSize: '50px',
       letterSpacing: 0,
       lineHeight: '42px',
-      fontWeight: 'bold'
+      fontWeight: 'bold',
     },
     h3: {
       fontFamily: 'SatoshiBold, system-ui',
       lineHeight: '44px',
       fontSize: '32px',
       letterSpacing: 0,
-      fontWeight: 'bold'
+      fontWeight: 'bold',
     },
     h4: {
       fontFamily: 'SatoshiBold, system-ui',
       lineHeight: '32px',
       fontSize: '24px',
       letterSpacing: 0,
-      fontWeight: 'bold'
+      fontWeight: 'bold',
     },
     h5: {
       fontFamily: 'SatoshiMedium, system-ui',
       lineHeight: '26px',
       fontSize: '18px',
       letterSpacing: 0,
-      fontWeight: 'bold'
+      fontWeight: 'bold',
     },
     h6: {
       fontFamily: 'SatoshiMedium, system-ui',
       lineHeight: '24px',
       fontSize: '16px',
       letterSpacing: 1,
-      fontWeight: 'bold'
+      fontWeight: 'bold',
     },
     subtitle1: {
       fontFamily: 'SatoshiBold, system-ui',
@@ -100,7 +100,7 @@ const index = createCoreTheme({
       fontWeight: 'bold',
       letterSpacing: `normal`,
       fontStretch: `normal`,
-      fontStyle: `normal`
+      fontStyle: `normal`,
     },
     subtitle2: {
       fontFamily: 'SatoshiMedium, system-ui',
@@ -109,7 +109,7 @@ const index = createCoreTheme({
       fontWeight: 'bold',
       letterSpacing: `normal`,
       fontStretch: `normal`,
-      fontStyle: `normal`
+      fontStyle: `normal`,
     },
     body1: {
       ...defaultFont,
@@ -118,7 +118,7 @@ const index = createCoreTheme({
       letterSpacing: `normal`,
       fontWeight: `normal`,
       fontStretch: `normal`,
-      fontStyle: `normal`
+      fontStyle: `normal`,
     },
     body2: {
       ...defaultFont,
@@ -127,7 +127,7 @@ const index = createCoreTheme({
       letterSpacing: `normal`,
       fontWeight: `normal`,
       fontStretch: `normal`,
-      fontStyle: `normal`
+      fontStyle: `normal`,
     },
     caption: { ...defaultFont, lineHeight: '20px', fontSize: '12px', letterSpacing: 0.3 },
     overline: {
@@ -135,8 +135,8 @@ const index = createCoreTheme({
       lineHeight: '20px',
       fontSize: '12px',
       letterSpacing: 1.2,
-      textTransform: 'uppercase'
-    }
+      textTransform: 'uppercase',
+    },
   },
   palette: {
     mode: 'light',
@@ -150,7 +150,7 @@ const index = createCoreTheme({
       500: colors.primaryP500,
       600: colors.primaryP600Primary,
       700: colors.primaryP700,
-      800: colors.primaryP800
+      800: colors.primaryP800,
     },
     secondary: {
       main: colors.secondaryS500Secondary,
@@ -162,40 +162,40 @@ const index = createCoreTheme({
       500: colors.secondaryS500Secondary,
       600: colors.secondaryS600,
       700: colors.secondaryS700,
-      800: colors.secondaryS800
+      800: colors.secondaryS800,
     },
     error: {
       main: colors.dangerD400Danger,
       100: colors.dangerD100,
       200: colors.dangerD200,
       300: colors.dangerD300,
-      400: colors.dangerD400Danger
+      400: colors.dangerD400Danger,
     },
     warning: {
       main: colors.warningW400Warning,
       100: colors.warningW100,
       200: colors.warningW200,
       300: colors.warningW300,
-      400: colors.warningW400Warning
+      400: colors.warningW400Warning,
     },
     info: {
       main: colors.infoI400Info,
       100: colors.infoI100,
       200: colors.infoI200,
       300: colors.infoI300,
-      400: colors.infoI400Info
+      400: colors.infoI400Info,
     },
     success: {
       main: colors.successSc400Success,
       100: colors.successSc100,
       200: colors.successSc200,
       300: colors.successSc300,
-      400: colors.successSc400Success
+      400: colors.successSc400Success,
     },
     text: {
       primary: colors.textColors1TxPrimary,
       secondary: colors.textColors2TxSecondary,
-      disabled: colors.textColors3TxDisabled
+      disabled: colors.textColors3TxDisabled,
     },
     common: { white: colors.neutralsNWhite, black: colors.neutralsNBlack },
     grey: {
@@ -208,15 +208,15 @@ const index = createCoreTheme({
       600: colors.neutralsN600,
       700: colors.neutralsN700,
       800: colors.neutralsN800,
-      900: colors.neutralsN900
-    }
+      900: colors.neutralsN900,
+    },
   },
   components: {
     MuiButton: {
-      defaultProps: { disableFocusRipple: true, disableTouchRipple: true, disableRipple: true }
+      defaultProps: { disableFocusRipple: true, disableTouchRipple: true, disableRipple: true },
     },
-    MuiCard: { defaultProps: { sx: { boxShadow: colors.shadowsY8 } } }
-  }
+    MuiCard: { defaultProps: { sx: { boxShadow: colors.shadowsY8 } } },
+  },
 });
 
 export default index;

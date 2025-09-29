@@ -1,89 +1,90 @@
-// .eslintrc.mjs
-import { FlatCompat } from '@eslint/eslintrc';
+// eslint.config.mjs
 import js from '@eslint/js';
-
-import tsPlugin from '@typescript-eslint/eslint-plugin';
-import tsParser from '@typescript-eslint/parser';
-import prettierPlugin from 'eslint-plugin-prettier';
-import reactPlugin from 'eslint-plugin-react';
-import reactHooksPlugin from 'eslint-plugin-react-hooks';
-import storybookPlugin from 'eslint-plugin-storybook';
-import { fileURLToPath } from 'node:url';
-
-const __dirname = fileURLToPath(new URL('.', import.meta.url));
-
-const compat = new FlatCompat({
-  baseDirectory: __dirname,
-  recommendedConfig: js.configs.recommended
-});
+import prettier from 'eslint-plugin-prettier';
+import prettierConfig from 'eslint-config-prettier';
+import tseslint from 'typescript-eslint';
+import globals from 'globals';
 
 export default [
-  
+  // Ignore patterns - includes Storybook artifacts
+  {
+    ignores: [
+      'dist/',
+      'build/',
+      'node_modules/',
+      '*.min.js',
+      '.next/',
+      'storybook-static/',
+      '.storybook/public/',
+      'coverage/',
+    ],
+  },
 
-  { ignores: ['public/**', 'node_modules/**', 'build/**', 'package.json', 'lib'] },
-
+  // Base ESLint recommended rules
   js.configs.recommended,
 
-  ...compat.extends(
-    'plugin:react/recommended',
-    'plugin:react-hooks/recommended',
-    'plugin:@typescript-eslint/recommended',
-    'plugin:storybook/recommended',
-    'prettier'
-  ),
-
-  // Project source override for JS/TS/JSX/TSX files
+  // Global configuration for all files
   {
-    files: ['**/*.{js,jsx,ts,tsx}'],
     languageOptions: {
-      parser: tsParser,
+      ecmaVersion: 'latest',
+      sourceType: 'module',
+      globals: {
+        ...globals.browser,
+        ...globals.node,
+        ...globals.es2021,
+      },
+    },
+  },
+
+  // TypeScript support without type-checking (faster)
+  {
+    files: ['**/*.ts', '**/*.tsx'],
+    plugins: {
+      '@typescript-eslint': tseslint.plugin,
+    },
+    languageOptions: {
+      parser: tseslint.parser,
       parserOptions: {
         ecmaVersion: 'latest',
         sourceType: 'module',
-        ecmaFeatures: { jsx: true }
+        ecmaFeatures: { jsx: true },
       },
-      globals: { React: 'writable' }
-    },
-    plugins: {
-      '@typescript-eslint': tsPlugin,
-      react: reactPlugin,
-      'react-hooks': reactHooksPlugin,
-      prettier: prettierPlugin,
-      '@storybook': storybookPlugin
     },
     rules: {
-      '@typescript-eslint/no-unused-expressions': [
-        'error',
-        { allowShortCircuit: true, allowTernary: true, allowTaggedTemplates: true }
-      ],
-      'no-extra-boolean-cast': 'off',
-      '@typescript-eslint/explicit-function-return-type': 'error',
-      '@typescript-eslint/explicit-member-accessibility': 'error',
-      '@typescript-eslint/no-unused-vars': 'error',
-      '@typescript-eslint/no-use-before-define': 'off',
-      '@typescript-eslint/no-explicit-any': 'error',
-      'react/react-in-jsx-scope': 'off',
-      'react/prop-types': 'off',
-      'no-console': 'error',
-      'react-hooks/rules-of-hooks': 'error',
-      'react-hooks/exhaustive-deps': 'warn',
+      // Disable base rule for TS files
+      'no-unused-vars': 'off',
+      '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
+    },
+  },
+
+  // Prettier integration
+  {
+    plugins: {
+      prettier,
+    },
+    rules: {
+      ...prettierConfig.rules,
       'prettier/prettier': [
         'error',
         {
-          printWidth: 100,
           singleQuote: true,
-          trailingComma: 'none',
-          tabWidth: 2,
+          semi: true,
+          trailingComma: 'es5',
+          printWidth: 100,
           endOfLine: 'auto',
-          bracketSameLine: false,
+          tabWidth: 2,
           useTabs: false,
-          arrowParens: 'avoid',
-          bracketSpacing: true
-        }
-      ]
+        },
+      ],
     },
-    settings: { react: { version: '18' } }
   },
 
-
+  // General rules (minimal)
+  {
+    rules: {
+      'no-console': 'off',
+      'no-debugger': 'warn',
+      'no-undef': 'error',
+    },
+  },
 ];

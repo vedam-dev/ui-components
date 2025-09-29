@@ -1,4 +1,5 @@
 import { useMediaQuery } from '@mui/material';
+import React from 'react';
 import { Theme } from '@mui/material/styles';
 import { UseScrollTriggerOptions } from '@mui/material/useScrollTrigger/useScrollTrigger';
 import { FC, SyntheticEvent } from 'react';
@@ -27,10 +28,10 @@ const NavigationMainLogo: FC<INavigationMainLogoProps> = ({
   LogoIcon,
   defaultIconSize = {
     width: 60,
-    height: 60
+    height: 60,
   },
   onNavigationClick,
-  homePage
+  homePage,
 }) => {
   const theme = useCoreTheme();
   const isMobile = useMediaQuery((theme: Theme) => theme.breakpoints.down('sm'));
@@ -62,7 +63,7 @@ const NavigationMainLogo: FC<INavigationMainLogoProps> = ({
         right: isMobile ? 0 : 'initial',
         marginLeft: isMobile ? `auto` : '24px',
         marginRight: isMobile ? `auto` : '0',
-        position: isMobile ? 'absolute' : 'relative'
+        position: isMobile ? 'absolute' : 'relative',
       }}
     >
       {LogoIcon}

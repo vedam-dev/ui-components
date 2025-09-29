@@ -7,7 +7,7 @@ import { useCoreTheme } from '../../../theme/core-theme';
 
 const StyledLogo = styled('img')({
   width: '213px',
-  height: 'auto'
+  height: 'auto',
 });
 
 export interface IBannerContent {
@@ -41,17 +41,17 @@ const BannerContent: React.FC<IBannerContent> = ({
   buttonColor,
   buttonBackgroundColor,
   isButtonV2,
-  onClick
+  onClick,
 }) => {
   const theme = useCoreTheme();
   const textShadow = {
-    textShadow: `0px 0px 2px ${outlineColor}`
+    textShadow: `0px 0px 2px ${outlineColor}`,
   };
 
   return (
     <Box
       sx={{
-        width: '1024px'
+        width: '1024px',
       }}
     >
       {logoUrl && <StyledLogo src={logoUrl} alt={logoAlt} aria-label={logoAlt} title={logoTitle} />}
@@ -62,7 +62,7 @@ const BannerContent: React.FC<IBannerContent> = ({
           sx={{
             color: titleColor,
             marginBlock: !secondaryTitle ? theme.spacing(6) : theme.spacing(1),
-            marginBottom: !secondaryTitle ? theme.spacing(6) : theme.spacing(1)
+            marginBottom: !secondaryTitle ? theme.spacing(6) : theme.spacing(1),
           }}
         >
           {shouldOutline ? <span style={textShadow}>{title}</span> : title}
@@ -75,7 +75,7 @@ const BannerContent: React.FC<IBannerContent> = ({
           sx={{
             color: titleColor,
             marginBlock: !secondaryTitle ? theme.spacing(6) : theme.spacing(1),
-            marginBottom: secondaryTitle ? theme.spacing(6) : theme.spacing(1)
+            marginBottom: secondaryTitle ? theme.spacing(6) : theme.spacing(1),
           }}
         >
           {shouldOutline ? <span style={textShadow}>{secondaryTitle}</span> : secondaryTitle}
@@ -86,12 +86,12 @@ const BannerContent: React.FC<IBannerContent> = ({
           <Button
             shapeType="round"
             size="large"
-            onClick={e => onClick && onClick(e)}
+            onClick={(e) => onClick && onClick(e)}
             style={{
               backgroundColor: buttonBackgroundColor,
               color: buttonColor,
               paddingLeft: theme.spacing(4),
-              paddingRight: theme.spacing(4)
+              paddingRight: theme.spacing(4),
             }}
             isV2={isButtonV2}
           >

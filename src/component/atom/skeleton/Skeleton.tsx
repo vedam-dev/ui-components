@@ -1,4 +1,5 @@
 import { Skeleton as BaseSkeleton } from '@mui/material';
+import React from 'react';
 import { ComponentProps, FC } from 'react';
 import { CoreTheme, useCoreTheme } from '../../../theme/core-theme';
 import SxOverride from '../../../util/SxOverride';
@@ -41,9 +42,9 @@ const Skeleton: FC<SkeletonProps> = ({
           bottom: 0,
           background: `linear-gradient(90deg, transparent, ${palette.grey[100]}, transparent)`,
           animation: 'wave 1.5s linear 0.5s infinite',
-          transform: 'translateX(-100%)'
-        }
-      })
+          transform: 'translateX(-100%)',
+        },
+      }),
     },
     sx
   );

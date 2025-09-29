@@ -6,25 +6,25 @@ const meta = {
   title: 'Atom/Skeleton',
   component: Skeleton,
   parameters: {
-    layout: 'centered'
+    layout: 'centered',
   },
   tags: ['autodocs'],
   argTypes: {
     animation: {
       control: 'select',
-      options: ['pulse', 'wave', false]
+      options: ['pulse', 'wave', false],
     },
     variant: {
       control: 'select',
-      options: ['text', 'rectangular', 'rounded', 'circular']
+      options: ['text', 'rectangular', 'rounded', 'circular'],
     },
     width: {
-      control: 'text'
+      control: 'text',
     },
     height: {
-      control: 'text'
-    }
-  }
+      control: 'text',
+    },
+  },
 } satisfies Meta<typeof Skeleton>;
 
 export default meta;
@@ -33,32 +33,32 @@ type Story = StoryObj<typeof meta>;
 export const Text: Story = {
   args: {
     variant: 'text',
-    width: 310
-  }
+    width: 310,
+  },
 };
 
 export const Rectangular: Story = {
   args: {
     variant: 'rectangular',
     width: 310,
-    height: 160
-  }
+    height: 160,
+  },
 };
 
 export const Rounded: Story = {
   args: {
     variant: 'rounded',
     width: 310,
-    height: 160
-  }
+    height: 160,
+  },
 };
 
 export const Circular: Story = {
   args: {
     variant: 'circular',
     width: 100,
-    height: 100
-  }
+    height: 100,
+  },
 };
 
 export const WaveAnimation: Story = {
@@ -66,8 +66,8 @@ export const WaveAnimation: Story = {
     animation: 'wave',
     variant: 'rectangular',
     width: 310,
-    height: 160
-  }
+    height: 160,
+  },
 };
 
 export const NoAnimation: Story = {
@@ -75,12 +75,12 @@ export const NoAnimation: Story = {
     animation: false,
     variant: 'rectangular',
     width: 310,
-    height: 160
-  }
+    height: 160,
+  },
 };
 
 export const WithChildren: Story = {
-  render: args => (
+  render: (args) => (
     <Box sx={{ width: 210 }}>
       <Skeleton {...args}>
         <img
@@ -95,8 +95,8 @@ export const WithChildren: Story = {
   args: {
     variant: 'rectangular',
     width: 310,
-    height: 120
-  }
+    height: 120,
+  },
 };
 
 export const ComplexExample: Story = {
@@ -113,5 +113,5 @@ export const ComplexExample: Story = {
       <Skeleton variant="text" />
       <Skeleton variant="text" />
     </Box>
-  )
+  ),
 };

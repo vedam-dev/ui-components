@@ -5,9 +5,9 @@ const meta = {
   title: 'Molecule/banner/IntroBanner',
   component: IntroBanner,
   parameters: {
-    layout: 'centered'
+    layout: 'centered',
   },
-  tags: ['autodocs']
+  tags: ['autodocs'],
 } satisfies Meta<typeof IntroBanner>;
 
 export default meta;
@@ -24,13 +24,13 @@ export const BannerCard: Story = {
       logoUrl: 'https://placehold.co/600x400',
       title: 'Mega Millions',
       secondaryTitle: 'Secondary Title',
-      titleColor: '#ee3a3a'
+      titleColor: '#ee3a3a',
     },
     outlineStyle: 'Gradient',
     desktopUrl: 'https://placehold.co/600x400',
     mobileUrl: 'https://placehold.co/600x400',
     tabletUrl: 'https://placehold.co/600x400',
     onClick: (): void => {},
-    decorativeBanner: true
-  }
+    decorativeBanner: true,
+  },
 };

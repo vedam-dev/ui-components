@@ -5,9 +5,9 @@ const meta = {
   title: 'Molecule/banner/Banner',
   component: Banner,
   parameters: {
-    layout: 'centered'
+    layout: 'centered',
   },
-  tags: ['autodocs']
+  tags: ['autodocs'],
 } satisfies Meta<typeof Banner>;
 
 export default meta;
@@ -19,6 +19,6 @@ export const BannerCard: Story = {
     title: 'Banner',
     imageUrl: 'https://placehold.co/600x400',
     label: 'banner image',
-    altText: 'banner-image'
-  }
+    altText: 'banner-image',
+  },
 };

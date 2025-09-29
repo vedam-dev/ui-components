@@ -1,6 +1,6 @@
-import type { Meta, StoryObj } from "@storybook/react";
-import Tabs from "../../../component/organism/tabs/Tabs";
-import { Box } from "@mui/material";
+import type { Meta, StoryObj } from '@storybook/react';
+import Tabs from '../../../component/organism/tabs/Tabs';
+import { Box } from '@mui/material';
 
 const sampleTabs = [
   { label: 'Overview', content: <Box sx={{ p: 1 }}>This is the overview panel.</Box> },
@@ -64,11 +64,7 @@ export const Default: Story = {
 
 export const WithDisabledTab: Story = {
   args: {
-    tabs: [
-      sampleTabs[0],
-      { ...sampleTabs[1], disabled: true },
-      sampleTabs[2],
-    ],
+    tabs: [sampleTabs[0], { ...sampleTabs[1], disabled: true }, sampleTabs[2]],
     initialIndex: 0,
   },
 };

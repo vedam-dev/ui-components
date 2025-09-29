@@ -53,7 +53,7 @@ const SubjectCard: FC<SubjectCardProps> = ({
   durationTextSx,
   lectureTextSx,
   descriptionTextSx,
-  buttonSx
+  buttonSx,
 }) => {
   const theme = useCoreTheme() as CoreTheme;
 
@@ -66,7 +66,7 @@ const SubjectCard: FC<SubjectCardProps> = ({
     boxShadow: theme.vd.shadows.y8,
     display: 'flex',
     flexDirection: 'column',
-    ...cardSx
+    ...cardSx,
   };
 
   const defaultIconContainerSx: SxProps<Theme> = {
@@ -82,7 +82,7 @@ const SubjectCard: FC<SubjectCardProps> = ({
     backgroundImage: 'linear-gradient(white, white), linear-gradient(to right, #FF6B35, #B026FF)',
     backgroundOrigin: 'border-box',
     backgroundClip: 'padding-box, border-box',
-    ...iconContainerSx
+    ...iconContainerSx,
   };
 
   const defaultSubjectTextSx: SxProps<Theme> = {
@@ -94,7 +94,7 @@ const SubjectCard: FC<SubjectCardProps> = ({
     letterSpacing: '0.15px',
     marginBottom: theme.spacing(1),
     width: '100%',
-    ...subjectTextSx
+    ...subjectTextSx,
   };
 
   const defaultTeacherTextSx: SxProps<Theme> = {
@@ -105,7 +105,7 @@ const SubjectCard: FC<SubjectCardProps> = ({
     lineHeight: '20px',
     width: '100%',
     minWidth: theme.spacing(41),
-    ...teacherTextSx
+    ...teacherTextSx,
   };
 
   const defaultDurationTextSx: SxProps<Theme> = {
@@ -114,7 +114,7 @@ const SubjectCard: FC<SubjectCardProps> = ({
     color: theme.palette.text.secondary,
     fontSize: theme.typography.caption.fontSize,
     whiteSpace: 'nowrap',
-    ...durationTextSx
+    ...durationTextSx,
   };
 
   const defaultLectureTextSx: SxProps<Theme> = {
@@ -123,7 +123,7 @@ const SubjectCard: FC<SubjectCardProps> = ({
     color: theme.palette.text.secondary,
     fontSize: theme.typography.caption.fontSize,
     whiteSpace: 'nowrap',
-    ...lectureTextSx
+    ...lectureTextSx,
   };
 
   const defaultDescriptionTextSx: SxProps<Theme> = {
@@ -135,7 +135,7 @@ const SubjectCard: FC<SubjectCardProps> = ({
     mb: theme.spacing(5.25),
     textWrap: 'stable',
     ml: theme.spacing(6),
-    ...descriptionTextSx
+    ...descriptionTextSx,
   };
 
   const defaultButtonSx: SxProps<Theme> = {
@@ -154,9 +154,9 @@ const SubjectCard: FC<SubjectCardProps> = ({
     fontSize: theme.typography.body1.fontSize,
     textTransform: 'none',
     '&:hover': {
-      borderColor: theme.palette.primary.main
+      borderColor: theme.palette.primary.main,
     },
-    ...buttonSx
+    ...buttonSx,
   };
 
   return (
@@ -164,7 +164,7 @@ const SubjectCard: FC<SubjectCardProps> = ({
       <Box
         sx={{
           width: '100%',
-          height: '100%'
+          height: '100%',
         }}
       >
         <Stack direction="row" spacing={6} alignItems="center" mb={4.25} mt={7} ml={5}>
@@ -193,14 +193,14 @@ const SubjectCard: FC<SubjectCardProps> = ({
               alignItems: 'center',
               gap: theme.spacing(2),
               mb: theme.spacing(0),
-              ml: theme.spacing(6)
+              ml: theme.spacing(6),
             }}
           >
             <Stack direction="row" alignItems="center" spacing={1}>
               <AccessTimeIcon
                 sx={{
                   width: '14px',
-                  color: theme.palette.text.secondary
+                  color: theme.palette.text.secondary,
                 }}
               />
               <Typography sx={defaultDurationTextSx}>{duration}</Typography>
@@ -214,7 +214,7 @@ const SubjectCard: FC<SubjectCardProps> = ({
               <MenuBookOutlinedIcon
                 sx={{
                   width: '14px',
-                  color: theme.palette.text.secondary
+                  color: theme.palette.text.secondary,
                 }}
               />
               <Typography sx={defaultLectureTextSx}>{lectureCount} Lectures</Typography>

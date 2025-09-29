@@ -12,9 +12,9 @@ const meta = {
   title: 'Organism/Navigation/Mobile',
   component: NavigationMenu,
   parameters: {
-    layout: 'fullscreen'
+    layout: 'fullscreen',
   },
-  tags: ['autodocs']
+  tags: ['autodocs'],
 } satisfies Meta<typeof NavigationMenu>;
 
 export default meta;
@@ -31,7 +31,7 @@ const MobileAccountSection: React.FC = () => {
         margin: 0,
         cursor: 'default',
         width: '100%',
-        '&:hover': { backgroundColor: theme.palette.common.white }
+        '&:hover': { backgroundColor: theme.palette.common.white },
       }}
     >
       <Box
@@ -40,20 +40,20 @@ const MobileAccountSection: React.FC = () => {
           justifyContent: 'space-between',
           alignContent: 'center',
           width: '100%',
-          padding: '8px 0'
+          padding: '8px 0',
         }}
       >
         <Box
           sx={{
             display: 'flex',
-            justifyContent: 'flex-start'
+            justifyContent: 'flex-start',
           }}
         >
           <MonoToneWallet />
           <Typography
             variant="body1"
             sx={{
-              pl: theme.spacing(2)
+              pl: theme.spacing(2),
             }}
           >
             $1,000.00
@@ -69,20 +69,20 @@ const MobileAccountSection: React.FC = () => {
           justifyContent: 'space-between',
           alignContent: 'center',
           width: '100%',
-          padding: '8px 0'
+          padding: '8px 0',
         }}
       >
         <Box
           sx={{
             display: 'flex',
-            justifyContent: 'flex-start'
+            justifyContent: 'flex-start',
           }}
         >
           <MonoToneToken />
           <Typography
             variant="body1"
             sx={{
-              pl: theme.spacing(2)
+              pl: theme.spacing(2),
             }}
           >
             200,000
@@ -109,7 +109,7 @@ const menuItems: NavigationMenuItems = [
         label: 'My Account',
         isExternal: false,
         selected: false,
-        onClick: (): void => {}
+        onClick: (): void => {},
       },
       {
         uri: '/custom',
@@ -117,18 +117,18 @@ const menuItems: NavigationMenuItems = [
         label: 'PlayON History',
         isExternal: false,
         selected: false,
-        onClick: (): void => {}
-      }
+        onClick: (): void => {},
+      },
     ],
     selected: false,
-    key: 'account'
+    key: 'account',
   },
   {
     uri: '/',
     accessibilityLabel: 'Home',
     label: 'Home',
     isExternal: false,
-    selected: true
+    selected: true,
   },
   {
     uri: '/games',
@@ -142,30 +142,30 @@ const menuItems: NavigationMenuItems = [
         accessibilityLabel: 'Digital Instant Games',
         label: 'Digital Instant Games',
         isExternal: false,
-        selected: true
+        selected: true,
       },
       {
         uri: '/games/draws',
         accessibilityLabel: 'Draw Games',
         label: 'Draw Games',
         isExternal: false,
-        selected: true
+        selected: true,
       },
       {
         uri: '/games/scratch-offs',
         accessibilityLabel: 'Scratch Offs',
         label: 'Scratch Offs',
         isExternal: false,
-        selected: true
-      }
-    ]
+        selected: true,
+      },
+    ],
   },
   {
     uri: '/play-on',
     accessibilityLabel: 'PlayON',
     label: 'PlayON',
     isExternal: false,
-    selected: false
+    selected: false,
   },
   {
     uri: '/news-winning',
@@ -179,66 +179,66 @@ const menuItems: NavigationMenuItems = [
         accessibilityLabel: 'Get the Mobile App',
         label: 'Get the Mobile App',
         isExternal: false,
-        selected: true
+        selected: true,
       },
       {
         uri: '/news-winning/news-events',
         accessibilityLabel: 'News and Events',
         label: 'News and Events',
         isExternal: false,
-        selected: true
+        selected: true,
       },
       {
         uri: '/news-winning/retail-offers',
         accessibilityLabel: 'Retail Offers',
         label: 'Retail Offers',
         isExternal: false,
-        selected: true
+        selected: true,
       },
       {
         uri: '/news-winning/iPlay-offers',
         accessibilityLabel: 'iPlay Offers',
         label: 'iPlay Offers',
         isExternal: false,
-        selected: true
+        selected: true,
       },
       {
         uri: '/news-winning/check-numbers',
         accessibilityLabel: 'Check Numbers',
         label: 'Check Numbers',
         isExternal: false,
-        selected: true
+        selected: true,
       },
       {
         uri: '/news-winning/recent-winners',
         accessibilityLabel: 'Recent Winners',
         label: 'Recent Winners',
         isExternal: false,
-        selected: true
+        selected: true,
       },
       {
         uri: '/news-winning/claim-prize',
         accessibilityLabel: 'Claim Prize',
         label: 'Claim Prize',
         isExternal: false,
-        selected: true
+        selected: true,
       },
       {
         uri: '/news-winning/nightly-draws',
         accessibilityLabel: 'Nightly Draws',
         label: 'Nightly Draws',
         isExternal: false,
-        selected: true
-      }
-    ]
+        selected: true,
+      },
+    ],
   },
   {
     uri: '/about-us',
     accessibilityLabel: 'About Us',
     label: 'About Us',
     isExternal: false,
-    selected: false
-  }
+    selected: false,
+  },
 ];
 
 export const Main: Story = {
@@ -250,16 +250,16 @@ export const Main: Story = {
     appBarProps: {
       style: {
         width: '100%',
-        backgroundColor: '#fff'
-      }
+        backgroundColor: '#fff',
+      },
     },
     defaultIconSize: {
       width: 80,
-      height: 80
+      height: 80,
     },
     largeIconSize: {
       width: 80,
-      height: 80
+      height: 80,
     },
     navigationMenuItems: menuItems,
     isLoggedIn: true,
@@ -270,9 +270,9 @@ export const Main: Story = {
     ariaLabels: {
       hamburgerButton: {
         open: 'Open navigation menu',
-        close: 'Close navigation menu'
-      }
+        close: 'Close navigation menu',
+      },
     },
-    skipContentLabel: 'Skip to main content'
-  }
+    skipContentLabel: 'Skip to main content',
+  },
 };

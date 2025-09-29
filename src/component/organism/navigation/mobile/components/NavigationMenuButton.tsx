@@ -13,7 +13,7 @@ import {
   INavigationItemMultiple,
   NavigationMenuItem,
   OnNavigationClick,
-  onDropdownClick
+  onDropdownClick,
 } from '../../types';
 import NavigationSubMenuItem from './NavigationSubMenuItem';
 
@@ -97,7 +97,7 @@ const NavigationMenuButton: FC<NavigationMenuItemProps> = ({
             open={Boolean(anchorElNav)}
             onClose={handleCloseNavMenu}
           >
-            {navItem.subItems.map(subItem => {
+            {navItem.subItems.map((subItem) => {
               return (
                 <NavigationSubMenuItem
                   key={JSON.stringify(subItem)}
@@ -115,7 +115,7 @@ const NavigationMenuButton: FC<NavigationMenuItemProps> = ({
 
 export default NavigationMenuButton;
 
-const iconStyle: (theme: Theme) => SystemStyleObject<Theme> = theme => {
+const iconStyle: (theme: Theme) => SystemStyleObject<Theme> = (theme) => {
   return {
     height: `12px`,
     width: `12px`,
@@ -123,20 +123,20 @@ const iconStyle: (theme: Theme) => SystemStyleObject<Theme> = theme => {
     color: theme.palette.text.secondary,
     '&:hover, &:active': {
       color: theme.palette.text.primary,
-      backgroundColor: theme.palette.background.default
-    }
+      backgroundColor: theme.palette.background.default,
+    },
   };
 };
 
-const buttonStyle: (theme: Theme) => SystemStyleObject<Theme> = theme => {
+const buttonStyle: (theme: Theme) => SystemStyleObject<Theme> = (theme) => {
   return {
     color: theme.palette.text.secondary,
     borderBottom: 'none',
     borderRadius: 0,
     '&:hover, &:active': {
       color: theme.palette.text.primary,
-      backgroundColor: theme.palette.background.default
-    }
+      backgroundColor: theme.palette.background.default,
+    },
   };
 };
 
@@ -149,6 +149,6 @@ const buttonStyleSelected: (isSelected: boolean, theme: Theme) => SystemStyleObj
   }
   return {
     color: theme.palette.text.primary,
-    borderBottom: '3px solid ' + theme.palette.text.primary
+    borderBottom: '3px solid ' + theme.palette.text.primary,
   };
 };

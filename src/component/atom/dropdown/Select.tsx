@@ -1,4 +1,5 @@
 import { Select as BaseSelect } from '@mui/material';
+import React from 'react';
 import { ComponentProps, FC } from 'react';
 import { CoreTheme, useCoreTheme } from '../../../theme/core-theme';
 import SxOverride from '../../../util/SxOverride';
@@ -57,7 +58,7 @@ const Select: FC<SelectProps> = ({
       'error',
       'info',
       'success',
-      'warning'
+      'warning',
     ];
     if (paletteColors.includes(color as PaletteColorKeys)) {
       return palette[color as PaletteColorKeys]?.main;
@@ -70,14 +71,14 @@ const Select: FC<SelectProps> = ({
     {
       color: getColor(),
       '& .MuiSelect-icon': {
-        color: getColor()
+        color: getColor(),
       },
       '& .MuiOutlinedInput-notchedOutline': {
-        borderColor: getColor()
+        borderColor: getColor(),
       },
       '&:hover .MuiOutlinedInput-notchedOutline': {
-        borderColor: getColor()
-      }
+        borderColor: getColor(),
+      },
     },
     sx
   );

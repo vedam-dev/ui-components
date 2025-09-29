@@ -1,4 +1,5 @@
 import { FC, SyntheticEvent } from 'react';
+import React from 'react';
 import { useCoreTheme } from '../../../../../theme/core-theme';
 import { UseScrollTriggerOptions } from '@mui/material/useScrollTrigger/useScrollTrigger';
 import { OnNavigationClick, onDropdownClick } from '../../types';
@@ -24,7 +25,7 @@ const NavigationMainLogo: FC<INavigationMainLogoProps> = ({
   logoAriaLabel,
   LogoIcon,
   onNavigationClick,
-  homePage
+  homePage,
 }) => {
   const theme = useCoreTheme();
 
@@ -48,7 +49,7 @@ const NavigationMainLogo: FC<INavigationMainLogoProps> = ({
         position: 'absolute',
         paddingTop: theme.spacing(4),
         top: 0,
-        left: 0
+        left: 0,
       }}
     >
       {LogoIcon}

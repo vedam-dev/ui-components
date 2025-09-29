@@ -6,50 +6,48 @@ const meta: Meta<typeof LoginModal> = {
   component: LoginModal,
   tags: ['autodocs'],
   argTypes: {
-    logo: { 
+    logo: {
       control: 'text',
-      description: 'URL or path to the logo image'
+      description: 'URL or path to the logo image',
     },
-    logoAlt: { 
+    logoAlt: {
       control: 'text',
       description: 'Alt text for the logo image',
-      defaultValue: 'School Logo'
+      defaultValue: 'School Logo',
     },
-    logoHeight: { 
+    logoHeight: {
       control: 'number',
       description: 'Height of the logo in pixels',
-      defaultValue: 60
+      defaultValue: 60,
     },
-    logoWidth: { 
+    logoWidth: {
       control: 'number',
-      description: 'Width of the logo in pixels (optional)'
+      description: 'Width of the logo in pixels (optional)',
     },
-    subtitle: { 
+    subtitle: {
       control: 'text',
       description: 'Subtitle text',
-      defaultValue: 'Login' 
+      defaultValue: 'Login',
     },
-    onGoogleLoginClick: { 
-      action: 'clicked', 
-      description: 'Handler for Google login button click'
-    }
-  }
+    onGoogleLoginClick: {
+      action: 'clicked',
+      description: 'Handler for Google login button click',
+    },
+  },
 };
 
 export default meta;
 
 type Story = StoryObj<typeof LoginModal>;
 
-
 export const Default: Story = {};
-
 
 export const CustomLogo: Story = {
   args: {
     logo: 'https://media.istockphoto.com/id/473954724/photo/a-footpath-through-a-forest-with-sunshine.jpg?s=1024x1024&w=is&k=20&c=tSyQWMH-R5csowOxumeZg9lEFHNFcHQirv22EOHflM8=',
-    logoAlt: 'Custom School Logo', 
+    logoAlt: 'Custom School Logo',
     logoWidth: 200,
     logoHeight: 60,
-    subtitle: 'Institute of Technology'
-  }
+    subtitle: 'Institute of Technology',
+  },
 };

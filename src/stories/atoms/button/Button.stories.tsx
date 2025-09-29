@@ -8,13 +8,13 @@ const meta = {
   component: Button,
   parameters: {
     // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/configure/story-layout
-    layout: 'centered'
+    layout: 'centered',
   },
   // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/writing-docs/autodocs
   tags: ['autodocs'],
   // More on argTypes: https://storybook.js.org/docs/api/argtypes
   // Use `fn` to spy on the onClick arg, which will appear in the actions panel once invoked: https://storybook.js.org/docs/essentials/actions#action-args
-  args: { onClick: fn() }
+  args: { onClick: fn() },
 } satisfies Meta<typeof Button>;
 
 export default meta;
@@ -25,8 +25,8 @@ export const Default: Story = {
   args: {
     variant: 'contained',
     color: 'primary',
-    children: 'Button'
-  }
+    children: 'Button',
+  },
 };
 
 export const DefaultRound: Story = {
@@ -34,8 +34,8 @@ export const DefaultRound: Story = {
     variant: 'contained',
     color: 'primary',
     children: 'Button',
-    shapeType: 'round'
-  }
+    shapeType: 'round',
+  },
 };
 
 export const DefaultDisabled: Story = {
@@ -43,16 +43,16 @@ export const DefaultDisabled: Story = {
     disabled: true,
     variant: 'contained',
     color: 'primary',
-    children: 'Button'
-  }
+    children: 'Button',
+  },
 };
 
 export const Secondary: Story = {
   args: {
     variant: 'contained',
     color: 'secondary',
-    children: 'Button'
-  }
+    children: 'Button',
+  },
 };
 
 export const SecondaryRound: Story = {
@@ -60,8 +60,8 @@ export const SecondaryRound: Story = {
     variant: 'contained',
     color: 'secondary',
     children: 'Button',
-    shapeType: 'round'
-  }
+    shapeType: 'round',
+  },
 };
 
 // outline buttons
@@ -70,8 +70,8 @@ export const Outline: Story = {
   args: {
     variant: 'outlined',
     color: 'primary',
-    children: 'Button'
-  }
+    children: 'Button',
+  },
 };
 
 export const OutlineRound: Story = {
@@ -79,8 +79,8 @@ export const OutlineRound: Story = {
     variant: 'outlined',
     color: 'primary',
     children: 'Button',
-    shapeType: 'round'
-  }
+    shapeType: 'round',
+  },
 };
 
 export const OutlineDisabled: Story = {
@@ -88,8 +88,8 @@ export const OutlineDisabled: Story = {
     disabled: true,
     variant: 'outlined',
     color: 'primary',
-    children: 'Button'
-  }
+    children: 'Button',
+  },
 };
 
 // text button.
@@ -98,8 +98,8 @@ export const TextButton: Story = {
   args: {
     variant: 'text',
     color: 'primary',
-    children: 'Button'
-  }
+    children: 'Button',
+  },
 };
 
 export const TextButtonRound: Story = {
@@ -107,8 +107,8 @@ export const TextButtonRound: Story = {
     variant: 'text',
     color: 'primary',
     children: 'Button',
-    shapeType: 'round'
-  }
+    shapeType: 'round',
+  },
 };
 
 export const TextButtonDisabled: Story = {
@@ -116,8 +116,8 @@ export const TextButtonDisabled: Story = {
     disabled: true,
     variant: 'text',
     color: 'primary',
-    children: 'Button'
-  }
+    children: 'Button',
+  },
 };
 
 // Small buttons
@@ -127,8 +127,8 @@ export const SmallDefault: Story = {
     small: true,
     variant: 'contained',
     color: 'primary',
-    children: 'Button'
-  }
+    children: 'Button',
+  },
 };
 
 export const SmallDefaultRound: Story = {
@@ -137,8 +137,8 @@ export const SmallDefaultRound: Story = {
     variant: 'contained',
     color: 'primary',
     children: 'Button',
-    shapeType: 'round'
-  }
+    shapeType: 'round',
+  },
 };
 
 export const SmallDefaultDisabled: Story = {
@@ -147,8 +147,8 @@ export const SmallDefaultDisabled: Story = {
     disabled: true,
     variant: 'contained',
     color: 'primary',
-    children: 'Button'
-  }
+    children: 'Button',
+  },
 };
 
 export const SmallSecondary: Story = {
@@ -156,8 +156,8 @@ export const SmallSecondary: Story = {
     small: true,
     variant: 'contained',
     color: 'secondary',
-    children: 'Button'
-  }
+    children: 'Button',
+  },
 };
 
 export const SmallSecondaryRound: Story = {
@@ -166,8 +166,8 @@ export const SmallSecondaryRound: Story = {
     variant: 'contained',
     color: 'secondary',
     children: 'Button',
-    shapeType: 'round'
-  }
+    shapeType: 'round',
+  },
 };
 
 // outline buttons
@@ -177,8 +177,8 @@ export const SmallOutline: Story = {
     small: true,
     variant: 'outlined',
     color: 'primary',
-    children: 'Button'
-  }
+    children: 'Button',
+  },
 };
 
 export const SmallOutlineRound: Story = {
@@ -187,8 +187,8 @@ export const SmallOutlineRound: Story = {
     variant: 'outlined',
     color: 'primary',
     children: 'Button',
-    shapeType: 'round'
-  }
+    shapeType: 'round',
+  },
 };
 
 export const SmallOutlineDisabled: Story = {
@@ -197,8 +197,8 @@ export const SmallOutlineDisabled: Story = {
     disabled: true,
     variant: 'outlined',
     color: 'primary',
-    children: 'Button'
-  }
+    children: 'Button',
+  },
 };
 
 // text button.
@@ -208,8 +208,8 @@ export const SmallTextButton: Story = {
     small: true,
     variant: 'text',
     color: 'primary',
-    children: 'Button'
-  }
+    children: 'Button',
+  },
 };
 
 export const SmallTextButtonRound: Story = {
@@ -218,8 +218,8 @@ export const SmallTextButtonRound: Story = {
     variant: 'text',
     color: 'primary',
     children: 'Button',
-    shapeType: 'round'
-  }
+    shapeType: 'round',
+  },
 };
 
 export const SmallTextButtonDisabled: Story = {
@@ -228,8 +228,8 @@ export const SmallTextButtonDisabled: Story = {
     disabled: true,
     variant: 'text',
     color: 'primary',
-    children: 'Button'
-  }
+    children: 'Button',
+  },
 };
 
 // Add this to your existing stories
@@ -239,6 +239,7 @@ export const Downloadable: Story = {
     isDownloadable: true,
     variant: 'outlined',
     children: 'Document 1',
-    downloadIconUrl: 'https://acjlsquedaotbhbxmtee.supabase.co/storage/v1/object/public/vedam-website-assets/images/videoInfo/Icon-3.png'
-  }
+    downloadIconUrl:
+      'https://acjlsquedaotbhbxmtee.supabase.co/storage/v1/object/public/vedam-website-assets/images/videoInfo/Icon-3.png',
+  },
 };

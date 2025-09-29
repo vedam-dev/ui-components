@@ -6,7 +6,7 @@ const meta = {
   title: 'Atom/Checkbox',
   component: Checkbox,
   parameters: {
-    layout: 'centered'
+    layout: 'centered',
   },
   tags: ['autodocs'],
   argTypes: {
@@ -33,7 +33,7 @@ export const Primary: Story = {
 export const Secondary: Story = {
   args: {
     color: 'secondary',
-    checked: true
+    checked: true,
   },
 };
 
@@ -50,12 +50,7 @@ export const Disabled: Story = {
 };
 
 export const WithLabel: Story = {
-  render: (args) => (
-    <FormControlLabel
-      control={<Checkbox {...args} />}
-      label="Checkbox Label"
-    />
-  ),
+  render: (args) => <FormControlLabel control={<Checkbox {...args} />} label="Checkbox Label" />,
   args: {
     color: 'primary',
   },

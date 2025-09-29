@@ -26,7 +26,7 @@ const Avatar: FC<AvatarProps> = ({ color, sx, backgroundColor, children, ...prop
       ...vd.typography.avatar,
       background: backgroundColorValue,
       color: colorValue,
-      alignContent: 'center'
+      alignContent: 'center',
     },
     sx
   );

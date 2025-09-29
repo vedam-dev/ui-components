@@ -47,7 +47,7 @@ const colors = {
   textColors2TxSecondary: '#637179',
   textColors3TxDisabled: '#b0bec6',
   textColors4TxWhite: '#ffffff',
-  shadowsY4:'rgba(145, 158, 171, 0.24)',
+  shadowsY4: 'rgba(145, 158, 171, 0.24)',
   shadowsY8: 'rgba(145, 158, 171, 0.24)',
   shadowsY12: 'rgba(145, 158, 171, 0.24)',
   shadowsY16: 'rgba(145, 158, 171, 0.24)',
@@ -63,8 +63,8 @@ const colors = {
     promotion: '#FFFFFF',
     promotionContrast: '#3851AF',
     game: '#3851AF',
-    gameContrast: '#FFFFFF'
-  }
+    gameContrast: '#FFFFFF',
+  },
 };
 
 export default colors;

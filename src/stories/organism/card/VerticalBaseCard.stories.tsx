@@ -9,9 +9,9 @@ const meta = {
   title: 'Organism/Card/VerticalBaseCard',
   component: VerticalBaseCard,
   parameters: {
-    layout: 'centered'
+    layout: 'centered',
   },
-  tags: ['autodocs']
+  tags: ['autodocs'],
 } satisfies Meta<typeof VerticalBaseCard>;
 
 export default meta;
@@ -22,8 +22,8 @@ export const WithSingleImage: Story = {
     sx: { height: 200, width: 300 },
     cardHeader: (
       <CardMedia sx={{ height: 200 }} image="https://placehold.co/600x400" title="300x200" />
-    )
-  }
+    ),
+  },
 };
 
 export const WithImageContentTitle: Story = {
@@ -38,8 +38,8 @@ export const WithImageContentTitle: Story = {
           Second Chance
         </Typography>
       </CardContent>
-    )
-  }
+    ),
+  },
 };
 
 export const WithImageContentTitleDescription: Story = {
@@ -56,8 +56,8 @@ export const WithImageContentTitleDescription: Story = {
           Earn draw entries from Second Chance games for more opportunities to win!
         </Typography>
       </CardContent>
-    )
-  }
+    ),
+  },
 };
 
 export const WithImageContentTitleAction: Story = {
@@ -92,6 +92,6 @@ export const WithImageContentTitleAction: Story = {
           Share
         </Button>
       </CardActions>
-    )
-  }
+    ),
+  },
 };
