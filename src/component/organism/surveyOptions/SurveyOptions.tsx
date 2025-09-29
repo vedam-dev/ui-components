@@ -81,9 +81,7 @@ const OptionRow: React.FC<{
       </Box>
 
       <Box sx={{ flex: 1 }}>
-        <Typography
-          sx={{ fontWeight: 400, fontFamily: "Outfit", fontSize: "20px" }}
-        >
+        <Typography sx={{ fontWeight: 400, fontFamily: 'Outfit', fontSize: '20px' }}>
           {option.label}
         </Typography>
         {option.subtitle && (

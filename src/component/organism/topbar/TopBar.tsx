@@ -104,7 +104,6 @@ const TopBar: React.FC<TopBarProps> = ({
   hideHamburger = false,
 }) => {
   const theme = useCoreTheme() as CoreTheme;
-  const theme = useCoreTheme() as CoreTheme;
   return (
     <TopBarContainer sx={sx}>
       <LeftContainer>
@@ -202,7 +201,6 @@ const TopBar: React.FC<TopBarProps> = ({
           </StyledBadge>
         </StatsContainer>
 
-        <Box display="flex" alignItems="center" sx={{ gap: theme.spacing(3) }}>
         <Box display="flex" alignItems="center" sx={{ gap: theme.spacing(3) }}>
           <IconButton onClick={onProfileClick} sx={{ padding: 0 }}>
             <Avatar src={studentPhoto} alt={studentName} sx={{ width: '48px', height: '48px' }}>
