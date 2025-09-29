@@ -71,28 +71,30 @@ const Button: FC<ButtonProps> = ({
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          width: '100%'
+          width: '100%',
         }}
       >
         {children}
 
-        {/* Download icon positioned 22px from right edge and vertically centered */
-        isDownloadable && (
-          <Box
-            component="img"
-            src={downloadIconUrl}
-            alt="Download icon"
-            sx={{
-              position: 'absolute',
-              right: '-110px', 
-              top: '50%',
-              transform: 'translateY(-50%)',
-              width: '38px',
-              height: '38px',
-              pointerEvents: 'none'
-            }}
-          />
-        )}
+        {
+          /* Download icon positioned 22px from right edge and vertically centered */
+          isDownloadable && (
+            <Box
+              component="img"
+              src={downloadIconUrl}
+              alt="Download icon"
+              sx={{
+                position: 'absolute',
+                right: '-110px',
+                top: '50%',
+                transform: 'translateY(-50%)',
+                width: '38px',
+                height: '38px',
+                pointerEvents: 'none',
+              }}
+            />
+          )
+        }
       </Box>
 
       {useMaterialButtons ? null : (
@@ -124,7 +126,7 @@ const buttonInnerStyles = (
     bottom: buttonOuterValue,
     backgroundColor: 'transparent',
     boxShadow: 'none',
-    border: `solid 2px ${theme.palette['grey']['900']}`
+    border: `solid 2px ${theme.palette['grey']['900']}`,
   };
 
   if (isRound) {
@@ -161,25 +163,24 @@ const buttonStyles = (
       borderWidth: 2,
       color: variant === 'contained' ? theme.palette.common.white : theme.palette.grey[300],
       backgroundColor: variant === 'contained' ? theme.palette.grey[300] : 'transparent',
-      borderColor: variant !== 'contained' ? theme.palette.grey[300] : 'transparent'
+      borderColor: variant !== 'contained' ? theme.palette.grey[300] : 'transparent',
     },
     '> span.btnFocusState': { display: 'none' },
     '&:hover, &:active, &:focus-visible': {
       borderWidth: 2,
       boxShadow: 'none',
       backgroundColor: variant === 'contained' ? theme.palette[color].dark : 'transparent',
-      borderColor: variant !== 'contained' ? theme.palette[color].dark : 'transparent'
+      borderColor: variant !== 'contained' ? theme.palette[color].dark : 'transparent',
     },
     '&:focus-visible': {
       borderRadius: borderRadius,
       border: `solid 1px ${theme.palette.common.white}`,
-      outline: `solid 2px ${theme.palette.grey[900]}`
-    }
+      outline: `solid 2px ${theme.palette.grey[900]}`,
+    },
   };
 
   // Downloadable variant — reserve equal left & right padding so the label stays centered
   if (isDownloadable) {
-
     defaultStyles.borderRadius = '18px';
     defaultStyles.border = '1px solid #FF7829';
     defaultStyles.background = '#FFF';
@@ -187,14 +188,14 @@ const buttonStyles = (
     defaultStyles.position = 'relative';
     defaultStyles.color = '#FF7829';
     defaultStyles.minWidth = '200px';
-    defaultStyles.fontWeight=600;
-    defaultStyles.fontSize='20px';
+    defaultStyles.fontWeight = 600;
+    defaultStyles.fontSize = '20px';
 
     // Hover / active / focus styles for downloadable
     defaultStyles['&:hover, &:active, &:focus-visible'] = {
       backgroundColor: '#FFF',
       borderColor: '#FF7829',
-      color: '#FF7829'
+      color: '#FF7829',
     };
   }
 
@@ -202,7 +203,7 @@ const buttonStyles = (
     defaultStyles.textDecoration = 'underline';
     defaultStyles['&:hover, &:active, &:focus-visible'] = {
       textDecoration: 'underline',
-      backgroundColor: 'transparent'
+      backgroundColor: 'transparent',
     };
   }
 

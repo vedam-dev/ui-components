@@ -1,8 +1,9 @@
-import type { Meta, StoryObj } from "@storybook/react";
-import SidebarDrawer, { SidebarDrawerProps, SidebarItem } from "../../../component/organism/sidebardrawer/SidebarDrawer";
-import {
-  Box,
-} from "@mui/material";
+import type { Meta, StoryObj } from '@storybook/react';
+import SidebarDrawer, {
+  SidebarDrawerProps,
+  SidebarItem,
+} from '../../../component/organism/sidebardrawer/SidebarDrawer';
+import { Box } from '@mui/material';
 import {
   Dashboard as DashboardIcon,
   People as PeopleIcon,
@@ -16,25 +17,25 @@ import {
   Folder as FolderIcon,
   Star as StarIcon,
   Schedule as ScheduleIcon,
-} from "@mui/icons-material";
+} from '@mui/icons-material';
 
 const meta: Meta<SidebarDrawerProps> = {
-  title: "Organism/SidebarDrawer",
+  title: 'Organism/SidebarDrawer',
   component: SidebarDrawer,
   parameters: {
-    layout: "fullscreen",
+    layout: 'fullscreen',
   },
   argTypes: {
     anchor: {
-      control: "select",
-      options: ["left", "right", "top", "bottom"],
+      control: 'select',
+      options: ['left', 'right', 'top', 'bottom'],
     },
-    collapsedWidth: { control: "number" },
-    expandedWidth: { control: "number" },
-    defaultExpanded: { control: "boolean" },
-    items: { 
-      control: "object",
-      description: "Array of sidebar navigation items"
+    collapsedWidth: { control: 'number' },
+    expandedWidth: { control: 'number' },
+    defaultExpanded: { control: 'boolean' },
+    items: {
+      control: 'object',
+      description: 'Array of sidebar navigation items',
     },
     onItemClick: {
       table: {
@@ -178,7 +179,6 @@ export default meta;
 
 type Story = StoryObj<SidebarDrawerProps>;
 
-
 const defaultItems: SidebarItem[] = [
   {
     id: 'dashboard',
@@ -198,7 +198,6 @@ const defaultItems: SidebarItem[] = [
     text: 'Analytics',
     onClick: () => console.log('Analytics clicked'),
   },
-  
 ];
 
 const Template: Story = {
@@ -206,7 +205,6 @@ const Template: Story = {
     return (
       <Box sx={{ display: 'flex', height: '100vh' }}>
         <SidebarDrawer {...args} />
-       
       </Box>
     );
   },
@@ -216,7 +214,7 @@ export const Default: Story = {
   ...Template,
   args: {
     items: defaultItems,
-    anchor: "left",
+    anchor: 'left',
     collapsedWidth: 64,
     expandedWidth: 240,
     defaultExpanded: false,
@@ -225,7 +223,7 @@ export const Default: Story = {
 
 export const WithManyItems: Story = {
   ...Template,
-  name: "Sidebar With Many Items",
+  name: 'Sidebar With Many Items',
   args: {
     items: [
       {
@@ -301,7 +299,7 @@ export const WithManyItems: Story = {
         onClick: () => console.log('Help clicked'),
       },
     ],
-    anchor: "left",
+    anchor: 'left',
     collapsedWidth: 64,
     expandedWidth: 240,
     defaultExpanded: false,
@@ -310,7 +308,7 @@ export const WithManyItems: Story = {
 
 export const InitiallyExpanded: Story = {
   ...Default,
-  name: "Initially Expanded",
+  name: 'Initially Expanded',
   args: {
     ...Default.args,
     defaultExpanded: true,
@@ -319,7 +317,7 @@ export const InitiallyExpanded: Story = {
 
 export const CustomWidths: Story = {
   ...Default,
-  name: "Custom Widths",
+  name: 'Custom Widths',
   args: {
     ...Default.args,
     collapsedWidth: 80,
@@ -329,7 +327,7 @@ export const CustomWidths: Story = {
 
 export const WithDisabledItems: Story = {
   ...Template,
-  name: "With Disabled Items",
+  name: 'With Disabled Items',
   args: {
     items: [
       {
@@ -365,7 +363,7 @@ export const WithDisabledItems: Story = {
         onClick: () => console.log('Settings clicked'),
       },
     ],
-    anchor: "left",
+    anchor: 'left',
     collapsedWidth: 64,
     expandedWidth: 240,
     defaultExpanded: false,

@@ -9,7 +9,7 @@ const colors = {
   primaryP700: '#530E99',
   primaryP800: '#370A66',
   primaryP900: '#1C0533',
-  
+
   secondaryS050: '#FEF2E6',
   secondaryS100: '#FEE5CD',
   secondaryS200: '#FDCB9A',
@@ -22,7 +22,7 @@ const colors = {
   secondaryS900: '#321901',
   dangerD100: '#ffd7e3',
   dangerD200: '#ff88ac',
-  dangerD300: '#E74E2C',// for fail chip
+  dangerD300: '#E74E2C', // for fail chip
   dangerD400Danger: '#DA1414',
   warningW100: '#ffd5c0',
   warningW200: '#ffa273',
@@ -51,7 +51,7 @@ const colors = {
   textColors2TxSecondary: '#637179',
   textColors3TxDisabled: '#b0bec6',
   textColors4TxWhite: '#ffffff',
-  shadowsY4:'#00000014',
+  shadowsY4: '#00000014',
   shadowsY8: '#919eab3d',
   shadowsY12: '#919eab3d',
   shadowsY16: '#919eab3d',
@@ -59,7 +59,7 @@ const colors = {
   vedamBlue: '#1b365d',
   powerball: '#e4342d',
   lottoAmerica: '#009ada',
-  megaMillions: '#004fa3'
+  megaMillions: '#004fa3',
 };
 
 export default colors;

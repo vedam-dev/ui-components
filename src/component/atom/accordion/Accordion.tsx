@@ -9,7 +9,6 @@ import { styled } from '@mui/material/styles';
 import { CoreTheme, useCoreTheme } from '../../../theme/core-theme';
 import SxOverride from '../../../util/SxOverride';
 
-
 export interface IAccordionProps {
   defaultExpanded?: boolean;
   disabled?: boolean;
@@ -22,8 +21,7 @@ export interface IAccordionProps {
 
 export type AccordionProps = IAccordionProps & ComponentProps<typeof BaseAccordion>;
 
-
-const StyledAccordion = styled(BaseAccordion)(({ theme }) => ({
+const StyledAccordion = styled(BaseAccordion)(() => ({
   '&:before': { display: 'none' },
   '&.Mui-expanded': { margin: 0 },
 }));
@@ -47,8 +45,7 @@ const StyledAccordionDetails = styled(BaseAccordionDetails)(({ theme }) => ({
   },
 }));
 
-export interface AccordionComponent
-  extends FC<AccordionProps> {
+export interface AccordionComponent extends FC<AccordionProps> {
   Summary: typeof StyledAccordionSummary;
   Details: typeof StyledAccordionDetails;
 }
@@ -66,17 +63,16 @@ const Accordion: AccordionComponent = ({
 }) => {
   const { palette, spacing, shadows } = useCoreTheme() as CoreTheme;
 
-
   let summaryNode: React.ReactElement | null = null;
   let detailsNode: React.ReactElement | null = null;
-  React.Children.forEach(children, child => {
+  React.Children.forEach(children, (child) => {
     if (!React.isValidElement(child)) return;
     if (child.type === StyledAccordionSummary) summaryNode = child;
     if (child.type === StyledAccordionDetails) detailsNode = child;
   });
 
   if (!summaryNode) {
-    console.warn("<Accordion> missing <Accordion.Summary>");
+    console.warn('<Accordion> missing <Accordion.Summary>');
     return null;
   }
 
@@ -139,7 +135,6 @@ const Accordion: AccordionComponent = ({
     </StyledAccordion>
   );
 };
-
 
 Accordion.Summary = StyledAccordionSummary;
 Accordion.Details = StyledAccordionDetails;

@@ -42,23 +42,23 @@ const NavigationSubMenuItem: FC<NavigationSubMenuItemProps> = ({
 
 export default NavigationSubMenuItem;
 
-const menuItemStyle: (theme: Theme) => SystemStyleObject<Theme> = theme => {
+const menuItemStyle: (theme: Theme) => SystemStyleObject<Theme> = (theme) => {
   return {
     '&:hover, &:active': {
       color: theme.palette.text.primary,
-      backgroundColor: theme.palette.background.default
-    }
+      backgroundColor: theme.palette.background.default,
+    },
   };
 };
 
-const buttonStyle: (theme: Theme) => SystemStyleObject<Theme> = theme => {
+const buttonStyle: (theme: Theme) => SystemStyleObject<Theme> = (theme) => {
   return {
     color: theme.palette.text.primary,
     borderBottom: 'none',
     borderRadius: 0,
     '&:hover, &:active': {
       color: theme.palette.text.primary,
-      backgroundColor: theme.palette.background.default
-    }
+      backgroundColor: theme.palette.background.default,
+    },
   };
 };

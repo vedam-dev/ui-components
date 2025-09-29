@@ -7,10 +7,10 @@ const meta = {
   component: Paper,
   parameters: {
     // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/configure/story-layout
-    layout: 'centered'
+    layout: 'centered',
   },
   // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/writing-docs/autodocs
-  tags: ['autodocs']
+  tags: ['autodocs'],
   // More on argTypes: https://storybook.js.org/docs/api/argtypes
 } satisfies Meta<typeof Paper>;
 
@@ -23,9 +23,9 @@ export const Y16Shadow: Story = {
     shadow: 'y16',
     children: 'Y16Shadow',
     sx: {
-      padding: '20px'
-    }
-  }
+      padding: '20px',
+    },
+  },
 };
 
 export const Y12Shadow: Story = {
@@ -33,9 +33,9 @@ export const Y12Shadow: Story = {
     shadow: 'y12',
     children: 'Y12Shadow',
     sx: {
-      padding: '20px'
-    }
-  }
+      padding: '20px',
+    },
+  },
 };
 
 export const Y8Shadow: Story = {
@@ -43,9 +43,9 @@ export const Y8Shadow: Story = {
     shadow: 'y8',
     children: 'Y8Shadow',
     sx: {
-      padding: '20px'
-    }
-  }
+      padding: '20px',
+    },
+  },
 };
 
 export const NoShadow: Story = {
@@ -53,7 +53,7 @@ export const NoShadow: Story = {
     shadow: 'none',
     children: 'NoShadow',
     sx: {
-      padding: '20px'
-    }
-  }
+      padding: '20px',
+    },
+  },
 };

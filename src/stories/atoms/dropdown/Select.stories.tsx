@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import Select from '../../../component/atom/dropdown/Select';
 import { MenuItem, FormControl, InputLabel } from '@mui/material';
+import React from 'react';
 import { useState } from 'react';
 
 const meta = {
@@ -11,31 +12,31 @@ const meta = {
     docs: {
       description: {
         component:
-          'A customizable Select component built on Material-UI, supporting single and multiple selection with various styles and states.'
-      }
-    }
+          'A customizable Select component built on Material-UI, supporting single and multiple selection with various styles and states.',
+      },
+    },
   },
   tags: ['autodocs'],
   argTypes: {
     variant: {
       control: 'select',
-      options: ['filled', 'outlined', 'standard']
+      options: ['filled', 'outlined', 'standard'],
     },
     size: {
       control: 'select',
-      options: ['small', 'medium']
+      options: ['small', 'medium'],
     },
     color: {
       control: 'select',
-      options: ['primary', 'secondary', 'error', 'info', 'success', 'warning']
+      options: ['primary', 'secondary', 'error', 'info', 'success', 'warning'],
     },
     disabled: {
-      control: 'boolean'
+      control: 'boolean',
     },
     error: {
-      control: 'boolean'
-    }
-  }
+      control: 'boolean',
+    },
+  },
 } satisfies Meta<typeof Select>;
 
 export default meta;
@@ -55,79 +56,79 @@ const Template: Story['render'] = (args): React.ReactElement => (
 export const Primary: Story = {
   render: Template,
   args: {
-    color: 'primary'
-  }
+    color: 'primary',
+  },
 };
 
 export const Secondary: Story = {
   render: Template,
   args: {
-    color: 'secondary'
-  }
+    color: 'secondary',
+  },
 };
 
 export const Small: Story = {
   render: Template,
   args: {
-    size: 'small'
-  }
+    size: 'small',
+  },
 };
 
 export const Medium: Story = {
   render: Template,
   args: {
-    size: 'medium'
-  }
+    size: 'medium',
+  },
 };
 
 export const FilledVariant: Story = {
   render: Template,
   args: {
-    variant: 'filled'
-  }
+    variant: 'filled',
+  },
 };
 
 export const OutlinedVariant: Story = {
   render: Template,
   args: {
-    variant: 'outlined'
-  }
+    variant: 'outlined',
+  },
 };
 
 export const StandardVariant: Story = {
   render: Template,
   args: {
-    variant: 'standard'
-  }
+    variant: 'standard',
+  },
 };
 
 export const WithLabel: Story = {
   render: Template,
   args: {
-    color: 'primary'
-  }
+    color: 'primary',
+  },
 };
 
 export const ErrorState: Story = {
   render: Template,
   args: {
     color: 'error',
-    error: true
-  }
+    error: true,
+  },
 };
 
 export const SuccessState: Story = {
   render: Template,
   args: {
-    color: 'success'
-  }
+    color: 'success',
+  },
 };
 
 export const Disabled: Story = {
   render: Template,
   args: {
-    disabled: true
-  }
+    disabled: true,
+  },
 };
 
 const MultipleSelectTemplate: Story['render'] = (args): React.ReactElement => {
@@ -161,6 +162,6 @@ const MultipleSelectTemplate: Story['render'] = (args): React.ReactElement => {
 export const MultipleSelect: Story = {
   render: MultipleSelectTemplate,
   args: {
-    color: 'primary'
-  }
+    color: 'primary',
+  },
 };

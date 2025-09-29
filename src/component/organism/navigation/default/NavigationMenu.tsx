@@ -10,7 +10,7 @@ import { useCoreTheme } from '../../../../theme/core-theme';
 import { INavigationItemMultiple, NavigationMenuItems } from '../types';
 import { INavigationMainLogoProps } from './components/NavigationMainLogo';
 import NavigationMenuButton, {
-  INavigationMenuItemButtonProps
+  INavigationMenuItemButtonProps,
 } from './components/NavigationMenuButton';
 import { SystemStyleObject } from '@mui/system/styleFunctionSx/styleFunctionSx';
 import { handleSkipTo } from '../navigationUtils';
@@ -68,7 +68,7 @@ const NavigationMenu: FC<NavigationMenuProps> = ({
 
   const mainNavHeight = largeHeight;
 
-  const visibleItems = navigationMenuItems.filter(item => !item.hidden);
+  const visibleItems = navigationMenuItems.filter((item) => !item.hidden);
   const totalVisibleItems = visibleItems.length;
 
   return (
@@ -82,7 +82,7 @@ const NavigationMenu: FC<NavigationMenuProps> = ({
           pb: theme.spacing(0),
           pl: theme.spacing(6),
           pr: theme.spacing(6),
-          ...appBarContainerProps?.sx
+          ...appBarContainerProps?.sx,
         }}
       >
         <Toolbar
@@ -92,7 +92,7 @@ const NavigationMenu: FC<NavigationMenuProps> = ({
             height: mainNavHeight,
             alignItems: 'center',
             justifyContent: 'space-between',
-            ...appToolbarContainerProps?.sx
+            ...appToolbarContainerProps?.sx,
           }}
         >
           <Box sx={{ display: 'flex', alignItems: 'center' }}>
@@ -103,7 +103,7 @@ const NavigationMenu: FC<NavigationMenuProps> = ({
                     role="link"
                     sx={skipContentStyle}
                     style={{ order: 1 }}
-                    onClick={e => {
+                    onClick={(e) => {
                       handleSkipTo(e);
                       customSkipTo?.();
                     }}
@@ -119,7 +119,7 @@ const NavigationMenu: FC<NavigationMenuProps> = ({
                     height: mainNavHeight,
                     width: 120,
                     position: 'relative',
-                    order: 2
+                    order: 2,
                   }}
                 >
                   {mainLogoProps.LogoIcon}
@@ -149,7 +149,7 @@ const NavigationMenu: FC<NavigationMenuProps> = ({
                           !(item as INavigationItemMultiple)?.subItems ||
                           (item as INavigationItemMultiple)?.subItems.length === 0
                             ? 'link'
-                            : 'button'
+                            : 'button',
                       };
 
                   return (
@@ -182,7 +182,7 @@ const NavigationMenu: FC<NavigationMenuProps> = ({
 };
 export default NavigationMenu;
 
-const skipToContentStyle: (theme: Theme) => SystemStyleObject<Theme> = theme => ({
+const skipToContentStyle: (theme: Theme) => SystemStyleObject<Theme> = (theme) => ({
   position: 'absolute',
   top: '-200%',
   zIndex: 100,
@@ -202,14 +202,14 @@ const skipToContentStyle: (theme: Theme) => SystemStyleObject<Theme> = theme => 
   '&:focus, &:focus-visible': {
     zIndex: 0,
     top: 10,
-    position: 'relative'
+    position: 'relative',
   },
   [theme.breakpoints.down('md')]: {
     width: '30%',
-    margin: `0 auto`
+    margin: `0 auto`,
   },
   [theme.breakpoints.down('sm')]: {
     width: '45%',
-    margin: `0 auto`
-  }
+    margin: `0 auto`,
+  },
 });

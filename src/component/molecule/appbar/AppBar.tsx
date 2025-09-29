@@ -30,7 +30,7 @@ const AppBar: FC<AppBarProps> = ({
     primary: 'red',
     secondary: 'blue',
     tertiary: 'green',
-    main: 'grey'
+    main: 'grey',
   },
   enableColorOnDark = false,
   sx,
@@ -47,9 +47,9 @@ const AppBar: FC<AppBarProps> = ({
             palette[color as keyof typeof palette] !== null &&
             'main' in (palette[color as keyof typeof palette] as object)
               ? (palette[color as keyof typeof palette] as { main: string }).main
-              : color
-        }
-      })
+              : color,
+        },
+      }),
     },
     sx
   );

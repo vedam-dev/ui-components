@@ -15,7 +15,7 @@ import {
   INavigationItemMultiple,
   NavigationMenuItem,
   OnNavigationClick,
-  onDropdownClick
+  onDropdownClick,
 } from '../../types';
 import NavigationSubMenuItem from './NavigationSubMenuItem';
 
@@ -113,8 +113,8 @@ const NavigationMenuButton: FC<NavigationMenuItemProps> = ({
           '&:focus-visible': {
             outline: `2px solid ${theme.palette.text.primary} !important`,
             border: '2px solid transparent !important',
-            borderRadius: '4px'
-          }
+            borderRadius: '4px',
+          },
         }}
         onClick={hasSubMenu ? handleOpenNavMenu : onClick}
         href={item.uri}
@@ -154,7 +154,7 @@ const NavigationMenuButton: FC<NavigationMenuItemProps> = ({
                 item={subItem}
                 onItemClick={onSubMenuClick}
                 ariaProps={{
-                  'aria-label': `${subItem.accessibilityLabel} ${isWindows ? `,item ${index + 1} of ${navItem.subItems.length}` : ',item'}`
+                  'aria-label': `${subItem.accessibilityLabel} ${isWindows ? `,item ${index + 1} of ${navItem.subItems.length}` : ',item'}`,
                 }}
               />
             );
@@ -167,19 +167,19 @@ const NavigationMenuButton: FC<NavigationMenuItemProps> = ({
 
 export default NavigationMenuButton;
 
-const iconStyle: (theme: Theme) => SystemStyleObject<Theme> = theme => {
+const iconStyle: (theme: Theme) => SystemStyleObject<Theme> = (theme) => {
   return {
     height: `12px`,
     width: `12px`,
     color: theme.palette.text.secondary,
     '&:hover, &:active': {
       color: theme.palette.text.primary,
-      backgroundColor: theme.palette.background.default
-    }
+      backgroundColor: theme.palette.background.default,
+    },
   };
 };
 
-const buttonStyle: (theme: Theme) => SystemStyleObject<Theme> = theme => {
+const buttonStyle: (theme: Theme) => SystemStyleObject<Theme> = (theme) => {
   return {
     color: theme.palette.text.secondary,
     textDecoration: 'none',
@@ -187,7 +187,7 @@ const buttonStyle: (theme: Theme) => SystemStyleObject<Theme> = theme => {
     borderRadius: 0,
     lineHeight: 1,
     padding: theme.spacing(3),
-    '&:hover, &:active': { color: theme.palette.text.primary }
+    '&:hover, &:active': { color: theme.palette.text.primary },
   };
 };
 

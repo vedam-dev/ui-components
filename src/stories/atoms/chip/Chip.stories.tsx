@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
-import   { Chip} from '../../../component/atom/chip';
+import { Chip } from '../../../component/atom/chip';
 import { IChipProps } from '@component/atom/chip/Chip';
 import { Avatar } from '@mui/material';
 import { Done, Delete } from '@mui/icons-material';
@@ -68,7 +68,12 @@ export const Deletable: Story = {
 };
 
 export const CustomDeleteIcon: Story = {
-  args: { label: 'Custom Delete', onDelete: () => alert('Delete clicked'), deleteIcon: <Delete />, color: 'primary' },
+  args: {
+    label: 'Custom Delete',
+    onDelete: () => alert('Delete clicked'),
+    deleteIcon: <Delete />,
+    color: 'primary',
+  },
 };
 
 export const Disabled: Story = {

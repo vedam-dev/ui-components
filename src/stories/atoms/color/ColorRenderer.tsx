@@ -19,15 +19,15 @@ const ColorRenderer: FC = () => {
     success: 'Success',
     text: 'Text',
     common: 'Common',
-    grey: 'Grey'
+    grey: 'Grey',
   };
 
-  const colorsToCheckViews = getKeys(colorsToCheck).map(key => {
+  const colorsToCheckViews = getKeys(colorsToCheck).map((key) => {
     const pal = palette as unknown as Record<string, Record<string, string>>;
 
     const title = colorsToCheck[key];
     const shades = pal[key];
-    const colorKeys = getKeys(shades).map(shade => {
+    const colorKeys = getKeys(shades).map((shade) => {
       const color = shades[shade];
       if (shade === 'contrastText') {
         return null;
@@ -46,7 +46,7 @@ const ColorRenderer: FC = () => {
               width: '75px',
               height: '75px',
               display: 'block',
-              border: '2px solid black'
+              border: '2px solid black',
             }}
           ></Box>
         </Grid>
@@ -66,7 +66,7 @@ const ColorRenderer: FC = () => {
   const spacingViews = (): JSX.Element => {
     const range = (n: number): number[] => Array.from({ length: n }, (_value, key) => key);
     const numbers = range(21);
-    const numberViews = numbers.map(num => {
+    const numberViews = numbers.map((num) => {
       return (
         <Grid size={{ xs: 3 }} key={num}>
           <Typography sx={{ padding: spacing(num), border: '1px solid black' }}>
@@ -108,7 +108,7 @@ const ColorRenderer: FC = () => {
               width: '75px',
               height: '75px',
               display: 'block',
-              boxShadow: vd.shadows.y8
+              boxShadow: vd.shadows.y8,
             }}
           ></Box>
         </Grid>
@@ -123,7 +123,7 @@ const ColorRenderer: FC = () => {
               width: '75px',
               height: '75px',
               display: 'block',
-              boxShadow: vd.shadows.y12
+              boxShadow: vd.shadows.y12,
             }}
           ></Box>
         </Grid>
@@ -138,7 +138,7 @@ const ColorRenderer: FC = () => {
               width: '75px',
               height: '75px',
               display: 'block',
-              boxShadow: vd.shadows.y16
+              boxShadow: vd.shadows.y16,
             }}
           ></Box>
         </Grid>

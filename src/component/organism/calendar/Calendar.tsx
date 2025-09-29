@@ -1,14 +1,5 @@
-import React, { useMemo, useState } from "react";
-import {
-  Box,
-  Paper,
-  Typography,
-  styled,
-  Tooltip,
-  SxProps,
-  Theme,
-  useTheme,
-} from "@mui/material";
+import React, { useMemo, useState } from 'react';
+import { Box, Paper, Typography, styled, Tooltip, SxProps, Theme } from '@mui/material';
 
 export interface CalendarEvent {
   id?: string | number;
@@ -29,50 +20,51 @@ export interface ReusableCalendarProps {
   sx?: SxProps<Theme>;
 }
 
-const Container = styled(Paper)(({ theme }) => ({
+const Container = styled(Paper)(() => ({
   padding: 0,
-  overflow: "hidden",
-  boxShadow: "none",
-  backgroundColor: "white",
+  overflow: 'hidden',
+  boxShadow: 'none',
+  backgroundColor: 'white',
 }));
 
-const CalendarGrid = styled(Box)(({ theme }) => ({
-  borderRadius: "24px",
-  display: "grid",
-  gridTemplateColumns: "100px repeat(7, 1fr)",
+const CalendarGrid = styled(Box)(() => ({
+  borderRadius: '24px',
+  display: 'grid',
+  gridTemplateColumns: '100px repeat(7, 1fr)',
 }));
 
-const DayHeader = styled(Box)(({ theme }) => ({
-  borderBottom: "1px solid #E8E9EA",
-  textAlign: "center",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
+const DayHeader = styled(Box)(() => ({
+  borderBottom: '1px solid #E8E9EA',
+  textAlign: 'center',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
   minHeight: 60,
 }));
 
 const TimeSlot = styled(Box)(({ theme }) => ({
-  textAlign: "center",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
+  textAlign: 'center',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
   fontWeight: 600,
-  color: "#1E1E1E",
-  fontFamily: "Outfit",
-  fontSize: "16px",
-  fontStyle: "normal",
-  lineHeight: "normal",
+  color: '#1E1E1E',
+  fontFamily: 'Outfit',
+  fontSize: '16px',
+  fontStyle: 'normal',
+  lineHeight: 'normal',
   minHeight: 72,
   padding: theme.spacing(1),
 }));
 
-const DayCell = styled(Box)(({ theme }) => ({
+const DayCell = styled(Box)(() => ({
   minHeight: 72,
-  position: "relative",
+  position: 'relative',
 }));
 
 const EventCard = styled(Box, {
-  shouldForwardProp: (p) => p !== "important" && p !== "eventType" && p !== "customColor" && p !== "customBorderColor",
+  shouldForwardProp: (p) =>
+    p !== 'important' && p !== 'eventType' && p !== 'customColor' && p !== 'customBorderColor',
 })<{
   important?: boolean;
   eventType?: string;
@@ -81,28 +73,28 @@ const EventCard = styled(Box, {
 }>(({ theme, important, eventType, customColor, customBorderColor }) => {
   // If custom color is provided, use it
   if (customColor || customBorderColor) {
-    const bgColor = customColor || "#F2F2F2";
-    const borderColor = customBorderColor || customColor || "#E5E7EB";
-    
+    const bgColor = customColor || '#F2F2F2';
+    const borderColor = customBorderColor || customColor || '#E5E7EB';
+
     return {
-      position: "absolute",
+      position: 'absolute',
       left: 4,
       right: 4,
       borderRadius: 12,
       padding: theme.spacing(1, 1.5),
       backgroundColor: bgColor,
       borderLeft: `4px solid ${borderColor}`,
-      cursor: "pointer",
-      display: "flex",
-      flexDirection: "column",
-      justifyContent: "center",
+      cursor: 'pointer',
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center',
       zIndex: 2,
       minHeight: 48,
-      fontSize: "13px",
+      fontSize: '13px',
       fontWeight: 600,
-      color: customColor ? "#FFFFFF" : "#374151", // Use white text for custom background colors
-      boxShadow: "0 2px 8px rgba(22, 27, 33, 0.06)",
-      "&:hover": {
+      color: customColor ? '#FFFFFF' : '#374151', // Use white text for custom background colors
+      boxShadow: '0 2px 8px rgba(22, 27, 33, 0.06)',
+      '&:hover': {
         opacity: 0.9,
         boxShadow: `0 4px 12px rgba(0,0,0,0.15)`,
       },
@@ -110,47 +102,47 @@ const EventCard = styled(Box, {
   }
 
   // Default color logic
-  let backgroundColor = "#F2F2F2";
-  let borderColor = "#E5E7EB";
-  let textColor = "#374151";
-  let borderLeftWidth = "2px";
+  let backgroundColor = '#F2F2F2';
+  let borderColor = '#E5E7EB';
+  let textColor = '#374151';
+  let borderLeftWidth = '2px';
 
-  if (eventType === "exam") {
-    backgroundColor = "#FFF3EB";
-    borderColor = "#FF7829";
-    textColor = "#1E40AF";
-    borderLeftWidth = "4px";
-  } else if (eventType === "contest") {
-    backgroundColor = "#EBF4FF";
-    borderColor = "#1E40AF";
-    textColor = "#1E40AF";
-    borderLeftWidth = "4px";
+  if (eventType === 'exam') {
+    backgroundColor = '#FFF3EB';
+    borderColor = '#FF7829';
+    textColor = '#1E40AF';
+    borderLeftWidth = '4px';
+  } else if (eventType === 'contest') {
+    backgroundColor = '#EBF4FF';
+    borderColor = '#1E40AF';
+    textColor = '#1E40AF';
+    borderLeftWidth = '4px';
   } else if (important) {
-    backgroundColor = "#FEE2E2";
-    borderColor = "#EF4444";
-    textColor = "#DC2626";
-    borderLeftWidth = "4px";
+    backgroundColor = '#FEE2E2';
+    borderColor = '#EF4444';
+    textColor = '#DC2626';
+    borderLeftWidth = '4px';
   }
 
   return {
-    position: "absolute",
+    position: 'absolute',
     left: 4,
     right: 4,
     borderRadius: 12,
     padding: theme.spacing(1, 1.5),
     backgroundColor,
     borderLeft: `${borderLeftWidth} solid ${borderColor}`,
-    cursor: "pointer",
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
+    cursor: 'pointer',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
     zIndex: 2,
     minHeight: 48,
-    fontSize: "13px",
+    fontSize: '13px',
     fontWeight: 600,
     color: textColor,
-    boxShadow: "0 2px 8px rgba(22, 27, 33, 0.06)",
-    "&:hover": {
+    boxShadow: '0 2px 8px rgba(22, 27, 33, 0.06)',
+    '&:hover': {
       opacity: 0.9,
       boxShadow: `0 4px 12px rgba(0,0,0,0.15)`,
     },
@@ -158,16 +150,16 @@ const EventCard = styled(Box, {
 });
 
 const SemesterPill = styled(Box)(({ theme }) => ({
-  color: "#8A18FF",
+  color: '#8A18FF',
   padding: theme.spacing(1, 2),
   fontWeight: 600,
-  fontSize: "16px",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-  borderBottom: "1px solid #E8E9EA",
-  textAlign: "center",
-  wordWrap: "break-word",
+  fontSize: '16px',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  borderBottom: '1px solid #E8E9EA',
+  textAlign: 'center',
+  wordWrap: 'break-word',
 }));
 
 function startOfWeek(date = new Date()) {
@@ -192,7 +184,7 @@ const ReusableCalendar: React.FC<ReusableCalendarProps> = ({
   onWeekChange,
   sx,
 }) => {
-  const theme = useTheme();
+  // const theme = useTheme();
   const [start, setStart] = useState<Date>(
     weekStart ? startOfWeek(weekStart) : startOfWeek(new Date())
   );
@@ -227,18 +219,18 @@ const ReusableCalendar: React.FC<ReusableCalendarProps> = ({
   }, [events]);
 
   function formatDayNumber(d: Date) {
-    return d.getDate().toString().padStart(2, "0");
+    return d.getDate().toString().padStart(2, '0');
   }
 
   function formatMonth(d: Date) {
-    return d.toLocaleString(undefined, { month: "long" });
+    return d.toLocaleString(undefined, { month: 'long' });
   }
 
   function getEventType(event: CalendarEvent): string {
     const name = event.name.toLowerCase();
-    if (name.includes("exam")) return "exam";
-    if (name.includes("contest")) return "contest";
-    return "regular";
+    if (name.includes('exam')) return 'exam';
+    if (name.includes('contest')) return 'contest';
+    return 'regular';
   }
 
   function getTopAndHeight(startDt: Date, endDt: Date) {
@@ -273,13 +265,12 @@ const ReusableCalendar: React.FC<ReusableCalendarProps> = ({
           <DayHeader key={index}>
             <Typography
               sx={{
-                fontSize: "18px",
+                fontSize: '18px',
                 fontWeight: 600,
-                color: isToday(day) ? "#8A18FF" : "#1E1E1E",
-                lineHeight: "normal",
-                px: "35px",
-                py: "26px",
-                  
+                color: isToday(day) ? '#8A18FF' : '#1E1E1E',
+                lineHeight: 'normal',
+                px: '35px',
+                py: '26px',
               }}
             >
               {formatDayNumber(day)}, {formatMonth(day)}
@@ -290,9 +281,7 @@ const ReusableCalendar: React.FC<ReusableCalendarProps> = ({
         {timeSlots.map((timeLabel, timeIndex) => (
           <React.Fragment key={timeIndex}>
             <TimeSlot>
-              <Typography
-                sx={{ fontSize: "16px", fontWeight: 600, color: "#1E1E1E" }}
-              >
+              <Typography sx={{ fontSize: '16px', fontWeight: 600, color: '#1E1E1E' }}>
                 {timeLabel}
               </Typography>
             </TimeSlot>
@@ -313,13 +302,9 @@ const ReusableCalendar: React.FC<ReusableCalendarProps> = ({
                   {eventsInThisHour.map((event) => {
                     const eventStart = toDate(event.start);
                     const eventEnd = toDate(
-                      event.end ??
-                        new Date(eventStart.getTime() + 60 * 60 * 1000)
+                      event.end ?? new Date(eventStart.getTime() + 60 * 60 * 1000)
                     );
-                    const { top, height } = getTopAndHeight(
-                      eventStart,
-                      eventEnd
-                    );
+                    const { top, height } = getTopAndHeight(eventStart, eventEnd);
                     const eventType = getEventType(event);
 
                     return (
@@ -341,10 +326,10 @@ const ReusableCalendar: React.FC<ReusableCalendarProps> = ({
                         >
                           <Typography
                             sx={{
-                              fontSize: "16px",
+                              fontSize: '16px',
                               fontWeight: 600,
                               lineHeight: 1.2,
-                              color: event.color ? "#FFFFFF" : "#3870CA", // Use white text for custom colors
+                              color: event.color ? '#FFFFFF' : '#3870CA', // Use white text for custom colors
                             }}
                           >
                             {event.name}
@@ -352,11 +337,11 @@ const ReusableCalendar: React.FC<ReusableCalendarProps> = ({
                           {event.description && (
                             <Typography
                               sx={{
-                                fontSize: "16px",
-                                lineHeight: "normal",
+                                fontSize: '16px',
+                                lineHeight: 'normal',
                                 fontWeight: 400,
                                 mt: 0.25,
-                                color: event.color ? "#FFFFFF" : "inherit", // Use white text for custom colors
+                                color: event.color ? '#FFFFFF' : 'inherit', // Use white text for custom colors
                               }}
                             >
                               {event.description}

@@ -1,3 +1,4 @@
+import React from 'react';
 export const handleSkipTo = (event: React.MouseEvent<HTMLButtonElement>): void => {
   event.preventDefault();
   const mainContent = document.getElementsByTagName('main')[0];

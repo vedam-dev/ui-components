@@ -47,7 +47,9 @@ export default function Tabs({
 
   // ensure tabRefs length matches tabs length (avoid stale refs)
   useEffect(() => {
-    tabRefs.current = Array(tabs.length).fill(null).map((_, i) => tabRefs.current[i] ?? null);
+    tabRefs.current = Array(tabs.length)
+      .fill(null)
+      .map((_, i) => tabRefs.current[i] ?? null);
   }, [tabs.length]);
 
   // If tabs array length or initialIndex changes, clamp activeIdx
@@ -249,7 +251,11 @@ export default function Tabs({
                 width: '100%',
                 transition: 'opacity 0.3s ease, transform 0.3s ease',
                 opacity: transitioning ? (isActive ? 1 : 0) : isActive ? 1 : 0,
-                transform: transitioning ? (isActive ? 'translateY(0)' : 'translateY(10px)') : 'none',
+                transform: transitioning
+                  ? isActive
+                    ? 'translateY(0)'
+                    : 'translateY(10px)'
+                  : 'none',
                 pointerEvents: isActive ? 'auto' : 'none',
                 ...(panelSx ?? {}),
               }}

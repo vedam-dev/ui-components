@@ -12,8 +12,8 @@ const Card: FC<CardProps> = ({ children, style, shadow, sx, ...props }) => {
     vd: { shadows },
     palette: {
       common: { white },
-      grey
-    }
+      grey,
+    },
   } = useCoreTheme() as CoreTheme;
 
   const shadowVal = shadow ? shadows[shadow] : shadows.y12;
@@ -24,9 +24,9 @@ const Card: FC<CardProps> = ({ children, style, shadow, sx, ...props }) => {
       sx={{
         '&:focus-visible': {
           border: `solid 1px ${white}`,
-          outline: `solid 2px ${grey[900]}`
+          outline: `solid 2px ${grey[900]}`,
         },
-        ...sx
+        ...sx,
       }}
     >
       {children}

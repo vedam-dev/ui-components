@@ -1,19 +1,34 @@
-import React, { useState, FC } from "react";
-import SidebarDrawer, { SidebarItem } from "../sidebardrawer/SidebarDrawer";
-import TopBar, { TopBarProps } from "../topbar/TopBar";
+import React, { useState, FC } from 'react';
+import SidebarDrawer, { SidebarItem } from '../sidebardrawer/SidebarDrawer';
+import TopBar, { TopBarProps } from '../topbar/TopBar';
 
 import {
   Dashboard as DashboardIcon,
   People as PeopleIcon,
   Settings as SettingsIcon,
   Analytics as AnalyticsIcon,
-} from "@mui/icons-material";
+} from '@mui/icons-material';
 
 const defaultItems: SidebarItem[] = [
-  { id: "dashboard", icon: <DashboardIcon />, text: "Dashboard", onClick: () => console.log("Dashboard clicked") },
-  { id: "users",     icon: <PeopleIcon />,     text: "Users",     onClick: () => console.log("Users clicked") },
-  { id: "analytics", icon: <AnalyticsIcon />,  text: "Analytics", onClick: () => console.log("Analytics clicked") },
-  { id: "settings",  icon: <SettingsIcon />,   text: "Settings",  onClick: () => console.log("Settings clicked") },
+  {
+    id: 'dashboard',
+    icon: <DashboardIcon />,
+    text: 'Dashboard',
+    onClick: () => console.log('Dashboard clicked'),
+  },
+  { id: 'users', icon: <PeopleIcon />, text: 'Users', onClick: () => console.log('Users clicked') },
+  {
+    id: 'analytics',
+    icon: <AnalyticsIcon />,
+    text: 'Analytics',
+    onClick: () => console.log('Analytics clicked'),
+  },
+  {
+    id: 'settings',
+    icon: <SettingsIcon />,
+    text: 'Settings',
+    onClick: () => console.log('Settings clicked'),
+  },
 ];
 
 interface SidebarWrapperProps extends Partial<TopBarProps> {
@@ -23,21 +38,20 @@ interface SidebarWrapperProps extends Partial<TopBarProps> {
 const SidebarWrapper: FC<SidebarWrapperProps> = ({
   collegeLogo,
   items = defaultItems,
-  studentId = "VED2025",
-  label = "Student Id:",
-  studentName = "Sameeksha Kapoor",
-  studentPhoto =
-    "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=987&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  studentId = 'VED2025',
+  label = 'Student Id:',
+  studentName = 'Sameeksha Kapoor',
+  studentPhoto = 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=987&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
   streakCount = 0,
   coinCount = 0,
   notificationCount = 1,
   hideStatsContainer = false,
-  onProfileClick = () => console.log("Profile clicked"),
+  onProfileClick = () => console.log('Profile clicked'),
 }) => {
   const topbarHeight = 106;
   const [isSidebarExpanded, setIsSidebarExpanded] = useState(false);
-  
-  const toggleSidebar = () => setIsSidebarExpanded(prev => !prev);
+
+  const toggleSidebar = () => setIsSidebarExpanded((prev) => !prev);
 
   return (
     <div>
@@ -53,8 +67,8 @@ const SidebarWrapper: FC<SidebarWrapperProps> = ({
         onMenuClick={toggleSidebar}
         onProfileClick={onProfileClick}
         isSidebarExpanded={isSidebarExpanded}
-        sx={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: isSidebarExpanded ? 0 : 20 }}
-        hideStatsContainer = {hideStatsContainer}
+        sx={{ position: 'fixed', top: 0, left: 0, right: 0, zIndex: isSidebarExpanded ? 0 : 20 }}
+        hideStatsContainer={hideStatsContainer}
       />
 
       <SidebarDrawer
@@ -64,9 +78,9 @@ const SidebarWrapper: FC<SidebarWrapperProps> = ({
         expandedWidth={200}
         expanded={isSidebarExpanded}
         onToggleExpand={setIsSidebarExpanded}
-        onItemClick={item => console.log("You clicked:", item.id)}
+        onItemClick={(item) => console.log('You clicked:', item.id)}
         paperSx={{
-          bgcolor: "background.default",
+          bgcolor: 'background.default',
           marginTop: `${topbarHeight}px`,
           height: `calc(100vh - ${topbarHeight}px)`,
           zIndex: isSidebarExpanded ? 0 : 10,

@@ -18,12 +18,7 @@ interface CalendarTimelineItemProps {
   isFirst: boolean;
 }
 
-const CalendarTimelineItem: React.FC<CalendarTimelineItemProps> = ({
-  event,
-  index,
-  isLast,
-  isFirst
-}) => {
+const CalendarTimelineItem: React.FC<CalendarTimelineItemProps> = ({ event, isLast, isFirst }) => {
   const theme = useCoreTheme() as CoreTheme;
 
   return (
@@ -32,7 +27,7 @@ const CalendarTimelineItem: React.FC<CalendarTimelineItemProps> = ({
         display: 'flex',
         alignItems: 'center',
         minWidth: theme.spacing(32),
-        flexShrink: 0
+        flexShrink: 0,
       }}
     >
       {/* Date */}
@@ -40,7 +35,7 @@ const CalendarTimelineItem: React.FC<CalendarTimelineItemProps> = ({
         sx={{
           minWidth: theme.spacing(20),
           textAlign: 'right',
-          pr: theme.spacing(2)
+          pr: theme.spacing(2),
         }}
       >
         <Typography
@@ -52,7 +47,7 @@ const CalendarTimelineItem: React.FC<CalendarTimelineItemProps> = ({
             whiteSpace: 'nowrap',
             overflow: 'hidden',
             textOverflow: 'ellipsis',
-            textAlign: 'left'
+            textAlign: 'left',
           }}
         >
           {event.date}
@@ -66,7 +61,7 @@ const CalendarTimelineItem: React.FC<CalendarTimelineItemProps> = ({
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
-          minWidth: theme.spacing(10)
+          minWidth: theme.spacing(10),
         }}
       >
         <svg xmlns="http://www.w3.org/2000/svg" height="1.0625rem" viewBox="0 0 21 21" fill="none">
@@ -89,7 +84,7 @@ const CalendarTimelineItem: React.FC<CalendarTimelineItemProps> = ({
               transform: 'translateX(-50%)',
               width: theme.spacing(0.5),
               height: theme.spacing(18),
-              backgroundImage: `repeating-linear-gradient(to bottom, #F97D03, #F97D03 0.625rem, transparent 0.625rem, transparent 0.875rem)`
+              backgroundImage: `repeating-linear-gradient(to bottom, #F97D03, #F97D03 0.625rem, transparent 0.625rem, transparent 0.875rem)`,
             }}
           />
         )}
@@ -102,7 +97,7 @@ const CalendarTimelineItem: React.FC<CalendarTimelineItemProps> = ({
           sx={{
             height: theme.spacing(18.5),
             borderRadius: theme.spacing(5),
-            border: '1px solid #E1BFFF'
+            border: '1px solid #E1BFFF',
           }}
         >
           <CardContent
@@ -112,7 +107,7 @@ const CalendarTimelineItem: React.FC<CalendarTimelineItemProps> = ({
               gap: theme.spacing(7),
               height: '100%',
               px: theme.spacing(2),
-              '&:last-child': { pb: theme.spacing(4) }
+              '&:last-child': { pb: theme.spacing(4) },
             }}
           >
             <Box
@@ -122,7 +117,7 @@ const CalendarTimelineItem: React.FC<CalendarTimelineItemProps> = ({
                 width: theme.spacing(10),
                 height: theme.spacing(10),
                 ml: theme.spacing(4),
-                objectFit: 'contain'
+                objectFit: 'contain',
               }}
               alt="subject icon"
             />
@@ -132,7 +127,7 @@ const CalendarTimelineItem: React.FC<CalendarTimelineItemProps> = ({
                   fontWeight: 500,
                   fontSize: theme.spacing(4),
                   fontFamily: 'Inter',
-                  color: 'text.primary'
+                  color: 'text.primary',
                 }}
               >
                 {event.subject}
@@ -142,7 +137,7 @@ const CalendarTimelineItem: React.FC<CalendarTimelineItemProps> = ({
                   fontSize: theme.spacing(3.5),
                   fontWeight: 500,
                   color: 'text.secondary',
-                  fontFamily: 'Inter'
+                  fontFamily: 'Inter',
                 }}
               >
                 {event.time}

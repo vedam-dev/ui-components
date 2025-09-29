@@ -5,7 +5,7 @@ import {
   Typography,
   useMediaQuery,
   Color,
-  ClickAwayListener
+  ClickAwayListener,
 } from '@mui/material';
 import AppBar from '@mui/material/AppBar';
 import Container from '@mui/material/Container';
@@ -19,7 +19,7 @@ import React, {
   useEffect,
   useMemo,
   useRef,
-  useState
+  useState,
 } from 'react';
 import { CoreTheme, useCoreTheme } from '../../../../theme/core-theme';
 import { SvgIcon } from '../../../atom/icon';
@@ -117,7 +117,7 @@ const NavigationMenu: FC<NavigationMobileMenuProps> = ({
   const menuItemSx = {
     padding: `${theme.spacing(2)} ${theme.spacing(6)}`,
     minHeight: 'auto',
-    '&:hover': { backgroundColor: 'transparent' }
+    '&:hover': { backgroundColor: 'transparent' },
   };
 
   const nonLoginItem = useMemo(() => {
@@ -132,9 +132,9 @@ const NavigationMenu: FC<NavigationMobileMenuProps> = ({
             disableRipple
             sx={{
               ...menuItemSx,
-              cursor: 'default'
+              cursor: 'default',
             }}
-            onKeyDown={e => {
+            onKeyDown={(e) => {
               if (e.key === 'Tab') {
                 e.stopPropagation();
               }
@@ -147,7 +147,7 @@ const NavigationMenu: FC<NavigationMobileMenuProps> = ({
                 width: '100%',
                 color: theme.palette.grey[500],
                 whiteSpace: 'normal',
-                marginBottom: theme.spacing(2)
+                marginBottom: theme.spacing(2),
               }}
             >
               {mobileNonLoginSection}
@@ -232,14 +232,14 @@ const NavigationMenu: FC<NavigationMobileMenuProps> = ({
         {...appBarProps}
         sx={{
           zIndex: 999,
-          ...appBarProps?.sx
+          ...appBarProps?.sx,
         }}
       >
         {showSkipContent && (
           <MuiButton
             role="link"
             sx={skipContentStyle}
-            onClick={e => {
+            onClick={(e) => {
               handleSkipTo(e);
               customSkipTo?.();
             }}
@@ -254,7 +254,7 @@ const NavigationMenu: FC<NavigationMobileMenuProps> = ({
           {...appBarContainerProps}
           sx={{
             p: theme.spacing(0),
-            ...appBarContainerProps?.sx
+            ...appBarContainerProps?.sx,
           }}
         >
           <Toolbar
@@ -266,7 +266,7 @@ const NavigationMenu: FC<NavigationMobileMenuProps> = ({
               width: '100%',
               display: 'flex',
               justifyContent: 'space-between',
-              ...appToolbarContainerProps?.sx
+              ...appToolbarContainerProps?.sx,
             }}
           >
             <ClickAwayListener
@@ -292,11 +292,11 @@ const NavigationMenu: FC<NavigationMobileMenuProps> = ({
                   keepMounted
                   anchorOrigin={{
                     vertical: 'bottom',
-                    horizontal: 'center'
+                    horizontal: 'center',
                   }}
                   transformOrigin={{
                     vertical: -8,
-                    horizontal: 'center'
+                    horizontal: 'center',
                   }}
                   marginThreshold={0}
                   open={Boolean(anchorElNav)}
@@ -311,14 +311,14 @@ const NavigationMenu: FC<NavigationMobileMenuProps> = ({
                         borderRadius: theme.spacing(2),
                         boxShadow: theme.vd.shadows.y16,
                         padding: 0,
-                        paddingTop: theme.spacing(6)
-                      }
+                        paddingTop: theme.spacing(6),
+                      },
                     },
                     root: {
                       style: {
-                        zIndex: 998
-                      }
-                    }
+                        zIndex: 998,
+                      },
+                    },
                   }}
                 >
                   <span
@@ -363,7 +363,7 @@ const NavigationMenu: FC<NavigationMobileMenuProps> = ({
                           }
                           sx={{
                             ...menuItemSx,
-                            display: item.hidden ? 'none' : 'block'
+                            display: item.hidden ? 'none' : 'block',
                           }}
                         />
                       ) : (
@@ -379,8 +379,8 @@ const NavigationMenu: FC<NavigationMobileMenuProps> = ({
                             textAlign: 'left',
                             '&:focus-visible': {
                               border: `1px solid ${theme.palette.primary.main}`,
-                              outline: `1px solid ${theme.palette.primary.main}`
-                            }
+                              outline: `1px solid ${theme.palette.primary.main}`,
+                            },
                           }}
                           aria-label={`${navItem.label}, item ${index + 1} of ${mobileAccountSection && isLoggedIn ? navigationMenuItems.length + 1 : navigationMenuItems.length}`}
                           role="link"
@@ -391,7 +391,7 @@ const NavigationMenu: FC<NavigationMobileMenuProps> = ({
                             variant="body1"
                             sx={{
                               color: theme.palette.grey[900],
-                              fontWeight: 'bold'
+                              fontWeight: 'bold',
                             }}
                           >
                             {navItem.label}
@@ -414,7 +414,7 @@ const NavigationMenu: FC<NavigationMobileMenuProps> = ({
 };
 export default NavigationMenu;
 
-const mainButtonStyle: (theme: Theme) => SystemStyleObject<Theme> = theme => {
+const mainButtonStyle: (theme: Theme) => SystemStyleObject<Theme> = (theme) => {
   return {
     width: '48px',
     height: '48px',
@@ -424,12 +424,12 @@ const mainButtonStyle: (theme: Theme) => SystemStyleObject<Theme> = theme => {
     borderBottom: 'none',
     borderRadius: theme.spacing(0),
     '&:hover, &:active, &:focus-visible': {
-      backgroundColor: theme.palette.background.default
-    }
+      backgroundColor: theme.palette.background.default,
+    },
   };
 };
 
-const skipToContentStyle: (theme: Theme) => SystemStyleObject<Theme> = theme => {
+const skipToContentStyle: (theme: Theme) => SystemStyleObject<Theme> = (theme) => {
   return {
     position: 'absolute',
     top: '-200%',
@@ -451,15 +451,15 @@ const skipToContentStyle: (theme: Theme) => SystemStyleObject<Theme> = theme => 
       zIndex: 0,
       top: 10,
       position: 'relative',
-      height: 'auto'
+      height: 'auto',
     },
     [theme.breakpoints.down('md')]: {
       width: '30%',
-      margin: `0 auto`
+      margin: `0 auto`,
     },
     [theme.breakpoints.down('sm')]: {
       width: '45%',
-      margin: `0 auto`
-    }
+      margin: `0 auto`,
+    },
   };
 };

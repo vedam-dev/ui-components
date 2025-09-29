@@ -8,9 +8,9 @@ const meta = {
   title: 'Organism/Card/HorizontalBaseCard',
   component: HorizontalBaseCard,
   parameters: {
-    layout: 'centered'
+    layout: 'centered',
   },
-  tags: ['autodocs']
+  tags: ['autodocs'],
 } satisfies Meta<typeof HorizontalBaseCard>;
 
 export default meta;
@@ -32,8 +32,8 @@ export const WithDescription: Story = {
           <Typography variant="body1">This is a sample card content.</Typography>
         </Box>
       </CardContent>
-    )
-  }
+    ),
+  },
 };
 export const WithoutDescription: Story = {
   args: {
@@ -50,8 +50,8 @@ export const WithoutDescription: Story = {
           <Typography variant="h6">Header</Typography>
         </Box>
       </CardContent>
-    )
-  }
+    ),
+  },
 };
 export const WithoutMediaMargin: Story = {
   args: {
@@ -69,8 +69,8 @@ export const WithoutMediaMargin: Story = {
           <Typography variant="body1">This is a sample card content.</Typography>
         </Box>
       </CardContent>
-    )
-  }
+    ),
+  },
 };
 export const MediaLeft: Story = {
   args: {
@@ -89,6 +89,6 @@ export const MediaLeft: Story = {
           <Typography variant="body1">This is a sample card content.</Typography>
         </Box>
       </CardContent>
-    )
-  }
+    ),
+  },
 };

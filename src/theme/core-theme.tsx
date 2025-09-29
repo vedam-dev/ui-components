@@ -2,7 +2,7 @@ import { createTheme, Theme, useTheme } from '@mui/material';
 import { ThemeProvider, ThemeProviderProps } from '@mui/material/styles';
 import { ThemeOptions } from '@mui/material/styles/createTheme';
 import { TypographyStyle } from '@mui/material/styles/createTypography';
-
+import React from 'react';
 export type CoreTypographyVariant = 'buttonS' | 'avatar';
 
 interface CustomPalette {
@@ -17,7 +17,7 @@ interface CustomPalette {
 
 export interface IVdTheme {
   useMaterialButtons: boolean;
-  shadows: { none: 'none'; y4?:string; y8: string; y12: string; y16: string };
+  shadows: { none: 'none'; y4?: string; y8: string; y12: string; y16: string };
   typography: Record<CoreTypographyVariant, TypographyStyle>;
   palette?: CustomPalette;
 }
@@ -42,7 +42,6 @@ export const useCoreTheme = useTheme as () => CoreTheme | Theme;
 export const createCoreTheme = (options: CoreThemeOptions): CoreTheme => {
   return createTheme(options) as CoreTheme;
 };
-
 
 declare module '@mui/material/styles' {
   interface PaletteColor {

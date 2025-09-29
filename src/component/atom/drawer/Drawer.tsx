@@ -1,12 +1,16 @@
 import React, { FC, ReactNode } from 'react';
-import { Drawer as MuiDrawer, DrawerProps as MuiDrawerProps, Box, IconButton, Typography } from '@mui/material';
+import {
+  Drawer as MuiDrawer,
+  DrawerProps as MuiDrawerProps,
+  Box,
+  IconButton,
+  Typography,
+} from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import SxOverride from '../../../util/SxOverride';
 import { CoreTheme, useCoreTheme } from '../../../theme/core-theme';
 
 export interface DrawerProps extends Omit<MuiDrawerProps, 'open' | 'onClose'> {
-
-
   open: boolean;
   onClose: () => void;
   title?: string;

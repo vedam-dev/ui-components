@@ -3,7 +3,7 @@ import FeeStatusModal, {
   FeeStatusModalProps,
 } from '../../../component/organism/fee-status-modal/FeeStatusModal';
 import { useState } from 'react';
-import Button  from '../../../component/atom/button/Button';
+import Button from '../../../component/atom/button/Button';
 
 const meta: Meta<typeof FeeStatusModal> = {
   title: 'Organism/Modal/FeeStatusModal',
@@ -38,7 +38,6 @@ const ModalWrapper = (args: FeeStatusModalProps) => {
   );
 };
 
-
 export const Success: Story = {
   render: (args) => <ModalWrapper {...args} />,
   args: {
@@ -62,7 +61,6 @@ export const Pending: Story = {
     infoText: 'Your payment is under processing.',
   },
 };
-
 
 export const WithCustomButton: Story = {
   render: (args) => <ModalWrapper {...args} />,

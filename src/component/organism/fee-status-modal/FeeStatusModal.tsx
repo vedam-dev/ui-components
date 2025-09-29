@@ -17,10 +17,12 @@ export type FeeStatusModalProps = ComponentProps<typeof Modal> & IFeeStatusModal
 const statusIconMap: Record<StatusType, string> = {
   success:
     'https://acjlsquedaotbhbxmtee.supabase.co/storage/v1/object/public/vedam-website-assets/images/certificate/Group%201261155609-2.jpg',
-  failure: 'https://acjlsquedaotbhbxmtee.supabase.co/storage/v1/object/public/vedam-website-assets/images/videoInfo/Group%201261155609-3.jpg',
-  pending: 'https://acjlsquedaotbhbxmtee.supabase.co/storage/v1/object/public/vedam-website-assets/images/videoInfo/Group%201261155609-3.jpg',
+  failure:
+    'https://acjlsquedaotbhbxmtee.supabase.co/storage/v1/object/public/vedam-website-assets/images/videoInfo/Group%201261155609-3.jpg',
+  pending:
+    'https://acjlsquedaotbhbxmtee.supabase.co/storage/v1/object/public/vedam-website-assets/images/videoInfo/Group%201261155609-3.jpg',
 };
- 
+
 const FeeStatusModal: React.FC<FeeStatusModalProps> = ({
   open,
   onClose,
@@ -31,36 +33,41 @@ const FeeStatusModal: React.FC<FeeStatusModalProps> = ({
 }) => {
   const theme = useCoreTheme() as CoreTheme;
   return (
-    <Modal open={open} onClose={onClose} {...props} BackdropProps={{
-    sx: {
-      backgroundColor: 'transparent',
-       backdropFilter: 'blur(4px)'
-    },
-  }}>
+    <Modal
+      open={open}
+      onClose={onClose}
+      {...props}
+      BackdropProps={{
+        sx: {
+          backgroundColor: 'transparent',
+          backdropFilter: 'blur(4px)',
+        },
+      }}
+    >
       <Box
         sx={{
-          display:'flex',
-          mx:'auto',
-          height:'100vh',
+          display: 'flex',
+          mx: 'auto',
+          height: '100vh',
           width: '100%',
           bgcolor: 'transparent',
           outline: 'none',
-          justifyContent:'center',
-          alignItems:'center'
+          justifyContent: 'center',
+          alignItems: 'center',
         }}
       >
         {/* Modal Content Box */}
         <Box
           sx={{
-            position:'relative',
+            position: 'relative',
             p: theme.spacing(5),
             pt: theme.spacing(6),
-            pb:theme.spacing(8),
+            pb: theme.spacing(8),
             borderRadius: theme.spacing(9),
             background: 'linear-gradient(180deg, #FFA26B 0%, #8C2BE0 100%)',
             textAlign: 'center',
-            width:'100%',
-            maxWidth:theme.spacing(108)
+            width: '100%',
+            maxWidth: theme.spacing(108),
           }}
         >
           {/* Status Icon */}
@@ -100,13 +107,21 @@ const FeeStatusModal: React.FC<FeeStatusModalProps> = ({
           </IconButton>
 
           {/* Info Text */}
-          <Typography  sx={{ color: '#fff', mt: theme.spacing(6),fontSize:theme.spacing(5),maxWidth:theme.spacing(80), textAlign:'center',mx:'auto' }}>
+          <Typography
+            sx={{
+              color: '#fff',
+              mt: theme.spacing(6),
+              fontSize: theme.spacing(5),
+              maxWidth: theme.spacing(80),
+              textAlign: 'center',
+              mx: 'auto',
+            }}
+          >
             {infoText}
           </Typography>
 
           {/* Optional Custom Button */}
-              {customDownloadButton}
-              
+          {customDownloadButton}
         </Box>
       </Box>
     </Modal>

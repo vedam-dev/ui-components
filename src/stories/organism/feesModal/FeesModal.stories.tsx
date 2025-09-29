@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import FeeSelectionModal from '../../../component/organism/feesModal/FeesModal';
 import { useState } from 'react';
-import Button from "../../../component/atom/button/Button";
+import Button from '../../../component/atom/button/Button';
 
 const meta: Meta<typeof FeeSelectionModal> = {
   title: 'Organism/FeeSelectionModal',
@@ -11,9 +11,9 @@ const meta: Meta<typeof FeeSelectionModal> = {
     open: { control: 'boolean' },
     onClose: { action: 'closed' },
     onPayNow: { action: 'payNowClicked' },
-    title: { 
+    title: {
       control: 'text',
-      defaultValue: 'Select Fees to Pay' 
+      defaultValue: 'Select Fees to Pay',
     },
     isButtonDisabled: { action: 'checkDisabled' },
   },
@@ -25,20 +25,20 @@ type Story = StoryObj<typeof FeeSelectionModal>;
 
 const Template = (args: any) => {
   const [open, setOpen] = useState(false);
-  
+
   const feeItems = [
     {
       id: '1',
       description: 'Tuition Fees',
       amount: '1,25,000',
-      status: 'UNPAID'
+      status: 'UNPAID',
     },
     {
       id: '2',
       description: 'Upskilling Fees',
       amount: '1,25,000',
-      status: 'UNPAID'
-    }
+      status: 'UNPAID',
+    },
   ];
 
   const handlePayNow = (feeId: string) => {
@@ -71,7 +71,7 @@ export const Default: Story = {
 export const EmptyState: Story = {
   render: (args) => {
     const [open, setOpen] = useState(false);
-    
+
     return (
       <div>
         <Button variant="contained" onClick={() => setOpen(true)}>
@@ -88,7 +88,7 @@ export const EmptyState: Story = {
     );
   },
   args: {
-    title: 'Single Fee Payment' 
+    title: 'Single Fee Payment',
   },
 };
 
@@ -100,8 +100,8 @@ export const SingleItem: Story = {
         id: '1',
         description: 'Tuition Fees',
         amount: '1,25,000',
-        status: 'UNPAID'
-      }
+        status: 'UNPAID',
+      },
     ];
 
     const handlePayNow = (feeId: string) => {
@@ -135,20 +135,20 @@ export const MultipleItem: Story = {
         id: '1',
         description: 'Tuition Fees',
         amount: '1,25,000',
-        status: 'UNPAID'
+        status: 'UNPAID',
       },
       {
         id: '2',
         description: 'Upskilling Fees',
         amount: '1,25,000',
-        status: 'PAID'
+        status: 'PAID',
       },
       {
         id: '3',
         description: 'Hostel Fees',
         amount: '1,25,000',
-        status: 'UNPAID'
-      }
+        status: 'UNPAID',
+      },
     ];
 
     const handlePayNow = (feeId: string) => {

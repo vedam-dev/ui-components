@@ -1,6 +1,8 @@
 import { Meta, StoryObj } from '@storybook/react';
-import FeeStatusList, { FeeStatus } from '../../../component/organism/fee-status-list/FeeStatusList';
-import {Box} from '@mui/material';
+import FeeStatusList, {
+  FeeStatus,
+} from '../../../component/organism/fee-status-list/FeeStatusList';
+import { Box } from '@mui/material';
 
 const meta: Meta<typeof FeeStatusList> = {
   title: 'Organism/FeeStatusList',
@@ -16,7 +18,7 @@ const meta: Meta<typeof FeeStatusList> = {
     },
     onPayNow: { action: 'Pay Now clicked' },
   },
-   decorators: [
+  decorators: [
     (Story) => (
       <Box sx={{ minWidth: '1000px' }}>
         <Story />
@@ -62,7 +64,6 @@ export const Paid: Story = {
     ],
   },
 };
-
 
 export const MultipleFeesExample: Story = {
   args: {

@@ -24,7 +24,7 @@ const VerticalBaseCard: React.FC<VerticalBaseCardProps> = ({
       {...props}
       onClick={cardOnClick}
       style={{
-        cursor: cardOnClick ? 'pointer' : undefined
+        cursor: cardOnClick ? 'pointer' : undefined,
       }}
     >
       {cardHeader}

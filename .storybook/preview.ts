@@ -67,23 +67,23 @@ const preview: Preview = {
       viewports: {
         ...INITIAL_VIEWPORTS,
         ...MINIMAL_VIEWPORTS,
-        DEFAULT_VIEWPORT
+        DEFAULT_VIEWPORT,
       },
-      defaultViewport: DEFAULT_VIEWPORT
+      defaultViewport: DEFAULT_VIEWPORT,
     },
     backgrounds: {
       default: 'light',
       values: [
         { name: 'light', value: '#fff' },
-        { name: 'dark', value: '#000' }
-      ]
+        { name: 'dark', value: '#000' },
+      ],
     },
     controls: {
       matchers: {
         color: /(background|color)$/i,
-        date: /Date$/i
-      }
-    }
+        date: /Date$/i,
+      },
+    },
   },
 
   decorators: [
@@ -94,11 +94,11 @@ const preview: Preview = {
         vedam: vedamTheme,
         ks: ksTheme,
         ks3: ks3Theme,
-        default: defaultTheme
+        default: defaultTheme,
       },
-      defaultTheme: 'vedam'
-    })
-  ]
+      defaultTheme: 'vedam',
+    }),
+  ],
 };
 
 export default preview;

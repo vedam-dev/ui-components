@@ -42,18 +42,9 @@ export const Default: Story = {
 export const States = {
   render: () => (
     <Stack spacing={4}>
-      <TextField 
-        label="Empty Field"
-        placeholder="your@email.com"
-      />
-      <TextField
-        label="Valid Email"
-        value="valid@example.com"
-      />
-      <TextField
-        label="Invalid Email"
-        value="invalid-email"
-      />
+      <TextField label="Empty Field" placeholder="your@email.com" />
+      <TextField label="Valid Email" value="valid@example.com" />
+      <TextField label="Invalid Email" value="invalid-email" />
     </Stack>
   ),
 };

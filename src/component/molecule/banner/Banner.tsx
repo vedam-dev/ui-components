@@ -15,7 +15,7 @@ const StyledImage = styled('img')({
   width: '100%',
   height: '100%',
   objectFit: 'cover',
-  borderRadius: '0.5rem'
+  borderRadius: '0.5rem',
 });
 
 const Banner: React.FC<IBannerProps> = ({ imageUrl, label, title, altText, onClick, ...props }) => {

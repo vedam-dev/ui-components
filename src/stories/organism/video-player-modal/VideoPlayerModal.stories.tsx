@@ -11,21 +11,21 @@ const meta: Meta<typeof VideoPlayerModal> = {
   argTypes: {
     open: { control: 'boolean' },
     onClose: { action: 'modalClosed' },
-    videoUrl: { 
+    videoUrl: {
       control: 'text',
-      defaultValue: 'https://www.w3schools.com/html/mov_bbb.mp4'
+      defaultValue: 'https://www.w3schools.com/html/mov_bbb.mp4',
     },
-    title: { 
+    title: {
       control: 'text',
-      defaultValue: 'Video Player' 
+      defaultValue: 'Video Player',
     },
-    autoPlay: { 
+    autoPlay: {
       control: 'boolean',
-      defaultValue: true
+      defaultValue: true,
     },
-    controls: { 
+    controls: {
       control: 'boolean',
-      defaultValue: true
+      defaultValue: true,
     },
   },
 };
@@ -35,7 +35,7 @@ export default meta;
 type Story = StoryObj<typeof VideoPlayerModal>;
 
 // Play button component to trigger the modal
-const VideoPlayButton = ({ onClick, style = {} }: { onClick: () => void, style?: any }) => (
+const VideoPlayButton = ({ onClick, style = {} }: { onClick: () => void; style?: any }) => (
   <Box
     sx={{
       position: 'relative',
@@ -43,17 +43,17 @@ const VideoPlayButton = ({ onClick, style = {} }: { onClick: () => void, style?:
       borderRadius: '12px',
       overflow: 'hidden',
       cursor: 'pointer',
-      ...style
+      ...style,
     }}
     onClick={onClick}
   >
-    <img 
-      src="https://via.placeholder.com/400x225/4A90E2/FFFFFF?text=Video+Thumbnail" 
+    <img
+      src="https://via.placeholder.com/400x225/4A90E2/FFFFFF?text=Video+Thumbnail"
       alt="Video thumbnail"
-      style={{ 
-        width: '100%', 
-        height: '100%', 
-        display: 'block' 
+      style={{
+        width: '100%',
+        height: '100%',
+        display: 'block',
       }}
     />
     <Box
@@ -73,15 +73,15 @@ const VideoPlayButton = ({ onClick, style = {} }: { onClick: () => void, style?:
           backgroundColor: 'rgba(0, 0, 0, 0.8)',
           transform: 'translate(-50%, -50%) scale(1.1)',
         },
-        transition: 'all 0.2s ease'
+        transition: 'all 0.2s ease',
       }}
     >
-      <PlayArrowIcon 
-        sx={{ 
-          color: 'white', 
+      <PlayArrowIcon
+        sx={{
+          color: 'white',
           fontSize: '32px',
-          marginLeft: '4px' 
-        }} 
+          marginLeft: '4px',
+        }}
       />
     </Box>
   </Box>
@@ -102,12 +102,8 @@ const Template = (args: any) => {
   return (
     <Box sx={{ p: 4 }}>
       <VideoPlayButton onClick={handlePlayClick} />
-      
-      <VideoPlayerModal
-        {...args}
-        open={open}
-        onClose={handleClose}
-      />
+
+      <VideoPlayerModal {...args} open={open} onClose={handleClose} />
     </Box>
   );
 };

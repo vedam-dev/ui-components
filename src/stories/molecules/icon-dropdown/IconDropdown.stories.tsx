@@ -65,7 +65,11 @@ export const TextOnlyAutoWidth: Story = {
   render: (args) => <IconDropdown {...args} />,
   args: {
     label: 'Choose',
-    options: ['Choose', 'A longer option text', 'Even much longer option text that extends further'],
+    options: [
+      'Choose',
+      'A longer option text',
+      'Even much longer option text that extends further',
+    ],
     autoWidth: true,
     minWidth: 120,
   },

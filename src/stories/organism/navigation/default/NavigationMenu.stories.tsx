@@ -7,9 +7,9 @@ const meta = {
   title: 'Organism/Navigation/Default',
   component: NavigationMenu,
   parameters: {
-    layout: 'fullscreen'
+    layout: 'fullscreen',
   },
-  tags: ['autodocs']
+  tags: ['autodocs'],
 } satisfies Meta<typeof NavigationMenu>;
 
 export default meta;
@@ -28,7 +28,7 @@ const menuItems: NavigationMenuItems = [
         label: 'My Account',
         isExternal: false,
         selected: false,
-        onClick: (): void => {}
+        onClick: (): void => {},
       },
       {
         uri: '/custom',
@@ -36,19 +36,19 @@ const menuItems: NavigationMenuItems = [
         label: 'PlayON History',
         isExternal: false,
         selected: false,
-        onClick: (): void => {}
-      }
+        onClick: (): void => {},
+      },
     ],
     selected: false,
     key: 'account',
-    hidden: true
+    hidden: true,
   },
   {
     uri: '/',
     accessibilityLabel: 'Home',
     label: 'Home',
     isExternal: false,
-    selected: true
+    selected: true,
   },
   {
     uri: '/games',
@@ -62,30 +62,30 @@ const menuItems: NavigationMenuItems = [
         accessibilityLabel: 'Digital Instant Games',
         label: 'Digital Instant Games',
         isExternal: false,
-        selected: true
+        selected: true,
       },
       {
         uri: '/games/draws',
         accessibilityLabel: 'Draw Games',
         label: 'Draw Games',
         isExternal: false,
-        selected: true
+        selected: true,
       },
       {
         uri: '/games/scratch-offs',
         accessibilityLabel: 'Scratch Offs',
         label: 'Scratch Offs',
         isExternal: false,
-        selected: true
-      }
-    ]
+        selected: true,
+      },
+    ],
   },
   {
     uri: '/play-on',
     accessibilityLabel: 'PlayON',
     label: 'PlayON',
     isExternal: false,
-    selected: false
+    selected: false,
   },
   {
     uri: '/news-winning',
@@ -99,66 +99,66 @@ const menuItems: NavigationMenuItems = [
         accessibilityLabel: 'Get the Mobile App',
         label: 'Get the Mobile App',
         isExternal: false,
-        selected: true
+        selected: true,
       },
       {
         uri: '/news-winning/news-events',
         accessibilityLabel: 'News and Events',
         label: 'News and Events',
         isExternal: false,
-        selected: true
+        selected: true,
       },
       {
         uri: '/news-winning/retail-offers',
         accessibilityLabel: 'Retail Offers',
         label: 'Retail Offers',
         isExternal: false,
-        selected: true
+        selected: true,
       },
       {
         uri: '/news-winning/iPlay-offers',
         accessibilityLabel: 'iPlay Offers',
         label: 'iPlay Offers',
         isExternal: false,
-        selected: true
+        selected: true,
       },
       {
         uri: '/news-winning/check-numbers',
         accessibilityLabel: 'Check Numbers',
         label: 'Check Numbers',
         isExternal: false,
-        selected: true
+        selected: true,
       },
       {
         uri: '/news-winning/recent-winners',
         accessibilityLabel: 'Recent Winners',
         label: 'Recent Winners',
         isExternal: false,
-        selected: true
+        selected: true,
       },
       {
         uri: '/news-winning/claim-prize',
         accessibilityLabel: 'Claim Prize',
         label: 'Claim Prize',
         isExternal: false,
-        selected: true
+        selected: true,
       },
       {
         uri: '/news-winning/nightly-draws',
         accessibilityLabel: 'Nightly Draws',
         label: 'Nightly Draws',
         isExternal: false,
-        selected: true
-      }
-    ]
+        selected: true,
+      },
+    ],
   },
   {
     uri: '/about-us',
     accessibilityLabel: 'About Us',
     label: 'About Us',
     isExternal: false,
-    selected: false
-  }
+    selected: false,
+  },
 ];
 
 export const Main: Story = {
@@ -173,23 +173,23 @@ export const Main: Story = {
     appBarProps: {
       style: {
         width: '100%',
-        backgroundColor: '#fff'
+        backgroundColor: '#fff',
       },
-      position: 'fixed'
+      position: 'fixed',
     },
     primaryMenuProps: {
-      ml: 0
+      ml: 0,
     },
     defaultIconSize: {
       width: 60,
-      height: 60
+      height: 60,
     },
     largeIconSize: {
       width: 112,
-      height: 112
+      height: 112,
     },
-    navigationMenuItems: menuItems
-  }
+    navigationMenuItems: menuItems,
+  },
 };
 
 export const FixedIconSize: Story = {
@@ -201,13 +201,13 @@ export const FixedIconSize: Story = {
     appBarProps: {
       style: {
         width: '100%',
-        backgroundColor: '#fff'
-      }
+        backgroundColor: '#fff',
+      },
     },
     defaultIconSize: {
       width: 60,
-      height: 60
+      height: 60,
     },
-    navigationMenuItems: menuItems
-  }
+    navigationMenuItems: menuItems,
+  },
 };

@@ -1,4 +1,5 @@
 import { Checkbox as BaseCheckbox } from '@mui/material';
+import React from 'react';
 import { ComponentProps, FC } from 'react';
 import { CoreTheme, useCoreTheme } from '../../../theme/core-theme';
 import SxOverride from '../../../util/SxOverride';
@@ -23,22 +24,24 @@ export interface ICheckboxProps {
 
 export type CheckboxProps = ComponentProps<typeof BaseCheckbox> & ICheckboxProps;
 
-const Checkbox: FC<CheckboxProps> = ({
-  color = 'primary',
-  size = 'medium',
-  sx,
-  ...props
-}) => {
+const Checkbox: FC<CheckboxProps> = ({ color = 'primary', size = 'medium', sx, ...props }) => {
   const { palette } = useCoreTheme() as CoreTheme;
 
   const getColor = () => {
     if (color === 'default') return undefined;
-    
-    const paletteColors: PaletteColorKeys[] = ['primary', 'secondary', 'error', 'info', 'success', 'warning'];
+
+    const paletteColors: PaletteColorKeys[] = [
+      'primary',
+      'secondary',
+      'error',
+      'info',
+      'success',
+      'warning',
+    ];
     if (paletteColors.includes(color as PaletteColorKeys)) {
       return palette[color as PaletteColorKeys]?.main;
     }
-    
+
     return color;
   };
 
@@ -54,7 +57,7 @@ const Checkbox: FC<CheckboxProps> = ({
 
   return (
     <BaseCheckbox
-      color={color === 'default' ? undefined : color as PaletteColorKeys}
+      color={color === 'default' ? undefined : (color as PaletteColorKeys)}
       size={size}
       sx={sxValue}
       {...props}

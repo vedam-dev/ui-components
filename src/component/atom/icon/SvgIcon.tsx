@@ -47,14 +47,14 @@ const componentMap: Record<IconName, FunctionComponent<DefaultIconProps>> = {
   instagram: Instagram,
   facebook: Facebook,
   'lottery.WVRed80': WVRed80,
-  openNewWindow: OpenNewWindow
+  openNewWindow: OpenNewWindow,
 };
 
 const SvgIcon: FC<SvgIconProps> = ({ iconName, children, htmlColor, ...props }) => {
   const {
     palette: {
-      primary: { main }
-    }
+      primary: { main },
+    },
   } = useCoreTheme();
 
   const iconColor = htmlColor ?? main;

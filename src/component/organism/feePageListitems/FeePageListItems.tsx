@@ -1,8 +1,8 @@
-import React from "react";
-import { Box, Typography } from "@mui/material";
-import Chip from "../../atom/chip/Chip";
-import Button from "../../atom/button/Button";
-import { useCoreTheme, CoreTheme } from  '../../../theme/core-theme';
+import React from 'react';
+import { Box, Typography } from '@mui/material';
+import Chip from '../../atom/chip/Chip';
+import Button from '../../atom/button/Button';
+import { useCoreTheme, CoreTheme } from '../../../theme/core-theme';
 export interface FeeListItemRowProps {
   title: string;
   value: string;
@@ -45,7 +45,7 @@ export const FeeListItemRow: React.FC<FeeListItemRowProps> = ({ title, value }) 
 export enum FeeStatusVariant {
   Success = 'success',
   Pending = 'warning',
-  Failed  = 'error',
+  Failed = 'error',
 }
 
 export interface FeeListItemStatusProps {
@@ -96,7 +96,7 @@ export interface FeeListItemButtonProps {
 }
 
 export const FeeListItemButton: React.FC<FeeListItemButtonProps> = ({ onClick }) => {
-   const theme = useCoreTheme() as CoreTheme;
+  const theme = useCoreTheme() as CoreTheme;
   return (
     <Box
       sx={{
@@ -110,7 +110,7 @@ export const FeeListItemButton: React.FC<FeeListItemButtonProps> = ({ onClick })
         sx={{
           display: 'inline-flex',
           paddingY: theme.spacing(1),
-          paddingX:theme.spacing(2.5),
+          paddingX: theme.spacing(2.5),
           justifyContent: 'center',
           alignItems: 'center',
           fontSize: '12px',
@@ -136,8 +136,8 @@ export interface FeeListItemProps {
   children: React.ReactNode;
 }
 
-const FeeListItem: React.FC<FeeListItemProps> = ({ bgColor, children }) => {
-   const theme = useCoreTheme() as CoreTheme;
+const FeeListItem: React.FC<FeeListItemProps> = ({ children }) => {
+  const theme = useCoreTheme() as CoreTheme;
   return (
     <Box
       sx={{
