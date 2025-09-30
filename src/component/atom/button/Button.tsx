@@ -65,7 +65,6 @@ const Button: FC<ButtonProps> = ({
       color={color}
     >
       {isDownloadable ? (
-        /* Three-box layout for downloadable variant with space-between */
         <Box
           sx={{
             display: 'flex',
@@ -75,10 +74,8 @@ const Button: FC<ButtonProps> = ({
             gap: '64px',
           }}
         >
-          {/* Empty left box for balance */}
           <Box sx={{ width: '38px', flexShrink: 0 }} />
 
-          {/* Center text content */}
           <Box
             sx={{
               display: 'flex',
@@ -89,7 +86,6 @@ const Button: FC<ButtonProps> = ({
             {children}
           </Box>
 
-          {/* Right download icon */}
           <Box
             component="img"
             src={downloadIconUrl}
@@ -237,6 +233,5 @@ const buttonStyles = (
       defaultStyles.padding = isV2 ? v2Paddings.small : theme.spacing(1, 2);
     }
   }
-
   return defaultStyles;
 };
