@@ -64,38 +64,57 @@ const Button: FC<ButtonProps> = ({
       variant={variant}
       color={color}
     >
-      {/* Center wrapper — ensures text is centered while icon sits absolutely on the right */}
-      <Box
-        sx={{
-          position: 'relative',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          width: '100%',
-        }}
-      >
-        {children}
+      {isDownloadable ? (
+        /* Three-box layout for downloadable variant with space-between */
+        <Box
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            width: '100%',
+            gap: '64px',
+          }}
+        >
+          {/* Empty left box for balance */}
+          <Box sx={{ width: '38px', flexShrink: 0 }} />
 
-        {
-          /* Download icon positioned 22px from right edge and vertically centered */
-          isDownloadable && (
-            <Box
-              component="img"
-              src={downloadIconUrl}
-              alt="Download icon"
-              sx={{
-                position: 'absolute',
-                right: '-110px',
-                top: '50%',
-                transform: 'translateY(-50%)',
-                width: '38px',
-                height: '38px',
-                pointerEvents: 'none',
-              }}
-            />
-          )
-        }
-      </Box>
+          {/* Center text content */}
+          <Box
+            sx={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
+          >
+            {children}
+          </Box>
+
+          {/* Right download icon */}
+          <Box
+            component="img"
+            src={downloadIconUrl}
+            alt="Download icon"
+            sx={{
+              width: '38px',
+              height: '38px',
+              flexShrink: 0,
+            }}
+          />
+        </Box>
+      ) : (
+        /* Standard centered layout for non-downloadable buttons */
+        <Box
+          sx={{
+            position: 'relative',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            width: '100%',
+          }}
+        >
+          {children}
+        </Box>
+      )}
 
       {useMaterialButtons ? null : (
         <Box className={`btnFocusState`} component={`span`} sx={combinedInnerStyles} />
@@ -179,16 +198,16 @@ const buttonStyles = (
     },
   };
 
-  // Downloadable variant — reserve equal left & right padding so the label stays centered
+  // Downloadable variant — uses three-box layout with space-between
   if (isDownloadable) {
     defaultStyles.borderRadius = '18px';
     defaultStyles.border = '1px solid #FF7829';
     defaultStyles.background = '#FFF';
-    defaultStyles.padding = '9px 121px';
+    defaultStyles.padding = '9px 22px';
     defaultStyles.position = 'relative';
     defaultStyles.color = '#FF7829';
     defaultStyles.minWidth = '200px';
-    defaultStyles.fontWeight = 600;
+    defaultStyles.fontWeight = 500;
     defaultStyles.fontSize = '20px';
 
     // Hover / active / focus styles for downloadable
