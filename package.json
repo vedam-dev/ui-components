@@ -1,6 +1,6 @@
 {
 	"name": "@vedam-dev/ui-components",
-	"version": "1.69.0",
+	"version": "1.70.0",
 	"main": "dist/index.js",
 	"types": "dist/index.d.ts",
 	"files": [
@@ -64,6 +64,7 @@
 		"@fontsource/montserrat": "^5.1.1",
 		"@fontsource/nunito-sans": "^5.2.6",
 		"@fontsource/outfit": "^5.2.6",
+		"@fontsource/poppins": "^5.2.7",
 		"@fontsource/roboto": "^5.1.1",
 		"@loki/browser": "0.35.0",
 		"@loki/core": "0.35.0",
