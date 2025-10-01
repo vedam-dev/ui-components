@@ -1,12 +1,5 @@
-import React from "react";
-import {
-  Box,
-  Typography,
-  SxProps,
-  Theme,
-  styled,
-  useTheme,
-} from "@mui/material";
+import React from 'react';
+import { Box, Typography, SxProps, Theme, styled, useTheme } from '@mui/material';
 
 export interface BatchOption {
   value: string;
@@ -25,88 +18,86 @@ export interface BatchSelectionProps {
 const Outer = styled(Box)(({ theme }) => ({
   padding: theme.spacing(11),
   borderRadius: theme.spacing(9),
-  background: "#FFFFFF",
-  boxShadow: "0 4px 16px rgba(0,0,0,0.06)",
-  border: "none",
-  width: "100%",
+  background: '#FFFFFF',
+  boxShadow: '0 4px 16px rgba(0,0,0,0.06)',
+  border: 'none',
+  width: '100%',
   minWidth: theme.spacing(300),
-  boxSizing: "border-box",
+  boxSizing: 'border-box',
 }));
 
 const Title = styled(Typography)({
-  color: "#1F1F1F",
-  fontFamily: "Poppins",
-  fontSize: "20px",
-  fontStyle: "normal",
+  color: '#1F1F1F',
+  fontFamily: 'Poppins',
+  fontSize: '20px',
+  fontStyle: 'normal',
   fontWeight: 600,
-  lineHeight: "normal",
+  lineHeight: 'normal',
 });
 
 const Subtitle = styled(Typography)({
-  color: "#9CA3AF",
-  fontFamily: "Poppins",
-  fontSize: "18px",
-  fontStyle: "normal",
+  color: '#9CA3AF',
+  fontFamily: 'Poppins',
+  fontSize: '18px',
+  fontStyle: 'normal',
   fontWeight: 400,
-  lineHeight: "normal",
+  lineHeight: 'normal',
 });
 
 const CardsRow = styled(Box)(({ theme }) => ({
-  display: "flex",
+  display: 'flex',
   gap: theme.spacing(8.5),
   marginTop: theme.spacing(10),
-  alignItems: "stretch",
+  alignItems: 'stretch',
 }));
 
-const Card = styled("button")<{
+const Card = styled('button')<{
   selected?: boolean;
   disabled?: boolean;
 }>(({ theme, selected, disabled }) => {
   const base: any = {
-    display: "flex",
+    display: 'flex',
     gap: theme.spacing(4),
-    alignItems: "center",
+    alignItems: 'center',
     flex: 1,
     minWidth: 0,
-    padding: theme.spacing(6,5),
+    padding: theme.spacing(6, 5),
     borderRadius: theme.spacing(4),
-    cursor: disabled ? "not-allowed" : "pointer",
-    boxShadow: "0 1px 3px rgba(0,0,0,0.05)",
-    transition: "all 200ms ease",
-    textAlign: "left",
-    outline: "none",
+    cursor: disabled ? 'not-allowed' : 'pointer',
+    boxShadow: '0 1px 3px rgba(0,0,0,0.05)',
+    transition: 'all 200ms ease',
+    textAlign: 'left',
+    outline: 'none',
   };
 
   if (disabled) {
     base.opacity = 0.5;
   }
 
-  base["&:hover"] = {
-    transform: disabled ? "none" : "translateY(-1px)",
-    boxShadow: disabled
-      ? "0 1px 3px rgba(0,0,0,0.05)"
-      : "0 4px 8px rgba(0,0,0,0.08)",
+  base['&:hover'] = {
+    transform: disabled ? 'none' : 'translateY(-1px)',
+    boxShadow: disabled ? '0 1px 3px rgba(0,0,0,0.05)' : '0 4px 8px rgba(0,0,0,0.08)',
   };
 
   return base;
 });
 
 const Label = styled(Typography)({
-  color: "#1E1E1E",
-  fontFamily: "Outfit",
-  fontSize: "22px",
-  fontStyle: "normal",
+  color: '#1E1E1E',
+  fontFamily: 'Outfit',
+  fontSize: '22px',
+  fontStyle: 'normal',
   fontWeight: 500,
-  lineHeight: "normal",
+  lineHeight: 'normal',
 });
 
 const BatchSelection: React.FC<BatchSelectionProps> = ({
   value,
   onChange,
   options = [
-    { value: "overall", label: "Overall" },
-    { value: "batch1", label: "Batch 1" },
-    { value: "batch2", label: "Batch 2" },
+    { value: 'overall', label: 'Overall' },
+    { value: 'batch1', label: 'Batch 1' },
+    { value: 'batch2', label: 'Batch 2' },
   ],
   sx,
   disabled = false,
@@ -120,7 +111,7 @@ const BatchSelection: React.FC<BatchSelectionProps> = ({
 
   const handleKeyDown = (e: React.KeyboardEvent, opt: BatchOption) => {
     if (disabled || opt.disabled) return;
-    if (e.key === "Enter" || e.key === " ") {
+    if (e.key === 'Enter' || e.key === ' ') {
       e.preventDefault();
       onChange(opt.value);
     }
@@ -129,17 +120,10 @@ const BatchSelection: React.FC<BatchSelectionProps> = ({
   return (
     <Outer sx={sx}>
       <Box display="flex" flexDirection="column">
-        <Box
-          display="flex"
-          gap={2}
-          alignItems="flex-start"
-          justifyContent="space-between"
-        >
+        <Box display="flex" gap={2} alignItems="flex-start" justifyContent="space-between">
           <div>
             <Title>Batch List</Title>
-            <Subtitle>
-              Choose a batch based on the semester you've chosen
-            </Subtitle>
+            <Subtitle>Choose a batch based on the semester you've chosen</Subtitle>
           </div>
         </Box>
 
@@ -148,10 +132,9 @@ const BatchSelection: React.FC<BatchSelectionProps> = ({
             const isSelected = value === opt.value;
             const cardBackground =
               index % 2 === 0
-                ? "linear-gradient(180deg, #FFF 0%, #FFF4DC 100%)"
-                : "linear-gradient(180deg, #FFF 0%, #F6EDFF 100%)";
-            const cardBorder =
-              index % 2 === 0 ? "1px solid #FDE1AA" : "1px solid #E1BFFF";
+                ? 'linear-gradient(180deg, #FFF 0%, #FFF4DC 100%)'
+                : 'linear-gradient(180deg, #FFF 0%, #F6EDFF 100%)';
+            const cardBorder = index % 2 === 0 ? '1px solid #FDE1AA' : '1px solid #E1BFFF';
 
             return (
               <Card
@@ -173,9 +156,9 @@ const BatchSelection: React.FC<BatchSelectionProps> = ({
               >
                 <Box
                   sx={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
                     flexShrink: 0,
                   }}
                 >
@@ -184,16 +167,11 @@ const BatchSelection: React.FC<BatchSelectionProps> = ({
                     alt="logo"
                     width="60px"
                     height="60px"
-                    style={{ display: "block" }}
+                    style={{ display: 'block' }}
                   />
                 </Box>
 
-                <Box
-                  display="flex"
-                  flexDirection="column"
-                  flex="1"
-                  minWidth={0}
-                >
+                <Box display="flex" flexDirection="column" flex="1" minWidth={0}>
                   <Label>{opt.label}</Label>
                 </Box>
               </Card>
