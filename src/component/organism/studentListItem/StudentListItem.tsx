@@ -9,7 +9,6 @@ export interface StudentListItemNameProps {
 }
 
 export const StudentListItemName: React.FC<StudentListItemNameProps> = ({ name, email }) => {
-
   return (
     <Box
       sx={{
@@ -75,7 +74,7 @@ export const StudentListItemStatus: React.FC<StudentListItemStatusProps> = ({ st
           fontSize: '16px',
           fontWeight: 500,
           marginBottom: '6px',
-          lineHeight: '20px'
+          lineHeight: '20px',
         }}
       >
         Status
@@ -122,7 +121,7 @@ export const StudentListItemButton: React.FC<StudentListItemButtonProps> = ({ on
           color: '#8A18FF',
           fontSize: '16px',
           fontWeight: 500,
-          padding: theme.spacing(2,14.75),
+          padding: theme.spacing(2, 14.75),
         }}
       >
         View Details
