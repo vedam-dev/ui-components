@@ -33,7 +33,7 @@ const Button: FC<ButtonProps> = ({
   sx,
   isV2 = false,
   isDownloadable = false,
-  downloadIconUrl = 'https://acjlsquedaotbhbxmtee.supabase.co/storage/v1/object/public/vedam-website-assets/images/videoInfo/Icon-3.png',
+  downloadIconUrl = 'https://acjlsquedaotbhbxmtee.supabase.co/storage/v1/object/public/vedam-website-assets/images/others/Vector-4.png',
   ...buttonProps
 }) => {
   const theme = useCoreTheme() as CoreTheme;
@@ -93,6 +93,9 @@ const Button: FC<ButtonProps> = ({
             sx={{
               width: '38px',
               height: '38px',
+              padding: '10px',
+              borderRadius: '10px',
+              boxShadow: '0 0 10px 0 rgba(0, 0, 0, 0.10)',
               flexShrink: 0,
             }}
           />
