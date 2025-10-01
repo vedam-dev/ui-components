@@ -49,6 +49,7 @@ export {
 } from './component/organism/subject-details/SubjectDetails';
 
 export { default as StudentListItem } from './component/organism/studentListItem/StudentListItem';
+export { ContestListItem } from './component/organism/contestList/ContestList';
 
 export {
   FeeListItemRow,
