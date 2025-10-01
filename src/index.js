@@ -50,8 +50,13 @@ export {
 } from './component/organism/subject-details/SubjectDetails';
 
 export { default as StudentListItem } from './component/organism/studentListItem/StudentListItem';
-export { ContestListItemDate, ContestListItemScore,ContestListItemStatus,ContestListItemSubject,ContestListItemTitle } from './component/organism/contestList/ContestList';
-
+export {
+  ContestListItemDate,
+  ContestListItemScore,
+  ContestListItemStatus,
+  ContestListItemSubject,
+  ContestListItemTitle,
+} from './component/organism/contestList/ContestList';
 export {
   FeeListItemRow,
   FeeListItemStatus,
