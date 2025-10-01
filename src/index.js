@@ -21,7 +21,7 @@ export { default as Banner } from './component/molecule/banner/Banner';
 export { default as Select } from './component/atom/dropdown/Select';
 export { default as Sekeleton } from './component/atom/skeleton/Skeleton';
 export { default as IconDropdown } from './component/molecule/icon-dropdown/IconDropdown';
-
+export { default as BackButton } from './component/molecule/backButton/BackButton';
 //  Organism Components
 export { default as HorizontalBaseCard } from './component/organism/card/HorizontalBaseCard';
 export { default as VerticalBasecard } from './component/organism/card/VerticalBasecard';
@@ -69,6 +69,7 @@ export { default as ReusableCalendar } from './component/organism/calendar/Calen
 export { default as DynamicBreadcrumbs } from './component/organism/breadcrumbs/BreadCrumbs';
 
 export { default as BatchSelection } from './component/organism/batchSelection/BatchSelection';
+
 //  Theme Component's
 export { default as defaultTheme } from './theme/customer/default';
 export { default as vedamTheme } from './theme/customer/vedam';
