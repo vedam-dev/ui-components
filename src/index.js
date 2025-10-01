@@ -21,7 +21,7 @@ export { default as Banner } from './component/molecule/banner/Banner';
 export { default as Select } from './component/atom/dropdown/Select';
 export { default as Sekeleton } from './component/atom/skeleton/Skeleton';
 export { default as IconDropdown } from './component/molecule/icon-dropdown/IconDropdown';
-export {default as BackButton } from './component/molecule/backButton/BackButton';
+export { default as BackButton } from './component/molecule/backButton/BackButton';
 //  Organism Components
 export { default as HorizontalBaseCard } from './component/organism/card/HorizontalBaseCard';
 export { default as VerticalBasecard } from './component/organism/card/VerticalBasecard';

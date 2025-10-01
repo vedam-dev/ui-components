@@ -64,4 +64,3 @@ export const Small: Story = {
     size: '28px',
   },
 };
-
