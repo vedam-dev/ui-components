@@ -21,7 +21,7 @@ export { default as Banner } from './component/molecule/banner/Banner';
 export { default as Select } from './component/atom/dropdown/Select';
 export { default as Sekeleton } from './component/atom/skeleton/Skeleton';
 export { default as IconDropdown } from './component/molecule/icon-dropdown/IconDropdown';
-
+export { default as BackButton } from './component/molecule/backButton/BackButton';
 //  Organism Components
 export { default as HorizontalBaseCard } from './component/organism/card/HorizontalBaseCard';
 export { default as VerticalBasecard } from './component/organism/card/VerticalBasecard';
@@ -36,6 +36,7 @@ export { default as SidebarItem } from './component/organism/sidebardrawer/Sideb
 export { default as FeeListItem } from './component/organism/feePageListitems/FeePageListItems';
 export { default as CalendarTimeline } from './component/organism/calendar-timeline/CalendarTimeline';
 export { default as ClassListItem } from './component/organism/subject-details/SubjectDetails';
+export { default as ContestListItem } from './component/organism/contestList/ContestList';
 export { default as SurveyOptions } from './component/organism/surveyOptions/SurveyOptions';
 export { default as RatingCard } from './component/organism/rating/Rating';
 export { default as VideoPlayerModal } from './component/organism/video-player-modal/VideoPlayerModal';
@@ -49,7 +50,13 @@ export {
 } from './component/organism/subject-details/SubjectDetails';
 
 export { default as StudentListItem } from './component/organism/studentListItem/StudentListItem';
-
+export {
+  ContestListItemDate,
+  ContestListItemScore,
+  ContestListItemStatus,
+  ContestListItemSubject,
+  ContestListItemTitle,
+} from './component/organism/contestList/ContestList';
 export {
   FeeListItemRow,
   FeeListItemStatus,
