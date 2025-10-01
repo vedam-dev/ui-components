@@ -57,6 +57,8 @@ export { default as LoginModal } from './component/organism/loginModal/LoginModa
 export { default as Tabs } from './component/organism/tabs/Tabs';
 export { default as LectureCard } from './component/organism/lectureCard/LectureCard';
 export { default as ReusableCalendar } from './component/organism/calendar/Calendar';
+export {default as DynamicBreadcrumbs} from './component/organism/breadcrumbs/BreadCrumbs'
+
 //  Theme Component's
 export { default as defaultTheme } from './theme/customer/default';
 export { default as vedamTheme } from './theme/customer/vedam';

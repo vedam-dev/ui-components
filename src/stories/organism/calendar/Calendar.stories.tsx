@@ -3,7 +3,7 @@ import { action } from '@storybook/addon-actions';
 import ReusableCalendar, { CalendarEvent } from '../../../component/organism/calendar/Calendar';
 
 const meta: Meta<typeof ReusableCalendar> = {
-  title: 'Components/ReusableCalendar',
+  title: 'Organism/ReusableCalendar',
   component: ReusableCalendar,
   parameters: {
     layout: 'fullscreen',
