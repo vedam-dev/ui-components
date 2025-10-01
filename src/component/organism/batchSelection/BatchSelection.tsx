@@ -13,22 +13,24 @@ export interface BatchSelectionProps {
   options?: BatchOption[];
   sx?: SxProps<Theme>;
   disabled?: boolean;
+  title?: string;
+  subtitle?: string;
 }
 
 const Outer = styled(Box)(({ theme }) => ({
   padding: theme.spacing(11),
   borderRadius: theme.spacing(9),
   background: '#FFFFFF',
-  boxShadow: ' 0 0 20px 0 rgba(0, 0, 0, 0.10)',
+  boxShadow: '0 0 20px 0 rgba(0, 0, 0, 0.10)',
   border: 'none',
   width: '100%',
-  minWidth: theme.spacing(300),
+  minWidth: 0,
   boxSizing: 'border-box',
 }));
 
 const Title = styled(Typography)({
   color: '#1F1F1F',
-  fontFamily: 'Poppins',
+  fontFamily: 'Poppins, sans-serif',
   fontSize: '20px',
   fontStyle: 'normal',
   fontWeight: 600,
@@ -37,7 +39,7 @@ const Title = styled(Typography)({
 
 const Subtitle = styled(Typography)({
   color: '#9CA3AF',
-  fontFamily: 'Poppins',
+  fontFamily: 'Poppins, sans-serif',
   fontSize: '18px',
   fontStyle: 'normal',
   fontWeight: 400,
@@ -84,7 +86,7 @@ const Card = styled('button')<{
 
 const Label = styled(Typography)({
   color: '#1E1E1E',
-  fontFamily: 'Outfit',
+  fontFamily: 'Outfit, sans-serif',
   fontSize: '22px',
   fontStyle: 'normal',
   fontWeight: 500,
@@ -101,6 +103,8 @@ const BatchSelection: React.FC<BatchSelectionProps> = ({
   ],
   sx,
   disabled = false,
+  title = 'Batch List',
+  subtitle = "Choose a batch based on the semester you've chosen",
 }) => {
   const theme = useTheme();
 
@@ -122,12 +126,12 @@ const BatchSelection: React.FC<BatchSelectionProps> = ({
       <Box display="flex" flexDirection="column">
         <Box display="flex" gap={2} alignItems="flex-start" justifyContent="space-between">
           <div>
-            <Title>Batch List</Title>
-            <Subtitle>Choose a batch based on the semester you've chosen</Subtitle>
+            <Title>{title}</Title>
+            <Subtitle >{subtitle}</Subtitle>
           </div>
         </Box>
 
-        <CardsRow role="radiogroup" aria-label="Batch list">
+        <CardsRow role="radiogroup" aria-label={title}>
           {options.map((opt, index) => {
             const isSelected = value === opt.value;
             const cardBackground =
