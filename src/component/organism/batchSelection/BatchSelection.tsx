@@ -19,7 +19,7 @@ const Outer = styled(Box)(({ theme }) => ({
   padding: theme.spacing(11),
   borderRadius: theme.spacing(9),
   background: '#FFFFFF',
-  boxShadow: '0 4px 16px rgba(0,0,0,0.06)',
+  boxShadow: ' 0 0 20px 0 rgba(0, 0, 0, 0.10)',
   border: 'none',
   width: '100%',
   minWidth: theme.spacing(300),
