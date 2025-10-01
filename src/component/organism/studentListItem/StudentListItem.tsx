@@ -9,7 +9,6 @@ export interface StudentListItemNameProps {
 }
 
 export const StudentListItemName: React.FC<StudentListItemNameProps> = ({ name, email }) => {
-  const theme = useCoreTheme() as CoreTheme;
 
   return (
     <Box
@@ -17,7 +16,6 @@ export const StudentListItemName: React.FC<StudentListItemNameProps> = ({ name, 
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'flex-start',
-        px: theme.spacing(1),
         flex: 1,
         minWidth: '200px',
       }}
@@ -28,8 +26,8 @@ export const StudentListItemName: React.FC<StudentListItemNameProps> = ({ name, 
           fontSize: '18px',
           fontWeight: 600,
           color: '#6513AC',
-          lineHeight: 1.2,
-          marginBottom: '4px',
+          lineHeight: '23px',
+          marginBottom: '8px',
         }}
       >
         {name}
@@ -37,10 +35,10 @@ export const StudentListItemName: React.FC<StudentListItemNameProps> = ({ name, 
       <Typography
         variant="body2"
         sx={{
-          fontSize: '14px',
-          fontWeight: 400,
+          fontSize: '16px',
+          fontWeight: 500,
           color: '#000',
-          lineHeight: 1.2,
+          lineHeight: '21px',
         }}
       >
         {email}
@@ -75,8 +73,9 @@ export const StudentListItemStatus: React.FC<StudentListItemStatusProps> = ({ st
         sx={{
           color: '#777',
           fontSize: '16px',
-          fontWeight: 600,
-          marginBottom: '8px',
+          fontWeight: 500,
+          marginBottom: '6px',
+          lineHeight: '20px'
         }}
       >
         Status
@@ -85,10 +84,11 @@ export const StudentListItemStatus: React.FC<StudentListItemStatusProps> = ({ st
         sx={{
           backgroundColor: getStatusColor(status),
           color: 'white',
-          padding: theme.spacing(0.5, 3),
+          padding: theme.spacing(0.5, 2.5),
           borderRadius: theme.spacing(25),
           fontSize: '14px',
           fontWeight: 400,
+          lineHeight: '18px',
           whiteSpace: 'nowrap',
         }}
       >
@@ -122,13 +122,7 @@ export const StudentListItemButton: React.FC<StudentListItemButtonProps> = ({ on
           color: '#8A18FF',
           fontSize: '16px',
           fontWeight: 500,
-        //   textTransform: 'none',
           padding: theme.spacing(2,14.75),
-        //   minWidth: '150px',
-        //   '&:hover': {
-        //     border: '2px solid #8A18FF',
-        //     backgroundColor: 'rgba(138, 24, 255, 0.04)',
-        //   },
         }}
       >
         View Details
@@ -160,10 +154,10 @@ const StudentListItem: React.FC<StudentListItemProps> = ({
         borderRadius: theme.spacing(6),
         boxShadow: theme.vd.shadows.y4,
         backgroundColor: bgColor || 'background.paper',
-        mb: theme.spacing(3.75),
+        mb: theme.spacing(4.5),
         width: '100%',
-        px: theme.spacing(14.25),
-        py: theme.spacing(4),
+        px: theme.spacing(13.5),
+        py: theme.spacing(5.25),
       }}
     >
       <Box
@@ -171,7 +165,6 @@ const StudentListItem: React.FC<StudentListItemProps> = ({
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
-          p: theme.spacing(2),
           gap: theme.spacing(4),
         }}
       >
