@@ -240,6 +240,6 @@ export const Downloadable: Story = {
     variant: 'outlined',
     children: 'Document 1',
     downloadIconUrl:
-      'https://acjlsquedaotbhbxmtee.supabase.co/storage/v1/object/public/vedam-website-assets/images/videoInfo/Icon-3.png',
+      'https://acjlsquedaotbhbxmtee.supabase.co/storage/v1/object/public/vedam-website-assets/images/others/Vector-4.png',
   },
 };
