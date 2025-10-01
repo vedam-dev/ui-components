@@ -131,6 +131,7 @@ export const StudentListItemButton: React.FC<StudentListItemButtonProps> = ({ on
 };
 
 export interface StudentListItemProps {
+  id: number;
   name: string;
   email: string;
   status: 'Active' | 'Inactive';
@@ -139,6 +140,7 @@ export interface StudentListItemProps {
 }
 
 const StudentListItem: React.FC<StudentListItemProps> = ({
+  id,
   name,
   email,
   status,
