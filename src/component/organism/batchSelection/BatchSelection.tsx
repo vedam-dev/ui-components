@@ -127,7 +127,7 @@ const BatchSelection: React.FC<BatchSelectionProps> = ({
         <Box display="flex" gap={2} alignItems="flex-start" justifyContent="space-between">
           <div>
             <Title>{title}</Title>
-            <Subtitle >{subtitle}</Subtitle>
+            <Subtitle>{subtitle}</Subtitle>
           </div>
         </Box>
 
