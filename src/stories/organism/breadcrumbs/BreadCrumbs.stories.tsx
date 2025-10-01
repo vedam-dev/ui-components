@@ -31,11 +31,7 @@ const meta: Meta<typeof DynamicBreadcrumbs> = {
 export default meta;
 type Story = StoryObj<typeof DynamicBreadcrumbs>;
 
-const sampleItems = [
-  { label: 'Contest' },
-  { label: 'Course List' },
-  { label: 'Overall Scores' },
-];
+const sampleItems = [{ label: 'Contest' }, { label: 'Course List' }, { label: 'Overall Scores' }];
 
 const interactiveItems = [
   { label: 'Home', href: '#home', onClick: () => console.log('Home clicked') },
@@ -51,7 +47,8 @@ export const Default: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Default breadcrumb view matching the provided image with "Contest > Course List > Overall Scores"',
+        story:
+          'Default breadcrumb view matching the provided image with "Contest > Course List > Overall Scores"',
       },
     },
   },
@@ -99,10 +96,7 @@ export const SingleItem: Story = {
 
 export const TwoItems: Story = {
   args: {
-    items: [
-      { label: 'Contest', href: '#contest' },
-      { label: 'Overall Scores' },
-    ],
+    items: [{ label: 'Contest', href: '#contest' }, { label: 'Overall Scores' }],
   },
   parameters: {
     docs: {
