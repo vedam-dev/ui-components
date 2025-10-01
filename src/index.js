@@ -48,6 +48,8 @@ export {
   ClassListItemDivider,
 } from './component/organism/subject-details/SubjectDetails';
 
+export { default as StudentListItem } from './component/organism/studentListItem/StudentListItem';
+
 export {
   FeeListItemRow,
   FeeListItemStatus,
