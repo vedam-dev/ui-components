@@ -72,6 +72,7 @@ export { default as StudentCard } from './component/organism/studentCard/Student
 export { default as MonthlyCalendar } from './component/organism/analyticCalendar/AnalyticCalendar';
 export { default } from './component/organism/analyticCalendar/AnalyticCalendar';
 export { default as AttendanceSummaryCard } from './component/organism/attendanceSummaryCard/AttendanceSummaryCard';
+export { default as StudentAttendanceCard } from './component/organism/studentAttendanceCard/StudentAttendanceCard';
 
 //  Theme Component's
 export { default as defaultTheme } from './theme/customer/default';
