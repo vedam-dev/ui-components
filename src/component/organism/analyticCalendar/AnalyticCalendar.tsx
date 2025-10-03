@@ -19,11 +19,12 @@ export interface MonthlyCalendarProps {
 }
 
 const Container = styled(Paper)(() => ({
-  padding: 0,
   overflow: 'hidden',
   boxShadow: 'none',
   backgroundColor: 'white',
   borderRadius: '24px',
+  padding: '18px',
+  paddingBottom: '0px',
 }));
 
 const HeaderWrapper = styled(Box)(() => ({
@@ -35,6 +36,8 @@ const HeaderGrid = styled(Box)(() => ({
   gridTemplateColumns: 'repeat(7, 1fr)',
   gap: '12px',
   paddingBottom: '16px',
+  alignItems: 'center',
+  minHeight: '76px',
 }));
 
 const CalendarGrid = styled(Box)(() => ({
