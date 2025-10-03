@@ -71,6 +71,7 @@ export { default as BatchSelection } from './component/organism/batchSelection/B
 export { default as StudentCard } from './component/organism/studentCard/StudentCard';
 export { default as MonthlyCalendar } from './component/organism/analyticCalendar/AnalyticCalendar';
 export { default } from './component/organism/analyticCalendar/AnalyticCalendar';
+export { default as AttendanceSummaryCard } from './component/organism/attendanceSummaryCard/AttendanceSummaryCard';
 
 //  Theme Component's
 export { default as defaultTheme } from './theme/customer/default';
