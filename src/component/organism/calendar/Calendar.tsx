@@ -50,7 +50,7 @@ const TimeSlot = styled(Box)(({ theme }) => ({
   fontWeight: 600,
   color: '#1E1E1E',
   fontFamily: 'Outfit',
-  fontSize: '16px',
+  fontSize: '18px',
   fontStyle: 'normal',
   lineHeight: 'normal',
   minHeight: 72,
@@ -151,9 +151,9 @@ const EventCard = styled(Box, {
 
 const SemesterPill = styled(Box)(({ theme }) => ({
   color: '#8A18FF',
-  padding: theme.spacing(1, 2),
+  padding: theme.spacing(1, 1),
   fontWeight: 600,
-  fontSize: '16px',
+  fontSize: '18px',
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
