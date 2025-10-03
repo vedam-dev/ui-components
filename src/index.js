@@ -69,6 +69,9 @@ export { default as ReusableCalendar } from './component/organism/calendar/Calen
 export { default as DynamicBreadcrumbs } from './component/organism/breadcrumbs/BreadCrumbs';
 export { default as BatchSelection } from './component/organism/batchSelection/BatchSelection';
 export { default as StudentCard } from './component/organism/studentCard/StudentCard';
+export { default as MonthlyCalendar } from './component/organism/analyticCalendar/AnalyticCalendar';
+export { default } from './component/organism/analyticCalendar/AnalyticCalendar';
+
 //  Theme Component's
 export { default as defaultTheme } from './theme/customer/default';
 export { default as vedamTheme } from './theme/customer/vedam';
