@@ -6,12 +6,14 @@ interface StudentAttendanceCardProps {
   name: string;
   email: string;
   attendance: number;
+  value:string;
 }
 
 const StudentAttendanceCard: React.FC<StudentAttendanceCardProps> = ({
   name,
   email,
   attendance,
+  value
 }) => {
   const theme = useCoreTheme() as CoreTheme;
   return (
@@ -69,7 +71,7 @@ const StudentAttendanceCard: React.FC<StudentAttendanceCardProps> = ({
             mb: '8px',
           }}
         >
-          Average Attendance
+          {value || 'Average Attendance'}
         </Typography>
         <Typography
           sx={{
