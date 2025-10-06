@@ -22,7 +22,7 @@ const meta: Meta<typeof StudentAttendanceCard> = {
       description: 'Attendance percentage',
     },
     value: {
-      control: { type: 'text'},
+      control: { type: 'text' },
       description: 'Value Title',
     },
   },
@@ -102,8 +102,18 @@ export const MultipleCards: Story = {
         attendance={87}
         value="Average Attendance"
       />
-      <StudentAttendanceCard name="Priya Patel" email="priya.patel@vedamsot.org" attendance={92} value="Average Attendance" />
-      <StudentAttendanceCard name="Arjun Kumar" email="arjun.kumar@vedamsot.org" attendance={68} value="Average Attendance" />
+      <StudentAttendanceCard
+        name="Priya Patel"
+        email="priya.patel@vedamsot.org"
+        attendance={92}
+        value="Average Attendance"
+      />
+      <StudentAttendanceCard
+        name="Arjun Kumar"
+        email="arjun.kumar@vedamsot.org"
+        attendance={68}
+        value="Average Attendance"
+      />
       <StudentAttendanceCard
         name="Ananya Singh"
         email="ananya.singh@vedamsot.org"

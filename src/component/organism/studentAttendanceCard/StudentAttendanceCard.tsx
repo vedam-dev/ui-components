@@ -6,14 +6,14 @@ interface StudentAttendanceCardProps {
   name: string;
   email: string;
   attendance: number;
-  value:string;
+  value: string;
 }
 
 const StudentAttendanceCard: React.FC<StudentAttendanceCardProps> = ({
   name,
   email,
   attendance,
-  value
+  value,
 }) => {
   const theme = useCoreTheme() as CoreTheme;
   return (
