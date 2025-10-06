@@ -3,6 +3,8 @@ import { Box, Typography, IconButton, SxProps, styled, Theme } from '@mui/materi
 import { ChevronRight } from '@mui/icons-material';
 
 export interface AttendanceSummaryCardProps {
+  keyTitle?: string;
+  valueTitle?: string;
   averageAttendanceMin?: number;
   averageAttendanceMax?: number;
   currentStudents: number;
@@ -78,6 +80,8 @@ const NavigateButton = styled(IconButton)({
 });
 
 const AttendanceSummaryCard: React.FC<AttendanceSummaryCardProps> = ({
+  keyTitle = 'Average Attendance',
+  valueTitle = 'Number of Students',
   averageAttendanceMin = 81,
   averageAttendanceMax = 100,
   currentStudents,
@@ -90,14 +94,14 @@ const AttendanceSummaryCard: React.FC<AttendanceSummaryCardProps> = ({
     <CardContainer sx={sx}>
       <StatsSection>
         <StatBox>
-          <StatLabel>Average Attendance</StatLabel>
+          <StatLabel>{keyTitle}</StatLabel>
           <StatValue>
             {averageAttendanceMin}% - {averageAttendanceMax}%
           </StatValue>
         </StatBox>
 
         <StatBox>
-          <StatLabel>Number of Students</StatLabel>
+          <StatLabel>{valueTitle}</StatLabel>
           <StatValueSecondary>
             {currentStudents}/{totalStudents}
           </StatValueSecondary>
