@@ -75,6 +75,7 @@ export const Default: Story = {
 
 export const HighAttendance: Story = {
   args: {
+    keyTitle: 'Overall Average',
     averageAttendanceMin: 90,
     averageAttendanceMax: 100,
     currentStudents: 45,
