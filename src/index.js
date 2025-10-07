@@ -75,6 +75,15 @@ export { default as AttendanceSummaryCard } from './component/organism/attendanc
 export { default as StudentAttendanceCard } from './component/organism/studentAttendanceCard/StudentAttendanceCard';
 export { default as CourseList } from './component/organism/courseList/CourseList';
 
+export {
+  ContestAnalyticsTitle,
+  ContestAnalyticsDate,
+  ContestAnalyticsSubmissions,
+  ContestAnalyticsAvgScore,
+} from './component/organism/contestAnalytics/ContestAnalytics'
+
+export { default as TeacherContestListItem} from './component/organism/contestAnalytics/ContestAnalytics'
+
 //  Theme Component's
 export { default as defaultTheme } from './theme/customer/default';
 export { default as vedamTheme } from './theme/customer/vedam';
