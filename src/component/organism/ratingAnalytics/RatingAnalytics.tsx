@@ -131,8 +131,8 @@ export const RatingAnalyticsRating: React.FC<RatingAnalyticsRatingProps> = ({ ra
   // Determine color based on rating value
   const getRatingColor = (rating: string): string => {
     const numRating = parseFloat(rating);
-    if (numRating >= 4.0) return '#25A32E'; 
-    if (numRating >= 3.0) return '#FF6B6B'; 
+    if (numRating >= 4.0) return '#25A32E';
+    if (numRating >= 3.0) return '#FF6B6B';
     return '#DA1414'; // Green for low ratings
   };
 

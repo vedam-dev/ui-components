@@ -58,16 +58,14 @@ export {
   ContestListItemTitle,
 } from './component/organism/contestList/ContestList';
 
-
-export { default as RatingAnalytics} from './component/organism/ratingAnalytics/RatingAnalytics'
+export { default as RatingAnalytics } from './component/organism/ratingAnalytics/RatingAnalytics';
 
 export {
   RatingAnalyticsDate,
   RatingAnalyticsDay,
   RatingAnalyticsRating,
-  RatingAnalyticsTitle
-} from './component/organism/ratingAnalytics/RatingAnalytics'
-
+  RatingAnalyticsTitle,
+} from './component/organism/ratingAnalytics/RatingAnalytics';
 
 export {
   FeeListItemRow,
