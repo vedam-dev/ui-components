@@ -52,6 +52,7 @@ const CardsGrid = styled(Box)(({ theme }) => ({
   gridTemplateColumns: 'repeat(4, 1fr)',
   gap: theme.spacing(14),
   marginTop: theme.spacing(13),
+  rowGap: theme.spacing(12),
   '@media (max-width: 1400px)': {
     gridTemplateColumns: 'repeat(3, 1fr)',
   },
@@ -85,7 +86,7 @@ const Card = styled('button')<{
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
-    padding: theme.spacing(7, 21),
+    padding: theme.spacing(7, 19),
     borderRadius: theme.spacing(5),
     cursor: disabled ? 'not-allowed' : 'pointer',
     border: `1px solid ${scheme.border}`,
