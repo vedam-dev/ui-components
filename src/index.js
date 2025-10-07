@@ -80,9 +80,9 @@ export {
   ContestAnalyticsDate,
   ContestAnalyticsSubmissions,
   ContestAnalyticsAvgScore,
-} from './component/organism/contestAnalytics/ContestAnalytics'
+} from './component/organism/contestAnalytics/ContestAnalytics';
 
-export { default as TeacherContestListItem} from './component/organism/contestAnalytics/ContestAnalytics'
+export { default as ContestAnalyticsListItem } from './component/organism/contestAnalytics/ContestAnalytics';
 
 //  Theme Component's
 export { default as defaultTheme } from './theme/customer/default';

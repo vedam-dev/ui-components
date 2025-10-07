@@ -81,7 +81,9 @@ export interface ContestAnalyticsSubmissionsProps {
   submissions: string;
 }
 
-export const ContestAnalyticsSubmissions: React.FC<ContestAnalyticsSubmissionsProps> = ({ submissions }) => {
+export const ContestAnalyticsSubmissions: React.FC<ContestAnalyticsSubmissionsProps> = ({
+  submissions,
+}) => {
   const theme = useCoreTheme() as CoreTheme;
 
   return (
@@ -168,10 +170,10 @@ export interface ContestAnalyticsListItemProps {
   children: React.ReactNode;
 }
 
-const ContestAnalyticsListItem: React.FC<ContestAnalyticsListItemProps> = ({ 
-  bgColor, 
+const ContestAnalyticsListItem: React.FC<ContestAnalyticsListItemProps> = ({
+  bgColor,
   borderColor,
-  children 
+  children,
 }) => {
   const theme = useCoreTheme() as CoreTheme;
 
@@ -180,7 +182,7 @@ const ContestAnalyticsListItem: React.FC<ContestAnalyticsListItemProps> = ({
       sx={{
         borderRadius: theme.spacing(6),
         boxShadow: theme.vd.shadows.y4,
-        backgroundColor:'#FFFFFF',
+        backgroundColor: '#FFFFFF',
         mb: '20px',
         width: '100%',
         px: theme.spacing(12.25),

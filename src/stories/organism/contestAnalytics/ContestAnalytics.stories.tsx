@@ -42,11 +42,10 @@ export const SingleContest: Story = {
   },
 };
 
-
 // Multiple contest items - exactly like the screenshot (all 4 columns)
 export const TeacherContestRecordsList: StoryObj = {
   render: () => (
-    <div style={{ }}>
+    <div>
       <ContestAnalyticsListItem bgColor="#FFFFFF">
         <ContestAnalyticsTitle contestNumber="Contest 1" />
         <ContestAnalyticsDate date="10 June" />
