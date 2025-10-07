@@ -36,22 +36,22 @@ const DynamicBreadcrumbs: React.FC<DynamicBreadcrumbsProps> = ({
 
           if (isLast) {
             return (
-                <Typography
-                  key={index}
-                  sx={{
-                    color: '#8A18FF',
-                    fontFamily: 'Poppins, sans-serif',
-                    fontSize: '20px',
-                    fontStyle: 'normal',
-                    fontWeight: 400,
-                    lineHeight: 'normal',
-                    textDecorationLine: 'underline',
-                    textDecorationStyle: 'solid',
-                    textUnderlineOffset: '2px', 
-                  }}
-                >
-                  {item.label}
-                </Typography>
+              <Typography
+                key={index}
+                sx={{
+                  color: '#8A18FF',
+                  fontFamily: 'Poppins, sans-serif',
+                  fontSize: '20px',
+                  fontStyle: 'normal',
+                  fontWeight: 400,
+                  lineHeight: 'normal',
+                  textDecorationLine: 'underline',
+                  textDecorationStyle: 'solid',
+                  textUnderlineOffset: '2px',
+                }}
+              >
+                {item.label}
+              </Typography>
             );
           }
 
