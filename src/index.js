@@ -83,6 +83,7 @@ export {
 } from './component/organism/contestAnalytics/ContestAnalytics';
 
 export { default as ContestAnalyticsListItem } from './component/organism/contestAnalytics/ContestAnalytics';
+export { default as InstructorList } from './component/organism/instructorList/InstructorList';
 
 //  Theme Component's
 export { default as defaultTheme } from './theme/customer/default';

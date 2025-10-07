@@ -281,7 +281,7 @@ const ReusableCalendar: React.FC<ReusableCalendarProps> = ({
         {timeSlots.map((timeLabel, timeIndex) => (
           <React.Fragment key={timeIndex}>
             <TimeSlot>
-              <Typography sx={{ fontSize: '16px', fontWeight: 600, color: '#1E1E1E' }}>
+              <Typography sx={{ fontSize: '18px', fontWeight: 600, color: '#1E1E1E' }}>
                 {timeLabel}
               </Typography>
             </TimeSlot>
