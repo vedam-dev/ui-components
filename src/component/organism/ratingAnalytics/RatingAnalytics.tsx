@@ -133,7 +133,7 @@ export const RatingAnalyticsRating: React.FC<RatingAnalyticsRatingProps> = ({ ra
     const numRating = parseFloat(rating);
     if (numRating >= 4.0) return '#25A32E'; 
     if (numRating >= 3.0) return '#FF6B6B'; 
-    return '#4CAF50'; // Green for low ratings
+    return '#DA1414'; // Green for low ratings
   };
 
   return (

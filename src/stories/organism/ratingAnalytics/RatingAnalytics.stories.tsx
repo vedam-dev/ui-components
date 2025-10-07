@@ -66,6 +66,14 @@ export const LectureRecordsList: StoryObj = {
         <RatingAnalyticsTitle title="Physics" />
         <RatingAnalyticsRating rating="2.0" />
       </RatingAnalytics>
+
+       <RatingAnalytics>
+        <RatingAnalyticsDate date="20/10/2025" day="" />
+        <RatingAnalyticsDay day="Friday" />
+        <RatingAnalyticsTitle title="Mathematics" />
+        <RatingAnalyticsRating rating="5.0" />
+      </RatingAnalytics>
+
     </div>
   ),
 };
