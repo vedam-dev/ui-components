@@ -58,7 +58,7 @@ export const ContestListItemSubject: React.FC<ContestListItemSubjectProps> = ({ 
       <Typography
         variant="body1"
         sx={{
-          fontSize: '18px',
+          fontSize: '22px',
           fontWeight: 600,
           color: '#3870CA',
           lineHeight: 1.2,
@@ -100,9 +100,10 @@ export const ContestListItemDate: React.FC<ContestListItemDateProps> = ({ date }
         variant="caption"
         sx={{
           color: '#777',
-          fontSize: '14px',
+          fontSize: '16px',
+          lineHeight: '20px',
           fontWeight: 500,
-          marginBottom: '3px',
+          marginBottom: '6px',
         }}
       >
         Date
@@ -111,7 +112,8 @@ export const ContestListItemDate: React.FC<ContestListItemDateProps> = ({ date }
         variant="body1"
         sx={{
           color: '#000',
-          fontSize: '16px',
+          fontSize: '18px',
+          lineHeight: '24px',
           fontWeight: 600,
         }}
       >
@@ -154,9 +156,10 @@ export const ContestListItemStatus: React.FC<ContestListItemStatusProps> = ({ st
         variant="caption"
         sx={{
           color: '#777',
-          fontSize: '14px',
+          fontSize: '16px',
+          lineHeight: '20px',
           fontWeight: 500,
-          marginBottom: '3px',
+          marginBottom: '6px',
         }}
       >
         Status
@@ -165,9 +168,9 @@ export const ContestListItemStatus: React.FC<ContestListItemStatusProps> = ({ st
         sx={{
           backgroundColor: getStatusColor(status),
           color: 'white',
-          padding: theme.spacing(0.5, 2.5),
+          padding: theme.spacing(0.75, 2.5),
           borderRadius: theme.spacing(25),
-          fontSize: '14px',
+          fontSize: '12px',
           fontWeight: 500,
           whiteSpace: 'nowrap',
         }}
@@ -183,8 +186,6 @@ export interface ContestListItemScoreProps {
 }
 
 export const ContestListItemScore: React.FC<ContestListItemScoreProps> = ({ score }) => {
-  const theme = useCoreTheme() as CoreTheme;
-
   return (
     <Box
       sx={{
@@ -199,9 +200,10 @@ export const ContestListItemScore: React.FC<ContestListItemScoreProps> = ({ scor
         variant="caption"
         sx={{
           color: '#777',
-          fontSize: '14px',
+          fontSize: '16px',
+          lineHeight: '20px',
           fontWeight: 500,
-          marginBottom: '3px',
+          marginBottom: '6px',
         }}
       >
         Score
@@ -210,7 +212,8 @@ export const ContestListItemScore: React.FC<ContestListItemScoreProps> = ({ scor
         variant="body1"
         sx={{
           color: '#000',
-          fontSize: '16px',
+          fontSize: '18px',
+          lineHeight: '24px',
           fontWeight: 600,
         }}
       >
