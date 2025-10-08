@@ -137,3 +137,40 @@ export const Interactive: Story = {
     },
   },
 };
+
+export const MultipleCards: Story = {
+  render: () => (
+    <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
+      <StudentCard
+        title="Class Attendance"
+        description="Mathematics course - Fall 2024"
+        scoreTitle="Attendance Count"
+        percentageTitle="Attendance Percentage"
+        attendanceCount={42}
+        totalCount={50}
+        attendancePercentage={84}
+        showNavigateButton={true}
+      />
+      <StudentCard
+        title="Contest Performance"
+        description="Overall student's performance in the contests"
+        scoreTitle="Average Score"
+        percentageTitle="Average Percentage"
+        attendanceCount={38}
+        totalCount={50}
+        attendancePercentage={76}
+        showNavigateButton={true}
+      />
+      <StudentCard
+        title="Mock Interview"
+        description="Overall student's performance in mock interviews"
+        scoreTitle="Overall Score"
+        percentageTitle="Average Percentage"
+        attendanceCount={45}
+        totalCount={48}
+        attendancePercentage={93.75}
+        showNavigateButton={false}
+      />
+    </div>
+  ),
+};
