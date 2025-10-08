@@ -45,6 +45,9 @@ const DynamicBreadcrumbs: React.FC<DynamicBreadcrumbsProps> = ({
                   fontStyle: 'normal',
                   fontWeight: 400,
                   lineHeight: 'normal',
+                  textDecorationLine: 'underline',
+                  textDecorationStyle: 'solid',
+                  textUnderlineOffset: '2px',
                 }}
               >
                 {item.label}
