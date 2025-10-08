@@ -30,7 +30,7 @@ const CardContainer = styled(Box)(({ theme }) => ({
 const LeftSection = styled(Box)({
   display: 'flex',
   flexDirection: 'column',
-  minWidth: 0,
+  minWidth: '444px',
 });
 
 const Title = styled(Typography)({
@@ -61,6 +61,7 @@ const StatBox = styled(Box)({
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'flex-start',
+  minWidth: '192px',
 });
 
 const StatLabel = styled(Typography)({
