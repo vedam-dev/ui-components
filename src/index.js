@@ -79,7 +79,8 @@ export { default as ReusableCalendar } from './component/organism/calendar/Calen
 export { default as DynamicBreadcrumbs } from './component/organism/breadcrumbs/BreadCrumbs';
 export { default as BatchSelection } from './component/organism/batchSelection/BatchSelection';
 export { default as StudentCard } from './component/organism/studentCard/StudentCard';
-export { default as MonthlyCalendar } from './component/organism/analyticCalendar/AnalyticCalendar';
+export { default as MonthlyCalendar, TooltipData } from './component/organism/analyticCalendar/AnalyticCalendar';
+
 export { default } from './component/organism/analyticCalendar/AnalyticCalendar';
 export { default as AttendanceSummaryCard } from './component/organism/attendanceSummaryCard/AttendanceSummaryCard';
 export { default as StudentAttendanceCard } from './component/organism/studentAttendanceCard/StudentAttendanceCard';
