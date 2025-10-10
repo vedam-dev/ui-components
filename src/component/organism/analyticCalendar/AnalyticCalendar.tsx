@@ -152,7 +152,6 @@ const TooltipContent = styled(Box)(() => ({
 const TooltipRow = styled(Box)(() => ({
   display: 'flex',
   alignItems: 'center',
-  // gap: '6px',
 }));
 
 const ColorDot = styled(Box)<{ color: string }>(({ color }) => ({
@@ -161,7 +160,7 @@ const ColorDot = styled(Box)<{ color: string }>(({ color }) => ({
   borderRadius: '50%',
   backgroundColor: color,
   flexShrink: 0,
-  marginRight:'6px',
+  marginRight: '6px',
 }));
 
 const TooltipNumber = styled(Typography)(() => ({
@@ -171,7 +170,7 @@ const TooltipNumber = styled(Typography)(() => ({
   fontSize: '14px',
   fontStyle: 'normal',
   fontWeight: 600,
-  lineHeight: '18px',
+  lineHeight: '10px',
   marginRight: '4px',
 }));
 
@@ -181,7 +180,7 @@ const TooltipLabel = styled(Typography)(() => ({
   fontSize: '14px',
   fontStyle: 'normal',
   fontWeight: 400,
-  lineHeight: '18px',
+  lineHeight: '10px',
 }));
 
 function getDaysInMonth(date: Date): Date[] {
@@ -326,7 +325,7 @@ const MonthlyCalendar: React.FC<MonthlyCalendarProps> = ({
                     },
                   ],
                 }}
-                 componentsProps={{
+                componentsProps={{
                   tooltip: {
                     sx: {
                       bgcolor: 'transparent',
