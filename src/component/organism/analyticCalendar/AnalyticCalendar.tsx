@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { Box, Paper, Typography, styled } from '@mui/material';
+import { Box, Paper, Typography, styled, Tooltip } from '@mui/material';
 
 export type AttendanceStatus = 'leave' | 'holiday' | 'present' | 'absent';
 
@@ -11,11 +11,18 @@ export interface MonthlyCalendarEvent {
   color?: string;
 }
 
+export interface TooltipData {
+  presentCount: number;
+  absentCount: number;
+  noSessionCount: number;
+}
+
 export interface MonthlyCalendarProps {
   events?: MonthlyCalendarEvent[];
   currentDate?: Date;
   onDateClick?: (date: Date) => void;
   sx?: any;
+  tooltipData?: Map<string, TooltipData>; // Key format: 'YYYY-M-D'
 }
 
 const Container = styled(Paper)(() => ({
@@ -130,6 +137,52 @@ const DayNumber = styled(Typography)<{ isOtherMonth?: boolean }>(({ isOtherMonth
   visibility: isOtherMonth ? 'hidden' : 'visible',
 }));
 
+const TooltipContent = styled(Box)(() => ({
+  display: 'inline-flex',
+  padding: '12px 10px',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  alignItems: 'flex-start',
+  gap: '8px',
+  borderRadius: '12px',
+  background: '#FFF',
+  filter: 'drop-shadow(0 0 10px rgba(0, 0, 0, 0.15))',
+}));
+
+const TooltipRow = styled(Box)(() => ({
+  display: 'flex',
+  alignItems: 'center',
+}));
+
+const ColorDot = styled(Box)<{ color: string }>(({ color }) => ({
+  width: '8px',
+  height: '8px',
+  borderRadius: '50%',
+  backgroundColor: color,
+  flexShrink: 0,
+  marginRight: '6px',
+}));
+
+const TooltipNumber = styled(Typography)(() => ({
+  color: '#1E1E1E',
+  textAlign: 'center',
+  fontFamily: 'Outfit',
+  fontSize: '14px',
+  fontStyle: 'normal',
+  fontWeight: 600,
+  lineHeight: '10px',
+  marginRight: '4px',
+}));
+
+const TooltipLabel = styled(Typography)(() => ({
+  color: '#1E1E1E',
+  fontFamily: 'Outfit',
+  fontSize: '14px',
+  fontStyle: 'normal',
+  fontWeight: 400,
+  lineHeight: '10px',
+}));
+
 function getDaysInMonth(date: Date): Date[] {
   const year = date.getFullYear();
   const month = date.getMonth();
@@ -166,6 +219,7 @@ const MonthlyCalendar: React.FC<MonthlyCalendarProps> = ({
   currentDate = new Date(),
   onDateClick,
   sx,
+  tooltipData,
 }) => {
   const [selectedMonth] = useState(currentDate);
 
@@ -195,6 +249,32 @@ const MonthlyCalendar: React.FC<MonthlyCalendarProps> = ({
     return eventsByDate.get(key);
   };
 
+  const getTooltipForDate = (date: Date) => {
+    if (!tooltipData) return null;
+    const key = `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`;
+    return tooltipData.get(key);
+  };
+
+  const renderTooltip = (data: TooltipData) => (
+    <TooltipContent>
+      <TooltipRow>
+        <ColorDot color="#FF4848" />
+        <TooltipNumber>{data.presentCount}</TooltipNumber>
+        <TooltipLabel>Present</TooltipLabel>
+      </TooltipRow>
+      <TooltipRow>
+        <ColorDot color="#42B657" />
+        <TooltipNumber>{data.absentCount}</TooltipNumber>
+        <TooltipLabel>Absent</TooltipLabel>
+      </TooltipRow>
+      <TooltipRow>
+        <ColorDot color="#999" />
+        <TooltipNumber>{data.noSessionCount}</TooltipNumber>
+        <TooltipLabel>No-Session</TooltipLabel>
+      </TooltipRow>
+    </TooltipContent>
+  );
+
   const weekDays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 
   return (
@@ -210,10 +290,11 @@ const MonthlyCalendar: React.FC<MonthlyCalendarProps> = ({
       <CalendarGrid>
         {days.map((day, index) => {
           const event = getEventForDate(day);
+          const tooltip = getTooltipForDate(day);
           const today = isToday(day);
           const otherMonth = !isCurrentMonth(day);
 
-          return (
+          const dayCell = (
             <DayCell
               key={index}
               isToday={today}
@@ -226,6 +307,42 @@ const MonthlyCalendar: React.FC<MonthlyCalendarProps> = ({
               <DayNumber isOtherMonth={otherMonth}>{day.getDate()}</DayNumber>
             </DayCell>
           );
+
+          if (tooltip && !otherMonth) {
+            return (
+              <Tooltip
+                key={index}
+                title={renderTooltip(tooltip)}
+                arrow
+                placement="top"
+                PopperProps={{
+                  modifiers: [
+                    {
+                      name: 'offset',
+                      options: {
+                        offset: [0, -14],
+                      },
+                    },
+                  ],
+                }}
+                componentsProps={{
+                  tooltip: {
+                    sx: {
+                      bgcolor: 'transparent',
+                      padding: 0,
+                      '& .MuiTooltip-arrow': {
+                        color: '#FFF',
+                      },
+                    },
+                  },
+                }}
+              >
+                {dayCell}
+              </Tooltip>
+            );
+          }
+
+          return dayCell;
         })}
       </CalendarGrid>
     </Container>
