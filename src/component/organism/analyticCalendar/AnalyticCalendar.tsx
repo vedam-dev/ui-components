@@ -253,12 +253,12 @@ const MonthlyCalendar: React.FC<MonthlyCalendarProps> = ({
   const renderTooltip = (data: TooltipData) => (
     <TooltipContent>
       <TooltipRow>
-        <ColorDot color="#FF4848" />
+        <ColorDot color="#42B657" />
         <TooltipNumber>{data.presentCount}</TooltipNumber>
         <TooltipLabel>Present</TooltipLabel>
       </TooltipRow>
       <TooltipRow>
-        <ColorDot color="#42B657" />
+        <ColorDot color="#FF4848" />
         <TooltipNumber>{data.absentCount}</TooltipNumber>
         <TooltipLabel>Absent</TooltipLabel>
       </TooltipRow>
