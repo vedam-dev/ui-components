@@ -41,7 +41,7 @@ const StatBox = styled(Box)({
 
 const StatLabel = styled(Typography)({
   color: '#777',
-  fontFamily: 'Outfit',
+  fontFamily: 'Poppins',
   fontSize: '16px',
   fontStyle: 'normal',
   fontWeight: 500,
