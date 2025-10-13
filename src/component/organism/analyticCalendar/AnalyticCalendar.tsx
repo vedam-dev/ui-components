@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { Box, Paper, Typography, styled, Tooltip } from '@mui/material';
 
 export type AttendanceStatus = 'leave' | 'holiday' | 'present' | 'absent';
@@ -190,25 +190,16 @@ function getDaysInMonth(date: Date): Date[] {
   const firstDay = new Date(year, month, 1);
   const lastDay = new Date(year, month + 1, 0);
 
-  const startDay = firstDay.getDay();
-  const daysInMonth = lastDay.getDate();
+  const firstDayOfWeek = firstDay.getDay();
+  const startDate = new Date(firstDay);
+  const daysFromPreviousMonth = firstDayOfWeek === 0 ? 6 : firstDayOfWeek - 1;
+  startDate.setDate(startDate.getDate() - daysFromPreviousMonth);
 
   const days: Date[] = [];
-
-  const adjustedStartDay = startDay === 0 ? 6 : startDay - 1;
-
-  for (let i = adjustedStartDay - 1; i >= 0; i--) {
-    const prevDate = new Date(year, month, -i);
-    days.push(prevDate);
-  }
-
-  for (let i = 1; i <= daysInMonth; i++) {
-    days.push(new Date(year, month, i));
-  }
-
-  const remainingDays = 35 - days.length;
-  for (let i = 1; i <= remainingDays; i++) {
-    days.push(new Date(year, month + 1, i));
+  for (let i = 0; i < 42; i++) {
+    const currentDate = new Date(startDate);
+    currentDate.setDate(startDate.getDate() + i);
+    days.push(currentDate);
   }
 
   return days;
@@ -221,7 +212,11 @@ const MonthlyCalendar: React.FC<MonthlyCalendarProps> = ({
   sx,
   tooltipData,
 }) => {
-  const [selectedMonth] = useState(currentDate);
+  const [selectedMonth, setSelectedMonth] = useState(currentDate);
+
+  useEffect(() => {
+    setSelectedMonth(currentDate);
+  }, [currentDate]);
 
   const days = useMemo(() => getDaysInMonth(selectedMonth), [selectedMonth]);
 
@@ -258,12 +253,12 @@ const MonthlyCalendar: React.FC<MonthlyCalendarProps> = ({
   const renderTooltip = (data: TooltipData) => (
     <TooltipContent>
       <TooltipRow>
-        <ColorDot color="#FF4848" />
+        <ColorDot color="#42B657" />
         <TooltipNumber>{data.presentCount}</TooltipNumber>
         <TooltipLabel>Present</TooltipLabel>
       </TooltipRow>
       <TooltipRow>
-        <ColorDot color="#42B657" />
+        <ColorDot color="#FF4848" />
         <TooltipNumber>{data.absentCount}</TooltipNumber>
         <TooltipLabel>Absent</TooltipLabel>
       </TooltipRow>
