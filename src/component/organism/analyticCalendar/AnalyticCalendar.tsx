@@ -15,6 +15,7 @@ export interface TooltipData {
   presentCount: number;
   absentCount: number;
   noSessionCount: number;
+  leaveCount: number;
 }
 
 export interface MonthlyCalendarProps {
@@ -52,7 +53,6 @@ const CalendarGrid = styled(Box)(() => ({
   gridTemplateColumns: 'repeat(7, 1fr)',
   gap: '12px',
   paddingX: '24px',
-  paddingBottom: '24px',
 }));
 
 const DayHeader = styled(Box)(() => ({
@@ -62,7 +62,7 @@ const DayHeader = styled(Box)(() => ({
   fontSize: '18px',
   fontStyle: 'normal',
   fontWeight: 600,
-  lineHeight: 'normal',
+  lineHeight: '23px',
 }));
 
 const DayCell = styled(Box, {
@@ -107,8 +107,8 @@ const DayCell = styled(Box, {
     backgroundColor,
     borderRadius,
     padding: '20px',
-    maxHeight: '80px',
-    minWidth: '168px',
+    // maxHeight: '80px',
+    minWidth: '167px',
     display: 'flex',
     alignItems: 'flex-start',
     justifyContent: 'center',
@@ -123,7 +123,7 @@ const DayCell = styled(Box, {
     }),
     ...(isToday &&
       !isOtherMonth && {
-        outline: '3px solid #FF9500',
+        outline: '3px solid #8A18FF',
         outlineOffset: '-3px',
       }),
   };
@@ -131,6 +131,10 @@ const DayCell = styled(Box, {
 
 const DayNumber = styled(Typography)<{ isOtherMonth?: boolean }>(({ isOtherMonth }) => ({
   fontSize: '18px',
+  lineHeight: '17px',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
   fontWeight: 600,
   color: isOtherMonth ? 'transparent' : '#1E1E1E',
   fontFamily: 'Outfit',
@@ -266,6 +270,11 @@ const MonthlyCalendar: React.FC<MonthlyCalendarProps> = ({
         <ColorDot color="#999" />
         <TooltipNumber>{data.noSessionCount}</TooltipNumber>
         <TooltipLabel>No-Session</TooltipLabel>
+      </TooltipRow>
+      <TooltipRow>
+        <ColorDot color="#FDEBD9" />
+        <TooltipNumber>{data.leaveCount}</TooltipNumber>
+        <TooltipLabel>Leave</TooltipLabel>
       </TooltipRow>
     </TooltipContent>
   );
