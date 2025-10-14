@@ -52,7 +52,7 @@ const CalendarGrid = styled(Box)(() => ({
   display: 'grid',
   gridTemplateColumns: 'repeat(7, 1fr)',
   gap: '12px',
-  paddingBottom: '24px',
+  paddingX: '24px',
 }));
 
 const DayHeader = styled(Box)(() => ({
@@ -108,7 +108,7 @@ const DayCell = styled(Box, {
     borderRadius,
     padding: '20px',
     maxHeight: '80px',
-    minWidth: '168px',
+    minWidth: '167px',
     display: 'flex',
     alignItems: 'flex-start',
     justifyContent: 'center',
