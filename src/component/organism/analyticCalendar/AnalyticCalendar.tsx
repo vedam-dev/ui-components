@@ -15,6 +15,7 @@ export interface TooltipData {
   presentCount: number;
   absentCount: number;
   noSessionCount: number;
+  leaveCount: number;
 }
 
 export interface MonthlyCalendarProps {
@@ -251,24 +252,29 @@ const MonthlyCalendar: React.FC<MonthlyCalendarProps> = ({
   };
 
   const renderTooltip = (data: TooltipData) => (
-    <TooltipContent>
-      <TooltipRow>
-        <ColorDot color="#42B657" />
-        <TooltipNumber>{data.presentCount}</TooltipNumber>
-        <TooltipLabel>Present</TooltipLabel>
-      </TooltipRow>
-      <TooltipRow>
-        <ColorDot color="#FF4848" />
-        <TooltipNumber>{data.absentCount}</TooltipNumber>
-        <TooltipLabel>Absent</TooltipLabel>
-      </TooltipRow>
-      <TooltipRow>
-        <ColorDot color="#999" />
-        <TooltipNumber>{data.noSessionCount}</TooltipNumber>
-        <TooltipLabel>No-Session</TooltipLabel>
-      </TooltipRow>
-    </TooltipContent>
-  );
+  <TooltipContent>
+    <TooltipRow>
+      <ColorDot color="#42B657" />
+      <TooltipNumber>{data.presentCount}</TooltipNumber>
+      <TooltipLabel>Present</TooltipLabel>
+    </TooltipRow>
+    <TooltipRow>
+      <ColorDot color="#FF4848" />
+      <TooltipNumber>{data.absentCount}</TooltipNumber>
+      <TooltipLabel>Absent</TooltipLabel>
+    </TooltipRow>
+    <TooltipRow>
+      <ColorDot color="#999" />
+      <TooltipNumber>{data.noSessionCount}</TooltipNumber>
+      <TooltipLabel>No-Session</TooltipLabel>
+    </TooltipRow>
+    <TooltipRow>
+      <ColorDot color="#FDEBD9" />
+      <TooltipNumber>{data.leaveCount}</TooltipNumber>
+      <TooltipLabel>Leave</TooltipLabel>
+    </TooltipRow>
+  </TooltipContent>
+);
 
   const weekDays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 
