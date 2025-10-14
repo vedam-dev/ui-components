@@ -52,7 +52,6 @@ const CalendarGrid = styled(Box)(() => ({
   display: 'grid',
   gridTemplateColumns: 'repeat(7, 1fr)',
   gap: '12px',
-  paddingX: '24px',
   paddingBottom: '24px',
 }));
 
@@ -63,7 +62,7 @@ const DayHeader = styled(Box)(() => ({
   fontSize: '18px',
   fontStyle: 'normal',
   fontWeight: 600,
-  lineHeight: 'normal',
+  lineHeight: '23px',
 }));
 
 const DayCell = styled(Box, {
@@ -252,29 +251,29 @@ const MonthlyCalendar: React.FC<MonthlyCalendarProps> = ({
   };
 
   const renderTooltip = (data: TooltipData) => (
-  <TooltipContent>
-    <TooltipRow>
-      <ColorDot color="#42B657" />
-      <TooltipNumber>{data.presentCount}</TooltipNumber>
-      <TooltipLabel>Present</TooltipLabel>
-    </TooltipRow>
-    <TooltipRow>
-      <ColorDot color="#FF4848" />
-      <TooltipNumber>{data.absentCount}</TooltipNumber>
-      <TooltipLabel>Absent</TooltipLabel>
-    </TooltipRow>
-    <TooltipRow>
-      <ColorDot color="#999" />
-      <TooltipNumber>{data.noSessionCount}</TooltipNumber>
-      <TooltipLabel>No-Session</TooltipLabel>
-    </TooltipRow>
-    <TooltipRow>
-      <ColorDot color="#FDEBD9" />
-      <TooltipNumber>{data.leaveCount}</TooltipNumber>
-      <TooltipLabel>Leave</TooltipLabel>
-    </TooltipRow>
-  </TooltipContent>
-);
+    <TooltipContent>
+      <TooltipRow>
+        <ColorDot color="#42B657" />
+        <TooltipNumber>{data.presentCount}</TooltipNumber>
+        <TooltipLabel>Present</TooltipLabel>
+      </TooltipRow>
+      <TooltipRow>
+        <ColorDot color="#FF4848" />
+        <TooltipNumber>{data.absentCount}</TooltipNumber>
+        <TooltipLabel>Absent</TooltipLabel>
+      </TooltipRow>
+      <TooltipRow>
+        <ColorDot color="#999" />
+        <TooltipNumber>{data.noSessionCount}</TooltipNumber>
+        <TooltipLabel>No-Session</TooltipLabel>
+      </TooltipRow>
+      <TooltipRow>
+        <ColorDot color="#FDEBD9" />
+        <TooltipNumber>{data.leaveCount}</TooltipNumber>
+        <TooltipLabel>Leave</TooltipLabel>
+      </TooltipRow>
+    </TooltipContent>
+  );
 
   const weekDays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 
