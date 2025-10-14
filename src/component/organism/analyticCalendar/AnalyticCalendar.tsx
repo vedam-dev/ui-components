@@ -107,7 +107,7 @@ const DayCell = styled(Box, {
     backgroundColor,
     borderRadius,
     padding: '20px',
-    maxHeight: '80px',
+    // maxHeight: '80px',
     minWidth: '167px',
     display: 'flex',
     alignItems: 'flex-start',
@@ -131,6 +131,10 @@ const DayCell = styled(Box, {
 
 const DayNumber = styled(Typography)<{ isOtherMonth?: boolean }>(({ isOtherMonth }) => ({
   fontSize: '18px',
+  lineHeight: '17px',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
   fontWeight: 600,
   color: isOtherMonth ? 'transparent' : '#1E1E1E',
   fontFamily: 'Outfit',
