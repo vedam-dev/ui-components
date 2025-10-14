@@ -123,7 +123,7 @@ const DayCell = styled(Box, {
     }),
     ...(isToday &&
       !isOtherMonth && {
-        outline: '3px solid #FF9500',
+        outline: '3px solid #8A18FF',
         outlineOffset: '-3px',
       }),
   };

@@ -133,11 +133,11 @@ export const ContestListItemStatus: React.FC<ContestListItemStatusProps> = ({ st
   const getStatusColor = (status: string) => {
     switch (status) {
       case 'Submitted':
-        return '#8A18FF';
+        return '#42B657';
       case 'Absent':
         return '#FF0000';
       default:
-        return '#8A18FF';
+        return '#42B657';
     }
   };
 
