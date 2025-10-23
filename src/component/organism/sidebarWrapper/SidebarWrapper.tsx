@@ -69,7 +69,10 @@ const SidebarWrapper: FC<SidebarWrapperProps> = ({
     const match = itemsToCheck.find((it) => it.id.toLowerCase() === seg.toLowerCase());
     if (match) return match.id;
     for (const it of itemsToCheck) {
-      if (path.toLowerCase().includes(`/${it.id.toLowerCase()}`) || path.toLowerCase().includes(it.id.toLowerCase())) {
+      if (
+        path.toLowerCase().includes(`/${it.id.toLowerCase()}`) ||
+        path.toLowerCase().includes(it.id.toLowerCase())
+      ) {
         return it.id;
       }
     }
@@ -78,12 +81,24 @@ const SidebarWrapper: FC<SidebarWrapperProps> = ({
 
   const [localItems, setLocalItems] = useState<SidebarItem[]>(() => {
     const picked = getSelectedIdFromUrl(items);
-    return items.map((it) => ({ ...it, selected: it.id === picked } as SidebarItem & { selected?: boolean }));
+    return items.map(
+      (it) =>
+        ({ ...it, selected: it.id === picked }) as SidebarItem & {
+          selected?: boolean;
+        }
+    );
   });
 
   useEffect(() => {
     const picked = getSelectedIdFromUrl(items);
-    setLocalItems(items.map((it) => ({ ...it, selected: it.id === picked } as SidebarItem & { selected?: boolean })));
+    setLocalItems(
+      items.map(
+        (it) =>
+          ({ ...it, selected: it.id === picked }) as SidebarItem & {
+            selected?: boolean;
+          }
+      )
+    );
   }, [items]);
 
   useEffect(() => {
@@ -120,7 +135,9 @@ const SidebarWrapper: FC<SidebarWrapperProps> = ({
 
   const setSidebarExpandedImmediate = (val: boolean | ((prev: boolean) => boolean)) => {
     clearHoverTimer();
-    setIsSidebarExpanded((prev) => (typeof val === 'function' ? (val as (p: boolean) => boolean)(prev) : val));
+    setIsSidebarExpanded((prev) =>
+      typeof val === 'function' ? (val as (p: boolean) => boolean)(prev) : val
+    );
   };
 
   useEffect(() => {
@@ -165,7 +182,13 @@ const SidebarWrapper: FC<SidebarWrapperProps> = ({
         onMenuClick={() => setSidebarExpandedImmediate((p) => !p)}
         onProfileClick={onProfileClick}
         isSidebarExpanded={isSidebarExpanded}
-        sx={{ position: 'fixed', top: 0, left: 0, right: 0, zIndex: isSidebarExpanded ? 0 : 20 }}
+        sx={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          zIndex: isSidebarExpanded ? 0 : 20,
+        }}
         hideStatsContainer={hideStatsContainer}
       />
 
