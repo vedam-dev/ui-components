@@ -6,6 +6,8 @@ import { CoreTheme, useCoreTheme } from '../../../theme/core-theme';
 export interface StudentCardProps {
   title?: string;
   description?: string;
+  scoreTitle?: string;
+  percentageTitle?: string;
   attendanceCount: number;
   totalCount: number;
   attendancePercentage: number;
@@ -28,7 +30,7 @@ const CardContainer = styled(Box)(({ theme }) => ({
 const LeftSection = styled(Box)({
   display: 'flex',
   flexDirection: 'column',
-  minWidth: 0,
+  minWidth: '444px',
 });
 
 const Title = styled(Typography)({
@@ -59,6 +61,7 @@ const StatBox = styled(Box)({
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'flex-start',
+  minWidth: '192px',
 });
 
 const StatLabel = styled(Typography)({
@@ -94,6 +97,8 @@ const NavigateButton = styled(IconButton)({
 const StudentCard: React.FC<StudentCardProps> = ({
   title = 'Student Attendance',
   description = "Overall student's attendance for this semester",
+  scoreTitle = 'Attendance Count',
+  percentageTitle = 'Attendance Percentage',
   attendanceCount,
   totalCount,
   attendancePercentage,
@@ -110,14 +115,14 @@ const StudentCard: React.FC<StudentCardProps> = ({
 
       <StatsSection>
         <StatBox>
-          <StatLabel>Attendance Count</StatLabel>
+          <StatLabel>{scoreTitle}</StatLabel>
           <StatValue>
             {attendanceCount}/{totalCount}
           </StatValue>
         </StatBox>
 
         <StatBox>
-          <StatLabel>Attendance Percentage</StatLabel>
+          <StatLabel>{percentageTitle}</StatLabel>
           <StatValue>{attendancePercentage}%</StatValue>
         </StatBox>
       </StatsSection>

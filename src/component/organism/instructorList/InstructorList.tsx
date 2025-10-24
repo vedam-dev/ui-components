@@ -7,7 +7,6 @@ export interface InstructorOption {
   rating: number;
   disabled?: boolean;
 }
-
 export interface InstructorListProps {
   value: string;
   onChange: (value: string) => void;
@@ -141,7 +140,7 @@ const RatingText = styled(Typography)<{ colorscheme?: string }>(({ colorscheme }
   const color = colorscheme === 'purple' ? '#9B6FE8' : '#C8A658';
   return {
     color,
-    fontFamily: 'Poppins',
+    fontFamily: 'Outfit',
     fontSize: '22px',
     fontStyle: 'normal',
     fontWeight: 500,
@@ -172,7 +171,7 @@ const InstructorList: React.FC<InstructorListProps> = ({
   sx,
   disabled = false,
   title = 'Instructor List',
-  subtitle = 'Choose a an instructor to view their ratings',
+  subtitle = 'Choose an instructor to view their ratings',
 }) => {
   const colorSchemes = ['yellow', 'purple'];
 

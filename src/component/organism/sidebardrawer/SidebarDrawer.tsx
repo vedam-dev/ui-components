@@ -1,4 +1,4 @@
-import React, { FC, ReactNode, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import {
   Drawer as MuiDrawer,
   DrawerProps as MuiDrawerProps,
@@ -15,10 +15,12 @@ import { CoreTheme, useCoreTheme } from '../../../theme/core-theme';
 
 export interface SidebarItem {
   id: string;
-  icon: ReactNode;
+  icon: React.ReactNode;
   text: string;
   onClick?: () => void;
   disabled?: boolean;
+
+  selected?: boolean;
 }
 
 export interface SidebarDrawerProps extends Omit<MuiDrawerProps, 'open' | 'onClose'> {
@@ -46,8 +48,24 @@ const SidebarDrawer: FC<SidebarDrawerProps> = ({
 }) => {
   const { palette } = useCoreTheme() as CoreTheme;
   const [internalExpanded, setInternalExpanded] = useState(defaultExpanded);
-  const [activeId, setActiveId] = useState<string | null>(null);
+
+  const initialActiveId = (() => {
+    const selected = items.find(it => it.selected);
+    if (selected) return selected.id;
+    return items[0]?.id ?? null;
+  })();
+
+  const [activeId, setActiveId] = useState<string | null>(initialActiveId);
   const theme = useCoreTheme() as CoreTheme;
+
+  useEffect(() => {
+    const selected = items.find(it => it.selected);
+    if (selected) {
+      setActiveId(selected.id);
+    } else {
+      setActiveId(items[0]?.id ?? null);
+    }
+  }, [items]);
 
   const isExpanded = expanded !== undefined ? expanded : internalExpanded;
 
