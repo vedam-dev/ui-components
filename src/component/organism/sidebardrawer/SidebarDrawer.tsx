@@ -50,7 +50,7 @@ const SidebarDrawer: FC<SidebarDrawerProps> = ({
   const [internalExpanded, setInternalExpanded] = useState(defaultExpanded);
 
   const initialActiveId = (() => {
-    const selected = items.find(it => it.selected);
+    const selected = items.find((it) => it.selected);
     if (selected) return selected.id;
     return items[0]?.id ?? null;
   })();
@@ -59,7 +59,7 @@ const SidebarDrawer: FC<SidebarDrawerProps> = ({
   const theme = useCoreTheme() as CoreTheme;
 
   useEffect(() => {
-    const selected = items.find(it => it.selected);
+    const selected = items.find((it) => it.selected);
     if (selected) {
       setActiveId(selected.id);
     } else {
