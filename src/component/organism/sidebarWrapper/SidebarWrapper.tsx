@@ -65,9 +65,13 @@ const SidebarWrapper: FC<SidebarWrapperProps> = ({
   const getSelectedIdFromUrl = (itemsToCheck: SidebarItem[]) => {
     if (typeof window === 'undefined') return itemsToCheck[0]?.id ?? '';
     const path = window.location.pathname || '';
-    const seg = path.split('/').filter(Boolean)[0] ?? '';
-    const match = itemsToCheck.find((it) => it.id.toLowerCase() === seg.toLowerCase());
-    if (match) return match.id;
+
+    const segments = path.split('/').filter(Boolean);
+    const lastSegment = segments.length > 0 ? segments[segments.length - 1] : '';
+
+    const exactMatch = itemsToCheck.find((it) => it.id.toLowerCase() === lastSegment.toLowerCase());
+    if (exactMatch) return exactMatch.id;
+
     for (const it of itemsToCheck) {
       if (
         path.toLowerCase().includes(`/${it.id.toLowerCase()}`) ||
@@ -76,6 +80,7 @@ const SidebarWrapper: FC<SidebarWrapperProps> = ({
         return it.id;
       }
     }
+
     return itemsToCheck[0]?.id ?? '';
   };
 
