@@ -1,5 +1,5 @@
-import React, { useState, useMemo } from 'react';
-import { Box, Paper, Typography, styled } from '@mui/material';
+import React, { useState, useMemo, useEffect } from 'react';
+import { Box, Paper, Typography, styled, Tooltip } from '@mui/material';
 
 export type AttendanceStatus = 'leave' | 'holiday' | 'present' | 'absent';
 
@@ -11,11 +11,19 @@ export interface MonthlyCalendarEvent {
   color?: string;
 }
 
+export interface TooltipData {
+  presentCount: number;
+  absentCount: number;
+  noSessionCount: number;
+  leaveCount: number;
+}
+
 export interface MonthlyCalendarProps {
   events?: MonthlyCalendarEvent[];
   currentDate?: Date;
   onDateClick?: (date: Date) => void;
   sx?: any;
+  tooltipData?: Map<string, TooltipData>; // Key format: 'YYYY-M-D'
 }
 
 const Container = styled(Paper)(() => ({
@@ -45,7 +53,6 @@ const CalendarGrid = styled(Box)(() => ({
   gridTemplateColumns: 'repeat(7, 1fr)',
   gap: '12px',
   paddingX: '24px',
-  paddingBottom: '24px',
 }));
 
 const DayHeader = styled(Box)(() => ({
@@ -55,7 +62,7 @@ const DayHeader = styled(Box)(() => ({
   fontSize: '18px',
   fontStyle: 'normal',
   fontWeight: 600,
-  lineHeight: 'normal',
+  lineHeight: '23px',
 }));
 
 const DayCell = styled(Box, {
@@ -100,8 +107,8 @@ const DayCell = styled(Box, {
     backgroundColor,
     borderRadius,
     padding: '20px',
-    maxHeight: '80px',
-    minWidth: '168px',
+    // maxHeight: '80px',
+    minWidth: '167px',
     display: 'flex',
     alignItems: 'flex-start',
     justifyContent: 'center',
@@ -116,7 +123,7 @@ const DayCell = styled(Box, {
     }),
     ...(isToday &&
       !isOtherMonth && {
-        outline: '3px solid #FF9500',
+        outline: '3px solid #8A18FF',
         outlineOffset: '-3px',
       }),
   };
@@ -124,10 +131,60 @@ const DayCell = styled(Box, {
 
 const DayNumber = styled(Typography)<{ isOtherMonth?: boolean }>(({ isOtherMonth }) => ({
   fontSize: '18px',
+  lineHeight: '17px',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
   fontWeight: 600,
   color: isOtherMonth ? 'transparent' : '#1E1E1E',
   fontFamily: 'Outfit',
   visibility: isOtherMonth ? 'hidden' : 'visible',
+}));
+
+const TooltipContent = styled(Box)(() => ({
+  display: 'inline-flex',
+  padding: '12px 10px',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  alignItems: 'flex-start',
+  gap: '8px',
+  borderRadius: '12px',
+  background: '#FFF',
+  filter: 'drop-shadow(0 0 10px rgba(0, 0, 0, 0.15))',
+}));
+
+const TooltipRow = styled(Box)(() => ({
+  display: 'flex',
+  alignItems: 'center',
+}));
+
+const ColorDot = styled(Box)<{ color: string }>(({ color }) => ({
+  width: '8px',
+  height: '8px',
+  borderRadius: '50%',
+  backgroundColor: color,
+  flexShrink: 0,
+  marginRight: '6px',
+}));
+
+const TooltipNumber = styled(Typography)(() => ({
+  color: '#1E1E1E',
+  textAlign: 'center',
+  fontFamily: 'Outfit',
+  fontSize: '14px',
+  fontStyle: 'normal',
+  fontWeight: 600,
+  lineHeight: '10px',
+  marginRight: '4px',
+}));
+
+const TooltipLabel = styled(Typography)(() => ({
+  color: '#1E1E1E',
+  fontFamily: 'Outfit',
+  fontSize: '14px',
+  fontStyle: 'normal',
+  fontWeight: 400,
+  lineHeight: '10px',
 }));
 
 function getDaysInMonth(date: Date): Date[] {
@@ -137,25 +194,16 @@ function getDaysInMonth(date: Date): Date[] {
   const firstDay = new Date(year, month, 1);
   const lastDay = new Date(year, month + 1, 0);
 
-  const startDay = firstDay.getDay();
-  const daysInMonth = lastDay.getDate();
+  const firstDayOfWeek = firstDay.getDay();
+  const startDate = new Date(firstDay);
+  const daysFromPreviousMonth = firstDayOfWeek === 0 ? 6 : firstDayOfWeek - 1;
+  startDate.setDate(startDate.getDate() - daysFromPreviousMonth);
 
   const days: Date[] = [];
-
-  const adjustedStartDay = startDay === 0 ? 6 : startDay - 1;
-
-  for (let i = adjustedStartDay - 1; i >= 0; i--) {
-    const prevDate = new Date(year, month, -i);
-    days.push(prevDate);
-  }
-
-  for (let i = 1; i <= daysInMonth; i++) {
-    days.push(new Date(year, month, i));
-  }
-
-  const remainingDays = 35 - days.length;
-  for (let i = 1; i <= remainingDays; i++) {
-    days.push(new Date(year, month + 1, i));
+  for (let i = 0; i < 42; i++) {
+    const currentDate = new Date(startDate);
+    currentDate.setDate(startDate.getDate() + i);
+    days.push(currentDate);
   }
 
   return days;
@@ -166,8 +214,13 @@ const MonthlyCalendar: React.FC<MonthlyCalendarProps> = ({
   currentDate = new Date(),
   onDateClick,
   sx,
+  tooltipData,
 }) => {
-  const [selectedMonth] = useState(currentDate);
+  const [selectedMonth, setSelectedMonth] = useState(currentDate);
+
+  useEffect(() => {
+    setSelectedMonth(currentDate);
+  }, [currentDate]);
 
   const days = useMemo(() => getDaysInMonth(selectedMonth), [selectedMonth]);
 
@@ -195,6 +248,37 @@ const MonthlyCalendar: React.FC<MonthlyCalendarProps> = ({
     return eventsByDate.get(key);
   };
 
+  const getTooltipForDate = (date: Date) => {
+    if (!tooltipData) return null;
+    const key = `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`;
+    return tooltipData.get(key);
+  };
+
+  const renderTooltip = (data: TooltipData) => (
+    <TooltipContent>
+      <TooltipRow>
+        <ColorDot color="#42B657" />
+        <TooltipNumber>{data.presentCount}</TooltipNumber>
+        <TooltipLabel>Present</TooltipLabel>
+      </TooltipRow>
+      <TooltipRow>
+        <ColorDot color="#FF4848" />
+        <TooltipNumber>{data.absentCount}</TooltipNumber>
+        <TooltipLabel>Absent</TooltipLabel>
+      </TooltipRow>
+      <TooltipRow>
+        <ColorDot color="#999" />
+        <TooltipNumber>{data.noSessionCount}</TooltipNumber>
+        <TooltipLabel>No-Session</TooltipLabel>
+      </TooltipRow>
+      <TooltipRow>
+        <ColorDot color="#FDEBD9" />
+        <TooltipNumber>{data.leaveCount}</TooltipNumber>
+        <TooltipLabel>Leave</TooltipLabel>
+      </TooltipRow>
+    </TooltipContent>
+  );
+
   const weekDays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 
   return (
@@ -210,10 +294,11 @@ const MonthlyCalendar: React.FC<MonthlyCalendarProps> = ({
       <CalendarGrid>
         {days.map((day, index) => {
           const event = getEventForDate(day);
+          const tooltip = getTooltipForDate(day);
           const today = isToday(day);
           const otherMonth = !isCurrentMonth(day);
 
-          return (
+          const dayCell = (
             <DayCell
               key={index}
               isToday={today}
@@ -226,6 +311,42 @@ const MonthlyCalendar: React.FC<MonthlyCalendarProps> = ({
               <DayNumber isOtherMonth={otherMonth}>{day.getDate()}</DayNumber>
             </DayCell>
           );
+
+          if (tooltip && !otherMonth) {
+            return (
+              <Tooltip
+                key={index}
+                title={renderTooltip(tooltip)}
+                arrow
+                placement="top"
+                PopperProps={{
+                  modifiers: [
+                    {
+                      name: 'offset',
+                      options: {
+                        offset: [0, -14],
+                      },
+                    },
+                  ],
+                }}
+                componentsProps={{
+                  tooltip: {
+                    sx: {
+                      bgcolor: 'transparent',
+                      padding: 0,
+                      '& .MuiTooltip-arrow': {
+                        color: '#FFF',
+                      },
+                    },
+                  },
+                }}
+              >
+                {dayCell}
+              </Tooltip>
+            );
+          }
+
+          return dayCell;
         })}
       </CalendarGrid>
     </Container>

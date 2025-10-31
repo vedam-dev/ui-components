@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState, FC } from 'react';
+import React, { useEffect, useRef, useState, FC } from 'react';
 import SidebarDrawer, { SidebarItem } from '../sidebardrawer/SidebarDrawer';
 import TopBar, { TopBarProps } from '../topbar/TopBar';
 import {
@@ -14,6 +15,12 @@ const defaultItems: SidebarItem[] = [
     icon: <DashboardIcon />,
     text: 'Dashboard',
     onClick: () => console.log('Dashboard clicked'),
+  },
+  {
+    id: 'users',
+    icon: <PeopleIcon />,
+    text: 'Users',
+    onClick: () => console.log('Users clicked'),
   },
   {
     id: 'users',
@@ -40,6 +47,9 @@ interface SidebarWrapperProps extends Partial<TopBarProps> {
   collapsedWidth?: number;
   expandedWidth?: number;
   hoverDelayMs?: number;
+  collapsedWidth?: number;
+  expandedWidth?: number;
+  hoverDelayMs?: number;
 }
 
 const SidebarWrapper: FC<SidebarWrapperProps> = ({
@@ -57,8 +67,12 @@ const SidebarWrapper: FC<SidebarWrapperProps> = ({
   collapsedWidth = 84,
   expandedWidth = 200,
   hoverDelayMs = 1000,
+  collapsedWidth = 84,
+  expandedWidth = 200,
+  hoverDelayMs = 1000,
 }) => {
   const topbarHeight = 106;
+  const hoverTimerRef = useRef<number | null>(null);
   const hoverTimerRef = useRef<number | null>(null);
   const [isSidebarExpanded, setIsSidebarExpanded] = useState(false);
 
@@ -205,8 +219,16 @@ const SidebarWrapper: FC<SidebarWrapperProps> = ({
         coinCount={coinCount}
         notificationCount={notificationCount}
         onMenuClick={() => setSidebarExpandedImmediate((p) => !p)}
+        onMenuClick={() => setSidebarExpandedImmediate((p) => !p)}
         onProfileClick={onProfileClick}
         isSidebarExpanded={isSidebarExpanded}
+        sx={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          zIndex: isSidebarExpanded ? 0 : 20,
+        }}
         sx={{
           position: 'fixed',
           top: 0,
@@ -217,6 +239,38 @@ const SidebarWrapper: FC<SidebarWrapperProps> = ({
         hideStatsContainer={hideStatsContainer}
       />
 
+      <div
+        onMouseEnter={handleHoverEnter}
+        onMouseLeave={handleHoverLeave}
+        style={{
+          position: 'fixed',
+          top: `${topbarHeight}px`,
+          left: 0,
+          height: `calc(100vh - ${topbarHeight}px)`,
+          width: isSidebarExpanded ? expandedWidth : collapsedWidth,
+          zIndex: isSidebarExpanded ? 0 : 10,
+          pointerEvents: 'auto',
+        }}
+      >
+        <SidebarDrawer
+          items={localItems}
+          anchor="left"
+          collapsedWidth={collapsedWidth}
+          expandedWidth={expandedWidth}
+          expanded={isSidebarExpanded}
+          onToggleExpand={setSidebarExpandedImmediate}
+          onItemClick={handleItemClick}
+          transitionDuration={hoverDelayMs}
+          paperSx={{
+            bgcolor: 'background.default',
+            marginTop: `${topbarHeight}px`,
+            height: `calc(100vh - ${topbarHeight}px)`,
+            zIndex: isSidebarExpanded ? 0 : 10,
+            transition: `width ${hoverDelayMs}ms ease, transform ${hoverDelayMs}ms ease, opacity ${hoverDelayMs}ms ease`,
+            overflow: 'hidden',
+          }}
+        />
+      </div>
       <div
         onMouseEnter={handleHoverEnter}
         onMouseLeave={handleHoverLeave}

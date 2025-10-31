@@ -83,9 +83,9 @@ export const StudentListItemStatus: React.FC<StudentListItemStatusProps> = ({ st
         sx={{
           backgroundColor: getStatusColor(status),
           color: 'white',
-          padding: theme.spacing(0.5, 2.5),
+          padding: theme.spacing(1, 2.5),
           borderRadius: theme.spacing(25),
-          fontSize: '14px',
+          fontSize: '12px',
           fontWeight: 400,
           lineHeight: '18px',
           whiteSpace: 'nowrap',
