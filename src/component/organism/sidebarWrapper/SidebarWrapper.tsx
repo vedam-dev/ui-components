@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState, FC } from 'react';
-import React, { useEffect, useRef, useState, FC } from 'react';
 import SidebarDrawer, { SidebarItem } from '../sidebardrawer/SidebarDrawer';
 import TopBar, { TopBarProps } from '../topbar/TopBar';
 import {
@@ -47,9 +46,6 @@ interface SidebarWrapperProps extends Partial<TopBarProps> {
   collapsedWidth?: number;
   expandedWidth?: number;
   hoverDelayMs?: number;
-  collapsedWidth?: number;
-  expandedWidth?: number;
-  hoverDelayMs?: number;
 }
 
 const SidebarWrapper: FC<SidebarWrapperProps> = ({
@@ -67,17 +63,14 @@ const SidebarWrapper: FC<SidebarWrapperProps> = ({
   collapsedWidth = 84,
   expandedWidth = 200,
   hoverDelayMs = 1000,
-  collapsedWidth = 84,
-  expandedWidth = 200,
-  hoverDelayMs = 1000,
 }) => {
   const topbarHeight = 106;
   const hoverTimerRef = useRef<number | null>(null);
-  const hoverTimerRef = useRef<number | null>(null);
   const [isSidebarExpanded, setIsSidebarExpanded] = useState(false);
 
-
-  const hasExplicitSelection = items.some(item => 'selected' in item && item.selected !== undefined);
+  const hasExplicitSelection = items.some(
+    (item) => 'selected' in item && item.selected !== undefined
+  );
 
   const getSelectedIdFromUrl = (itemsToCheck: SidebarItem[]) => {
     if (typeof window === 'undefined') return itemsToCheck[0]?.id ?? '';
@@ -102,11 +95,9 @@ const SidebarWrapper: FC<SidebarWrapperProps> = ({
   };
 
   const [localItems, setLocalItems] = useState<SidebarItem[]>(() => {
-
     if (hasExplicitSelection) {
-      return items.map(it => ({ ...it })) as SidebarItem[];
+      return items.map((it) => ({ ...it })) as SidebarItem[];
     }
-    
 
     const picked = getSelectedIdFromUrl(items);
     return items.map(
@@ -119,10 +110,10 @@ const SidebarWrapper: FC<SidebarWrapperProps> = ({
 
   useEffect(() => {
     if (hasExplicitSelection) {
-      setLocalItems(items.map(it => ({ ...it })) as SidebarItem[]);
+      setLocalItems(items.map((it) => ({ ...it })) as SidebarItem[]);
       return;
     }
-    
+
     const picked = getSelectedIdFromUrl(items);
     setLocalItems(
       items.map(
@@ -136,7 +127,7 @@ const SidebarWrapper: FC<SidebarWrapperProps> = ({
 
   useEffect(() => {
     if (hasExplicitSelection) return;
-    
+
     const onPop = () => {
       const picked = getSelectedIdFromUrl(items);
       setLocalItems((prev) => prev.map((it) => ({ ...it, selected: it.id === picked })));
@@ -183,11 +174,11 @@ const SidebarWrapper: FC<SidebarWrapperProps> = ({
 
   const handleItemClick = (item: SidebarItem) => {
     if (!item) return;
-    
+
     if (!hasExplicitSelection) {
       setLocalItems((prev) => prev.map((it) => ({ ...it, selected: it.id === item.id })));
     }
-    
+
     try {
       item.onClick?.();
     } catch (e) {
@@ -219,16 +210,8 @@ const SidebarWrapper: FC<SidebarWrapperProps> = ({
         coinCount={coinCount}
         notificationCount={notificationCount}
         onMenuClick={() => setSidebarExpandedImmediate((p) => !p)}
-        onMenuClick={() => setSidebarExpandedImmediate((p) => !p)}
         onProfileClick={onProfileClick}
         isSidebarExpanded={isSidebarExpanded}
-        sx={{
-          position: 'fixed',
-          top: 0,
-          left: 0,
-          right: 0,
-          zIndex: isSidebarExpanded ? 0 : 20,
-        }}
         sx={{
           position: 'fixed',
           top: 0,
