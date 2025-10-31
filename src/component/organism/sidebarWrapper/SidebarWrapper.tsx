@@ -22,12 +22,6 @@ const defaultItems: SidebarItem[] = [
     onClick: () => console.log('Users clicked'),
   },
   {
-    id: 'users',
-    icon: <PeopleIcon />,
-    text: 'Users',
-    onClick: () => console.log('Users clicked'),
-  },
-  {
     id: 'analytics',
     icon: <AnalyticsIcon />,
     text: 'Analytics',
@@ -222,38 +216,6 @@ const SidebarWrapper: FC<SidebarWrapperProps> = ({
         hideStatsContainer={hideStatsContainer}
       />
 
-      <div
-        onMouseEnter={handleHoverEnter}
-        onMouseLeave={handleHoverLeave}
-        style={{
-          position: 'fixed',
-          top: `${topbarHeight}px`,
-          left: 0,
-          height: `calc(100vh - ${topbarHeight}px)`,
-          width: isSidebarExpanded ? expandedWidth : collapsedWidth,
-          zIndex: isSidebarExpanded ? 0 : 10,
-          pointerEvents: 'auto',
-        }}
-      >
-        <SidebarDrawer
-          items={localItems}
-          anchor="left"
-          collapsedWidth={collapsedWidth}
-          expandedWidth={expandedWidth}
-          expanded={isSidebarExpanded}
-          onToggleExpand={setSidebarExpandedImmediate}
-          onItemClick={handleItemClick}
-          transitionDuration={hoverDelayMs}
-          paperSx={{
-            bgcolor: 'background.default',
-            marginTop: `${topbarHeight}px`,
-            height: `calc(100vh - ${topbarHeight}px)`,
-            zIndex: isSidebarExpanded ? 0 : 10,
-            transition: `width ${hoverDelayMs}ms ease, transform ${hoverDelayMs}ms ease, opacity ${hoverDelayMs}ms ease`,
-            overflow: 'hidden',
-          }}
-        />
-      </div>
       <div
         onMouseEnter={handleHoverEnter}
         onMouseLeave={handleHoverLeave}
