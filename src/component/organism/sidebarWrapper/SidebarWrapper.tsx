@@ -62,6 +62,10 @@ const SidebarWrapper: FC<SidebarWrapperProps> = ({
   const hoverTimerRef = useRef<number | null>(null);
   const [isSidebarExpanded, setIsSidebarExpanded] = useState(false);
 
+  const hasExplicitSelection = items.some(
+    (item) => 'selected' in item && item.selected !== undefined
+  );
+
   const getSelectedIdFromUrl = (itemsToCheck: SidebarItem[]) => {
     if (typeof window === 'undefined') return itemsToCheck[0]?.id ?? '';
     const path = window.location.pathname || '';
@@ -85,6 +89,10 @@ const SidebarWrapper: FC<SidebarWrapperProps> = ({
   };
 
   const [localItems, setLocalItems] = useState<SidebarItem[]>(() => {
+    if (hasExplicitSelection) {
+      return items.map((it) => ({ ...it })) as SidebarItem[];
+    }
+
     const picked = getSelectedIdFromUrl(items);
     return items.map(
       (it) =>
@@ -95,6 +103,11 @@ const SidebarWrapper: FC<SidebarWrapperProps> = ({
   });
 
   useEffect(() => {
+    if (hasExplicitSelection) {
+      setLocalItems(items.map((it) => ({ ...it })) as SidebarItem[]);
+      return;
+    }
+
     const picked = getSelectedIdFromUrl(items);
     setLocalItems(
       items.map(
@@ -104,16 +117,18 @@ const SidebarWrapper: FC<SidebarWrapperProps> = ({
           }
       )
     );
-  }, [items]);
+  }, [items, hasExplicitSelection]);
 
   useEffect(() => {
+    if (hasExplicitSelection) return;
+
     const onPop = () => {
       const picked = getSelectedIdFromUrl(items);
       setLocalItems((prev) => prev.map((it) => ({ ...it, selected: it.id === picked })));
     };
     window.addEventListener('popstate', onPop);
     return () => window.removeEventListener('popstate', onPop);
-  }, [items]);
+  }, [items, hasExplicitSelection]);
 
   const clearHoverTimer = () => {
     if (hoverTimerRef.current) {
@@ -153,7 +168,11 @@ const SidebarWrapper: FC<SidebarWrapperProps> = ({
 
   const handleItemClick = (item: SidebarItem) => {
     if (!item) return;
-    setLocalItems((prev) => prev.map((it) => ({ ...it, selected: it.id === item.id })));
+
+    if (!hasExplicitSelection) {
+      setLocalItems((prev) => prev.map((it) => ({ ...it, selected: it.id === item.id })));
+    }
+
     try {
       item.onClick?.();
     } catch (e) {
