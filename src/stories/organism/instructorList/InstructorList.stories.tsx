@@ -21,6 +21,10 @@ const meta: Meta<typeof InstructorList> = {
     disabled: { control: 'boolean' },
     title: { control: 'text' },
     subtitle: { control: 'text' },
+    variant: {
+      control: 'select',
+      options: ['instructor', 'semester'],
+    },
     sx: { control: 'object' },
   },
   decorators: [(Story) => <Story />],
@@ -50,6 +54,26 @@ export const Default: Story = {
     value: 'john-1',
     title: 'Instructor List',
     subtitle: 'Choose a an instructor to view their ratings',
+  },
+};
+
+export const SemesterVariant: Story = {
+  render: (args) => <Interactive {...args} />,
+  args: {
+    variant: 'semester',
+    options: [
+      { value: 'sem-1', name: 'Semester 1' },
+      { value: 'sem-2', name: 'Semester 2' },
+      { value: 'sem-3', name: 'Semester 3' },
+      { value: 'sem-4', name: 'Semester 4' },
+      { value: 'sem-5', name: 'Semester 5' },
+      { value: 'sem-6', name: 'Semester 6' },
+      { value: 'sem-7', name: 'Semester 7' },
+      { value: 'sem-8', name: 'Semester 8' },
+    ],
+    value: 'sem-1',
+    title: 'Semester List',
+    subtitle: 'Choose a semester in the chosen program',
   },
 };
 
