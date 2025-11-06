@@ -284,11 +284,7 @@ const CampusSelection: React.FC<CampusSelectionProps> = ({
                 />
               </svg>
             </NavButton>
-            <NavButton
-              onClick={handleNext}
-              disabled={!canGoNext}
-              aria-label="Next page"
-            >
+            <NavButton onClick={handleNext} disabled={!canGoNext} aria-label="Next page">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
                 <path
                   d="M9 18L15 12L9 6"
@@ -361,7 +357,13 @@ const CampusSelection: React.FC<CampusSelectionProps> = ({
               >
                 Select Campus
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                  <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path
+                    d="M5 12H19M19 12L12 5M19 12L12 19"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
                 </svg>
               </SelectButton>
             </Card>
