@@ -4,9 +4,10 @@ import { Box, Typography, SxProps, Theme, styled } from '@mui/material';
 export interface InstructorOption {
   value: string;
   name: string;
-  rating: number;
+  rating?: number;
   disabled?: boolean;
 }
+
 export interface InstructorListProps {
   value: string;
   onChange: (value: string) => void;
@@ -15,6 +16,7 @@ export interface InstructorListProps {
   disabled?: boolean;
   title?: string;
   subtitle?: string;
+  variant?: 'instructor' | 'semester'; 
 }
 
 const Outer = styled(Box)(({ theme }) => ({
@@ -94,6 +96,7 @@ const Card = styled('button')<{
     textAlign: 'center',
     outline: 'none',
     boxShadow: 'none',
+     minHeight: '120px',
   };
 
   if (disabled) {
@@ -127,6 +130,17 @@ const InstructorName = styled(Typography)({
   fontWeight: 500,
   lineHeight: 'normal',
   marginBottom: '8px',
+});
+
+const SemesterName = styled(Typography)({
+  color: '#1E1E1E',
+  textAlign: 'center',
+  fontFamily: 'Outfit',
+  fontSize: '22px',
+  fontStyle: 'normal',
+  fontWeight: 500,
+  lineHeight: 'normal',
+  margin: 0,
 });
 
 const RatingContainer = styled(Box)({
@@ -172,6 +186,7 @@ const InstructorList: React.FC<InstructorListProps> = ({
   disabled = false,
   title = 'Instructor List',
   subtitle = 'Choose an instructor to view their ratings',
+  variant = 'instructor', 
 }) => {
   const colorSchemes = ['yellow', 'purple'];
 
@@ -213,20 +228,26 @@ const InstructorList: React.FC<InstructorListProps> = ({
                 colorscheme={colorScheme}
                 onClick={() => handleClick(opt)}
                 onKeyDown={(e) => handleKeyDown(e, opt)}
-                title={`${opt.name} - Rating: ${opt.rating}`}
+                title={variant === 'semester' ? opt.name : `${opt.name} - Rating: ${opt.rating}`}
               >
-                <InstructorName>{opt.name}</InstructorName>
-                <RatingContainer>
-                  <RatingText colorscheme={colorScheme}>{opt.rating}</RatingText>
-                  <StarIcon>
-                    <img
-                      src="https://acjlsquedaotbhbxmtee.supabase.co/storage/v1/object/public/vedam-website-assets/images/videoInfo/Vector%20(1).png"
-                      alt="staricon"
-                      width={'32px'}
-                      height={'28px'}
-                    />
-                  </StarIcon>
-                </RatingContainer>
+                {variant === 'semester' ? (
+                  <SemesterName>{opt.name}</SemesterName>
+                ) : (
+                  <>
+                    <InstructorName>{opt.name}</InstructorName>
+                    <RatingContainer>
+                      <RatingText colorscheme={colorScheme}>{opt.rating}</RatingText>
+                      <StarIcon>
+                        <img
+                          src="https://acjlsquedaotbhbxmtee.supabase.co/storage/v1/object/public/vedam-website-assets/images/videoInfo/Vector%20(1).png"
+                          alt="staricon"
+                          width={'32px'}
+                          height={'28px'}
+                        />
+                      </StarIcon>
+                    </RatingContainer>
+                  </>
+                )}
               </Card>
             );
           })}
