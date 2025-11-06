@@ -16,7 +16,7 @@ export interface InstructorListProps {
   disabled?: boolean;
   title?: string;
   subtitle?: string;
-  variant?: 'instructor' | 'semester'; 
+  variant?: 'instructor' | 'semester';
 }
 
 const Outer = styled(Box)(({ theme }) => ({
@@ -96,7 +96,7 @@ const Card = styled('button')<{
     textAlign: 'center',
     outline: 'none',
     boxShadow: 'none',
-     minHeight: '120px',
+    minHeight: '120px',
   };
 
   if (disabled) {
@@ -186,7 +186,7 @@ const InstructorList: React.FC<InstructorListProps> = ({
   disabled = false,
   title = 'Instructor List',
   subtitle = 'Choose an instructor to view their ratings',
-  variant = 'instructor', 
+  variant = 'instructor',
 }) => {
   const colorSchemes = ['yellow', 'purple'];
 

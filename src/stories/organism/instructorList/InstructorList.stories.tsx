@@ -21,7 +21,7 @@ const meta: Meta<typeof InstructorList> = {
     disabled: { control: 'boolean' },
     title: { control: 'text' },
     subtitle: { control: 'text' },
-    variant: { 
+    variant: {
       control: 'select',
       options: ['instructor', 'semester'],
     },
