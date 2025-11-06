@@ -9,7 +9,8 @@ const meta: Meta<typeof CampusSelection> = {
     layout: 'padded',
     docs: {
       description: {
-        component: 'Card-based campus selection component with carousel pagination for browsing multiple campuses.',
+        component:
+          'Card-based campus selection component with carousel pagination for browsing multiple campuses.',
       },
     },
   },

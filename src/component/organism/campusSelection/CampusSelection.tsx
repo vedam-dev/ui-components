@@ -267,35 +267,34 @@ const CampusSelection: React.FC<CampusSelectionProps> = ({
           <Title>{title}</Title>
           <Subtitle>{subtitle}</Subtitle>
         </Box>
-        
         {showNavigationButtons && totalPages > 1 && (
           <Box display="flex" gap={2}>
-            <NavButton 
-              onClick={handlePrevious} 
+            <NavButton
+              onClick={handlePrevious}
               disabled={!canGoPrevious}
               aria-label="Previous page"
             >
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                <path 
-                  d="M15 18L9 12L15 6" 
-                  stroke={canGoPrevious ? "#1F1F1F" : "#9CA3AF"} 
-                  strokeWidth="2" 
-                  strokeLinecap="round" 
+                <path
+                  d="M15 18L9 12L15 6"
+                  stroke={canGoPrevious ? '#1F1F1F' : '#9CA3AF'}
+                  strokeWidth="2"
+                  strokeLinecap="round"
                   strokeLinejoin="round"
                 />
               </svg>
             </NavButton>
-            <NavButton 
-              onClick={handleNext} 
+            <NavButton
+              onClick={handleNext}
               disabled={!canGoNext}
               aria-label="Next page"
             >
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                <path 
-                  d="M9 18L15 12L9 6" 
-                  stroke={canGoNext ? "#1F1F1F" : "#9CA3AF"} 
-                  strokeWidth="2" 
-                  strokeLinecap="round" 
+                <path
+                  d="M9 18L15 12L9 6"
+                  stroke={canGoNext ? '#1F1F1F' : '#9CA3AF'}
+                  strokeWidth="2"
+                  strokeLinecap="round"
                   strokeLinejoin="round"
                 />
               </svg>
