@@ -40,6 +40,7 @@ export { default as ContestListItem } from './component/organism/contestList/Con
 export { default as SurveyOptions } from './component/organism/surveyOptions/SurveyOptions';
 export { default as RatingCard } from './component/organism/rating/Rating';
 export { default as VideoPlayerModal } from './component/organism/video-player-modal/VideoPlayerModal';
+export { default as CampusSelection } from './component/organism/campusSelection/CampusSelection';
 
 export {
   ClassListItemRow,
