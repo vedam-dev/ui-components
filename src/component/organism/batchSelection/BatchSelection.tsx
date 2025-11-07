@@ -48,6 +48,7 @@ const Subtitle = styled(Typography)({
 
 const CardsRow = styled(Box)(({ theme }) => ({
   display: 'flex',
+  flexWrap: 'wrap',
   gap: theme.spacing(8.5),
   marginTop: theme.spacing(10),
   alignItems: 'stretch',
@@ -61,8 +62,9 @@ const Card = styled('button')<{
     display: 'flex',
     gap: theme.spacing(4),
     alignItems: 'center',
-    flex: 1,
-    minWidth: 0,
+    flexWrap: 'wrap',
+    flex: '1 1 calc(33.333% - ' + theme.spacing(8.5) + ')',
+    minWidth: theme.spacing(40),
     padding: theme.spacing(6, 5),
     borderRadius: theme.spacing(4),
     cursor: disabled ? 'not-allowed' : 'pointer',
