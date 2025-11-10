@@ -97,6 +97,7 @@ const Card = styled('button')<{
     outline: 'none',
     boxShadow: 'none',
     minHeight: '120px',
+    overflow: 'hidden',  
   };
 
   if (disabled) {
@@ -145,6 +146,10 @@ const SemesterName = styled(Typography)({
   fontWeight: 500,
   lineHeight: 'normal',
   margin: 0,
+  overflow: 'hidden',  
+  textOverflow: 'ellipsis', 
+  whiteSpace: 'nowrap',  
+  width: '100%',  
 });
 
 const RatingContainer = styled(Box)({
