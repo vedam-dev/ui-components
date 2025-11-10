@@ -130,6 +130,10 @@ const InstructorName = styled(Typography)({
   fontWeight: 500,
   lineHeight: 'normal',
   marginBottom: '8px',
+  overflow: 'hidden',
+  textOverflow: 'ellipsis',
+  whiteSpace: 'nowrap',
+  width: '100%',
 });
 
 const SemesterName = styled(Typography)({

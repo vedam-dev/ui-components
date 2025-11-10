@@ -93,6 +93,9 @@ const Label = styled(Typography)({
   fontStyle: 'normal',
   fontWeight: 500,
   lineHeight: 'normal',
+  overflow: 'hidden',
+  textOverflow: 'ellipsis',
+  whiteSpace: 'nowrap',
 });
 
 const BatchSelection: React.FC<BatchSelectionProps> = ({
