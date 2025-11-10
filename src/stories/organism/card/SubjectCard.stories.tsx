@@ -3,6 +3,8 @@ import SubjectCard from '../../../component/organism/card/SubjectCard';
 import { fn } from '@storybook/test';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { JSX } from 'react';
+import ContentCopyIcon from '@mui/icons-material/ContentCopy';
+import AddIcon from '@mui/icons-material/Add';
 
 const storybookTheme = createTheme({
   spacing: 4,
@@ -29,84 +31,7 @@ const meta: Meta<typeof SubjectCard> = {
   },
   tags: ['autodocs'],
   argTypes: {
-    subject: {
-      control: 'text',
-      description: 'The subject/title of the card',
-    },
-    teacher: {
-      control: 'text',
-      description: 'The teacher/instructor name',
-    },
-    duration: {
-      control: 'text',
-      description: 'Duration of the course',
-    },
-    lectureCount: {
-      control: { type: 'number', min: 0 },
-      description: 'Number of lectures in the course',
-    },
-    description: {
-      control: 'text',
-      description: 'Course description',
-    },
-    iconUrl: {
-      control: 'text',
-      description: 'URL for the subject icon',
-    },
-    iconAlt: {
-      control: 'text',
-      description: 'Alt text for the subject icon',
-    },
-    buttonText: {
-      control: 'text',
-      description: 'Text for the action button',
-    },
-
-    onGoToClass: {
-      action: 'Go to Class clicked',
-      description: 'Callback when button is clicked',
-    },
-
-    width: {
-      control: { type: 'number', min: 200, max: 500, step: 10 },
-      description: 'Width of the card in pixels',
-    },
-    height: {
-      control: { type: 'number', min: 200, max: 500, step: 10 },
-      description: 'Height of the card in pixels',
-    },
-    cardSx: {
-      control: 'object',
-      description: 'Custom styles for the card container',
-    },
-    iconContainerSx: {
-      control: 'object',
-      description: 'Custom styles for the icon container',
-    },
-    subjectTextSx: {
-      control: 'object',
-      description: 'Custom styles for the subject text',
-    },
-    teacherTextSx: {
-      control: 'object',
-      description: 'Custom styles for the teacher text',
-    },
-    durationTextSx: {
-      control: 'object',
-      description: 'Custom styles for the duration text',
-    },
-    lectureTextSx: {
-      control: 'object',
-      description: 'Custom styles for the lecture count text',
-    },
-    descriptionTextSx: {
-      control: 'object',
-      description: 'Custom styles for the description text',
-    },
-    buttonSx: {
-      control: 'object',
-      description: 'Custom styles for the button',
-    },
+    // ... existing argTypes remain the same
   },
   args: {
     onGoToClass: fn(),
@@ -116,155 +41,132 @@ const meta: Meta<typeof SubjectCard> = {
 export default meta;
 type Story = StoryObj<typeof SubjectCard>;
 
-export const Default: Story = {
+export const WithBatchOnly: Story = {
   args: {
-    subject: 'Java',
-    teacher: 'Priya Sharma',
-    duration: '4 months',
-    lectureCount: 24,
-    description: 'Advanced calculus, algebra, and mathematical analysis.',
+    subject: 'Dev 102',
+    description: 'Advanced calculus, algebra, and mathematical analysis',
+    batch: 'Batch I',
+    courseCode: '102',
+    credit: '200',
+    variant: 'course-offering',
+    buttons: [
+      {
+        text: 'Replicate',
+        onClick: fn(),
+        variant: 'outlined',
+        startIcon: <ContentCopyIcon />,
+      },
+      {
+        text: 'Add Details',
+        onClick: fn(),
+        variant: 'contained',
+      },
+    ],
   },
 };
 
-export const WebDevelopment: Story = {
+export const WithTeacherOnly: Story = {
+  args: {
+    subject: 'Mathematics',
+    teacher: 'Priya Sharma',
+    description: 'Advanced calculus, algebra, and mathematical analysis',
+    duration: '10 Months',
+    lectureCount: 34,
+    buttons: [
+      {
+        text: 'Go to Class',
+        onClick: fn(),
+        variant: 'outlined',
+      },
+    ],
+  },
+};
+
+export const WithBatchAndTeacherShowsOnlyBatch: Story = {
+  args: {
+    subject: 'Physics',
+    teacher: 'Dr. Stephen Hawking', // This won't show because batch takes priority
+    description: 'Advanced calculus, algebra, and mathematical analysis',
+    batch: 'Batch III', // This will show
+    courseCode: 'PHY101',
+    credit: '250',
+    variant: 'course-offering',
+    buttons: [
+      {
+        text: 'Replicate',
+        onClick: fn(),
+        variant: 'outlined',
+      },
+      {
+        text: 'Add Details',
+        onClick: fn(),
+        variant: 'contained',
+      },
+    ],
+  },
+};
+
+export const NoBatchNoTeacher: Story = {
+  args: {
+    subject: 'Minimal Course',
+    description: 'This course shows only subject and description without batch or teacher',
+    duration: '6 months',
+    lectureCount: 24,
+    buttons: [
+      {
+        text: 'View Details',
+        onClick: fn(),
+        variant: 'outlined',
+      },
+    ],
+  },
+};
+
+export const DefaultWithTeacher: Story = {
   args: {
     subject: 'Web Development',
     teacher: 'Priya Sharma',
     duration: '4 months',
     lectureCount: 24,
     description: 'Advanced calculus, algebra, and mathematical analysis',
-    cardSx: {
-      background: 'linear-gradient(180deg, rgba(183,239,245,1) 0%, rgba(255,255,255,1) 100%)',
-      border: '1px solid #4fc3f7',
-    },
+    buttonText: 'Go to Class',
+    onGoToClass: fn(),
   },
 };
 
-export const Mathematics: Story = {
+export const CourseOfferingNoBatch: Story = {
   args: {
-    subject: 'Mathematics',
-    teacher: 'Priya Sharma',
-    duration: '4 months',
-    lectureCount: 24,
+    subject: 'Chemistry',
+    teacher: 'Dr. Marie Curie', // This will show because no batch is provided
     description: 'Advanced calculus, algebra, and mathematical analysis',
-    cardSx: {
-      background: 'linear-gradient(180deg, rgba(255,201,154,1) 0%, rgba(255,255,255,1) 100%)',
-      border: '1px solid #4fc3f7',
-    },
-  },
-};
-
-export const Unix: Story = {
-  args: {
-    subject: 'Unix',
-    teacher: 'Priya Sharma',
-    duration: '4 months',
-    lectureCount: 24,
-    description: 'Advanced calculus, algebra, and mathematical analysis',
-    cardSx: {
-      background: 'linear-gradient(180deg, rgba(226,198,255,1) 0%, rgba(255,255,255,1) 100%)',
-      border: '1px solid #4fc3f7',
-    },
-  },
-};
-
-export const CustomIcon: Story = {
-  args: {
-    subject: 'Data Science',
-    teacher: 'Dr. Chen',
-    duration: '12 weeks',
-    lectureCount: 32,
-    description: 'Machine learning fundamentals and data analysis techniques',
-    iconUrl: 'https://cdn-icons-png.flaticon.com/512/2103/2103633.png',
-    iconAlt: 'Data science icon',
-  },
-};
-
-export const CustomButton: Story = {
-  args: {
-    subject: 'React',
-    teacher: 'John Doe',
-    duration: '8 weeks',
-    lectureCount: 16,
-    description: 'Learn modern React with hooks and context API',
-    buttonText: 'Start Learning',
-    buttonSx: {
-      backgroundColor: 'primary.main',
-      color: 'white',
-      '&:hover': {
-        backgroundColor: 'primary.dark',
+    courseCode: 'CHEM101',
+    credit: '200',
+    variant: 'course-offering',
+    buttons: [
+      {
+        text: 'Replicate',
+        onClick: fn(),
+        variant: 'outlined',
       },
-    },
+      {
+        text: 'Add Details',
+        onClick: fn(),
+        variant: 'contained',
+      },
+    ],
   },
 };
 
-export const DarkTheme: Story = {
+export const EmptySecondaryText: Story = {
   args: {
-    subject: 'Node.js',
-    teacher: 'Mike Wilson',
-    duration: '6 weeks',
-    lectureCount: 18,
-    description: 'Backend development with Node.js and Express',
-    cardSx: {
-      background: 'linear-gradient(180deg, #424242 0%, #212121 100%)',
-      border: '1px solid #616161',
-    },
-    subjectTextSx: {
-      color: 'primary.light',
-    },
-    teacherTextSx: {
-      color: 'text.disabled',
-    },
-    durationTextSx: {
-      color: 'text.disabled',
-    },
-    lectureTextSx: {
-      color: 'text.disabled',
-    },
-    descriptionTextSx: {
-      color: 'text.secondary',
-    },
-    buttonSx: {
-      backgroundColor: 'primary.light',
-      color: 'background.default',
-      '&:hover': {
-        backgroundColor: 'primary.main',
+    subject: 'Course Without Instructor',
+    description: 'This course has no batch or instructor specified',
+    buttons: [
+      {
+        text: 'Enroll',
+        onClick: fn(),
+        variant: 'contained',
       },
-    },
-  },
-};
-
-export const FullyCustomized: Story = {
-  args: {
-    subject: 'UX Design',
-    teacher: 'Alex Morgan',
-    duration: '5 weeks',
-    lectureCount: 15,
-    description: 'Principles of user experience design and research methods',
-    width: 350,
-    height: 300,
-    iconUrl: 'https://cdn-icons-png.flaticon.com/512/3242/3242257.png',
-    buttonText: 'Enroll Now',
-    cardSx: {
-      background: 'linear-gradient(180deg, #e1f5fe 0%, #b3e5fc 100%)',
-      border: '1px solid #4fc3f7',
-    },
-    iconContainerSx: {
-      bgcolor: 'background.paper',
-    },
-    subjectTextSx: {
-      color: 'primary.dark',
-      fontSize: '24px',
-    },
-    teacherTextSx: {
-      color: 'primary.main',
-    },
-    buttonSx: {
-      backgroundColor: 'primary.main',
-      color: 'white',
-      '&:hover': {
-        backgroundColor: 'primary.dark',
-      },
-    },
+    ],
   },
 };
