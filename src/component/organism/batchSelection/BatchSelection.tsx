@@ -62,9 +62,9 @@ const Card = styled('button')<{
     display: 'flex',
     gap: theme.spacing(4),
     alignItems: 'center',
-    flexWrap: 'wrap',
-    flex: '1 1 calc(33.333% - ' + theme.spacing(8.5) + ')',
+    flex: '1 1 0',
     minWidth: theme.spacing(40),
+    maxWidth: theme.spacing(55),
     padding: theme.spacing(6, 5),
     borderRadius: theme.spacing(4),
     cursor: disabled ? 'not-allowed' : 'pointer',
@@ -93,6 +93,9 @@ const Label = styled(Typography)({
   fontStyle: 'normal',
   fontWeight: 500,
   lineHeight: 'normal',
+  overflow: 'hidden',
+  textOverflow: 'ellipsis',
+  whiteSpace: 'nowrap',
 });
 
 const BatchSelection: React.FC<BatchSelectionProps> = ({
@@ -157,7 +160,7 @@ const BatchSelection: React.FC<BatchSelectionProps> = ({
                 style={{
                   background: cardBackground,
                   border: cardBorder,
-                  maxWidth: theme.spacing(55),
+                  minWidth: theme.spacing(52),
                 }}
               >
                 <Box
