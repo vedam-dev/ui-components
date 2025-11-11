@@ -141,7 +141,6 @@ export const LessItems: StoryObj = {
     <FeeListItem>
       <FeeListItemRow title="Description" value="International Fees" />
       <FeeListItemRow title="Payment Mode" value="Online" />
-
       <FeeListItemRow title="Amount" value="5000" />
       <FeeListItemStatus status="Success" />
       <FeeListItemButton onClick={() => console.log('USD Receipt')} />
@@ -159,8 +158,24 @@ export const WithoutButton: Story = {
         <FeeListItemRow title="Date" value="07/04/2025" />
         <FeeListItemRow title="Amount" value="35000" />
         <FeeListItemStatus status="Failed" />
+        <FeeListItemButton />
       </>
     ),
     bgColor: '#FFEBEE',
+  },
+};
+
+export const WithoutButtonAlternative: Story = {
+  args: {
+    children: (
+      <>
+        <FeeListItemRow title="Description" value="Hostel Fees" />
+        <FeeListItemRow title="Payment Mode" value="Cash" />
+        <FeeListItemRow title="Payment ID" value="198026VEDAM" />
+        <FeeListItemRow title="Date" value="07/03/2025" />
+        <FeeListItemRow title="Amount" value="45000" />
+        <FeeListItemStatus status="Success" />
+      </>
+    ),
   },
 };
