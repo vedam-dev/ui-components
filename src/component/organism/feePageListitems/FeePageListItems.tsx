@@ -3,6 +3,7 @@ import { Box, Typography } from '@mui/material';
 import Chip from '../../atom/chip/Chip';
 import Button from '../../atom/button/Button';
 import { useCoreTheme, CoreTheme } from '../../../theme/core-theme';
+
 export interface FeeListItemRowProps {
   title: string;
   value: string;
@@ -42,6 +43,7 @@ export const FeeListItemRow: React.FC<FeeListItemRowProps> = ({ title, value }) 
     </Box>
   );
 };
+
 export enum FeeStatusVariant {
   Success = 'success',
   Pending = 'warning',
@@ -92,11 +94,16 @@ export const FeeListItemStatus: React.FC<FeeListItemStatusProps> = ({ status }) 
 };
 
 export interface FeeListItemButtonProps {
-  onClick: () => void;
+  onClick?: () => void;
 }
 
 export const FeeListItemButton: React.FC<FeeListItemButtonProps> = ({ onClick }) => {
   const theme = useCoreTheme() as CoreTheme;
+  // If no onClick handler is provided, don't render the button
+  if (!onClick) {
+    return null;
+  }
+
   return (
     <Box
       sx={{
