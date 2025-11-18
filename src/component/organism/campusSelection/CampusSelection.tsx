@@ -39,7 +39,7 @@ const Header = styled(Box)({
   display: 'flex',
   alignItems: 'flex-start',
   justifyContent: 'space-between',
-  marginBottom: '40px',
+  marginBottom: '34px',
 });
 
 const Title = styled(Typography)({
@@ -258,7 +258,7 @@ const CampusSelection: React.FC<CampusSelectionProps> = ({
   return (
     <Outer sx={sx}>
       <Header>
-        <Box>
+        <Box sx={{ pl: '22px' }}>
           <Title>{title}</Title>
           <Subtitle>{subtitle}</Subtitle>
         </Box>
@@ -302,11 +302,7 @@ const CampusSelection: React.FC<CampusSelectionProps> = ({
             globalIndex % 2 === 0
               ? 'linear-gradient(180deg, #FFF 0%, #F3E8FF 100%)'
               : 'linear-gradient(180deg, #FFF 0%, #FFEAC0 100%)';
-          const cardBorderColor =
-            globalIndex % 2 === 0
-              ? '1px solid #DAC2F2' 
-              : '1px solid #FDE1AA';
-
+          const cardBorder = globalIndex % 2 === 0 ? '1px solid #DAC2F2' : '1px solid #FDE1AA';
           return (
             <Card
               key={opt.value}
@@ -320,7 +316,7 @@ const CampusSelection: React.FC<CampusSelectionProps> = ({
               onKeyDown={(e) => handleKeyDown(e, opt)}
               style={{
                 background: cardBackground,
-                border: cardBorderColor,
+                border: cardBorder,
               }}
             >
               <CardHeader>
@@ -334,11 +330,14 @@ const CampusSelection: React.FC<CampusSelectionProps> = ({
                 </Box>
               </CardHeader>
 
-              <Box sx={{
+              <Box
+                sx={{
                   borderRadius: '16px',
                   border: '1px solid #F6EDFF',
-                  backgroundColor: '#FFF', p: '25px 19px'
-              }}>
+                  backgroundColor: '#FFF',
+                  p: '25px 19px',
+                }}
+              >
                 <InfoRow>
                   <InfoLabel>College ID</InfoLabel>
                   <InfoValue>{opt.collegeId}</InfoValue>
@@ -354,19 +353,30 @@ const CampusSelection: React.FC<CampusSelectionProps> = ({
                   <InfoValue>{opt.pincode}</InfoValue>
                 </InfoRow>
               </Box>
-              <Box sx={{
+              <Box
+                sx={{
                   display: 'flex',
                   justifyContent: 'center',
                   alignItems: 'center',
                   mt: '8px',
-                }}>
+                }}
+              >
                 <SelectButton
                   onClick={(e) => handleSelectClick(e, opt)}
                   aria-label={`Select ${opt.campus}`}
                 >
                   Select Campus
-                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="16" viewBox="0 0 18 16" fill="none">
-                    <path d="M0 8C0 8.21216 0.0790138 8.41563 0.219662 8.56565C0.36031 8.71567 0.551069 8.79995 0.749975 8.79995H15.4392L9.96905 14.6336C9.89937 14.708 9.84409 14.7962 9.80638 14.8933C9.76867 14.9904 9.74926 15.0945 9.74926 15.1996C9.74926 15.3047 9.76867 15.4088 9.80638 15.5059C9.84409 15.603 9.89937 15.6912 9.96905 15.7656C10.0387 15.8399 10.1215 15.8988 10.2125 15.9391C10.3035 15.9793 10.4011 16 10.4997 16C10.5982 16 10.6958 15.9793 10.7868 15.9391C10.8779 15.8988 10.9606 15.8399 11.0303 15.7656L17.78 8.56597C17.8498 8.49167 17.9051 8.40345 17.9428 8.30633C17.9806 8.20922 18 8.10513 18 8C18 7.89487 17.9806 7.79078 17.9428 7.69366C17.9051 7.59655 17.8498 7.50832 17.78 7.43403L11.0303 0.234432C10.8895 0.0843276 10.6987 -1.5816e-09 10.4997 0C10.3006 1.5816e-09 10.1098 0.0843276 9.96905 0.234432C9.82832 0.384536 9.74926 0.588121 9.74926 0.8004C9.74926 1.01268 9.82832 1.21626 9.96905 1.36637L15.4392 7.20004H0.749975C0.551069 7.20004 0.36031 7.28432 0.219662 7.43435C0.0790138 7.58437 0 7.78784 0 8Z" fill="#8A18FF" />
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="18"
+                    height="16"
+                    viewBox="0 0 18 16"
+                    fill="none"
+                  >
+                    <path
+                      d="M0 8C0 8.21216 0.0790138 8.41563 0.219662 8.56565C0.36031 8.71567 0.551069 8.79995 0.749975 8.79995H15.4392L9.96905 14.6336C9.89937 14.708 9.84409 14.7962 9.80638 14.8933C9.76867 14.9904 9.74926 15.0945 9.74926 15.1996C9.74926 15.3047 9.76867 15.4088 9.80638 15.5059C9.84409 15.603 9.89937 15.6912 9.96905 15.7656C10.0387 15.8399 10.1215 15.8988 10.2125 15.9391C10.3035 15.9793 10.4011 16 10.4997 16C10.5982 16 10.6958 15.9793 10.7868 15.9391C10.8779 15.8988 10.9606 15.8399 11.0303 15.7656L17.78 8.56597C17.8498 8.49167 17.9051 8.40345 17.9428 8.30633C17.9806 8.20922 18 8.10513 18 8C18 7.89487 17.9806 7.79078 17.9428 7.69366C17.9051 7.59655 17.8498 7.50832 17.78 7.43403L11.0303 0.234432C10.8895 0.0843276 10.6987 -1.5816e-09 10.4997 0C10.3006 1.5816e-09 10.1098 0.0843276 9.96905 0.234432C9.82832 0.384536 9.74926 0.588121 9.74926 0.8004C9.74926 1.01268 9.82832 1.21626 9.96905 1.36637L15.4392 7.20004H0.749975C0.551069 7.20004 0.36031 7.28432 0.219662 7.43435C0.0790138 7.58437 0 7.78784 0 8Z"
+                      fill="#8A18FF"
+                    />
                   </svg>
                 </SelectButton>
               </Box>
