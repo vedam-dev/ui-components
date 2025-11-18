@@ -25,7 +25,7 @@ export interface CampusSelectionProps {
 }
 
 const Outer = styled(Box)(({ theme }) => ({
-  padding: '23px 32px 130px 23px',
+  padding: '23px 32px',
   borderRadius: theme.spacing(9),
   background: '#FFFFFF',
   boxShadow: '0 0 20px 0 rgba(0, 0, 0, 0.10)',
