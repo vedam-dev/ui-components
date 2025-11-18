@@ -35,21 +35,34 @@ const Outer = styled(Box)(({ theme }) => ({
   boxSizing: 'border-box',
 }));
 
-const Header = styled(Box)({
-  display: 'flex',
-  alignItems: 'flex-start',
-  justifyContent: 'space-between',
-  marginBottom: '34px',
-});
+const Header: React.FC<{ sx?: SxProps<Theme>; children?: React.ReactNode }> = ({
+  sx,
+  children,
+}) => (
+  <Typography
+    component="div"
+    sx={{
+      marginBottom: '40px',
+      ...sx,
+    }}
+  >
+    {children}
+  </Typography>
+);
 
-const Title = styled(Typography)({
-  color: '#1E1E1E',
-  fontFamily: 'Outfit, sans-serif',
-  fontSize: '22px',
-  fontStyle: 'normal',
-  fontWeight: 600,
-  lineHeight: 'normal',
-});
+const Title: React.FC<{ sx?: SxProps<Theme>; children?: React.ReactNode }> = ({ sx, children }) => (
+  <Typography
+    component="div"
+    sx={{
+      fontSize: '22px',
+      color: '#1E1E1E',
+      fontFamily: 'Outfit, sans-serif',
+      ...sx,
+    }}
+  >
+    {children}
+  </Typography>
+);
 
 const Subtitle = styled(Typography)({
   color: '#777777',
@@ -83,7 +96,7 @@ const NavButton = styled('button')<{ disabled?: boolean }>(({ disabled }) => ({
 
 const CardsRow = styled(Box)(({ theme }) => ({
   display: 'flex',
-  gap: theme.spacing(13.25),
+  gap: theme.spacing(13),
   mt: '34px',
   alignItems: 'stretch',
   flexWrap: 'wrap',
@@ -96,7 +109,7 @@ const Card = styled(Box)<{
   display: 'flex',
   flexDirection: 'column',
   flex: '1 1 calc(33.333% - 24px)',
-  maxWidth: '367px',
+  maxWidth: '368px',
   padding: theme.spacing(5.25),
   borderRadius: theme.spacing(5),
   cursor: disabled ? 'not-allowed' : 'pointer',
@@ -108,7 +121,7 @@ const CardHeader = styled(Box)({
   display: 'flex',
   alignItems: 'flex-start',
   gap: '16px',
-  marginBottom: '21px',
+  marginBottom: '20px',
 });
 
 const Logo = styled('img')({
@@ -139,7 +152,7 @@ const Campus = styled(Typography)({
 const InfoRow = styled(Box)({
   display: 'flex',
   alignItems: 'flex-start',
-  maxWidth: '325px',
+  maxWidth: '324px',
   gap: '34px',
   marginBottom: '26px',
   '&:last-of-type': {
@@ -165,8 +178,8 @@ const InfoValue = styled(Typography)({
 });
 
 const SelectButton = styled('button')({
-  maxWidth: '239px',
-  padding: '8px 51px',
+  minWidth: '240px',
+  padding: '8px 8px',
   borderRadius: '14px',
   border: '1px solid #8A18FF',
   background: 'transparent',
@@ -253,9 +266,18 @@ const CampusSelection: React.FC<CampusSelectionProps> = ({
 
   return (
     <Outer sx={sx}>
-      <Header>
+      <Header
+        sx={{
+          display: 'flex',
+          alignItems: 'flex-start',
+          justifyContent: 'space-between',
+          marginBottom: '34px',
+        }}
+      >
         <Box sx={{ pl: '22px' }}>
-          <Title>{title}</Title>
+          <Title sx={{ fontSize: '22px', fontWeight: 600, fontFamily: 'Outfit, sans-serif' }}>
+            {title}
+          </Title>
           <Subtitle>{subtitle}</Subtitle>
         </Box>
         {showNavigationButtons && totalPages > 1 && (
@@ -321,7 +343,7 @@ const CampusSelection: React.FC<CampusSelectionProps> = ({
                   alt="logo"
                 />
                 <Box flex="1" minWidth={0}>
-                  <CollegeName sx={{ mt: '7px' }}>{opt.collegeName}</CollegeName>
+                  <CollegeName>{opt.collegeName}</CollegeName>
                   <Campus>{opt.campus}</Campus>
                 </Box>
               </CardHeader>
