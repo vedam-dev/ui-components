@@ -34,7 +34,7 @@ const defaultOptions = [
     value: 'pune1',
     collegeName: 'Vedam School of Technology',
     campus: 'Campus : Pune',
-    collegeId: '1234ABC',
+    collegeId: '1',
     location: 'Ajeenkya DY Patil ABC Campus\nCharholi Budruk\nPune, Maharashtra',
     pincode: '412105',
   },
