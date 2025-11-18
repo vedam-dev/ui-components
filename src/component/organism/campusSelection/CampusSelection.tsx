@@ -25,7 +25,7 @@ export interface CampusSelectionProps {
 }
 
 const Outer = styled(Box)(({ theme }) => ({
-  padding: '23px 32px',
+  padding: '26px 32px 32px 32px',
   borderRadius: theme.spacing(9),
   background: '#FFFFFF',
   boxShadow: '0 0 20px 0 rgba(0, 0, 0, 0.10)',
@@ -178,8 +178,7 @@ const InfoValue = styled(Typography)({
 });
 
 const SelectButton = styled('button')({
-  minWidth: '240px',
-  padding: '8px 8px',
+  padding: '6px 20px',
   borderRadius: '14px',
   border: '1px solid #8A18FF',
   background: 'transparent',
@@ -190,7 +189,7 @@ const SelectButton = styled('button')({
   cursor: 'pointer',
   lineHeight: '28px',
   display: 'flex',
-  gap: '8px',
+  gap: '12px',
   alignItems: 'center',
   justifyContent: 'center',
   transition: 'all 200ms ease',
@@ -274,7 +273,7 @@ const CampusSelection: React.FC<CampusSelectionProps> = ({
           marginBottom: '34px',
         }}
       >
-        <Box sx={{ pl: '22px' }}>
+        <Box>
           <Title sx={{ fontSize: '22px', fontWeight: 600, fontFamily: 'Outfit, sans-serif' }}>
             {title}
           </Title>
@@ -353,7 +352,7 @@ const CampusSelection: React.FC<CampusSelectionProps> = ({
                   borderRadius: '16px',
                   border: '1px solid #F6EDFF',
                   backgroundColor: '#FFF',
-                  p: '25px 19px',
+                  p: '20px',
                 }}
               >
                 <InfoRow>
@@ -361,7 +360,7 @@ const CampusSelection: React.FC<CampusSelectionProps> = ({
                   <InfoValue>{opt.collegeId}</InfoValue>
                 </InfoRow>
 
-                <InfoRow sx={{ minHeight: '95px' }}>
+                <InfoRow sx={{ minHeight: '96px' }}>
                   <InfoLabel>Location</InfoLabel>
                   <InfoValue>{opt.location}</InfoValue>
                 </InfoRow>
