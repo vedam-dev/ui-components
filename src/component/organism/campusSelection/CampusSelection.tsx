@@ -149,11 +149,9 @@ const InfoRow = styled(Box)({
 
 const InfoLabel = styled(Typography)({
   color: '#1E1E1E',
-  fontFamily: 'Poppins, sans-serif',
+  fontFamily: 'Outfit, sans-serif',
   fontSize: '16px',
-  fontStyle: 'normal',
   fontWeight: 600,
-  lineHeight: 'normal',
   minWidth: '80px',
   flexShrink: 0,
 });
@@ -162,9 +160,7 @@ const InfoValue = styled(Typography)({
   color: '#1E1E1E',
   fontFamily: 'Outfit, sans-serif',
   fontSize: '16px',
-  fontStyle: 'normal',
   fontWeight: 400,
-  lineHeight: '1.5',
   flex: 1,
 });
 
