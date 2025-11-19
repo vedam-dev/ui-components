@@ -63,7 +63,7 @@ const SubjectCard: FC<SubjectCardProps> = ({
   onGoToClass,
 
   width = 303,
-  height = 265,
+  height = 260,
 
   cardSx,
   iconContainerSx,
@@ -82,6 +82,7 @@ const SubjectCard: FC<SubjectCardProps> = ({
     width: typeof width === 'number' ? `${width}px` : width,
     height: typeof height === 'number' ? `${height}px` : height,
     borderRadius: theme.spacing(7),
+    padding: '28px 20px',
     border: 'none',
     background: 'linear-gradient(180deg, rgba(255,230,205,1) 0%, rgba(226,198,255,1) 100%)',
     boxShadow: theme.vd.shadows.y8,
@@ -109,11 +110,9 @@ const SubjectCard: FC<SubjectCardProps> = ({
   const defaultSubjectTextSx: SxProps<Theme> = {
     fontFamily: theme.typography.fontFamily,
     fontWeight: 500,
-    color: theme.palette.text.primary,
+    color: '#1E1E1E',
     fontSize: '22px',
-    lineHeight: '24px',
-    letterSpacing: '0.15px',
-    marginBottom: theme.spacing(1),
+    lineHeight: '28px',
     width: '100%',
     overflow: 'hidden',
     textOverflow: 'ellipsis',
@@ -152,21 +151,25 @@ const SubjectCard: FC<SubjectCardProps> = ({
 
   const defaultDescriptionTextSx: SxProps<Theme> = {
     fontFamily: theme.typography.fontFamily,
-    color: theme.palette.text.primary,
-    fontSize: theme.typography.body1.fontSize,
+    color: '#1E1E1E',
+    fontSize: '16px',
     lineHeight: theme.spacing(4.5),
-    marginTop: theme.spacing(5.25),
-    mb: theme.spacing(5.25),
+    fontWeight: 400,
+    mb: theme.spacing(4.5),
     textWrap: 'stable',
-    ml: theme.spacing(6),
     ...descriptionTextSx,
+
+    display: '-webkit-box',
+    WebkitLineClamp: 2,
+    WebkitBoxOrient: 'vertical',
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
   };
 
   const defaultButtonSx: SxProps<Theme> = {
     width: theme.spacing(66.25),
     height: theme.spacing(9),
     padding: theme.spacing(2),
-    ml: theme.spacing(5),
     mb: theme.spacing(7.5),
     borderWidth: theme.spacing(0.25),
     borderRadius: theme.spacing(3),
@@ -185,20 +188,19 @@ const SubjectCard: FC<SubjectCardProps> = ({
 
   const defaultBatchTextSx: SxProps<Theme> = {
     fontFamily: theme.typography.fontFamily,
-    fontWeight: 500,
-    color: theme.palette.text.secondary,
-    fontSize: theme.typography.caption.fontSize,
-    marginBottom: theme.spacing(1),
+    fontWeight: 400,
+    color: '#525252',
+    fontSize: '18px',
+    lineHeight: '28px',
     ...batchTextSx,
   };
 
   const defaultCourseInfoTextSx: SxProps<Theme> = {
     fontFamily: theme.typography.fontFamily,
     fontWeight: 500,
-    color: theme.palette.text.secondary,
-    fontSize: theme.typography.caption.fontSize,
-    padding: theme.spacing(0.5, 1.5),
-    borderRadius: theme.spacing(1),
+    color: '#4C4C4C',
+    fontSize: '13px',
+    lineHeight: '18px',
     ...courseInfoTextSx,
   };
 
@@ -231,7 +233,7 @@ const SubjectCard: FC<SubjectCardProps> = ({
           height: '100%',
         }}
       >
-        <Stack direction="row" spacing={6} alignItems="center" mb={4.25} mt={7} ml={5}>
+        <Stack direction="row" spacing={6} alignItems="center" mb="18px">
           <Box sx={defaultIconContainerSx}>
             <Box
               component="img"
@@ -264,12 +266,23 @@ const SubjectCard: FC<SubjectCardProps> = ({
         </Stack>
 
         <Box>
-          {/* Show course code and credit if provided in course-offering variant */}
           {showCourseInfo && (
-            <Box sx={{ ml: theme.spacing(6), mb: theme.spacing(2) }}>
-              <Typography sx={defaultCourseInfoTextSx}>
-                Course Code: {courseCode} | Credit: {credit}
-              </Typography>
+            <Box sx={{ mb: '18px', display: 'flex', alignItems: 'center' }}>
+              {/* Course Code */}
+              <Typography sx={defaultCourseInfoTextSx}>Course Code: {courseCode}</Typography>
+
+              {/* Custom vertical divider */}
+              <Box
+                sx={{
+                  height: '15px',
+                  width: '1px',
+                  backgroundColor: '#4C4C4C',
+                  mx: '8px',
+                }}
+              />
+
+              {/* Course Credit */}
+              <Typography sx={defaultCourseInfoTextSx}>Course Credit: {credit}</Typography>
             </Box>
           )}
 
@@ -280,8 +293,6 @@ const SubjectCard: FC<SubjectCardProps> = ({
                 display: 'flex',
                 alignItems: 'center',
                 gap: theme.spacing(2),
-                mb: theme.spacing(0),
-                ml: theme.spacing(6),
               }}
             >
               <Stack direction="row" alignItems="center" spacing={1}>
@@ -320,9 +331,9 @@ const SubjectCard: FC<SubjectCardProps> = ({
             <Box
               sx={{
                 display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
                 gap: theme.spacing(2),
-                ml: theme.spacing(5),
-                mb: theme.spacing(7.5),
                 flexWrap: 'wrap',
               }}
             >
@@ -330,7 +341,6 @@ const SubjectCard: FC<SubjectCardProps> = ({
                 <Button
                   key={index}
                   variant={button.variant || 'outlined'}
-                  startIcon={button.startIcon}
                   sx={{
                     ...defaultButtonSx,
                     width: 'auto',
@@ -351,7 +361,7 @@ const SubjectCard: FC<SubjectCardProps> = ({
                     }),
                   }}
                   onClick={(e) => {
-                    e.stopPropagation(); // Prevent card click events
+                    e.stopPropagation();
                     button.onClick();
                   }}
                   disableElevation

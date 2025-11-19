@@ -44,7 +44,8 @@ type Story = StoryObj<typeof SubjectCard>;
 export const WithBatchOnly: Story = {
   args: {
     subject: 'Dev 102',
-    description: 'Advanced calculus, algebra, and mathematical analysis',
+    description:
+      'Advanced calculus, algebra, and mathematical analysis,Advanced calculus, algebra, and mathematical analysis,',
     batch: 'Batch I',
     courseCode: '102',
     credit: '200',
