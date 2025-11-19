@@ -51,7 +51,7 @@ const SubjectCard: FC<SubjectCardProps> = ({
   duration,
   lectureCount,
   description,
-  iconUrl = 'https://cdn-icons-png.flaticon.com/512/226/226777.png',
+  iconUrl = 'https://acjlsquedaotbhbxmtee.supabase.co/storage/v1/object/public/vedam-website-assets/images/footer/Vector.png',
   iconAlt = 'Subject icon',
   buttonText = 'Go to Class',
   batch,
@@ -293,6 +293,7 @@ const SubjectCard: FC<SubjectCardProps> = ({
                 display: 'flex',
                 alignItems: 'center',
                 gap: theme.spacing(2),
+                mb: '18px',
               }}
             >
               <Stack direction="row" alignItems="center" spacing={1}>
@@ -327,7 +328,9 @@ const SubjectCard: FC<SubjectCardProps> = ({
         </Box>
         {/* Buttons Section */}
         {displayButtons.length > 0 && (
-          <CardActions sx={{ padding: 0, mt: theme.spacing(0) }}>
+          <CardActions
+            sx={{ padding: 0, mt: theme.spacing(0), display: 'flex', justifyContent: 'center' }}
+          >
             <Box
               sx={{
                 display: 'flex',
@@ -344,19 +347,22 @@ const SubjectCard: FC<SubjectCardProps> = ({
                   sx={{
                     ...defaultButtonSx,
                     width: 'auto',
-                    minWidth: theme.spacing(20),
-                    ml: 0,
+                    minWidth: '125px',
                     ...(button.variant === 'contained' && {
-                      backgroundColor: theme.palette.primary.main,
+                      backgroundColor: '#8A18FF',
                       color: theme.palette.background.paper,
                       '&:hover': {
-                        backgroundColor: theme.palette.primary.dark,
+                        backgroundColor: '#8A18FF',
                         borderColor: theme.palette.primary.dark,
                       },
                     }),
                     ...(button.variant === 'outlined' && {
+                      backgroundColor: '#FFF',
+                      color: '#8A18FF',
+                      border: '1px solid #8A18FF',
                       '&:hover': {
-                        backgroundColor: 'rgba(124, 58, 237, 0.04)',
+                        backgroundColor: '#FFF',
+                        border: '1px solid #8A18FF',
                       },
                     }),
                   }}
