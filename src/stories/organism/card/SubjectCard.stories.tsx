@@ -4,7 +4,6 @@ import { fn } from '@storybook/test';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { JSX } from 'react';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
-import AddIcon from '@mui/icons-material/Add';
 
 const storybookTheme = createTheme({
   spacing: 4,
@@ -31,10 +30,14 @@ const meta: Meta<typeof SubjectCard> = {
   },
   tags: ['autodocs'],
   argTypes: {
-    // ... existing argTypes remain the same
+    index: {
+      control: { type: 'number', min: 0, max: 10 },
+      description: 'Index for card styling (determines gradient/border color)',
+    },
   },
   args: {
     onGoToClass: fn(),
+    index: 0, // Default index
   },
 };
 
@@ -50,6 +53,7 @@ export const WithBatchOnly: Story = {
     courseCode: '102',
     credit: '200',
     variant: 'course-offering',
+    index: 0,
     buttons: [
       {
         text: 'Replicate',
@@ -73,6 +77,7 @@ export const WithTeacherOnly: Story = {
     description: 'Advanced calculus, algebra, and mathematical analysis',
     duration: '10 Months',
     lectureCount: 34,
+    index: 1,
     buttons: [
       {
         text: 'Go to Class',
@@ -92,6 +97,7 @@ export const WithBatchAndTeacherShowsOnlyBatch: Story = {
     courseCode: 'PHY101',
     credit: '250',
     variant: 'course-offering',
+    index: 2,
     buttons: [
       {
         text: 'Replicate',
@@ -113,6 +119,7 @@ export const NoBatchNoTeacher: Story = {
     description: 'This course shows only subject and description without batch or teacher',
     duration: '6 months',
     lectureCount: 24,
+    index: 3,
     buttons: [
       {
         text: 'View Details',
@@ -131,6 +138,7 @@ export const DefaultWithTeacher: Story = {
     lectureCount: 24,
     description: 'Advanced calculus, algebra, and mathematical analysis',
     buttonText: 'Go to Class',
+    index: 0,
     onGoToClass: fn(),
   },
 };
@@ -143,6 +151,7 @@ export const CourseOfferingNoBatch: Story = {
     courseCode: 'CHEM101',
     credit: '200',
     variant: 'course-offering',
+    index: 1,
     buttons: [
       {
         text: 'Replicate',
@@ -162,6 +171,7 @@ export const EmptySecondaryText: Story = {
   args: {
     subject: 'Course Without Instructor',
     description: 'This course has no batch or instructor specified',
+    index: 2,
     buttons: [
       {
         text: 'Enroll',
@@ -169,5 +179,53 @@ export const EmptySecondaryText: Story = {
         variant: 'contained',
       },
     ],
+  },
+};
+
+// New story to showcase all 4 gradient variations
+export const AllGradientVariations: Story = {
+  decorators: [
+    (Story): JSX.Element => (
+      <ThemeProvider theme={storybookTheme}>
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(2, 1fr)',
+            gap: '20px',
+            padding: '20px',
+          }}
+        >
+          <SubjectCard
+            subject="Purple Gradient"
+            description="This card uses gradient index 0 (purple)"
+            index={0}
+            buttons={[{ text: 'View', onClick: fn(), variant: 'outlined' }]}
+          />
+          <SubjectCard
+            subject="Yellow Gradient"
+            description="This card uses gradient index 1 (yellow)"
+            index={1}
+            buttons={[{ text: 'View', onClick: fn(), variant: 'outlined' }]}
+          />
+          <SubjectCard
+            subject="Orange Gradient"
+            description="This card uses gradient index 2 (orange)"
+            index={2}
+            buttons={[{ text: 'View', onClick: fn(), variant: 'outlined' }]}
+          />
+          <SubjectCard
+            subject="Cyan Gradient"
+            description="This card uses gradient index 3 (cyan)"
+            index={3}
+            buttons={[{ text: 'View', onClick: fn(), variant: 'outlined' }]}
+          />
+        </div>
+      </ThemeProvider>
+    ),
+  ],
+  args: {
+    subject: 'Gradient Showcase',
+    description: 'See all gradient variations',
+    index: 0,
   },
 };

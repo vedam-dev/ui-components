@@ -18,9 +18,9 @@ export interface SubjectCardProps {
   iconAlt?: string;
   buttonText?: string;
   batch?: string;
+  index: number;
   courseCode?: string;
   credit?: string;
-  // New props for variant and multiple buttons
   variant?: 'default' | 'course-offering';
   buttons?: Array<{
     text: string;
@@ -55,6 +55,7 @@ const SubjectCard: FC<SubjectCardProps> = ({
   iconAlt = 'Subject icon',
   buttonText = 'Go to Class',
   batch,
+  index,
   courseCode,
   credit,
   // New props
@@ -78,16 +79,34 @@ const SubjectCard: FC<SubjectCardProps> = ({
 }) => {
   const theme = useCoreTheme() as CoreTheme;
 
+  const gradients = [
+    'linear-gradient(180deg, #F3E8FF 0%, #FFF 100%)',
+    'linear-gradient(180deg, #FFEAC0 0%, #FFF 100%)',
+    'linear-gradient(180deg, #FFDBB6 0%, #FFF 100%)',
+    'linear-gradient(180deg, #A6F5F8 0%, #FFF 100%)',
+  ];
+
+  const borders = [
+    '1px solid #DAC2F2',
+    '1px solid #FFEAC0',
+    '1px solid #FFDBB6',
+    '1px solid #A6F5F8',
+  ];
+
+  // Calculate which gradient and border to use based on index
+  const cardGradient = gradients[index % 4];
+  const cardBorder = borders[index % 4];
+
   const defaultCardSx: SxProps<Theme> = {
     width: typeof width === 'number' ? `${width}px` : width,
     height: typeof height === 'number' ? `${height}px` : height,
     borderRadius: theme.spacing(7),
     padding: '28px 20px',
-    border: 'none',
-    background: 'linear-gradient(180deg, rgba(255,230,205,1) 0%, rgba(226,198,255,1) 100%)',
-    boxShadow: theme.vd.shadows.y8,
+    border: cardBorder,
+    background: cardGradient,
     display: 'flex',
     flexDirection: 'column',
+    boxShadow: 'none',
     ...cardSx,
   };
 
@@ -226,7 +245,7 @@ const SubjectCard: FC<SubjectCardProps> = ({
   const showTeacher = teacher && !showBatch; // Only show teacher if batch is not shown
 
   return (
-    <Card shadow="y12" sx={defaultCardSx}>
+    <Card sx={defaultCardSx}>
       <Box
         sx={{
           width: '100%',
@@ -340,9 +359,9 @@ const SubjectCard: FC<SubjectCardProps> = ({
                 flexWrap: 'wrap',
               }}
             >
-              {displayButtons.map((button, index) => (
+              {displayButtons.map((button, buttonIndex) => (
                 <Button
-                  key={index}
+                  key={buttonIndex}
                   variant={button.variant || 'outlined'}
                   sx={{
                     ...defaultButtonSx,
