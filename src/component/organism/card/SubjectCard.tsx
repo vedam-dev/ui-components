@@ -18,9 +18,9 @@ export interface SubjectCardProps {
   iconAlt?: string;
   buttonText?: string;
   batch?: string;
+  index: number;
   courseCode?: string;
   credit?: string;
-  // New props for variant and multiple buttons
   variant?: 'default' | 'course-offering';
   buttons?: Array<{
     text: string;
@@ -51,10 +51,11 @@ const SubjectCard: FC<SubjectCardProps> = ({
   duration,
   lectureCount,
   description,
-  iconUrl = 'https://cdn-icons-png.flaticon.com/512/226/226777.png',
+  iconUrl = 'https://acjlsquedaotbhbxmtee.supabase.co/storage/v1/object/public/vedam-website-assets/images/footer/Vector.png',
   iconAlt = 'Subject icon',
   buttonText = 'Go to Class',
   batch,
+  index,
   courseCode,
   credit,
   // New props
@@ -63,7 +64,7 @@ const SubjectCard: FC<SubjectCardProps> = ({
   onGoToClass,
 
   width = 303,
-  height = 265,
+  height = 260,
 
   cardSx,
   iconContainerSx,
@@ -78,15 +79,34 @@ const SubjectCard: FC<SubjectCardProps> = ({
 }) => {
   const theme = useCoreTheme() as CoreTheme;
 
+  const gradients = [
+    'linear-gradient(180deg, #F3E8FF 0%, #FFF 100%)',
+    'linear-gradient(180deg, #FFEAC0 0%, #FFF 100%)',
+    'linear-gradient(180deg, #FFDBB6 0%, #FFF 100%)',
+    'linear-gradient(180deg, #A6F5F8 0%, #FFF 100%)',
+  ];
+
+  const borders = [
+    '1px solid #DAC2F2',
+    '1px solid #FFEAC0',
+    '1px solid #FFDBB6',
+    '1px solid #A6F5F8',
+  ];
+
+  // Calculate which gradient and border to use based on index
+  const cardGradient = gradients[index % 4];
+  const cardBorder = borders[index % 4];
+
   const defaultCardSx: SxProps<Theme> = {
     width: typeof width === 'number' ? `${width}px` : width,
     height: typeof height === 'number' ? `${height}px` : height,
     borderRadius: theme.spacing(7),
-    border: 'none',
-    background: 'linear-gradient(180deg, rgba(255,230,205,1) 0%, rgba(226,198,255,1) 100%)',
-    boxShadow: theme.vd.shadows.y8,
+    padding: '28px 20px',
+    border: cardBorder,
+    background: cardGradient,
     display: 'flex',
     flexDirection: 'column',
+    boxShadow: 'none',
     ...cardSx,
   };
 
@@ -109,11 +129,9 @@ const SubjectCard: FC<SubjectCardProps> = ({
   const defaultSubjectTextSx: SxProps<Theme> = {
     fontFamily: theme.typography.fontFamily,
     fontWeight: 500,
-    color: theme.palette.text.primary,
+    color: '#1E1E1E',
     fontSize: '22px',
-    lineHeight: '24px',
-    letterSpacing: '0.15px',
-    marginBottom: theme.spacing(1),
+    lineHeight: '28px',
     width: '100%',
     overflow: 'hidden',
     textOverflow: 'ellipsis',
@@ -152,21 +170,25 @@ const SubjectCard: FC<SubjectCardProps> = ({
 
   const defaultDescriptionTextSx: SxProps<Theme> = {
     fontFamily: theme.typography.fontFamily,
-    color: theme.palette.text.primary,
-    fontSize: theme.typography.body1.fontSize,
+    color: '#1E1E1E',
+    fontSize: '16px',
     lineHeight: theme.spacing(4.5),
-    marginTop: theme.spacing(5.25),
-    mb: theme.spacing(5.25),
+    fontWeight: 400,
+    mb: theme.spacing(4.5),
     textWrap: 'stable',
-    ml: theme.spacing(6),
     ...descriptionTextSx,
+
+    display: '-webkit-box',
+    WebkitLineClamp: 2,
+    WebkitBoxOrient: 'vertical',
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
   };
 
   const defaultButtonSx: SxProps<Theme> = {
     width: theme.spacing(66.25),
     height: theme.spacing(9),
     padding: theme.spacing(2),
-    ml: theme.spacing(5),
     mb: theme.spacing(7.5),
     borderWidth: theme.spacing(0.25),
     borderRadius: theme.spacing(3),
@@ -185,20 +207,19 @@ const SubjectCard: FC<SubjectCardProps> = ({
 
   const defaultBatchTextSx: SxProps<Theme> = {
     fontFamily: theme.typography.fontFamily,
-    fontWeight: 500,
-    color: theme.palette.text.secondary,
-    fontSize: theme.typography.caption.fontSize,
-    marginBottom: theme.spacing(1),
+    fontWeight: 400,
+    color: '#525252',
+    fontSize: '18px',
+    lineHeight: '28px',
     ...batchTextSx,
   };
 
   const defaultCourseInfoTextSx: SxProps<Theme> = {
     fontFamily: theme.typography.fontFamily,
     fontWeight: 500,
-    color: theme.palette.text.secondary,
-    fontSize: theme.typography.caption.fontSize,
-    padding: theme.spacing(0.5, 1.5),
-    borderRadius: theme.spacing(1),
+    color: '#4C4C4C',
+    fontSize: '13px',
+    lineHeight: '18px',
     ...courseInfoTextSx,
   };
 
@@ -224,14 +245,14 @@ const SubjectCard: FC<SubjectCardProps> = ({
   const showTeacher = teacher && !showBatch; // Only show teacher if batch is not shown
 
   return (
-    <Card shadow="y12" sx={defaultCardSx}>
+    <Card sx={defaultCardSx}>
       <Box
         sx={{
           width: '100%',
           height: '100%',
         }}
       >
-        <Stack direction="row" spacing={6} alignItems="center" mb={4.25} mt={7} ml={5}>
+        <Stack direction="row" spacing={6} alignItems="center" mb="18px">
           <Box sx={defaultIconContainerSx}>
             <Box
               component="img"
@@ -264,12 +285,23 @@ const SubjectCard: FC<SubjectCardProps> = ({
         </Stack>
 
         <Box>
-          {/* Show course code and credit if provided in course-offering variant */}
           {showCourseInfo && (
-            <Box sx={{ ml: theme.spacing(6), mb: theme.spacing(2) }}>
-              <Typography sx={defaultCourseInfoTextSx}>
-                Course Code: {courseCode} | Credit: {credit}
-              </Typography>
+            <Box sx={{ mb: '18px', display: 'flex', alignItems: 'center' }}>
+              {/* Course Code */}
+              <Typography sx={defaultCourseInfoTextSx}>Course Code: {courseCode}</Typography>
+
+              {/* Custom vertical divider */}
+              <Box
+                sx={{
+                  height: '15px',
+                  width: '1px',
+                  backgroundColor: '#4C4C4C',
+                  mx: '8px',
+                }}
+              />
+
+              {/* Course Credit */}
+              <Typography sx={defaultCourseInfoTextSx}>Course Credit: {credit}</Typography>
             </Box>
           )}
 
@@ -280,8 +312,7 @@ const SubjectCard: FC<SubjectCardProps> = ({
                 display: 'flex',
                 alignItems: 'center',
                 gap: theme.spacing(2),
-                mb: theme.spacing(0),
-                ml: theme.spacing(6),
+                mb: '18px',
               }}
             >
               <Stack direction="row" alignItems="center" spacing={1}>
@@ -316,42 +347,46 @@ const SubjectCard: FC<SubjectCardProps> = ({
         </Box>
         {/* Buttons Section */}
         {displayButtons.length > 0 && (
-          <CardActions sx={{ padding: 0, mt: theme.spacing(0) }}>
+          <CardActions
+            sx={{ padding: 0, mt: theme.spacing(0), display: 'flex', justifyContent: 'center' }}
+          >
             <Box
               sx={{
                 display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
                 gap: theme.spacing(2),
-                ml: theme.spacing(5),
-                mb: theme.spacing(7.5),
                 flexWrap: 'wrap',
               }}
             >
-              {displayButtons.map((button, index) => (
+              {displayButtons.map((button, buttonIndex) => (
                 <Button
-                  key={index}
+                  key={buttonIndex}
                   variant={button.variant || 'outlined'}
-                  startIcon={button.startIcon}
                   sx={{
                     ...defaultButtonSx,
                     width: 'auto',
-                    minWidth: theme.spacing(20),
-                    ml: 0,
+                    minWidth: '125px',
                     ...(button.variant === 'contained' && {
-                      backgroundColor: theme.palette.primary.main,
+                      backgroundColor: '#8A18FF',
                       color: theme.palette.background.paper,
                       '&:hover': {
-                        backgroundColor: theme.palette.primary.dark,
+                        backgroundColor: '#8A18FF',
                         borderColor: theme.palette.primary.dark,
                       },
                     }),
                     ...(button.variant === 'outlined' && {
+                      backgroundColor: '#FFF',
+                      color: '#8A18FF',
+                      border: '1px solid #8A18FF',
                       '&:hover': {
-                        backgroundColor: 'rgba(124, 58, 237, 0.04)',
+                        backgroundColor: '#FFF',
+                        border: '1px solid #8A18FF',
                       },
                     }),
                   }}
                   onClick={(e) => {
-                    e.stopPropagation(); // Prevent card click events
+                    e.stopPropagation();
                     button.onClick();
                   }}
                   disableElevation
