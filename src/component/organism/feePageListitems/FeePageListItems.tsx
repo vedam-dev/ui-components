@@ -46,12 +46,15 @@ export const FeeListItemRow: React.FC<FeeListItemRowProps> = ({ title, value }) 
 
 export enum FeeStatusVariant {
   Success = 'success',
+  Paid = 'success',
   Pending = 'warning',
+  Unpaid = 'warning',
   Failed = 'error',
+  Overdue = 'error',
 }
 
 export interface FeeListItemStatusProps {
-  status: 'Success' | 'Pending' | 'Failed';
+  status: 'Success' | 'Pending' | 'Failed' | 'Paid' | 'Unpaid' | 'Overdue';
 }
 
 export const FeeListItemStatus: React.FC<FeeListItemStatusProps> = ({ status }) => {
