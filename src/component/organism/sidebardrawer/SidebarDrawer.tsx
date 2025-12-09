@@ -23,14 +23,6 @@ export interface SidebarSubmenuItem {
   selected?: boolean;
 }
 
-export interface SidebarSubmenuItem {
-  id: string;
-  text: string;
-  onClick?: () => void;
-  disabled?: boolean;
-  selected?: boolean;
-}
-
 export interface SidebarItem {
   id: string;
   icon: React.ReactNode;
@@ -95,7 +87,6 @@ const SidebarDrawer: FC<SidebarDrawerProps> = ({
     }));
   };
 
-
   const handleItemClick = (item: SidebarItem) => {
     if (!isExpanded) {
       if (expanded === undefined) {
@@ -122,7 +113,6 @@ const SidebarDrawer: FC<SidebarDrawerProps> = ({
     item.onClick?.();
     onItemClick?.(item);
   };
-
 
   const handleSubmenuClick = (parentItem: SidebarItem, submenuItem: SidebarSubmenuItem) => {
     setActiveId(submenuItem.id);
