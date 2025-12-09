@@ -96,7 +96,7 @@ const SidebarDrawer: FC<SidebarDrawerProps> = ({
       if (item.submenu && item.submenu.length > 0) {
         toggleAccordion(item.id);
       }
-      return; 
+      return;
     }
 
     if (item.submenu && item.submenu.length > 0) {
