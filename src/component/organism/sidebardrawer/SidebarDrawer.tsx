@@ -162,16 +162,11 @@ const SidebarDrawer: FC<SidebarDrawerProps> = ({
                   <Tooltip title={isExpanded ? '' : item.text} placement="right" arrow>
                     <ListItemButton
                       onClick={() => handleItemClick(item)}
-                      selected={isActive && !hasSubmenu}
                       sx={{
                         minHeight: 48,
                         justifyContent: isExpanded ? 'left' : 'center',
                         padding: theme.spacing(2),
                         borderRadius: isExpanded ? theme.spacing(2) : '50%',
-                        borderBottomLeftRadius:
-                          hasSubmenu && isMenuExpanded && isExpanded ? 0 : theme.spacing(2),
-                        borderBottomRightRadius:
-                          hasSubmenu && isMenuExpanded && isExpanded ? 0 : theme.spacing(2),
                         transition: 'all 0.3s',
                         flexDirection: isExpanded ? 'row' : 'column',
                         alignItems: 'center',
@@ -179,50 +174,31 @@ const SidebarDrawer: FC<SidebarDrawerProps> = ({
                         width: '100%',
                         maxWidth: isExpanded ? 'auto' : 48,
                         minWidth: 'auto',
-                        '&.Mui-selected': {
-                          backgroundColor: theme.palette.primary.dark,
-                          color: palette.primary.contrastText,
-                          '& .MuiListItemIcon-root, & .MuiListItemText-root': {
-                            color: palette.primary.contrastText,
-                          },
-                          '&:hover': {
-                            backgroundColor: theme.palette.primary.dark,
-                          },
-                        },
+                        backgroundColor: isActive ? theme.palette.primary.dark : 'transparent',
+                        color: isActive ? palette.primary.contrastText : palette.text.primary,
                         '&:hover': {
-                          backgroundColor:
-                            isActive && !hasSubmenu
-                              ? theme.palette.primary.dark
-                              : palette.action.hover,
+                          backgroundColor: isActive
+                            ? theme.palette.primary.dark
+                            : palette.action.hover,
                         },
-                        ...(hasActiveChild && isExpanded
-                          ? {
-                              backgroundColor: theme.palette.primary.dark,
-                              color: palette.primary.contrastText,
-                              '& .MuiListItemIcon-root, & .MuiListItemText-root, & .MuiSvgIcon-root':
-                                {
-                                  color: palette.primary.contrastText,
-                                },
-                              '&:hover': {
-                                backgroundColor: theme.palette.primary.dark,
-                              },
-                            }
-                          : {}),
                       }}
                     >
-                      <ListItemIcon
+                      <Box
                         sx={{
                           minWidth: 0,
                           margin: 0,
+                          display: 'flex',
                           justifyContent: 'center',
-                          color:
-                            hasActiveChild || (isActive && !hasSubmenu)
-                              ? palette.primary.contrastText
-                              : palette.text.secondary,
+                          alignItems: 'center',
+                          color: isActive ? palette.primary.contrastText : palette.text.secondary,
+                          '& svg': {
+                            display: 'block',
+                            color: isActive ? palette.primary.contrastText : palette.text.secondary,
+                          },
                         }}
                       >
                         {item.icon}
-                      </ListItemIcon>
+                      </Box>
                       {isExpanded && (
                         <>
                           <ListItemText
@@ -233,6 +209,7 @@ const SidebarDrawer: FC<SidebarDrawerProps> = ({
                               margin: 0,
                               flex: 1,
                               minWidth: 0,
+                              color: isActive ? palette.primary.contrastText : palette.text.primary,
                               '& .MuiTypography-root': {
                                 textAlign: 'left',
                                 whiteSpace: 'nowrap',
@@ -250,6 +227,7 @@ const SidebarDrawer: FC<SidebarDrawerProps> = ({
                               sx={{
                                 transition: 'transform 0.3s',
                                 transform: isMenuExpanded ? 'rotate(180deg)' : 'rotate(0deg)',
+                                color: isActive ? palette.primary.contrastText : 'inherit',
                               }}
                             />
                           )}
