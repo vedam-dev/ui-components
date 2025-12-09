@@ -10,10 +10,20 @@ import {
   ListItemText,
   Tooltip,
   Collapse,
+  Collapse,
 } from '@mui/material';
+import { ExpandMore as ExpandMoreIcon } from '@mui/icons-material';
 import { ExpandMore as ExpandMoreIcon } from '@mui/icons-material';
 import SxOverride from '../../../util/SxOverride';
 import { CoreTheme, useCoreTheme } from '../../../theme/core-theme';
+
+export interface SidebarSubmenuItem {
+  id: string;
+  text: string;
+  onClick?: () => void;
+  disabled?: boolean;
+  selected?: boolean;
+}
 
 export interface SidebarSubmenuItem {
   id: string;
@@ -30,6 +40,7 @@ export interface SidebarItem {
   onClick?: () => void;
   disabled?: boolean;
   selected?: boolean;
+  submenu?: SidebarSubmenuItem[];
   submenu?: SidebarSubmenuItem[];
 }
 
@@ -59,6 +70,7 @@ const SidebarDrawer: FC<SidebarDrawerProps> = ({
   const { palette } = useCoreTheme() as CoreTheme;
   const [internalExpanded, setInternalExpanded] = useState(defaultExpanded);
   const [expandedMenus, setExpandedMenus] = useState<Record<string, boolean>>({});
+  const [expandedMenus, setExpandedMenus] = useState<Record<string, boolean>>({});
 
   const initialActiveId = (() => {
     const selected = items.find((it) => it.selected);
@@ -87,12 +99,28 @@ const SidebarDrawer: FC<SidebarDrawerProps> = ({
     }));
   };
 
+  const toggleAccordion = (itemId: string) => {
+    setExpandedMenus((prev) => ({
+      ...prev,
+      [itemId]: !prev[itemId],
+    }));
+  };
+
   const handleItemClick = (item: SidebarItem) => {
     if (!isExpanded) {
       if (expanded === undefined) {
         setInternalExpanded(true);
       }
       onToggleExpand?.(true);
+      if (item.submenu && item.submenu.length > 0) {
+        toggleAccordion(item.id);
+      }
+      return;
+    }
+
+    if (item.submenu && item.submenu.length > 0) {
+      toggleAccordion(item.id);
+      return;
       if (item.submenu && item.submenu.length > 0) {
         toggleAccordion(item.id);
       }
@@ -114,6 +142,11 @@ const SidebarDrawer: FC<SidebarDrawerProps> = ({
     submenuItem.onClick?.();
   };
 
+  const handleSubmenuClick = (parentItem: SidebarItem, submenuItem: SidebarSubmenuItem) => {
+    setActiveId(submenuItem.id);
+    submenuItem.onClick?.();
+  };
+
   const currentWidth = isExpanded ? expandedWidth : collapsedWidth;
   const defaultPaperSx = SxOverride(
     {
@@ -126,6 +159,7 @@ const SidebarDrawer: FC<SidebarDrawerProps> = ({
       overflow: 'hidden',
       boxShadow: isExpanded
         ? `
+        0 -4px 10px -2px rgba(0, 0, 0, 0.08),
         0 -4px 10px -2px rgba(0, 0, 0, 0.08),
         0 4px 10px -2px rgba(0, 0, 0, 0.08)   
       `
@@ -147,6 +181,10 @@ const SidebarDrawer: FC<SidebarDrawerProps> = ({
       >
         <List sx={{ px: 0 }}>
           {items.map((item) => {
+            const hasSubmenu = item.submenu && item.submenu.length > 0;
+            const isMenuExpanded = expandedMenus[item.id];
+            const hasActiveChild = hasSubmenu && item.submenu?.some((sub) => sub.id === activeId);
+            const isActive = hasActiveChild || (!hasSubmenu && item.id === activeId);
             const hasSubmenu = item.submenu && item.submenu.length > 0;
             const isMenuExpanded = expandedMenus[item.id];
             const hasActiveChild = hasSubmenu && item.submenu?.some((sub) => sub.id === activeId);
