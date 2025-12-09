@@ -6,6 +6,10 @@ import {
   People as PeopleIcon,
   Settings as SettingsIcon,
   Analytics as AnalyticsIcon,
+  Payment as PaymentIcon,
+  School as SchoolIcon,
+  Assignment as AssignmentIcon,
+  EventNote as EventNoteIcon,
 } from '@mui/icons-material';
 
 const defaultItems: SidebarItem[] = [
@@ -16,16 +20,50 @@ const defaultItems: SidebarItem[] = [
     onClick: () => console.log('Dashboard clicked'),
   },
   {
+    id: 'class-session',
+    icon: <EventNoteIcon />,
+    text: 'Class Session',
+    onClick: () => console.log('Class Session clicked'),
+  },
+  {
+    id: 'attendance',
+    icon: <SchoolIcon />,
+    text: 'Attendance',
+    onClick: () => console.log('Attendance clicked'),
+  },
+  {
+    id: 'assignments',
+    icon: <AssignmentIcon />,
+    text: 'Assignments',
+    onClick: () => console.log('Assignments clicked'),
+  },
+  {
+    id: 'fees',
+    icon: <PaymentIcon />,
+    text: 'Fees',
+    submenu: [
+      {
+        id: 'fees-dashboard',
+        text: 'Dashboard',
+        onClick: () => console.log('Fees Dashboard clicked'),
+      },
+      {
+        id: 'all-fees',
+        text: 'All Fees',
+        onClick: () => console.log('All Fees clicked'),
+      },
+      {
+        id: 'create-fees',
+        text: 'Create Fees',
+        onClick: () => console.log('Create Fees clicked'),
+      },
+    ],
+  },
+  {
     id: 'users',
     icon: <PeopleIcon />,
     text: 'Users',
     onClick: () => console.log('Users clicked'),
-  },
-  {
-    id: 'analytics',
-    icon: <AnalyticsIcon />,
-    text: 'Analytics',
-    onClick: () => console.log('Analytics clicked'),
   },
   {
     id: 'settings',
@@ -73,6 +111,16 @@ const SidebarWrapper: FC<SidebarWrapperProps> = ({
     const segments = path.split('/').filter(Boolean);
     const lastSegment = segments.length > 0 ? segments[segments.length - 1] : '';
 
+    for (const item of itemsToCheck) {
+      if (item.submenu && item.submenu.length > 0) {
+        const submenuMatch = item.submenu.find(
+          (sub) => sub.id.toLowerCase() === lastSegment.toLowerCase()
+        );
+        if (submenuMatch) return submenuMatch.id;
+      }
+    }
+
+    // Then check main items
     const exactMatch = itemsToCheck.find((it) => it.id.toLowerCase() === lastSegment.toLowerCase());
     if (exactMatch) return exactMatch.id;
 
@@ -94,12 +142,16 @@ const SidebarWrapper: FC<SidebarWrapperProps> = ({
     }
 
     const picked = getSelectedIdFromUrl(items);
-    return items.map(
-      (it) =>
-        ({ ...it, selected: it.id === picked }) as SidebarItem & {
-          selected?: boolean;
-        }
-    );
+    return items.map((it) => {
+      const itemCopy = { ...it };
+      if (itemCopy.submenu) {
+        itemCopy.submenu = itemCopy.submenu.map((sub) => ({
+          ...sub,
+          selected: sub.id === picked,
+        }));
+      }
+      return { ...itemCopy, selected: it.id === picked } as SidebarItem;
+    });
   });
 
   useEffect(() => {
@@ -110,12 +162,16 @@ const SidebarWrapper: FC<SidebarWrapperProps> = ({
 
     const picked = getSelectedIdFromUrl(items);
     setLocalItems(
-      items.map(
-        (it) =>
-          ({ ...it, selected: it.id === picked }) as SidebarItem & {
-            selected?: boolean;
-          }
-      )
+      items.map((it) => {
+        const itemCopy = { ...it };
+        if (itemCopy.submenu) {
+          itemCopy.submenu = itemCopy.submenu.map((sub) => ({
+            ...sub,
+            selected: sub.id === picked,
+          }));
+        }
+        return { ...itemCopy, selected: it.id === picked } as SidebarItem;
+      })
     );
   }, [items, hasExplicitSelection]);
 
@@ -124,7 +180,18 @@ const SidebarWrapper: FC<SidebarWrapperProps> = ({
 
     const onPop = () => {
       const picked = getSelectedIdFromUrl(items);
-      setLocalItems((prev) => prev.map((it) => ({ ...it, selected: it.id === picked })));
+      setLocalItems((prev) =>
+        prev.map((it) => {
+          const itemCopy = { ...it };
+          if (itemCopy.submenu) {
+            itemCopy.submenu = itemCopy.submenu.map((sub) => ({
+              ...sub,
+              selected: sub.id === picked,
+            }));
+          }
+          return { ...itemCopy, selected: it.id === picked };
+        })
+      );
     };
     window.addEventListener('popstate', onPop);
     return () => window.removeEventListener('popstate', onPop);
@@ -170,7 +237,18 @@ const SidebarWrapper: FC<SidebarWrapperProps> = ({
     if (!item) return;
 
     if (!hasExplicitSelection) {
-      setLocalItems((prev) => prev.map((it) => ({ ...it, selected: it.id === item.id })));
+      setLocalItems((prev) =>
+        prev.map((it) => {
+          const itemCopy = { ...it };
+          if (itemCopy.submenu) {
+            itemCopy.submenu = itemCopy.submenu.map((sub) => ({
+              ...sub,
+              selected: false,
+            }));
+          }
+          return { ...itemCopy, selected: it.id === item.id };
+        })
+      );
     }
 
     try {

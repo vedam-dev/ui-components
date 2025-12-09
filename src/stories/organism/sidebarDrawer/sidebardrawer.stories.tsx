@@ -17,6 +17,10 @@ import {
   Folder as FolderIcon,
   Star as StarIcon,
   Schedule as ScheduleIcon,
+  Payment as PaymentIcon,
+  School as SchoolIcon,
+  Assignment as AssignmentIcon,
+  EventNote as EventNoteIcon,
 } from '@mui/icons-material';
 
 const meta: Meta<SidebarDrawerProps> = {
@@ -355,6 +359,163 @@ export const WithDisabledItems: Story = {
         text: 'Notifications',
         onClick: () => console.log('Notifications clicked'),
         disabled: true,
+      },
+      {
+        id: 'settings',
+        icon: <SettingsIcon />,
+        text: 'Settings',
+        onClick: () => console.log('Settings clicked'),
+      },
+    ],
+    anchor: 'left',
+    collapsedWidth: 64,
+    expandedWidth: 240,
+    defaultExpanded: false,
+  },
+};
+
+export const WithAccordionSubmenus: Story = {
+  ...Template,
+  name: 'With Accordion Submenus',
+  args: {
+    items: [
+      {
+        id: 'dashboard',
+        icon: <DashboardIcon />,
+        text: 'Dashboard',
+        onClick: () => console.log('Dashboard clicked'),
+      },
+      {
+        id: 'class-session',
+        icon: <EventNoteIcon />,
+        text: 'Class Session',
+        onClick: () => console.log('Class Session clicked'),
+      },
+      {
+        id: 'attendance',
+        icon: <SchoolIcon />,
+        text: 'Attendance',
+        onClick: () => console.log('Attendance clicked'),
+      },
+      {
+        id: 'assignments',
+        icon: <AssignmentIcon />,
+        text: 'Assignments',
+        onClick: () => console.log('Assignments clicked'),
+      },
+      {
+        id: 'fees',
+        icon: <PaymentIcon />,
+        text: 'Fees',
+        submenu: [
+          {
+            id: 'fees-dashboard',
+            text: 'Dashboard',
+            onClick: () => console.log('Fees Dashboard clicked'),
+          },
+          {
+            id: 'all-fees',
+            text: 'All Fees',
+            onClick: () => console.log('All Fees clicked'),
+          },
+          {
+            id: 'create-fees',
+            text: 'Create Fees',
+            onClick: () => console.log('Create Fees clicked'),
+          },
+        ],
+      },
+      {
+        id: 'users',
+        icon: <PeopleIcon />,
+        text: 'Users',
+        onClick: () => console.log('Users clicked'),
+      },
+      {
+        id: 'settings',
+        icon: <SettingsIcon />,
+        text: 'Settings',
+        submenu: [
+          {
+            id: 'general-settings',
+            text: 'General',
+            onClick: () => console.log('General Settings clicked'),
+          },
+          {
+            id: 'security-settings',
+            text: 'Security',
+            onClick: () => console.log('Security Settings clicked'),
+          },
+          {
+            id: 'notification-settings',
+            text: 'Notifications',
+            onClick: () => console.log('Notification Settings clicked'),
+          },
+        ],
+      },
+    ],
+    anchor: 'left',
+    collapsedWidth: 64,
+    expandedWidth: 240,
+    defaultExpanded: true,
+  },
+};
+
+export const MixedItemsWithAccordion: Story = {
+  ...Template,
+  name: 'Mixed Items with Accordion',
+  args: {
+    items: [
+      {
+        id: 'dashboard',
+        icon: <DashboardIcon />,
+        text: 'Dashboard',
+        onClick: () => console.log('Dashboard clicked'),
+      },
+      {
+        id: 'analytics',
+        icon: <AnalyticsIcon />,
+        text: 'Analytics',
+        submenu: [
+          {
+            id: 'overview',
+            text: 'Overview',
+            onClick: () => console.log('Overview clicked'),
+          },
+          {
+            id: 'reports',
+            text: 'Reports',
+            onClick: () => console.log('Reports clicked'),
+          },
+          {
+            id: 'insights',
+            text: 'Insights',
+            onClick: () => console.log('Insights clicked'),
+          },
+        ],
+      },
+      {
+        id: 'users',
+        icon: <PeopleIcon />,
+        text: 'Users',
+        onClick: () => console.log('Users clicked'),
+      },
+      {
+        id: 'inventory',
+        icon: <InventoryIcon />,
+        text: 'Inventory',
+        submenu: [
+          {
+            id: 'products',
+            text: 'Products',
+            onClick: () => console.log('Products clicked'),
+          },
+          {
+            id: 'categories',
+            text: 'Categories',
+            onClick: () => console.log('Categories clicked'),
+          },
+        ],
       },
       {
         id: 'settings',
