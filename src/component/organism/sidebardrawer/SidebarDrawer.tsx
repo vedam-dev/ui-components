@@ -9,9 +9,19 @@ import {
   ListItemIcon,
   ListItemText,
   Tooltip,
+  Collapse,
 } from '@mui/material';
+import { ExpandMore as ExpandMoreIcon } from '@mui/icons-material';
 import SxOverride from '../../../util/SxOverride';
 import { CoreTheme, useCoreTheme } from '../../../theme/core-theme';
+
+export interface SidebarSubmenuItem {
+  id: string;
+  text: string;
+  onClick?: () => void;
+  disabled?: boolean;
+  selected?: boolean;
+}
 
 export interface SidebarItem {
   id: string;
@@ -19,8 +29,8 @@ export interface SidebarItem {
   text: string;
   onClick?: () => void;
   disabled?: boolean;
-
   selected?: boolean;
+  submenu?: SidebarSubmenuItem[];
 }
 
 export interface SidebarDrawerProps extends Omit<MuiDrawerProps, 'open' | 'onClose'> {
@@ -48,6 +58,7 @@ const SidebarDrawer: FC<SidebarDrawerProps> = ({
 }) => {
   const { palette } = useCoreTheme() as CoreTheme;
   const [internalExpanded, setInternalExpanded] = useState(defaultExpanded);
+  const [expandedMenus, setExpandedMenus] = useState<Record<string, boolean>>({});
 
   const initialActiveId = (() => {
     const selected = items.find((it) => it.selected);
@@ -69,18 +80,38 @@ const SidebarDrawer: FC<SidebarDrawerProps> = ({
 
   const isExpanded = expanded !== undefined ? expanded : internalExpanded;
 
+  const toggleAccordion = (itemId: string) => {
+    setExpandedMenus((prev) => ({
+      ...prev,
+      [itemId]: !prev[itemId],
+    }));
+  };
+
   const handleItemClick = (item: SidebarItem) => {
     if (!isExpanded) {
       if (expanded === undefined) {
         setInternalExpanded(true);
       }
       onToggleExpand?.(true);
+      if (item.submenu && item.submenu.length > 0) {
+        toggleAccordion(item.id);
+      }
+      return; 
+    }
+
+    if (item.submenu && item.submenu.length > 0) {
+      toggleAccordion(item.id);
+      return;
     }
 
     setActiveId(item.id);
-
     item.onClick?.();
     onItemClick?.(item);
+  };
+
+  const handleSubmenuClick = (parentItem: SidebarItem, submenuItem: SidebarSubmenuItem) => {
+    setActiveId(submenuItem.id);
+    submenuItem.onClick?.();
   };
 
   const currentWidth = isExpanded ? expandedWidth : collapsedWidth;
@@ -95,7 +126,7 @@ const SidebarDrawer: FC<SidebarDrawerProps> = ({
       overflow: 'hidden',
       boxShadow: isExpanded
         ? `
-        0 -4px 10px -2px rgba(0, 0, 0, 0.08),  // Top shadow
+        0 -4px 10px -2px rgba(0, 0, 0, 0.08),
         0 4px 10px -2px rgba(0, 0, 0, 0.08)   
       `
         : 'none',
@@ -116,78 +147,174 @@ const SidebarDrawer: FC<SidebarDrawerProps> = ({
       >
         <List sx={{ px: 0 }}>
           {items.map((item) => {
-            const isActive = item.id === activeId;
+            const hasSubmenu = item.submenu && item.submenu.length > 0;
+            const isMenuExpanded = expandedMenus[item.id];
+            const hasActiveChild = hasSubmenu && item.submenu?.some((sub) => sub.id === activeId);
+            const isActive = hasActiveChild || (!hasSubmenu && item.id === activeId);
             return (
-              <ListItem key={item.id} disablePadding sx={{ mb: 1 }}>
-                <Tooltip title={isExpanded ? '' : item.text} placement="right" arrow>
-                  <ListItemButton
-                    onClick={() => handleItemClick(item)}
-                    selected={isActive}
-                    sx={{
-                      minHeight: 48,
-                      justifyContent: isExpanded ? 'left' : 'center',
-                      padding: theme.spacing(2),
-                      borderRadius: isExpanded ? theme.spacing(2) : '50%',
-                      transition: 'all 0.3s',
-                      flexDirection: isExpanded ? 'row' : 'column',
-                      alignItems: 'center',
-                      gap: isExpanded ? theme.spacing(2) : 0,
-                      width: '100%',
-                      maxWidth: isExpanded ? 'auto' : 48,
-                      minWidth: 'auto',
-                      '&.Mui-selected': {
-                        backgroundColor: theme.palette.primary.dark,
-                        color: palette.primary.contrastText,
-                        '& .MuiListItemIcon-root, & .MuiListItemText-root': {
+              <React.Fragment key={item.id}>
+                <ListItem
+                  disablePadding
+                  sx={{
+                    mb: hasSubmenu && isMenuExpanded && isExpanded ? 0 : 1,
+                  }}
+                >
+                  <Tooltip title={isExpanded ? '' : item.text} placement="right" arrow>
+                    <ListItemButton
+                      onClick={() => handleItemClick(item)}
+                      selected={isActive && !hasSubmenu}
+                      sx={{
+                        minHeight: 48,
+                        justifyContent: isExpanded ? 'left' : 'center',
+                        padding: theme.spacing(2),
+                        borderRadius: isExpanded ? theme.spacing(2) : '50%',
+                        borderBottomLeftRadius:
+                          hasSubmenu && isMenuExpanded && isExpanded ? 0 : theme.spacing(2),
+                        borderBottomRightRadius:
+                          hasSubmenu && isMenuExpanded && isExpanded ? 0 : theme.spacing(2),
+                        transition: 'all 0.3s',
+                        flexDirection: isExpanded ? 'row' : 'column',
+                        alignItems: 'center',
+                        gap: isExpanded ? theme.spacing(2) : 0,
+                        width: '100%',
+                        maxWidth: isExpanded ? 'auto' : 48,
+                        minWidth: 'auto',
+                        '&.Mui-selected': {
+                          backgroundColor: theme.palette.primary.dark,
                           color: palette.primary.contrastText,
+                          '& .MuiListItemIcon-root, & .MuiListItemText-root': {
+                            color: palette.primary.contrastText,
+                          },
+                          '&:hover': {
+                            backgroundColor: theme.palette.primary.dark,
+                          },
                         },
                         '&:hover': {
-                          backgroundColor: theme.palette.primary.dark,
+                          backgroundColor:
+                            isActive && !hasSubmenu
+                              ? theme.palette.primary.dark
+                              : palette.action.hover,
                         },
-                      },
-                      '&:hover': {
-                        backgroundColor: isActive
-                          ? theme.palette.primary.dark
-                          : palette.action.hover,
-                      },
-                    }}
-                  >
-                    <ListItemIcon
-                      sx={{
-                        minWidth: 0,
-                        margin: 0,
-                        justifyContent: 'center',
-                        color: isActive ? palette.primary.contrastText : palette.text.secondary,
+                        ...(hasActiveChild && isExpanded
+                          ? {
+                              backgroundColor: theme.palette.primary.dark,
+                              color: palette.primary.contrastText,
+                              '& .MuiListItemIcon-root, & .MuiListItemText-root, & .MuiSvgIcon-root':
+                                {
+                                  color: palette.primary.contrastText,
+                                },
+                              '&:hover': {
+                                backgroundColor: theme.palette.primary.dark,
+                              },
+                            }
+                          : {}),
                       }}
                     >
-                      {item.icon}
-                    </ListItemIcon>
-                    {isExpanded && (
-                      <ListItemText
-                        primary={item.text}
+                      <ListItemIcon
                         sx={{
-                          opacity: 1,
-                          transition: 'opacity 0.3s',
-                          margin: 0,
-                          flex: 'none',
                           minWidth: 0,
-                          '& .MuiTypography-root': {
-                            textAlign: 'left',
-                            whiteSpace: 'nowrap',
-                            overflow: 'hidden',
-                            textOverflow: 'ellipsis',
-                            fontSize: '0.875rem',
-                            fontWeight: 500,
-                            display: 'block',
-                            width: 'fit-content',
-                            lineHeight: 1.5,
-                          },
+                          margin: 0,
+                          justifyContent: 'center',
+                          color:
+                            hasActiveChild || (isActive && !hasSubmenu)
+                              ? palette.primary.contrastText
+                              : palette.text.secondary,
                         }}
-                      />
-                    )}
-                  </ListItemButton>
-                </Tooltip>
-              </ListItem>
+                      >
+                        {item.icon}
+                      </ListItemIcon>
+                      {isExpanded && (
+                        <>
+                          <ListItemText
+                            primary={item.text}
+                            sx={{
+                              opacity: 1,
+                              transition: 'opacity 0.3s',
+                              margin: 0,
+                              flex: 1,
+                              minWidth: 0,
+                              '& .MuiTypography-root': {
+                                textAlign: 'left',
+                                whiteSpace: 'nowrap',
+                                overflow: 'hidden',
+                                textOverflow: 'ellipsis',
+                                fontSize: '0.875rem',
+                                fontWeight: 500,
+                                display: 'block',
+                                lineHeight: 1.5,
+                              },
+                            }}
+                          />
+                          {hasSubmenu && (
+                            <ExpandMoreIcon
+                              sx={{
+                                transition: 'transform 0.3s',
+                                transform: isMenuExpanded ? 'rotate(180deg)' : 'rotate(0deg)',
+                              }}
+                            />
+                          )}
+                        </>
+                      )}
+                    </ListItemButton>
+                  </Tooltip>
+                </ListItem>
+
+                {hasSubmenu && isExpanded && (
+                  <Collapse in={isMenuExpanded} timeout="auto" unmountOnExit>
+                    <List
+                      sx={{
+                        pl: theme.spacing(2),
+                        borderRadius: theme.spacing(2),
+                        mb: 1,
+                        py: 0.5,
+                      }}
+                    >
+                      {item.submenu?.map((submenuItem) => {
+                        const isSubmenuActive = submenuItem.id === activeId;
+                        return (
+                          <ListItem key={submenuItem.id} disablePadding>
+                            <ListItemButton
+                              onClick={() => handleSubmenuClick(item, submenuItem)}
+                              selected={isSubmenuActive}
+                              sx={{
+                                minHeight: 40,
+                                pl: theme.spacing(4),
+                                pr: theme.spacing(2),
+                                py: theme.spacing(1),
+                                borderRadius: theme.spacing(1.5),
+                                '&.Mui-selected': {
+                                  backgroundColor: 'transparent',
+                                  color: palette.text.primary,
+                                  fontWeight: 600,
+                                  '&:hover': {
+                                    backgroundColor: palette.action.selected,
+                                  },
+                                },
+                                '&:hover': {
+                                  backgroundColor: palette.action.selected,
+                                },
+                              }}
+                            >
+                              <ListItemText
+                                primary={`– ${submenuItem.text}`}
+                                sx={{
+                                  margin: 0,
+                                  '& .MuiTypography-root': {
+                                    fontSize: '0.8125rem',
+                                    fontWeight: isSubmenuActive ? 600 : 400,
+                                    color: palette.text.secondary,
+                                    ml: theme.spacing(4),
+                                  },
+                                }}
+                              />
+                            </ListItemButton>
+                          </ListItem>
+                        );
+                      })}
+                    </List>
+                  </Collapse>
+                )}
+              </React.Fragment>
             );
           })}
         </List>
