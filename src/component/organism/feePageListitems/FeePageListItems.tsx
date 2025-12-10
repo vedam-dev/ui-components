@@ -19,6 +19,8 @@ export const FeeListItemRow: React.FC<FeeListItemRowProps> = ({ title, value }) 
         flexDirection: 'column',
         alignItems: 'flex-start',
         px: theme.spacing(1),
+        flex: 1,
+        minWidth: 0,
       }}
     >
       <Typography
@@ -67,6 +69,8 @@ export const FeeListItemStatus: React.FC<FeeListItemStatusProps> = ({ status }) 
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'flex-start',
+        flex: 1,
+        minWidth: 0,
       }}
     >
       <Typography
@@ -112,6 +116,8 @@ export const FeeListItemButton: React.FC<FeeListItemButtonProps> = ({ onClick })
       sx={{
         display: 'flex',
         justifyContent: 'flex-end',
+        flex: 1,
+        minWidth: 0,
       }}
     >
       <Button

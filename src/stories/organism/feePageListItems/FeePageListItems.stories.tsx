@@ -118,6 +118,16 @@ export const MultipleItems: StoryObj = {
         <FeeListItemButton onClick={() => console.log('Receipt 2')} />
       </FeeListItem>
 
+      <FeeListItem bgColor="#FFF8E1">
+        <FeeListItemRow title="Description" value="Upskiasdfglling Fees" />
+        <FeeListItemRow title="Payment Mode" value="Offline" />
+        <FeeListItemRow title="Payment ID" value="19802sdfdg6VEDAM" />
+        <FeeListItemRow title="Date" value="07/05/2025" />
+        <FeeListItemRow title="Amount" value="12500" />
+        <FeeListItemStatus status="Pending" />
+        <FeeListItemButton onClick={() => console.log('Receipt 2')} />
+      </FeeListItem>
+
       <FeeListItem bgColor="#FFEBEE">
         <FeeListItemRow title="Description" value="Vedam Fees" />
         <FeeListItemRow title="Payment Mode" value="Online" />
