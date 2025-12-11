@@ -141,8 +141,18 @@ export const CustomDatePicker: React.FC<CustomDatePickerProps> = ({
                 width: 'auto',
                 minWidth: 0,
               },
-              '& .MuiDateCalendar-root': { margin: 0, padding: 0, width: 'auto', minWidth: 0 },
-              '& .MuiDayCalendar-root': { margin: 0, padding: 0, width: 'auto', minWidth: 0 },
+              '& .MuiDateCalendar-root': { 
+                margin: 0, 
+                padding: 0, 
+                width: 'auto', 
+                minWidth: 0,
+              },
+              '& .MuiDayCalendar-root': { 
+                margin: 0, 
+                padding: 0, 
+                width: 'auto', 
+                minWidth: 0 
+              },
               '& .MuiDayCalendar-header': {
                 marginBottom: 0,
                 paddingBottom: 0,
@@ -159,6 +169,37 @@ export const CustomDatePicker: React.FC<CustomDatePickerProps> = ({
               },
               '& .MuiDayCalendar-weekDayLabel': {
                 marginBottom: 0,
+                color: '#666666',
+                fontWeight: 500,
+              },
+              '& .MuiPickersDay-root': {
+                color: '#000000',
+                fontWeight: 400,
+                fontSize: '0.875rem',
+                '&:hover': {
+                  backgroundColor: 'rgba(0, 0, 0, 0.04)',
+                },
+                '&.Mui-selected': {
+                  backgroundColor: '#1976d2',
+                  color: '#ffffff',
+                  fontWeight: 600,
+                  '&:hover': {
+                    backgroundColor: '#1565c0',
+                  },
+                  '&:focus': {
+                    backgroundColor: '#1976d2',
+                  },
+                },
+                '&.Mui-disabled': {
+                  color: '#cccccc',
+                },
+              },
+              // Today's date styling
+              '& .MuiPickersDay-today': {
+                border: '1px solid #1976d2',
+                '&:not(.Mui-selected)': {
+                  backgroundColor: 'transparent',
+                },
               },
             }}
           />
