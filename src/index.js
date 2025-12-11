@@ -98,6 +98,7 @@ export { TooltipData } from './component/organism/analyticCalendar/AnalyticCalen
 
 export { default as ContestAnalyticsListItem } from './component/organism/contestAnalytics/ContestAnalytics';
 export { default as InstructorList } from './component/organism/instructorList/InstructorList';
+export { default as CustomDatePicker } from './component/molecule/datepicker/DatePicker';
 
 //  Theme Component's
 export { default as defaultTheme } from './theme/customer/default';
