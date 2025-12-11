@@ -141,17 +141,17 @@ export const CustomDatePicker: React.FC<CustomDatePickerProps> = ({
                 width: 'auto',
                 minWidth: 0,
               },
-              '& .MuiDateCalendar-root': { 
-                margin: 0, 
-                padding: 0, 
-                width: 'auto', 
+              '& .MuiDateCalendar-root': {
+                margin: 0,
+                padding: 0,
+                width: 'auto',
                 minWidth: 0,
               },
-              '& .MuiDayCalendar-root': { 
-                margin: 0, 
-                padding: 0, 
-                width: 'auto', 
-                minWidth: 0 
+              '& .MuiDayCalendar-root': {
+                margin: 0,
+                padding: 0,
+                width: 'auto',
+                minWidth: 0,
               },
               '& .MuiDayCalendar-header': {
                 marginBottom: 0,
