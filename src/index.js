@@ -85,6 +85,7 @@ export { default } from './component/organism/analyticCalendar/AnalyticCalendar'
 export { default as AttendanceSummaryCard } from './component/organism/attendanceSummaryCard/AttendanceSummaryCard';
 export { default as StudentAttendanceCard } from './component/organism/studentAttendanceCard/StudentAttendanceCard';
 export { default as CourseList } from './component/organism/courseList/CourseList';
+export { default as TimePicker } from './component/organism/timePicker/TimePicker';
 
 export {
   ContestAnalyticsTitle,
