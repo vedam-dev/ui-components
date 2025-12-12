@@ -1,6 +1,6 @@
 import React from 'react';
 import { Snackbar as MuiSnackbar, Box, Typography, IconButton, useTheme } from '@mui/material';
-import { Close, CheckCircle, Warning } from '@mui/icons-material';
+import { Close, CheckCircle, Warning, Info } from '@mui/icons-material';
 
 export type SnackbarVariant = 'success' | 'error' | 'warning' | 'info' | 'default';
 
@@ -56,7 +56,7 @@ const Snackbar: React.FC<SnackbarProps> = ({
         return {
           backgroundColor: theme.palette.background.paper,
           border: `1px solid ${theme.palette.info.main}`,
-          icon: null,
+          icon: <Info sx={{ color: theme.palette.info.main, fontSize: '24px' }} />,
           textColor: theme.palette.info.main,
           closeIconColor: theme.palette.info.main,
           borderRadius: '16px',
@@ -148,7 +148,7 @@ const Snackbar: React.FC<SnackbarProps> = ({
               }}
             >
               {messages.length > 0 &&
-                (variant === 'info' || variant === 'default' || variant === 'error') && (
+                (variant === 'default' || variant === 'error') && (
                   <span style={{ marginRight: '8px' }}>•</span>
                 )}
               {msg}
