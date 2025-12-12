@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Meta, StoryObj } from '@storybook/react';
 import TimePicker from '../../../component/organism/timePicker/TimePicker';
-import { Box } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 
 const meta: Meta<typeof TimePicker> = {
   title: 'Organism/TimePicker',
@@ -13,29 +13,13 @@ const meta: Meta<typeof TimePicker> = {
       options: ['12h', '24h'],
       description: 'Time format (12-hour or 24-hour)',
     },
-    error: {
-      control: 'boolean',
-      description: 'Shows error state',
-    },
-    required: {
-      control: 'boolean',
-      description: 'Marks field as required',
-    },
     disabled: {
       control: 'boolean',
       description: 'Disables the time picker',
     },
-    label: {
+    tooltip: {
       control: 'text',
-      description: 'Label for the time picker',
-    },
-    helperText: {
-      control: 'text',
-      description: 'Helper text below the input',
-    },
-    placeholder: {
-      control: 'text',
-      description: 'Placeholder text',
+      description: 'Tooltip text for the icon button',
     },
   },
 };
@@ -53,18 +37,15 @@ const createTime = (hours: number, minutes: number = 0): Date => {
 
 export const Default: StoryObj = {
   render: () => {
-    const [startTime, setStartTime] = useState<Date | null>(createTime(9, 0));
+    const [time, setTime] = useState<Date | null>(createTime(9, 0));
 
     return (
-      <Box sx={{ display: 'flex', gap: 3, flexDirection: 'column', maxWidth: 400 }}>
-        <TimePicker
-          label="Start Time"
-          value={startTime}
-          onChange={setStartTime}
-          format="12h"
-          required
-          helperText="Meeting start time"
-        />
+      <Box sx={{ display: 'flex', gap: 2, alignItems: 'center' }}>
+        <TimePicker value={time} onChange={setTime} format="12h" tooltip="Select start time" />
+        <Typography>
+          Selected time:{' '}
+          {time ? time.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : 'None'}
+        </Typography>
       </Box>
     );
   },
@@ -72,18 +53,20 @@ export const Default: StoryObj = {
 
 export const TwelveHourFormat: StoryObj = {
   render: () => {
-    const [startTime, setStartTime] = useState<Date | null>(createTime(9, 0));
+    const [time, setTime] = useState<Date | null>(createTime(14, 30));
 
     return (
-      <Box sx={{ display: 'flex', gap: 3, flexDirection: 'column', maxWidth: 400 }}>
+      <Box sx={{ display: 'flex', gap: 2, alignItems: 'center' }}>
         <TimePicker
-          label="Start Time"
-          value={startTime}
-          onChange={setStartTime}
+          value={time}
+          onChange={setTime}
           format="12h"
-          required
-          helperText="Meeting start time"
+          tooltip="Select time (12-hour format)"
         />
+        <Typography>
+          Selected:{' '}
+          {time ? time.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : 'None'}
+        </Typography>
       </Box>
     );
   },
@@ -91,55 +74,63 @@ export const TwelveHourFormat: StoryObj = {
 
 export const TwentyFourHourFormat: StoryObj = {
   render: () => {
-    const [startTime, setStartTime] = useState<Date | null>(createTime(9, 0));
+    const [time, setTime] = useState<Date | null>(createTime(14, 30));
 
     return (
-      <Box sx={{ display: 'flex', gap: 3, flexDirection: 'column', maxWidth: 400 }}>
+      <Box sx={{ display: 'flex', gap: 2, alignItems: 'center' }}>
         <TimePicker
-          label="Start Time"
-          value={startTime}
-          onChange={setStartTime}
+          value={time}
+          onChange={setTime}
           format="24h"
-          required
-          helperText="Meeting start time"
+          tooltip="Select time (24-hour format)"
         />
+        <Typography>
+          Selected:{' '}
+          {time
+            ? time.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false })
+            : 'None'}
+        </Typography>
       </Box>
     );
   },
 };
 
-// Interactive story with validation
-export const WithValidation: StoryObj = {
+export const WithTimeConstraints: StoryObj = {
   render: () => {
-    const [time, setTime] = useState<Date | null>(null);
-    const [error, setError] = useState(false);
-    const [helperText, setHelperText] = useState('');
-
-    const handleChange = (newValue: Date | null) => {
-      setTime(newValue);
-      if (!newValue) {
-        setError(true);
-        setHelperText('Time is required');
-      } else if (newValue.getHours() < 9) {
-        setError(true);
-        setHelperText('Time must be after 9:00 AM');
-      } else {
-        setError(false);
-        setHelperText('Time is valid ✓');
-      }
-    };
+    const [time, setTime] = useState<Date | null>(createTime(12, 0));
 
     return (
-      <Box sx={{ maxWidth: 400 }}>
+      <Box sx={{ display: 'flex', gap: 2, alignItems: 'center' }}>
         <TimePicker
-          label="Office Hours"
           value={time}
-          onChange={handleChange}
-          error={error}
-          helperText={helperText || 'Select a time after 9:00 AM'}
-          required
+          onChange={setTime}
+          format="12h"
           minTime={createTime(9, 0)}
+          maxTime={createTime(17, 0)}
+          tooltip="Select time between 9 AM and 5 PM"
         />
+        <Typography>
+          Business hours (9 AM - 5 PM):{' '}
+          {time ? time.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : 'None'}
+        </Typography>
+      </Box>
+    );
+  },
+};
+
+export const DisabledState: StoryObj = {
+  render: () => {
+    const [time, setTime] = useState<Date | null>(createTime(10, 0));
+
+    return (
+      <Box sx={{ display: 'flex', gap: 2, alignItems: 'center' }}>
+        <TimePicker
+          value={time}
+          onChange={setTime}
+          disabled={true}
+          tooltip="Disabled time picker"
+        />
+        <Typography color="text.secondary">Disabled time picker</Typography>
       </Box>
     );
   },

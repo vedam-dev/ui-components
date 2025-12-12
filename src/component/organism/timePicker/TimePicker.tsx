@@ -2,52 +2,46 @@ import React, { useState } from 'react';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { StaticTimePicker } from '@mui/x-date-pickers/StaticTimePicker';
-import { Box, FormHelperText, Typography, TextField, Popover, IconButton } from '@mui/material';
+import { Box, IconButton, Tooltip } from '@mui/material';
 import { AccessTime } from '@mui/icons-material';
 import { useCoreTheme, CoreTheme } from '../../../theme/core-theme';
 import dayjs, { Dayjs } from 'dayjs';
+import Popover from '@mui/material/Popover';
 
 export interface TimePickerProps {
-  label?: string;
   value?: Date | null;
   onChange?: (value: Date | null) => void;
   format?: '12h' | '24h';
-  error?: boolean;
-  helperText?: string;
-  required?: boolean;
   disabled?: boolean;
-  placeholder?: string;
   minTime?: Date;
   maxTime?: Date;
   sx?: object;
   name?: string;
+  tooltip?: string;
+  popoverSx?: object;
 }
 
 const TimePicker: React.FC<TimePickerProps> = ({
-  label,
   value,
   onChange,
   format = '12h',
-  error = false,
-  helperText,
-  required = false,
   disabled = false,
-  placeholder = 'Select time',
   minTime,
   maxTime,
   sx,
   name,
+  tooltip = 'Select time',
+  popoverSx,
 }) => {
   const theme = useCoreTheme() as CoreTheme;
-  const [anchorEl, setAnchorEl] = useState<HTMLDivElement | null>(null);
-  const timeFormat = format === '12h' ? 'hh:mm A' : 'HH:mm';
+  const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
 
   // Convert Date to Dayjs
   const dayjsValue = value ? dayjs(value) : null;
   const dayjsMinTime = minTime ? dayjs(minTime) : undefined;
   const dayjsMaxTime = maxTime ? dayjs(maxTime) : undefined;
 
-  const handleOpen = (event: React.MouseEvent<HTMLDivElement>) => {
+  const handleOpen = (event: React.MouseEvent<HTMLButtonElement>) => {
     if (!disabled) {
       setAnchorEl(event.currentTarget);
     }
@@ -72,65 +66,30 @@ const TimePicker: React.FC<TimePickerProps> = ({
   };
 
   const open = Boolean(anchorEl);
-  const displayValue = dayjsValue ? dayjsValue.format(timeFormat) : '';
 
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <Box sx={{ width: '100%', ...sx }}>
-        {label && (
-          <Typography
-            variant="caption"
+      <Box sx={{ display: 'inline-flex', ...sx }}>
+        <Tooltip title={tooltip}>
+          <IconButton
+            name={name}
+            onClick={handleOpen}
+            disabled={disabled}
             sx={{
-              color: error ? theme.palette.error.main : theme.palette.grey[500],
-              fontSize: '14px',
-              fontWeight: 500,
-              mb: theme.spacing(1),
-              display: 'block',
+              color: disabled ? theme.palette.grey[400] : theme.palette.info.main,
+              '&:hover': {
+                backgroundColor: disabled ? 'transparent' : 'rgba(0, 0, 0, 0.04)',
+              },
+              '&.Mui-disabled': {
+                color: theme.palette.grey[400],
+              },
+              ...sx,
             }}
+            aria-label="Select time"
           >
-            {label}
-            {required && <span style={{ color: theme.palette.error.main }}> *</span>}
-          </Typography>
-        )}
-        <TextField
-          fullWidth
-          name={name}
-          value={displayValue}
-          placeholder={placeholder}
-          onClick={handleOpen}
-          error={error}
-          disabled={disabled}
-          InputProps={{
-            readOnly: true,
-            endAdornment: (
-              <IconButton size="small" disabled={disabled}>
-                <AccessTime />
-              </IconButton>
-            ),
-          }}
-          sx={{
-            cursor: disabled ? 'default' : 'pointer',
-            '& .MuiOutlinedInput-root': {
-              borderRadius: theme.spacing(1),
-              cursor: disabled ? 'default' : 'pointer',
-              '&:hover .MuiOutlinedInput-notchedOutline': {
-                borderColor: error ? theme.palette.error.main : theme.palette.info.main,
-              },
-              '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                borderColor: error ? theme.palette.error.main : theme.palette.info.main,
-                borderWidth: '2px',
-              },
-              '&.Mui-error .MuiOutlinedInput-notchedOutline': {
-                borderColor: theme.palette.error.main,
-              },
-            },
-            '& .MuiInputBase-input': {
-              fontSize: '16px',
-              fontWeight: 400,
-              cursor: disabled ? 'default' : 'pointer',
-            },
-          }}
-        />
+            <AccessTime />
+          </IconButton>
+        </Tooltip>
 
         <Popover
           open={open}
@@ -147,9 +106,9 @@ const TimePicker: React.FC<TimePickerProps> = ({
           slotProps={{
             paper: {
               sx: {
-                mt: 1,
-                boxShadow: theme.shadows[8],
-                borderRadius: theme.spacing(1),
+                mt: 3,
+                borderRadius: theme.spacing(4),
+                ...popoverSx,
               },
             },
           }}
@@ -193,19 +152,6 @@ const TimePicker: React.FC<TimePickerProps> = ({
             }}
           />
         </Popover>
-
-        {helperText && (
-          <FormHelperText
-            error={error}
-            sx={{
-              ml: theme.spacing(1.5),
-              mt: theme.spacing(0.5),
-              fontSize: '12px',
-            }}
-          >
-            {helperText}
-          </FormHelperText>
-        )}
       </Box>
     </LocalizationProvider>
   );
