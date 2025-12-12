@@ -147,10 +147,9 @@ const Snackbar: React.FC<SnackbarProps> = ({
                 marginBottom: index < messages.length - 1 ? '8px' : 0,
               }}
             >
-              {messages.length > 1 &&
-                (variant === 'default' || variant === 'error') && (
-                  <span style={{ marginRight: '8px' }}>•</span>
-                )}
+              {messages.length > 1 && (variant === 'default' || variant === 'error') && (
+                <span style={{ marginRight: '8px' }}>•</span>
+              )}
               {msg}
             </Typography>
           ))}
