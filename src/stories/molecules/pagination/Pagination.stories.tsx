@@ -211,7 +211,8 @@ export const LargeSiblingCount: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Pagination with a larger sibling count, showing more pages around the current page.',
+        story:
+          'Pagination with a larger sibling count, showing more pages around the current page.',
       },
     },
   },

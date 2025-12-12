@@ -25,28 +25,28 @@ export const CustomPagination: React.FC<CustomPaginationProps> = ({
 
   const generatePaginationRange = () => {
     const range: (number | string)[] = [];
-    
+
     range.push(1);
-    
+
     const leftSibling = Math.max(2, page - siblingCount);
     const rightSibling = Math.min(totalPages - 1, page + siblingCount);
-    
+
     if (leftSibling > 2) {
       range.push('...');
     }
-    
+
     for (let i = leftSibling; i <= rightSibling; i++) {
       range.push(i);
     }
-    
+
     if (rightSibling < totalPages - 1) {
       range.push('...');
     }
-    
+
     if (totalPages > 1) {
       range.push(totalPages);
     }
-    
+
     return range;
   };
 
@@ -89,7 +89,7 @@ export const CustomPagination: React.FC<CustomPaginationProps> = ({
           {label}
         </Typography>
       )}
-      
+
       <Box
         sx={{
           display: 'flex',
@@ -103,7 +103,8 @@ export const CustomPagination: React.FC<CustomPaginationProps> = ({
           sx={{
             width: '40px',
             height: '40px',
-            color: disabled || page === 1 ? theme.palette.text.disabled : theme.palette.text.primary,
+            color:
+              disabled || page === 1 ? theme.palette.text.disabled : theme.palette.text.primary,
             '&:hover': {
               backgroundColor: disabled || page === 1 ? 'transparent' : 'rgba(0, 0, 0, 0.04)',
             },
@@ -149,15 +150,15 @@ export const CustomPagination: React.FC<CustomPaginationProps> = ({
                 borderRadius: '50%',
                 fontSize: '16px',
                 fontWeight: isSelected ? 600 : 500,
-                color: disabled 
-                  ? theme.palette.text.disabled 
-                  : isSelected 
-                    ? theme.palette.primary.main 
+                color: disabled
+                  ? theme.palette.text.disabled
+                  : isSelected
+                    ? theme.palette.primary.main
                     : theme.palette.text.primary,
-                backgroundColor: isSelected 
-                    ? '#F3E8FF' 
-                    : 'transparent',
-                border: isSelected ? `1px solid ${disabled ? theme.palette.text.disabled : theme.palette.primary.main}` : 'none',
+                backgroundColor: isSelected ? '#F3E8FF' : 'transparent',
+                border: isSelected
+                  ? `1px solid ${disabled ? theme.palette.text.disabled : theme.palette.primary.main}`
+                  : 'none',
                 cursor: disabled ? 'default' : 'pointer',
                 userSelect: 'none',
                 transition: 'all 0.2s ease',
@@ -177,9 +178,13 @@ export const CustomPagination: React.FC<CustomPaginationProps> = ({
           sx={{
             width: '40px',
             height: '40px',
-            color: disabled || page === totalPages ? theme.palette.text.disabled : theme.palette.text.primary,
+            color:
+              disabled || page === totalPages
+                ? theme.palette.text.disabled
+                : theme.palette.text.primary,
             '&:hover': {
-              backgroundColor: disabled || page === totalPages ? 'transparent' : 'rgba(0, 0, 0, 0.04)',
+              backgroundColor:
+                disabled || page === totalPages ? 'transparent' : 'rgba(0, 0, 0, 0.04)',
             },
             '&.Mui-disabled': {
               color: theme.palette.text.disabled,
