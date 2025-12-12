@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-import { StaticDatePicker } from '@mui/x-date-pickers/StaticDatePicker';
+import { DateCalendar } from '@mui/x-date-pickers/DateCalendar';
 import { Box, Typography, Button, IconButton } from '@mui/material';
 import { CoreTheme, useCoreTheme } from '../../../theme/core-theme';
 import EditIcon from '@mui/icons-material/Edit';
@@ -118,61 +118,58 @@ export const CustomDatePicker: React.FC<CustomDatePickerProps> = ({
           </IconButton>
         </Box>
 
-        <Box sx={{ backgroundColor: '#ffffff' }}>
-          <StaticDatePicker
-            displayStaticWrapperAs="desktop"
+        <Box sx={{ backgroundColor: theme.palette.background.paper, padding: theme.spacing(4) }}>
+          <DateCalendar
             value={tempValue}
             onChange={(newValue) => setTempValue(newValue)}
             minDate={minDate}
             maxDate={maxDate}
-            slotProps={{
-              actionBar: {
-                actions: [],
-              },
-            }}
             sx={{
-              display: 'block',
-              '& .MuiPickersLayout-root': {
-                backgroundColor: 'transparent',
-                width: 'auto',
-                minWidth: 0,
-              },
-              '& .MuiStaticWrapper-root': {
-                width: 'auto',
-                minWidth: 0,
-              },
+              width: '100%',
+              maxWidth: '100%',
+              height: 'auto',
+
               '& .MuiDateCalendar-root': {
-                margin: 0,
-                padding: 0,
-                width: 'auto',
-                minWidth: 0,
+                width: '100%',
+                maxWidth: '100%',
+                height: 'auto',
               },
-              '& .MuiDayCalendar-root': {
-                margin: 0,
-                padding: 0,
-                width: 'auto',
-                minWidth: 0,
-              },
-              '& .MuiDayCalendar-header': {
-                marginBottom: 0,
-                paddingBottom: 0,
-              },
-              '& .MuiDayCalendar-weekContainer': {
+              '& .MuiPickersCalendarHeader-root': {
                 marginTop: 0,
-                marginBottom: 0,
+                marginBottom: '8px',
+                paddingLeft: 0,
+                paddingRight: 0,
               },
-              '& .MuiDayCalendar-monthContainer': {
-                margin: 0,
-              },
-              '& .MuiPickersSlideTransition-root': {
-                minHeight: 'auto',
-              },
-              '& .MuiDayCalendar-weekDayLabel': {
-                marginBottom: 0,
-                color: '#666666',
+
+              '& .MuiPickersCalendarHeader-label': {
+                fontSize: '1rem',
                 fontWeight: 500,
               },
+
+              '& .MuiDayCalendar-weekDayLabel': {
+                width: '40px',
+                height: '40px',
+                margin: 0,
+                color: '#666666',
+                fontWeight: 500,
+                fontSize: '0.875rem',
+              },
+              '& .MuiDayCalendar-header': {
+                display: 'flex',
+                justifyContent: 'space-between',
+                paddingLeft: 0,
+                paddingRight: 0,
+              },
+
+              '& .MuiDayCalendar-weekContainer': {
+                margin: 0,
+                justifyContent: 'space-between',
+              },
+
               '& .MuiPickersDay-root': {
+                width: '40px',
+                height: '40px',
+                margin: 0,
                 color: '#000000',
                 fontWeight: 400,
                 fontSize: '0.875rem',
@@ -197,9 +194,13 @@ export const CustomDatePicker: React.FC<CustomDatePickerProps> = ({
               // Today's date styling
               '& .MuiPickersDay-today': {
                 border: '1px solid #1976d2',
+
                 '&:not(.Mui-selected)': {
                   backgroundColor: 'transparent',
                 },
+              },
+              '& .MuiPickersDay-dayOutsideMonth': {
+                color: '#cccccc',
               },
             }}
           />
