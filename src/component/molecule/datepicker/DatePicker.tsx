@@ -121,7 +121,7 @@ export const CustomDatePicker: React.FC<CustomDatePickerProps> = ({
         <Box sx={{ backgroundColor: theme.palette.background.paper, padding: theme.spacing(4) }}>
           <DateCalendar
             value={tempValue}
-            onChange={(newValue) => setTempValue(newValue)}
+            onChange={(newValue) => setTempValue(newValue as Date | null)}
             minDate={minDate}
             maxDate={maxDate}
             sx={{

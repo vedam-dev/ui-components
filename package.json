@@ -74,6 +74,7 @@
 		"@types/date-fns": "^2.6.3",
 		"add": "^2.0.6",
 		"date-fns": "^4.1.0",
+		"dayjs": "^1.11.19",
 		"loki": "^0.35.1",
 		"react": "^19.0.0",
 		"react-docgen-typescript": "^2.4.0",
