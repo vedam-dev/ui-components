@@ -41,6 +41,7 @@ export { default as SurveyOptions } from './component/organism/surveyOptions/Sur
 export { default as RatingCard } from './component/organism/rating/Rating';
 export { default as VideoPlayerModal } from './component/organism/video-player-modal/VideoPlayerModal';
 export { default as CampusSelection } from './component/organism/campusSelection/CampusSelection';
+export { default as TimePicker } from './component/organism/timePicker/TimePicker';
 
 export {
   ClassListItemRow,
