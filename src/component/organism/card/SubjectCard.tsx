@@ -20,7 +20,7 @@ export interface SubjectCardProps {
   batch?: string;
   index: number;
   courseCode?: string;
-  credit?: string;
+  credits?: string;
   variant?: 'default' | 'course-offering';
   buttons?: Array<{
     text: string;
@@ -59,7 +59,7 @@ const SubjectCard: FC<SubjectCardProps> = ({
   batch,
   index,
   courseCode,
-  credit,
+  credits,
   variant = 'default',
   buttons,
   gradient = 'linear-gradient(180deg, #F3E8FF 0%, #FFF 100%)',
@@ -222,7 +222,7 @@ const SubjectCard: FC<SubjectCardProps> = ({
       : []);
 
   // Determine which info section to show (course info OR duration/lectures)
-  const showCourseInfo = variant === 'course-offering' && courseCode && credit;
+  const showCourseInfo = variant === 'course-offering' && courseCode && credits;
   const showDurationLectures = duration && lectureCount !== undefined;
 
   // Determine which secondary text to show (batch OR teacher)
@@ -286,7 +286,7 @@ const SubjectCard: FC<SubjectCardProps> = ({
               />
 
               {/* Course Credit */}
-              <Typography sx={defaultCourseInfoTextSx}>Course Credit: {credit}</Typography>
+              <Typography sx={defaultCourseInfoTextSx}>Course Credit: {credits}</Typography>
             </Box>
           )}
 
@@ -333,7 +333,7 @@ const SubjectCard: FC<SubjectCardProps> = ({
         {/* Buttons Section */}
         {displayButtons.length > 0 && (
           <CardActions
-            sx={{ padding: 0, mt: theme.spacing(0), display: 'flex', justifyContent: 'center' }}
+            sx={{ padding: 0, mb: theme.spacing(0), display: 'flex', justifyContent: 'center' }}
           >
             <Box
               sx={{
