@@ -181,8 +181,8 @@ export const CourseOfferingNoBatch: Story = {
   args: {
     subject: 'Chemistry',
     teacher: 'Dr. Marie Curie',
-    description: 'Advanced calculus, algebra, and mathematical analysis',
-    courseCode: 'CHEM101',
+    description: 'Advanced calculus, algebra, and ',
+    courseCode: 'CHEM1',
     credits: '200',
     variant: 'course-offering',
     index: 1,

@@ -112,7 +112,7 @@ const SubjectCard: FC<SubjectCardProps> = ({
   };
 
   const defaultSubjectTextSx: SxProps<Theme> = {
-    fontFamily: theme.typography.fontFamily,
+    //FontFamily: theme.typography.//FontFamily,
     fontWeight: 500,
     color: '#1E1E1E',
     fontSize: '22px',
@@ -125,7 +125,7 @@ const SubjectCard: FC<SubjectCardProps> = ({
   };
 
   const defaultTeacherTextSx: SxProps<Theme> = {
-    fontFamily: theme.typography.fontFamily,
+    //FontFamily: theme.typography.//FontFamily,
     fontWeight: 400,
     color: theme.palette.text.secondary,
     fontSize: '1.125rem',
@@ -136,7 +136,7 @@ const SubjectCard: FC<SubjectCardProps> = ({
   };
 
   const defaultDurationTextSx: SxProps<Theme> = {
-    fontFamily: theme.typography.fontFamily,
+    //FontFamily: theme.typography.//FontFamily,
     fontWeight: 500,
     color: theme.palette.text.secondary,
     fontSize: theme.typography.caption.fontSize,
@@ -145,7 +145,7 @@ const SubjectCard: FC<SubjectCardProps> = ({
   };
 
   const defaultLectureTextSx: SxProps<Theme> = {
-    fontFamily: theme.typography.fontFamily,
+    //FontFamily: theme.typography.//FontFamily,
     fontWeight: 500,
     color: theme.palette.text.secondary,
     fontSize: theme.typography.caption.fontSize,
@@ -154,13 +154,14 @@ const SubjectCard: FC<SubjectCardProps> = ({
   };
 
   const defaultDescriptionTextSx: SxProps<Theme> = {
-    fontFamily: theme.typography.fontFamily,
+    //FontFamily: theme.typography.//FontFamily,
     color: '#1E1E1E',
     fontSize: '16px',
     lineHeight: theme.spacing(4.5),
     fontWeight: 400,
     mb: theme.spacing(4.5),
     textWrap: 'stable',
+    minHeight: theme.spacing(9.5), 
     ...descriptionTextSx,
 
     display: '-webkit-box',
@@ -180,7 +181,7 @@ const SubjectCard: FC<SubjectCardProps> = ({
     borderColor: theme.palette.primary.main,
     backgroundColor: theme.palette.background.paper,
     color: theme.palette.primary.main,
-    fontFamily: theme.typography.fontFamily,
+    //FontFamily: theme.typography.//FontFamily,
     fontWeight: 500,
     fontSize: theme.typography.body1.fontSize,
     textTransform: 'none',
@@ -191,7 +192,7 @@ const SubjectCard: FC<SubjectCardProps> = ({
   };
 
   const defaultBatchTextSx: SxProps<Theme> = {
-    fontFamily: theme.typography.fontFamily,
+    //FontFamily: theme.typography.//FontFamily,
     fontWeight: 400,
     color: '#525252',
     fontSize: '18px',
@@ -200,7 +201,7 @@ const SubjectCard: FC<SubjectCardProps> = ({
   };
 
   const defaultCourseInfoTextSx: SxProps<Theme> = {
-    fontFamily: theme.typography.fontFamily,
+    //FontFamily: theme.typography.//FontFamily,
     fontWeight: 500,
     color: '#4C4C4C',
     fontSize: '13px',
