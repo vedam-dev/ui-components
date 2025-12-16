@@ -161,7 +161,7 @@ const SubjectCard: FC<SubjectCardProps> = ({
     fontWeight: 400,
     mb: theme.spacing(4.5),
     textWrap: 'stable',
-    minHeight: theme.spacing(9.5), 
+    minHeight: theme.spacing(9.5),
     ...descriptionTextSx,
 
     display: '-webkit-box',
