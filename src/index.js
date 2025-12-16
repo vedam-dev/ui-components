@@ -22,6 +22,8 @@ export { default as Select } from './component/atom/dropdown/Select';
 export { default as Sekeleton } from './component/atom/skeleton/Skeleton';
 export { default as IconDropdown } from './component/molecule/icon-dropdown/IconDropdown';
 export { default as BackButton } from './component/molecule/backButton/BackButton';
+export { default as CustomDatePicker } from './component/molecule/datepicker/DatePicker';
+export { default as CustomPagination } from './component/molecule/pagination/Pagination';
 //  Organism Components
 export { default as HorizontalBaseCard } from './component/organism/card/HorizontalBaseCard';
 export { default as VerticalBasecard } from './component/organism/card/VerticalBasecard';
@@ -100,7 +102,6 @@ export { TooltipData } from './component/organism/analyticCalendar/AnalyticCalen
 
 export { default as ContestAnalyticsListItem } from './component/organism/contestAnalytics/ContestAnalytics';
 export { default as InstructorList } from './component/organism/instructorList/InstructorList';
-export { default as CustomDatePicker } from './component/molecule/datepicker/DatePicker';
 
 //  Theme Component's
 export { default as defaultTheme } from './theme/customer/default';
