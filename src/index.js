@@ -44,6 +44,7 @@ export { default as RatingCard } from './component/organism/rating/Rating';
 export { default as VideoPlayerModal } from './component/organism/video-player-modal/VideoPlayerModal';
 export { default as CampusSelection } from './component/organism/campusSelection/CampusSelection';
 export { default as TimePicker } from './component/organism/timePicker/TimePicker';
+export { default as Snackbar } from './component/organism/snackbar/Snackbar';
 
 export {
   ClassListItemRow,
