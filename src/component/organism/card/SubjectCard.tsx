@@ -28,6 +28,8 @@ export interface SubjectCardProps {
     variant?: 'contained' | 'outlined' | 'text';
     startIcon?: React.ReactNode;
   }>;
+  gradient?: string;
+  border?: string;
 
   onGoToClass?: () => void;
 
@@ -58,9 +60,10 @@ const SubjectCard: FC<SubjectCardProps> = ({
   index,
   courseCode,
   credit,
-  // New props
   variant = 'default',
   buttons,
+  gradient = 'linear-gradient(180deg, #F3E8FF 0%, #FFF 100%)',
+  border = '1px solid #DAC2F2',
   onGoToClass,
 
   width = 303,
@@ -79,31 +82,13 @@ const SubjectCard: FC<SubjectCardProps> = ({
 }) => {
   const theme = useCoreTheme() as CoreTheme;
 
-  const gradients = [
-    'linear-gradient(180deg, #F3E8FF 0%, #FFF 100%)',
-    'linear-gradient(180deg, #FFEAC0 0%, #FFF 100%)',
-    'linear-gradient(180deg, #FFDBB6 0%, #FFF 100%)',
-    'linear-gradient(180deg, #A6F5F8 0%, #FFF 100%)',
-  ];
-
-  const borders = [
-    '1px solid #DAC2F2',
-    '1px solid #FFEAC0',
-    '1px solid #FFDBB6',
-    '1px solid #A6F5F8',
-  ];
-
-  // Calculate which gradient and border to use based on index
-  const cardGradient = gradients[index % 4];
-  const cardBorder = borders[index % 4];
-
   const defaultCardSx: SxProps<Theme> = {
     width: typeof width === 'number' ? `${width}px` : width,
     height: typeof height === 'number' ? `${height}px` : height,
     borderRadius: theme.spacing(7),
     padding: '28px 20px',
-    border: cardBorder,
-    background: cardGradient,
+    border: border,
+    background: gradient,
     display: 'flex',
     flexDirection: 'column',
     boxShadow: 'none',
