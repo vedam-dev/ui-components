@@ -20,7 +20,7 @@ export interface SubjectCardProps {
   batch?: string;
   index: number;
   courseCode?: string;
-  credit?: string;
+  credits?: string;
   variant?: 'default' | 'course-offering';
   buttons?: Array<{
     text: string;
@@ -28,6 +28,8 @@ export interface SubjectCardProps {
     variant?: 'contained' | 'outlined' | 'text';
     startIcon?: React.ReactNode;
   }>;
+  gradient?: string;
+  border?: string;
 
   onGoToClass?: () => void;
 
@@ -57,10 +59,11 @@ const SubjectCard: FC<SubjectCardProps> = ({
   batch,
   index,
   courseCode,
-  credit,
-  // New props
+  credits,
   variant = 'default',
   buttons,
+  gradient = 'linear-gradient(180deg, #F3E8FF 0%, #FFF 100%)',
+  border = '1px solid #DAC2F2',
   onGoToClass,
 
   width = 303,
@@ -79,31 +82,13 @@ const SubjectCard: FC<SubjectCardProps> = ({
 }) => {
   const theme = useCoreTheme() as CoreTheme;
 
-  const gradients = [
-    'linear-gradient(180deg, #F3E8FF 0%, #FFF 100%)',
-    'linear-gradient(180deg, #FFEAC0 0%, #FFF 100%)',
-    'linear-gradient(180deg, #FFDBB6 0%, #FFF 100%)',
-    'linear-gradient(180deg, #A6F5F8 0%, #FFF 100%)',
-  ];
-
-  const borders = [
-    '1px solid #DAC2F2',
-    '1px solid #FFEAC0',
-    '1px solid #FFDBB6',
-    '1px solid #A6F5F8',
-  ];
-
-  // Calculate which gradient and border to use based on index
-  const cardGradient = gradients[index % 4];
-  const cardBorder = borders[index % 4];
-
   const defaultCardSx: SxProps<Theme> = {
     width: typeof width === 'number' ? `${width}px` : width,
     height: typeof height === 'number' ? `${height}px` : height,
     borderRadius: theme.spacing(7),
     padding: '28px 20px',
-    border: cardBorder,
-    background: cardGradient,
+    border: border,
+    background: gradient,
     display: 'flex',
     flexDirection: 'column',
     boxShadow: 'none',
@@ -127,7 +112,7 @@ const SubjectCard: FC<SubjectCardProps> = ({
   };
 
   const defaultSubjectTextSx: SxProps<Theme> = {
-    fontFamily: theme.typography.fontFamily,
+    //FontFamily: theme.typography.//FontFamily,
     fontWeight: 500,
     color: '#1E1E1E',
     fontSize: '22px',
@@ -140,7 +125,7 @@ const SubjectCard: FC<SubjectCardProps> = ({
   };
 
   const defaultTeacherTextSx: SxProps<Theme> = {
-    fontFamily: theme.typography.fontFamily,
+    //FontFamily: theme.typography.//FontFamily,
     fontWeight: 400,
     color: theme.palette.text.secondary,
     fontSize: '1.125rem',
@@ -151,7 +136,7 @@ const SubjectCard: FC<SubjectCardProps> = ({
   };
 
   const defaultDurationTextSx: SxProps<Theme> = {
-    fontFamily: theme.typography.fontFamily,
+    //FontFamily: theme.typography.//FontFamily,
     fontWeight: 500,
     color: theme.palette.text.secondary,
     fontSize: theme.typography.caption.fontSize,
@@ -160,7 +145,7 @@ const SubjectCard: FC<SubjectCardProps> = ({
   };
 
   const defaultLectureTextSx: SxProps<Theme> = {
-    fontFamily: theme.typography.fontFamily,
+    //FontFamily: theme.typography.//FontFamily,
     fontWeight: 500,
     color: theme.palette.text.secondary,
     fontSize: theme.typography.caption.fontSize,
@@ -169,13 +154,14 @@ const SubjectCard: FC<SubjectCardProps> = ({
   };
 
   const defaultDescriptionTextSx: SxProps<Theme> = {
-    fontFamily: theme.typography.fontFamily,
+    //FontFamily: theme.typography.//FontFamily,
     color: '#1E1E1E',
     fontSize: '16px',
     lineHeight: theme.spacing(4.5),
     fontWeight: 400,
     mb: theme.spacing(4.5),
     textWrap: 'stable',
+    minHeight: theme.spacing(9.5),
     ...descriptionTextSx,
 
     display: '-webkit-box',
@@ -195,7 +181,7 @@ const SubjectCard: FC<SubjectCardProps> = ({
     borderColor: theme.palette.primary.main,
     backgroundColor: theme.palette.background.paper,
     color: theme.palette.primary.main,
-    fontFamily: theme.typography.fontFamily,
+    //FontFamily: theme.typography.//FontFamily,
     fontWeight: 500,
     fontSize: theme.typography.body1.fontSize,
     textTransform: 'none',
@@ -206,7 +192,7 @@ const SubjectCard: FC<SubjectCardProps> = ({
   };
 
   const defaultBatchTextSx: SxProps<Theme> = {
-    fontFamily: theme.typography.fontFamily,
+    //FontFamily: theme.typography.//FontFamily,
     fontWeight: 400,
     color: '#525252',
     fontSize: '18px',
@@ -215,7 +201,7 @@ const SubjectCard: FC<SubjectCardProps> = ({
   };
 
   const defaultCourseInfoTextSx: SxProps<Theme> = {
-    fontFamily: theme.typography.fontFamily,
+    //FontFamily: theme.typography.//FontFamily,
     fontWeight: 500,
     color: '#4C4C4C',
     fontSize: '13px',
@@ -237,7 +223,7 @@ const SubjectCard: FC<SubjectCardProps> = ({
       : []);
 
   // Determine which info section to show (course info OR duration/lectures)
-  const showCourseInfo = variant === 'course-offering' && courseCode && credit;
+  const showCourseInfo = variant === 'course-offering' && courseCode && credits;
   const showDurationLectures = duration && lectureCount !== undefined;
 
   // Determine which secondary text to show (batch OR teacher)
@@ -301,7 +287,7 @@ const SubjectCard: FC<SubjectCardProps> = ({
               />
 
               {/* Course Credit */}
-              <Typography sx={defaultCourseInfoTextSx}>Course Credit: {credit}</Typography>
+              <Typography sx={defaultCourseInfoTextSx}>Course Credit: {credits}</Typography>
             </Box>
           )}
 
@@ -348,7 +334,7 @@ const SubjectCard: FC<SubjectCardProps> = ({
         {/* Buttons Section */}
         {displayButtons.length > 0 && (
           <CardActions
-            sx={{ padding: 0, mt: theme.spacing(0), display: 'flex', justifyContent: 'center' }}
+            sx={{ padding: 0, mb: theme.spacing(0), display: 'flex', justifyContent: 'center' }}
           >
             <Box
               sx={{
