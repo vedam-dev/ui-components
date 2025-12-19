@@ -156,7 +156,15 @@ const SidebarWrapper: FC<SidebarWrapperProps> = ({
 
   useEffect(() => {
     if (hasExplicitSelection) {
-      setLocalItems(items.map((it) => ({ ...it })) as SidebarItem[]);
+      setLocalItems(
+        items.map((it) => {
+          const itemCopy = { ...it };
+          if (itemCopy.submenu) {
+            itemCopy.submenu = itemCopy.submenu.map((sub) => ({ ...sub }));
+          }
+          return itemCopy;
+        }) as SidebarItem[]
+      );
       return;
     }
 
@@ -164,13 +172,18 @@ const SidebarWrapper: FC<SidebarWrapperProps> = ({
     setLocalItems(
       items.map((it) => {
         const itemCopy = { ...it };
+        const hasSelectedSubmenu = itemCopy.submenu?.some((sub) => sub.selected === true);
+
         if (itemCopy.submenu) {
           itemCopy.submenu = itemCopy.submenu.map((sub) => ({
             ...sub,
             selected: sub.id === picked,
           }));
         }
-        return { ...itemCopy, selected: it.id === picked } as SidebarItem;
+        return {
+          ...itemCopy,
+          selected: it.selected || hasSelectedSubmenu || it.id === picked,
+        } as SidebarItem;
       })
     );
   }, [items, hasExplicitSelection]);
