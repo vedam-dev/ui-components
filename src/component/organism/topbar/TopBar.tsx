@@ -147,7 +147,7 @@ const TopBar: React.FC<TopBarProps> = ({
               <img
                 src="https://images.ctfassets.net/wrc4czfp4sk8/4LUdrH0t4U1C85faXgaj8O/3a268801a825ddb4652e1a33d91df655/a19c08cf0281aa052e17edc302ef904b1c753e86.png"
                 alt="Vedam Logo"
-                style={{ width: '161px', height: '90px' }}
+                style={{ width: '161px', height: '78px', objectFit: 'cover' }}
               />
             )}
           </IconButton>
