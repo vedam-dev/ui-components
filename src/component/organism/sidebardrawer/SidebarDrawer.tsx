@@ -77,7 +77,17 @@ const SidebarDrawer: FC<SidebarDrawerProps> = ({
       setActiveId(items[0]?.id ?? null);
     }
   }, [items]);
-
+useEffect(() => {
+  const menusToExpand: Record<string, boolean> = {};
+  
+  items.forEach((item) => {
+    if (item.submenu && item.submenu.some(sub => sub.selected === true)) {
+      menusToExpand[item.id] = true;
+    }
+  });
+  
+  setExpandedMenus(prev => ({ ...prev, ...menusToExpand }));
+}, [items]);
   const isExpanded = expanded !== undefined ? expanded : internalExpanded;
 
   const toggleAccordion = (itemId: string) => {
@@ -153,10 +163,10 @@ const SidebarDrawer: FC<SidebarDrawerProps> = ({
       >
         <List sx={{ px: 0 }}>
           {items.map((item) => {
-            const hasSubmenu = item.submenu && item.submenu.length > 0;
-            const isMenuExpanded = expandedMenus[item.id];
-            const hasActiveChild = hasSubmenu && item.submenu?.some((sub) => sub.id === activeId);
-            const isActive = hasActiveChild || (!hasSubmenu && item.id === activeId);
+const hasSubmenu = item.submenu && item.submenu.length > 0;
+const isMenuExpanded = expandedMenus[item.id];
+const hasActiveChild = hasSubmenu && item.submenu?.some((sub) => sub.selected === true || sub.id === activeId);
+const isActive = item.selected || hasActiveChild || (!hasSubmenu && item.id === activeId);
             return (
               <React.Fragment key={item.id}>
                 <ListItem
