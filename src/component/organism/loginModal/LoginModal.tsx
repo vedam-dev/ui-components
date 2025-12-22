@@ -56,7 +56,6 @@ const LoginModal: React.FC<LoginModalProps> = ({
         <Typography
           sx={{
             color: 'gray',
-            fontFamily: 'Outfit, system-ui',
             fontSize: '18px',
             fontWeight: 400,
             lineHeight: '16px',
@@ -78,7 +77,6 @@ const LoginModal: React.FC<LoginModalProps> = ({
             px: theme.spacing(3),
             fontSize: '24px',
             fontWeight: 600,
-            fontFamily: 'Outfit, system-ui',
             color: '#E11C1C',
             border: '1px solid #C5C5C5',
             borderRadius: theme.spacing(4),

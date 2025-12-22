@@ -140,7 +140,7 @@ export interface StudentListItemProps {
 }
 
 const StudentListItem: React.FC<StudentListItemProps> = ({
-  id,
+  id: _id,
   name,
   email,
   status,

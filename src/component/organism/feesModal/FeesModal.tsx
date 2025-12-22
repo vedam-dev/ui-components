@@ -79,7 +79,6 @@ const FeeSelectionModal: React.FC<FeeSelectionModalProps> = ({
             variant="h5"
             sx={{
               color: '#1E1E1E',
-              fontFamily: 'Outfit, system-ui',
               fontSize: '24px',
               fontWeight: 500,
             }}
@@ -267,7 +266,6 @@ const FeeSelectionModal: React.FC<FeeSelectionModalProps> = ({
             variant="h5"
             sx={{
               color: '#1E1E1E',
-              fontFamily: 'Outfit, system-ui',
               fontSize: '18px',
               fontWeight: 500,
             }}

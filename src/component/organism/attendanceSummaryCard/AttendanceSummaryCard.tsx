@@ -39,32 +39,29 @@ const StatBox = styled(Box)({
   alignItems: 'flex-start',
 });
 
-const StatLabel = styled(Typography)({
+const StatLabel = styled(Typography)(() => ({
   color: '#777',
-  fontFamily: 'Poppins',
   fontSize: '16px',
   fontStyle: 'normal',
   fontWeight: 500,
   lineHeight: 'normal',
-});
+}));
 
-const StatValue = styled(Typography)({
+const StatValue = styled(Typography)(() => ({
   color: '#8A18FF',
-  fontFamily: 'Outfit',
   fontSize: '18px',
   fontStyle: 'normal',
   fontWeight: 600,
   lineHeight: 'normal',
-});
+}));
 
-const StatValueSecondary = styled(Typography)({
+const StatValueSecondary = styled(Typography)(() => ({
   color: '#000',
-  fontFamily: 'Poppins',
   fontSize: '18px',
   fontStyle: 'normal',
   fontWeight: 600,
   lineHeight: 'normal',
-});
+}));
 
 const NavigateButton = styled(IconButton)({
   background: '#E8D1FF',

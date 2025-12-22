@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Box, Typography, SxProps, Theme, styled, useTheme } from '@mui/material';
+import { Box, Typography, SxProps, Theme, styled } from '@mui/material';
 
 export interface CampusOption {
   value: string;
@@ -50,28 +50,28 @@ const Header: React.FC<{ sx?: SxProps<Theme>; children?: React.ReactNode }> = ({
   </Typography>
 );
 
-const Title: React.FC<{ sx?: SxProps<Theme>; children?: React.ReactNode }> = ({ sx, children }) => (
-  <Typography
-    component="div"
-    sx={{
-      fontSize: '22px',
-      color: '#1E1E1E',
-      fontFamily: 'Outfit, sans-serif',
-      ...sx,
-    }}
-  >
-    {children}
-  </Typography>
-);
+const Title: React.FC<{ sx?: SxProps<Theme>; children?: React.ReactNode }> = ({ sx, children }) => {
+  return (
+    <Typography
+      component="div"
+      sx={{
+        fontSize: '22px',
+        color: '#1E1E1E',
+        ...sx,
+      }}
+    >
+      {children}
+    </Typography>
+  );
+};
 
-const Subtitle = styled(Typography)({
+const Subtitle = styled(Typography)(() => ({
   color: '#777777',
-  fontFamily: 'Outfit, sans-serif',
   fontSize: '20px',
   fontStyle: 'normal',
   fontWeight: 400,
   lineHeight: 'normal',
-});
+}));
 
 const NavButton = styled('button')<{ disabled?: boolean }>(({ disabled }) => ({
   width: '48px',
@@ -105,7 +105,7 @@ const CardsRow = styled(Box)(({ theme }) => ({
 const Card = styled(Box)<{
   selected?: boolean;
   disabled?: boolean;
-}>(({ theme, selected, disabled }) => ({
+}>(({ theme, selected: _selected, disabled }) => ({
   display: 'flex',
   flexDirection: 'column',
   flex: '1 1 calc(33.333% - 24px)',
@@ -131,23 +131,21 @@ const Logo = styled('img')({
   display: 'block',
 });
 
-const CollegeName = styled(Typography)({
+const CollegeName = styled(Typography)(() => ({
   background: 'linear-gradient(90deg, #8A18FF 0%, #FF7829 100%)',
   WebkitBackgroundClip: 'text',
   WebkitTextFillColor: 'transparent',
-  fontFamily: 'Outfit, sans-serif',
   fontSize: '18px',
   fontWeight: 600,
   lineHeight: '23px',
-});
+}));
 
-const Campus = styled(Typography)({
+const Campus = styled(Typography)(() => ({
   color: '#1E1E1E',
-  fontFamily: 'Outfit, sans-serif',
   fontSize: '18px',
   fontWeight: 500,
   lineHeight: '23px',
-});
+}));
 
 const InfoRow = styled(Box)({
   display: 'flex',
@@ -160,30 +158,27 @@ const InfoRow = styled(Box)({
   },
 });
 
-const InfoLabel = styled(Typography)({
+const InfoLabel = styled(Typography)(() => ({
   color: '#1E1E1E',
-  fontFamily: 'Outfit, sans-serif',
   fontSize: '16px',
   fontWeight: 600,
   minWidth: '80px',
   flexShrink: 0,
-});
+}));
 
-const InfoValue = styled(Typography)({
+const InfoValue = styled(Typography)(() => ({
   color: '#1E1E1E',
-  fontFamily: 'Outfit, sans-serif',
   fontSize: '16px',
   fontWeight: 400,
   flex: 1,
-});
+}));
 
-const SelectButton = styled('button')({
+const SelectButton = styled('button')(() => ({
   padding: '6px 20px',
   borderRadius: '14px',
   border: '1px solid #8A18FF',
   background: 'transparent',
   color: '#8A18FF',
-  fontFamily: 'Outfit, sans-serif',
   fontSize: '16px',
   fontWeight: 500,
   cursor: 'pointer',
@@ -200,7 +195,7 @@ const SelectButton = styled('button')({
   '&:active': {
     transform: 'scale(0.98)',
   },
-});
+}));
 
 const CampusSelection: React.FC<CampusSelectionProps> = ({
   value,
@@ -214,7 +209,6 @@ const CampusSelection: React.FC<CampusSelectionProps> = ({
   showNavigationButtons = true,
   itemsPerPage = 3,
 }) => {
-  const theme = useTheme();
   const [currentPage, setCurrentPage] = useState(0);
 
   const totalPages = Math.ceil(options.length / itemsPerPage);
@@ -274,9 +268,7 @@ const CampusSelection: React.FC<CampusSelectionProps> = ({
         }}
       >
         <Box>
-          <Title sx={{ fontSize: '22px', fontWeight: 600, fontFamily: 'Outfit, sans-serif' }}>
-            {title}
-          </Title>
+          <Title sx={{ fontSize: '22px', fontWeight: 600 }}>{title}</Title>
           <Subtitle>{subtitle}</Subtitle>
         </Box>
         {showNavigationButtons && totalPages > 1 && (

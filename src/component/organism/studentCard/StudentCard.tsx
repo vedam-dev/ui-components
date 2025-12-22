@@ -1,7 +1,6 @@
 import React from 'react';
 import { Box, Typography, IconButton, SxProps, styled, Theme } from '@mui/material';
 import { ChevronRight } from '@mui/icons-material';
-import { CoreTheme, useCoreTheme } from '../../../theme/core-theme';
 
 export interface StudentCardProps {
   title?: string;
@@ -33,23 +32,21 @@ const LeftSection = styled(Box)({
   minWidth: '444px',
 });
 
-const Title = styled(Typography)({
+const Title = styled(Typography)(() => ({
   color: '#8A18FF',
-  fontFamily: 'Poppins',
   fontSize: '20px',
   fontStyle: 'normal',
   fontWeight: 600,
   lineHeight: 'normal',
-});
+}));
 
-const Description = styled(Typography)({
+const Description = styled(Typography)(() => ({
   color: 'rgba(30, 30, 30, 0.93)',
-  fontFamily: 'Poppins',
   fontSize: '18px',
   fontStyle: 'normal',
   fontWeight: 400,
   lineHeight: 'normal',
-});
+}));
 
 const StatsSection = styled(Box)(({ theme }) => ({
   display: 'flex',
@@ -64,23 +61,21 @@ const StatBox = styled(Box)({
   minWidth: '192px',
 });
 
-const StatLabel = styled(Typography)({
+const StatLabel = styled(Typography)(() => ({
   color: '#777',
-  fontFamily: 'Poppins',
   fontSize: '16px',
   fontStyle: 'normal',
   fontWeight: 500,
   lineHeight: 'normal',
-});
+}));
 
-const StatValue = styled(Typography)({
+const StatValue = styled(Typography)(() => ({
   color: '#3870CA',
-  fontFamily: 'Outfit',
   fontSize: '22px',
   fontStyle: 'normal',
   fontWeight: 600,
   lineHeight: 'normal',
-});
+}));
 
 const NavigateButton = styled(IconButton)({
   background: '#E8D1FF',

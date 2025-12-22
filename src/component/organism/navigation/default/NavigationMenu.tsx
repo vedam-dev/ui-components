@@ -197,7 +197,6 @@ const skipToContentStyle: (theme: Theme) => SystemStyleObject<Theme> = (theme) =
   border: `1px solid ${theme.palette.common.white}`,
   outline: `2px solid ${theme.palette.common.black}`,
   alignItems: 'center',
-  fontFamily: theme.typography.subtitle2.fontFamily,
   margin: '10 0',
   '&:focus, &:focus-visible': {
     zIndex: 0,

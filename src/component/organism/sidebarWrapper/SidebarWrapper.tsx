@@ -5,7 +5,6 @@ import {
   Dashboard as DashboardIcon,
   People as PeopleIcon,
   Settings as SettingsIcon,
-  Analytics as AnalyticsIcon,
   Payment as PaymentIcon,
   School as SchoolIcon,
   Assignment as AssignmentIcon,

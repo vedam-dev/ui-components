@@ -223,7 +223,7 @@ export const EmptySecondaryText: Story = {
 // Story to showcase all 4 gradient variations
 export const AllGradientVariations: Story = {
   decorators: [
-    (Story): JSX.Element => (
+    (_Story): JSX.Element => (
       <ThemeProvider theme={storybookTheme}>
         <div
           style={{
