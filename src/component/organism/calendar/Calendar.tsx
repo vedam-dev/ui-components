@@ -180,7 +180,7 @@ const ReusableCalendar: React.FC<ReusableCalendarProps> = ({
   events,
   weekStart,
   onEventClick,
-  onWeekChange,
+  onWeekChange: _onWeekChange,
   sx,
 }) => {
   // const theme = useTheme();

@@ -26,8 +26,6 @@ const meta: Meta<typeof TimePicker> = {
 
 export default meta;
 
-type Story = StoryObj<typeof TimePicker>;
-
 // Helper function to create a date with specific time
 const createTime = (hours: number, minutes: number = 0): Date => {
   const date = new Date();

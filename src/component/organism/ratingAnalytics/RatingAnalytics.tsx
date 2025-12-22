@@ -8,7 +8,7 @@ export interface RatingAnalyticsDateProps {
   day: string;
 }
 
-export const RatingAnalyticsDate: React.FC<RatingAnalyticsDateProps> = ({ date, day }) => {
+export const RatingAnalyticsDate: React.FC<RatingAnalyticsDateProps> = ({ date, day: _day }) => {
   const theme = useCoreTheme() as CoreTheme;
 
   return (
@@ -180,7 +180,7 @@ export interface LectureListItemProps {
 
 const LectureListItem: React.FC<LectureListItemProps> = ({
   bgColor = '#FFFFFF',
-  borderColor,
+  borderColor: _borderColor,
   children,
 }) => {
   const theme = useCoreTheme() as CoreTheme;

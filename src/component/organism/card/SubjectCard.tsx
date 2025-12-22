@@ -57,7 +57,7 @@ const SubjectCard: FC<SubjectCardProps> = ({
   iconAlt = 'Subject icon',
   buttonText = 'Go to Class',
   batch,
-  index,
+  index: _index,
   courseCode,
   credits,
   variant = 'default',
