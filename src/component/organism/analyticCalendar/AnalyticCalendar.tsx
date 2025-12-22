@@ -58,7 +58,6 @@ const CalendarGrid = styled(Box)(() => ({
 const DayHeader = styled(Box)(() => ({
   color: '#1E1E1E',
   textAlign: 'center',
-  fontFamily: 'Outfit',
   fontSize: '18px',
   fontStyle: 'normal',
   fontWeight: 600,
@@ -137,7 +136,6 @@ const DayNumber = styled(Typography)<{ isOtherMonth?: boolean }>(({ isOtherMonth
   justifyContent: 'center',
   fontWeight: 600,
   color: isOtherMonth ? 'transparent' : '#1E1E1E',
-  fontFamily: 'Outfit',
   visibility: isOtherMonth ? 'hidden' : 'visible',
 }));
 
@@ -170,7 +168,6 @@ const ColorDot = styled(Box)<{ color: string }>(({ color }) => ({
 const TooltipNumber = styled(Typography)(() => ({
   color: '#1E1E1E',
   textAlign: 'center',
-  fontFamily: 'Outfit',
   fontSize: '14px',
   fontStyle: 'normal',
   fontWeight: 600,
@@ -180,7 +177,6 @@ const TooltipNumber = styled(Typography)(() => ({
 
 const TooltipLabel = styled(Typography)(() => ({
   color: '#1E1E1E',
-  fontFamily: 'Outfit',
   fontSize: '14px',
   fontStyle: 'normal',
   fontWeight: 400,

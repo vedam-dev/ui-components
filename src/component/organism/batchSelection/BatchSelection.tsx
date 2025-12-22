@@ -28,23 +28,21 @@ const Outer = styled(Box)(({ theme }) => ({
   boxSizing: 'border-box',
 }));
 
-const Title = styled(Typography)({
+const Title = styled(Typography)(() => ({
   color: '#1F1F1F',
-  fontFamily: 'Poppins, sans-serif',
   fontSize: '20px',
   fontStyle: 'normal',
   fontWeight: 600,
   lineHeight: 'normal',
-});
+}));
 
-const Subtitle = styled(Typography)({
+const Subtitle = styled(Typography)(() => ({
   color: '#9CA3AF',
-  fontFamily: 'Poppins, sans-serif',
   fontSize: '18px',
   fontStyle: 'normal',
   fontWeight: 400,
   lineHeight: 'normal',
-});
+}));
 
 const CardsRow = styled(Box)(({ theme }) => ({
   display: 'flex',
@@ -57,7 +55,7 @@ const CardsRow = styled(Box)(({ theme }) => ({
 const Card = styled('button')<{
   selected?: boolean;
   disabled?: boolean;
-}>(({ theme, selected, disabled }) => {
+}>(({ theme, selected: _selected, disabled }) => {
   const base: any = {
     display: 'flex',
     gap: theme.spacing(4),
@@ -86,9 +84,8 @@ const Card = styled('button')<{
   return base;
 });
 
-const Label = styled(Typography)({
+const Label = styled(Typography)(() => ({
   color: '#1E1E1E',
-  fontFamily: 'Outfit, sans-serif',
   fontSize: '22px',
   fontStyle: 'normal',
   fontWeight: 500,
@@ -96,7 +93,7 @@ const Label = styled(Typography)({
   overflow: 'hidden',
   textOverflow: 'ellipsis',
   whiteSpace: 'nowrap',
-});
+}));
 
 const BatchSelection: React.FC<BatchSelectionProps> = ({
   value,

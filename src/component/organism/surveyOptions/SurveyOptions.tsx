@@ -81,9 +81,7 @@ const OptionRow: React.FC<{
       </Box>
 
       <Box sx={{ flex: 1 }}>
-        <Typography sx={{ fontWeight: 400, fontFamily: 'Outfit', fontSize: '20px' }}>
-          {option.label}
-        </Typography>
+        <Typography sx={{ fontWeight: 400, fontSize: '20px' }}>{option.label}</Typography>
         {option.subtitle && (
           <Typography variant="body2" sx={{ color: 'text.secondary', mt: theme.spacing(0.5) }}>
             {option.subtitle}
@@ -160,7 +158,6 @@ const SurveyOptions: React.FC<SurveyOptionsProps> = ({
           sx={{
             mb: theme.spacing(2),
             color: '#1E1E1E',
-            fontFamily: 'Outfit',
             fontSize: '22px',
             fontStyle: 'normal',
             fontWeight: 400,

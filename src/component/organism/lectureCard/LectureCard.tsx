@@ -156,7 +156,6 @@ const LectureCard: React.FC<LectureCardProps> = ({
                 sx={{
                   color: '#1E1E1E',
                   textAlign: 'justify',
-                  fontFamily: 'Outfit',
                   fontSize: '24px',
                   fontStyle: 'normal',
                   fontWeight: 600,
@@ -192,7 +191,6 @@ const LectureCard: React.FC<LectureCardProps> = ({
                   variant="body2"
                   sx={{
                     color: '#000',
-                    fontFamily: 'Poppins',
                     fontSize: '14px',
                     fontStyle: 'normal',
                     fontWeight: 400,
@@ -210,7 +208,6 @@ const LectureCard: React.FC<LectureCardProps> = ({
                 sx={{
                   fontSize: '22px',
                   fontStyle: 'normal',
-                  fontFamily: theme.typography.fontFamily,
                   fontWeight: 600,
                   lineHeight: 'normal',
                   padding: theme.spacing(3, 5.5),

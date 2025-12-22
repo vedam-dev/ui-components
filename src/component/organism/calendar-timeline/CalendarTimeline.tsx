@@ -80,7 +80,6 @@ const CalendarTimeline: React.FC<CalendarTimelineProps> = ({ events }) => {
         sx={{
           fontSize: theme.spacing(6),
           fontWeight: 500,
-          fontFamily: 'Outfit',
           mb: theme.spacing(3),
           color: theme.palette.text.primary,
         }}

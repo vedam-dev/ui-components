@@ -42,7 +42,6 @@ const CalendarTimelineItem: React.FC<CalendarTimelineItemProps> = ({ event, isLa
           sx={{
             fontSize: theme.spacing(4.5),
             fontWeight: 500,
-            fontFamily: 'Poppins',
             color: theme.palette.text.secondary,
             whiteSpace: 'nowrap',
             overflow: 'hidden',
@@ -126,7 +125,6 @@ const CalendarTimelineItem: React.FC<CalendarTimelineItemProps> = ({ event, isLa
                 sx={{
                   fontWeight: 500,
                   fontSize: theme.spacing(4),
-                  fontFamily: 'Inter',
                   color: 'text.primary',
                 }}
               >
@@ -137,7 +135,6 @@ const CalendarTimelineItem: React.FC<CalendarTimelineItemProps> = ({ event, isLa
                   fontSize: theme.spacing(3.5),
                   fontWeight: 500,
                   color: 'text.secondary',
-                  fontFamily: 'Inter',
                 }}
               >
                 {event.time}
