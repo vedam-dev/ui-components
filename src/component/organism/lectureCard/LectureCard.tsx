@@ -7,6 +7,7 @@ export interface LectureCardProps {
   title?: string;
   date?: string;
   subtitle?: string;
+  buttonText?: string;
   image?: string;
   onWatch?: () => void;
   sx?: SxProps<Theme>;
@@ -73,6 +74,7 @@ const LectureCard: React.FC<LectureCardProps> = ({
   title = 'Machine Learning Coding',
   date = 'Wednesday, 10 June 2025',
   subtitle,
+  buttonText = 'Start Recording',
   image = DEFAULT_IMAGE,
   onWatch = () => {},
   sx = {},
@@ -208,7 +210,7 @@ const LectureCard: React.FC<LectureCardProps> = ({
                 sx={{
                   fontSize: '22px',
                   fontStyle: 'normal',
-                  fontFamily: 'Outfit',
+                  fontFamily: theme.typography.fontFamily,
                   fontWeight: 600,
                   lineHeight: 'normal',
                   padding: theme.spacing(3, 5.5),
@@ -219,7 +221,7 @@ const LectureCard: React.FC<LectureCardProps> = ({
                 }}
                 variant="contained"
               >
-                Watch Recording
+                {buttonText}
               </Button>
             </Box>
           </Box>
