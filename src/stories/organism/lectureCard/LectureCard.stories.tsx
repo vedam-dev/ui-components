@@ -25,7 +25,7 @@ const meta: Meta<typeof LectureCard> = {
         mapping: {
           default:
             'https://acjlsquedaotbhbxmtee.supabase.co/storage/v1/object/public/vedam-website-assets/images/videoInfo/Image.png',
-         
+
           unsplash:
             'https://images.unsplash.com/photo-1545239351-1141bd82e8a6?auto=format&fit=crop&w=1200&q=80',
           placeholder: 'https://via.placeholder.com/800x400',
@@ -42,7 +42,8 @@ const meta: Meta<typeof LectureCard> = {
         type: 'select',
         options: [undefined, 'inFuture', 'hasEnded'],
       },
-      description: 'Lecture state that controls title color (inFuture=green, hasEnded=blue, undefined=black)',
+      description:
+        'Lecture state that controls title color (inFuture=green, hasEnded=blue, undefined=black)',
     },
     variant: {
       control: {
@@ -82,7 +83,6 @@ export const WithSubtitle: Story = {
     buttonText: 'Start Recording',
   },
 };
-
 
 export const LongTitle: Story = {
   args: {
@@ -177,10 +177,7 @@ export const WithoutImageHighlight: Story = {
 export const AllStatesComparison: Story = {
   render: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
-      <LectureCard
-        title="Default State (No lectureState prop)"
-        date="Wednesday, 10 June 2025"
-      />
+      <LectureCard title="Default State (No lectureState prop)" date="Wednesday, 10 June 2025" />
       <LectureCard
         title="Future Lecture (Green Title)"
         date="Monday, 15 January 2026"

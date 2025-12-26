@@ -93,7 +93,7 @@ const LectureCard: React.FC<LectureCardProps> = ({
   const getTitleColor = () => {
     if (lectureState === 'inFuture') return theme.palette.success.main;
     if (lectureState === 'hasEnded') return theme.palette.info.main;
-    return '#1E1E1E'; 
+    return '#1E1E1E';
   };
 
   return (
