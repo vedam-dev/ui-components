@@ -25,6 +25,8 @@ const meta: Meta<typeof LectureCard> = {
         mapping: {
           default:
             'https://acjlsquedaotbhbxmtee.supabase.co/storage/v1/object/public/vedam-website-assets/images/videoInfo/Image.png',
+          default:
+            'https://acjlsquedaotbhbxmtee.supabase.co/storage/v1/object/public/vedam-website-assets/images/videoInfo/Image.png',
           unsplash:
             'https://images.unsplash.com/photo-1545239351-1141bd82e8a6?auto=format&fit=crop&w=1200&q=80',
           placeholder: 'https://via.placeholder.com/800x400',
@@ -69,6 +71,16 @@ export const Default: Story = {
   args: {
     title: 'Machine Learning Coding',
     date: 'Wednesday, 10 June 2025',
+    buttonText: 'Start Recording',
+  },
+};
+
+export const WithSubtitle: Story = {
+  args: {
+    title: 'Machine Learning Coding',
+    subtitle: 'Advanced Neural Networks and Deep Learning',
+    date: 'Wednesday, 10 June 2025',
+    buttonText: 'Start Recording',
     buttonText: 'Start Recording',
   },
 };
