@@ -171,8 +171,8 @@ export interface ContestAnalyticsListItemProps {
 }
 
 const ContestAnalyticsListItem: React.FC<ContestAnalyticsListItemProps> = ({
-  bgColor,
-  borderColor,
+  bgColor: _bgColor,
+  borderColor: _borderColor,
   children,
 }) => {
   const theme = useCoreTheme() as CoreTheme;

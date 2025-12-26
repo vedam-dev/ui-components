@@ -49,7 +49,6 @@ const TimeSlot = styled(Box)(({ theme }) => ({
   justifyContent: 'center',
   fontWeight: 600,
   color: '#1E1E1E',
-  fontFamily: 'Outfit',
   fontSize: '18px',
   fontStyle: 'normal',
   lineHeight: 'normal',
@@ -181,7 +180,7 @@ const ReusableCalendar: React.FC<ReusableCalendarProps> = ({
   events,
   weekStart,
   onEventClick,
-  onWeekChange,
+  onWeekChange: _onWeekChange,
   sx,
 }) => {
   // const theme = useTheme();

@@ -35,7 +35,6 @@ const StudentAttendanceCard: React.FC<StudentAttendanceCardProps> = ({
         <Typography
           sx={{
             color: '#6513AC',
-            fontFamily: 'Outfit',
             fontSize: '18px',
             fontStyle: 'normal',
             fontWeight: 600,
@@ -48,7 +47,6 @@ const StudentAttendanceCard: React.FC<StudentAttendanceCardProps> = ({
         <Typography
           sx={{
             color: '#000',
-            fontFamily: 'Outfit',
             fontSize: '16px',
             fontStyle: 'normal',
             fontWeight: 500,
@@ -63,7 +61,6 @@ const StudentAttendanceCard: React.FC<StudentAttendanceCardProps> = ({
         <Typography
           sx={{
             color: '#777',
-            fontFamily: 'Outfit',
             fontSize: '16px',
             fontStyle: 'normal',
             fontWeight: 500,
@@ -76,7 +73,6 @@ const StudentAttendanceCard: React.FC<StudentAttendanceCardProps> = ({
         <Typography
           sx={{
             color: '#8A18FF',
-            fontFamily: 'Outfit',
             fontSize: '18px',
             fontStyle: 'normal',
             fontWeight: 600,

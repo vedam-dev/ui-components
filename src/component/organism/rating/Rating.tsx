@@ -64,12 +64,11 @@ const RatingCard: React.FC<Props> = ({
         <Typography
           sx={{
             fontWeight: 500,
-            color: (theme) => (theme.palette.mode === 'light' ? '#111' : '#fff'),
+            color: (t) => (t.palette.mode === 'light' ? '#111' : '#fff'),
             zIndex: 2,
             position: 'relative',
             textAlign: 'center',
             fontSize: '20px',
-            fontFamily: 'Outfit',
             mt: 1,
           }}
         >

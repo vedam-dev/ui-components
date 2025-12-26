@@ -68,7 +68,6 @@ const TextField: React.FC<TextFieldProps> = ({
           sx={{
             display: 'block',
             color: '#1E1E1E',
-            fontFamily: 'Outfit',
             fontSize: theme.spacing(5.5),
             fontWeight: 500,
           }}
@@ -116,14 +115,12 @@ const TextField: React.FC<TextFieldProps> = ({
               },
               '& input': {
                 color: '#1E1E1E',
-                fontFamily: 'Outfit',
                 fontSize: theme.spacing(5.5),
                 fontWeight: 500,
               },
             },
             '& .MuiFormHelperText-root': {
               color: theme.palette.error[400],
-              fontFamily: 'Outfit',
               fontSize: theme.spacing(4.25),
             },
           }}

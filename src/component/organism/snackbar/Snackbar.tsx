@@ -16,7 +16,7 @@ export interface SnackbarProps {
 const Snackbar: React.FC<SnackbarProps> = ({
   open,
   message,
-  title,
+  title: _title,
   variant,
   autoHideDuration = 6000,
   onClose,

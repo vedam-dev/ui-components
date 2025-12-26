@@ -34,8 +34,6 @@ const meta: Meta<typeof Snackbar> = {
 
 export default meta;
 
-type Story = StoryObj<typeof Snackbar>;
-
 const useSnackbarState = (initialOpen = false) => {
   const [open, setOpen] = useState(initialOpen);
 

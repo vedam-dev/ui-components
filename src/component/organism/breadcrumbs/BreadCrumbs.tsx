@@ -40,7 +40,6 @@ const DynamicBreadcrumbs: React.FC<DynamicBreadcrumbsProps> = ({
                 key={index}
                 sx={{
                   color: '#8A18FF',
-                  fontFamily: 'Poppins, sans-serif',
                   fontSize: '20px',
                   fontStyle: 'normal',
                   fontWeight: 400,
@@ -63,7 +62,6 @@ const DynamicBreadcrumbs: React.FC<DynamicBreadcrumbsProps> = ({
               onClick={item.onClick}
               sx={{
                 color: '#1E1E1E',
-                fontFamily: 'Poppins, sans-serif',
                 fontSize: '20px',
                 fontStyle: 'normal',
                 fontWeight: 400,

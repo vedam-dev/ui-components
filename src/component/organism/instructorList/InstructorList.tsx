@@ -30,23 +30,21 @@ const Outer = styled(Box)(({ theme }) => ({
   boxSizing: 'border-box',
 }));
 
-const Title = styled(Typography)({
+const Title = styled(Typography)(() => ({
   color: '#1E1E1EEE',
-  fontFamily: 'Poppins',
   fontSize: '20px',
   fontStyle: 'normal',
   fontWeight: 600,
   lineHeight: 'normal',
-});
+}));
 
-const Subtitle = styled(Typography)({
+const Subtitle = styled(Typography)(() => ({
   color: '#777777EE',
-  fontFamily: 'Poppins',
   fontSize: '18px',
   fontStyle: 'normal',
   fontWeight: 400,
   lineHeight: 'normal',
-});
+}));
 
 const CardsGrid = styled(Box)(({ theme }) => ({
   display: 'grid',
@@ -122,10 +120,9 @@ const Card = styled('button')<{
   return base;
 });
 
-const InstructorName = styled(Typography)({
+const InstructorName = styled(Typography)(() => ({
   color: '#1E1E1E',
   textAlign: 'center',
-  fontFamily: 'Outfit',
   fontSize: '22px',
   fontStyle: 'normal',
   fontWeight: 500,
@@ -135,12 +132,11 @@ const InstructorName = styled(Typography)({
   textOverflow: 'ellipsis',
   whiteSpace: 'nowrap',
   width: '100%',
-});
+}));
 
-const SemesterName = styled(Typography)({
+const SemesterName = styled(Typography)(() => ({
   color: '#1E1E1E',
   textAlign: 'center',
-  fontFamily: 'Outfit',
   fontSize: '22px',
   fontStyle: 'normal',
   fontWeight: 500,
@@ -150,7 +146,7 @@ const SemesterName = styled(Typography)({
   textOverflow: 'ellipsis',
   whiteSpace: 'nowrap',
   width: '100%',
-});
+}));
 
 const RatingContainer = styled(Box)({
   display: 'flex',
@@ -163,7 +159,6 @@ const RatingText = styled(Typography)<{ colorscheme?: string }>(({ colorscheme }
   const color = colorscheme === 'purple' ? '#9B6FE8' : '#C8A658';
   return {
     color,
-    fontFamily: 'Outfit',
     fontSize: '22px',
     fontStyle: 'normal',
     fontWeight: 500,

@@ -58,7 +58,6 @@ const CalendarGrid = styled(Box)(() => ({
 const DayHeader = styled(Box)(() => ({
   color: '#1E1E1E',
   textAlign: 'center',
-  fontFamily: 'Outfit',
   fontSize: '18px',
   fontStyle: 'normal',
   fontWeight: 600,
@@ -78,7 +77,7 @@ const DayCell = styled(Box, {
   hasEvent?: boolean;
   eventType?: string;
   attendanceStatus?: AttendanceStatus;
-}>(({ isToday, isOtherMonth, hasEvent, eventType, attendanceStatus }) => {
+}>(({ isToday, isOtherMonth, hasEvent, eventType: _eventType, attendanceStatus }) => {
   let backgroundColor = '#F5F5F7';
   let borderRadius = '0px';
 
@@ -137,7 +136,6 @@ const DayNumber = styled(Typography)<{ isOtherMonth?: boolean }>(({ isOtherMonth
   justifyContent: 'center',
   fontWeight: 600,
   color: isOtherMonth ? 'transparent' : '#1E1E1E',
-  fontFamily: 'Outfit',
   visibility: isOtherMonth ? 'hidden' : 'visible',
 }));
 
@@ -170,7 +168,6 @@ const ColorDot = styled(Box)<{ color: string }>(({ color }) => ({
 const TooltipNumber = styled(Typography)(() => ({
   color: '#1E1E1E',
   textAlign: 'center',
-  fontFamily: 'Outfit',
   fontSize: '14px',
   fontStyle: 'normal',
   fontWeight: 600,
@@ -180,7 +177,6 @@ const TooltipNumber = styled(Typography)(() => ({
 
 const TooltipLabel = styled(Typography)(() => ({
   color: '#1E1E1E',
-  fontFamily: 'Outfit',
   fontSize: '14px',
   fontStyle: 'normal',
   fontWeight: 400,
@@ -192,7 +188,8 @@ function getDaysInMonth(date: Date): Date[] {
   const month = date.getMonth();
 
   const firstDay = new Date(year, month, 1);
-  const lastDay = new Date(year, month + 1, 0);
+  // Calculate last day of month for reference (not directly used but helps understand the logic)
+  new Date(year, month + 1, 0);
 
   const firstDayOfWeek = firstDay.getDay();
   const startDate = new Date(firstDay);
