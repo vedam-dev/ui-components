@@ -85,14 +85,6 @@ export const WithSubtitle: Story = {
   },
 };
 
-export const WithSubtitle: Story = {
-  args: {
-    title: 'Machine Learning Coding',
-    subtitle: 'Advanced Neural Networks and Deep Learning',
-    date: 'Wednesday, 10 June 2025',
-    buttonText: 'Start Recording',
-  },
-};
 
 export const LongTitle: Story = {
   args: {
