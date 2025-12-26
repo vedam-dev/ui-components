@@ -12,8 +12,9 @@ export interface LectureCardProps {
   onWatch?: () => void;
   sx?: SxProps<Theme>;
   showImageHighlight?: boolean;
-
   variant?: 'default' | 'compact';
+  disabled?: boolean;
+  lectureState?: 'inFuture' | 'hasEnded';
 }
 
 const DEFAULT_IMAGE =
@@ -80,13 +81,20 @@ const LectureCard: React.FC<LectureCardProps> = ({
   sx = {},
   showImageHighlight = true,
   variant = 'default',
+  disabled = false,
+  lectureState,
 }) => {
   const theme = useCoreTheme() as CoreTheme;
 
   const isCompact = variant === 'compact';
   const leftWidth = { xs: '42%', sm: '50%' };
   const minHeight = isCompact ? { xs: 120, sm: 140 } : { xs: 140, sm: 200 };
-  // const buttonPaddingX = isCompact ? 3 : 4;
+
+  const getTitleColor = () => {
+    if (lectureState === 'inFuture') return theme.palette.success.main;
+    if (lectureState === 'hasEnded') return theme.palette.info.main;
+    return '#1E1E1E'; 
+  };
 
   return (
     <Root sx={{ p: isCompact ? 1 : 2, ...sx }}>
@@ -121,6 +129,7 @@ const LectureCard: React.FC<LectureCardProps> = ({
               aria-label="Play recording"
               onClick={onWatch}
               size="large"
+              disabled={disabled}
               sx={{
                 position: 'absolute',
                 left: '50%',
@@ -154,7 +163,7 @@ const LectureCard: React.FC<LectureCardProps> = ({
               <Typography
                 variant="h6"
                 sx={{
-                  color: '#1E1E1E',
+                  color: getTitleColor(),
                   textAlign: 'justify',
                   fontSize: '24px',
                   fontStyle: 'normal',
@@ -205,6 +214,7 @@ const LectureCard: React.FC<LectureCardProps> = ({
               <Button
                 onClick={onWatch}
                 disableRipple
+                disabled={disabled}
                 sx={{
                   fontSize: '22px',
                   fontStyle: 'normal',

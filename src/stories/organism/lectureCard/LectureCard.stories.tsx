@@ -12,15 +12,11 @@ const meta: Meta<typeof LectureCard> = {
     },
     date: {
       control: 'text',
-      description: 'Date shown under the title',
+      description: 'Date / subtitle shown under the title',
     },
     subtitle: {
       control: 'text',
-      description: 'Optional subtitle shown between title and date',
-    },
-    buttonText: {
-      control: 'text',
-      description: 'Text displayed on the action button',
+      description: 'Optional subtitle text',
     },
     image: {
       control: {
@@ -36,10 +32,23 @@ const meta: Meta<typeof LectureCard> = {
       },
       description: 'Image URL for left side (select a preset or provide a URL)',
     },
+    disabled: {
+      control: 'boolean',
+      description: 'Disable the watch button and play icon',
+    },
+    lectureState: {
+      control: {
+        type: 'select',
+        options: [undefined, 'inFuture', 'hasEnded'],
+      },
+      description: 'Lecture state that controls title color (inFuture=green, hasEnded=blue, undefined=black)',
+    },
     variant: {
-      control: 'select',
-      options: ['default', 'compact'],
-      description: 'Card variant - default or compact',
+      control: {
+        type: 'select',
+        options: ['default', 'compact'],
+      },
+      description: 'Card size variant',
     },
     showImageHighlight: {
       control: 'boolean',
@@ -77,34 +86,110 @@ export const LongTitle: Story = {
   args: {
     title: 'Machine Learning Coding — Deep Dive: CNNs, RNNs, Transformers and Practical Projects',
     date: 'Wednesday, 10 June 2025',
-    buttonText: 'Start Recording',
     image:
       'https://images.unsplash.com/photo-1545239351-1141bd82e8a6?auto=format&fit=crop&w=1200&q=80',
   },
 };
 
-export const Compact: Story = {
+export const FutureLecture: Story = {
   args: {
-    title: 'Machine Learning Coding',
+    title: 'Upcoming Advanced Python Workshop',
+    date: 'Monday, 15 January 2026',
+    lectureState: 'inFuture',
+    disabled: true,
+  },
+};
+
+export const EndedLecture: Story = {
+  args: {
+    title: 'Introduction to Data Science',
+    date: 'Friday, 20 December 2024',
+    lectureState: 'hasEnded',
+  },
+};
+
+export const FutureLectureWithSubtitle: Story = {
+  args: {
+    title: 'Deep Learning Fundamentals',
+    subtitle: 'Learn the basics of neural networks and backpropagation',
+    date: 'Thursday, 30 January 2026',
+    lectureState: 'inFuture',
+    disabled: true,
+    image:
+      'https://images.unsplash.com/photo-1545239351-1141bd82e8a6?auto=format&fit=crop&w=1200&q=80',
+  },
+};
+
+export const EndedLectureWithSubtitle: Story = {
+  args: {
+    title: 'Web Development Masterclass',
+    subtitle: 'Building modern web applications with React and Node.js',
+    date: 'Tuesday, 10 December 2024',
+    lectureState: 'hasEnded',
+  },
+};
+
+export const CompactVariant: Story = {
+  args: {
+    title: 'Quick Tutorial Session',
     date: 'Wednesday, 10 June 2025',
-    buttonText: 'Watch Now',
     variant: 'compact',
+  },
+};
+
+export const CompactFutureLecture: Story = {
+  args: {
+    title: 'Git & GitHub Workshop',
+    date: 'Saturday, 25 January 2026',
+    variant: 'compact',
+    lectureState: 'inFuture',
+    disabled: true,
+  },
+};
+
+export const CompactEndedLecture: Story = {
+  args: {
+    title: 'CSS Grid & Flexbox',
+    date: 'Monday, 18 December 2024',
+    variant: 'compact',
+    lectureState: 'hasEnded',
+  },
+};
+
+export const DisabledDefault: Story = {
+  args: {
+    title: 'Maintenance - Temporarily Unavailable',
+    date: 'Wednesday, 10 June 2025',
+    disabled: true,
   },
 };
 
 export const WithoutImageHighlight: Story = {
   args: {
-    title: 'Machine Learning Coding',
+    title: 'Clean Design Lecture',
     date: 'Wednesday, 10 June 2025',
-    buttonText: 'Start Recording',
     showImageHighlight: false,
   },
 };
 
-export const CustomButtonText: Story = {
-  args: {
-    title: 'Machine Learning Coding',
-    date: 'Wednesday, 10 June 2025',
-    buttonText: 'Watch Recording',
-  },
+export const AllStatesComparison: Story = {
+  render: () => (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+      <LectureCard
+        title="Default State (No lectureState prop)"
+        date="Wednesday, 10 June 2025"
+      />
+      <LectureCard
+        title="Future Lecture (Green Title)"
+        date="Monday, 15 January 2026"
+        lectureState="inFuture"
+        disabled={true}
+      />
+      <LectureCard
+        title="Ended Lecture (Blue Title)"
+        date="Friday, 20 December 2024"
+        lectureState="hasEnded"
+      />
+    </div>
+  ),
 };
