@@ -25,7 +25,6 @@ const meta: Meta<typeof LectureCard> = {
         mapping: {
           default:
             'https://acjlsquedaotbhbxmtee.supabase.co/storage/v1/object/public/vedam-website-assets/images/videoInfo/Image.png',
-
           unsplash:
             'https://images.unsplash.com/photo-1545239351-1141bd82e8a6?auto=format&fit=crop&w=1200&q=80',
           placeholder: 'https://via.placeholder.com/800x400',
@@ -55,6 +54,23 @@ const meta: Meta<typeof LectureCard> = {
     showImageHighlight: {
       control: 'boolean',
       description: 'Show decorative highlight border on image',
+    },
+    attendanceStatus: {
+      control: {
+        type: 'select',
+        options: [
+          undefined,
+          'Present',
+          'Absent',
+          'Late',
+          'Leave',
+          'Excused',
+          'Awaiting Start',
+          'Session in progress',
+          '',
+        ],
+      },
+      description: 'Attendance status (if undefined, badge not shown; if empty string, shows "NA")',
     },
     onWatch: { action: 'watchClicked' },
     sx: {
@@ -189,6 +205,28 @@ export const AllStatesComparison: Story = {
         date="Friday, 20 December 2024"
         lectureState="hasEnded"
       />
+      <LectureCard
+        title="Present"
+        date="Wednesday, 10 June 2025"
+        lectureState="inFuture"
+        attendanceStatus="Present"
+      />
+      <LectureCard title="Absent" date="Wednesday, 10 June 2025" attendanceStatus="Absent" />
+      <LectureCard title="Late" date="Wednesday, 10 June 2025" attendanceStatus="Late" />
+      <LectureCard title="Leave" date="Wednesday, 10 June 2025" attendanceStatus="Leave" />
+      <LectureCard title="Excused" date="Wednesday, 10 June 2025" attendanceStatus="Excused" />
+      <LectureCard
+        title="Awaiting Start"
+        date="Wednesday, 10 June 2025"
+        attendanceStatus="Awaiting Start"
+      />
+      <LectureCard
+        title="Session in progress"
+        date="Wednesday, 10 June 2025"
+        attendanceStatus="Session in progress"
+      />
+      <LectureCard title="NA (Empty String)" date="Wednesday, 10 June 2025" attendanceStatus="" />
+      <LectureCard title="No Attendance Status (undefined)" date="Wednesday, 10 June 2025" />
     </div>
   ),
 };

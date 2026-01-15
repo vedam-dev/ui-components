@@ -1,7 +1,17 @@
 import React from 'react';
-import { Box, Typography, Button, IconButton, styled, SxProps, Theme } from '@mui/material';
+import { Box, Typography, Button, IconButton, styled, SxProps, Theme, Chip } from '@mui/material';
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 import { CoreTheme, useCoreTheme } from '../../../theme/core-theme';
+
+export type AttendanceStatus =
+  | 'Present'
+  | 'Absent'
+  | 'Late'
+  | 'Leave'
+  | 'Excused'
+  | 'Awaiting Start'
+  | 'Session in progress'
+  | '';
 
 export interface LectureCardProps {
   title?: string;
@@ -15,6 +25,7 @@ export interface LectureCardProps {
   variant?: 'default' | 'compact';
   disabled?: boolean;
   lectureState?: 'inFuture' | 'hasEnded';
+  attendanceStatus?: AttendanceStatus;
 }
 
 const DEFAULT_IMAGE =
@@ -71,6 +82,21 @@ const RightContent = styled(Box)(({ theme }) => ({
   paddingBottom: theme.spacing(2.5),
 }));
 
+const getAttendanceStyles = (status: AttendanceStatus) => {
+  const styles: Record<string, { backgroundColor: string; color: string }> = {
+    Present: { backgroundColor: '#F8FFFA', color: '#42B657' },
+    Absent: { backgroundColor: '#FFF0F0', color: '#D72525' },
+    Late: { backgroundColor: '#FFF', color: '#777' },
+    Leave: { backgroundColor: '#FFF', color: '#3870CA' },
+    Excused: { backgroundColor: '#FFF', color: '#777' },
+    'Awaiting Start': { backgroundColor: '#FFF', color: '#777' },
+    'Session in progress': { backgroundColor: '#FFF', color: '#777' },
+    '': { backgroundColor: '#FFF', color: '#777' },
+  };
+
+  return styles[status] || styles[''];
+};
+
 const LectureCard: React.FC<LectureCardProps> = ({
   title = 'Machine Learning Coding',
   date = 'Wednesday, 10 June 2025',
@@ -83,12 +109,16 @@ const LectureCard: React.FC<LectureCardProps> = ({
   variant = 'default',
   disabled = false,
   lectureState,
+  attendanceStatus,
 }) => {
   const theme = useCoreTheme() as CoreTheme;
 
   const isCompact = variant === 'compact';
   const leftWidth = { xs: '42%', sm: '50%' };
   const minHeight = isCompact ? { xs: 120, sm: 140 } : { xs: 140, sm: 200 };
+
+  const shouldShowAttendance = attendanceStatus !== undefined;
+  const displayStatus = attendanceStatus === '' ? 'NA' : attendanceStatus;
 
   const getTitleColor = () => {
     if (lectureState === 'inFuture') return theme.palette.success.main;
@@ -158,7 +188,28 @@ const LectureCard: React.FC<LectureCardProps> = ({
         </LeftImageWrapper>
 
         <RightContent>
-          <Box sx={{ display: 'flex', flexDirection: 'column', gap: '28px', ml: '38px' }}>
+          <Box sx={{ display: 'flex', flexDirection: 'column', width: '100%', ml: '38px' }}>
+            {shouldShowAttendance && (
+              <Box sx={{ mb: '32px' }}>
+                <Chip
+                  label={displayStatus}
+                  sx={{
+                    ...getAttendanceStyles(attendanceStatus),
+                    fontSize: '14px',
+                    fontWeight: 500,
+                    height: 'auto',
+                    padding: '10px',
+                    borderRadius: '14px',
+                    border: '1px solid',
+                    borderColor: getAttendanceStyles(attendanceStatus).color,
+                    '& .MuiChip-label': {
+                      padding: 0,
+                    },
+                  }}
+                />
+              </Box>
+            )}
+
             <Box sx={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
               <Typography
                 variant="h6"
@@ -210,7 +261,7 @@ const LectureCard: React.FC<LectureCardProps> = ({
                 </Typography>
               </Box>
             </Box>
-            <Box>
+            <Box sx={{ mt: '28px' }}>
               <Button
                 onClick={onWatch}
                 disableRipple
