@@ -11,7 +11,7 @@ export type AttendanceStatus =
   | 'Excused'
   | 'Awaiting Start'
   | 'Session in progress'
-  | '';
+  | 'NA';
 
 export interface LectureCardProps {
   title?: string;
@@ -91,7 +91,7 @@ const getAttendanceStyles = (status: AttendanceStatus) => {
     Excused: { backgroundColor: '#FFF', color: '#777' },
     'Awaiting Start': { backgroundColor: '#FFF', color: '#777' },
     'Session in progress': { backgroundColor: '#FFF', color: '#777' },
-    '': { backgroundColor: '#FFF', color: '#777' },
+    NA: { backgroundColor: '#FFF', color: '#777' },
   };
 
   return styles[status] || styles[''];
@@ -118,7 +118,7 @@ const LectureCard: React.FC<LectureCardProps> = ({
   const minHeight = isCompact ? { xs: 120, sm: 140 } : { xs: 140, sm: 200 };
 
   const shouldShowAttendance = attendanceStatus !== undefined;
-  const displayStatus = attendanceStatus === '' ? 'NA' : attendanceStatus;
+  const displayStatus = attendanceStatus;
 
   const getTitleColor = () => {
     if (lectureState === 'inFuture') return theme.palette.success.main;

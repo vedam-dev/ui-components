@@ -225,7 +225,7 @@ export const AllStatesComparison: Story = {
         date="Wednesday, 10 June 2025"
         attendanceStatus="Session in progress"
       />
-      <LectureCard title="NA (Empty String)" date="Wednesday, 10 June 2025" attendanceStatus="" />
+      <LectureCard title="NA (Empty String)" date="Wednesday, 10 June 2025" attendanceStatus="NA" />
       <LectureCard title="No Attendance Status (undefined)" date="Wednesday, 10 June 2025" />
     </div>
   ),
