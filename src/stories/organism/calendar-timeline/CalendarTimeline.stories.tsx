@@ -18,30 +18,41 @@ const iconUrls = [
   'https://acjlsquedaotbhbxmtee.supabase.co/storage/v1/object/public/vedam-website-assets/images/videoInfo/Group%201261155731.png',
 ];
 
+const today = new Date();
+const todayStr = today.toISOString().split('T')[0];
+
+const yesterday = new Date(today);
+yesterday.setDate(yesterday.getDate() - 1);
+const yesterdayStr = yesterday.toISOString().split('T')[0];
+
+const tomorrow = new Date(today);
+tomorrow.setDate(tomorrow.getDate() + 1);
+const tomorrowStr = tomorrow.toISOString().split('T')[0];
+
 export const Default: Story = {
   args: {
     events: [
       {
-        date: '31 July',
-        time: '2:00 - 5:30',
+        date: yesterdayStr,
+        time: '14:00 - 17:30',
         subject: 'Computer Science',
         iconUrl: iconUrls[0],
       },
       {
-        date: '1 August',
-        time: '10:30 - 12:30',
+        date: todayStr,
+        time: '08:00 - 09:30',
         subject: 'JAVA',
         iconUrl: iconUrls[1],
       },
       {
-        date: '2 August',
-        time: '10:30 - 12:30',
+        date: todayStr,
+        time: '10:30 - 23:30',
         subject: 'Mathematics',
         iconUrl: iconUrls[2],
       },
       {
-        date: '2 August',
-        time: '10:30 - 12:30',
+        date: tomorrowStr,
+        time: '15:30 - 18:30',
         subject: 'Unix',
         iconUrl: iconUrls[3],
       },
@@ -49,29 +60,29 @@ export const Default: Story = {
   },
 };
 
-export const SameDayMultipleClasses: Story = {
+export const AllCompleted: Story = {
   args: {
     events: [
       {
-        date: '31 July',
+        date: yesterdayStr,
         time: '10:30 - 12:30',
         subject: 'Computer Science',
         iconUrl: iconUrls[0],
       },
       {
-        date: '31 July',
+        date: yesterdayStr,
         time: '12:30 - 14:30',
         subject: 'JAVA',
         iconUrl: iconUrls[1],
       },
       {
-        date: '31 July',
+        date: yesterdayStr,
         time: '15:30 - 18:30',
         subject: 'Mathematics',
         iconUrl: iconUrls[2],
       },
       {
-        date: '31 July',
+        date: yesterdayStr,
         time: '20:00 - 22:00',
         subject: 'Unix',
         iconUrl: iconUrls[3],
@@ -80,35 +91,29 @@ export const SameDayMultipleClasses: Story = {
   },
 };
 
-export const CurrentUpcomingClasses: Story = {
+export const CurrentOngoing: Story = {
   args: {
     events: [
       {
-        date: '28 July',
+        date: yesterdayStr,
         time: '15:00 - 16:23',
         subject: 'Data Structures',
         iconUrl: iconUrls[0],
       },
       {
-        date: '29 July',
-        time: '11:00 - 12:30',
-        subject: 'Algorithms',
+        date: todayStr,
+        time: '00:00 - 23:59',
+        subject: 'Algorithms (All Day)',
         iconUrl: iconUrls[1],
       },
       {
-        date: '29 July',
+        date: tomorrowStr,
         time: '10:30 - 12:30',
         subject: 'Operating Systems',
         iconUrl: iconUrls[2],
       },
       {
-        date: '30 July',
-        time: '14:00 - 15:30',
-        subject: 'Database Systems',
-        iconUrl: iconUrls[3],
-      },
-      {
-        date: '31 July',
+        date: tomorrowStr,
         time: '14:00 - 15:30',
         subject: 'Database Systems',
         iconUrl: iconUrls[3],
@@ -117,48 +122,29 @@ export const CurrentUpcomingClasses: Story = {
   },
 };
 
-export const OnlyTwoClasses: Story = {
+export const AllUpcoming: Story = {
   args: {
     events: [
       {
-        date: '31 July',
-        time: '10:00 - 11:30',
-        subject: 'Machine Learning',
-        iconUrl: iconUrls[0],
-      },
-      {
-        date: '31 July',
-        time: '14:00 - 15:30',
-        subject: 'Web Development',
-        iconUrl: iconUrls[1],
-      },
-    ],
-  },
-};
-
-export const ExactlyFourClasses: Story = {
-  args: {
-    events: [
-      {
-        date: '22 July',
+        date: tomorrowStr,
         time: '08:00 - 09:30',
         subject: 'Network Security',
         iconUrl: iconUrls[0],
       },
       {
-        date: '22 July',
+        date: tomorrowStr,
         time: '10:00 - 11:30',
         subject: 'Cloud Computing',
         iconUrl: iconUrls[1],
       },
       {
-        date: '23 July',
+        date: tomorrowStr,
         time: '13:00 - 14:30',
         subject: 'Mobile Development',
         iconUrl: iconUrls[2],
       },
       {
-        date: '24 July',
+        date: tomorrowStr,
         time: '15:00 - 16:30',
         subject: 'DevOps',
         iconUrl: iconUrls[3],
