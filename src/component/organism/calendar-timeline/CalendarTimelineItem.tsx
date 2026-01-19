@@ -9,17 +9,84 @@ interface ClassSession {
   time: string;
   subject: string;
   iconUrl: string;
+  status: 'completed' | 'ongoing' | 'upcoming';
 }
 
 interface CalendarTimelineItemProps {
   event: ClassSession;
   index: number;
   isLast: boolean;
-  isFirst: boolean;
+  lectureNumber: number;
 }
 
-const CalendarTimelineItem: React.FC<CalendarTimelineItemProps> = ({ event, isLast, isFirst }) => {
+const CalendarTimelineItem: React.FC<CalendarTimelineItemProps> = ({
+  event,
+  isLast,
+  lectureNumber,
+}) => {
   const theme = useCoreTheme() as CoreTheme;
+
+  const formatTimeToAMPM = (timeRange: string) => {
+    const [startTime, endTime] = timeRange.split(' - ');
+
+    const convertTo12Hour = (time: string) => {
+      const [hours, minutes] = time.split(':').map(Number);
+      const period = hours >= 12 ? 'pm' : 'am';
+      const hour12 = hours % 12 || 12;
+      return `${hour12}:${minutes.toString().padStart(2, '0')}${period}`;
+    };
+
+    return `${convertTo12Hour(startTime)} - ${convertTo12Hour(endTime)}`;
+  };
+
+  const renderStatusIcon = () => {
+    if (event.status === 'completed') {
+      return (
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="21"
+          height="21"
+          viewBox="0 0 21 21"
+          fill="none"
+        >
+          <circle cx="10.5" cy="10.5" r="10" fill="#E6FFE8" stroke="#48742C" />
+          <path
+            d="M7 10.5L9.5 13L14 8.5"
+            stroke="#48742C"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      );
+    } else if (event.status === 'ongoing') {
+      return (
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="21"
+          height="21"
+          viewBox="0 0 21 21"
+          fill="none"
+        >
+          <circle cx="10.5" cy="10.5" r="10" fill="white" stroke="#F97D03" />
+          <circle cx="10.5" cy="10.5" r="6" fill="#F97D03" stroke="#F97D03" />
+        </svg>
+      );
+    } else {
+      return (
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="21"
+          height="21"
+          viewBox="0 0 21 21"
+          fill="none"
+        >
+          <circle cx="10.5" cy="10.5" r="10" fill="white" stroke="#F97D03" />
+          <circle cx="10.5" cy="10.5" r="6" fill="transparent" stroke="#F97D03" />
+        </svg>
+      );
+    }
+  };
 
   return (
     <Box
@@ -30,12 +97,12 @@ const CalendarTimelineItem: React.FC<CalendarTimelineItemProps> = ({ event, isLa
         flexShrink: 0,
       }}
     >
-      {/* Date */}
+      {/* Lecture Number */}
       <Box
         sx={{
-          minWidth: theme.spacing(20),
+          width: theme.spacing(20),
+          fontSize: '18px',
           textAlign: 'right',
-          pr: theme.spacing(2),
         }}
       >
         <Typography
@@ -49,11 +116,11 @@ const CalendarTimelineItem: React.FC<CalendarTimelineItemProps> = ({ event, isLa
             textAlign: 'left',
           }}
         >
-          {event.date}
+          Lecture {lectureNumber}
         </Typography>
       </Box>
 
-      {/* Dot with connector */}
+      {/* Status Icon with connector */}
       <Box
         sx={{
           position: 'relative',
@@ -61,42 +128,34 @@ const CalendarTimelineItem: React.FC<CalendarTimelineItemProps> = ({ event, isLa
           justifyContent: 'center',
           alignItems: 'center',
           minWidth: theme.spacing(10),
+          flexShrink: 0,
         }}
       >
-        <svg xmlns="http://www.w3.org/2000/svg" height="1.0625rem" viewBox="0 0 21 21" fill="none">
-          <circle cx="10.5" cy="10.5" r="10" fill="white" stroke="#F97D03" />
-          <circle
-            cx="10.5"
-            cy="10.5"
-            r="6"
-            fill={isFirst ? '#F97D03' : 'transparent'}
-            stroke="#F97D03"
-          />
-        </svg>
+        {renderStatusIcon()}
 
         {!isLast && (
           <Box
             sx={{
               position: 'absolute',
-              top: theme.spacing(5.5),
+              top: '21px',
               left: '50%',
               transform: 'translateX(-50%)',
-              width: theme.spacing(0.5),
+              width: '2px',
               height: theme.spacing(18),
-              backgroundImage: `repeating-linear-gradient(to bottom, #F97D03, #F97D03 0.625rem, transparent 0.625rem, transparent 0.875rem)`,
+              backgroundImage: `repeating-linear-gradient(to bottom, #F97D03, #F97D03 10px, transparent 10px, transparent 14px)`,
             }}
           />
         )}
       </Box>
 
       {/* Subject card */}
-
-      <Box sx={{ flex: 1, ml: theme.spacing(6.5), m: theme.spacing(2.5) }}>
+      <Box sx={{ flex: 1, ml: theme.spacing(6.5), my: theme.spacing(2.5) }}>
         <Card
           sx={{
             height: theme.spacing(18.5),
             borderRadius: theme.spacing(5),
-            border: '1px solid #E1BFFF',
+            border: '1px solid #E8D1FF',
+            boxShadow: 'none',
           }}
         >
           <CardContent
@@ -137,7 +196,7 @@ const CalendarTimelineItem: React.FC<CalendarTimelineItemProps> = ({ event, isLa
                   color: 'text.secondary',
                 }}
               >
-                {event.time}
+                {formatTimeToAMPM(event.time)}
               </Typography>
             </Box>
           </CardContent>
