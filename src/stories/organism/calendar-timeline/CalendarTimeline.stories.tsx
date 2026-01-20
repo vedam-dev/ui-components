@@ -56,36 +56,17 @@ export const Default: Story = {
         subject: 'Unix',
         iconUrl: iconUrls[3],
       },
-    ],
-  },
-};
-
-export const AllCompleted: Story = {
-  args: {
-    events: [
       {
-        date: yesterdayStr,
-        time: '10:30 - 12:30',
-        subject: 'Computer Science',
+        date: new Date(today.getTime() + 2 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
+        time: '09:00 - 11:00',
+        subject: 'Data Structures',
         iconUrl: iconUrls[0],
       },
       {
-        date: yesterdayStr,
-        time: '12:30 - 14:30',
-        subject: 'JAVA',
+        date: new Date(today.getTime() + 3 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
+        time: '14:00 - 16:00',
+        subject: 'Algorithms',
         iconUrl: iconUrls[1],
-      },
-      {
-        date: yesterdayStr,
-        time: '15:30 - 18:30',
-        subject: 'Mathematics',
-        iconUrl: iconUrls[2],
-      },
-      {
-        date: yesterdayStr,
-        time: '20:00 - 22:00',
-        subject: 'Unix',
-        iconUrl: iconUrls[3],
       },
     ],
   },
@@ -118,6 +99,12 @@ export const CurrentOngoing: Story = {
         subject: 'Database Systems',
         iconUrl: iconUrls[3],
       },
+      {
+        date: new Date(today.getTime() + 2 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
+        time: '09:00 - 11:00',
+        subject: 'Web Development',
+        iconUrl: iconUrls[0],
+      },
     ],
   },
 };
@@ -138,16 +125,28 @@ export const AllUpcoming: Story = {
         iconUrl: iconUrls[1],
       },
       {
-        date: tomorrowStr,
+        date: new Date(today.getTime() + 2 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
         time: '13:00 - 14:30',
         subject: 'Mobile Development',
         iconUrl: iconUrls[2],
       },
       {
-        date: tomorrowStr,
+        date: new Date(today.getTime() + 3 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
         time: '15:00 - 16:30',
         subject: 'DevOps',
         iconUrl: iconUrls[3],
+      },
+      {
+        date: new Date(today.getTime() + 4 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
+        time: '09:00 - 10:30',
+        subject: 'Machine Learning',
+        iconUrl: iconUrls[0],
+      },
+      {
+        date: new Date(today.getTime() + 5 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
+        time: '11:00 - 12:30',
+        subject: 'Blockchain',
+        iconUrl: iconUrls[1],
       },
     ],
   },

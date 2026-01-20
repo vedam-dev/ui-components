@@ -75,11 +75,27 @@ const CalendarTimeline: React.FC<CalendarTimelineProps> = ({ events, onViewFullC
   };
 
   const updateStatuses = () => {
-    const updated = events.map((event) => ({
+    const currentTime = new Date();
+
+    const withStatus = events.map((event) => ({
       ...event,
       status: determineStatus(event),
     }));
-    setEventsWithStatus(updated);
+
+    const filtered = withStatus.filter(
+      (event) => event.status === 'ongoing' || event.status === 'upcoming'
+    );
+
+    // Sort by date and time
+    const sorted = filtered.sort((a, b) => {
+      const dateA = parseDateTime(a.date, a.time, false);
+      const dateB = parseDateTime(b.date, b.time, false);
+      return dateA.getTime() - dateB.getTime();
+    });
+
+    const topFour = sorted.slice(0, 4);
+
+    setEventsWithStatus(topFour);
   };
 
   useEffect(() => {
@@ -144,6 +160,7 @@ const CalendarTimeline: React.FC<CalendarTimelineProps> = ({ events, onViewFullC
             index={index}
             isLast={index === eventsWithStatus.length - 1}
             lectureNumber={index + 1}
+            eventDate={event.date}
           />
         ))}
       </Box>

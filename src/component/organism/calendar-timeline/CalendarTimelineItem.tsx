@@ -17,14 +17,61 @@ interface CalendarTimelineItemProps {
   index: number;
   isLast: boolean;
   lectureNumber: number;
+  eventDate: string;
 }
 
 const CalendarTimelineItem: React.FC<CalendarTimelineItemProps> = ({
   event,
   isLast,
   lectureNumber,
+  eventDate,
 }) => {
   const theme = useCoreTheme() as CoreTheme;
+
+  const formatDate = (dateStr: string): string => {
+    let day: number, month: number;
+
+    if (dateStr.includes('-') && dateStr.split('-').length === 3) {
+      const [, monthStr, dayStr] = dateStr.split('-');
+      month = parseInt(monthStr) - 1;
+      day = parseInt(dayStr);
+    } else {
+      const [dayStr, monthStr] = dateStr.split(' ');
+      day = parseInt(dayStr);
+
+      const monthMap: { [key: string]: number } = {
+        January: 0,
+        February: 1,
+        March: 2,
+        April: 3,
+        May: 4,
+        June: 5,
+        July: 6,
+        August: 7,
+        September: 8,
+        October: 9,
+        November: 10,
+        December: 11,
+      };
+      month = monthMap[monthStr];
+    }
+
+    const monthNames = [
+      'Jan',
+      'Feb',
+      'Mar',
+      'Apr',
+      'May',
+      'Jun',
+      'Jul',
+      'Aug',
+      'Sep',
+      'Oct',
+      'Nov',
+      'Dec',
+    ];
+    return `${day} ${monthNames[month]}`;
+  };
 
   const formatTimeToAMPM = (timeRange: string) => {
     const [startTime, endTime] = timeRange.split(' - ');
@@ -97,7 +144,6 @@ const CalendarTimelineItem: React.FC<CalendarTimelineItemProps> = ({
         flexShrink: 0,
       }}
     >
-      {/* Lecture Number */}
       <Box
         sx={{
           width: theme.spacing(20),
@@ -116,7 +162,7 @@ const CalendarTimelineItem: React.FC<CalendarTimelineItemProps> = ({
             textAlign: 'left',
           }}
         >
-          Lecture {lectureNumber}
+          {formatDate(eventDate)}
         </Typography>
       </Box>
 
