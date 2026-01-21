@@ -1,13 +1,13 @@
 yarn run v1.22.22
-$ storybook build --output-dir=/var/folders/y8/gm0t60p54tqd77w0_8j6brmh0000gn/T/chromatic--44020-EDS01RlDBys5
+$ storybook build --output-dir=/var/folders/y8/gm0t60p54tqd77w0_8j6brmh0000gn/T/chromatic--58005-JH7l9mdUUHjq
 [1m@storybook/core v8.6.14
 [22m
-info => Cleaning outputDir: [36m../../../../../var/folders/y8/gm0t60p54tqd77w0_8j6brmh0000gn/T/chromatic--44020-EDS01RlDBys5[39m
+info => Cleaning outputDir: [36m../../../../../var/folders/y8/gm0t60p54tqd77w0_8j6brmh0000gn/T/chromatic--58005-JH7l9mdUUHjq[39m
 info => Loading presets
 WARN Could not resolve addon "storybook-addon-loki", skipping. Is it installed?
 WARN Could not resolve addon "storybook-addon-loki", skipping. Is it installed?
 info => Building manager..
-info => Manager built ([38;2;181;126;229m77 ms[39m)
+info => Manager built ([38;2;181;126;229m74 ms[39m)
 info => Building preview..
 info => Loading Webpack configuration from `node_modules/react-scripts`
 info => Removing existing JavaScript and TypeScript rules.
@@ -15,7 +15,7 @@ info => Modifying Create React App rules.
 info Addon-docs: using MDX3
 WARN No story files found for the specified pattern: [34msrc/**/*.mdx[39m
 info => Using default Webpack5 setup
-info => Copying static files: [36m.storybook/public[39m at [36m../../../../../var/folders/y8/gm0t60p54tqd77w0_8j6brmh0000gn/T/chromatic--44020-EDS01RlDBys5[39m
+info => Copying static files: [36m.storybook/public[39m at [36m../../../../../var/folders/y8/gm0t60p54tqd77w0_8j6brmh0000gn/T/chromatic--58005-JH7l9mdUUHjq[39m
 info Using tsconfig paths for react-docgen
 WARN asset size limit: The following asset(s) exceed the recommended size limit (244 KiB).
 WARN This can impact web performance.
@@ -27,11 +27,11 @@ WARN   9878.48194ccf.iframe.bundle.js (983 KiB)
 WARN entrypoint size limit: The following entrypoint(s) combined asset size exceeds the recommended limit (244 KiB). This can impact web performance.
 WARN Entrypoints:
 WARN   main (1.73 MiB)
-WARN       runtime~main.664c6095.iframe.bundle.js
+WARN       runtime~main.df7132eb.iframe.bundle.js
 WARN       static/css/2448.763bfa8d.css
 WARN       2448.0ec01863.iframe.bundle.js
-WARN       main.9ed56208.iframe.bundle.js
+WARN       main.ef9744d0.iframe.bundle.js
 WARN 
 info => Preview built ([38;2;181;126;229m12 s[39m)
-info => Output directory: /var/folders/y8/gm0t60p54tqd77w0_8j6brmh0000gn/T/chromatic--44020-EDS01RlDBys5
-Done in 13.79s.
+info => Output directory: /var/folders/y8/gm0t60p54tqd77w0_8j6brmh0000gn/T/chromatic--58005-JH7l9mdUUHjq
+Done in 13.70s.

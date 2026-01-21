@@ -67,8 +67,8 @@ const RatingCard: React.FC<Props> = ({
             color: (t) => (t.palette.mode === 'light' ? '#111' : '#fff'),
             zIndex: 2,
             position: 'relative',
-            // textAlign: 'center',
-            fontSize: '10px', //20px
+            textAlign: 'center',
+            fontSize: '20px',
             mt: 1,
           }}
         >
