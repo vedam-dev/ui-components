@@ -18,6 +18,10 @@ const meta: Meta<typeof ReusableCalendar> = {
       control: 'date',
       description: 'The start date of the week to display',
     },
+    semesterName: {
+      control: 'text',
+      description: 'Name of the semester to display in the header',
+    },
     onEventClick: {
       action: 'eventClicked',
       description: 'Callback function when an event is clicked',
@@ -38,9 +42,9 @@ const sampleEvents: CalendarEvent[] = [
   {
     id: 1,
     name: 'Java',
-    description: '(Year I)',
+    description: '',
     start: '2024-06-03T08:30:00',
-    end: '2024-06-03T09:30:00',
+    end: '2024-06-03T09:00:00',
   },
   {
     id: 2,
@@ -60,8 +64,8 @@ const sampleEvents: CalendarEvent[] = [
   {
     id: 4,
     name: 'Java',
-    description: '(Year I)',
-    start: '2024-06-04T08:00:00',
+    description: '',
+    start: '2024-06-04T08:30:00',
     end: '2024-06-04T09:00:00',
   },
   {
@@ -379,6 +383,7 @@ export const Default: Story = {
   args: {
     events: sampleEvents,
     weekStart: new Date('2024-06-07'),
+    semesterName: 'Semester 1',
     onEventClick: action('event-clicked'),
   },
   parameters: {
@@ -395,6 +400,7 @@ export const Empty: Story = {
   args: {
     events: [],
     weekStart: new Date('2024-06-07'),
+    semesterName: 'Semester 1',
     onEventClick: action('event-clicked'),
   },
   parameters: {
@@ -441,6 +447,7 @@ export const MixedEventTypes: Story = {
       },
     ],
     weekStart: new Date('2024-06-10'),
+    semesterName: 'Semester 2',
     onEventClick: action('event-clicked'),
   },
   parameters: {
@@ -479,6 +486,7 @@ export const OverlappingEvents: Story = {
       },
     ],
     weekStart: new Date('2024-06-10'),
+    semesterName: 'Spring Semester',
     onEventClick: action('event-clicked'),
   },
   parameters: {
@@ -509,6 +517,7 @@ export const CurrentWeek: Story = {
         end: new Date(new Date(Date.now() + 24 * 60 * 60 * 1000).setHours(16, 0, 0, 0)),
       },
     ],
+    semesterName: 'Fall Semester',
     onEventClick: action('event-clicked'),
   },
   parameters: {
@@ -538,6 +547,7 @@ export const MinimalEvents: Story = {
       },
     ],
     weekStart: new Date('2024-06-10'),
+    semesterName: 'Summer Semester',
     onEventClick: action('event-clicked'),
   },
   parameters: {

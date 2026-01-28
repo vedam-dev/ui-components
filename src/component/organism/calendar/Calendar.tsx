@@ -15,6 +15,7 @@ export interface CalendarEvent {
 export interface ReusableCalendarProps {
   events: CalendarEvent[];
   weekStart?: Date;
+  semesterName?: string; // Add semester name prop
   onEventClick?: (ev: CalendarEvent) => void;
   onWeekChange?: (newWeekStart: Date) => void;
   sx?: SxProps<Theme>;
@@ -53,12 +54,22 @@ const TimeSlot = styled(Box)(({ theme }) => ({
   fontStyle: 'normal',
   lineHeight: 'normal',
   minHeight: 72,
-  padding: theme.spacing(1),
+  position: 'relative',
 }));
 
 const DayCell = styled(Box)(() => ({
   minHeight: 72,
   position: 'relative',
+  '&::after': {
+    content: '""',
+    position: 'absolute',
+    top: '50%',
+    left: 0,
+    right: 0,
+    height: '1px',
+    backgroundColor: '#E8E9EA',
+    zIndex: 1,
+  },
 }));
 
 const EventCard = styled(Box, {
@@ -88,7 +99,6 @@ const EventCard = styled(Box, {
       flexDirection: 'column',
       justifyContent: 'center',
       zIndex: 2,
-      minHeight: 48,
       fontSize: '13px',
       fontWeight: 600,
       color: customColor ? '#FFFFFF' : '#374151', // Use white text for custom background colors
@@ -136,7 +146,6 @@ const EventCard = styled(Box, {
     flexDirection: 'column',
     justifyContent: 'center',
     zIndex: 2,
-    minHeight: 48,
     fontSize: '13px',
     fontWeight: 600,
     color: textColor,
@@ -179,6 +188,7 @@ const HOUR_HEIGHT = 72;
 const ReusableCalendar: React.FC<ReusableCalendarProps> = ({
   events,
   weekStart,
+  semesterName = 'Semester 1', // Default value if not provided
   onEventClick,
   onWeekChange: _onWeekChange,
   sx,
@@ -222,7 +232,16 @@ const ReusableCalendar: React.FC<ReusableCalendarProps> = ({
   }
 
   function formatMonth(d: Date) {
-    return d.toLocaleString(undefined, { month: 'long' });
+    return d.toLocaleString(undefined, { month: 'long' }).substring(0, 3);
+  }
+
+  function formatTime(d: Date) {
+    const hours = d.getHours();
+    const minutes = d.getMinutes();
+    const ampm = hours >= 12 ? 'PM' : 'AM';
+    const displayHours = hours % 12 || 12;
+    const displayMinutes = minutes.toString().padStart(2, '0');
+    return `${displayHours}:${displayMinutes} ${ampm}`;
   }
 
   function getEventType(event: CalendarEvent): string {
@@ -239,10 +258,38 @@ const ReusableCalendar: React.FC<ReusableCalendarProps> = ({
     const startSlot = Math.max(0, startHours - HOURS_START);
     const endSlot = Math.min(HOURS_END - HOURS_START, endHours - HOURS_START);
 
-    const top = startSlot * HOUR_HEIGHT + 8;
-    const height = Math.max(40, (endSlot - startSlot) * HOUR_HEIGHT - 8);
+    const top = startSlot * HOUR_HEIGHT + 40; // 36px aligns with the centered line
+    
+    // Calculate duration in hours
+    const durationInHours = endSlot - startSlot;
+    
+    // If event is 30 minutes (0.5 hours), use 36px height, otherwise use minimum 40px
+    const minHeight = durationInHours <= 0.5 ? 30 : 40;
+    const height = Math.max(minHeight, (endSlot - startSlot) * HOUR_HEIGHT - 8);
 
     return { top, height };
+  }
+
+  function getTooltipContent(event: CalendarEvent) {
+    const eventStart = toDate(event.start);
+    const eventEnd = toDate(event.end ?? new Date(eventStart.getTime() + 60 * 60 * 1000));
+
+    const startTime = formatTime(eventStart);
+    const endTime = formatTime(eventEnd);
+
+    let firstLine = event.name;
+    if (event.description) {
+      firstLine += ` ${event.description}`;
+    }
+
+    return (
+      <>
+        <div>{firstLine}</div>
+        <div>
+          {startTime} - {endTime}
+        </div>
+      </>
+    );
   }
 
   const timeSlots = Array.from({ length: HOURS_END - HOURS_START }, (_, i) => {
@@ -258,7 +305,7 @@ const ReusableCalendar: React.FC<ReusableCalendarProps> = ({
   return (
     <Container sx={sx}>
       <CalendarGrid>
-        <SemesterPill>Semester 1</SemesterPill>
+        <SemesterPill>{semesterName}</SemesterPill>
 
         {days.map((day, index) => (
           <DayHeader key={index}>
@@ -307,11 +354,7 @@ const ReusableCalendar: React.FC<ReusableCalendarProps> = ({
                     const eventType = getEventType(event);
 
                     return (
-                      <Tooltip
-                        key={event.id ?? event.name}
-                        title={event.description || event.name}
-                        arrow
-                      >
+                      <Tooltip key={event.id ?? event.name} title={getTooltipContent(event)} arrow>
                         <EventCard
                           eventType={eventType}
                           important={event.isImportant}
