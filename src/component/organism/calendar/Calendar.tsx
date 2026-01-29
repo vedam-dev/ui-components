@@ -80,19 +80,19 @@ const EventCard = styled(Box, {
   eventType?: string;
   customColor?: string;
   customBorderColor?: string;
-  eventIndex?: number;
-  totalEvents?: number;
+  event_index?: number;
+  total_events?: number;
 }>(({
   theme,
   important,
   eventType,
   customColor,
   customBorderColor,
-  eventIndex = 0,
-  totalEvents = 1,
+  event_index = 0,
+  total_events = 1,
 }) => {
-  const widthPercentage = 98 / totalEvents;
-  const leftPosition = eventIndex * widthPercentage;
+  const widthPercentage = 96 / total_events;
+  const leftPosition = event_index * widthPercentage;
   const width = `${widthPercentage}%`;
 
   // If custom color is provided, use it
@@ -288,12 +288,12 @@ const ReusableCalendar: React.FC<ReusableCalendarProps> = ({
       // Flatten the groups but mark each event with its group info
       const flattenedEvents: CalendarEvent[] = [];
       overlappingGroups.forEach((group, groupIndex) => {
-        group.forEach((event, eventIndex) => {
+        group.forEach((event, event_index) => {
           // Add group metadata to the event
           const eventWithMeta = {
             ...event,
             _groupId: groupIndex,
-            _eventIndexInGroup: eventIndex,
+            _event_indexInGroup: event_index,
             _totalInGroup: group.length,
           };
           flattenedEvents.push(eventWithMeta);
@@ -430,7 +430,7 @@ const ReusableCalendar: React.FC<ReusableCalendarProps> = ({
 
                     // Get group info from the event metadata
                     const groupId = (event as any)._groupId || 0;
-                    const eventIndexInGroup = (event as any)._eventIndexInGroup || 0;
+                    const event_indexInGroup = (event as any)._event_indexInGroup || 0;
                     const totalInGroup = (event as any)._totalInGroup || 1;
 
                     return (
@@ -440,8 +440,8 @@ const ReusableCalendar: React.FC<ReusableCalendarProps> = ({
                           important={event.isImportant}
                           customColor={event.color}
                           customBorderColor={event.borderColor}
-                          eventIndex={eventIndexInGroup}
-                          totalEvents={totalInGroup}
+                          event_index={event_indexInGroup}
+                          total_events={totalInGroup}
                           onClick={() => onEventClick?.(event)}
                           sx={{
                             top: top - timeIndex * HOUR_HEIGHT,
