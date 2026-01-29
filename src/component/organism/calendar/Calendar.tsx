@@ -8,13 +8,14 @@ export interface CalendarEvent {
   name: string;
   description?: string;
   isImportant?: boolean;
-  color?: string; // Add custom background color property
-  borderColor?: string; // Add custom border color property
+  color?: string;
+  borderColor?: string;
 }
 
 export interface ReusableCalendarProps {
   events: CalendarEvent[];
   weekStart?: Date;
+  semesterName?: string;
   onEventClick?: (ev: CalendarEvent) => void;
   onWeekChange?: (newWeekStart: Date) => void;
   sx?: SxProps<Theme>;
@@ -53,12 +54,22 @@ const TimeSlot = styled(Box)(({ theme }) => ({
   fontStyle: 'normal',
   lineHeight: 'normal',
   minHeight: 72,
-  padding: theme.spacing(1),
+  position: 'relative',
 }));
 
 const DayCell = styled(Box)(() => ({
   minHeight: 72,
   position: 'relative',
+  '&::after': {
+    content: '""',
+    position: 'absolute',
+    top: '50%',
+    left: 0,
+    right: 0,
+    height: '1px',
+    backgroundColor: '#E8E9EA',
+    zIndex: 1,
+  },
 }));
 
 const EventCard = styled(Box, {
@@ -69,7 +80,21 @@ const EventCard = styled(Box, {
   eventType?: string;
   customColor?: string;
   customBorderColor?: string;
-}>(({ theme, important, eventType, customColor, customBorderColor }) => {
+  event_index?: number;
+  total_events?: number;
+}>(({
+  theme,
+  important,
+  eventType,
+  customColor,
+  customBorderColor,
+  event_index = 0,
+  total_events = 1,
+}) => {
+  const widthPercentage = 96 / total_events;
+  const leftPosition = event_index * widthPercentage;
+  const width = `${widthPercentage}%`;
+
   // If custom color is provided, use it
   if (customColor || customBorderColor) {
     const bgColor = customColor || '#F2F2F2';
@@ -77,8 +102,8 @@ const EventCard = styled(Box, {
 
     return {
       position: 'absolute',
-      left: 4,
-      right: 4,
+      left: `${leftPosition}%`,
+      width: width,
       borderRadius: 12,
       padding: theme.spacing(1, 1.5),
       backgroundColor: bgColor,
@@ -88,11 +113,12 @@ const EventCard = styled(Box, {
       flexDirection: 'column',
       justifyContent: 'center',
       zIndex: 2,
-      minHeight: 48,
       fontSize: '13px',
       fontWeight: 600,
-      color: customColor ? '#FFFFFF' : '#374151', // Use white text for custom background colors
+      color: customColor ? '#FFFFFF' : '#374151',
       boxShadow: '0 2px 8px rgba(22, 27, 33, 0.06)',
+      marginLeft: '2px',
+      marginRight: '2px',
       '&:hover': {
         opacity: 0.9,
         boxShadow: `0 4px 12px rgba(0,0,0,0.15)`,
@@ -104,7 +130,7 @@ const EventCard = styled(Box, {
   let backgroundColor = '#F2F2F2';
   let borderColor = '#E5E7EB';
   let textColor = '#374151';
-  let borderLeftWidth = '2px';
+  let borderLeftWidth = '4px';
 
   if (eventType === 'exam') {
     backgroundColor = '#FFF3EB';
@@ -125,8 +151,8 @@ const EventCard = styled(Box, {
 
   return {
     position: 'absolute',
-    left: 4,
-    right: 4,
+    left: `${leftPosition}%`,
+    width: width,
     borderRadius: 12,
     padding: theme.spacing(1, 1.5),
     backgroundColor,
@@ -136,11 +162,12 @@ const EventCard = styled(Box, {
     flexDirection: 'column',
     justifyContent: 'center',
     zIndex: 2,
-    minHeight: 48,
     fontSize: '13px',
     fontWeight: 600,
     color: textColor,
     boxShadow: '0 2px 8px rgba(22, 27, 33, 0.06)',
+    marginLeft: '2px',
+    marginRight: '2px',
     '&:hover': {
       opacity: 0.9,
       boxShadow: `0 4px 12px rgba(0,0,0,0.15)`,
@@ -176,14 +203,53 @@ const HOURS_START = 8;
 const HOURS_END = 18;
 const HOUR_HEIGHT = 72;
 
+// Helper function to check if two events overlap
+function eventsOverlap(eventA: CalendarEvent, eventB: CalendarEvent): boolean {
+  const startA = toDate(eventA.start).getTime();
+  const endA = toDate(eventA.end ?? new Date(startA + 60 * 60 * 1000)).getTime();
+  const startB = toDate(eventB.start).getTime();
+  const endB = toDate(eventB.end ?? new Date(startB + 60 * 60 * 1000)).getTime();
+
+  return startA < endB && startB < endA;
+}
+
+// Function to group overlapping events
+function groupOverlappingEvents(events: CalendarEvent[]): CalendarEvent[][] {
+  const groups: CalendarEvent[][] = [];
+  const sortedEvents = [...events].sort((a, b) => {
+    return toDate(a.start).getTime() - toDate(b.start).getTime();
+  });
+
+  for (const event of sortedEvents) {
+    let placed = false;
+
+    for (const group of groups) {
+      // Check if event overlaps with any event in the group
+      const overlapsWithGroup = group.some((groupEvent) => eventsOverlap(event, groupEvent));
+
+      if (overlapsWithGroup) {
+        group.push(event);
+        placed = true;
+        break;
+      }
+    }
+
+    if (!placed) {
+      groups.push([event]);
+    }
+  }
+
+  return groups;
+}
+
 const ReusableCalendar: React.FC<ReusableCalendarProps> = ({
   events,
   weekStart,
+  semesterName = 'Semester 1',
   onEventClick,
   onWeekChange: _onWeekChange,
   sx,
 }) => {
-  // const theme = useTheme();
   const [start, setStart] = useState<Date>(
     weekStart ? startOfWeek(weekStart) : startOfWeek(new Date())
   );
@@ -214,6 +280,29 @@ const ReusableCalendar: React.FC<ReusableCalendarProps> = ({
       list.push(ev);
       map.set(key, list);
     }
+
+    // Group overlapping events for each day
+    map.forEach((eventList, key) => {
+      const overlappingGroups = groupOverlappingEvents(eventList);
+
+      // Flatten the groups but mark each event with its group info
+      const flattenedEvents: CalendarEvent[] = [];
+      overlappingGroups.forEach((group, groupIndex) => {
+        group.forEach((event, event_index) => {
+          // Add group metadata to the event
+          const eventWithMeta = {
+            ...event,
+            _groupId: groupIndex,
+            _event_indexInGroup: event_index,
+            _totalInGroup: group.length,
+          };
+          flattenedEvents.push(eventWithMeta);
+        });
+      });
+
+      map.set(key, flattenedEvents);
+    });
+
     return map;
   }, [events]);
 
@@ -222,7 +311,16 @@ const ReusableCalendar: React.FC<ReusableCalendarProps> = ({
   }
 
   function formatMonth(d: Date) {
-    return d.toLocaleString(undefined, { month: 'long' });
+    return d.toLocaleString(undefined, { month: 'long' }).substring(0, 3);
+  }
+
+  function formatTime(d: Date) {
+    const hours = d.getHours();
+    const minutes = d.getMinutes();
+    const ampm = hours >= 12 ? 'PM' : 'AM';
+    const displayHours = hours % 12 || 12;
+    const displayMinutes = minutes.toString().padStart(2, '0');
+    return `${displayHours}:${displayMinutes} ${ampm}`;
   }
 
   function getEventType(event: CalendarEvent): string {
@@ -239,10 +337,34 @@ const ReusableCalendar: React.FC<ReusableCalendarProps> = ({
     const startSlot = Math.max(0, startHours - HOURS_START);
     const endSlot = Math.min(HOURS_END - HOURS_START, endHours - HOURS_START);
 
-    const top = startSlot * HOUR_HEIGHT + 8;
-    const height = Math.max(40, (endSlot - startSlot) * HOUR_HEIGHT - 8);
+    const top = startSlot * HOUR_HEIGHT + 40;
+    const durationInHours = endSlot - startSlot;
+    const minHeight = durationInHours <= 0.5 ? 28 : 40;
+    const height = Math.max(minHeight, (endSlot - startSlot) * HOUR_HEIGHT - 8);
 
     return { top, height };
+  }
+
+  function getTooltipContent(event: CalendarEvent) {
+    const eventStart = toDate(event.start);
+    const eventEnd = toDate(event.end ?? new Date(eventStart.getTime() + 60 * 60 * 1000));
+
+    const startTime = formatTime(eventStart);
+    const endTime = formatTime(eventEnd);
+
+    let firstLine = event.name;
+    if (event.description) {
+      firstLine += ` ${event.description}`;
+    }
+
+    return (
+      <>
+        <div>{firstLine}</div>
+        <div>
+          {startTime} - {endTime}
+        </div>
+      </>
+    );
   }
 
   const timeSlots = Array.from({ length: HOURS_END - HOURS_START }, (_, i) => {
@@ -258,7 +380,7 @@ const ReusableCalendar: React.FC<ReusableCalendarProps> = ({
   return (
     <Container sx={sx}>
       <CalendarGrid>
-        <SemesterPill>Semester 1</SemesterPill>
+        <SemesterPill>{semesterName}</SemesterPill>
 
         {days.map((day, index) => (
           <DayHeader key={index}>
@@ -306,17 +428,20 @@ const ReusableCalendar: React.FC<ReusableCalendarProps> = ({
                     const { top, height } = getTopAndHeight(eventStart, eventEnd);
                     const eventType = getEventType(event);
 
+                    // Get group info from the event metadata
+                    const groupId = (event as any)._groupId || 0;
+                    const event_indexInGroup = (event as any)._event_indexInGroup || 0;
+                    const totalInGroup = (event as any)._totalInGroup || 1;
+
                     return (
-                      <Tooltip
-                        key={event.id ?? event.name}
-                        title={event.description || event.name}
-                        arrow
-                      >
+                      <Tooltip key={event.id ?? event.name} title={getTooltipContent(event)} arrow>
                         <EventCard
                           eventType={eventType}
                           important={event.isImportant}
-                          customColor={event.color} // Pass custom background color
-                          customBorderColor={event.borderColor} // Pass custom border color
+                          customColor={event.color}
+                          customBorderColor={event.borderColor}
+                          event_index={event_indexInGroup}
+                          total_events={totalInGroup}
                           onClick={() => onEventClick?.(event)}
                           sx={{
                             top: top - timeIndex * HOUR_HEIGHT,
@@ -328,7 +453,10 @@ const ReusableCalendar: React.FC<ReusableCalendarProps> = ({
                               fontSize: '16px',
                               fontWeight: 600,
                               lineHeight: 1.2,
-                              color: event.color ? '#FFFFFF' : '#3870CA', // Use white text for custom colors
+                              color: event.color ? '#FFFFFF' : '#3870CA',
+                              overflow: 'hidden',
+                              textOverflow: 'ellipsis',
+                              whiteSpace: 'nowrap',
                             }}
                           >
                             {event.name}
@@ -340,7 +468,10 @@ const ReusableCalendar: React.FC<ReusableCalendarProps> = ({
                                 lineHeight: 'normal',
                                 fontWeight: 400,
                                 mt: 0.25,
-                                color: event.color ? '#FFFFFF' : 'inherit', // Use white text for custom colors
+                                color: event.color ? '#FFFFFF' : 'inherit',
+                                overflow: 'hidden',
+                                textOverflow: 'ellipsis',
+                                whiteSpace: 'nowrap',
                               }}
                             >
                               {event.description}
