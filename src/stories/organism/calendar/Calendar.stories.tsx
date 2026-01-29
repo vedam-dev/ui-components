@@ -43,7 +43,7 @@ const sampleEvents: CalendarEvent[] = [
     id: 1,
     name: 'Java',
     description: '',
-    start: '2024-06-03T08:30:00',
+    start: '2024-06-03T08:00:00',
     end: '2024-06-03T09:00:00',
   },
   {

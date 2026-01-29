@@ -114,7 +114,7 @@ const EventCard = styled(Box, {
   let backgroundColor = '#F2F2F2';
   let borderColor = '#E5E7EB';
   let textColor = '#374151';
-  let borderLeftWidth = '2px';
+  let borderLeftWidth = '0px';
 
   if (eventType === 'exam') {
     backgroundColor = '#FFF3EB';
@@ -259,12 +259,12 @@ const ReusableCalendar: React.FC<ReusableCalendarProps> = ({
     const endSlot = Math.min(HOURS_END - HOURS_START, endHours - HOURS_START);
 
     const top = startSlot * HOUR_HEIGHT + 40; // 36px aligns with the centered line
-    
+
     // Calculate duration in hours
     const durationInHours = endSlot - startSlot;
-    
+
     // If event is 30 minutes (0.5 hours), use 36px height, otherwise use minimum 40px
-    const minHeight = durationInHours <= 0.5 ? 30 : 40;
+    const minHeight = durationInHours <= 0.5 ? 28 : 40;
     const height = Math.max(minHeight, (endSlot - startSlot) * HOUR_HEIGHT - 8);
 
     return { top, height };
