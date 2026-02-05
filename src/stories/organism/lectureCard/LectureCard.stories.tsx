@@ -78,6 +78,7 @@ const meta: Meta<typeof LectureCard> = {
         'Optional resource ID for copy functionality. If provided, shows menu icon with copy option.',
     },
     onWatch: { action: 'watchClicked' },
+    onButtonClick: { action: 'buttonClicked' },
     sx: {
       control: 'object',
       description: 'Optional MUI sx overrides for the root container',

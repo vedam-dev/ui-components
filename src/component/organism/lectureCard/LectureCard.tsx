@@ -31,6 +31,7 @@ export interface LectureCardProps {
   buttonText?: string;
   image?: string;
   onWatch?: () => void;
+  onButtonClick?: () => void;
   sx?: SxProps<Theme>;
   showImageHighlight?: boolean;
   variant?: 'default' | 'compact';
@@ -160,6 +161,7 @@ const LectureCard: React.FC<LectureCardProps> = ({
   buttonText = 'Start Recording',
   image = DEFAULT_IMAGE,
   onWatch = () => {},
+  onButtonClick,
   sx = {},
   showImageHighlight = true,
   variant = 'default',
@@ -178,6 +180,8 @@ const LectureCard: React.FC<LectureCardProps> = ({
 
   const shouldShowAttendance = attendanceStatus !== undefined;
   const displayStatus = attendanceStatus;
+
+  const handleButtonClick = onButtonClick || onWatch;
 
   const getTitleColor = () => {
     if (lectureState === 'inFuture') return theme.palette.success.main;
@@ -410,7 +414,7 @@ const LectureCard: React.FC<LectureCardProps> = ({
             </Box>
             <Box sx={{ mt: '28px' }}>
               <Button
-                onClick={onWatch}
+                onClick={handleButtonClick}
                 disableRipple
                 disabled={disabled}
                 sx={{
