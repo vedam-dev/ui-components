@@ -1,5 +1,16 @@
-import React from 'react';
-import { Box, Typography, Button, IconButton, styled, SxProps, Theme, Chip } from '@mui/material';
+import React, { useState } from 'react';
+import {
+  Box,
+  Typography,
+  Button,
+  IconButton,
+  styled,
+  SxProps,
+  Theme,
+  Chip,
+  Menu,
+  MenuItem,
+} from '@mui/material';
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 import { CoreTheme, useCoreTheme } from '../../../theme/core-theme';
 
@@ -26,6 +37,7 @@ export interface LectureCardProps {
   disabled?: boolean;
   lectureState?: 'inFuture' | 'hasEnded';
   attendanceStatus?: AttendanceStatus;
+  resourceId?: string; // Optional resource ID for copy functionality
 }
 
 const DEFAULT_IMAGE =
@@ -97,6 +109,50 @@ const getAttendanceStyles = (status: AttendanceStatus) => {
   return styles[status] || styles[''];
 };
 
+const MenuIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="6" height="16" viewBox="0 0 6 16" fill="none">
+    <mask
+      id="mask0_4985_3026"
+      style={{ maskType: 'alpha' }}
+      maskUnits="userSpaceOnUse"
+      x="0"
+      y="0"
+      width="6"
+      height="16"
+    >
+      <rect width="6" height="16" fill="#D9D9D9" />
+    </mask>
+    <g mask="url(#mask0_4985_3026)">
+      <path
+        d="M3 16C2.45 16 1.97917 15.8042 1.5875 15.4125C1.19583 15.0208 1 14.55 1 14C1 13.45 1.19583 12.9792 1.5875 12.5875C1.97917 12.1958 2.45 12 3 12C3.55 12 4.02083 12.1958 4.4125 12.5875C4.80417 12.9792 5 13.45 5 14C5 14.55 4.80417 15.0208 4.4125 15.4125C4.02083 15.8042 3.55 16 3 16ZM3 10C2.45 10 1.97917 9.80417 1.5875 9.4125C1.19583 9.02083 1 8.55 1 8C1 7.45 1.19583 6.97917 1.5875 6.5875C1.97917 6.19583 2.45 6 3 6C3.55 6 4.02083 6.19583 4.4125 6.5875C4.80417 6.97917 5 7.45 5 8C5 8.55 4.80417 9.02083 4.4125 9.4125C4.02083 9.80417 3.55 10 3 10ZM3 4C2.45 4 1.97917 3.80417 1.5875 3.4125C1.19583 3.02083 1 2.55 1 2C1 1.45 1.19583 0.979167 1.5875 0.5875C1.97917 0.195833 2.45 0 3 0C3.55 0 4.02083 0.195833 4.4125 0.5875C4.80417 0.979167 5 1.45 5 2C5 2.55 4.80417 3.02083 4.4125 3.4125C4.02083 3.80417 3.55 4 3 4Z"
+        fill="#777777"
+      />
+    </g>
+  </svg>
+);
+
+const CopyIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+    <mask
+      id="mask0_4985_3043"
+      style={{ maskType: 'alpha' }}
+      maskUnits="userSpaceOnUse"
+      x="0"
+      y="0"
+      width="16"
+      height="16"
+    >
+      <rect width="16" height="16" fill="#D9D9D9" />
+    </mask>
+    <g mask="url(#mask0_4985_3043)">
+      <path
+        d="M5.75 12.499C5.3375 12.499 4.98438 12.3521 4.69063 12.0584C4.39688 11.7646 4.25 11.4115 4.25 10.999V1.99902C4.25 1.58652 4.39688 1.2334 4.69063 0.939648C4.98438 0.645898 5.3375 0.499023 5.75 0.499023H12.5C12.9125 0.499023 13.2656 0.645898 13.5594 0.939648C13.8531 1.2334 14 1.58652 14 1.99902V10.999C14 11.4115 13.8531 11.7646 13.5594 12.0584C13.2656 12.3521 12.9125 12.499 12.5 12.499H5.75ZM5.75 10.999H12.5V1.99902H5.75V10.999ZM2.75 15.499C2.3375 15.499 1.98438 15.3521 1.69063 15.0584C1.39688 14.7646 1.25 14.4115 1.25 13.999V3.49902H2.75V13.999H11V15.499H2.75Z"
+        fill="#777777"
+      />
+    </g>
+  </svg>
+);
+
 const LectureCard: React.FC<LectureCardProps> = ({
   title = 'Machine Learning Coding',
   date = 'Wednesday, 10 June 2025',
@@ -110,8 +166,11 @@ const LectureCard: React.FC<LectureCardProps> = ({
   disabled = false,
   lectureState,
   attendanceStatus,
+  resourceId,
 }) => {
   const theme = useCoreTheme() as CoreTheme;
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const menuOpen = Boolean(anchorEl);
 
   const isCompact = variant === 'compact';
   const leftWidth = { xs: '42%', sm: '50%' };
@@ -124,6 +183,27 @@ const LectureCard: React.FC<LectureCardProps> = ({
     if (lectureState === 'inFuture') return theme.palette.success.main;
     if (lectureState === 'hasEnded') return theme.palette.info.main;
     return '#1E1E1E';
+  };
+
+  const handleMenuClick = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleMenuClose = () => {
+    setAnchorEl(null);
+  };
+
+  const handleCopyResourceId = async () => {
+    if (resourceId) {
+      try {
+        await navigator.clipboard.writeText(resourceId);
+        // Optionally, you can add a toast notification here
+        console.log('Resource ID copied:', resourceId);
+      } catch (err) {
+        console.error('Failed to copy resource ID:', err);
+      }
+    }
+    handleMenuClose();
   };
 
   return (
@@ -211,19 +291,86 @@ const LectureCard: React.FC<LectureCardProps> = ({
             )}
 
             <Box sx={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
-              <Typography
-                variant="h6"
-                sx={{
-                  color: getTitleColor(),
-                  textAlign: 'justify',
-                  fontSize: '24px',
-                  fontStyle: 'normal',
-                  fontWeight: 600,
-                  lineHeight: 'normal',
-                }}
+              <Box
+                sx={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between' }}
               >
-                {title}
-              </Typography>
+                <Typography
+                  variant="h6"
+                  sx={{
+                    color: getTitleColor(),
+                    textAlign: 'justify',
+                    fontSize: '24px',
+                    fontStyle: 'normal',
+                    fontWeight: 600,
+                    lineHeight: 'normal',
+                    flex: 1,
+                    pr: 2,
+                  }}
+                >
+                  {title}
+                </Typography>
+
+                {resourceId && (
+                  <>
+                    <IconButton
+                      onClick={handleMenuClick}
+                      size="small"
+                      sx={{
+                        '&:hover': {
+                          backgroundColor: 'rgba(0, 0, 0, 0.04)',
+                        },
+                      }}
+                    >
+                      <MenuIcon />
+                    </IconButton>
+
+                    <Menu
+                      anchorEl={anchorEl}
+                      open={menuOpen}
+                      onClose={handleMenuClose}
+                      anchorOrigin={{
+                        vertical: 'center',
+                        horizontal: 'left',
+                      }}
+                      transformOrigin={{
+                        vertical: 'center',
+                        horizontal: 'right',
+                      }}
+                      PaperProps={{
+                        sx: {
+                          borderRadius: '12px',
+                          boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.1)',
+                          minWidth: '200px',
+                        },
+                      }}
+                    >
+                      <MenuItem
+                        onClick={handleCopyResourceId}
+                        sx={{
+                          display: 'flex',
+                          gap: '12px',
+                          padding: '8px 16px',
+                          '&:hover': {
+                            backgroundColor: 'rgba(0, 0, 0, 0.04)',
+                          },
+                        }}
+                      >
+                        <CopyIcon />
+                        <Typography
+                          sx={{
+                            fontSize: '18px',
+                            color: '#777777',
+                            lineHeight: '20px',
+                            fontWeight: 400,
+                          }}
+                        >
+                          Copy resource ID
+                        </Typography>
+                      </MenuItem>
+                    </Menu>
+                  </>
+                )}
+              </Box>
 
               {subtitle && (
                 <Typography
