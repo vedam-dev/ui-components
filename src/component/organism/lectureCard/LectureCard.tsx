@@ -31,7 +31,7 @@ export interface LectureCardProps {
   buttonText?: string;
   image?: string;
   onWatch?: () => void;
-  onButtonClick?: () => void; 
+  onButtonClick?: () => void;
   sx?: SxProps<Theme>;
   showImageHighlight?: boolean;
   variant?: 'default' | 'compact';
@@ -161,7 +161,7 @@ const LectureCard: React.FC<LectureCardProps> = ({
   buttonText = 'Start Recording',
   image = DEFAULT_IMAGE,
   onWatch = () => {},
-  onButtonClick, 
+  onButtonClick,
   sx = {},
   showImageHighlight = true,
   variant = 'default',
