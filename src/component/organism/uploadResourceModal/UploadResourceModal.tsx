@@ -1,0 +1,436 @@
+'use client';
+
+import type React from 'react';
+import { useState, useRef } from 'react';
+import { Box, Button, Modal, TextField, Typography, useTheme, IconButton } from '@mui/material';
+import CloseIcon from '@mui/icons-material/Close';
+
+export interface UploadResourceModalProps {
+  open: boolean;
+  onClose: () => void;
+  onUpload?: (file: File | null, resourceId: string | null) => void;
+  title?: string;
+  subtitle?: string;
+  fileUploadText?: string;
+  resourceIdText?: string;
+  cancelButtonText?: string;
+  uploadButtonText?: string;
+}
+
+const UploadResourceModal: React.FC<UploadResourceModalProps> = ({
+  open,
+  onClose,
+  onUpload,
+  title = 'Upload Resource',
+  subtitle = 'Upload the material you want to attach',
+  fileUploadText = 'Choose a file to upload here',
+  resourceIdText = 'Paste Resource ID',
+  cancelButtonText = 'Cancel',
+  uploadButtonText = 'Upload',
+}) => {
+  const theme = useTheme();
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [resourceId, setResourceId] = useState<string>('');
+
+  const handleFileSelect = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      setSelectedFile(file);
+      setResourceId(''); // Clear resource ID when file is selected
+    }
+  };
+
+  const handleBrowseClick = () => {
+    fileInputRef.current?.click();
+  };
+
+  const handleRemoveFile = () => {
+    setSelectedFile(null);
+    if (fileInputRef.current) {
+      fileInputRef.current.value = '';
+    }
+  };
+
+  const handleResourceIdChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setResourceId(event.target.value);
+    if (event.target.value) {
+      setSelectedFile(null); // Clear file when resource ID is entered
+    }
+  };
+
+  const handlePasteClick = async () => {
+    try {
+      const text = await navigator.clipboard.readText();
+      setResourceId(text);
+      if (text) {
+        setSelectedFile(null);
+      }
+    } catch (err) {
+      console.error('Failed to read clipboard:', err);
+    }
+  };
+
+  const handleUpload = () => {
+    if (onUpload) {
+      onUpload(selectedFile, resourceId || null);
+    }
+    handleClose();
+  };
+
+  const handleClose = () => {
+    setSelectedFile(null);
+    setResourceId('');
+    if (fileInputRef.current) {
+      fileInputRef.current.value = '';
+    }
+    onClose();
+  };
+
+  const isUploadDisabled = !selectedFile && !resourceId;
+
+  return (
+    <Modal
+      open={open}
+      onClose={handleClose}
+      aria-labelledby="upload-resource-modal"
+      aria-describedby="upload-resource-description"
+    >
+      <Box
+        sx={{
+          position: 'absolute',
+          top: '50%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
+          width: { xs: '90%', sm: '80%', md: '672px' },
+          maxHeight: '90vh',
+          overflowY: 'auto',
+          bgcolor: 'background.paper',
+          boxShadow: 24,
+          borderRadius: '24px',
+          padding: '36px',
+          outline: 'none',
+          '&::-webkit-scrollbar': { display: 'none' },
+          msOverflowStyle: 'none',
+          scrollbarWidth: 'none',
+        }}
+      >
+        {/* Title */}
+        <Box sx={{ mb: '32px' }}>
+          <Typography
+            component="div"
+            sx={{
+              fontWeight: 600,
+              fontSize: '28px',
+              lineHeight: '39px',
+              color: theme.palette.text.primary,
+            }}
+          >
+            {title}
+          </Typography>
+          <Typography
+            sx={{
+              color: theme.palette.text.secondary,
+              fontSize: '20px',
+              lineHeight: '25px',
+            }}
+          >
+            {subtitle}
+          </Typography>
+        </Box>
+
+        {/* File Upload Section */}
+        <Box
+          sx={{
+            display: 'flex',
+            height: '100px',
+            padding: '14px',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: '8px',
+            borderRadius: '16px',
+            border: '1px dashed #F97D03',
+            backgroundColor: '#FFF',
+            cursor: selectedFile ? 'default' : 'pointer',
+            position: 'relative',
+            mb: 2,
+          }}
+          onClick={!selectedFile ? handleBrowseClick : undefined}
+        >
+          <input
+            ref={fileInputRef}
+            type="file"
+            style={{ display: 'none' }}
+            onChange={handleFileSelect}
+            disabled={!!resourceId}
+          />
+
+          {selectedFile ? (
+            <>
+              <Typography
+                variant="body2"
+                sx={{
+                  color: theme.palette.text.secondary,
+                  fontSize: '16px',
+                  lineHeight: '20px',
+                }}
+              >
+                {fileUploadText}
+              </Typography>
+              <Box
+                sx={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: 1,
+                  border: '1px solid #C7C7C7',
+                  borderRadius: '12px',
+                  padding: '8px 12px',
+                  backgroundColor: '#FFF',
+                  maxWidth: '90%',
+                }}
+              >
+                <Typography
+                  variant="body1"
+                  sx={{
+                    color: theme.palette.text.primary,
+                    fontSize: '14px',
+                    fontWeight: 500,
+                    overflow: 'hidden',
+                    textOverflow: 'ellipsis',
+                    whiteSpace: 'nowrap',
+                  }}
+                >
+                  {selectedFile.name}
+                </Typography>
+                <IconButton
+                  size="small"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleRemoveFile();
+                  }}
+                  sx={{
+                    padding: '4px',
+                    flexShrink: 0,
+                    '&:hover': {
+                      backgroundColor: 'rgba(0, 0, 0, 0.04)',
+                    },
+                  }}
+                >
+                  <CloseIcon sx={{ fontSize: '18px' }} />
+                </IconButton>
+              </Box>
+            </>
+          ) : (
+            <>
+              <Typography
+                variant="body2"
+                sx={{
+                  color: theme.palette.text.secondary,
+                  fontSize: '16px',
+                  lineHeight: '20px',
+                }}
+              >
+                {fileUploadText}
+              </Typography>
+              <Button
+                variant="outlined"
+                disabled={!!resourceId}
+                onClick={handleBrowseClick}
+                sx={{
+                  borderRadius: '12px',
+                  textTransform: 'none',
+                  fontSize: '14px',
+                  fontWeight: 500,
+                  padding: '6px 16px',
+                  border: `1px solid #C7C7C7`,
+                  color: theme.palette.primary.main,
+                  backgroundColor: '#FFF',
+                  '&:hover': {
+                    border: `1px solid #C7C7C7`,
+                    backgroundColor: '#F5F5F5',
+                  },
+                  '&:disabled': {
+                    border: '1.5px solid #E0E0E0',
+                    color: '#BDBDBD',
+                  },
+                }}
+                endIcon={
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="18"
+                    height="19"
+                    viewBox="0 0 18 19"
+                    fill="none"
+                  >
+                    <path
+                      d="M8.69203e-07 7.125L3.15525e-07 0.791666C2.9717e-07 0.581703 0.079016 0.380338 0.21967 0.231872C0.360321 0.0834061 0.551087 -3.81916e-07 0.75 -3.99306e-07L17.25 -1.84178e-06C17.4489 -1.85917e-06 17.6397 0.0834046 17.7803 0.231871C17.921 0.380337 18 0.581701 18 0.791664L18 7.125C18 7.33496 17.921 7.53633 17.7803 7.68479C17.6397 7.83326 17.4489 7.91667 17.25 7.91667C17.0511 7.91667 16.8603 7.83326 16.7197 7.68479C16.579 7.53633 16.5 7.33496 16.5 7.125L16.5 1.58333L1.5 1.58333L1.5 7.125C1.5 7.33496 1.42098 7.53633 1.28033 7.68479C1.13968 7.83326 0.948913 7.91667 0.750001 7.91667C0.551087 7.91667 0.360322 7.83326 0.21967 7.68479C0.0790166 7.53633 8.87559e-07 7.33496 8.69203e-07 7.125ZM9.53063 6.5649C9.46097 6.49129 9.37825 6.4329 9.2872 6.39306C9.19616 6.35322 9.09856 6.33271 9 6.33271C8.90144 6.33271 8.80384 6.35322 8.71279 6.39306C8.62175 6.4329 8.53903 6.49129 8.46937 6.5649L4.71937 10.5232C4.64969 10.5968 4.59442 10.6841 4.55671 10.7802C4.51899 10.8763 4.49958 10.9793 4.49958 11.0833C4.49958 11.1874 4.51899 11.2904 4.55671 11.3865C4.59442 11.4826 4.64969 11.5699 4.71937 11.6434C4.78906 11.717 4.87178 11.7753 4.96283 11.8151C5.05387 11.855 5.15145 11.8754 5.25 11.8754C5.34855 11.8754 5.44613 11.855 5.53717 11.8151C5.62822 11.7753 5.71094 11.717 5.78063 11.6434L8.25 9.03588L8.25 18.2083C8.25 18.4183 8.32902 18.6197 8.46967 18.7681C8.61032 18.9166 8.80109 19 9 19C9.19891 19 9.38968 18.9166 9.53033 18.7681C9.67098 18.6197 9.75 18.4183 9.75 18.2083L9.75 9.03588L12.2194 11.6434C12.3601 11.792 12.551 11.8754 12.75 11.8754C12.949 11.8754 13.1399 11.792 13.2806 11.6434C13.4214 11.4949 13.5004 11.2934 13.5004 11.0833C13.5004 10.8733 13.4214 10.6718 13.2806 10.5232L9.53063 6.5649Z"
+                      fill={resourceId ? '#BDBDBD' : '#3870CA'}
+                    />
+                  </svg>
+                }
+              >
+                Browse Files
+              </Button>
+            </>
+          )}
+        </Box>
+
+        {/* Divider */}
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, my: 2 }}>
+          <Box sx={{ flex: 1, height: '1px', backgroundColor: '#E0E0E0' }} />
+          <Typography variant="body2" sx={{ color: theme.palette.text.secondary }}>
+            or
+          </Typography>
+          <Box sx={{ flex: 1, height: '1px', backgroundColor: '#E0E0E0' }} />
+        </Box>
+
+        {/* Resource ID Section */}
+        <Box
+          sx={{
+            display: 'flex',
+            padding: '14px',
+            flexDirection: 'column',
+            alignItems: 'center',
+            borderRadius: '16px',
+            border: '1px dashed #F97D03',
+            backgroundColor: '#FFF',
+          }}
+        >
+          <Typography
+            sx={{
+              color: theme.palette.text.secondary,
+              fontSize: '16px',
+              lineHeight: '20px',
+              mb: '8px',
+            }}
+          >
+            {resourceIdText}
+          </Typography>
+
+          <TextField
+            fullWidth
+            placeholder="Type"
+            value={resourceId}
+            onChange={handleResourceIdChange}
+            disabled={!!selectedFile}
+            InputProps={{
+              endAdornment: (
+                <IconButton
+                  onClick={handlePasteClick}
+                  disabled={!!selectedFile}
+                  sx={{
+                    padding: '4px',
+                    '&:hover': {
+                      backgroundColor: 'rgba(0, 0, 0, 0.04)',
+                    },
+                  }}
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="18"
+                    height="18"
+                    viewBox="0 0 18 18"
+                    fill="none"
+                  >
+                    <mask
+                      id="mask0_4985_1506"
+                      style={{ maskType: 'alpha' }}
+                      maskUnits="userSpaceOnUse"
+                      x="0"
+                      y="0"
+                      width="18"
+                      height="18"
+                    >
+                      <rect width="18" height="18" fill="#D9D9D9" />
+                    </mask>
+                    <g mask="url(#mask0_4985_1506)">
+                      <path
+                        d="M3.75 15.749C3.3375 15.749 2.98438 15.6021 2.69063 15.3084C2.39688 15.0146 2.25 14.6615 2.25 14.249V3.74902C2.25 3.33652 2.39688 2.9834 2.69063 2.68965C2.98438 2.3959 3.3375 2.24902 3.75 2.24902H6.88125C7.01875 1.81152 7.2875 1.45215 7.6875 1.1709C8.0875 0.889648 8.525 0.749023 9 0.749023C9.5 0.749023 9.94688 0.889648 10.3406 1.1709C10.7344 1.45215 11 1.81152 11.1375 2.24902H14.25C14.6625 2.24902 15.0156 2.3959 15.3094 2.68965C15.6031 2.9834 15.75 3.33652 15.75 3.74902V14.249C15.75 14.6615 15.6031 15.0146 15.3094 15.3084C15.0156 15.6021 14.6625 15.749 14.25 15.749H3.75ZM3.75 14.249H14.25V3.74902H12.75V5.99902H5.25V3.74902H3.75V14.249ZM9 3.74902C9.2125 3.74902 9.39063 3.67715 9.53438 3.5334C9.67813 3.38965 9.75 3.21152 9.75 2.99902C9.75 2.78652 9.67813 2.6084 9.53438 2.46465C9.39063 2.3209 9.2125 2.24902 9 2.24902C8.7875 2.24902 8.60938 2.3209 8.46563 2.46465C8.32188 2.6084 8.25 2.78652 8.25 2.99902C8.25 3.21152 8.32188 3.38965 8.46563 3.5334C8.60938 3.67715 8.7875 3.74902 9 3.74902Z"
+                        fill={selectedFile ? '#BDBDBD' : '#777777'}
+                      />
+                    </g>
+                  </svg>
+                </IconButton>
+              ),
+            }}
+            sx={{
+              '& .MuiOutlinedInput-root': {
+                height: '42px',
+                borderRadius: '8px',
+                backgroundColor: '#FFF',
+                '& fieldset': {
+                  borderColor: '#C7C7C7',
+                },
+                '&:hover fieldset': {
+                  borderColor: '#C7C7C7',
+                },
+                '&.Mui-focused fieldset': {
+                  borderColor: '#C7C7C7',
+                },
+                '&.Mui-disabled': {
+                  backgroundColor: '#F5F5F5',
+                },
+              },
+            }}
+          />
+        </Box>
+
+        {/* Action Buttons */}
+        <Box sx={{ display: 'flex', justifyContent: 'flex-end', gap: '16px', mt: '104px' }}>
+          <Button
+            onClick={handleClose}
+            variant="outlined"
+            sx={{
+              //   flex: 1,
+              border: `1px solid ${theme.palette.primary.main}`,
+              color: theme.palette.primary.main,
+              backgroundColor: theme.palette.common.white,
+              fontSize: '16px',
+              lineHeight: '16px',
+              fontWeight: 500,
+              borderRadius: '12px',
+              padding: '13px',
+              textTransform: 'none',
+              '&:hover': {
+                border: `1px solid ${theme.palette.primary.main}`,
+                backgroundColor: '#F5F5F5',
+              },
+            }}
+          >
+            {cancelButtonText}
+          </Button>
+          <Button
+            onClick={handleUpload}
+            variant="contained"
+            disabled={isUploadDisabled}
+            sx={{
+              //   flex: 1,
+              backgroundColor: theme.palette.primary.main,
+              fontSize: '16px',
+              fontWeight: 500,
+              borderRadius: '12px',
+              padding: '14px',
+              lineHeight: '16px',
+              color: theme.palette.common.white,
+              textTransform: 'none',
+              '&:hover': {
+                backgroundColor: theme.palette.primary.dark,
+              },
+              '&:disabled': {
+                backgroundColor: '#BDBDBD',
+                color: '#FFF',
+              },
+            }}
+          >
+            {uploadButtonText}
+          </Button>
+        </Box>
+      </Box>
+    </Modal>
+  );
+};
+
+export default UploadResourceModal;
