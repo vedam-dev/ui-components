@@ -72,6 +72,11 @@ const meta: Meta<typeof LectureCard> = {
       },
       description: 'Attendance status (if undefined, badge not shown; if empty string, shows "NA")',
     },
+    resourceId: {
+      control: 'text',
+      description:
+        'Optional resource ID for copy functionality. If provided, shows menu icon with copy option.',
+    },
     onWatch: { action: 'watchClicked' },
     sx: {
       control: 'object',
@@ -91,6 +96,15 @@ export const Default: Story = {
   },
 };
 
+export const WithResourceId: Story = {
+  args: {
+    title: 'Machine Learning Coding',
+    date: 'Wednesday, 10 June 2025',
+    buttonText: 'Start Recording',
+    resourceId: 'RES-12345-ML-2025',
+  },
+};
+
 export const WithSubtitle: Story = {
   args: {
     title: 'Machine Learning Coding',
@@ -100,12 +114,23 @@ export const WithSubtitle: Story = {
   },
 };
 
+export const WithSubtitleAndResourceId: Story = {
+  args: {
+    title: 'Machine Learning Coding',
+    subtitle: 'Advanced Neural Networks and Deep Learning',
+    date: 'Wednesday, 10 June 2025',
+    buttonText: 'Start Recording',
+    resourceId: 'RES-67890-ML-ADV',
+  },
+};
+
 export const LongTitle: Story = {
   args: {
     title: 'Machine Learning Coding — Deep Dive: CNNs, RNNs, Transformers and Practical Projects',
     date: 'Wednesday, 10 June 2025',
     image:
       'https://images.unsplash.com/photo-1545239351-1141bd82e8a6?auto=format&fit=crop&w=1200&q=80',
+    resourceId: 'RES-99999-DEEP-DIVE',
   },
 };
 
@@ -115,6 +140,7 @@ export const FutureLecture: Story = {
     date: 'Monday, 15 January 2026',
     lectureState: 'inFuture',
     disabled: true,
+    resourceId: 'RES-FUTURE-2026',
   },
 };
 
@@ -123,6 +149,7 @@ export const EndedLecture: Story = {
     title: 'Introduction to Data Science',
     date: 'Friday, 20 December 2024',
     lectureState: 'hasEnded',
+    resourceId: 'RES-ENDED-2024',
   },
 };
 
@@ -135,6 +162,7 @@ export const FutureLectureWithSubtitle: Story = {
     disabled: true,
     image:
       'https://images.unsplash.com/photo-1545239351-1141bd82e8a6?auto=format&fit=crop&w=1200&q=80',
+    resourceId: 'RES-DL-FUND-2026',
   },
 };
 
@@ -144,6 +172,7 @@ export const EndedLectureWithSubtitle: Story = {
     subtitle: 'Building modern web applications with React and Node.js',
     date: 'Tuesday, 10 December 2024',
     lectureState: 'hasEnded',
+    resourceId: 'RES-WEB-MC-2024',
   },
 };
 
@@ -152,6 +181,7 @@ export const CompactVariant: Story = {
     title: 'Quick Tutorial Session',
     date: 'Wednesday, 10 June 2025',
     variant: 'compact',
+    resourceId: 'RES-COMPACT-001',
   },
 };
 
@@ -162,6 +192,7 @@ export const CompactFutureLecture: Story = {
     variant: 'compact',
     lectureState: 'inFuture',
     disabled: true,
+    resourceId: 'RES-GIT-WS-2026',
   },
 };
 
@@ -171,6 +202,7 @@ export const CompactEndedLecture: Story = {
     date: 'Monday, 18 December 2024',
     variant: 'compact',
     lectureState: 'hasEnded',
+    resourceId: 'RES-CSS-2024',
   },
 };
 
@@ -187,6 +219,7 @@ export const WithoutImageHighlight: Story = {
     title: 'Clean Design Lecture',
     date: 'Wednesday, 10 June 2025',
     showImageHighlight: false,
+    resourceId: 'RES-CLEAN-DESIGN',
   },
 };
 
@@ -210,23 +243,56 @@ export const AllStatesComparison: Story = {
         date="Wednesday, 10 June 2025"
         lectureState="inFuture"
         attendanceStatus="Present"
+        resourceId="RES-PRESENT-001"
       />
-      <LectureCard title="Absent" date="Wednesday, 10 June 2025" attendanceStatus="Absent" />
-      <LectureCard title="Late" date="Wednesday, 10 June 2025" attendanceStatus="Late" />
-      <LectureCard title="Leave" date="Wednesday, 10 June 2025" attendanceStatus="Leave" />
-      <LectureCard title="Excused" date="Wednesday, 10 June 2025" attendanceStatus="Excused" />
+      <LectureCard
+        title="Absent"
+        date="Wednesday, 10 June 2025"
+        attendanceStatus="Absent"
+        resourceId="RES-ABSENT-002"
+      />
+      <LectureCard
+        title="Late"
+        date="Wednesday, 10 June 2025"
+        attendanceStatus="Late"
+        resourceId="RES-LATE-003"
+      />
+      <LectureCard
+        title="Leave"
+        date="Wednesday, 10 June 2025"
+        attendanceStatus="Leave"
+        resourceId="RES-LEAVE-004"
+      />
+      <LectureCard
+        title="Excused"
+        date="Wednesday, 10 June 2025"
+        attendanceStatus="Excused"
+        resourceId="RES-EXCUSED-005"
+      />
       <LectureCard
         title="Awaiting Start"
         date="Wednesday, 10 June 2025"
         attendanceStatus="Awaiting Start"
+        resourceId="RES-AWAITING-006"
       />
       <LectureCard
         title="Session in progress"
         date="Wednesday, 10 June 2025"
         attendanceStatus="Session in progress"
+        resourceId="RES-PROGRESS-007"
       />
-      <LectureCard title="NA (Empty String)" date="Wednesday, 10 June 2025" attendanceStatus="NA" />
+      <LectureCard
+        title="NA (Empty String)"
+        date="Wednesday, 10 June 2025"
+        attendanceStatus="NA"
+        resourceId="RES-NA-008"
+      />
       <LectureCard title="No Attendance Status (undefined)" date="Wednesday, 10 June 2025" />
+      <LectureCard
+        title="With Resource ID - No Attendance"
+        date="Wednesday, 10 June 2025"
+        resourceId="RES-ONLY-ID-009"
+      />
     </div>
   ),
 };
