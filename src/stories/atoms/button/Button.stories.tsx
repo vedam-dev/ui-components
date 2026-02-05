@@ -232,8 +232,85 @@ export const SmallTextButtonDisabled: Story = {
   },
 };
 
-// Add this to your existing stories
+// Downloadable button variants
 
+export const DownloadableRightIcon: Story = {
+  args: {
+    isDownloadable: true,
+    variant: 'outlined',
+    children: 'Document 1',
+    downloadIconUrl:
+      'https://acjlsquedaotbhbxmtee.supabase.co/storage/v1/object/public/vedam-website-assets/images/others/Vector-4.png',
+    iconPosition: 'right',
+  },
+};
+
+export const DownloadableLeftIcon: Story = {
+  args: {
+    isDownloadable: true,
+    variant: 'outlined',
+    children: 'Document 1',
+    leftIconUrl: 'copy',
+    iconPosition: 'left',
+  },
+};
+
+export const DownloadableLeftCopyIcon: Story = {
+  args: {
+    isDownloadable: true,
+    variant: 'outlined',
+    children: 'Copy Document',
+    leftIconUrl: 'copy',
+    iconPosition: 'left',
+  },
+};
+
+export const DownloadableBothIcons: Story = {
+  args: {
+    isDownloadable: true,
+    variant: 'outlined',
+    children: 'Document 1',
+    downloadIconUrl:
+      'https://acjlsquedaotbhbxmtee.supabase.co/storage/v1/object/public/vedam-website-assets/images/others/Vector-4.png',
+    leftIconUrl: 'copy',
+    iconPosition: 'both',
+  },
+};
+
+export const DownloadableLongText: Story = {
+  args: {
+    isDownloadable: true,
+    variant: 'outlined',
+    children: 'documentretytverylongname',
+    downloadIconUrl:
+      'https://acjlsquedaotbhbxmtee.supabase.co/storage/v1/object/public/vedam-website-assets/images/others/Vector-4.png',
+    iconPosition: 'right',
+  },
+};
+
+export const DownloadableLongTextLeftIcon: Story = {
+  args: {
+    isDownloadable: true,
+    variant: 'outlined',
+    children: 'documentretytverylongname',
+    leftIconUrl: 'copy',
+    iconPosition: 'left',
+  },
+};
+
+export const DownloadableLongTextBothIcons: Story = {
+  args: {
+    isDownloadable: true,
+    variant: 'outlined',
+    children: 'documentretytverylongname',
+    downloadIconUrl:
+      'https://acjlsquedaotbhbxmtee.supabase.co/storage/v1/object/public/vedam-website-assets/images/others/Vector-4.png',
+    leftIconUrl: 'copy',
+    iconPosition: 'both',
+  },
+};
+
+// Legacy downloadable (for backwards compatibility)
 export const Downloadable: Story = {
   args: {
     isDownloadable: true,
