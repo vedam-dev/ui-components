@@ -45,6 +45,7 @@ export { default as VideoPlayerModal } from './component/organism/video-player-m
 export { default as CampusSelection } from './component/organism/campusSelection/CampusSelection';
 export { default as TimePicker } from './component/organism/timePicker/TimePicker';
 export { default as Snackbar } from './component/organism/snackbar/Snackbar';
+export { default as AddQuestionModal } from './component/organism/addQuestionModal/AddQuestionModal';
 
 export {
   ClassListItemRow,
