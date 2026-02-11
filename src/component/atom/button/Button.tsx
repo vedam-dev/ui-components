@@ -3,7 +3,7 @@ import BaseButton from '@mui/material/Button';
 import { DefaultComponentProps, OverridableTypeMap } from '@mui/material/OverridableComponent';
 import { Theme } from '@mui/material/styles';
 import { SystemStyleObject } from '@mui/system/styleFunctionSx/styleFunctionSx';
-import React, { ComponentProps, FC } from 'react';
+import React, { ComponentProps, FC, MouseEvent, useState } from 'react';
 import { CoreTheme, useCoreTheme } from '../../../theme/core-theme';
 export type { BoxProps } from '@mui/material/Box';
 
@@ -18,6 +18,10 @@ export interface IButtonProps {
   downloadIconUrl?: string;
   leftIconUrl?: string | 'copy';
   iconPosition?: IconPosition;
+  onLeftIconClick?: (event: MouseEvent<HTMLDivElement>) => void;
+  onRightIconClick?: (event: MouseEvent<HTMLDivElement>) => void;
+  leftIconTooltip?: string;
+  rightIconTooltip?: string;
 }
 
 export type ButtonVariant = 'text' | 'outlined' | 'contained';
@@ -39,6 +43,10 @@ const Button: FC<ButtonProps> = ({
   downloadIconUrl = 'https://acjlsquedaotbhbxmtee.supabase.co/storage/v1/object/public/vedam-website-assets/images/others/Vector-4.png',
   leftIconUrl,
   iconPosition = 'right',
+  onLeftIconClick,
+  onRightIconClick,
+  leftIconTooltip,
+  rightIconTooltip,
   ...buttonProps
 }) => {
   const theme = useCoreTheme() as CoreTheme;
@@ -72,28 +80,90 @@ const Button: FC<ButtonProps> = ({
     </svg>
   );
 
-  const renderIcon = (url: string | 'copy', alt: string) => {
-    if (url === 'copy') {
-      return (
-        <Box
-          sx={{
-            width: '38px',
-            height: '38px',
-            borderRadius: '10px',
-            boxShadow: '0 0 10px 0 rgba(0, 0, 0, 0.10)',
-            flexShrink: 0,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}
-        >
-          <CopyIcon />
-        </Box>
-      );
-    }
+  const CustomTooltip: FC<{ text: string; children: React.ReactElement }> = ({
+    text,
+    children,
+  }) => {
+    const [isVisible, setIsVisible] = useState(false);
 
     return (
       <Box
+        sx={{ position: 'relative', display: 'inline-flex' }}
+        onMouseEnter={() => setIsVisible(true)}
+        onMouseLeave={() => setIsVisible(false)}
+      >
+        {children}
+        {isVisible && (
+          <Box
+            sx={{
+              position: 'absolute',
+              bottom: 'calc(100% + 12px)',
+              left: '50%',
+              transform: 'translateX(-50%)',
+              whiteSpace: 'nowrap',
+              zIndex: 9999,
+              pointerEvents: 'none',
+              animation: 'fadeIn 0.2s ease-in-out',
+              '@keyframes fadeIn': {
+                from: { opacity: 0, transform: 'translateX(-50%) translateY(4px)' },
+                to: { opacity: 1, transform: 'translateX(-50%) translateY(0)' },
+              },
+            }}
+          >
+            {/* Tooltip bubble */}
+            <Box
+              sx={{
+                background: '#FFFFFF',
+                borderRadius: '12px',
+                padding: '8px 16px',
+                boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.15)',
+                fontSize: '14px',
+                fontWeight: 500,
+                color: '#000000',
+              }}
+            >
+              {text}
+            </Box>
+            {/* Arrow pointing down */}
+            <Box
+              sx={{
+                position: 'absolute',
+                bottom: '-6px',
+                left: '50%',
+                transform: 'translateX(-50%)',
+                width: 0,
+                height: 0,
+                borderLeft: '8px solid transparent',
+                borderRight: '8px solid transparent',
+                borderTop: '8px solid #FFFFFF',
+                filter: 'drop-shadow(0px 2px 2px rgba(0, 0, 0, 0.1))',
+              }}
+            />
+          </Box>
+        )}
+      </Box>
+    );
+  };
+
+  const handleIconClick = (
+    event: MouseEvent<HTMLDivElement>,
+    handler?: (event: MouseEvent<HTMLDivElement>) => void
+  ) => {
+    if (handler) {
+      event.stopPropagation();
+      handler(event);
+    }
+  };
+
+  const renderIcon = (
+    url: string | 'copy',
+    alt: string,
+    onClick?: (event: MouseEvent<HTMLDivElement>) => void,
+    tooltip?: string
+  ) => {
+    const iconContent = (
+      <Box
+        onClick={(e) => handleIconClick(e, onClick)}
         sx={{
           width: '38px',
           height: '38px',
@@ -104,20 +174,38 @@ const Button: FC<ButtonProps> = ({
           alignItems: 'center',
           justifyContent: 'center',
           overflow: 'hidden',
+          cursor: onClick ? 'pointer' : 'default',
+          transition: 'all 0.2s ease-in-out',
+          '&:hover': onClick
+            ? {
+                transform: 'scale(1.05)',
+                boxShadow: '0 0 15px 0 rgba(0, 0, 0, 0.15)',
+              }
+            : {},
         }}
       >
-        <Box
-          component="img"
-          src={url}
-          alt={alt}
-          sx={{
-            width: '18px',
-            height: '18px',
-            objectFit: 'contain',
-          }}
-        />
+        {url === 'copy' ? (
+          <CopyIcon />
+        ) : (
+          <Box
+            component="img"
+            src={url}
+            alt={alt}
+            sx={{
+              width: '18px',
+              height: '18px',
+              objectFit: 'contain',
+            }}
+          />
+        )}
       </Box>
     );
+
+    if (tooltip) {
+      return <CustomTooltip text={tooltip}>{iconContent}</CustomTooltip>;
+    }
+
+    return iconContent;
   };
 
   return (
@@ -140,7 +228,9 @@ const Button: FC<ButtonProps> = ({
           {/* Left icon - always reserve space for centering */}
           <Box sx={{ width: '38px', flexShrink: 0 }}>
             {(iconPosition === 'left' || iconPosition === 'both') &&
-              (leftIconUrl ? renderIcon(leftIconUrl, 'Left icon') : null)}
+              (leftIconUrl
+                ? renderIcon(leftIconUrl, 'Left icon', onLeftIconClick, leftIconTooltip)
+                : null)}
           </Box>
 
           {/* Text content with fixed width and ellipsis */}
@@ -160,7 +250,7 @@ const Button: FC<ButtonProps> = ({
 
           <Box sx={{ width: '38px', flexShrink: 0 }}>
             {(iconPosition === 'right' || iconPosition === 'both') &&
-              renderIcon(downloadIconUrl, 'Download icon')}
+              renderIcon(downloadIconUrl, 'Download icon', onRightIconClick, rightIconTooltip)}
           </Box>
         </Box>
       ) : (

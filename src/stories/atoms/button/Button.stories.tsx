@@ -242,6 +242,8 @@ export const DownloadableRightIcon: Story = {
     downloadIconUrl:
       'https://acjlsquedaotbhbxmtee.supabase.co/storage/v1/object/public/vedam-website-assets/images/others/Vector-4.png',
     iconPosition: 'right',
+    onRightIconClick: fn(),
+    rightIconTooltip: 'Download document',
   },
 };
 
@@ -252,6 +254,8 @@ export const DownloadableLeftIcon: Story = {
     children: 'Document 1',
     leftIconUrl: 'copy',
     iconPosition: 'left',
+    onLeftIconClick: fn(),
+    leftIconTooltip: 'Copy to clipboard',
   },
 };
 
@@ -262,6 +266,8 @@ export const DownloadableLeftCopyIcon: Story = {
     children: 'Copy Document',
     leftIconUrl: 'copy',
     iconPosition: 'left',
+    onLeftIconClick: fn(),
+    leftIconTooltip: 'Copy to clipboard',
   },
 };
 
@@ -274,6 +280,10 @@ export const DownloadableBothIcons: Story = {
       'https://acjlsquedaotbhbxmtee.supabase.co/storage/v1/object/public/vedam-website-assets/images/others/Vector-4.png',
     leftIconUrl: 'copy',
     iconPosition: 'both',
+    onLeftIconClick: fn(),
+    onRightIconClick: fn(),
+    leftIconTooltip: 'Copy to clipboard',
+    rightIconTooltip: 'Download document',
   },
 };
 
@@ -285,6 +295,8 @@ export const DownloadableLongText: Story = {
     downloadIconUrl:
       'https://acjlsquedaotbhbxmtee.supabase.co/storage/v1/object/public/vedam-website-assets/images/others/Vector-4.png',
     iconPosition: 'right',
+    onRightIconClick: fn(),
+    rightIconTooltip: 'Download this very long document name',
   },
 };
 
@@ -295,6 +307,8 @@ export const DownloadableLongTextLeftIcon: Story = {
     children: 'documentretytverylongname',
     leftIconUrl: 'copy',
     iconPosition: 'left',
+    onLeftIconClick: fn(),
+    leftIconTooltip: 'Copy document name',
   },
 };
 
@@ -307,6 +321,10 @@ export const DownloadableLongTextBothIcons: Story = {
       'https://acjlsquedaotbhbxmtee.supabase.co/storage/v1/object/public/vedam-website-assets/images/others/Vector-4.png',
     leftIconUrl: 'copy',
     iconPosition: 'both',
+    onLeftIconClick: fn(),
+    onRightIconClick: fn(),
+    leftIconTooltip: 'URN',
+    rightIconTooltip: 'Download document',
   },
 };
 
@@ -318,5 +336,23 @@ export const Downloadable: Story = {
     children: 'Document 1',
     downloadIconUrl:
       'https://acjlsquedaotbhbxmtee.supabase.co/storage/v1/object/public/vedam-website-assets/images/others/Vector-4.png',
+    onRightIconClick: fn(),
+  },
+};
+
+// Examples with custom tooltip content
+export const DownloadableWithCustomTooltips: Story = {
+  args: {
+    isDownloadable: true,
+    variant: 'outlined',
+    children: 'Financial Report Q4',
+    downloadIconUrl:
+      'https://acjlsquedaotbhbxmtee.supabase.co/storage/v1/object/public/vedam-website-assets/images/others/Vector-4.png',
+    leftIconUrl: 'copy',
+    iconPosition: 'both',
+    onLeftIconClick: fn(),
+    onRightIconClick: fn(),
+    leftIconTooltip: 'Copy document link to share with team',
+    rightIconTooltip: 'Download PDF (2.4 MB)',
   },
 };
