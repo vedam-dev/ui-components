@@ -344,7 +344,7 @@ const LectureCard: React.FC<LectureCardProps> = ({
                         sx: {
                           borderRadius: '12px',
                           boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.1)',
-                          minWidth: '200px',
+                          minWidth: '150px',
                         },
                       }}
                     >
@@ -368,7 +368,7 @@ const LectureCard: React.FC<LectureCardProps> = ({
                             fontWeight: 400,
                           }}
                         >
-                          Copy resource ID
+                          Copy URID
                         </Typography>
                       </MenuItem>
                     </Menu>
