@@ -2,7 +2,17 @@
 
 import type React from 'react';
 import { useState } from 'react';
-import { Box, Button, Modal, TextField, Typography, useTheme, Radio } from '@mui/material';
+import {
+  Box,
+  Button,
+  Modal,
+  TextField,
+  Typography,
+  useTheme,
+  Radio,
+  ToggleButtonGroup,
+  ToggleButton,
+} from '@mui/material';
 
 export interface QuestionType {
   id: string;
@@ -12,11 +22,12 @@ export interface QuestionType {
 export interface AddQuestionModalProps {
   open: boolean;
   onClose: () => void;
-  onCreate?: (questionTitle: string, questionType: string) => void;
+  onCreate?: (questionTitle: string, questionType: string, difficulty: string) => void;
   title?: string;
   subtitle?: string;
   questionTitleLabel?: string;
   questionTitlePlaceholder?: string;
+  difficultyLabel?: string;
   questionTypeLabel?: string;
   questionTypes?: QuestionType[];
   cancelButtonText?: string;
@@ -31,6 +42,7 @@ const AddQuestionModal: React.FC<AddQuestionModalProps> = ({
   subtitle = 'Enter details for the question',
   questionTitleLabel = 'Question Title',
   questionTitlePlaceholder = 'Eg. Two Sum',
+  difficultyLabel = 'Difficulty',
   questionTypeLabel = 'Question Type',
   questionTypes = [
     { id: 'mcq', label: 'MCQ' },
@@ -47,6 +59,7 @@ const AddQuestionModal: React.FC<AddQuestionModalProps> = ({
 
   const [questionTitle, setQuestionTitle] = useState<string>('');
   const [selectedType, setSelectedType] = useState<string>('');
+  const [difficulty, setDifficulty] = useState<string>('MEDIUM');
 
   const handleQuestionTitleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setQuestionTitle(event.target.value);
@@ -56,9 +69,18 @@ const AddQuestionModal: React.FC<AddQuestionModalProps> = ({
     setSelectedType(typeId);
   };
 
+  const handleDifficultyChange = (
+    event: React.MouseEvent<HTMLElement>,
+    newDifficulty: string | null
+  ) => {
+    if (newDifficulty !== null) {
+      setDifficulty(newDifficulty);
+    }
+  };
+
   const handleCreate = () => {
     if (onCreate && questionTitle && selectedType) {
-      onCreate(questionTitle, selectedType);
+      onCreate(questionTitle, selectedType, difficulty);
     }
     handleClose();
   };
@@ -66,6 +88,7 @@ const AddQuestionModal: React.FC<AddQuestionModalProps> = ({
   const handleClose = () => {
     setQuestionTitle('');
     setSelectedType('');
+    setDifficulty('MEDIUM');
     onClose();
   };
 
@@ -162,6 +185,78 @@ const AddQuestionModal: React.FC<AddQuestionModalProps> = ({
           />
         </Box>
 
+        {/* Difficulty Selection */}
+        <Box sx={{ mb: '20px' }}>
+          <Typography
+            sx={{
+              fontWeight: 600,
+              fontSize: '18px',
+              lineHeight: '23px',
+              color: theme.palette.text.primary,
+              mb: '8px',
+            }}
+          >
+            {difficultyLabel}
+          </Typography>
+          <ToggleButtonGroup
+            value={difficulty}
+            exclusive
+            onChange={handleDifficultyChange}
+            sx={{
+              gap: '14px',
+              '& .MuiToggleButtonGroup-grouped': {
+                border: '1px solid #C7C7C7',
+                borderRadius: '100px !important',
+                margin: 0,
+                '&:not(:first-of-type)': {
+                  borderLeft: '1px solid #C7C7C7',
+                  marginLeft: 0,
+                },
+              },
+              '& .MuiToggleButton-root': {
+                fontSize: '16px',
+                lineHeight: '20px',
+                fontWeight: 500,
+                textTransform: 'none',
+                padding: '12px 24px',
+                minWidth: '122px',
+                color: '#666',
+                backgroundColor: '#FFF',
+                '&.Mui-selected': {
+                  '&[value="EASY"]': {
+                    bgcolor: '#E8F5E9',
+                    color: '#42B657',
+                    border: '1px solid #42B657 !important',
+                    '&:hover': {
+                      bgcolor: '#E8F5E9',
+                    },
+                  },
+                  '&[value="MEDIUM"]': {
+                    bgcolor: '#FFF9E6',
+                    color: '#D2A82F',
+                    border: '1px solid #D2A82F !important',
+                    '&:hover': {
+                      bgcolor: '#FFF9E6',
+                    },
+                  },
+                  '&[value="HARD"]': {
+                    bgcolor: '#FFEBEE',
+                    color: '#E02222',
+                    border: '1px solid #E02222 !important',
+                    '&:hover': {
+                      bgcolor: '#FFEBEE',
+                    },
+                  },
+                },
+              },
+            }}
+          >
+            <ToggleButton value="EASY">Easy</ToggleButton>
+            <ToggleButton value="MEDIUM">Medium</ToggleButton>
+            <ToggleButton value="HARD">Hard</ToggleButton>
+          </ToggleButtonGroup>
+        </Box>
+
         {/* Question Type Selection */}
         <Box sx={{ mb: '20px' }}>
           <Typography
@@ -195,10 +290,6 @@ const AddQuestionModal: React.FC<AddQuestionModalProps> = ({
                   backgroundColor: '#FFF',
                   cursor: 'pointer',
                   transition: 'all 0.2s ease',
-                  '&:hover': {
-                    // borderColor: theme.palette.primary.main,
-                    // backgroundColor: selectedType === type.id ? '#F5F0FF' : '#FAFAFA',
-                  },
                 }}
               >
                 <Radio
