@@ -79,7 +79,13 @@ export const WithImageContentTitleAction: Story = {
       </CardContent>
     ),
     cardActions: (
-      <CardActions sx={{ display: 'flex', alignContent: 'center', justifyContent: 'center' }}>
+      <CardActions
+        sx={{
+          display: 'flex',
+          alignContent: 'center',
+          justifyContent: 'center',
+        }}
+      >
         <Button
           small={true}
           onClick={(e: SyntheticEvent) => {

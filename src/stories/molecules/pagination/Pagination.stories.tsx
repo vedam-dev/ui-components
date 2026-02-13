@@ -55,7 +55,13 @@ const meta: Meta<typeof CustomPagination> = {
   decorators: [
     (Story) => (
       <Box sx={{ padding: '40px', backgroundColor: '#f5f5f5' }}>
-        <Box sx={{ backgroundColor: '#ffffff', padding: '40px', borderRadius: '16px' }}>
+        <Box
+          sx={{
+            backgroundColor: '#ffffff',
+            padding: '40px',
+            borderRadius: '16px',
+          }}
+        >
           <Story />
         </Box>
       </Box>

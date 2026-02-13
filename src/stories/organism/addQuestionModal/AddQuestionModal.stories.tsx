@@ -54,7 +54,11 @@ const Template = (args: any) => {
   const [open, setOpen] = useState(false);
 
   const handleCreate = (questionTitle: string, questionType: string, difficulty: string) => {
-    console.log('Question Created:', { questionTitle, questionType, difficulty });
+    console.log('Question Created:', {
+      questionTitle,
+      questionType,
+      difficulty,
+    });
     alert(
       `Question "${questionTitle}" of type "${questionType}" with difficulty "${difficulty}" created successfully!`
     );
@@ -86,7 +90,11 @@ export const CustomTexts: Story = {
     const [open, setOpen] = useState(false);
 
     const handleCreate = (questionTitle: string, questionType: string, difficulty: string) => {
-      console.log('Question Created:', { questionTitle, questionType, difficulty });
+      console.log('Question Created:', {
+        questionTitle,
+        questionType,
+        difficulty,
+      });
       alert(
         `Assessment "${questionTitle}" of category "${questionType}" with difficulty "${difficulty}" saved!`
       );
@@ -123,7 +131,11 @@ export const TwoQuestionTypes: Story = {
     const [open, setOpen] = useState(false);
 
     const handleCreate = (questionTitle: string, questionType: string, difficulty: string) => {
-      console.log('Question Created:', { questionTitle, questionType, difficulty });
+      console.log('Question Created:', {
+        questionTitle,
+        questionType,
+        difficulty,
+      });
       args.onCreate?.(questionTitle, questionType, difficulty);
     };
 
@@ -153,7 +165,11 @@ export const ThreeQuestionTypes: Story = {
     const [open, setOpen] = useState(false);
 
     const handleCreate = (questionTitle: string, questionType: string, difficulty: string) => {
-      console.log('Question Created:', { questionTitle, questionType, difficulty });
+      console.log('Question Created:', {
+        questionTitle,
+        questionType,
+        difficulty,
+      });
       alert(
         `Question "${questionTitle}" of type "${questionType}" with difficulty "${difficulty}" created!`
       );
@@ -187,7 +203,11 @@ export const SixQuestionTypes: Story = {
     const [open, setOpen] = useState(false);
 
     const handleCreate = (questionTitle: string, questionType: string, difficulty: string) => {
-      console.log('Question Created:', { questionTitle, questionType, difficulty });
+      console.log('Question Created:', {
+        questionTitle,
+        questionType,
+        difficulty,
+      });
       alert(
         `Question "${questionTitle}" of type "${questionType}" with difficulty "${difficulty}" created!`
       );
@@ -224,7 +244,11 @@ export const AllQuestionTypes: Story = {
     const [open, setOpen] = useState(false);
 
     const handleCreate = (questionTitle: string, questionType: string, difficulty: string) => {
-      console.log('Question Created:', { questionTitle, questionType, difficulty });
+      console.log('Question Created:', {
+        questionTitle,
+        questionType,
+        difficulty,
+      });
       alert(
         `Question "${questionTitle}" of type "${questionType}" with difficulty "${difficulty}" created!`
       );

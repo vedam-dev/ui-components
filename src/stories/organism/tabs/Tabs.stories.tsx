@@ -3,9 +3,18 @@ import Tabs from '../../../component/organism/tabs/Tabs';
 import { Box } from '@mui/material';
 
 const sampleTabs = [
-  { label: 'Overview', content: <Box sx={{ p: 1 }}>This is the overview panel.</Box> },
-  { label: 'Details', content: <Box sx={{ p: 1 }}>Here are some details.</Box> },
-  { label: 'Settings', content: <Box sx={{ p: 1 }}>Settings content goes here.</Box> },
+  {
+    label: 'Overview',
+    content: <Box sx={{ p: 1 }}>This is the overview panel.</Box>,
+  },
+  {
+    label: 'Details',
+    content: <Box sx={{ p: 1 }}>Here are some details.</Box>,
+  },
+  {
+    label: 'Settings',
+    content: <Box sx={{ p: 1 }}>Settings content goes here.</Box>,
+  },
 ];
 
 const meta: Meta<typeof Tabs> = {

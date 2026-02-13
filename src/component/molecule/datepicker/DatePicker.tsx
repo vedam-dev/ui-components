@@ -118,7 +118,12 @@ export const CustomDatePicker: React.FC<CustomDatePickerProps> = ({
           </IconButton>
         </Box>
 
-        <Box sx={{ backgroundColor: theme.palette.background.paper, padding: theme.spacing(4) }}>
+        <Box
+          sx={{
+            backgroundColor: theme.palette.background.paper,
+            padding: theme.spacing(4),
+          }}
+        >
           <DateCalendar
             value={tempValue}
             onChange={(newValue) => setTempValue(newValue as Date | null)}

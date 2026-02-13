@@ -9,9 +9,13 @@ import { INavigationItem } from '../../types';
 
 export type INavigationSubMenuItemProps = ButtonProps;
 
-type InheritedProps = { onItemClick: (e: SyntheticEvent, item: INavigationItem) => void };
+type InheritedProps = {
+  onItemClick: (e: SyntheticEvent, item: INavigationItem) => void;
+};
 
-export type NavigationSubMenuItemProps = { item: INavigationItem } & INavigationSubMenuItemProps &
+export type NavigationSubMenuItemProps = {
+  item: INavigationItem;
+} & INavigationSubMenuItemProps &
   InheritedProps;
 
 const NavigationSubMenuItem: FC<NavigationSubMenuItemProps> = ({

@@ -319,7 +319,14 @@ const AddQuestionModal: React.FC<AddQuestionModalProps> = ({
         </Box>
 
         {/* Action Buttons */}
-        <Box sx={{ display: 'flex', justifyContent: 'flex-end', gap: '16px', mt: '20px' }}>
+        <Box
+          sx={{
+            display: 'flex',
+            justifyContent: 'flex-end',
+            gap: '16px',
+            mt: '20px',
+          }}
+        >
           <Button
             onClick={handleClose}
             variant="outlined"

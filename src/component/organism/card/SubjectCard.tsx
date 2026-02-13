@@ -334,7 +334,12 @@ const SubjectCard: FC<SubjectCardProps> = ({
         {/* Buttons Section */}
         {displayButtons.length > 0 && (
           <CardActions
-            sx={{ padding: 0, mb: theme.spacing(0), display: 'flex', justifyContent: 'center' }}
+            sx={{
+              padding: 0,
+              mb: theme.spacing(0),
+              display: 'flex',
+              justifyContent: 'center',
+            }}
           >
             <Box
               sx={{

@@ -19,7 +19,10 @@ import NavigationSubMenuItem from './NavigationSubMenuItem';
 
 export type INavigationMenuItemButtonProps = ButtonProps;
 
-type InheritedProps = { onNavigationClick: OnNavigationClick; onDropdownClick?: onDropdownClick };
+type InheritedProps = {
+  onNavigationClick: OnNavigationClick;
+  onDropdownClick?: onDropdownClick;
+};
 
 export type NavigationMenuItemProps = {
   item: NavigationMenuItem;

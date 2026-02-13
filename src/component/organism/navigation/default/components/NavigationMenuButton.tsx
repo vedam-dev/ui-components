@@ -21,7 +21,10 @@ import NavigationSubMenuItem from './NavigationSubMenuItem';
 
 export type INavigationMenuItemButtonProps = ButtonProps;
 
-type InheritedProps = { onNavigationClick: OnNavigationClick; onDropdownClick?: onDropdownClick };
+type InheritedProps = {
+  onNavigationClick: OnNavigationClick;
+  onDropdownClick?: onDropdownClick;
+};
 
 export type NavigationMenuItemProps = {
   item: NavigationMenuItem;
@@ -89,7 +92,11 @@ const NavigationMenuButton: FC<NavigationMenuItemProps> = ({
   const isSelected = currentPath === item.uri || item.selected || !!anchorElNav;
 
   const accessibilityConfig = hasSubMenu
-    ? { 'aria-expanded': Boolean(anchorElNav), 'aria-haspopup': true, 'aria-label': undefined }
+    ? {
+        'aria-expanded': Boolean(anchorElNav),
+        'aria-haspopup': true,
+        'aria-label': undefined,
+      }
     : { 'aria-label': item?.label };
 
   return (
@@ -109,7 +116,9 @@ const NavigationMenuButton: FC<NavigationMenuItemProps> = ({
           borderBottom: isSelected
             ? `2px solid ${theme.palette.text.primary}`
             : `2px solid transparent`,
-          '&:hover, &:active': { borderBottom: `2px solid ${theme.palette.text.primary}` },
+          '&:hover, &:active': {
+            borderBottom: `2px solid ${theme.palette.text.primary}`,
+          },
           '&:focus-visible': {
             outline: `2px solid ${theme.palette.text.primary} !important`,
             border: '2px solid transparent !important',
@@ -145,7 +154,10 @@ const NavigationMenuButton: FC<NavigationMenuItemProps> = ({
           transformOrigin={transformOrigin}
           open={Boolean(anchorElNav)}
           onClose={handleCloseNavMenu}
-          slotProps={{ paper: { style: { ...menuStyle } }, root: { style: { ...rootStyle } } }}
+          slotProps={{
+            paper: { style: { ...menuStyle } },
+            root: { style: { ...rootStyle } },
+          }}
         >
           {navItem.subItems.map((subItem, index) => {
             return (

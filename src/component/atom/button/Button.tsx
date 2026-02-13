@@ -105,7 +105,10 @@ const Button: FC<ButtonProps> = ({
               pointerEvents: 'none',
               animation: 'fadeIn 0.2s ease-in-out',
               '@keyframes fadeIn': {
-                from: { opacity: 0, transform: 'translateX(-50%) translateY(4px)' },
+                from: {
+                  opacity: 0,
+                  transform: 'translateX(-50%) translateY(4px)',
+                },
                 to: { opacity: 1, transform: 'translateX(-50%) translateY(0)' },
               },
             }}
@@ -322,7 +325,10 @@ const buttonStyles = (
 ): SystemStyleObject<Theme> => {
   const roundBorderRadius = small ? theme.spacing(4) : theme.spacing(6);
   const borderRadius = isRound ? roundBorderRadius : theme.spacing(4);
-  const v2Paddings = { small: theme.spacing(1.5, 3), large: theme.spacing(2.5, 4) };
+  const v2Paddings = {
+    small: theme.spacing(1.5, 3),
+    large: theme.spacing(2.5, 4),
+  };
 
   const defaultStyles: SystemStyleObject<Theme> = {
     borderRadius: borderRadius,

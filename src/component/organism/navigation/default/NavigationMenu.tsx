@@ -129,7 +129,11 @@ const NavigationMenu: FC<NavigationMenuProps> = ({
             <Box sx={{ flexGrow: 1 }}>
               <Box
                 {...primaryMenuProps}
-                sx={{ flexGrow: 1, display: 'flex', paddingLeft: theme.spacing(6) }}
+                sx={{
+                  flexGrow: 1,
+                  display: 'flex',
+                  paddingLeft: theme.spacing(6),
+                }}
                 alignItems={`center`}
                 gap={theme.spacing(3)}
                 ml={primaryMenuProps?.ml ?? theme.spacing(40)}

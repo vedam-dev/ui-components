@@ -74,7 +74,14 @@ const FeeSelectionModal: React.FC<FeeSelectionModalProps> = ({
           scrollbarWidth: 'none',
         }}
       >
-        <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'end', mb: 5 }}>
+        <Box
+          sx={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'end',
+            mb: 5,
+          }}
+        >
           <Typography
             variant="h5"
             sx={{
@@ -227,7 +234,13 @@ const FeeSelectionModal: React.FC<FeeSelectionModalProps> = ({
                         </Typography>
                       </Box>
 
-                      <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                      <Box
+                        sx={{
+                          display: 'flex',
+                          flexDirection: 'column',
+                          alignItems: 'center',
+                        }}
+                      >
                         <Button
                           variant="contained"
                           onClick={() => onPayNow(fee.id.toString())}

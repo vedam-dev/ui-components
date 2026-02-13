@@ -14,14 +14,23 @@ const meta: Meta<typeof SurveyOptions> = {
     },
     options: { table: { disable: true } },
     value: { control: 'text', description: 'Controlled selected option id' },
-    textValue: { control: 'text', description: 'Controlled text for the textarea' },
-    textPlaceholder: { control: 'text', description: 'Placeholder for the text input' },
+    textValue: {
+      control: 'text',
+      description: 'Controlled text for the textarea',
+    },
+    textPlaceholder: {
+      control: 'text',
+      description: 'Placeholder for the text input',
+    },
     textMaxLength: {
       control: 'number',
       defaultValue: 80,
       description: 'Max characters for textbox',
     },
-    showGlobalOther: { control: 'boolean', description: "Always show bottom 'Other' textarea" },
+    showGlobalOther: {
+      control: 'boolean',
+      description: "Always show bottom 'Other' textarea",
+    },
     onChange: { action: 'changed' },
     sx: { table: { disable: true } },
   },

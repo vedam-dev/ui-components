@@ -16,7 +16,12 @@ const index = createCoreTheme({
       y16: `0 16px 32px -4px ${colors.shadowsY16}`,
     },
     typography: {
-      avatar: { fontFamily: `Satoshi`, fontWeight: 'bold', fontSize: '14pt', lineHeight: '24pt' },
+      avatar: {
+        fontFamily: `Satoshi`,
+        fontWeight: 'bold',
+        fontSize: '14pt',
+        lineHeight: '24pt',
+      },
       buttonS: {
         ...defaultTheme.typography.button,
         fontStretch: `normal`,
@@ -137,7 +142,12 @@ const index = createCoreTheme({
       fontStretch: `normal`,
       fontStyle: `normal`,
     },
-    caption: { ...defaultFont, lineHeight: '20px', fontSize: '12px', letterSpacing: 0.3 },
+    caption: {
+      ...defaultFont,
+      lineHeight: '20px',
+      fontSize: '12px',
+      letterSpacing: 0.3,
+    },
     overline: {
       ...defaultFont,
       lineHeight: '20px',
@@ -222,7 +232,11 @@ const index = createCoreTheme({
   },
   components: {
     MuiButton: {
-      defaultProps: { disableFocusRipple: true, disableTouchRipple: true, disableRipple: true },
+      defaultProps: {
+        disableFocusRipple: true,
+        disableTouchRipple: true,
+        disableRipple: true,
+      },
     },
     MuiCard: { defaultProps: { sx: { boxShadow: colors.shadowsY8 } } },
   },

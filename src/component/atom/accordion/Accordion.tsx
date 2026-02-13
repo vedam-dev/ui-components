@@ -100,7 +100,9 @@ const Accordion: AccordionComponent = ({
     const { summaryMinHeight, contentMargin } = sizes[size] || sizes.medium;
 
     return {
-      '& .MuiAccordionSummary-root': { minHeight: `${summaryMinHeight}px !important` },
+      '& .MuiAccordionSummary-root': {
+        minHeight: `${summaryMinHeight}px !important`,
+      },
       '& .MuiAccordionSummary-content': { margin: `${contentMargin}px 0` },
     };
   };
