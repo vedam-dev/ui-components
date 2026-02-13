@@ -238,7 +238,10 @@ const UploadResourceModal: React.FC<UploadResourceModalProps> = ({
               <Button
                 variant="outlined"
                 disabled={!!resourceId}
-                onClick={handleBrowseClick}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleBrowseClick();
+                }}
                 sx={{
                   borderRadius: '12px',
                   textTransform: 'none',
