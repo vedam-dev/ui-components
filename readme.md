@@ -33,10 +33,10 @@ yarn add @vedam-dev/ui-components
 ### Basic Usage
 
 ```tsx
-import React from 'react';
-import { Button, Card, Typography } from '@vedam-dev/ui-components';
-import { ThemeProvider } from '@mui/material/styles';
-import { ksTheme } from '@vedam-dev/ui-components/theme';
+import React from "react";
+import { Button, Card, Typography } from "@vedam-dev/ui-components";
+import { ThemeProvider } from "@mui/material/styles";
+import { ksTheme } from "@vedam-dev/ui-components/theme";
 
 function App() {
   return (
@@ -102,17 +102,17 @@ Complex UI sections:
 The library supports multiple brand themes:
 
 ```tsx
-import { 
-  defaultTheme, 
-  ksTheme, 
-  ks3Theme, 
-  wvTheme 
-} from '@vedam-dev/ui-components/theme';
+import {
+  defaultTheme,
+  ksTheme,
+  ks3Theme,
+  wvTheme,
+} from "@vedam-dev/ui-components/theme";
 
 // Use with Material-UI ThemeProvider
 <ThemeProvider theme={ksTheme}>
   <App />
-</ThemeProvider>
+</ThemeProvider>;
 ```
 
 ### Custom Theme
@@ -120,16 +120,16 @@ import {
 Create your own brand theme:
 
 ```tsx
-import { createCoreTheme } from '@vedam-dev/ui-components/theme';
+import { createCoreTheme } from "@vedam-dev/ui-components/theme";
 
 const customTheme = createCoreTheme({
   palette: {
-    primary: { main: '#your-primary-color' },
-    secondary: { main: '#your-secondary-color' }
+    primary: { main: "#your-primary-color" },
+    secondary: { main: "#your-secondary-color" },
   },
   typography: {
-    fontFamily: 'Your Font Family'
-  }
+    fontFamily: "Your Font Family",
+  },
 });
 ```
 
@@ -173,15 +173,18 @@ docker-compose up --build
 ## 📦 Available Scripts
 
 ### Development
+
 - `yarn storybook` - Start Storybook development server
 - `yarn storybook --no-open` - Start Storybook without opening browser
 
 ### Building
+
 - `yarn build` - Build the component library
 - `yarn build:lib` - Build library with TypeScript configuration
 - `yarn build-storybook` - Build static Storybook site
 
 ### Testing
+
 - `yarn test` - Run Jest unit tests
 - `yarn test --coverage` - Run tests with coverage report
 - `yarn loki` - Run visual regression tests
@@ -189,6 +192,7 @@ docker-compose up --build
 - `yarn loki:approve` - Approve visual changes
 
 ### Code Quality
+
 - `yarn lint` - Run ESLint
 - `yarn lint:fix` - Fix ESLint issues automatically
 - `yarn prettier:format` - Format code with Prettier
@@ -198,19 +202,23 @@ docker-compose up --build
 The project uses a comprehensive testing approach:
 
 ### 1. Unit Testing (Jest + React Testing Library)
+
 ```bash
 yarn test
 ```
 
 ### 2. Visual Regression Testing (Loki)
+
 ```bash
 yarn loki:test
 ```
 
 ### 3. Accessibility Testing (Storybook a11y addon)
+
 Automated accessibility checks in Storybook interface
 
 ### 4. Integration Testing (Storybook Test Runner)
+
 ```bash
 yarn test-storybook
 ```

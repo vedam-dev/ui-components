@@ -263,7 +263,11 @@ const index = createCoreTheme({
   },
   components: {
     MuiButton: {
-      defaultProps: { disableFocusRipple: true, disableTouchRipple: true, disableRipple: true },
+      defaultProps: {
+        disableFocusRipple: true,
+        disableTouchRipple: true,
+        disableRipple: true,
+      },
     },
     MuiCard: { defaultProps: { sx: { boxShadow: colors.shadowsY8 } } },
   },

@@ -6,12 +6,12 @@
     "target": "ESNext",
     "module": "ESNext",
     "noEmit": false,
-    "emitDeclarationOnly": false, 
+    "emitDeclarationOnly": false,
     "strict": true,
     "jsx": "react-jsx",
     "lib": ["ESNext", "DOM", "DOM.Iterable"],
     "types": ["react", "react/jsx-runtime"],
-    "declaration": true  
+    "declaration": true
   },
   "include": ["src"],
   "exclude": [
@@ -20,6 +20,6 @@
     "**/__tests__/**",
     "dist",
     "src/index.tsx",
-    "src/sample/**"  
+    "src/sample/**"
   ]
 }

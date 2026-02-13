@@ -24,6 +24,25 @@ export type AttendanceStatus =
   | 'Session in progress'
   | 'NA';
 
+export interface LectureCardContext {
+  title?: string;
+  date?: string;
+  subtitle?: string;
+  image?: string;
+  lectureState?: 'inFuture' | 'hasEnded';
+  attendanceStatus?: AttendanceStatus;
+  disabled?: boolean;
+}
+
+export interface LectureCardMenuItem {
+  id?: string; // Optional unique identifier for the menu item
+  label: string;
+  icon?: React.ReactNode;
+  onClick: (context: LectureCardContext, event?: React.MouseEvent<HTMLElement>) => void;
+  disabled?: boolean; // Whether the menu item is disabled
+  visible?: boolean | ((context: LectureCardContext) => boolean); // Control visibility dynamically
+}
+
 export interface LectureCardProps {
   title?: string;
   date?: string;
@@ -38,7 +57,7 @@ export interface LectureCardProps {
   disabled?: boolean;
   lectureState?: 'inFuture' | 'hasEnded';
   attendanceStatus?: AttendanceStatus;
-  resourceId?: string; // Optional resource ID for copy functionality
+  menuItems?: LectureCardMenuItem[]; // Menu items provided by the portal
 }
 
 const DEFAULT_IMAGE =
@@ -132,28 +151,6 @@ const MenuIcon = () => (
   </svg>
 );
 
-const CopyIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-    <mask
-      id="mask0_4985_3043"
-      style={{ maskType: 'alpha' }}
-      maskUnits="userSpaceOnUse"
-      x="0"
-      y="0"
-      width="16"
-      height="16"
-    >
-      <rect width="16" height="16" fill="#D9D9D9" />
-    </mask>
-    <g mask="url(#mask0_4985_3043)">
-      <path
-        d="M5.75 12.499C5.3375 12.499 4.98438 12.3521 4.69063 12.0584C4.39688 11.7646 4.25 11.4115 4.25 10.999V1.99902C4.25 1.58652 4.39688 1.2334 4.69063 0.939648C4.98438 0.645898 5.3375 0.499023 5.75 0.499023H12.5C12.9125 0.499023 13.2656 0.645898 13.5594 0.939648C13.8531 1.2334 14 1.58652 14 1.99902V10.999C14 11.4115 13.8531 11.7646 13.5594 12.0584C13.2656 12.3521 12.9125 12.499 12.5 12.499H5.75ZM5.75 10.999H12.5V1.99902H5.75V10.999ZM2.75 15.499C2.3375 15.499 1.98438 15.3521 1.69063 15.0584C1.39688 14.7646 1.25 14.4115 1.25 13.999V3.49902H2.75V13.999H11V15.499H2.75Z"
-        fill="#777777"
-      />
-    </g>
-  </svg>
-);
-
 const LectureCard: React.FC<LectureCardProps> = ({
   title = 'Machine Learning Coding',
   date = 'Wednesday, 10 June 2025',
@@ -168,7 +165,7 @@ const LectureCard: React.FC<LectureCardProps> = ({
   disabled = false,
   lectureState,
   attendanceStatus,
-  resourceId,
+  menuItems,
 }) => {
   const theme = useCoreTheme() as CoreTheme;
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -197,17 +194,46 @@ const LectureCard: React.FC<LectureCardProps> = ({
     setAnchorEl(null);
   };
 
-  const handleCopyResourceId = async () => {
-    if (resourceId) {
-      try {
-        await navigator.clipboard.writeText(resourceId);
-        // Optionally, you can add a toast notification here
-        console.log('Resource ID copied:', resourceId);
-      } catch (err) {
-        console.error('Failed to copy resource ID:', err);
-      }
+  const handleMenuItemClick = (item: LectureCardMenuItem, event: React.MouseEvent<HTMLElement>) => {
+    if (item.disabled) {
+      return;
     }
+
+    const context: LectureCardContext = {
+      title,
+      date,
+      subtitle,
+      image,
+      lectureState,
+      attendanceStatus,
+      disabled,
+    };
+
+    item.onClick(context, event);
     handleMenuClose();
+  };
+
+  const getVisibleMenuItems = (): LectureCardMenuItem[] => {
+    if (!menuItems) return [];
+
+    const context: LectureCardContext = {
+      title,
+      date,
+      subtitle,
+      image,
+      lectureState,
+      attendanceStatus,
+      disabled,
+    };
+
+    return menuItems.filter((item) => {
+      if (item.visible === false) return false;
+      if (item.visible === true) return true;
+      if (typeof item.visible === 'function') {
+        return item.visible(context);
+      }
+      return true; // Default to visible if not specified
+    });
   };
 
   return (
@@ -272,7 +298,14 @@ const LectureCard: React.FC<LectureCardProps> = ({
         </LeftImageWrapper>
 
         <RightContent>
-          <Box sx={{ display: 'flex', flexDirection: 'column', width: '100%', ml: '38px' }}>
+          <Box
+            sx={{
+              display: 'flex',
+              flexDirection: 'column',
+              width: '100%',
+              ml: '38px',
+            }}
+          >
             {shouldShowAttendance && (
               <Box sx={{ mb: '32px' }}>
                 <Chip
@@ -296,7 +329,11 @@ const LectureCard: React.FC<LectureCardProps> = ({
 
             <Box sx={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
               <Box
-                sx={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between' }}
+                sx={{
+                  display: 'flex',
+                  alignItems: 'flex-start',
+                  justifyContent: 'space-between',
+                }}
               >
                 <Typography
                   variant="h6"
@@ -314,66 +351,78 @@ const LectureCard: React.FC<LectureCardProps> = ({
                   {title}
                 </Typography>
 
-                {resourceId && (
-                  <>
-                    <IconButton
-                      onClick={handleMenuClick}
-                      size="small"
-                      sx={{
-                        '&:hover': {
-                          backgroundColor: 'rgba(0, 0, 0, 0.04)',
-                        },
-                      }}
-                    >
-                      <MenuIcon />
-                    </IconButton>
+                {(() => {
+                  const visibleMenuItems = getVisibleMenuItems();
+                  if (visibleMenuItems.length === 0) return null;
 
-                    <Menu
-                      anchorEl={anchorEl}
-                      open={menuOpen}
-                      onClose={handleMenuClose}
-                      anchorOrigin={{
-                        vertical: 'center',
-                        horizontal: 'left',
-                      }}
-                      transformOrigin={{
-                        vertical: 'center',
-                        horizontal: 'right',
-                      }}
-                      PaperProps={{
-                        sx: {
-                          borderRadius: '12px',
-                          boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.1)',
-                          minWidth: '150px',
-                        },
-                      }}
-                    >
-                      <MenuItem
-                        onClick={handleCopyResourceId}
+                  return (
+                    <>
+                      <IconButton
+                        onClick={handleMenuClick}
+                        size="small"
                         sx={{
-                          display: 'flex',
-                          gap: '12px',
-                          padding: '8px 16px',
                           '&:hover': {
                             backgroundColor: 'rgba(0, 0, 0, 0.04)',
                           },
                         }}
                       >
-                        <CopyIcon />
-                        <Typography
-                          sx={{
-                            fontSize: '18px',
-                            color: '#777777',
-                            lineHeight: '20px',
-                            fontWeight: 400,
-                          }}
-                        >
-                          Copy URID
-                        </Typography>
-                      </MenuItem>
-                    </Menu>
-                  </>
-                )}
+                        <MenuIcon />
+                      </IconButton>
+
+                      <Menu
+                        anchorEl={anchorEl}
+                        open={menuOpen}
+                        onClose={handleMenuClose}
+                        anchorOrigin={{
+                          vertical: 'center',
+                          horizontal: 'left',
+                        }}
+                        transformOrigin={{
+                          vertical: 'center',
+                          horizontal: 'right',
+                        }}
+                        PaperProps={{
+                          sx: {
+                            borderRadius: '12px',
+                            boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.1)',
+                            minWidth: '150px',
+                          },
+                        }}
+                      >
+                        {visibleMenuItems.map((item, index) => (
+                          <MenuItem
+                            key={item.id || index}
+                            onClick={(e) => handleMenuItemClick(item, e)}
+                            disabled={item.disabled}
+                            sx={{
+                              display: 'flex',
+                              gap: '12px',
+                              padding: '8px 16px',
+                              '&:hover': {
+                                backgroundColor: 'rgba(0, 0, 0, 0.04)',
+                              },
+                              '&.Mui-disabled': {
+                                opacity: 0.5,
+                              },
+                            }}
+                          >
+                            {item.icon}
+                            <Typography
+                              sx={{
+                                fontSize: '18px',
+                                color: item.disabled ? '#BDBDBD' : '#777777',
+                                lineHeight: '20px',
+                                fontWeight: 400,
+                              }}
+                            >
+                              {item.label}
+                            </Typography>
+                          </MenuItem>
+                        ))}
+                      </Menu>
+                    </>
+                  );
+                })()}
               </Box>
 
               {subtitle && (

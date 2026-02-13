@@ -382,7 +382,14 @@ const UploadResourceModal: React.FC<UploadResourceModalProps> = ({
         </Box>
 
         {/* Action Buttons */}
-        <Box sx={{ display: 'flex', justifyContent: 'flex-end', gap: '16px', mt: '104px' }}>
+        <Box
+          sx={{
+            display: 'flex',
+            justifyContent: 'flex-end',
+            gap: '16px',
+            mt: '104px',
+          }}
+        >
           <Button
             onClick={handleClose}
             variant="outlined"

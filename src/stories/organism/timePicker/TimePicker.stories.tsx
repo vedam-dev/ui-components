@@ -42,7 +42,12 @@ export const Default: StoryObj = {
         <TimePicker value={time} onChange={setTime} format="12h" tooltip="Select start time" />
         <Typography>
           Selected time:{' '}
-          {time ? time.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : 'None'}
+          {time
+            ? time.toLocaleTimeString([], {
+                hour: '2-digit',
+                minute: '2-digit',
+              })
+            : 'None'}
         </Typography>
       </Box>
     );
@@ -63,7 +68,12 @@ export const TwelveHourFormat: StoryObj = {
         />
         <Typography>
           Selected:{' '}
-          {time ? time.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : 'None'}
+          {time
+            ? time.toLocaleTimeString([], {
+                hour: '2-digit',
+                minute: '2-digit',
+              })
+            : 'None'}
         </Typography>
       </Box>
     );
@@ -85,7 +95,11 @@ export const TwentyFourHourFormat: StoryObj = {
         <Typography>
           Selected:{' '}
           {time
-            ? time.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false })
+            ? time.toLocaleTimeString([], {
+                hour: '2-digit',
+                minute: '2-digit',
+                hour12: false,
+              })
             : 'None'}
         </Typography>
       </Box>
@@ -109,7 +123,12 @@ export const WithTimeConstraints: StoryObj = {
         />
         <Typography>
           Business hours (9 AM - 5 PM):{' '}
-          {time ? time.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : 'None'}
+          {time
+            ? time.toLocaleTimeString([], {
+                hour: '2-digit',
+                minute: '2-digit',
+              })
+            : 'None'}
         </Typography>
       </Box>
     );

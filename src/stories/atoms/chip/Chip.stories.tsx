@@ -64,7 +64,11 @@ export const WithIcon: Story = {
 };
 
 export const Deletable: Story = {
-  args: { label: 'Deletable Chip', onDelete: () => alert('Delete clicked'), color: 'error' },
+  args: {
+    label: 'Deletable Chip',
+    onDelete: () => alert('Delete clicked'),
+    color: 'error',
+  },
 };
 
 export const CustomDeleteIcon: Story = {

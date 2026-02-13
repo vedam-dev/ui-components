@@ -41,7 +41,11 @@ const NavigationMainLogo: FC<INavigationMainLogoProps> = ({
 
   const onClick = (e: SyntheticEvent): void => {
     e.preventDefault();
-    onNavigationClick(e, { uri: homePage ?? '/', isExternal: false, label: 'mobileLogo' });
+    onNavigationClick(e, {
+      uri: homePage ?? '/',
+      isExternal: false,
+      label: 'mobileLogo',
+    });
   };
 
   return (

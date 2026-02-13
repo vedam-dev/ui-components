@@ -35,8 +35,16 @@ const sampleItems = [{ label: 'Contest' }, { label: 'Course List' }, { label: 'O
 
 const interactiveItems = [
   { label: 'Home', href: '#home', onClick: () => console.log('Home clicked') },
-  { label: 'Contest', href: '#contest', onClick: () => console.log('Contest clicked') },
-  { label: 'Course List', href: '#courses', onClick: () => console.log('Courses clicked') },
+  {
+    label: 'Contest',
+    href: '#contest',
+    onClick: () => console.log('Contest clicked'),
+  },
+  {
+    label: 'Course List',
+    href: '#courses',
+    onClick: () => console.log('Courses clicked'),
+  },
   { label: 'Overall Scores' },
 ];
 

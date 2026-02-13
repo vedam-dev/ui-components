@@ -287,7 +287,11 @@ const NavigationMenu: FC<NavigationMobileMenuProps> = ({
                   </>
                 )}
                 <Menu
-                  MenuListProps={{ component: 'div', role: 'menu', tabIndex: undefined }}
+                  MenuListProps={{
+                    component: 'div',
+                    role: 'menu',
+                    tabIndex: undefined,
+                  }}
                   anchorEl={anchorElNav}
                   keepMounted
                   anchorOrigin={{

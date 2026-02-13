@@ -3,7 +3,10 @@ import { createCoreTheme } from '../../core-theme';
 import defaultTheme from '../default';
 import colors from './colors';
 
-const defaultFont: CSSProperties = { fontFamily: 'system-ui', letterSpacing: 0 };
+const defaultFont: CSSProperties = {
+  fontFamily: 'system-ui',
+  letterSpacing: 0,
+};
 
 const defaultButtonTypography: CSSProperties = {
   fontFamily: 'SatoshiBold, system-ui',
@@ -25,8 +28,17 @@ const index = createCoreTheme({
       y16: `0 16px 32px -4px ${colors.shadowsY16}`,
     },
     typography: {
-      avatar: { fontFamily: `Satoshi`, fontWeight: 'bold', fontSize: '14pt', lineHeight: '24pt' },
-      buttonS: { ...defaultTheme.typography.button, ...defaultButtonTypography, fontSize: '14px' },
+      avatar: {
+        fontFamily: `Satoshi`,
+        fontWeight: 'bold',
+        fontSize: '14pt',
+        lineHeight: '24pt',
+      },
+      buttonS: {
+        ...defaultTheme.typography.button,
+        ...defaultButtonTypography,
+        fontSize: '14px',
+      },
     },
   },
   spacing: 4,
@@ -129,7 +141,12 @@ const index = createCoreTheme({
       fontStretch: `normal`,
       fontStyle: `normal`,
     },
-    caption: { ...defaultFont, lineHeight: '20px', fontSize: '12px', letterSpacing: 0.3 },
+    caption: {
+      ...defaultFont,
+      lineHeight: '20px',
+      fontSize: '12px',
+      letterSpacing: 0.3,
+    },
     overline: {
       ...defaultFont,
       lineHeight: '20px',
@@ -213,7 +230,11 @@ const index = createCoreTheme({
   },
   components: {
     MuiButton: {
-      defaultProps: { disableFocusRipple: true, disableTouchRipple: true, disableRipple: true },
+      defaultProps: {
+        disableFocusRipple: true,
+        disableTouchRipple: true,
+        disableRipple: true,
+      },
     },
     MuiCard: { defaultProps: { sx: { boxShadow: colors.shadowsY8 } } },
   },

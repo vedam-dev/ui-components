@@ -44,6 +44,7 @@ yarn build
 ### IDE Setup (VSCode)
 
 Install recommended extensions:
+
 - ES7+ React/Redux/React-Native snippets
 - TypeScript Importer
 - Prettier - Code formatter
@@ -181,10 +182,10 @@ const StyledBadge = styled('span')<BadgeProps>(({ theme, color, variant }) => ({
   // Styling logic
 }));
 
-export const Badge: React.FC<BadgeProps> = ({ 
-  color = 'primary', 
-  variant = 'filled', 
-  children 
+export const Badge: React.FC<BadgeProps> = ({
+  color = 'primary',
+  variant = 'filled',
+  children
 }) => {
   return (
     <StyledBadge color={color} variant={variant}>
@@ -198,40 +199,40 @@ export const Badge: React.FC<BadgeProps> = ({
 
 ```typescript
 // src/component/atom/badge/index.ts
-export { Badge } from './Badge';
-export type { BadgeProps } from './Badge';
+export { Badge } from "./Badge";
+export type { BadgeProps } from "./Badge";
 ```
 
 #### 3. Add to Main Export
 
 ```typescript
 // src/component/atom/index.ts
-export * from './badge';
+export * from "./badge";
 
 // src/index.js
-export * from './component';
+export * from "./component";
 ```
 
 #### 4. Create Stories
 
 ```typescript
 // src/stories/atoms/badge/Badge.stories.tsx
-import type { Meta, StoryObj } from '@storybook/react';
-import { Badge } from '../../../component/atom/badge';
+import type { Meta, StoryObj } from "@storybook/react";
+import { Badge } from "../../../component/atom/badge";
 
 const meta = {
-  title: 'Atom/Badge',
+  title: "Atom/Badge",
   component: Badge,
   parameters: {
-    layout: 'centered',
+    layout: "centered",
   },
-  tags: ['autodocs'],
+  tags: ["autodocs"],
   argTypes: {
     color: {
-      control: { type: 'select' },
-      options: ['primary', 'secondary', 'error']
-    }
-  }
+      control: { type: "select" },
+      options: ["primary", "secondary", "error"],
+    },
+  },
 } satisfies Meta<typeof Badge>;
 
 export default meta;
@@ -239,16 +240,16 @@ type Story = StoryObj<typeof meta>;
 
 export const Primary: Story = {
   args: {
-    children: 'Badge',
-    color: 'primary'
-  }
+    children: "Badge",
+    color: "primary",
+  },
 };
 
 export const Secondary: Story = {
   args: {
-    children: 'Badge',
-    color: 'secondary'
-  }
+    children: "Badge",
+    color: "secondary",
+  },
 };
 ```
 
@@ -296,20 +297,20 @@ The project supports multiple brand themes:
 ```typescript
 // src/theme/customer/newbrand/colors.ts
 const colors = {
-  primary: '#your-primary-color',
-  secondary: '#your-secondary-color',
+  primary: "#your-primary-color",
+  secondary: "#your-secondary-color",
   // ... other colors
 };
 
 // src/theme/customer/newbrand/index.ts
-import { createCoreTheme } from '../../core-theme';
-import colors from './colors';
+import { createCoreTheme } from "../../core-theme";
+import colors from "./colors";
 
 const newBrandTheme = createCoreTheme({
   palette: {
     primary: { main: colors.primary },
-    secondary: { main: colors.secondary }
-  }
+    secondary: { main: colors.secondary },
+  },
 });
 ```
 
@@ -320,11 +321,11 @@ import { useTheme } from '@mui/material/styles';
 
 const MyComponent = () => {
   const theme = useTheme();
-  
+
   return (
-    <div style={{ 
+    <div style={{
       backgroundColor: theme.palette.primary.main,
-      color: theme.palette.primary.contrastText 
+      color: theme.palette.primary.contrastText
     }}>
       Content
     </div>
@@ -579,5 +580,5 @@ Please read our [Contributing Guidelines](CONTRIBUTING.md) and [Code of Conduct]
 
 ---
 
-*Last updated: $(date)*
-*Maintained by: UI Components Team*
+_Last updated: $(date)_
+_Maintained by: UI Components Team_

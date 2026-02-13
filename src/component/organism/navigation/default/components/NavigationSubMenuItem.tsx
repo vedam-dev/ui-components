@@ -11,7 +11,9 @@ import { INavigationItem } from '../../types';
 
 export type INavigationSubMenuItemProps = ButtonProps;
 
-type InheritedProps = { onItemClick: (e: SyntheticEvent, item: INavigationItem) => void };
+type InheritedProps = {
+  onItemClick: (e: SyntheticEvent, item: INavigationItem) => void;
+};
 
 export type NavigationSubMenuItemProps = {
   item: INavigationItem;
@@ -79,6 +81,9 @@ const buttonStyle: (theme: Theme) => SystemStyleObject<Theme> = (theme) => {
     borderRadius: 0,
     lineHeight: 1,
     padding: `${theme.spacing(2)} 0`,
-    '&:hover, &:active': { color: theme.palette.text.primary, textDecoration: 'underline' },
+    '&:hover, &:active': {
+      color: theme.palette.text.primary,
+      textDecoration: 'underline',
+    },
   };
 };

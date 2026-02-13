@@ -1,5 +1,30 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import LectureCard from '../../../component/organism/lectureCard/LectureCard';
+import LectureCard, {
+  LectureCardMenuItem,
+} from '../../../component/organism/lectureCard/LectureCard';
+
+// Helper function for detailed console output
+const logMenuClick = (action: string, context: Parameters<LectureCardMenuItem['onClick']>[0]) => {
+  console.group(`🔘 Menu Item Clicked: ${action}`);
+  console.log('📋 Context Data:', {
+    title: context.title,
+    date: context.date,
+    subtitle: context.subtitle,
+    lectureState: context.lectureState,
+    attendanceStatus: context.attendanceStatus,
+    disabled: context.disabled,
+    image: context.image,
+  });
+  console.table({
+    Title: context.title,
+    Date: context.date,
+    Subtitle: context.subtitle || 'N/A',
+    'Lecture State': context.lectureState || 'default',
+    'Attendance Status': context.attendanceStatus || 'N/A',
+    Disabled: context.disabled ? 'Yes' : 'No',
+  });
+  console.groupEnd();
+};
 
 const meta: Meta<typeof LectureCard> = {
   title: 'Organism/LectureCard',
@@ -72,10 +97,10 @@ const meta: Meta<typeof LectureCard> = {
       },
       description: 'Attendance status (if undefined, badge not shown; if empty string, shows "NA")',
     },
-    resourceId: {
-      control: 'text',
+    menuItems: {
+      control: 'object',
       description:
-        'Optional resource ID for copy functionality. If provided, shows menu icon with copy option.',
+        'Array of menu items to display in the menu. Each item should have label, optional icon, and onClick handler.',
     },
     onWatch: { action: 'watchClicked' },
     onButtonClick: { action: 'buttonClicked' },
@@ -97,12 +122,44 @@ export const Default: Story = {
   },
 };
 
-export const WithResourceId: Story = {
+const CopyIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+    <mask
+      id="mask0_4985_3043"
+      style={{ maskType: 'alpha' }}
+      maskUnits="userSpaceOnUse"
+      x="0"
+      y="0"
+      width="16"
+      height="16"
+    >
+      <rect width="16" height="16" fill="#D9D9D9" />
+    </mask>
+    <g mask="url(#mask0_4985_3043)">
+      <path
+        d="M5.75 12.499C5.3375 12.499 4.98438 12.3521 4.69063 12.0584C4.39688 11.7646 4.25 11.4115 4.25 10.999V1.99902C4.25 1.58652 4.39688 1.2334 4.69063 0.939648C4.98438 0.645898 5.3375 0.499023 5.75 0.499023H12.5C12.9125 0.499023 13.2656 0.645898 13.5594 0.939648C13.8531 1.2334 14 1.58652 14 1.99902V10.999C14 11.4115 13.8531 11.7646 13.5594 12.0584C13.2656 12.3521 12.9125 12.499 12.5 12.499H5.75ZM5.75 10.999H12.5V1.99902H5.75V10.999ZM2.75 15.499C2.3375 15.499 1.98438 15.3521 1.69063 15.0584C1.39688 14.7646 1.25 14.4115 1.25 13.999V3.49902H2.75V13.999H11V15.499H2.75Z"
+        fill="#777777"
+      />
+    </g>
+  </svg>
+);
+
+export const WithMenuItems: Story = {
   args: {
     title: 'Machine Learning Coding',
     date: 'Wednesday, 10 June 2025',
     buttonText: 'Start Recording',
-    resourceId: 'RES-12345-ML-2025',
+    menuItems: [
+      {
+        id: 'copy-urid',
+        label: 'Copy URID',
+        icon: <CopyIcon />,
+        onClick: (context) => {
+          logMenuClick('Copy URID', context);
+          // Portal can use context.title, context.date, etc.
+        },
+      },
+    ] as LectureCardMenuItem[],
   },
 };
 
@@ -115,13 +172,29 @@ export const WithSubtitle: Story = {
   },
 };
 
-export const WithSubtitleAndResourceId: Story = {
+export const WithSubtitleAndMenuItems: Story = {
   args: {
     title: 'Machine Learning Coding',
     subtitle: 'Advanced Neural Networks and Deep Learning',
     date: 'Wednesday, 10 June 2025',
     buttonText: 'Start Recording',
-    resourceId: 'RES-67890-ML-ADV',
+    menuItems: [
+      {
+        id: 'copy-urid',
+        label: 'Copy URID',
+        icon: <CopyIcon />,
+        onClick: (context) => {
+          logMenuClick('Copy URID', context);
+        },
+      },
+      {
+        id: 'share',
+        label: 'Share',
+        onClick: (context) => {
+          logMenuClick('Share', context);
+        },
+      },
+    ] as LectureCardMenuItem[],
   },
 };
 
@@ -131,7 +204,15 @@ export const LongTitle: Story = {
     date: 'Wednesday, 10 June 2025',
     image:
       'https://images.unsplash.com/photo-1545239351-1141bd82e8a6?auto=format&fit=crop&w=1200&q=80',
-    resourceId: 'RES-99999-DEEP-DIVE',
+    menuItems: [
+      {
+        label: 'Copy URID',
+        icon: <CopyIcon />,
+        onClick: (context) => {
+          logMenuClick('Copy URID', context);
+        },
+      },
+    ] as LectureCardMenuItem[],
   },
 };
 
@@ -141,7 +222,15 @@ export const FutureLecture: Story = {
     date: 'Monday, 15 January 2026',
     lectureState: 'inFuture',
     disabled: true,
-    resourceId: 'RES-FUTURE-2026',
+    menuItems: [
+      {
+        label: 'Copy URID',
+        icon: <CopyIcon />,
+        onClick: (context) => {
+          logMenuClick('Copy URID', context);
+        },
+      },
+    ] as LectureCardMenuItem[],
   },
 };
 
@@ -150,7 +239,15 @@ export const EndedLecture: Story = {
     title: 'Introduction to Data Science',
     date: 'Friday, 20 December 2024',
     lectureState: 'hasEnded',
-    resourceId: 'RES-ENDED-2024',
+    menuItems: [
+      {
+        label: 'Copy URID',
+        icon: <CopyIcon />,
+        onClick: (context) => {
+          logMenuClick('Copy URID', context);
+        },
+      },
+    ] as LectureCardMenuItem[],
   },
 };
 
@@ -163,7 +260,15 @@ export const FutureLectureWithSubtitle: Story = {
     disabled: true,
     image:
       'https://images.unsplash.com/photo-1545239351-1141bd82e8a6?auto=format&fit=crop&w=1200&q=80',
-    resourceId: 'RES-DL-FUND-2026',
+    menuItems: [
+      {
+        label: 'Copy URID',
+        icon: <CopyIcon />,
+        onClick: (context) => {
+          logMenuClick('Copy URID', context);
+        },
+      },
+    ] as LectureCardMenuItem[],
   },
 };
 
@@ -173,7 +278,15 @@ export const EndedLectureWithSubtitle: Story = {
     subtitle: 'Building modern web applications with React and Node.js',
     date: 'Tuesday, 10 December 2024',
     lectureState: 'hasEnded',
-    resourceId: 'RES-WEB-MC-2024',
+    menuItems: [
+      {
+        label: 'Copy URID',
+        icon: <CopyIcon />,
+        onClick: (context) => {
+          logMenuClick('Copy URID', context);
+        },
+      },
+    ] as LectureCardMenuItem[],
   },
 };
 
@@ -182,7 +295,15 @@ export const CompactVariant: Story = {
     title: 'Quick Tutorial Session',
     date: 'Wednesday, 10 June 2025',
     variant: 'compact',
-    resourceId: 'RES-COMPACT-001',
+    menuItems: [
+      {
+        label: 'Copy URID',
+        icon: <CopyIcon />,
+        onClick: (context) => {
+          logMenuClick('Copy URID', context);
+        },
+      },
+    ] as LectureCardMenuItem[],
   },
 };
 
@@ -193,7 +314,15 @@ export const CompactFutureLecture: Story = {
     variant: 'compact',
     lectureState: 'inFuture',
     disabled: true,
-    resourceId: 'RES-GIT-WS-2026',
+    menuItems: [
+      {
+        label: 'Copy URID',
+        icon: <CopyIcon />,
+        onClick: (context) => {
+          logMenuClick('Copy URID', context);
+        },
+      },
+    ] as LectureCardMenuItem[],
   },
 };
 
@@ -203,7 +332,15 @@ export const CompactEndedLecture: Story = {
     date: 'Monday, 18 December 2024',
     variant: 'compact',
     lectureState: 'hasEnded',
-    resourceId: 'RES-CSS-2024',
+    menuItems: [
+      {
+        label: 'Copy URID',
+        icon: <CopyIcon />,
+        onClick: (context) => {
+          logMenuClick('Copy URID', context);
+        },
+      },
+    ] as LectureCardMenuItem[],
   },
 };
 
@@ -220,7 +357,15 @@ export const WithoutImageHighlight: Story = {
     title: 'Clean Design Lecture',
     date: 'Wednesday, 10 June 2025',
     showImageHighlight: false,
-    resourceId: 'RES-CLEAN-DESIGN',
+    menuItems: [
+      {
+        label: 'Copy URID',
+        icon: <CopyIcon />,
+        onClick: (context) => {
+          logMenuClick('Copy URID', context);
+        },
+      },
+    ] as LectureCardMenuItem[],
   },
 };
 
@@ -244,56 +389,234 @@ export const AllStatesComparison: Story = {
         date="Wednesday, 10 June 2025"
         lectureState="inFuture"
         attendanceStatus="Present"
-        resourceId="RES-PRESENT-001"
+        menuItems={[
+          {
+            label: 'Copy URID',
+            icon: <CopyIcon />,
+            onClick: (context) => logMenuClick('Copy URID', context),
+          },
+        ]}
       />
       <LectureCard
         title="Absent"
         date="Wednesday, 10 June 2025"
         attendanceStatus="Absent"
-        resourceId="RES-ABSENT-002"
+        menuItems={[
+          {
+            label: 'Copy URID',
+            icon: <CopyIcon />,
+            onClick: (context) => logMenuClick('Copy URID', context),
+          },
+        ]}
       />
       <LectureCard
         title="Late"
         date="Wednesday, 10 June 2025"
         attendanceStatus="Late"
-        resourceId="RES-LATE-003"
+        menuItems={[
+          {
+            label: 'Copy URID',
+            icon: <CopyIcon />,
+            onClick: (context) => logMenuClick('Copy URID', context),
+          },
+        ]}
       />
       <LectureCard
         title="Leave"
         date="Wednesday, 10 June 2025"
         attendanceStatus="Leave"
-        resourceId="RES-LEAVE-004"
+        menuItems={[
+          {
+            label: 'Copy URID',
+            icon: <CopyIcon />,
+            onClick: (context) => logMenuClick('Copy URID', context),
+          },
+        ]}
       />
       <LectureCard
         title="Excused"
         date="Wednesday, 10 June 2025"
         attendanceStatus="Excused"
-        resourceId="RES-EXCUSED-005"
+        menuItems={[
+          {
+            label: 'Copy URID',
+            icon: <CopyIcon />,
+            onClick: (context) => logMenuClick('Copy URID', context),
+          },
+        ]}
       />
       <LectureCard
         title="Awaiting Start"
         date="Wednesday, 10 June 2025"
         attendanceStatus="Awaiting Start"
-        resourceId="RES-AWAITING-006"
+        menuItems={[
+          {
+            label: 'Copy URID',
+            icon: <CopyIcon />,
+            onClick: (context) => logMenuClick('Copy URID', context),
+          },
+        ]}
       />
       <LectureCard
         title="Session in progress"
         date="Wednesday, 10 June 2025"
         attendanceStatus="Session in progress"
-        resourceId="RES-PROGRESS-007"
+        menuItems={[
+          {
+            label: 'Copy URID',
+            icon: <CopyIcon />,
+            onClick: (context) => logMenuClick('Copy URID', context),
+          },
+        ]}
       />
       <LectureCard
         title="NA (Empty String)"
         date="Wednesday, 10 June 2025"
         attendanceStatus="NA"
-        resourceId="RES-NA-008"
+        menuItems={[
+          {
+            label: 'Copy URID',
+            icon: <CopyIcon />,
+            onClick: (context) => logMenuClick('Copy URID', context),
+          },
+        ]}
       />
       <LectureCard title="No Attendance Status (undefined)" date="Wednesday, 10 June 2025" />
       <LectureCard
-        title="With Resource ID - No Attendance"
+        title="With Menu Items - No Attendance"
         date="Wednesday, 10 June 2025"
-        resourceId="RES-ONLY-ID-009"
+        menuItems={[
+          {
+            id: 'copy-urid',
+            label: 'Copy URID',
+            icon: <CopyIcon />,
+            onClick: (context) => logMenuClick('Copy URID', context),
+          },
+          {
+            id: 'share',
+            label: 'Share',
+            onClick: (context) => logMenuClick('Share', context),
+          },
+        ]}
       />
     </div>
   ),
+};
+
+export const DynamicMenuWithConditionalVisibility: Story = {
+  args: {
+    title: 'Machine Learning Coding',
+    date: 'Wednesday, 10 June 2025',
+    buttonText: 'Start Recording',
+    menuItems: [
+      {
+        id: 'copy-urid',
+        label: 'Copy URID',
+        icon: <CopyIcon />,
+        onClick: (context) => {
+          logMenuClick('Copy URID', context);
+        },
+        // Always visible
+        visible: true,
+      },
+      {
+        id: 'edit',
+        label: 'Edit Lecture',
+        onClick: (context) => {
+          logMenuClick('Edit Lecture', context);
+        },
+        // Only visible for future lectures
+        visible: (context) => context.lectureState === 'inFuture',
+      },
+      {
+        id: 'delete',
+        label: 'Delete',
+        onClick: (context) => {
+          logMenuClick('Delete', context);
+        },
+        // Only visible for ended lectures
+        visible: (context) => context.lectureState === 'hasEnded',
+      },
+      {
+        id: 'share',
+        label: 'Share',
+        onClick: (context) => {
+          logMenuClick('Share', context);
+        },
+        // Always visible
+      },
+    ] as LectureCardMenuItem[],
+  },
+};
+
+export const DynamicMenuWithDisabledItems: Story = {
+  args: {
+    title: 'Machine Learning Coding',
+    date: 'Wednesday, 10 June 2025',
+    buttonText: 'Start Recording',
+    disabled: true,
+    menuItems: [
+      {
+        id: 'copy-urid',
+        label: 'Copy URID',
+        icon: <CopyIcon />,
+        onClick: (context) => {
+          logMenuClick('Copy URID', context);
+        },
+      },
+      {
+        id: 'edit',
+        label: 'Edit Lecture',
+        onClick: (context) => {
+          logMenuClick('Edit Lecture', context);
+        },
+        disabled: true, // This item is disabled
+      },
+      {
+        id: 'share',
+        label: 'Share',
+        onClick: (context) => {
+          logMenuClick('Share', context);
+        },
+      },
+    ] as LectureCardMenuItem[],
+  },
+};
+
+export const DynamicMenuWithContext: Story = {
+  args: {
+    title: 'Advanced React Patterns',
+    subtitle: 'Hooks, Context, and Performance Optimization',
+    date: 'Friday, 20 December 2024',
+    lectureState: 'hasEnded',
+    attendanceStatus: 'Present',
+    menuItems: [
+      {
+        id: 'copy-urid',
+        label: 'Copy URID',
+        icon: <CopyIcon />,
+        onClick: (context, _event) => {
+          logMenuClick('Copy URID', context);
+          // Portal can use this context to perform actions
+        },
+      },
+      {
+        id: 'view-details',
+        label: 'View Details',
+        onClick: (context) => {
+          logMenuClick('View Details', context);
+          alert(`Viewing details for: ${context.title}\nDate: ${context.date}`);
+        },
+      },
+      {
+        id: 'download',
+        label: 'Download Recording',
+        onClick: (context) => {
+          logMenuClick('Download Recording', context);
+        },
+        // Only show download for ended lectures
+        visible: (context) => context.lectureState === 'hasEnded',
+      },
+    ] as LectureCardMenuItem[],
+  },
 };

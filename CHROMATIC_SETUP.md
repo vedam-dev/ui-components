@@ -59,6 +59,7 @@ yarn chromatic
 ```
 
 This will:
+
 - Build your Storybook (if not already built)
 - Upload it to Chromatic
 - Capture visual snapshots of all stories
@@ -99,15 +100,15 @@ jobs:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
-      
+
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
           node-version: 22
-      
+
       - name: Install dependencies
         run: yarn install --frozen-lockfile
-      
+
       - name: Run Chromatic
         uses: chromaui/action@v1
         with:
@@ -158,6 +159,7 @@ You can use both, or migrate fully to Chromatic.
 ### Build Errors
 
 If Storybook build fails:
+
 ```bash
 # Check Storybook builds correctly
 yarn build-storybook
@@ -169,12 +171,14 @@ yarn build
 ### Authentication Issues
 
 Make sure your project token is correct:
+
 - Check it in Chromatic dashboard
 - Verify it's set in environment variable or package.json
 
 ### Network Issues
 
 If upload fails:
+
 - Check your internet connection
 - Verify Chromatic service status
 - Try running with `--debug` flag for more info

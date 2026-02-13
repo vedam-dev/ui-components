@@ -178,7 +178,12 @@ export const WithInfoItems: Story = {
   render: (args) => {
     const [open, setOpen] = useState(false);
     const feeItems = [
-      { id: '1', description: 'Tuition Fees', amount: '1,00,000', status: 'UNPAID' },
+      {
+        id: '1',
+        description: 'Tuition Fees',
+        amount: '1,00,000',
+        status: 'UNPAID',
+      },
       { id: '2', description: 'Lab Fees', amount: '20,000', status: 'UNPAID' },
     ];
     const infoItems = [
@@ -217,7 +222,12 @@ export const WithDisabledItems: Story = {
   render: (args) => {
     const [open, setOpen] = useState(false);
     const feeItems = [
-      { id: '1', description: 'Tuition Fees', amount: '1,00,000', status: 'UNPAID' },
+      {
+        id: '1',
+        description: 'Tuition Fees',
+        amount: '1,00,000',
+        status: 'UNPAID',
+      },
       { id: '2', description: 'Lab Fees', amount: '20,000', status: 'PAID' },
     ];
 
