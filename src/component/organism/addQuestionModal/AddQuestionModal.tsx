@@ -22,11 +22,18 @@ export interface QuestionType {
 export interface AddQuestionModalProps {
   open: boolean;
   onClose: () => void;
-  onCreate?: (questionTitle: string, questionType: string, difficulty: string) => void;
+  onCreate?: (
+    questionTitle: string,
+    questionLabel: string,
+    questionType: string,
+    difficulty: string
+  ) => void;
   title?: string;
   subtitle?: string;
   questionTitleLabel?: string;
   questionTitlePlaceholder?: string;
+  questionLabelLabel?: string;
+  questionLabelPlaceholder?: string;
   difficultyLabel?: string;
   questionTypeLabel?: string;
   questionTypes?: QuestionType[];
@@ -42,6 +49,8 @@ const AddQuestionModal: React.FC<AddQuestionModalProps> = ({
   subtitle = 'Enter details for the question',
   questionTitleLabel = 'Question Title',
   questionTitlePlaceholder = 'Eg. Two Sum',
+  questionLabelLabel = 'Question Label',
+  questionLabelPlaceholder = 'Eg. 123',
   difficultyLabel = 'Difficulty',
   questionTypeLabel = 'Question Type',
   questionTypes = [
@@ -58,11 +67,16 @@ const AddQuestionModal: React.FC<AddQuestionModalProps> = ({
   const theme = useTheme();
 
   const [questionTitle, setQuestionTitle] = useState<string>('');
+  const [questionLabel, setQuestionLabel] = useState<string>('');
   const [selectedType, setSelectedType] = useState<string>('');
   const [difficulty, setDifficulty] = useState<string>('MEDIUM');
 
   const handleQuestionTitleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setQuestionTitle(event.target.value);
+  };
+
+  const handleQuestionLabelChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setQuestionLabel(event.target.value);
   };
 
   const handleTypeSelect = (typeId: string) => {
@@ -80,19 +94,42 @@ const AddQuestionModal: React.FC<AddQuestionModalProps> = ({
 
   const handleCreate = () => {
     if (onCreate && questionTitle && selectedType) {
-      onCreate(questionTitle, selectedType, difficulty);
+      onCreate(questionTitle, questionLabel, selectedType, difficulty);
     }
     handleClose();
   };
 
   const handleClose = () => {
     setQuestionTitle('');
+    setQuestionLabel('');
     setSelectedType('');
     setDifficulty('MEDIUM');
     onClose();
   };
 
   const isCreateDisabled = !questionTitle || !selectedType;
+
+  const textFieldSx = {
+    '& .MuiOutlinedInput-root': {
+      borderRadius: '12px',
+      lineHeight: '20px',
+      backgroundColor: '#FFF',
+      fontSize: '16px',
+      '& fieldset': {
+        borderColor: '#C7C7C7',
+      },
+      '&:hover fieldset': {
+        borderColor: '#C7C7C7',
+      },
+      '&.Mui-focused fieldset': {
+        borderColor: '#C7C7C7',
+        borderWidth: '1px',
+      },
+    },
+    '& .MuiOutlinedInput-input': {
+      padding: '13px 20px',
+    },
+  };
 
   return (
     <Modal
@@ -161,27 +198,28 @@ const AddQuestionModal: React.FC<AddQuestionModalProps> = ({
             placeholder={questionTitlePlaceholder}
             value={questionTitle}
             onChange={handleQuestionTitleChange}
+            sx={textFieldSx}
+          />
+        </Box>
+
+        <Box sx={{ mb: '20px' }}>
+          <Typography
             sx={{
-              '& .MuiOutlinedInput-root': {
-                borderRadius: '12px',
-                lineHeight: '20px',
-                backgroundColor: '#FFF',
-                fontSize: '16px',
-                '& fieldset': {
-                  borderColor: '#C7C7C7',
-                },
-                '&:hover fieldset': {
-                  borderColor: '#C7C7C7',
-                },
-                '&.Mui-focused fieldset': {
-                  borderColor: '#C7C7C7',
-                  borderWidth: '1px',
-                },
-              },
-              '& .MuiOutlinedInput-input': {
-                padding: '13px 20px',
-              },
+              fontWeight: 600,
+              fontSize: '18px',
+              lineHeight: '23px',
+              color: theme.palette.text.primary,
+              mb: '8px',
             }}
+          >
+            {questionLabelLabel}
+          </Typography>
+          <TextField
+            fullWidth
+            placeholder={questionLabelPlaceholder}
+            value={questionLabel}
+            onChange={handleQuestionLabelChange}
+            sx={textFieldSx}
           />
         </Box>
 
