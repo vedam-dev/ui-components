@@ -76,7 +76,10 @@ const AddQuestionModal: React.FC<AddQuestionModalProps> = ({
   };
 
   const handleQuestionLabelChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setQuestionLabel(event.target.value);
+    const value = event.target.value;
+    if (value === '' || /^\d+$/.test(value)) {
+      setQuestionLabel(value);
+    }
   };
 
   const handleTypeSelect = (typeId: string) => {
@@ -93,7 +96,7 @@ const AddQuestionModal: React.FC<AddQuestionModalProps> = ({
   };
 
   const handleCreate = () => {
-    if (onCreate && questionTitle && selectedType) {
+    if (onCreate && questionTitle && questionLabel && selectedType) {
       onCreate(questionTitle, questionLabel, selectedType, difficulty);
     }
     handleClose();
@@ -107,7 +110,7 @@ const AddQuestionModal: React.FC<AddQuestionModalProps> = ({
     onClose();
   };
 
-  const isCreateDisabled = !questionTitle || !selectedType;
+  const isCreateDisabled = !questionTitle || !questionLabel || !selectedType;
 
   const textFieldSx = {
     '& .MuiOutlinedInput-root': {
@@ -219,6 +222,7 @@ const AddQuestionModal: React.FC<AddQuestionModalProps> = ({
             placeholder={questionLabelPlaceholder}
             value={questionLabel}
             onChange={handleQuestionLabelChange}
+            inputProps={{ inputMode: 'numeric' }}
             sx={textFieldSx}
           />
         </Box>
