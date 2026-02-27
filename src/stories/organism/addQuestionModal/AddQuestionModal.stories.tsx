@@ -27,6 +27,14 @@ const meta: Meta<typeof AddQuestionModal> = {
       control: 'text',
       defaultValue: 'Eg. Two Sum',
     },
+    questionLabelLabel: {
+      control: 'text',
+      defaultValue: 'Question Label',
+    },
+    questionLabelPlaceholder: {
+      control: 'text',
+      defaultValue: 'Eg. 123',
+    },
     difficultyLabel: {
       control: 'text',
       defaultValue: 'Difficulty',
@@ -53,16 +61,22 @@ type Story = StoryObj<typeof AddQuestionModal>;
 const Template = (args: any) => {
   const [open, setOpen] = useState(false);
 
-  const handleCreate = (questionTitle: string, questionType: string, difficulty: string) => {
+  const handleCreate = (
+    questionTitle: string,
+    questionLabel: string,
+    questionType: string,
+    difficulty: string
+  ) => {
     console.log('Question Created:', {
       questionTitle,
+      questionLabel,
       questionType,
       difficulty,
     });
     alert(
-      `Question "${questionTitle}" of type "${questionType}" with difficulty "${difficulty}" created successfully!`
+      `Question "${questionTitle}" (Label: "${questionLabel}") of type "${questionType}" with difficulty "${difficulty}" created successfully!`
     );
-    args.onCreate?.(questionTitle, questionType, difficulty);
+    args.onCreate?.(questionTitle, questionLabel, questionType, difficulty);
   };
 
   return (
@@ -89,16 +103,22 @@ export const CustomTexts: Story = {
   render: (args) => {
     const [open, setOpen] = useState(false);
 
-    const handleCreate = (questionTitle: string, questionType: string, difficulty: string) => {
+    const handleCreate = (
+      questionTitle: string,
+      questionLabel: string,
+      questionType: string,
+      difficulty: string
+    ) => {
       console.log('Question Created:', {
         questionTitle,
+        questionLabel,
         questionType,
         difficulty,
       });
       alert(
-        `Assessment "${questionTitle}" of category "${questionType}" with difficulty "${difficulty}" saved!`
+        `Assessment "${questionTitle}" (Label: "${questionLabel}") of category "${questionType}" with difficulty "${difficulty}" saved!`
       );
-      args.onCreate?.(questionTitle, questionType, difficulty);
+      args.onCreate?.(questionTitle, questionLabel, questionType, difficulty);
     };
 
     return (
@@ -115,6 +135,8 @@ export const CustomTexts: Story = {
           subtitle="Configure your assessment question"
           questionTitleLabel="Assessment Name"
           questionTitlePlaceholder="Enter assessment name..."
+          questionLabelLabel="Assessment Label"
+          questionLabelPlaceholder="Eg. 123"
           difficultyLabel="Complexity Level"
           questionTypeLabel="Assessment Category"
           cancelButtonText="Discard"
@@ -130,13 +152,19 @@ export const TwoQuestionTypes: Story = {
   render: (args) => {
     const [open, setOpen] = useState(false);
 
-    const handleCreate = (questionTitle: string, questionType: string, difficulty: string) => {
+    const handleCreate = (
+      questionTitle: string,
+      questionLabel: string,
+      questionType: string,
+      difficulty: string
+    ) => {
       console.log('Question Created:', {
         questionTitle,
+        questionLabel,
         questionType,
         difficulty,
       });
-      args.onCreate?.(questionTitle, questionType, difficulty);
+      args.onCreate?.(questionTitle, questionLabel, questionType, difficulty);
     };
 
     return (
@@ -164,16 +192,22 @@ export const ThreeQuestionTypes: Story = {
   render: (args) => {
     const [open, setOpen] = useState(false);
 
-    const handleCreate = (questionTitle: string, questionType: string, difficulty: string) => {
+    const handleCreate = (
+      questionTitle: string,
+      questionLabel: string,
+      questionType: string,
+      difficulty: string
+    ) => {
       console.log('Question Created:', {
         questionTitle,
+        questionLabel,
         questionType,
         difficulty,
       });
       alert(
-        `Question "${questionTitle}" of type "${questionType}" with difficulty "${difficulty}" created!`
+        `Question "${questionTitle}" (Label: "${questionLabel}") of type "${questionType}" with difficulty "${difficulty}" created!`
       );
-      args.onCreate?.(questionTitle, questionType, difficulty);
+      args.onCreate?.(questionTitle, questionLabel, questionType, difficulty);
     };
 
     return (
@@ -202,16 +236,22 @@ export const SixQuestionTypes: Story = {
   render: (args) => {
     const [open, setOpen] = useState(false);
 
-    const handleCreate = (questionTitle: string, questionType: string, difficulty: string) => {
+    const handleCreate = (
+      questionTitle: string,
+      questionLabel: string,
+      questionType: string,
+      difficulty: string
+    ) => {
       console.log('Question Created:', {
         questionTitle,
+        questionLabel,
         questionType,
         difficulty,
       });
       alert(
-        `Question "${questionTitle}" of type "${questionType}" with difficulty "${difficulty}" created!`
+        `Question "${questionTitle}" (Label: "${questionLabel}") of type "${questionType}" with difficulty "${difficulty}" created!`
       );
-      args.onCreate?.(questionTitle, questionType, difficulty);
+      args.onCreate?.(questionTitle, questionLabel, questionType, difficulty);
     };
 
     return (
@@ -243,16 +283,22 @@ export const AllQuestionTypes: Story = {
   render: (args) => {
     const [open, setOpen] = useState(false);
 
-    const handleCreate = (questionTitle: string, questionType: string, difficulty: string) => {
+    const handleCreate = (
+      questionTitle: string,
+      questionLabel: string,
+      questionType: string,
+      difficulty: string
+    ) => {
       console.log('Question Created:', {
         questionTitle,
+        questionLabel,
         questionType,
         difficulty,
       });
       alert(
-        `Question "${questionTitle}" of type "${questionType}" with difficulty "${difficulty}" created!`
+        `Question "${questionTitle}" (Label: "${questionLabel}") of type "${questionType}" with difficulty "${difficulty}" created!`
       );
-      args.onCreate?.(questionTitle, questionType, difficulty);
+      args.onCreate?.(questionTitle, questionLabel, questionType, difficulty);
     };
 
     return (
