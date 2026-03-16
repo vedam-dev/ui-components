@@ -1,7 +1,7 @@
 'use client';
 
 import type React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import {
   Box,
   Button,
@@ -19,6 +19,28 @@ export interface QuestionType {
   label: string;
 }
 
+export interface TitleTypographyProps {
+  fontWeight?: number | string;
+  fontSize?: string;
+  lineHeight?: string;
+  color?: string;
+}
+
+export interface SubtitleTypographyProps {
+  fontSize?: string;
+  lineHeight?: string;
+  color?: string;
+  fontWeight?: number | string;
+}
+
+export interface InitialData {
+  questionTitle?: string;
+  questionLabel?: string;
+  maximumMarks?: string;
+  questionType?: string;
+  difficulty?: string;
+}
+
 export interface AddQuestionModalProps {
   open: boolean;
   onClose: () => void;
@@ -26,19 +48,28 @@ export interface AddQuestionModalProps {
     questionTitle: string,
     questionLabel: string,
     questionType: string,
-    difficulty: string
+    difficulty: string,
+    maximumMarks: string
   ) => void;
   title?: string;
   subtitle?: string;
+  titleTypographyProps?: TitleTypographyProps;
+  subtitleTypographyProps?: SubtitleTypographyProps;
   questionTitleLabel?: string;
   questionTitlePlaceholder?: string;
   questionLabelLabel?: string;
   questionLabelPlaceholder?: string;
+  maximumMarksLabel?: string;
+  maximumMarksPlaceholder?: string;
+  showMaximumMarks?: boolean;
   difficultyLabel?: string;
   questionTypeLabel?: string;
+  showQuestionType?: boolean;
   questionTypes?: QuestionType[];
   cancelButtonText?: string;
   createButtonText?: string;
+  initialData?: InitialData;
+  requireMaximumMarks?: boolean;
 }
 
 const AddQuestionModal: React.FC<AddQuestionModalProps> = ({
@@ -47,12 +78,18 @@ const AddQuestionModal: React.FC<AddQuestionModalProps> = ({
   onCreate,
   title = 'Add New Question',
   subtitle = 'Enter details for the question',
+  titleTypographyProps,
+  subtitleTypographyProps,
   questionTitleLabel = 'Question Title',
   questionTitlePlaceholder = 'Eg. Two Sum',
   questionLabelLabel = 'Question Label',
   questionLabelPlaceholder = 'Eg. 123',
+  maximumMarksLabel = 'Maximum Marks',
+  maximumMarksPlaceholder = 'Eg. 10',
+  showMaximumMarks = false,
   difficultyLabel = 'Difficulty',
   questionTypeLabel = 'Question Type',
+  showQuestionType = true,
   questionTypes = [
     { id: 'mcq', label: 'MCQ' },
     { id: 'mcms', label: 'MCMS' },
@@ -63,13 +100,26 @@ const AddQuestionModal: React.FC<AddQuestionModalProps> = ({
   ],
   cancelButtonText = 'Cancel',
   createButtonText = 'Create',
+  initialData,
+  requireMaximumMarks = false,
 }) => {
   const theme = useTheme();
 
-  const [questionTitle, setQuestionTitle] = useState<string>('');
-  const [questionLabel, setQuestionLabel] = useState<string>('');
-  const [selectedType, setSelectedType] = useState<string>('');
-  const [difficulty, setDifficulty] = useState<string>('MEDIUM');
+  const [questionTitle, setQuestionTitle] = useState<string>(initialData?.questionTitle ?? '');
+  const [questionLabel, setQuestionLabel] = useState<string>(initialData?.questionLabel ?? '');
+  const [maximumMarks, setMaximumMarks] = useState<string>(initialData?.maximumMarks ?? '');
+  const [selectedType, setSelectedType] = useState<string>(initialData?.questionType ?? '');
+  const [difficulty, setDifficulty] = useState<string>(initialData?.difficulty ?? 'MEDIUM');
+
+  useEffect(() => {
+    if (open) {
+      setQuestionTitle(initialData?.questionTitle ?? '');
+      setQuestionLabel(initialData?.questionLabel ?? '');
+      setMaximumMarks(initialData?.maximumMarks ?? '');
+      setSelectedType(initialData?.questionType ?? '');
+      setDifficulty(initialData?.difficulty ?? 'MEDIUM');
+    }
+  }, [open, initialData]);
 
   const handleQuestionTitleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setQuestionTitle(event.target.value);
@@ -82,12 +132,19 @@ const AddQuestionModal: React.FC<AddQuestionModalProps> = ({
     }
   };
 
+  const handleMaximumMarksChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const value = event.target.value;
+    if (value === '' || /^\d+$/.test(value)) {
+      setMaximumMarks(value);
+    }
+  };
+
   const handleTypeSelect = (typeId: string) => {
     setSelectedType(typeId);
   };
 
   const handleDifficultyChange = (
-    event: React.MouseEvent<HTMLElement>,
+    _event: React.MouseEvent<HTMLElement>,
     newDifficulty: string | null
   ) => {
     if (newDifficulty !== null) {
@@ -96,8 +153,8 @@ const AddQuestionModal: React.FC<AddQuestionModalProps> = ({
   };
 
   const handleCreate = () => {
-    if (onCreate && questionTitle && questionLabel && selectedType) {
-      onCreate(questionTitle, questionLabel, selectedType, difficulty);
+    if (onCreate && !isCreateDisabled) {
+      onCreate(questionTitle, questionLabel, selectedType, difficulty, maximumMarks);
     }
     handleClose();
   };
@@ -105,12 +162,17 @@ const AddQuestionModal: React.FC<AddQuestionModalProps> = ({
   const handleClose = () => {
     setQuestionTitle('');
     setQuestionLabel('');
+    setMaximumMarks('');
     setSelectedType('');
     setDifficulty('MEDIUM');
     onClose();
   };
 
-  const isCreateDisabled = !questionTitle || !questionLabel || !selectedType;
+  const isCreateDisabled =
+    !questionTitle ||
+    !questionLabel ||
+    (showQuestionType && !selectedType) ||
+    (showMaximumMarks && requireMaximumMarks && !maximumMarks);
 
   const textFieldSx = {
     '& .MuiOutlinedInput-root': {
@@ -132,6 +194,14 @@ const AddQuestionModal: React.FC<AddQuestionModalProps> = ({
     '& .MuiOutlinedInput-input': {
       padding: '13px 20px',
     },
+  };
+
+  const fieldLabelSx = {
+    fontWeight: 600,
+    fontSize: '18px',
+    lineHeight: '23px',
+    color: theme.palette.text.primary,
+    mb: '8px',
   };
 
   return (
@@ -164,19 +234,20 @@ const AddQuestionModal: React.FC<AddQuestionModalProps> = ({
         <Box sx={{ mb: '20px' }}>
           <Typography
             sx={{
-              fontWeight: 600,
-              fontSize: '28px',
-              lineHeight: '39px',
-              color: theme.palette.text.primary,
+              fontWeight: titleTypographyProps?.fontWeight ?? 600,
+              fontSize: titleTypographyProps?.fontSize ?? '28px',
+              lineHeight: titleTypographyProps?.lineHeight ?? '39px',
+              color: titleTypographyProps?.color ?? theme.palette.text.primary,
             }}
           >
             {title}
           </Typography>
           <Typography
             sx={{
-              color: theme.palette.text.secondary,
-              fontSize: '20px',
-              lineHeight: '25px',
+              fontWeight: subtitleTypographyProps?.fontWeight ?? 400,
+              color: subtitleTypographyProps?.color ?? theme.palette.text.secondary,
+              fontSize: subtitleTypographyProps?.fontSize ?? '20px',
+              lineHeight: subtitleTypographyProps?.lineHeight ?? '25px',
             }}
           >
             {subtitle}
@@ -185,17 +256,7 @@ const AddQuestionModal: React.FC<AddQuestionModalProps> = ({
 
         {/* Question Title Input */}
         <Box sx={{ mb: '20px' }}>
-          <Typography
-            sx={{
-              fontWeight: 600,
-              fontSize: '18px',
-              lineHeight: '23px',
-              color: theme.palette.text.primary,
-              mb: '8px',
-            }}
-          >
-            {questionTitleLabel}
-          </Typography>
+          <Typography sx={fieldLabelSx}>{questionTitleLabel}</Typography>
           <TextField
             fullWidth
             placeholder={questionTitlePlaceholder}
@@ -205,41 +266,44 @@ const AddQuestionModal: React.FC<AddQuestionModalProps> = ({
           />
         </Box>
 
-        <Box sx={{ mb: '20px' }}>
-          <Typography
-            sx={{
-              fontWeight: 600,
-              fontSize: '18px',
-              lineHeight: '23px',
-              color: theme.palette.text.primary,
-              mb: '8px',
-            }}
-          >
-            {questionLabelLabel}
-          </Typography>
-          <TextField
-            fullWidth
-            placeholder={questionLabelPlaceholder}
-            value={questionLabel}
-            onChange={handleQuestionLabelChange}
-            inputProps={{ inputMode: 'numeric' }}
-            sx={textFieldSx}
-          />
+        <Box
+          sx={{
+            mb: '20px',
+            display: 'grid',
+            gridTemplateColumns: showMaximumMarks ? '1fr 1fr' : '1fr',
+            gap: '16px',
+          }}
+        >
+          <Box>
+            <Typography sx={fieldLabelSx}>{questionLabelLabel}</Typography>
+            <TextField
+              fullWidth
+              placeholder={questionLabelPlaceholder}
+              value={questionLabel}
+              onChange={handleQuestionLabelChange}
+              inputProps={{ inputMode: 'numeric' }}
+              sx={textFieldSx}
+            />
+          </Box>
+
+          {showMaximumMarks && (
+            <Box>
+              <Typography sx={fieldLabelSx}>{maximumMarksLabel}</Typography>
+              <TextField
+                fullWidth
+                placeholder={maximumMarksPlaceholder}
+                value={maximumMarks}
+                onChange={handleMaximumMarksChange}
+                inputProps={{ inputMode: 'numeric' }}
+                sx={textFieldSx}
+              />
+            </Box>
+          )}
         </Box>
 
         {/* Difficulty Selection */}
         <Box sx={{ mb: '20px' }}>
-          <Typography
-            sx={{
-              fontWeight: 600,
-              fontSize: '18px',
-              lineHeight: '23px',
-              color: theme.palette.text.primary,
-              mb: '8px',
-            }}
-          >
-            {difficultyLabel}
-          </Typography>
+          <Typography sx={fieldLabelSx}>{difficultyLabel}</Typography>
           <ToggleButtonGroup
             value={difficulty}
             exclusive
@@ -269,25 +333,19 @@ const AddQuestionModal: React.FC<AddQuestionModalProps> = ({
                     bgcolor: '#E8F5E9',
                     color: '#42B657',
                     border: '1px solid #42B657 !important',
-                    '&:hover': {
-                      bgcolor: '#E8F5E9',
-                    },
+                    '&:hover': { bgcolor: '#E8F5E9' },
                   },
                   '&[value="MEDIUM"]': {
                     bgcolor: '#FFF9E6',
                     color: '#D2A82F',
                     border: '1px solid #D2A82F !important',
-                    '&:hover': {
-                      bgcolor: '#FFF9E6',
-                    },
+                    '&:hover': { bgcolor: '#FFF9E6' },
                   },
                   '&[value="HARD"]': {
                     bgcolor: '#FFEBEE',
                     color: '#E02222',
                     border: '1px solid #E02222 !important',
-                    '&:hover': {
-                      bgcolor: '#FFEBEE',
-                    },
+                    '&:hover': { bgcolor: '#FFEBEE' },
                   },
                 },
               },
@@ -300,65 +358,67 @@ const AddQuestionModal: React.FC<AddQuestionModalProps> = ({
         </Box>
 
         {/* Question Type Selection */}
-        <Box sx={{ mb: '20px' }}>
-          <Typography
-            sx={{
-              fontWeight: 600,
-              fontSize: '16px',
-              lineHeight: '20px',
-              color: theme.palette.text.primary,
-              mb: '8px',
-            }}
-          >
-            {questionTypeLabel}
-          </Typography>
-          <Box
-            sx={{
-              display: 'grid',
-              gridTemplateColumns: { xs: '1fr', sm: 'repeat(2, 1fr)' },
-              gap: '8px',
-            }}
-          >
-            {questionTypes.map((type) => (
-              <Box
-                key={type.id}
-                onClick={() => handleTypeSelect(type.id)}
-                sx={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  padding: '12px 10px',
-                  borderRadius: '12px',
-                  border: '1px solid #C7C7C7',
-                  backgroundColor: '#FFF',
-                  cursor: 'pointer',
-                  transition: 'all 0.2s ease',
-                }}
-              >
-                <Radio
-                  checked={selectedType === type.id}
-                  value={type.id}
+        {showQuestionType && (
+          <Box sx={{ mb: '20px' }}>
+            <Typography
+              sx={{
+                fontWeight: 600,
+                fontSize: '16px',
+                lineHeight: '20px',
+                color: theme.palette.text.primary,
+                mb: '8px',
+              }}
+            >
+              {questionTypeLabel}
+            </Typography>
+            <Box
+              sx={{
+                display: 'grid',
+                gridTemplateColumns: { xs: '1fr', sm: 'repeat(2, 1fr)' },
+                gap: '8px',
+              }}
+            >
+              {questionTypes.map((type) => (
+                <Box
+                  key={type.id}
+                  onClick={() => handleTypeSelect(type.id)}
                   sx={{
-                    padding: 0,
-                    marginRight: '12px',
-                    color: '#E0E0E0',
-                    '&.Mui-checked': {
-                      color: theme.palette.primary.main,
-                    },
-                  }}
-                />
-                <Typography
-                  sx={{
-                    fontSize: '16px',
-                    fontWeight: selectedType === type.id ? 600 : 400,
-                    color: theme.palette.text.primary,
+                    display: 'flex',
+                    alignItems: 'center',
+                    padding: '12px 10px',
+                    borderRadius: '12px',
+                    border: '1px solid #C7C7C7',
+                    backgroundColor: '#FFF',
+                    cursor: 'pointer',
+                    transition: 'all 0.2s ease',
                   }}
                 >
-                  {type.label}
-                </Typography>
-              </Box>
-            ))}
+                  <Radio
+                    checked={selectedType === type.id}
+                    value={type.id}
+                    sx={{
+                      padding: 0,
+                      marginRight: '12px',
+                      color: '#E0E0E0',
+                      '&.Mui-checked': {
+                        color: theme.palette.primary.main,
+                      },
+                    }}
+                  />
+                  <Typography
+                    sx={{
+                      fontSize: '16px',
+                      fontWeight: selectedType === type.id ? 600 : 400,
+                      color: theme.palette.text.primary,
+                    }}
+                  >
+                    {type.label}
+                  </Typography>
+                </Box>
+              ))}
+            </Box>
           </Box>
-        </Box>
+        )}
 
         {/* Action Buttons */}
         <Box
