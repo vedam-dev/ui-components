@@ -11,46 +11,21 @@ const meta: Meta<typeof AddQuestionModal> = {
     open: { control: 'boolean' },
     onClose: { action: 'closed' },
     onCreate: { action: 'created' },
-    title: {
-      control: 'text',
-      defaultValue: 'Add New Question',
-    },
-    subtitle: {
-      control: 'text',
-      defaultValue: 'Enter details for the question',
-    },
-    questionTitleLabel: {
-      control: 'text',
-      defaultValue: 'Question Title',
-    },
-    questionTitlePlaceholder: {
-      control: 'text',
-      defaultValue: 'Eg. Two Sum',
-    },
-    questionLabelLabel: {
-      control: 'text',
-      defaultValue: 'Question Label',
-    },
-    questionLabelPlaceholder: {
-      control: 'text',
-      defaultValue: 'Eg. 123',
-    },
-    difficultyLabel: {
-      control: 'text',
-      defaultValue: 'Difficulty',
-    },
-    questionTypeLabel: {
-      control: 'text',
-      defaultValue: 'Question Type',
-    },
-    cancelButtonText: {
-      control: 'text',
-      defaultValue: 'Cancel',
-    },
-    createButtonText: {
-      control: 'text',
-      defaultValue: 'Create',
-    },
+    title: { control: 'text' },
+    subtitle: { control: 'text' },
+    questionTitleLabel: { control: 'text' },
+    questionTitlePlaceholder: { control: 'text' },
+    questionLabelLabel: { control: 'text' },
+    questionLabelPlaceholder: { control: 'text' },
+    maximumMarksLabel: { control: 'text' },
+    maximumMarksPlaceholder: { control: 'text' },
+    showMaximumMarks: { control: 'boolean' },
+    difficultyLabel: { control: 'text' },
+    questionTypeLabel: { control: 'text' },
+    showQuestionType: { control: 'boolean' },
+    cancelButtonText: { control: 'text' },
+    createButtonText: { control: 'text' },
+    requireMaximumMarks: { control: 'boolean' },
   },
 };
 
@@ -60,25 +35,6 @@ type Story = StoryObj<typeof AddQuestionModal>;
 
 const Template = (args: any) => {
   const [open, setOpen] = useState(false);
-
-  const handleCreate = (
-    questionTitle: string,
-    questionLabel: string,
-    questionType: string,
-    difficulty: string
-  ) => {
-    console.log('Question Created:', {
-      questionTitle,
-      questionLabel,
-      questionType,
-      difficulty,
-    });
-    alert(
-      `Question "${questionTitle}" (Label: "${questionLabel}") of type "${questionType}" with difficulty "${difficulty}" created successfully!`
-    );
-    args.onCreate?.(questionTitle, questionLabel, questionType, difficulty);
-  };
-
   return (
     <div>
       <Button variant="contained" onClick={() => setOpen(true)}>
@@ -88,7 +44,10 @@ const Template = (args: any) => {
         {...args}
         open={open}
         onClose={() => setOpen(false)}
-        onCreate={handleCreate}
+        onCreate={(title, label, type, difficulty, marks) => {
+          console.log('Created:', { title, label, type, difficulty, marks });
+          args.onCreate?.(title, label, type, difficulty, marks);
+        }}
       />
     </div>
   );
@@ -99,28 +58,75 @@ export const Default: Story = {
   args: {},
 };
 
-export const CustomTexts: Story = {
+export const EditQuestion: Story = {
   render: (args) => {
     const [open, setOpen] = useState(false);
 
-    const handleCreate = (
-      questionTitle: string,
-      questionLabel: string,
-      questionType: string,
-      difficulty: string
-    ) => {
-      console.log('Question Created:', {
-        questionTitle,
-        questionLabel,
-        questionType,
-        difficulty,
-      });
-      alert(
-        `Assessment "${questionTitle}" (Label: "${questionLabel}") of category "${questionType}" with difficulty "${difficulty}" saved!`
-      );
-      args.onCreate?.(questionTitle, questionLabel, questionType, difficulty);
+    const apiData = {
+      questionTitle: 'Two Sum',
+      questionLabel: '1224',
+      maximumMarks: '10',
+      difficulty: 'MEDIUM',
     };
 
+    return (
+      <div>
+        <Button variant="contained" onClick={() => setOpen(true)}>
+          Open Edit Question Modal
+        </Button>
+        <AddQuestionModal
+          {...args}
+          open={open}
+          onClose={() => setOpen(false)}
+          onCreate={(title, label, type, difficulty, marks) => {
+            console.log('Saved:', { title, label, type, difficulty, marks });
+            args.onCreate?.(title, label, type, difficulty, marks);
+          }}
+          title="Edit Question"
+          subtitle="Edit details for the question"
+          titleTypographyProps={{}}
+          subtitleTypographyProps={{}}
+          showMaximumMarks
+          requireMaximumMarks
+          showQuestionType={false}
+          cancelButtonText="Cancel"
+          createButtonText="Save"
+          initialData={apiData}
+        />
+      </div>
+    );
+  },
+  args: {},
+};
+
+export const WithMaximumMarks: Story = {
+  render: (args) => {
+    const [open, setOpen] = useState(false);
+    return (
+      <div>
+        <Button variant="contained" onClick={() => setOpen(true)}>
+          Open Modal (with Marks)
+        </Button>
+        <AddQuestionModal
+          {...args}
+          open={open}
+          onClose={() => setOpen(false)}
+          showMaximumMarks
+          requireMaximumMarks
+          onCreate={(title, label, type, difficulty, marks) => {
+            console.log('Created:', { title, label, type, difficulty, marks });
+            args.onCreate?.(title, label, type, difficulty, marks);
+          }}
+        />
+      </div>
+    );
+  },
+  args: {},
+};
+
+export const CustomTexts: Story = {
+  render: (args) => {
+    const [open, setOpen] = useState(false);
     return (
       <div>
         <Button variant="contained" onClick={() => setOpen(true)}>
@@ -130,13 +136,16 @@ export const CustomTexts: Story = {
           {...args}
           open={open}
           onClose={() => setOpen(false)}
-          onCreate={handleCreate}
+          onCreate={(title, label, type, difficulty, marks) => {
+            args.onCreate?.(title, label, type, difficulty, marks);
+          }}
           title="Create New Assessment"
           subtitle="Configure your assessment question"
+          titleTypographyProps={{ fontWeight: 800, fontSize: '26px', color: '#1A1A1A' }}
+          subtitleTypographyProps={{ fontSize: '14px', color: '#999' }}
           questionTitleLabel="Assessment Name"
           questionTitlePlaceholder="Enter assessment name..."
           questionLabelLabel="Assessment Label"
-          questionLabelPlaceholder="Eg. 123"
           difficultyLabel="Complexity Level"
           questionTypeLabel="Assessment Category"
           cancelButtonText="Discard"
@@ -151,22 +160,6 @@ export const CustomTexts: Story = {
 export const TwoQuestionTypes: Story = {
   render: (args) => {
     const [open, setOpen] = useState(false);
-
-    const handleCreate = (
-      questionTitle: string,
-      questionLabel: string,
-      questionType: string,
-      difficulty: string
-    ) => {
-      console.log('Question Created:', {
-        questionTitle,
-        questionLabel,
-        questionType,
-        difficulty,
-      });
-      args.onCreate?.(questionTitle, questionLabel, questionType, difficulty);
-    };
-
     return (
       <div>
         <Button variant="contained" onClick={() => setOpen(true)}>
@@ -176,55 +169,11 @@ export const TwoQuestionTypes: Story = {
           {...args}
           open={open}
           onClose={() => setOpen(false)}
-          onCreate={handleCreate}
           questionTypes={[
             { id: 'theory', label: 'Theory' },
             { id: 'practical', label: 'Practical' },
           ]}
-        />
-      </div>
-    );
-  },
-  args: {},
-};
-
-export const ThreeQuestionTypes: Story = {
-  render: (args) => {
-    const [open, setOpen] = useState(false);
-
-    const handleCreate = (
-      questionTitle: string,
-      questionLabel: string,
-      questionType: string,
-      difficulty: string
-    ) => {
-      console.log('Question Created:', {
-        questionTitle,
-        questionLabel,
-        questionType,
-        difficulty,
-      });
-      alert(
-        `Question "${questionTitle}" (Label: "${questionLabel}") of type "${questionType}" with difficulty "${difficulty}" created!`
-      );
-      args.onCreate?.(questionTitle, questionLabel, questionType, difficulty);
-    };
-
-    return (
-      <div>
-        <Button variant="contained" onClick={() => setOpen(true)}>
-          Open Modal (3 Types)
-        </Button>
-        <AddQuestionModal
-          {...args}
-          open={open}
-          onClose={() => setOpen(false)}
-          onCreate={handleCreate}
-          questionTypes={[
-            { id: 'easy', label: 'Easy' },
-            { id: 'medium', label: 'Medium' },
-            { id: 'hard', label: 'Hard' },
-          ]}
+          onCreate={(t, l, ty, d, m) => args.onCreate?.(t, l, ty, d, m)}
         />
       </div>
     );
@@ -235,25 +184,6 @@ export const ThreeQuestionTypes: Story = {
 export const SixQuestionTypes: Story = {
   render: (args) => {
     const [open, setOpen] = useState(false);
-
-    const handleCreate = (
-      questionTitle: string,
-      questionLabel: string,
-      questionType: string,
-      difficulty: string
-    ) => {
-      console.log('Question Created:', {
-        questionTitle,
-        questionLabel,
-        questionType,
-        difficulty,
-      });
-      alert(
-        `Question "${questionTitle}" (Label: "${questionLabel}") of type "${questionType}" with difficulty "${difficulty}" created!`
-      );
-      args.onCreate?.(questionTitle, questionLabel, questionType, difficulty);
-    };
-
     return (
       <div>
         <Button variant="contained" onClick={() => setOpen(true)}>
@@ -263,7 +193,6 @@ export const SixQuestionTypes: Story = {
           {...args}
           open={open}
           onClose={() => setOpen(false)}
-          onCreate={handleCreate}
           questionTypes={[
             { id: 'mcq', label: 'Multiple Choice' },
             { id: 'true_false', label: 'True/False' },
@@ -272,45 +201,7 @@ export const SixQuestionTypes: Story = {
             { id: 'dsa', label: 'DSA' },
             { id: 'descriptive', label: 'Descriptive' },
           ]}
-        />
-      </div>
-    );
-  },
-  args: {},
-};
-
-export const AllQuestionTypes: Story = {
-  render: (args) => {
-    const [open, setOpen] = useState(false);
-
-    const handleCreate = (
-      questionTitle: string,
-      questionLabel: string,
-      questionType: string,
-      difficulty: string
-    ) => {
-      console.log('Question Created:', {
-        questionTitle,
-        questionLabel,
-        questionType,
-        difficulty,
-      });
-      alert(
-        `Question "${questionTitle}" (Label: "${questionLabel}") of type "${questionType}" with difficulty "${difficulty}" created!`
-      );
-      args.onCreate?.(questionTitle, questionLabel, questionType, difficulty);
-    };
-
-    return (
-      <div>
-        <Button variant="contained" onClick={() => setOpen(true)}>
-          Open Modal (All Types - Default 6)
-        </Button>
-        <AddQuestionModal
-          {...args}
-          open={open}
-          onClose={() => setOpen(false)}
-          onCreate={handleCreate}
+          onCreate={(t, l, ty, d, m) => args.onCreate?.(t, l, ty, d, m)}
         />
       </div>
     );
