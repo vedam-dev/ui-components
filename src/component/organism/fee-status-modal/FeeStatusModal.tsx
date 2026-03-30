@@ -31,6 +31,7 @@ const FeeStatusModal: React.FC<FeeStatusModalProps> = ({
   customDownloadButton,
   ...props
 }) => {
+  
   const theme = useCoreTheme() as CoreTheme;
   return (
     <Modal
@@ -96,7 +97,7 @@ const FeeStatusModal: React.FC<FeeStatusModalProps> = ({
               position: 'absolute',
               top: 15,
               right: 15,
-              color: '#fff',
+              color: theme.palette.common.white,
               border: '1px solid white',
               borderRadius: '50%',
               height: '27px',
@@ -109,7 +110,7 @@ const FeeStatusModal: React.FC<FeeStatusModalProps> = ({
           {/* Info Text */}
           <Typography
             sx={{
-              color: '#fff',
+              color: theme.palette.common.white,
               mt: theme.spacing(6),
               fontSize: theme.spacing(5),
               maxWidth: theme.spacing(80),

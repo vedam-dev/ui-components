@@ -1,5 +1,6 @@
 import React from 'react';
 import { Box, Typography, SxProps, Theme, styled } from '@mui/material';
+import { CoreTheme, useCoreTheme } from '../../../theme/core-theme';
 
 export interface CourseOption {
   value: string;
@@ -20,7 +21,7 @@ export interface CourseListProps {
 const Outer = styled(Box)(({ theme }) => ({
   padding: theme.spacing(8),
   borderRadius: theme.spacing(9),
-  background: '#FFFFFF',
+  background: theme.palette.background.paper,
   boxShadow: ' 0 0 20px 0 rgba(0, 0, 0, 0.10)',
   border: 'none',
   width: '100%',
@@ -28,16 +29,16 @@ const Outer = styled(Box)(({ theme }) => ({
   boxSizing: 'border-box',
 }));
 
-const Title = styled(Typography)(() => ({
-  color: '#1E1E1EEE',
+const Title = styled(Typography)(({ theme }) => ({
+  color: (theme as CoreTheme).vd.palette.textStrong,
   fontSize: '20px',
   fontStyle: 'normal',
   fontWeight: 600,
   lineHeight: 'normal',
 }));
 
-const Subtitle = styled(Typography)(() => ({
-  color: '#777777EE',
+const Subtitle = styled(Typography)(({ theme }) => ({
+  color: (theme as CoreTheme).vd.palette.textMuted,
   fontSize: '18px',
   fontStyle: 'normal',
   fontWeight: 400,
@@ -57,21 +58,22 @@ const Card = styled('button')<{
   disabled?: boolean;
   colorscheme?: string;
 }>(({ theme, selected, disabled, colorscheme }) => {
+  const theme = useCoreTheme() as CoreTheme;
   const colorSchemes: Record<string, { bg: string; border: string }> = {
     purple: {
-      bg: 'linear-gradient(180deg, #F3E8FF 0%, #FFF 100%)',
-      border: '#DAC2F2',
+      bg: `linear-gradient(180deg, ${(theme as CoreTheme).vd.palette.accentPrimaryLight} 0%, ${theme.palette.common.white} 100%)`,
+      border: theme.palette.primary[200],
     },
     yellow: {
-      bg: 'linear-gradient(180deg, #FAEDD7 0%, #FFF 100%)',
+      bg: `linear-gradient(180deg, #FAEDD7 0%, ${theme.palette.common.white} 100%)`,
       border: '#FDE5B6',
     },
     orange: {
-      bg: 'linear-gradient(180deg, #FDEEDD 0%, #FFF 100%)',
+      bg: `linear-gradient(180deg, #FDEEDD 0%, ${theme.palette.common.white} 100%)`,
       border: '#FFDDB9',
     },
     cyan: {
-      bg: 'linear-gradient(180deg, #E3F6F9 0%, #FFF 100%)',
+      bg: `linear-gradient(180deg, #E3F6F9 0%, ${theme.palette.common.white} 100%)`,
       border: '#9AF3F7',
     },
   };
@@ -117,8 +119,8 @@ const Card = styled('button')<{
   return base;
 });
 
-const Label = styled(Typography)(() => ({
-  color: '#1E1E1E',
+const Label = styled(Typography)(({ theme }) => ({
+  color: (theme as CoreTheme).vd.palette.textStrong,
   textAlign: 'center',
   fontSize: '22px',
   fontStyle: 'normal',

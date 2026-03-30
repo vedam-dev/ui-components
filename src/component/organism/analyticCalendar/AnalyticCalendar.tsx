@@ -1,5 +1,6 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import { Box, Paper, Typography, styled, Tooltip } from '@mui/material';
+import { CoreTheme, useCoreTheme } from '../../../theme/core-theme';
 
 export type AttendanceStatus = 'leave' | 'holiday' | 'present' | 'absent';
 
@@ -35,8 +36,8 @@ const Container = styled(Paper)(() => ({
   paddingBottom: '0px',
 }));
 
-const HeaderWrapper = styled(Box)(() => ({
-  borderBottom: '1px solid #C7C7C7',
+const HeaderWrapper = styled(Box)(({ theme }) => ({
+  borderBottom: `1px solid ${theme.palette.grey[300]}`,
 }));
 
 const HeaderGrid = styled(Box)(() => ({
@@ -55,8 +56,8 @@ const CalendarGrid = styled(Box)(() => ({
   paddingX: '24px',
 }));
 
-const DayHeader = styled(Box)(() => ({
-  color: '#1E1E1E',
+const DayHeader = styled(Box)(({ theme }) => ({
+  color: (theme as CoreTheme).vd.palette.textStrong,
   textAlign: 'center',
   fontSize: '18px',
   fontStyle: 'normal',
@@ -77,7 +78,8 @@ const DayCell = styled(Box, {
   hasEvent?: boolean;
   eventType?: string;
   attendanceStatus?: AttendanceStatus;
-}>(({ isToday, isOtherMonth, hasEvent, eventType: _eventType, attendanceStatus }) => {
+}>(({ theme, isToday, isOtherMonth, hasEvent, eventType: _eventType, attendanceStatus }) => {
+  const theme = useCoreTheme() as CoreTheme;
   let backgroundColor = '#F5F5F7';
   let borderRadius = '0px';
 
@@ -122,24 +124,24 @@ const DayCell = styled(Box, {
     }),
     ...(isToday &&
       !isOtherMonth && {
-        outline: '3px solid #8A18FF',
+        outline: `3px solid ${(theme as CoreTheme).vd.palette.accentPrimary}`,
         outlineOffset: '-3px',
       }),
   };
 });
 
-const DayNumber = styled(Typography)<{ isOtherMonth?: boolean }>(({ isOtherMonth }) => ({
+const DayNumber = styled(Typography)<{ isOtherMonth?: boolean }>(({ theme, isOtherMonth }) => ({
   fontSize: '18px',
   lineHeight: '17px',
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
   fontWeight: 600,
-  color: isOtherMonth ? 'transparent' : '#1E1E1E',
+  color: isOtherMonth ? 'transparent' : (theme as CoreTheme).vd.palette.textStrong,
   visibility: isOtherMonth ? 'hidden' : 'visible',
 }));
 
-const TooltipContent = styled(Box)(() => ({
+const TooltipContent = styled(Box)(({ theme }) => ({
   display: 'inline-flex',
   padding: '12px 10px',
   flexDirection: 'column',
@@ -147,7 +149,7 @@ const TooltipContent = styled(Box)(() => ({
   alignItems: 'flex-start',
   gap: '8px',
   borderRadius: '12px',
-  background: '#FFF',
+  background: theme.palette.common.white,
   filter: 'drop-shadow(0 0 10px rgba(0, 0, 0, 0.15))',
 }));
 
@@ -165,8 +167,8 @@ const ColorDot = styled(Box)<{ color: string }>(({ color }) => ({
   marginRight: '6px',
 }));
 
-const TooltipNumber = styled(Typography)(() => ({
-  color: '#1E1E1E',
+const TooltipNumber = styled(Typography)(({ theme }) => ({
+  color: (theme as CoreTheme).vd.palette.textStrong,
   textAlign: 'center',
   fontSize: '14px',
   fontStyle: 'normal',
@@ -175,8 +177,8 @@ const TooltipNumber = styled(Typography)(() => ({
   marginRight: '4px',
 }));
 
-const TooltipLabel = styled(Typography)(() => ({
-  color: '#1E1E1E',
+const TooltipLabel = styled(Typography)(({ theme }) => ({
+  color: (theme as CoreTheme).vd.palette.textStrong,
   fontSize: '14px',
   fontStyle: 'normal',
   fontWeight: 400,
@@ -213,6 +215,7 @@ const MonthlyCalendar: React.FC<MonthlyCalendarProps> = ({
   sx,
   tooltipData,
 }) => {
+  
   const [selectedMonth, setSelectedMonth] = useState(currentDate);
 
   useEffect(() => {
@@ -254,17 +257,17 @@ const MonthlyCalendar: React.FC<MonthlyCalendarProps> = ({
   const renderTooltip = (data: TooltipData) => (
     <TooltipContent>
       <TooltipRow>
-        <ColorDot color="#42B657" />
+        <ColorDot color={theme.vd.palette.statusActive} />
         <TooltipNumber>{data.presentCount}</TooltipNumber>
         <TooltipLabel>Present</TooltipLabel>
       </TooltipRow>
       <TooltipRow>
-        <ColorDot color="#FF4848" />
+        <ColorDot color={theme.palette.error.main} />
         <TooltipNumber>{data.absentCount}</TooltipNumber>
         <TooltipLabel>Absent</TooltipLabel>
       </TooltipRow>
       <TooltipRow>
-        <ColorDot color="#999" />
+        <ColorDot color={theme.vd.palette.textSubtle} />
         <TooltipNumber>{data.noSessionCount}</TooltipNumber>
         <TooltipLabel>No-Session</TooltipLabel>
       </TooltipRow>
@@ -332,7 +335,7 @@ const MonthlyCalendar: React.FC<MonthlyCalendarProps> = ({
                       bgcolor: 'transparent',
                       padding: 0,
                       '& .MuiTooltip-arrow': {
-                        color: '#FFF',
+                        color: theme.palette.common.white,
                       },
                     },
                   },

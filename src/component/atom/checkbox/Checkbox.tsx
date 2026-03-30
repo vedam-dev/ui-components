@@ -1,8 +1,8 @@
 import { Checkbox as BaseCheckbox } from '@mui/material';
 import React from 'react';
 import { ComponentProps, FC } from 'react';
-import { CoreTheme, useCoreTheme } from '../../../theme/core-theme';
 import SxOverride from '../../../util/SxOverride';
+import { CoreTheme, useCoreTheme } from '../../../theme/core-theme';
 
 type PaletteColorKeys = 'primary' | 'secondary' | 'error' | 'info' | 'success' | 'warning';
 

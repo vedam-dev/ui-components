@@ -114,16 +114,20 @@ const RightContent = styled(Box)(({ theme }) => ({
   paddingBottom: theme.spacing(2.5),
 }));
 
-const getAttendanceStyles = (status: AttendanceStatus) => {
+const getAttendanceStyles = (theme: CoreTheme, status: AttendanceStatus) => {
+  const theme = useCoreTheme() as CoreTheme;
   const styles: Record<string, { backgroundColor: string; color: string }> = {
-    Present: { backgroundColor: '#F8FFFA', color: '#42B657' },
-    Absent: { backgroundColor: '#FFF0F0', color: '#D72525' },
-    Late: { backgroundColor: '#FFF', color: '#777' },
-    Leave: { backgroundColor: '#FFF', color: '#3870CA' },
-    Excused: { backgroundColor: '#FFF', color: '#777' },
-    'Awaiting Start': { backgroundColor: '#FFF', color: '#777' },
-    'Session in progress': { backgroundColor: '#FFF', color: '#777' },
-    NA: { backgroundColor: '#FFF', color: '#777' },
+    Present: { backgroundColor: theme.palette.success[100], color: theme.palette.success[300] },
+    Absent: { backgroundColor: theme.palette.error[100], color: theme.palette.error[300] },
+    Late: { backgroundColor: theme.palette.common.white, color: theme.palette.text.secondary },
+    Leave: { backgroundColor: theme.palette.common.white, color: theme.palette.info.main },
+    Excused: { backgroundColor: theme.palette.common.white, color: theme.palette.text.secondary },
+    'Awaiting Start': { backgroundColor: theme.palette.common.white, color: theme.palette.text.secondary },
+    'Session in progress': {
+      backgroundColor: theme.palette.common.white,
+      color: theme.palette.text.secondary,
+    },
+    NA: { backgroundColor: theme.palette.common.white, color: theme.palette.text.secondary },
   };
 
   return styles[status] || styles[''];
@@ -167,7 +171,7 @@ const LectureCard: React.FC<LectureCardProps> = ({
   attendanceStatus,
   menuItems,
 }) => {
-  const theme = useCoreTheme() as CoreTheme;
+  
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const menuOpen = Boolean(anchorEl);
 
@@ -183,7 +187,7 @@ const LectureCard: React.FC<LectureCardProps> = ({
   const getTitleColor = () => {
     if (lectureState === 'inFuture') return theme.palette.success.main;
     if (lectureState === 'hasEnded') return theme.palette.info.main;
-    return '#1E1E1E';
+    return theme.palette.text.primary;
   };
 
   const handleMenuClick = (event: React.MouseEvent<HTMLElement>) => {
@@ -275,7 +279,7 @@ const LectureCard: React.FC<LectureCardProps> = ({
                 left: '50%',
                 top: '50%',
                 transform: 'translate(-50%, -50%)',
-                color: '#fff',
+                color: theme.palette.common.white,
               }}
             >
               <svg
@@ -311,14 +315,14 @@ const LectureCard: React.FC<LectureCardProps> = ({
                 <Chip
                   label={displayStatus}
                   sx={{
-                    ...getAttendanceStyles(attendanceStatus),
+                    ...getAttendanceStyles(theme, attendanceStatus),
                     fontSize: '14px',
                     fontWeight: 500,
                     height: 'auto',
                     padding: '10px',
                     borderRadius: '14px',
                     border: '1px solid',
-                    borderColor: getAttendanceStyles(attendanceStatus).color,
+                    borderColor: getAttendanceStyles(theme, attendanceStatus).color,
                     '& .MuiChip-label': {
                       padding: 0,
                     },
@@ -410,7 +414,9 @@ const LectureCard: React.FC<LectureCardProps> = ({
                             <Typography
                               sx={{
                                 fontSize: '18px',
-                                color: item.disabled ? '#BDBDBD' : '#777777',
+                                color: item.disabled
+                                  ? theme.palette.text.disabled
+                                  : theme.palette.text.secondary,
                                 lineHeight: '20px',
                                 fontWeight: 400,
                               }}
@@ -450,7 +456,7 @@ const LectureCard: React.FC<LectureCardProps> = ({
                 <Typography
                   variant="body2"
                   sx={{
-                    color: '#000',
+                    color: theme.palette.text.primary,
                     fontSize: '14px',
                     fontStyle: 'normal',
                     fontWeight: 400,
@@ -475,7 +481,7 @@ const LectureCard: React.FC<LectureCardProps> = ({
                   justifyContent: 'center',
                   alignItems: 'center',
                   borderRadius: theme.spacing(4.5),
-                  background: '#8A18FF',
+                  background: theme.palette.primary.main,
                 }}
                 variant="contained"
               >

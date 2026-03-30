@@ -6,6 +6,7 @@ import { Button } from '../../../../atom/button';
 import { ButtonProps } from '../../../../atom/button/Button';
 import { Typography } from '../../../../atom/typography';
 import { INavigationItem } from '../../types';
+import { CoreTheme, useCoreTheme } from '../../../../../theme/core-theme';
 
 export type INavigationSubMenuItemProps = ButtonProps;
 
@@ -23,6 +24,7 @@ const NavigationSubMenuItem: FC<NavigationSubMenuItemProps> = ({
   onItemClick,
   ...otherProps
 }) => {
+  const theme = useCoreTheme() as CoreTheme;
   const onClick = (e: SyntheticEvent): void => {
     e.preventDefault();
     onItemClick(e, item);

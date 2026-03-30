@@ -1,5 +1,6 @@
 import React from 'react';
 import { Box, Typography, SxProps, Theme, styled } from '@mui/material';
+import { CoreTheme, useCoreTheme } from '../../../theme/core-theme';
 
 export interface InstructorOption {
   value: string;
@@ -22,7 +23,7 @@ export interface InstructorListProps {
 const Outer = styled(Box)(({ theme }) => ({
   padding: theme.spacing(11),
   borderRadius: theme.spacing(9),
-  background: '#FFFFFF',
+  background: theme.palette.background.paper,
   boxShadow: '0 0 20px 0 rgba(0, 0, 0, 0.10)',
   border: 'none',
   width: '100%',
@@ -30,16 +31,16 @@ const Outer = styled(Box)(({ theme }) => ({
   boxSizing: 'border-box',
 }));
 
-const Title = styled(Typography)(() => ({
-  color: '#1E1E1EEE',
+const Title = styled(Typography)(({ theme }) => ({
+  color: (theme as CoreTheme).vd.palette.textStrong,
   fontSize: '20px',
   fontStyle: 'normal',
   fontWeight: 600,
   lineHeight: 'normal',
 }));
 
-const Subtitle = styled(Typography)(() => ({
-  color: '#777777EE',
+const Subtitle = styled(Typography)(({ theme }) => ({
+  color: (theme as CoreTheme).vd.palette.textMuted,
   fontSize: '18px',
   fontStyle: 'normal',
   fontWeight: 400,
@@ -65,16 +66,17 @@ const Card = styled('button')<{
   disabled?: boolean;
   colorscheme?: string;
 }>(({ theme, selected, disabled, colorscheme }) => {
+  const theme = useCoreTheme() as CoreTheme;
   const colorSchemes: Record<string, { bg: string; border: string; ratingColor: string }> = {
     yellow: {
-      bg: 'linear-gradient(180deg, #FFF 0%, #FFF4DC 100%)',
+      bg: `linear-gradient(180deg, ${theme.palette.common.white} 0%, #FFF4DC 100%)`,
       border: '#FDE1AA',
       ratingColor: '#886B33',
     },
     purple: {
-      bg: 'linear-gradient(180deg, #FFF 0%, #F6EDFF 100%)',
+      bg: `linear-gradient(180deg, ${theme.palette.common.white} 0%, #F6EDFF 100%)`,
       border: '#E1BFFF',
-      ratingColor: '#8A18FF',
+      ratingColor: (theme as CoreTheme).vd.palette.accentPrimary,
     },
   };
 
@@ -120,8 +122,8 @@ const Card = styled('button')<{
   return base;
 });
 
-const InstructorName = styled(Typography)(() => ({
-  color: '#1E1E1E',
+const InstructorName = styled(Typography)(({ theme }) => ({
+  color: (theme as CoreTheme).vd.palette.textStrong,
   textAlign: 'center',
   fontSize: '22px',
   fontStyle: 'normal',
@@ -134,8 +136,8 @@ const InstructorName = styled(Typography)(() => ({
   width: '100%',
 }));
 
-const SemesterName = styled(Typography)(() => ({
-  color: '#1E1E1E',
+const SemesterName = styled(Typography)(({ theme }) => ({
+  color: (theme as CoreTheme).vd.palette.textStrong,
   textAlign: 'center',
   fontSize: '22px',
   fontStyle: 'normal',

@@ -71,10 +71,10 @@ const StatItem = styled(Box)(({ theme }) => ({
   gap: theme.spacing(2),
 }));
 
-const StyledBadge = styled(Badge)(() => ({
+const StyledBadge = styled(Badge)(({ theme }) => ({
   '& .MuiBadge-badge': {
-    backgroundColor: '#FF7829',
-    color: '#fff',
+    backgroundColor: (theme as CoreTheme).vd.palette.accentSecondary,
+    color: theme.palette.common.white,
     fontWeight: 600,
     fontSize: '14px',
     borderRadius: '50%',
@@ -117,14 +117,14 @@ const TopBar: React.FC<TopBarProps> = ({
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              backgroundColor: '#ffffff',
+              backgroundColor: theme.palette.background.paper,
               boxShadow: '0 10px 15px -3px rgba(0,0,0,0.05), 0 4px 6px -2px rgba(0,0,0,0.03)',
             }}
           >
             <IconButton
               onClick={onMenuClick}
               sx={{
-                color: '#000',
+                color: theme.palette.text.primary,
                 transition: 'transform 0.1s ease',
                 transform: isSidebarExpanded ? 'rotate(90deg)' : 'rotate(0deg)',
                 '&:hover': { backgroundColor: 'transparent' },
@@ -141,14 +141,8 @@ const TopBar: React.FC<TopBarProps> = ({
 
         <CollegeInfo>
           <IconButton onClick={onLogoClick}>
-            {collegeLogo ? (
+            {collegeLogo && (
               <Avatar src={collegeLogo} alt={`college logo`} />
-            ) : (
-              <img
-                src="https://images.ctfassets.net/wrc4czfp4sk8/4LUdrH0t4U1C85faXgaj8O/3a268801a825ddb4652e1a33d91df655/a19c08cf0281aa052e17edc302ef904b1c753e86.png"
-                alt="Vedam Logo"
-                style={{ width: '161px', height: '78px', objectFit: 'cover' }}
-              />
             )}
           </IconButton>
         </CollegeInfo>
@@ -165,7 +159,7 @@ const TopBar: React.FC<TopBarProps> = ({
             <Typography
               sx={{
                 fontSize: '18px',
-                color: '#484848',
+                color: theme.palette.grey[700],
                 fontWeight: 600,
               }}
             >
@@ -182,7 +176,7 @@ const TopBar: React.FC<TopBarProps> = ({
             <Typography
               sx={{
                 fontSize: '18px',
-                color: '#484848',
+                color: theme.palette.grey[700],
                 fontWeight: 600,
               }}
             >
@@ -214,7 +208,7 @@ const TopBar: React.FC<TopBarProps> = ({
                 fontWeight: 500,
                 fontSize: '16px',
                 lineHeight: '19px',
-                color: '#000000',
+                color: theme.palette.text.primary,
               }}
             >
               {studentName}
@@ -225,7 +219,7 @@ const TopBar: React.FC<TopBarProps> = ({
                   fontWeight: 400,
                   fontSize: '12px',
                   lineHeight: '14px',
-                  color: '#A0A0A0',
+                  color: theme.palette.grey[500],
                 }}
               >
                 {label} {studentId}

@@ -1,8 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import VideoPlayerModal from '../../../component/organism/video-player-modal/VideoPlayerModal';
 import { useState } from 'react';
-import { Box } from '@mui/material';
+import { Box, useTheme } from '@mui/material';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
+import { alpha } from '@mui/material/styles';
+import { CoreTheme, useCoreTheme } from '../../../theme/core-theme';
 
 const meta: Meta<typeof VideoPlayerModal> = {
   title: 'Organism/VideoPlayerModal',
@@ -35,57 +37,62 @@ export default meta;
 type Story = StoryObj<typeof VideoPlayerModal>;
 
 // Play button component to trigger the modal
-const VideoPlayButton = ({ onClick, style = {} }: { onClick: () => void; style?: any }) => (
-  <Box
-    sx={{
-      position: 'relative',
-      display: 'inline-block',
-      borderRadius: '12px',
-      overflow: 'hidden',
-      cursor: 'pointer',
-      ...style,
-    }}
-    onClick={onClick}
-  >
-    <img
-      src="https://via.placeholder.com/400x225/4A90E2/FFFFFF?text=Video+Thumbnail"
-      alt="Video thumbnail"
-      style={{
-        width: '100%',
-        height: '100%',
-        display: 'block',
-      }}
-    />
+const VideoPlayButton = ({ onClick, style = {} }: { onClick: () => void; style?: any }) => {
+  
+
+  const theme = useCoreTheme() as CoreTheme;
+  return (
     <Box
       sx={{
-        position: 'absolute',
-        top: '50%',
-        left: '50%',
-        transform: 'translate(-50%, -50%)',
-        backgroundColor: 'rgba(0, 0, 0, 0.7)',
-        borderRadius: '50%',
-        width: 60,
-        height: 60,
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        '&:hover': {
-          backgroundColor: 'rgba(0, 0, 0, 0.8)',
-          transform: 'translate(-50%, -50%) scale(1.1)',
-        },
-        transition: 'all 0.2s ease',
+        position: 'relative',
+        display: 'inline-block',
+        borderRadius: '12px',
+        overflow: 'hidden',
+        cursor: 'pointer',
+        ...style,
       }}
+      onClick={onClick}
     >
-      <PlayArrowIcon
-        sx={{
-          color: 'white',
-          fontSize: '32px',
-          marginLeft: '4px',
+      <img
+        src="https://via.placeholder.com/400x225/4A90E2/FFFFFF?text=Video+Thumbnail"
+        alt="Video thumbnail"
+        style={{
+          width: '100%',
+          height: '100%',
+          display: 'block',
         }}
       />
+      <Box
+        sx={{
+          position: 'absolute',
+          top: '50%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
+          backgroundColor: alpha(theme.palette.common.black, 0.7),
+          borderRadius: '50%',
+          width: 60,
+          height: 60,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          '&:hover': {
+            backgroundColor: alpha(theme.palette.common.black, 0.8),
+            transform: 'translate(-50%, -50%) scale(1.1)',
+          },
+          transition: 'all 0.2s ease',
+        }}
+      >
+        <PlayArrowIcon
+          sx={{
+            color: theme.palette.common.white,
+            fontSize: '32px',
+            marginLeft: '4px',
+          }}
+        />
+      </Box>
     </Box>
-  </Box>
-);
+  );
+};
 
 const Template = (args: any) => {
   const [open, setOpen] = useState(false);

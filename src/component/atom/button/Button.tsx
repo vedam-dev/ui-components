@@ -49,8 +49,9 @@ const Button: FC<ButtonProps> = ({
   rightIconTooltip,
   ...buttonProps
 }) => {
-  const theme = useCoreTheme() as CoreTheme;
+  
 
+  const theme = useCoreTheme() as CoreTheme;
   const useMaterialButtons = theme.vd.useMaterialButtons;
 
   const variant: ButtonVariant = (buttonProps.variant ?? 'contained') as ButtonVariant;
@@ -116,13 +117,13 @@ const Button: FC<ButtonProps> = ({
             {/* Tooltip bubble */}
             <Box
               sx={{
-                background: '#FFFFFF',
+                background: theme.palette.background.paper,
                 borderRadius: '12px',
                 padding: '8px 16px',
                 boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.15)',
                 fontSize: '14px',
                 fontWeight: 500,
-                color: '#000000',
+                color: theme.palette.text.primary,
               }}
             >
               {text}
@@ -138,7 +139,7 @@ const Button: FC<ButtonProps> = ({
                 height: 0,
                 borderLeft: '8px solid transparent',
                 borderRight: '8px solid transparent',
-                borderTop: '8px solid #FFFFFF',
+                borderTop: `8px solid ${theme.palette.common.white}`,
                 filter: 'drop-shadow(0px 2px 2px rgba(0, 0, 0, 0.1))',
               }}
             />
@@ -359,20 +360,19 @@ const buttonStyles = (
   // Downloadable variant — uses flexible layout with gap
   if (isDownloadable) {
     defaultStyles.borderRadius = '18px';
-    defaultStyles.border = '1px solid #FF7829';
-    defaultStyles.background = '#FFF';
+    defaultStyles.border = `1px solid ${theme.vd.palette.accentSecondary}`;
+    defaultStyles.background = theme.palette.background.paper;
     defaultStyles.padding = '12px 14px';
     defaultStyles.position = 'relative';
-    defaultStyles.color = '#FF7829';
+    defaultStyles.color = theme.vd.palette.accentSecondary;
     defaultStyles.minWidth = 'auto';
     defaultStyles.fontWeight = 500;
     defaultStyles.fontSize = '18px';
 
-    // Hover / active / focus styles for downloadable
     defaultStyles['&:hover, &:active, &:focus-visible'] = {
-      backgroundColor: '#FFF',
-      borderColor: '#FF7829',
-      color: '#FF7829',
+      backgroundColor: theme.palette.background.paper,
+      borderColor: theme.vd.palette.accentSecondary,
+      color: theme.vd.palette.accentSecondary,
     };
   }
 

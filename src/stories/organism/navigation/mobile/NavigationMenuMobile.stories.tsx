@@ -3,10 +3,10 @@ import type { Meta, StoryObj } from '@storybook/react';
 import MonoToneToken from '../../../../component/atom/icon/MonoToneToken';
 import MonoToneWallet from '../../../../component/atom/icon/MonoToneWallet';
 import React from 'react';
-import { useCoreTheme } from '../../../../theme/core-theme';
 import WVRed80 from '../../../../component/atom/icon/lottery/wv/WVRed80';
 import NavigationMenu from '../../../../component/organism/navigation/mobile/NavigationMenu';
 import { NavigationMenuItems } from '../../../../component/organism/navigation/types';
+import { CoreTheme, useCoreTheme } from '../../../../theme/core-theme';
 
 const meta = {
   title: 'Organism/Navigation/Mobile',
@@ -250,7 +250,7 @@ export const Main: Story = {
     appBarProps: {
       style: {
         width: '100%',
-        backgroundColor: '#fff',
+        backgroundColor: 'var(--mui-palette-common-white)',
       },
     },
     defaultIconSize: {

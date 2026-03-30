@@ -2,6 +2,7 @@ import React from 'react';
 import { Box, Typography, Rating as MuiRating } from '@mui/material';
 import StarIcon from '@mui/icons-material/Star';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
+import { CoreTheme, useCoreTheme } from '../../../theme/core-theme';
 
 type Props = {
   title?: string;
@@ -13,7 +14,10 @@ type Props = {
   sx?: any;
 };
 
-const RatingCard: React.FC<Props> = ({
+const RatingCard: React.FC<Props> = (props) => {
+  
+  const theme = useCoreTheme() as CoreTheme;
+  const {
   title = 'Overall Rating',
   value = 4,
   onChange,
@@ -21,7 +25,8 @@ const RatingCard: React.FC<Props> = ({
   max = 5,
   backgroundImage = 'https://acjlsquedaotbhbxmtee.supabase.co/storage/v1/object/public/vedam-website-assets/images/videoInfo/Container-2.png',
   sx,
-}) => {
+} = props;
+
   return (
     <Box
       sx={{
@@ -49,13 +54,13 @@ const RatingCard: React.FC<Props> = ({
           position: 'relative',
         },
         '& .MuiRating-iconFilled': {
-          color: '#FBBC01',
+          color: theme.palette.warning.main,
         },
         '& .MuiRating-iconHover': {
-          color: '#FBBC01',
+          color: theme.palette.warning.main,
         },
         '& .MuiRating-iconEmpty': {
-          color: '#e5e7eb',
+          color: theme.vd.palette.borderDefault,
         },
       }}
       aria-label={title}
@@ -64,7 +69,7 @@ const RatingCard: React.FC<Props> = ({
         <Typography
           sx={{
             fontWeight: 500,
-            color: (t) => (t.palette.mode === 'light' ? '#111' : '#fff'),
+            color: theme.palette.mode === 'light' ? theme.vd.palette.textStrong : theme.palette.common.white,
             zIndex: 2,
             position: 'relative',
             textAlign: 'center',

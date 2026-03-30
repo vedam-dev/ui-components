@@ -1,7 +1,7 @@
 import { AppBar as MuiAppBar, AppBarProps as MuiAppBarProps } from '@mui/material';
 import { FC } from 'react';
-import { CoreTheme, useCoreTheme } from '../../../theme/core-theme';
 import SxOverride from '../../../util/SxOverride';
+import { CoreTheme, useCoreTheme } from '../../../theme/core-theme';
 
 export interface AppBarProps extends MuiAppBarProps {
   /**

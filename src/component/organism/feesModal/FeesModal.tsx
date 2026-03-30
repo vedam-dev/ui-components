@@ -5,6 +5,7 @@ import { Fragment } from 'react';
 import { Modal, Box, Typography, Card, IconButton, useTheme } from '@mui/material';
 import Button from '../../../component/atom/button/Button';
 import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
+import { CoreTheme, useCoreTheme } from '../../../theme/core-theme';
 
 export interface FeeItem {
   id: string;
@@ -39,7 +40,7 @@ const FeeSelectionModal: React.FC<FeeSelectionModalProps> = ({
   infoItems = [],
   isButtonDisabled,
 }) => {
-  const theme = useTheme();
+  const theme = useTheme() as CoreTheme;
 
   const getItemBackgroundColor = (index: number, bgColor?: string) => {
     if (bgColor) return bgColor;
@@ -85,7 +86,7 @@ const FeeSelectionModal: React.FC<FeeSelectionModalProps> = ({
           <Typography
             variant="h5"
             sx={{
-              color: '#1E1E1E',
+              color: theme.vd.palette.textStrong,
               fontSize: '24px',
               fontWeight: 500,
             }}
@@ -93,7 +94,7 @@ const FeeSelectionModal: React.FC<FeeSelectionModalProps> = ({
             {title}
           </Typography>
           <IconButton onClick={onClose} sx={{ p: 0, display: 'flex' }}>
-            <CancelOutlinedIcon sx={{ width: 27, height: 27, fill: '#1E1E1E' }} />
+            <CancelOutlinedIcon sx={{ width: 27, height: 27, fill: theme.vd.palette.textStrong }} />
           </IconButton>
         </Box>
 
@@ -278,7 +279,7 @@ const FeeSelectionModal: React.FC<FeeSelectionModalProps> = ({
           <Typography
             variant="h5"
             sx={{
-              color: '#1E1E1E',
+              color: theme.vd.palette.textStrong,
               fontSize: '18px',
               fontWeight: 500,
             }}

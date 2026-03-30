@@ -1,8 +1,8 @@
 import React from 'react';
 import { Box, Typography, IconButton } from '@mui/material';
-import { CoreTheme, useCoreTheme } from '../../../theme/core-theme';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+import { CoreTheme, useCoreTheme } from '../../../theme/core-theme';
 
 export interface CustomPaginationProps {
   label?: string;
@@ -21,8 +21,9 @@ export const CustomPagination: React.FC<CustomPaginationProps> = ({
   disabled = false,
   siblingCount = 1,
 }) => {
-  const theme = useCoreTheme() as CoreTheme;
+  
 
+  const theme = useCoreTheme() as CoreTheme;
   const generatePaginationRange = () => {
     const range: (number | string)[] = [];
 
@@ -155,7 +156,7 @@ export const CustomPagination: React.FC<CustomPaginationProps> = ({
                   : isSelected
                     ? theme.palette.primary.main
                     : theme.palette.text.primary,
-                backgroundColor: isSelected ? '#F3E8FF' : 'transparent',
+                backgroundColor: isSelected ? theme.vd.palette.accentPrimaryLight : 'transparent',
                 border: isSelected
                   ? `1px solid ${disabled ? theme.palette.text.disabled : theme.palette.primary.main}`
                   : 'none',

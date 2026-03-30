@@ -3,7 +3,7 @@ import { styled } from '@mui/system';
 import { Box } from '../../atom/box';
 import { Typography } from '@mui/material';
 import { Button } from '../../atom/button';
-import { useCoreTheme } from '../../../theme/core-theme';
+import { CoreTheme, useCoreTheme } from '../../../theme/core-theme';
 
 const StyledLogo = styled('img')({
   width: '213px',

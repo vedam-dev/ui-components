@@ -55,6 +55,7 @@ const SidebarDrawer: FC<SidebarDrawerProps> = ({
   onToggleExpand,
   ...rest
 }) => {
+  const theme = useCoreTheme() as CoreTheme;
   const { palette } = useCoreTheme() as CoreTheme;
   const [internalExpanded, setInternalExpanded] = useState(defaultExpanded);
   const [expandedMenus, setExpandedMenus] = useState<Record<string, boolean>>({});
@@ -66,7 +67,7 @@ const SidebarDrawer: FC<SidebarDrawerProps> = ({
   })();
 
   const [activeId, setActiveId] = useState<string | null>(initialActiveId);
-  const theme = useCoreTheme() as CoreTheme;
+  
 
   useEffect(() => {
     const selected = items.find((it) => it.selected);

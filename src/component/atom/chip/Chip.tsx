@@ -1,7 +1,7 @@
 import React, { ComponentProps, FC, MouseEvent } from 'react';
 import { Chip as BaseChip } from '@mui/material';
-import { CoreTheme, useCoreTheme } from '../../../theme/core-theme';
 import SxOverride from '../../../util/SxOverride';
+import { CoreTheme, useCoreTheme } from '../../../theme/core-theme';
 
 type StatusVariants = 'success' | 'error' | 'warning';
 type BaseVariants = 'filled' | 'outlined';
@@ -41,6 +41,7 @@ const Chip: FC<ChipProps> = ({
   sx,
   ...props
 }) => {
+  
   const theme = useCoreTheme() as CoreTheme;
   const { palette } = theme;
 

@@ -110,3 +110,5 @@ export { default as defaultTheme } from './theme/customer/default';
 export { default as vedamTheme } from './theme/customer/vedam';
 export { default as ksTheme } from './theme/customer/ks';
 export { default as ks3Theme } from './theme/customer/ks3';
+export { default as miraeTheme } from './theme/customer/mirae';
+export { default as globexTheme } from './theme/customer/globex';

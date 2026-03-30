@@ -1,6 +1,6 @@
 import { FC } from 'react';
-import { CoreTheme, useCoreTheme } from '../../../theme/core-theme';
 import { Typography } from '@mui/material';
+import { CoreTheme, useCoreTheme } from '../../../theme/core-theme';
 
 const TestComponent: FC = () => {
   const { isStorybook, palette } = useCoreTheme() as CoreTheme;

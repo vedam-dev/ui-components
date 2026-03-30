@@ -29,8 +29,9 @@ const OptionRow: React.FC<{
   selected: boolean;
   onSelect: () => void;
 }> = ({ option, selected, onSelect }) => {
-  const theme = useCoreTheme() as CoreTheme;
+  
 
+  const theme = useCoreTheme() as CoreTheme;
   return (
     <Box
       role="radio"
@@ -50,8 +51,11 @@ const OptionRow: React.FC<{
         px: theme.spacing(6.5),
         py: theme.spacing(4),
         borderRadius: theme.shape.borderRadius,
-        border: () => (selected ? `2px solid #8A18FF` : `1px solid #CDCDCD`),
-        backgroundColor: (t) => (selected ? t.palette.action.hover : 'white'),
+        border: () =>
+          selected
+            ? `2px solid ${theme.vd.palette.accentPrimary}`
+            : `1px solid ${theme.vd.palette.borderStrong}`,
+        backgroundColor: (t) => (selected ? t.palette.action.hover : t.palette.common.white),
         cursor: 'pointer',
       }}
     >
@@ -65,7 +69,7 @@ const OptionRow: React.FC<{
         {selected ? (
           <RadioButtonCheckedIcon
             sx={{
-              color: '#8A18FF',
+              color: theme.vd.palette.accentPrimary,
               fontSize: 20,
               width: '18px',
               height: '18px',
@@ -74,7 +78,7 @@ const OptionRow: React.FC<{
           />
         ) : (
           <RadioButtonUncheckedIcon
-            sx={{ color: '#8A18FF', width: '18px', height: '18px' }}
+            sx={{ color: theme.vd.palette.accentPrimary, width: '18px', height: '18px' }}
             aria-hidden
           />
         )}
@@ -104,7 +108,7 @@ const SurveyOptions: React.FC<SurveyOptionsProps> = ({
   sx = {},
   showGlobalOther = false,
 }) => {
-  const theme = useCoreTheme() as CoreTheme;
+  
 
   const [internalSelected, setInternalSelected] = useState<string | null>(value ?? null);
   const [internalText, setInternalText] = useState<string>(textValue ?? '');
@@ -157,7 +161,7 @@ const SurveyOptions: React.FC<SurveyOptionsProps> = ({
         <Typography
           sx={{
             mb: theme.spacing(2),
-            color: '#1E1E1E',
+            color: theme.vd.palette.textStrong,
             fontSize: '22px',
             fontStyle: 'normal',
             fontWeight: 400,
@@ -221,7 +225,7 @@ const SurveyOptions: React.FC<SurveyOptionsProps> = ({
             sx={(theme) => ({
               '& .MuiOutlinedInput-root': {
                 borderRadius: theme.shape.borderRadius,
-                bgcolor: 'white',
+                bgcolor: theme.palette.common.white,
                 '& fieldset': { borderRadius: theme.shape.borderRadius },
               },
             })}

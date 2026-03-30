@@ -2,8 +2,8 @@
 
 import React, { useEffect, useState } from 'react';
 import { Box, Typography, Button } from '@mui/material';
-import { useCoreTheme, CoreTheme } from '../../../theme/core-theme';
 import CalendarTimelineItem from './CalendarTimelineItem';
+import { CoreTheme, useCoreTheme } from '../../../theme/core-theme';
 
 interface ClassSession {
   date: string;
@@ -18,6 +18,7 @@ interface CalendarTimelineProps {
 }
 
 const CalendarTimeline: React.FC<CalendarTimelineProps> = ({ events, onViewFullCalendar }) => {
+  
   const theme = useCoreTheme() as CoreTheme;
   const [eventsWithStatus, setEventsWithStatus] = useState<
     (ClassSession & { status: 'completed' | 'ongoing' | 'upcoming' })[]
@@ -136,11 +137,11 @@ const CalendarTimeline: React.FC<CalendarTimelineProps> = ({ events, onViewFullC
           onClick={onViewFullCalendar}
           sx={{
             backgroundColor: 'transparent',
-            color: '#8A18FF',
+            color: theme.palette.primary.main,
             fontSize: '16px',
             fontWeight: 400,
             textTransform: 'none',
-            fontFamily: 'Outfit, sans-serif',
+            fontFamily: theme.typography.fontFamily,
             textDecoration: 'underline',
             '&:hover': {
               backgroundColor: 'transparent',

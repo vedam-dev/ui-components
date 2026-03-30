@@ -1,5 +1,6 @@
 import { CoreTheme, createCoreTheme } from '../core-theme';
 import { createTheme } from '@mui/material';
+import { CoreTheme, useCoreTheme } from '../core-theme';
 
 const muiTheme = createTheme();
 
@@ -24,6 +25,28 @@ const defaultTheme: CoreTheme = createCoreTheme({
       buttonS: {
         ...muiTheme.typography.button,
       },
+    },
+    palette: {
+      surfaceDefault: '#FFFFFF',
+      surfaceSubtle: '#F5F5F5',
+      surfaceMuted: '#EEEEEE',
+
+      borderDefault: '#E0E0E0',
+      borderMuted: '#EEEEEE',
+      borderStrong: '#BDBDBD',
+      borderSubtle: '#E0E0E0',
+
+      textStrong: '#212121',
+      textMuted: '#757575',
+      textSubtle: '#9E9E9E',
+
+      statusActive: '#4CAF50',
+      statusInactive: '#9E9E9E',
+      statusPending: '#FF9800',
+
+      accentPrimary: '#1976D2',
+      accentSecondary: '#9C27B0',
+      accentPrimaryLight: '#E3F2FD',
     },
   },
 });

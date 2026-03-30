@@ -367,7 +367,6 @@ const sampleEvents: CalendarEvent[] = [
     start: '2024-06-12T08:30:00',
     end: '2024-06-12T10:00:00',
     isImportant: true,
-    color: 'red',
   },
   {
     id: 44,

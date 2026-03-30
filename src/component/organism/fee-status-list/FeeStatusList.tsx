@@ -1,7 +1,7 @@
 import React, { ComponentProps } from 'react';
 import { Box, Typography } from '@mui/material';
-import { useCoreTheme } from '../../../theme/core-theme';
 import { Button } from '../../atom/button';
+import { CoreTheme, useCoreTheme } from '../../../theme/core-theme';
 
 export enum FeeStatus {
   OVERDUE = 'overdue',
@@ -55,10 +55,10 @@ const FeeStatusList: React.FC<FeeStatusListProps> = ({ status, feeItems, onPayNo
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
-        background: 'linear-gradient(180deg, #EDDBFF 0%, #FFE6CE 100%)',
+        background: `linear-gradient(180deg, ${theme.vd.palette.accentPrimaryLight} 0%, ${theme.palette.warning.light} 100%)`,
         borderRadius: theme.spacing(9),
         padding: theme.spacing(10, 12),
-        border: '1px solid #7B2CBF',
+        border: `1px solid ${theme.vd.palette.accentPrimary}`,
         position: 'relative',
         width: '100%',
         ...props.sx,
@@ -165,7 +165,7 @@ const FeeStatusList: React.FC<FeeStatusListProps> = ({ status, feeItems, onPayNo
           <Typography
             variant="h6"
             sx={{
-              color: '#1E1E1E',
+              color: theme.vd.palette.textStrong,
               fontWeight: '600',
               fontSize: '26px',
               whiteSpace: 'nowrap',
@@ -210,7 +210,7 @@ const FeeStatusList: React.FC<FeeStatusListProps> = ({ status, feeItems, onPayNo
               whiteSpace: 'nowrap',
               overflow: 'hidden',
               textOverflow: 'ellipsis',
-              color: '#1E1E1E',
+              color: theme.vd.palette.textStrong,
               fontSize: '20px',
             }}
           >

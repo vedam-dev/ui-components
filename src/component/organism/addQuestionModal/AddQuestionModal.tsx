@@ -13,6 +13,7 @@ import {
   ToggleButtonGroup,
   ToggleButton,
 } from '@mui/material';
+import type { CoreTheme } from '../../../theme/core-theme';
 
 export interface QuestionType {
   id: string;
@@ -103,7 +104,7 @@ const AddQuestionModal: React.FC<AddQuestionModalProps> = ({
   initialData,
   requireMaximumMarks = false,
 }) => {
-  const theme = useTheme();
+  const theme = useTheme() as CoreTheme;
 
   const [questionTitle, setQuestionTitle] = useState<string>(initialData?.questionTitle ?? '');
   const [questionLabel, setQuestionLabel] = useState<string>(initialData?.questionLabel ?? '');
@@ -178,16 +179,16 @@ const AddQuestionModal: React.FC<AddQuestionModalProps> = ({
     '& .MuiOutlinedInput-root': {
       borderRadius: '12px',
       lineHeight: '20px',
-      backgroundColor: '#FFF',
+      backgroundColor: theme.palette.common.white,
       fontSize: '16px',
       '& fieldset': {
-        borderColor: '#C7C7C7',
+        borderColor: theme.palette.grey[300],
       },
       '&:hover fieldset': {
-        borderColor: '#C7C7C7',
+        borderColor: theme.palette.grey[300],
       },
       '&.Mui-focused fieldset': {
-        borderColor: '#C7C7C7',
+        borderColor: theme.palette.grey[300],
         borderWidth: '1px',
       },
     },
@@ -311,11 +312,11 @@ const AddQuestionModal: React.FC<AddQuestionModalProps> = ({
             sx={{
               gap: '14px',
               '& .MuiToggleButtonGroup-grouped': {
-                border: '1px solid #C7C7C7',
+                border: `1px solid ${theme.palette.grey[300]}`,
                 borderRadius: '100px !important',
                 margin: 0,
                 '&:not(:first-of-type)': {
-                  borderLeft: '1px solid #C7C7C7',
+                  borderLeft: `1px solid ${theme.palette.grey[300]}`,
                   marginLeft: 0,
                 },
               },
@@ -326,25 +327,25 @@ const AddQuestionModal: React.FC<AddQuestionModalProps> = ({
                 textTransform: 'none',
                 padding: '12px 24px',
                 minWidth: '122px',
-                color: '#666',
-                backgroundColor: '#FFF',
+                color: theme.palette.text.secondary,
+                backgroundColor: theme.palette.common.white,
                 '&.Mui-selected': {
                   '&[value="EASY"]': {
                     bgcolor: '#E8F5E9',
-                    color: '#42B657',
-                    border: '1px solid #42B657 !important',
+                    color: theme.vd.palette.statusActive,
+                    border: `1px solid ${theme.vd.palette.statusActive} !important`,
                     '&:hover': { bgcolor: '#E8F5E9' },
                   },
                   '&[value="MEDIUM"]': {
                     bgcolor: '#FFF9E6',
-                    color: '#D2A82F',
-                    border: '1px solid #D2A82F !important',
+                    color: theme.palette.warning.main,
+                    border: `1px solid ${theme.palette.warning.main} !important`,
                     '&:hover': { bgcolor: '#FFF9E6' },
                   },
                   '&[value="HARD"]': {
                     bgcolor: '#FFEBEE',
-                    color: '#E02222',
-                    border: '1px solid #E02222 !important',
+                    color: theme.palette.error.main,
+                    border: `1px solid ${theme.palette.error.main} !important`,
                     '&:hover': { bgcolor: '#FFEBEE' },
                   },
                 },
@@ -387,8 +388,8 @@ const AddQuestionModal: React.FC<AddQuestionModalProps> = ({
                     alignItems: 'center',
                     padding: '12px 10px',
                     borderRadius: '12px',
-                    border: '1px solid #C7C7C7',
-                    backgroundColor: '#FFF',
+                    border: `1px solid ${theme.palette.grey[300]}`,
+                    backgroundColor: theme.palette.common.white,
                     cursor: 'pointer',
                     transition: 'all 0.2s ease',
                   }}
@@ -399,7 +400,7 @@ const AddQuestionModal: React.FC<AddQuestionModalProps> = ({
                     sx={{
                       padding: 0,
                       marginRight: '12px',
-                      color: '#E0E0E0',
+                      color: theme.vd.palette.borderMuted,
                       '&.Mui-checked': {
                         color: theme.palette.primary.main,
                       },
@@ -444,7 +445,7 @@ const AddQuestionModal: React.FC<AddQuestionModalProps> = ({
               textTransform: 'none',
               '&:hover': {
                 border: `1px solid ${theme.palette.primary.main}`,
-                backgroundColor: '#F5F5F5',
+                backgroundColor: theme.vd.palette.surfaceMuted,
               },
             }}
           >
@@ -467,8 +468,8 @@ const AddQuestionModal: React.FC<AddQuestionModalProps> = ({
                 backgroundColor: theme.palette.primary.dark,
               },
               '&:disabled': {
-                backgroundColor: '#BDBDBD',
-                color: '#FFF',
+                backgroundColor: theme.palette.grey[400],
+                color: theme.palette.common.white,
               },
             }}
           >

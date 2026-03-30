@@ -1,7 +1,7 @@
 import React, { useState, useRef, useLayoutEffect } from 'react';
 import { Menu, MenuItem, Box, Typography } from '@mui/material';
-import { useCoreTheme } from '../../../theme/core-theme';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import { CoreTheme, useCoreTheme } from '../../../theme/core-theme';
 
 interface IconDropdownProps {
   label: string;
@@ -20,7 +20,8 @@ const IconDropdown: React.FC<IconDropdownProps> = ({
   autoWidth = false,
   minWidth = 120,
 }) => {
-  const theme = useCoreTheme();
+  
+  const theme = useCoreTheme() as CoreTheme;
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [selected, setSelected] = useState<string>(label);
   const [dropdownWidth, setDropdownWidth] = useState<number>(180);
@@ -81,8 +82,8 @@ const IconDropdown: React.FC<IconDropdownProps> = ({
           gap: theme.spacing(3),
           width: boxWidth,
           borderRadius: theme.spacing(3),
-          border: '1px solid #E7E7E7',
-          background: '#FFF',
+          border: `1px solid ${theme.vd.palette.borderDefault}`,
+          background: theme.palette.common.white,
           cursor: 'pointer',
           userSelect: 'none',
         }}

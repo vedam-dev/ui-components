@@ -1,0 +1,73 @@
+const colors = {
+  primaryP050: '#F3E5F5',
+  primaryP100: '#E1BEE7',
+  primaryP200: '#CE93D8',
+  primaryP300: '#BA68C8',
+  primaryP400: '#AB47BC',
+  primaryP500: '#9C27B0',
+  primaryP600Primary: '#6A1B9A',
+  primaryP700: '#4A148C',
+  primaryP800: '#38006B',
+  primaryP900: '#1A0033',
+
+  secondaryS050: '#E0F7FA',
+  secondaryS100: '#B2EBF2',
+  secondaryS200: '#80DEEA',
+  secondaryS300: '#4DD0E1',
+  secondaryS400: '#26C6DA',
+  secondaryS500Secondary: '#00838F',
+  secondaryS600: '#00695C',
+  secondaryS700: '#004D40',
+  secondaryS800: '#003D33',
+  secondaryS900: '#001F1A',
+
+  dangerD100: '#FFE2E2',
+  dangerD200: '#FFB3B3',
+  dangerD300: '#EB5757',
+  dangerD400Danger: '#C62828',
+
+  warningW100: '#FFF4DA',
+  warningW200: '#FFE0A3',
+  warningW300: '#F2B93B',
+  warningW400Warning: '#CC8A00',
+
+  infoI100: '#DCEEFF',
+  infoI200: '#9ECFFF',
+  infoI300: '#5CAEFF',
+  infoI400Info: '#2F80ED',
+
+  successSc100: '#DDF8E3',
+  successSc200: '#A8E9B6',
+  successSc300: '#4CAF50',
+  successSc400Success: '#2E7D32',
+
+  neutralsNWhite: '#FFFFFF',
+  neutralsN100: '#F3F4F8',
+  neutralsN200: '#DDE0EA',
+  neutralsN300: '#B5BAC9',
+  neutralsN400: '#8E95A9',
+  neutralsN500: '#6B7280',
+  neutralsN600: '#4B5563',
+  neutralsN700: '#374151',
+  neutralsN800: '#1F2937',
+  neutralsN900: '#111827',
+  neutralsNBlack: '#030712',
+
+  textColors1TxPrimary: '#111827',
+  textColors2TxSecondary: '#6B7280',
+  textColors3TxDisabled: '#B5BAC9',
+  textColors4TxWhite: '#FFFFFF',
+
+  shadowsY4: '#6A1B9A14',
+  shadowsY8: '#6A1B9A29',
+  shadowsY12: '#6A1B9A29',
+  shadowsY16: '#6A1B9A3D',
+
+  vedamRed: '#C62828',
+  vedamBlue: '#6A1B9A',
+  powerball: '#E4342D',
+  lottoAmerica: '#009ADA',
+  megaMillions: '#004FA3',
+};
+
+export default colors;

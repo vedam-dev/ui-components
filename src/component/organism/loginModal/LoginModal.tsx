@@ -12,15 +12,16 @@ interface LoginModalProps {
 }
 
 const LoginModal: React.FC<LoginModalProps> = ({
-  logo = 'https://images.ctfassets.net/wrc4czfp4sk8/4LUdrH0t4U1C85faXgaj8O/3a268801a825ddb4652e1a33d91df655/a19c08cf0281aa052e17edc302ef904b1c753e86.png',
+  logo,
   logoAlt = 'School Logo',
   logoHeight = 117,
   logoWidth = 208,
-  subtitle = 'Login with your registered email id with Vedam ',
+  subtitle = 'Login with your registered email id',
   onGoogleLoginClick,
 }) => {
-  const theme = useCoreTheme() as CoreTheme;
+  
 
+  const theme = useCoreTheme() as CoreTheme;
   return (
     <Paper
       elevation={3}
@@ -29,7 +30,7 @@ const LoginModal: React.FC<LoginModalProps> = ({
         borderRadius: theme.spacing(10),
         maxWidth: '550px',
         mx: 'auto',
-        background: 'linear-gradient(to bottom, #FF7829, #8A18FF)',
+        background: `linear-gradient(to bottom, ${theme.vd.palette.accentSecondary}, ${theme.vd.palette.accentPrimary})`,
       }}
     >
       <Box
@@ -38,7 +39,7 @@ const LoginModal: React.FC<LoginModalProps> = ({
           px: theme.spacing(7),
           textAlign: 'center',
           borderRadius: theme.spacing(9),
-          backgroundColor: 'white',
+          backgroundColor: theme.palette.common.white,
         }}
       >
         {logo && (
@@ -77,8 +78,8 @@ const LoginModal: React.FC<LoginModalProps> = ({
             px: theme.spacing(3),
             fontSize: '24px',
             fontWeight: 600,
-            color: '#E11C1C',
-            border: '1px solid #C5C5C5',
+            color: theme.palette.error.main,
+            border: `1px solid ${theme.vd.palette.borderStrong}`,
             borderRadius: theme.spacing(4),
             textTransform: 'none',
             justifyContent: 'left',

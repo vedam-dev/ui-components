@@ -1,7 +1,7 @@
 import BasePaper from '@mui/material/Paper';
 import { ComponentProps, FC } from 'react';
-import { CoreTheme, useCoreTheme } from '../../../theme/core-theme';
 import SxOverride from '../../../util/SxOverride';
+import { CoreTheme, useCoreTheme } from '../../../theme/core-theme';
 
 export interface IPaperProps {
   shadow?: 'y8' | 'y12' | 'y16' | 'none';

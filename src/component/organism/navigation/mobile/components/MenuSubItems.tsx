@@ -4,8 +4,8 @@ import { Typography, Theme, Box, Button } from '@mui/material';
 import { SxProps } from '@mui/system';
 import React, { SyntheticEvent } from 'react';
 import { SystemStyleObject } from '@mui/system/styleFunctionSx/styleFunctionSx';
-import { useCoreTheme } from '../../../../../theme/core-theme';
 import { INavigationItemMultiple } from '../../types';
+import { CoreTheme, useCoreTheme } from '../../../../../theme/core-theme';
 
 const MenuSubItems: React.FC<{
   onNavigationClick: (e: SyntheticEvent, item: INavigationItemMultiple) => void;

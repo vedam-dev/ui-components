@@ -1,6 +1,7 @@
 import React from 'react';
 import { Breadcrumbs, Typography, Box, SxProps, Theme } from '@mui/material';
 import { NavigateNext } from '@mui/icons-material';
+import { CoreTheme, useCoreTheme } from '../../../theme/core-theme';
 
 export interface BreadcrumbItem {
   label: string;
@@ -19,6 +20,8 @@ const DynamicBreadcrumbs: React.FC<DynamicBreadcrumbsProps> = ({
   separator = <NavigateNext fontSize="small" />,
   sx,
 }) => {
+  
+  const theme = useCoreTheme() as CoreTheme;
   return (
     <Box sx={{ ...sx }}>
       <Breadcrumbs
@@ -27,7 +30,7 @@ const DynamicBreadcrumbs: React.FC<DynamicBreadcrumbsProps> = ({
         sx={{
           '& .MuiBreadcrumbs-separator': {
             mx: 0.5,
-            color: '#6B7280',
+            color: theme.palette.text.secondary,
           },
         }}
       >
@@ -39,7 +42,7 @@ const DynamicBreadcrumbs: React.FC<DynamicBreadcrumbsProps> = ({
               <Typography
                 key={index}
                 sx={{
-                  color: '#8A18FF',
+                  color: theme.vd.palette.accentPrimary,
                   fontSize: '20px',
                   fontStyle: 'normal',
                   fontWeight: 400,
@@ -61,7 +64,7 @@ const DynamicBreadcrumbs: React.FC<DynamicBreadcrumbsProps> = ({
               href={item.href}
               onClick={item.onClick}
               sx={{
-                color: '#1E1E1E',
+                color: theme.vd.palette.textStrong,
                 fontSize: '20px',
                 fontStyle: 'normal',
                 fontWeight: 400,
@@ -70,7 +73,7 @@ const DynamicBreadcrumbs: React.FC<DynamicBreadcrumbsProps> = ({
                 cursor: item.href || item.onClick ? 'pointer' : 'default',
                 '&:hover': {
                   textDecoration: item.href || item.onClick ? 'underline' : 'none',
-                  color: item.href || item.onClick ? '#374151' : '#6B7280',
+                  color: item.href || item.onClick ? theme.palette.text.primary : theme.palette.text.secondary,
                 },
               }}
             >

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, Typography } from '@mui/material';
-import { useCoreTheme, CoreTheme } from '../../../theme/core-theme';
 import Button from '../../atom/button/Button';
+import { CoreTheme, useCoreTheme } from '../../../theme/core-theme';
 
 export interface StudentListItemNameProps {
   name: string;
@@ -9,6 +9,7 @@ export interface StudentListItemNameProps {
 }
 
 export const StudentListItemName: React.FC<StudentListItemNameProps> = ({ name, email }) => {
+  const theme = useCoreTheme() as CoreTheme;
   return (
     <Box
       sx={{
@@ -51,10 +52,10 @@ export interface StudentListItemStatusProps {
 }
 
 export const StudentListItemStatus: React.FC<StudentListItemStatusProps> = ({ status }) => {
-  const theme = useCoreTheme() as CoreTheme;
+  
 
   const getStatusColor = (status: string) => {
-    return status === 'Active' ? '#42B657' : '#777777';
+    return status === 'Active' ? theme.vd.palette.statusActive : theme.vd.palette.textMuted;
   };
 
   return (
@@ -70,7 +71,7 @@ export const StudentListItemStatus: React.FC<StudentListItemStatusProps> = ({ st
       <Typography
         variant="caption"
         sx={{
-          color: '#777',
+          color: theme.vd.palette.textMuted,
           fontSize: '16px',
           fontWeight: 500,
           marginBottom: '6px',
@@ -102,7 +103,7 @@ export interface StudentListItemButtonProps {
 }
 
 export const StudentListItemButton: React.FC<StudentListItemButtonProps> = ({ onClick }) => {
-  const theme = useCoreTheme() as CoreTheme;
+  
 
   return (
     <Box
@@ -117,8 +118,8 @@ export const StudentListItemButton: React.FC<StudentListItemButtonProps> = ({ on
         onClick={onClick}
         sx={{
           borderRadius: theme.spacing(3),
-          border: '2px solid #8A18FF',
-          color: '#8A18FF',
+          border: `2px solid ${theme.vd.palette.accentPrimary}`,
+          color: theme.vd.palette.accentPrimary,
           fontSize: '16px',
           fontWeight: 500,
           padding: theme.spacing(2, 14.75),
@@ -147,7 +148,7 @@ const StudentListItem: React.FC<StudentListItemProps> = ({
   onViewDetails,
   bgColor,
 }) => {
-  const theme = useCoreTheme() as CoreTheme;
+  
 
   return (
     <Box

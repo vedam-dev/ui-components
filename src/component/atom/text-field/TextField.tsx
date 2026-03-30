@@ -6,7 +6,7 @@ import {
   FormControl,
 } from '@mui/material';
 import React, { useState, useEffect } from 'react';
-import { useCoreTheme, CoreTheme } from '../../../theme/core-theme';
+import { CoreTheme, useCoreTheme } from '../../../theme/core-theme';
 
 interface TextFieldProps {
   label?: string;
@@ -21,6 +21,7 @@ const TextField: React.FC<TextFieldProps> = ({
   value: propValue,
   onChange,
 }) => {
+  
   const theme = useCoreTheme() as CoreTheme;
   const [internalValue, setInternalValue] = useState(propValue || '');
   const [validationError, setValidationError] = useState<string | null>(null);
@@ -67,7 +68,7 @@ const TextField: React.FC<TextFieldProps> = ({
         <Typography
           sx={{
             display: 'block',
-            color: '#1E1E1E',
+            color: theme.vd.palette.textStrong,
             fontSize: theme.spacing(5.5),
             fontWeight: 500,
           }}
@@ -104,17 +105,17 @@ const TextField: React.FC<TextFieldProps> = ({
             '& .MuiOutlinedInput-root': {
               borderRadius: theme.spacing(4),
               '& fieldset': {
-                borderColor: hasError ? theme.palette.error[400] : '#DCDCD0',
+                borderColor: hasError ? theme.palette.error[400] : theme.vd.palette.borderMuted,
                 borderRadius: theme.spacing(4),
               },
               '&:hover fieldset': {
-                borderColor: hasError ? theme.palette.error[400] : '#DCDCD0',
+                borderColor: hasError ? theme.palette.error[400] : theme.vd.palette.borderMuted,
               },
               '&.Mui-focused fieldset': {
-                borderColor: hasError ? theme.palette.error[400] : '#DCDCD0',
+                borderColor: hasError ? theme.palette.error[400] : theme.vd.palette.borderMuted,
               },
               '& input': {
-                color: '#1E1E1E',
+                color: theme.vd.palette.textStrong,
                 fontSize: theme.spacing(5.5),
                 fontWeight: 500,
               },

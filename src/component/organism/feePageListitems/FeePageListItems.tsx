@@ -2,7 +2,7 @@ import React from 'react';
 import { Box, Typography } from '@mui/material';
 import Chip from '../../atom/chip/Chip';
 import Button from '../../atom/button/Button';
-import { useCoreTheme, CoreTheme } from '../../../theme/core-theme';
+import { CoreTheme, useCoreTheme } from '../../../theme/core-theme';
 
 export interface FeeListItemRowProps {
   title: string;
@@ -10,8 +10,9 @@ export interface FeeListItemRowProps {
 }
 
 export const FeeListItemRow: React.FC<FeeListItemRowProps> = ({ title, value }) => {
-  const theme = useCoreTheme() as CoreTheme;
+  
 
+  const theme = useCoreTheme() as CoreTheme;
   return (
     <Box
       sx={{
@@ -60,7 +61,7 @@ export interface FeeListItemStatusProps {
 }
 
 export const FeeListItemStatus: React.FC<FeeListItemStatusProps> = ({ status }) => {
-  const theme = useCoreTheme() as CoreTheme;
+  
   const chipVariant = FeeStatusVariant[status];
 
   return (
@@ -105,7 +106,7 @@ export interface FeeListItemButtonProps {
 }
 
 export const FeeListItemButton: React.FC<FeeListItemButtonProps> = ({ onClick }) => {
-  const theme = useCoreTheme() as CoreTheme;
+  
   // If no onClick handler is provided, don't render the button
   if (!onClick) {
     return null;
@@ -153,7 +154,7 @@ export interface FeeListItemProps {
 }
 
 const FeeListItem: React.FC<FeeListItemProps> = ({ children }) => {
-  const theme = useCoreTheme() as CoreTheme;
+  
   return (
     <Box
       sx={{

@@ -3,9 +3,9 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { DateCalendar } from '@mui/x-date-pickers/DateCalendar';
 import { Box, Typography, Button, IconButton } from '@mui/material';
-import { CoreTheme, useCoreTheme } from '../../../theme/core-theme';
 import EditIcon from '@mui/icons-material/Edit';
 import { format } from 'date-fns';
+import { CoreTheme, useCoreTheme } from '../../../theme/core-theme';
 
 export interface CustomDatePickerProps {
   label?: string;
@@ -35,6 +35,7 @@ export const CustomDatePicker: React.FC<CustomDatePickerProps> = ({
   width,
   minWidth = 0,
 }) => {
+  const theme = useCoreTheme() as CoreTheme;
   const [tempValue, setTempValue] = useState<Date | null>(value);
 
   const handleClear = () => {
@@ -51,7 +52,7 @@ export const CustomDatePicker: React.FC<CustomDatePickerProps> = ({
     onChange(tempValue);
     if (onAccept) onAccept(tempValue);
   };
-  const theme = useCoreTheme() as CoreTheme;
+  
 
   // compute root width style
   const computedWidth: string | number | undefined = fullWidth
@@ -71,7 +72,7 @@ export const CustomDatePicker: React.FC<CustomDatePickerProps> = ({
           minWidth: minWidth,
           maxWidth: fullWidth ? '100%' : 'none',
 
-          backgroundColor: '#f5f5f5',
+          backgroundColor: theme.vd.palette.surfaceMuted,
           borderRadius: theme.spacing(7),
           overflow: 'hidden',
           boxShadow: '0 4px 16px rgba(0,0,0,0.1)',
@@ -79,9 +80,9 @@ export const CustomDatePicker: React.FC<CustomDatePickerProps> = ({
       >
         <Box
           sx={{
-            backgroundColor: '#ffffff',
+            backgroundColor: theme.palette.background.paper,
             padding: '16px 24px',
-            borderBottom: '1px solid #e0e0e0',
+            borderBottom: `1px solid ${theme.vd.palette.borderMuted}`,
             display: 'flex',
             justifyContent: 'space-between',
             alignItems: 'center',
@@ -91,7 +92,7 @@ export const CustomDatePicker: React.FC<CustomDatePickerProps> = ({
             <Typography
               sx={{
                 fontSize: '0.875rem',
-                color: '#666666',
+                color: theme.palette.text.secondary,
                 marginBottom: '4px',
                 whiteSpace: 'nowrap',
               }}
@@ -102,7 +103,7 @@ export const CustomDatePicker: React.FC<CustomDatePickerProps> = ({
               sx={{
                 fontSize: '1.75rem',
                 fontWeight: 400,
-                color: '#000000',
+                color: theme.palette.text.primary,
                 letterSpacing: '-0.5px',
               }}
             >
@@ -111,7 +112,7 @@ export const CustomDatePicker: React.FC<CustomDatePickerProps> = ({
           </Box>
           <IconButton
             sx={{
-              color: '#000000',
+              color: theme.palette.text.primary,
             }}
           >
             <EditIcon />
@@ -155,7 +156,7 @@ export const CustomDatePicker: React.FC<CustomDatePickerProps> = ({
                 width: '40px',
                 height: '40px',
                 margin: 0,
-                color: '#666666',
+                color: theme.palette.text.secondary,
                 fontWeight: 500,
                 fontSize: '0.875rem',
               },
@@ -175,37 +176,37 @@ export const CustomDatePicker: React.FC<CustomDatePickerProps> = ({
                 width: '40px',
                 height: '40px',
                 margin: 0,
-                color: '#000000',
+                color: theme.palette.text.primary,
                 fontWeight: 400,
                 fontSize: '0.875rem',
                 '&:hover': {
                   backgroundColor: 'rgba(0, 0, 0, 0.04)',
                 },
                 '&.Mui-selected': {
-                  backgroundColor: '#1976d2',
-                  color: '#ffffff',
+                  backgroundColor: theme.palette.primary.main,
+                  color: theme.palette.common.white,
                   fontWeight: 600,
                   '&:hover': {
-                    backgroundColor: '#1565c0',
+                    backgroundColor: theme.palette.primary.dark,
                   },
                   '&:focus': {
-                    backgroundColor: '#1976d2',
+                    backgroundColor: theme.palette.primary.main,
                   },
                 },
                 '&.Mui-disabled': {
-                  color: '#cccccc',
+                  color: theme.vd.palette.borderStrong,
                 },
               },
               // Today's date styling
               '& .MuiPickersDay-today': {
-                border: '1px solid #1976d2',
+                border: `1px solid ${theme.palette.primary.main}`,
 
                 '&:not(.Mui-selected)': {
                   backgroundColor: 'transparent',
                 },
               },
               '& .MuiPickersDay-dayOutsideMonth': {
-                color: '#cccccc',
+                color: theme.vd.palette.borderStrong,
               },
             }}
           />
@@ -213,7 +214,7 @@ export const CustomDatePicker: React.FC<CustomDatePickerProps> = ({
 
         <Box
           sx={{
-            backgroundColor: '#ffffff',
+            backgroundColor: theme.palette.background.paper,
             padding: theme.spacing(3),
             paddingBottom: theme.spacing(2),
             display: 'flex',
@@ -224,7 +225,7 @@ export const CustomDatePicker: React.FC<CustomDatePickerProps> = ({
           <Button
             onClick={handleClear}
             sx={{
-              color: '#000000',
+              color: theme.palette.text.primary,
               textTransform: 'none',
               fontSize: '0.95rem',
               fontWeight: 500,
@@ -239,7 +240,7 @@ export const CustomDatePicker: React.FC<CustomDatePickerProps> = ({
             <Button
               onClick={handleCancel}
               sx={{
-                color: '#000000',
+                color: theme.palette.text.primary,
                 textTransform: 'none',
                 fontSize: '0.95rem',
                 fontWeight: 500,
@@ -253,7 +254,7 @@ export const CustomDatePicker: React.FC<CustomDatePickerProps> = ({
             <Button
               onClick={handleOk}
               sx={{
-                color: '#000000',
+                color: theme.palette.text.primary,
                 textTransform: 'none',
                 fontSize: '0.95rem',
                 fontWeight: 600,

@@ -3,7 +3,6 @@ import { PopoverOrigin } from '@mui/material/Popover';
 import { Theme } from '@mui/material/styles';
 import { SystemStyleObject } from '@mui/system/styleFunctionSx/styleFunctionSx';
 import { CSSProperties, FC, MouseEvent, SyntheticEvent, useEffect, useState } from 'react';
-import { useCoreTheme } from '../../../../../theme/core-theme';
 import { getIsWindows } from '../../../../../util/platform';
 import { Box } from '../../../../atom/box';
 import { Button } from '../../../../atom/button';
@@ -18,6 +17,7 @@ import {
   onDropdownClick,
 } from '../../types';
 import NavigationSubMenuItem from './NavigationSubMenuItem';
+import { CoreTheme, useCoreTheme } from '../../../../../theme/core-theme';
 
 export type INavigationMenuItemButtonProps = ButtonProps;
 

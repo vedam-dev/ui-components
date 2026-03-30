@@ -3,7 +3,6 @@ import Box from '@mui/material/Box';
 import { Theme } from '@mui/material/styles';
 import { SystemStyleObject } from '@mui/system/styleFunctionSx/styleFunctionSx';
 import { FC, MouseEvent, SyntheticEvent, useState } from 'react';
-import { useCoreTheme } from '../../../../../theme/core-theme';
 import { Button } from '../../../../atom/button';
 import { ButtonProps } from '../../../../atom/button/Button';
 import { SvgIcon } from '../../../../atom/icon';
@@ -16,6 +15,7 @@ import {
   onDropdownClick,
 } from '../../types';
 import NavigationSubMenuItem from './NavigationSubMenuItem';
+import { CoreTheme, useCoreTheme } from '../../../../../theme/core-theme';
 
 export type INavigationMenuItemButtonProps = ButtonProps;
 

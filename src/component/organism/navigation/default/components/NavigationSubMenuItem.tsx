@@ -2,12 +2,12 @@ import { MenuItem } from '@mui/material';
 import { Theme } from '@mui/material/styles';
 import { SystemStyleObject } from '@mui/system/styleFunctionSx/styleFunctionSx';
 import { AriaAttributes, FC, SyntheticEvent } from 'react';
-import { useCoreTheme } from '../../../../../theme/core-theme';
 import { getIsWindows } from '../../../../../util/platform';
 import { Button } from '../../../../atom/button';
 import { ButtonProps } from '../../../../atom/button/Button';
 import { Typography } from '../../../../atom/typography';
 import { INavigationItem } from '../../types';
+import { CoreTheme, useCoreTheme } from '../../../../../theme/core-theme';
 
 export type INavigationSubMenuItemProps = ButtonProps;
 
