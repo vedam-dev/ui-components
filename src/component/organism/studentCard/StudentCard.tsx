@@ -1,6 +1,7 @@
 import React from 'react';
 import { Box, Typography, IconButton, SxProps, styled, Theme } from '@mui/material';
 import { ChevronRight } from '@mui/icons-material';
+import { CoreTheme, useCoreTheme } from '../../../theme/core-theme';
 
 export interface StudentCardProps {
   title?: string;
@@ -20,7 +21,7 @@ const CardContainer = styled(Box)(({ theme }) => ({
   alignItems: 'center',
   justifyContent: 'space-between',
   padding: theme.spacing(11),
-  background: '#FFF',
+  background: theme.palette.background.paper,
   borderRadius: theme.spacing(7),
   boxShadow: '0 0 20px 0 rgba(0, 0, 0, 0.10)',
   width: '100%',
@@ -32,8 +33,8 @@ const LeftSection = styled(Box)({
   minWidth: '444px',
 });
 
-const Title = styled(Typography)(() => ({
-  color: '#8A18FF',
+const Title = styled(Typography)(({ theme }) => ({
+  color: (theme as CoreTheme).vd.palette.accentPrimary,
   fontSize: '20px',
   fontStyle: 'normal',
   fontWeight: 600,
@@ -61,33 +62,33 @@ const StatBox = styled(Box)({
   minWidth: '192px',
 });
 
-const StatLabel = styled(Typography)(() => ({
-  color: '#777',
+const StatLabel = styled(Typography)(({ theme }) => ({
+  color: (theme as CoreTheme).vd.palette.textMuted,
   fontSize: '16px',
   fontStyle: 'normal',
   fontWeight: 500,
   lineHeight: 'normal',
 }));
 
-const StatValue = styled(Typography)(() => ({
-  color: '#3870CA',
+const StatValue = styled(Typography)(({ theme }) => ({
+  color: theme.palette.primary.main,
   fontSize: '22px',
   fontStyle: 'normal',
   fontWeight: 600,
   lineHeight: 'normal',
 }));
 
-const NavigateButton = styled(IconButton)({
-  background: '#E8D1FF',
+const NavigateButton = styled(IconButton)(({ theme }) => ({
+  background: (theme as CoreTheme).vd.palette.accentPrimaryLight,
   width: 40,
   height: 40,
   borderRadius: '50%',
   transition: 'all 200ms ease',
   '&:hover': {
-    background: '#E8D1FF',
+    background: (theme as CoreTheme).vd.palette.accentPrimaryLight,
     transform: 'translateX(4px)',
   },
-});
+}));
 
 const StudentCard: React.FC<StudentCardProps> = ({
   title = 'Student Attendance',
@@ -101,6 +102,7 @@ const StudentCard: React.FC<StudentCardProps> = ({
   onNavigate,
   sx,
 }) => {
+  const theme = useCoreTheme() as CoreTheme;
   return (
     <CardContainer sx={sx}>
       <LeftSection>
@@ -130,7 +132,7 @@ const StudentCard: React.FC<StudentCardProps> = ({
           pointerEvents: showNavigateButton ? 'auto' : 'none',
         }}
       >
-        <ChevronRight sx={{ color: '#8A18FF', fontSize: 28 }} />
+        <ChevronRight sx={{ color: theme.vd.palette.accentPrimary, fontSize: 28 }} />
       </NavigateButton>
     </CardContainer>
   );

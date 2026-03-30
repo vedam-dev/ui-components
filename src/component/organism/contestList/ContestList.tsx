@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, Typography } from '@mui/material';
-import { useCoreTheme, CoreTheme } from '../../../theme/core-theme';
+import { CoreTheme, useCoreTheme } from '../../../theme/core-theme';
 
 export interface ContestListItemTitleProps {
   contestNumber: string;
@@ -8,7 +8,6 @@ export interface ContestListItemTitleProps {
 
 export const ContestListItemTitle: React.FC<ContestListItemTitleProps> = ({ contestNumber }) => {
   const theme = useCoreTheme() as CoreTheme;
-
   return (
     <Box
       sx={{
@@ -23,7 +22,7 @@ export const ContestListItemTitle: React.FC<ContestListItemTitleProps> = ({ cont
       <Typography
         variant="body1"
         sx={{
-          color: '#8A18FF',
+          color: theme.vd.palette.accentPrimary,
           fontSize: '20px',
           fontWeight: 700,
         }}
@@ -84,7 +83,6 @@ export interface ContestListItemDateProps {
 
 export const ContestListItemDate: React.FC<ContestListItemDateProps> = ({ date }) => {
   const theme = useCoreTheme() as CoreTheme;
-
   return (
     <Box
       sx={{
@@ -99,7 +97,7 @@ export const ContestListItemDate: React.FC<ContestListItemDateProps> = ({ date }
       <Typography
         variant="caption"
         sx={{
-          color: '#777',
+          color: theme.vd.palette.textMuted,
           fontSize: '16px',
           lineHeight: '20px',
           fontWeight: 500,
@@ -111,7 +109,7 @@ export const ContestListItemDate: React.FC<ContestListItemDateProps> = ({ date }
       <Typography
         variant="body1"
         sx={{
-          color: '#000',
+          color: theme.palette.text.primary,
           fontSize: '18px',
           lineHeight: '24px',
           fontWeight: 600,
@@ -129,15 +127,14 @@ export interface ContestListItemStatusProps {
 
 export const ContestListItemStatus: React.FC<ContestListItemStatusProps> = ({ status }) => {
   const theme = useCoreTheme() as CoreTheme;
-
   const getStatusColor = (status: string) => {
     switch (status) {
       case 'Submitted':
-        return '#42B657';
+        return theme.vd.palette.statusActive;
       case 'Absent':
-        return '#FF0000';
+        return theme.palette.error.main;
       default:
-        return '#42B657';
+        return theme.vd.palette.statusActive;
     }
   };
 
@@ -155,7 +152,7 @@ export const ContestListItemStatus: React.FC<ContestListItemStatusProps> = ({ st
       <Typography
         variant="caption"
         sx={{
-          color: '#777',
+          color: theme.vd.palette.textMuted,
           fontSize: '16px',
           lineHeight: '20px',
           fontWeight: 500,
@@ -186,6 +183,7 @@ export interface ContestListItemScoreProps {
 }
 
 export const ContestListItemScore: React.FC<ContestListItemScoreProps> = ({ score }) => {
+  const theme = useCoreTheme() as CoreTheme;
   return (
     <Box
       sx={{
@@ -199,7 +197,7 @@ export const ContestListItemScore: React.FC<ContestListItemScoreProps> = ({ scor
       <Typography
         variant="caption"
         sx={{
-          color: '#777',
+          color: theme.vd.palette.textMuted,
           fontSize: '16px',
           lineHeight: '20px',
           fontWeight: 500,
@@ -211,7 +209,7 @@ export const ContestListItemScore: React.FC<ContestListItemScoreProps> = ({ scor
       <Typography
         variant="body1"
         sx={{
-          color: '#000',
+          color: theme.palette.text.primary,
           fontSize: '18px',
           lineHeight: '24px',
           fontWeight: 600,
@@ -231,13 +229,12 @@ export interface ContestListItemProps {
 
 const ContestListItem: React.FC<ContestListItemProps> = ({ bgColor, borderColor, children }) => {
   const theme = useCoreTheme() as CoreTheme;
-
   return (
     <Box
       sx={{
         borderRadius: theme.spacing(6),
         boxShadow: theme.vd.shadows.y4,
-        backgroundColor: bgColor || '#FFFFFF',
+        backgroundColor: bgColor || theme.palette.background.paper,
         border: borderColor ? `2px solid ${borderColor}` : 'none',
         mb: theme.spacing(3),
         width: '100%',

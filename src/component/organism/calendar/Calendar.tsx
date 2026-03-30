@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { Box, Paper, Typography, styled, Tooltip, SxProps, Theme } from '@mui/material';
+import { CoreTheme, useCoreTheme } from '../../../theme/core-theme';
 
 export interface CalendarEvent {
   id?: string | number;
@@ -34,8 +35,8 @@ const CalendarGrid = styled(Box)(() => ({
   gridTemplateColumns: '100px repeat(7, 1fr)',
 }));
 
-const DayHeader = styled(Box)(() => ({
-  borderBottom: '1px solid #E8E9EA',
+const DayHeader = styled(Box)(({ theme }) => ({
+  borderBottom: `1px solid ${(theme as CoreTheme).vd.palette.borderDefault}`,
   textAlign: 'center',
   display: 'flex',
   alignItems: 'center',
@@ -49,7 +50,7 @@ const TimeSlot = styled(Box)(({ theme }) => ({
   alignItems: 'center',
   justifyContent: 'center',
   fontWeight: 600,
-  color: '#1E1E1E',
+  color: (theme as CoreTheme).vd.palette.textStrong,
   fontSize: '18px',
   fontStyle: 'normal',
   lineHeight: 'normal',
@@ -57,7 +58,7 @@ const TimeSlot = styled(Box)(({ theme }) => ({
   position: 'relative',
 }));
 
-const DayCell = styled(Box)(() => ({
+const DayCell = styled(Box)(({ theme }) => ({
   minHeight: 72,
   position: 'relative',
   '&::after': {
@@ -67,7 +68,7 @@ const DayCell = styled(Box)(() => ({
     left: 0,
     right: 0,
     height: '1px',
-    backgroundColor: '#E8E9EA',
+    backgroundColor: (theme as CoreTheme).vd.palette.borderDefault,
     zIndex: 1,
   },
 }));
@@ -115,7 +116,7 @@ const EventCard = styled(Box, {
       zIndex: 2,
       fontSize: '13px',
       fontWeight: 600,
-      color: customColor ? '#FFFFFF' : '#374151',
+      color: customColor ? theme.palette.common.white : theme.palette.text.primary,
       boxShadow: '0 2px 8px rgba(22, 27, 33, 0.06)',
       marginLeft: '2px',
       marginRight: '2px',
@@ -129,12 +130,12 @@ const EventCard = styled(Box, {
   // Default color logic
   let backgroundColor = '#F2F2F2';
   let borderColor = '#E5E7EB';
-  let textColor = '#374151';
+  let textColor: string = theme.palette.text.primary;
   let borderLeftWidth = '4px';
 
   if (eventType === 'exam') {
     backgroundColor = '#FFF3EB';
-    borderColor = '#FF7829';
+    borderColor = (theme as CoreTheme).vd.palette.accentSecondary;
     textColor = '#1E40AF';
     borderLeftWidth = '4px';
   } else if (eventType === 'contest') {
@@ -144,8 +145,8 @@ const EventCard = styled(Box, {
     borderLeftWidth = '4px';
   } else if (important) {
     backgroundColor = '#FEE2E2';
-    borderColor = '#EF4444';
-    textColor = '#DC2626';
+    borderColor = theme.palette.error.main;
+    textColor = theme.palette.error.main;
     borderLeftWidth = '4px';
   }
 
@@ -176,14 +177,14 @@ const EventCard = styled(Box, {
 });
 
 const SemesterPill = styled(Box)(({ theme }) => ({
-  color: '#8A18FF',
+  color: (theme as CoreTheme).vd.palette.accentPrimary,
   padding: theme.spacing(1, 1),
   fontWeight: 600,
   fontSize: '18px',
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  borderBottom: '1px solid #E8E9EA',
+  borderBottom: `1px solid ${(theme as CoreTheme).vd.palette.borderDefault}`,
   textAlign: 'center',
   wordWrap: 'break-word',
 }));
@@ -250,6 +251,7 @@ const ReusableCalendar: React.FC<ReusableCalendarProps> = ({
   onWeekChange: _onWeekChange,
   sx,
 }) => {
+  const theme = useCoreTheme() as CoreTheme;
   const [start, setStart] = useState<Date>(
     weekStart ? startOfWeek(weekStart) : startOfWeek(new Date())
   );
@@ -388,7 +390,7 @@ const ReusableCalendar: React.FC<ReusableCalendarProps> = ({
               sx={{
                 fontSize: '18px',
                 fontWeight: 600,
-                color: isToday(day) ? '#8A18FF' : '#1E1E1E',
+                color: isToday(day) ? theme.vd.palette.accentPrimary : theme.vd.palette.textStrong,
                 lineHeight: 'normal',
                 px: '35px',
                 py: '26px',
@@ -402,7 +404,9 @@ const ReusableCalendar: React.FC<ReusableCalendarProps> = ({
         {timeSlots.map((timeLabel, timeIndex) => (
           <React.Fragment key={timeIndex}>
             <TimeSlot>
-              <Typography sx={{ fontSize: '18px', fontWeight: 600, color: '#1E1E1E' }}>
+              <Typography
+                sx={{ fontSize: '18px', fontWeight: 600, color: theme.vd.palette.textStrong }}
+              >
                 {timeLabel}
               </Typography>
             </TimeSlot>
@@ -453,7 +457,7 @@ const ReusableCalendar: React.FC<ReusableCalendarProps> = ({
                               fontSize: '16px',
                               fontWeight: 600,
                               lineHeight: 1.2,
-                              color: event.color ? '#FFFFFF' : '#3870CA',
+                              color: event.color ? theme.palette.common.white : '#3870CA',
                               overflow: 'hidden',
                               textOverflow: 'ellipsis',
                               whiteSpace: 'nowrap',
@@ -468,7 +472,7 @@ const ReusableCalendar: React.FC<ReusableCalendarProps> = ({
                                 lineHeight: 'normal',
                                 fontWeight: 400,
                                 mt: 0.25,
-                                color: event.color ? '#FFFFFF' : 'inherit',
+                                color: event.color ? theme.palette.common.white : 'inherit',
                                 overflow: 'hidden',
                                 textOverflow: 'ellipsis',
                                 whiteSpace: 'nowrap',

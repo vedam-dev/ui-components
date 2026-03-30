@@ -1,7 +1,7 @@
 import { Avatar as BaseAvatar } from '@mui/material';
 import { ComponentProps, FC } from 'react';
-import { CoreTheme, useCoreTheme } from '../../../theme/core-theme';
 import SxOverride from '../../../util/SxOverride';
+import { CoreTheme, useCoreTheme } from '../../../theme/core-theme';
 
 export interface IAvatarProps {
   color?: string;

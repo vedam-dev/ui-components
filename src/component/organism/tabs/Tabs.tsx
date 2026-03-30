@@ -3,6 +3,7 @@
 import React, { useEffect, useId, useRef, useState } from 'react';
 import { Box, Button } from '@mui/material';
 import type { ReactNode } from 'react';
+import { CoreTheme, useCoreTheme } from '../../../theme/core-theme';
 
 export interface TabItem {
   id?: string;
@@ -37,6 +38,7 @@ export default function Tabs({
   tabSx,
   panelSx,
 }: TabsProps) {
+  const theme = useCoreTheme() as CoreTheme;
   const baseId = useId();
   const [activeIdx, setActiveIdx] = useState(() =>
     Math.max(0, Math.min(initialIndex, Math.max(0, tabs.length - 1)))
@@ -196,14 +198,14 @@ export default function Tabs({
                 fontSize: '20px',
                 borderRadius: 0,
                 fontWeight: 600,
-                color: selected ? '#3870CA' : 'text.secondary',
+                color: selected ? theme.palette.primary.main : 'text.secondary',
                 borderBottom: selected ? 2 : 0,
-                borderColor: '#3870CA',
+                borderColor: theme.palette.primary.main,
                 transition: 'all 0.3s ease',
                 position: 'relative',
                 '&:hover': {
                   backgroundColor: 'transparent',
-                  color: '#3870CA',
+                  color: theme.palette.primary.main,
                 },
                 '&::after': {
                   content: '""',
@@ -212,7 +214,7 @@ export default function Tabs({
                   left: 0,
                   width: '100%',
                   height: '2px',
-                  backgroundColor: '#3870CA',
+                  backgroundColor: theme.palette.primary.main,
                   transform: selected ? 'scaleX(1)' : 'scaleX(0)',
                   transformOrigin: 'center',
                   transition: 'transform 0.3s ease',

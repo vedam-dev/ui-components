@@ -1,9 +1,9 @@
 import { FC, SyntheticEvent } from 'react';
 import React from 'react';
-import { useCoreTheme } from '../../../../../theme/core-theme';
 import { UseScrollTriggerOptions } from '@mui/material/useScrollTrigger/useScrollTrigger';
 import { OnNavigationClick, onDropdownClick } from '../../types';
 import { Button } from '@mui/material';
+import { CoreTheme, useCoreTheme } from '../../../../../theme/core-theme';
 
 interface LogoIconSize {
   width: number;

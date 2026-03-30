@@ -6,8 +6,8 @@ import {
 } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { styled } from '@mui/material/styles';
-import { CoreTheme, useCoreTheme } from '../../../theme/core-theme';
 import SxOverride from '../../../util/SxOverride';
+import { CoreTheme, useCoreTheme } from '../../../theme/core-theme';
 
 export interface IAccordionProps {
   defaultExpanded?: boolean;
@@ -61,6 +61,7 @@ const Accordion: AccordionComponent = ({
   children,
   ...props
 }) => {
+  const theme = useCoreTheme() as CoreTheme;
   const { palette, spacing, shadows } = useCoreTheme() as CoreTheme;
 
   let summaryNode: React.ReactElement | null = null;

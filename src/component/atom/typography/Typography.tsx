@@ -1,7 +1,7 @@
 import { Typography as BaseTypography } from '@mui/material';
 import React, { ComponentProps, FC } from 'react';
-import { CoreTheme, useCoreTheme } from '../../../theme/core-theme';
 import { DefaultComponentProps, OverridableTypeMap } from '@mui/material/OverridableComponent';
+import { CoreTheme, useCoreTheme } from '../../../theme/core-theme';
 
 export interface ITypographyProps {
   isButtonS?: boolean;

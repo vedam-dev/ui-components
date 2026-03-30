@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import AttendanceSummaryCard from '../../../component/organism/attendanceSummaryCard/AttendanceSummaryCard';
+import { CoreTheme, useCoreTheme } from '../../../theme/core-theme';
 
 const meta: Meta<typeof AttendanceSummaryCard> = {
   title: 'Organism/AttendanceSummaryCard',
@@ -180,8 +181,8 @@ export const CustomStyling: Story = {
     showNavigateButton: true,
     onNavigate: action('navigate-clicked'),
     sx: {
-      border: '2px solid #8A18FF',
-      boxShadow: '0 4px 24px rgba(138, 24, 255, 0.15)',
+      border: (theme) => `2px solid ${theme.palette.primary.main}`,
+      boxShadow: (theme) => `0 4px 24px ${theme.palette.primary[100]}`,
     },
   },
 };

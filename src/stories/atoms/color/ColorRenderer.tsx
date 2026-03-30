@@ -46,7 +46,7 @@ const ColorRenderer: FC = () => {
               width: '75px',
               height: '75px',
               display: 'block',
-              border: '2px solid black',
+              border: `2px solid ${palette.common.black}`,
             }}
           ></Box>
         </Grid>
@@ -69,7 +69,7 @@ const ColorRenderer: FC = () => {
     const numberViews = numbers.map((num) => {
       return (
         <Grid size={{ xs: 3 }} key={num}>
-          <Typography sx={{ padding: spacing(num), border: '1px solid black' }}>
+          <Typography sx={{ padding: spacing(num), border: `1px solid ${palette.common.black}` }}>
             Multiplier {num} and {spacing(num)} Padding
           </Typography>
         </Grid>

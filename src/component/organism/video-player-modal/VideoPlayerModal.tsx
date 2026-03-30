@@ -3,6 +3,7 @@
 import type React from 'react';
 import { Modal, Box, IconButton, useTheme } from '@mui/material';
 import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
+import { CoreTheme, useCoreTheme } from '../../../theme/core-theme';
 
 interface VideoPlayerModalProps {
   open: boolean;
@@ -24,8 +25,7 @@ const VideoPlayerModal: React.FC<VideoPlayerModalProps> = ({
   width = '100%',
   height = 'auto',
 }) => {
-  const theme = useTheme();
-
+  const theme = useCoreTheme() as CoreTheme;
   const handleClose = () => {
     onClose();
   };
@@ -86,7 +86,7 @@ const VideoPlayerModal: React.FC<VideoPlayerModalProps> = ({
             position: 'relative',
             paddingBottom: '56.25%',
             height: 0,
-            backgroundColor: '#000',
+            backgroundColor: theme.palette.common.black,
             '& video': {
               position: 'absolute',
               top: 0,

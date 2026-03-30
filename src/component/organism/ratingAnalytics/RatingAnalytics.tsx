@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, Typography } from '@mui/material';
-import { useCoreTheme, CoreTheme } from '../../../theme/core-theme';
+import { CoreTheme, useCoreTheme } from '../../../theme/core-theme';
 
 // Individual column components
 export interface RatingAnalyticsDateProps {
@@ -10,7 +10,6 @@ export interface RatingAnalyticsDateProps {
 
 export const RatingAnalyticsDate: React.FC<RatingAnalyticsDateProps> = ({ date, day: _day }) => {
   const theme = useCoreTheme() as CoreTheme;
-
   return (
     <Box
       sx={{
@@ -25,7 +24,7 @@ export const RatingAnalyticsDate: React.FC<RatingAnalyticsDateProps> = ({ date, 
       <Typography
         variant="caption"
         sx={{
-          color: '#999',
+          color: theme.vd.palette.textSubtle,
           fontSize: '16px',
           fontWeight: 500,
         }}
@@ -35,7 +34,7 @@ export const RatingAnalyticsDate: React.FC<RatingAnalyticsDateProps> = ({ date, 
       <Typography
         variant="body1"
         sx={{
-          color: '#333',
+          color: theme.vd.palette.textStrong,
           fontSize: '18px',
           fontWeight: 600,
         }}
@@ -52,7 +51,6 @@ export interface RatingAnalyticsDayProps {
 
 export const RatingAnalyticsDay: React.FC<RatingAnalyticsDayProps> = ({ day }) => {
   const theme = useCoreTheme() as CoreTheme;
-
   return (
     <Box
       sx={{
@@ -67,7 +65,7 @@ export const RatingAnalyticsDay: React.FC<RatingAnalyticsDayProps> = ({ day }) =
       <Typography
         variant="caption"
         sx={{
-          color: '#999',
+          color: theme.vd.palette.textSubtle,
           fontSize: '16px',
           fontWeight: 500,
         }}
@@ -77,7 +75,7 @@ export const RatingAnalyticsDay: React.FC<RatingAnalyticsDayProps> = ({ day }) =
       <Typography
         variant="body1"
         sx={{
-          color: '#333',
+          color: theme.vd.palette.textStrong,
           fontSize: '18px',
           fontWeight: 600,
         }}
@@ -94,7 +92,6 @@ export interface RatingAnalyticsTitleProps {
 
 export const RatingAnalyticsTitle: React.FC<RatingAnalyticsTitleProps> = ({ title }) => {
   const theme = useCoreTheme() as CoreTheme;
-
   return (
     <Box
       sx={{
@@ -110,7 +107,7 @@ export const RatingAnalyticsTitle: React.FC<RatingAnalyticsTitleProps> = ({ titl
       <Typography
         variant="body1"
         sx={{
-          color: '#4A90E2',
+          color: theme.palette.primary.main,
           fontSize: '20px',
           fontWeight: 600,
         }}
@@ -127,13 +124,12 @@ export interface RatingAnalyticsRatingProps {
 
 export const RatingAnalyticsRating: React.FC<RatingAnalyticsRatingProps> = ({ rating }) => {
   const theme = useCoreTheme() as CoreTheme;
-
   // Determine color based on rating value
   const getRatingColor = (rating: string): string => {
     const numRating = parseFloat(rating);
-    if (numRating >= 4.0) return '#25A32E';
-    if (numRating >= 3.0) return '#FF6B6B';
-    return '#DA1414'; // Green for low ratings
+    if (numRating >= 4.0) return theme.palette.success.main;
+    if (numRating >= 3.0) return theme.palette.warning.main;
+    return theme.palette.error.main;
   };
 
   return (
@@ -150,7 +146,7 @@ export const RatingAnalyticsRating: React.FC<RatingAnalyticsRatingProps> = ({ ra
       <Typography
         variant="caption"
         sx={{
-          color: '#999',
+          color: theme.vd.palette.textSubtle,
           fontSize: '16px',
           fontWeight: 500,
         }}
@@ -179,18 +175,17 @@ export interface LectureListItemProps {
 }
 
 const LectureListItem: React.FC<LectureListItemProps> = ({
-  bgColor = '#FFFFFF',
+  bgColor,
   borderColor: _borderColor,
   children,
 }) => {
   const theme = useCoreTheme() as CoreTheme;
-
   return (
     <Box
       sx={{
         borderRadius: theme.spacing(6),
         boxShadow: theme.vd.shadows.y4,
-        backgroundColor: bgColor,
+        backgroundColor: bgColor || theme.palette.background.paper,
         mb: '20px',
         width: '100%',
         px: theme.spacing(13.75),

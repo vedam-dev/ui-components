@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, Typography } from '@mui/material';
-import { useCoreTheme, CoreTheme } from '../../../theme/core-theme';
+import { CoreTheme, useCoreTheme } from '../../../theme/core-theme';
 
 export interface ClassListItemRowProps {
   title: string;
@@ -10,7 +10,6 @@ export interface ClassListItemRowProps {
 
 export const ClassListItemRow: React.FC<ClassListItemRowProps> = ({ title, value, highlight }) => {
   const theme = useCoreTheme() as CoreTheme;
-
   return (
     <Box
       sx={{
@@ -25,7 +24,7 @@ export const ClassListItemRow: React.FC<ClassListItemRowProps> = ({ title, value
       <Typography
         variant="caption"
         sx={{
-          color: highlight ? '#8A18FF' : '#777',
+          color: highlight ? theme.vd.palette.accentPrimary : theme.vd.palette.textMuted,
           fontSize: '16px',
           fontWeight: highlight ? 600 : 500,
           marginBottom: '3px',
@@ -36,7 +35,7 @@ export const ClassListItemRow: React.FC<ClassListItemRowProps> = ({ title, value
       <Typography
         variant="body1"
         sx={{
-          color: '#000',
+          color: theme.palette.text.primary,
           fontSize: '16px',
           fontWeight: 600,
         }}
@@ -53,7 +52,6 @@ export interface ClassListItemSubjectProps {
 
 export const ClassListItemSubject: React.FC<ClassListItemSubjectProps> = ({ subject }) => {
   const theme = useCoreTheme() as CoreTheme;
-
   return (
     <Box
       sx={{
@@ -89,20 +87,19 @@ export interface ClassListItemStatusProps {
 
 export const ClassListItemStatus: React.FC<ClassListItemStatusProps> = ({ status }) => {
   const theme = useCoreTheme() as CoreTheme;
-
   // Define custom colors for different statuses
   const getStatusColor = (status: string) => {
     switch (status) {
       case 'Completed':
-        return '#42B657';
+        return theme.vd.palette.statusActive;
       case 'Upcoming':
       case 'Pending':
-        return '#F97D03';
+        return theme.vd.palette.accentSecondary;
       case 'Next Class':
       case 'Partially Completed':
         return '#983DF6';
       default:
-        return '#42B657';
+        return theme.vd.palette.statusActive;
     }
   };
 
@@ -119,7 +116,7 @@ export const ClassListItemStatus: React.FC<ClassListItemStatusProps> = ({ status
       <Typography
         variant="caption"
         sx={{
-          color: '#777',
+          color: theme.vd.palette.textMuted,
           fontSize: '16px',
           fontWeight: 600,
           marginBottom: '3px',
@@ -214,7 +211,6 @@ export interface ClassListItemProps {
 
 const ClassListItem: React.FC<ClassListItemProps> = ({ bgColor, children }) => {
   const theme = useCoreTheme() as CoreTheme;
-
   return (
     <Box
       sx={{

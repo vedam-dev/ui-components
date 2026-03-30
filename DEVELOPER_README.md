@@ -320,7 +320,7 @@ const newBrandTheme = createCoreTheme({
 import { useTheme } from '@mui/material/styles';
 
 const MyComponent = () => {
-  const theme = useTheme();
+  
 
   return (
     <div style={{

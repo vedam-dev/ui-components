@@ -5,8 +5,8 @@ import { FC } from 'react';
 import { Box, Stack, SxProps, Theme } from '@mui/material';
 import MenuBookOutlinedIcon from '@mui/icons-material/MenuBookOutlined';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
-import { useCoreTheme, CoreTheme } from '../../../theme/core-theme';
 import React from 'react';
+import { CoreTheme, useCoreTheme } from '../../../theme/core-theme';
 
 export interface SubjectCardProps {
   subject: string;
@@ -62,7 +62,7 @@ const SubjectCard: FC<SubjectCardProps> = ({
   credits,
   variant = 'default',
   buttons,
-  gradient = 'linear-gradient(180deg, #F3E8FF 0%, #FFF 100%)',
+  gradient,
   border = '1px solid #DAC2F2',
   onGoToClass,
 
@@ -81,6 +81,9 @@ const SubjectCard: FC<SubjectCardProps> = ({
   courseInfoTextSx,
 }) => {
   const theme = useCoreTheme() as CoreTheme;
+  const resolvedGradient =
+    gradient ??
+    `linear-gradient(180deg, ${theme.vd.palette.accentPrimaryLight} 0%, ${theme.palette.common.white} 100%)`;
 
   const defaultCardSx: SxProps<Theme> = {
     width: typeof width === 'number' ? `${width}px` : width,
@@ -88,7 +91,7 @@ const SubjectCard: FC<SubjectCardProps> = ({
     borderRadius: theme.spacing(7),
     padding: '28px 20px',
     border: border,
-    background: gradient,
+    background: resolvedGradient,
     display: 'flex',
     flexDirection: 'column',
     boxShadow: 'none',
@@ -114,7 +117,7 @@ const SubjectCard: FC<SubjectCardProps> = ({
   const defaultSubjectTextSx: SxProps<Theme> = {
     //FontFamily: theme.typography.//FontFamily,
     fontWeight: 500,
-    color: '#1E1E1E',
+    color: theme.vd.palette.textStrong,
     fontSize: '22px',
     lineHeight: '28px',
     width: '100%',
@@ -155,7 +158,7 @@ const SubjectCard: FC<SubjectCardProps> = ({
 
   const defaultDescriptionTextSx: SxProps<Theme> = {
     //FontFamily: theme.typography.//FontFamily,
-    color: '#1E1E1E',
+    color: theme.vd.palette.textStrong,
     fontSize: '16px',
     lineHeight: theme.spacing(4.5),
     fontWeight: 400,
@@ -359,20 +362,20 @@ const SubjectCard: FC<SubjectCardProps> = ({
                     width: 'auto',
                     minWidth: '125px',
                     ...(button.variant === 'contained' && {
-                      backgroundColor: '#8A18FF',
+                      backgroundColor: theme.vd.palette.accentPrimary,
                       color: theme.palette.background.paper,
                       '&:hover': {
-                        backgroundColor: '#8A18FF',
+                        backgroundColor: theme.vd.palette.accentPrimary,
                         borderColor: theme.palette.primary.dark,
                       },
                     }),
                     ...(button.variant === 'outlined' && {
-                      backgroundColor: '#FFF',
-                      color: '#8A18FF',
-                      border: '1px solid #8A18FF',
+                      backgroundColor: theme.palette.background.paper,
+                      color: theme.vd.palette.accentPrimary,
+                      border: `1px solid ${theme.vd.palette.accentPrimary}`,
                       '&:hover': {
-                        backgroundColor: '#FFF',
-                        border: '1px solid #8A18FF',
+                        backgroundColor: theme.palette.background.paper,
+                        border: `1px solid ${theme.vd.palette.accentPrimary}`,
                       },
                     }),
                   }}

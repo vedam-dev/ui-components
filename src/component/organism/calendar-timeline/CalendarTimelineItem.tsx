@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { Box, Typography, Card, CardContent } from '@mui/material';
-import { useCoreTheme, CoreTheme } from '../../../theme/core-theme';
+import { CoreTheme, useCoreTheme } from '../../../theme/core-theme';
 
 interface ClassSession {
   date: string;
@@ -27,7 +27,6 @@ const CalendarTimelineItem: React.FC<CalendarTimelineItemProps> = ({
   eventDate,
 }) => {
   const theme = useCoreTheme() as CoreTheme;
-
   const formatDate = (dateStr: string): string => {
     let day: number, month: number;
 
@@ -188,7 +187,7 @@ const CalendarTimelineItem: React.FC<CalendarTimelineItemProps> = ({
               transform: 'translateX(-50%)',
               width: '2px',
               height: theme.spacing(18),
-              backgroundImage: `repeating-linear-gradient(to bottom, #F97D03, #F97D03 10px, transparent 10px, transparent 14px)`,
+              backgroundImage: `repeating-linear-gradient(to bottom, ${theme.vd.palette.accentSecondary}, ${theme.vd.palette.accentSecondary} 10px, transparent 10px, transparent 14px)`,
             }}
           />
         )}
@@ -200,7 +199,7 @@ const CalendarTimelineItem: React.FC<CalendarTimelineItemProps> = ({
           sx={{
             height: theme.spacing(18.5),
             borderRadius: theme.spacing(5),
-            border: '1px solid #E8D1FF',
+            border: `1px solid ${theme.vd.palette.accentPrimaryLight}`,
             boxShadow: 'none',
           }}
         >

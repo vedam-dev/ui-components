@@ -19,7 +19,7 @@ const StudentAttendanceCard: React.FC<StudentAttendanceCardProps> = ({
   return (
     <Box
       sx={{
-        bgcolor: 'white',
+        bgcolor: theme.palette.common.white,
         borderRadius: theme.spacing(6),
         boxShadow: '0 2px 8px rgba(0,0,0,0.06)',
         py: theme.spacing(5.5),
@@ -34,7 +34,7 @@ const StudentAttendanceCard: React.FC<StudentAttendanceCardProps> = ({
       <Box>
         <Typography
           sx={{
-            color: '#6513AC',
+            color: theme.vd.palette.accentPrimary,
             fontSize: '18px',
             fontStyle: 'normal',
             fontWeight: 600,
@@ -46,7 +46,7 @@ const StudentAttendanceCard: React.FC<StudentAttendanceCardProps> = ({
         </Typography>
         <Typography
           sx={{
-            color: '#000',
+            color: theme.palette.text.primary,
             fontSize: '16px',
             fontStyle: 'normal',
             fontWeight: 500,
@@ -60,7 +60,7 @@ const StudentAttendanceCard: React.FC<StudentAttendanceCardProps> = ({
       <Box sx={{ textAlign: 'right' }}>
         <Typography
           sx={{
-            color: '#777',
+            color: theme.vd.palette.textMuted,
             fontSize: '16px',
             fontStyle: 'normal',
             fontWeight: 500,
@@ -72,7 +72,7 @@ const StudentAttendanceCard: React.FC<StudentAttendanceCardProps> = ({
         </Typography>
         <Typography
           sx={{
-            color: '#8A18FF',
+            color: theme.vd.palette.accentPrimary,
             fontSize: '18px',
             fontStyle: 'normal',
             fontWeight: 600,

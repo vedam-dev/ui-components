@@ -1,8 +1,8 @@
 import { Skeleton as BaseSkeleton } from '@mui/material';
 import React from 'react';
 import { ComponentProps, FC } from 'react';
-import { CoreTheme, useCoreTheme } from '../../../theme/core-theme';
 import SxOverride from '../../../util/SxOverride';
+import { CoreTheme, useCoreTheme } from '../../../theme/core-theme';
 
 export interface ISkeletonProps {
   animation?: 'pulse' | 'wave' | false;

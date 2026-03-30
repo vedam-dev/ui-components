@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Box, Typography, SxProps, Theme, styled } from '@mui/material';
+import { CoreTheme, useCoreTheme } from '../../../theme/core-theme';
 
 export interface CampusOption {
   value: string;
@@ -27,7 +28,7 @@ export interface CampusSelectionProps {
 const Outer = styled(Box)(({ theme }) => ({
   padding: '26px 32px 32px 32px',
   borderRadius: theme.spacing(9),
-  background: '#FFFFFF',
+  background: theme.palette.common.white,
   boxShadow: '0 0 20px 0 rgba(0, 0, 0, 0.10)',
   border: 'none',
   width: '100%',
@@ -51,12 +52,13 @@ const Header: React.FC<{ sx?: SxProps<Theme>; children?: React.ReactNode }> = ({
 );
 
 const Title: React.FC<{ sx?: SxProps<Theme>; children?: React.ReactNode }> = ({ sx, children }) => {
+  const titleTheme = useCoreTheme() as CoreTheme;
   return (
     <Typography
       component="div"
       sx={{
         fontSize: '22px',
-        color: '#1E1E1E',
+        color: titleTheme.vd.palette.textStrong,
         ...sx,
       }}
     >
@@ -65,20 +67,20 @@ const Title: React.FC<{ sx?: SxProps<Theme>; children?: React.ReactNode }> = ({ 
   );
 };
 
-const Subtitle = styled(Typography)(() => ({
-  color: '#777777',
+const Subtitle = styled(Typography)(({ theme }) => ({
+  color: (theme as CoreTheme).vd.palette.textMuted,
   fontSize: '20px',
   fontStyle: 'normal',
   fontWeight: 400,
   lineHeight: 'normal',
 }));
 
-const NavButton = styled('button')<{ disabled?: boolean }>(({ disabled }) => ({
+const NavButton = styled('button')<{ disabled?: boolean }>(({ theme, disabled }) => ({
   width: '48px',
   height: '48px',
   borderRadius: '50%',
   border: '1px solid #E5E7EB',
-  background: '#FFFFFF',
+  background: theme.palette.common.white,
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
@@ -86,7 +88,7 @@ const NavButton = styled('button')<{ disabled?: boolean }>(({ disabled }) => ({
   transition: 'all 200ms ease',
   opacity: disabled ? 0.4 : 1,
   '&:hover': {
-    background: disabled ? '#FFFFFF' : '#F9FAFB',
+    background: disabled ? theme.palette.common.white : '#F9FAFB',
     boxShadow: disabled ? 'none' : '0 2px 4px rgba(0,0,0,0.05)',
   },
   '&:active': {
@@ -131,8 +133,8 @@ const Logo = styled('img')({
   display: 'block',
 });
 
-const CollegeName = styled(Typography)(() => ({
-  background: 'linear-gradient(90deg, #8A18FF 0%, #FF7829 100%)',
+const CollegeName = styled(Typography)(({ theme }) => ({
+  background: `linear-gradient(90deg, ${(theme as CoreTheme).vd.palette.accentPrimary} 0%, ${(theme as CoreTheme).vd.palette.accentSecondary} 100%)`,
   WebkitBackgroundClip: 'text',
   WebkitTextFillColor: 'transparent',
   fontSize: '18px',
@@ -140,8 +142,8 @@ const CollegeName = styled(Typography)(() => ({
   lineHeight: '23px',
 }));
 
-const Campus = styled(Typography)(() => ({
-  color: '#1E1E1E',
+const Campus = styled(Typography)(({ theme }) => ({
+  color: (theme as CoreTheme).vd.palette.textStrong,
   fontSize: '18px',
   fontWeight: 500,
   lineHeight: '23px',
@@ -158,27 +160,27 @@ const InfoRow = styled(Box)({
   },
 });
 
-const InfoLabel = styled(Typography)(() => ({
-  color: '#1E1E1E',
+const InfoLabel = styled(Typography)(({ theme }) => ({
+  color: (theme as CoreTheme).vd.palette.textStrong,
   fontSize: '16px',
   fontWeight: 600,
   minWidth: '80px',
   flexShrink: 0,
 }));
 
-const InfoValue = styled(Typography)(() => ({
-  color: '#1E1E1E',
+const InfoValue = styled(Typography)(({ theme }) => ({
+  color: (theme as CoreTheme).vd.palette.textStrong,
   fontSize: '16px',
   fontWeight: 400,
   flex: 1,
 }));
 
-const SelectButton = styled('button')(() => ({
+const SelectButton = styled('button')(({ theme }) => ({
   padding: '6px 20px',
   borderRadius: '14px',
-  border: '1px solid #8A18FF',
+  border: `1px solid ${(theme as CoreTheme).vd.palette.accentPrimary}`,
   background: 'transparent',
-  color: '#8A18FF',
+  color: (theme as CoreTheme).vd.palette.accentPrimary,
   fontSize: '16px',
   fontWeight: 500,
   cursor: 'pointer',
@@ -190,7 +192,7 @@ const SelectButton = styled('button')(() => ({
   transition: 'all 200ms ease',
   '&:hover': {
     background: 'transparent',
-    color: '#8A18FF',
+    color: (theme as CoreTheme).vd.palette.accentPrimary,
   },
   '&:active': {
     transform: 'scale(0.98)',
@@ -209,6 +211,7 @@ const CampusSelection: React.FC<CampusSelectionProps> = ({
   showNavigationButtons = true,
   itemsPerPage = 3,
 }) => {
+  const theme = useCoreTheme() as CoreTheme;
   const [currentPage, setCurrentPage] = useState(0);
 
   const totalPages = Math.ceil(options.length / itemsPerPage);
@@ -281,7 +284,7 @@ const CampusSelection: React.FC<CampusSelectionProps> = ({
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
                 <path
                   d="M15 18L9 12L15 6"
-                  stroke={canGoPrevious ? '#1F1F1F' : '#9CA3AF'}
+                  stroke={canGoPrevious ? theme.vd.palette.textStrong : theme.vd.palette.textSubtle}
                   strokeWidth="2"
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -292,7 +295,7 @@ const CampusSelection: React.FC<CampusSelectionProps> = ({
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
                 <path
                   d="M9 18L15 12L9 6"
-                  stroke={canGoNext ? '#1F1F1F' : '#9CA3AF'}
+                  stroke={canGoNext ? theme.vd.palette.textStrong : theme.vd.palette.textSubtle}
                   strokeWidth="2"
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -309,8 +312,8 @@ const CampusSelection: React.FC<CampusSelectionProps> = ({
           const globalIndex = startIndex + index;
           const cardBackground =
             globalIndex % 2 === 0
-              ? 'linear-gradient(180deg, #FFF 0%, #F3E8FF 100%)'
-              : 'linear-gradient(180deg, #FFF 0%, #FFEAC0 100%)';
+              ? `linear-gradient(180deg, ${theme.palette.common.white} 0%, ${theme.vd.palette.accentPrimaryLight} 100%)`
+              : `linear-gradient(180deg, ${theme.palette.common.white} 0%, #FFEAC0 100%)`;
           const cardBorder = globalIndex % 2 === 0 ? '1px solid #DAC2F2' : '1px solid #FDE1AA';
           return (
             <Card
@@ -343,7 +346,7 @@ const CampusSelection: React.FC<CampusSelectionProps> = ({
                 sx={{
                   borderRadius: '16px',
                   border: '1px solid #F6EDFF',
-                  backgroundColor: '#FFF',
+                  backgroundColor: theme.palette.common.white,
                   p: '20px',
                 }}
               >
@@ -384,7 +387,7 @@ const CampusSelection: React.FC<CampusSelectionProps> = ({
                   >
                     <path
                       d="M0 8C0 8.21216 0.0790138 8.41563 0.219662 8.56565C0.36031 8.71567 0.551069 8.79995 0.749975 8.79995H15.4392L9.96905 14.6336C9.89937 14.708 9.84409 14.7962 9.80638 14.8933C9.76867 14.9904 9.74926 15.0945 9.74926 15.1996C9.74926 15.3047 9.76867 15.4088 9.80638 15.5059C9.84409 15.603 9.89937 15.6912 9.96905 15.7656C10.0387 15.8399 10.1215 15.8988 10.2125 15.9391C10.3035 15.9793 10.4011 16 10.4997 16C10.5982 16 10.6958 15.9793 10.7868 15.9391C10.8779 15.8988 10.9606 15.8399 11.0303 15.7656L17.78 8.56597C17.8498 8.49167 17.9051 8.40345 17.9428 8.30633C17.9806 8.20922 18 8.10513 18 8C18 7.89487 17.9806 7.79078 17.9428 7.69366C17.9051 7.59655 17.8498 7.50832 17.78 7.43403L11.0303 0.234432C10.8895 0.0843276 10.6987 -1.5816e-09 10.4997 0C10.3006 1.5816e-09 10.1098 0.0843276 9.96905 0.234432C9.82832 0.384536 9.74926 0.588121 9.74926 0.8004C9.74926 1.01268 9.82832 1.21626 9.96905 1.36637L15.4392 7.20004H0.749975C0.551069 7.20004 0.36031 7.28432 0.219662 7.43435C0.0790138 7.58437 0 7.78784 0 8Z"
-                      fill="#8A18FF"
+                      fill={theme.vd.palette.accentPrimary}
                     />
                   </svg>
                 </SelectButton>

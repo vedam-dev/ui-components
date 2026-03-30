@@ -1,7 +1,6 @@
 import { SvgIcon as BaseSvgIcon } from '@mui/material';
 import { ComponentProps, FC, FunctionComponent } from 'react';
 import MonoToneCart from './MonoToneCart';
-import { useCoreTheme } from '../../../theme/core-theme';
 import MonotoneChevronLeft from './MonotoneChevronLeft';
 import MonotoneChevronRight from './MonotoneChevronRight';
 import { DefaultIconProps, IconName } from './type';
@@ -21,6 +20,7 @@ import X from './X';
 import Instagram from './Instagram';
 import Facebook from './Facebook';
 import OpenNewWindow from './OpenNewWindow';
+import { CoreTheme, useCoreTheme } from '../../../theme/core-theme';
 
 export interface ISvgIconProps {
   iconName?: IconName;

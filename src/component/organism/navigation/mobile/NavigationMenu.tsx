@@ -21,7 +21,6 @@ import React, {
   useRef,
   useState,
 } from 'react';
-import { CoreTheme, useCoreTheme } from '../../../../theme/core-theme';
 import { SvgIcon } from '../../../atom/icon';
 import { Button } from '../../../atom/button';
 import { Button as MuiButton } from '@mui/material';
@@ -30,6 +29,7 @@ import MenuSubItems from './components/MenuSubItems';
 import { INavigationMainLogoProps } from './components/NavigationMainLogo';
 import { INavigationMenuItemButtonProps } from './components/NavigationMenuButton';
 import { handleSkipTo } from '../navigationUtils';
+import { CoreTheme, useCoreTheme } from '../../../../theme/core-theme';
 
 export interface INavigationMobileMenuProps extends INavigationMainLogoProps {
   height: string;

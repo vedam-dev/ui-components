@@ -2,7 +2,7 @@ import React from 'react';
 import { Box, Typography } from '@mui/material';
 import Chip from '../../atom/chip/Chip';
 import Button from '../../atom/button/Button';
-import { useCoreTheme, CoreTheme } from '../../../theme/core-theme';
+import { CoreTheme, useCoreTheme } from '../../../theme/core-theme';
 
 export interface FeeListItemRowProps {
   title: string;
@@ -11,7 +11,6 @@ export interface FeeListItemRowProps {
 
 export const FeeListItemRow: React.FC<FeeListItemRowProps> = ({ title, value }) => {
   const theme = useCoreTheme() as CoreTheme;
-
   return (
     <Box
       sx={{

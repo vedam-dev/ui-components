@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, Typography } from '@mui/material';
-import { useCoreTheme, CoreTheme } from '../../../theme/core-theme';
+import { CoreTheme, useCoreTheme } from '../../../theme/core-theme';
 
 // Individual column components
 export interface ContestAnalyticsTitleProps {
@@ -9,7 +9,6 @@ export interface ContestAnalyticsTitleProps {
 
 export const ContestAnalyticsTitle: React.FC<ContestAnalyticsTitleProps> = ({ contestNumber }) => {
   const theme = useCoreTheme() as CoreTheme;
-
   return (
     <Box
       sx={{
@@ -24,7 +23,7 @@ export const ContestAnalyticsTitle: React.FC<ContestAnalyticsTitleProps> = ({ co
       <Typography
         variant="body1"
         sx={{
-          color: '#8A18FF',
+          color: theme.vd.palette.accentPrimary,
           fontSize: '20px',
           fontWeight: 600,
         }}
@@ -41,7 +40,6 @@ export interface ContestAnalyticsDateProps {
 
 export const ContestAnalyticsDate: React.FC<ContestAnalyticsDateProps> = ({ date }) => {
   const theme = useCoreTheme() as CoreTheme;
-
   return (
     <Box
       sx={{
@@ -56,7 +54,7 @@ export const ContestAnalyticsDate: React.FC<ContestAnalyticsDateProps> = ({ date
       <Typography
         variant="caption"
         sx={{
-          color: '#777',
+          color: theme.vd.palette.textMuted,
           fontSize: '16px',
           fontWeight: 500,
         }}
@@ -66,7 +64,7 @@ export const ContestAnalyticsDate: React.FC<ContestAnalyticsDateProps> = ({ date
       <Typography
         variant="body1"
         sx={{
-          color: '#000',
+          color: theme.palette.text.primary,
           fontSize: '18px',
           fontWeight: 600,
         }}
@@ -85,7 +83,6 @@ export const ContestAnalyticsSubmissions: React.FC<ContestAnalyticsSubmissionsPr
   submissions,
 }) => {
   const theme = useCoreTheme() as CoreTheme;
-
   return (
     <Box
       sx={{
@@ -100,7 +97,7 @@ export const ContestAnalyticsSubmissions: React.FC<ContestAnalyticsSubmissionsPr
       <Typography
         variant="caption"
         sx={{
-          color: '#777',
+          color: theme.vd.palette.textMuted,
           fontSize: '16px',
           fontWeight: 500,
         }}
@@ -110,7 +107,7 @@ export const ContestAnalyticsSubmissions: React.FC<ContestAnalyticsSubmissionsPr
       <Typography
         variant="body1"
         sx={{
-          color: '#000',
+          color: theme.palette.text.primary,
           fontSize: '18px',
           fontWeight: 600,
         }}
@@ -127,7 +124,6 @@ export interface ContestAnalyticsAvgScoreProps {
 
 export const ContestAnalyticsAvgScore: React.FC<ContestAnalyticsAvgScoreProps> = ({ avgScore }) => {
   const theme = useCoreTheme() as CoreTheme;
-
   return (
     <Box
       sx={{
@@ -142,7 +138,7 @@ export const ContestAnalyticsAvgScore: React.FC<ContestAnalyticsAvgScoreProps> =
       <Typography
         variant="caption"
         sx={{
-          color: '#777',
+          color: theme.vd.palette.textMuted,
           fontSize: '16px',
           fontWeight: 500,
         }}
@@ -152,7 +148,7 @@ export const ContestAnalyticsAvgScore: React.FC<ContestAnalyticsAvgScoreProps> =
       <Typography
         variant="body1"
         sx={{
-          color: '#000',
+          color: theme.palette.text.primary,
           fontSize: '18px',
           fontWeight: 600,
         }}
@@ -176,13 +172,12 @@ const ContestAnalyticsListItem: React.FC<ContestAnalyticsListItemProps> = ({
   children,
 }) => {
   const theme = useCoreTheme() as CoreTheme;
-
   return (
     <Box
       sx={{
         borderRadius: theme.spacing(6),
         boxShadow: theme.vd.shadows.y4,
-        backgroundColor: '#FFFFFF',
+        backgroundColor: theme.palette.background.paper,
         mb: '20px',
         width: '100%',
         px: theme.spacing(12.25),

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Box, Typography, SxProps, Theme, styled, useTheme } from '@mui/material';
+import { CoreTheme, useCoreTheme } from '../../../theme/core-theme';
 
 export interface BatchOption {
   value: string;
@@ -20,7 +21,7 @@ export interface BatchSelectionProps {
 const Outer = styled(Box)(({ theme }) => ({
   padding: theme.spacing(11),
   borderRadius: theme.spacing(9),
-  background: '#FFFFFF',
+  background: theme.palette.background.paper,
   boxShadow: '0 0 20px 0 rgba(0, 0, 0, 0.10)',
   border: 'none',
   width: '100%',
@@ -84,8 +85,8 @@ const Card = styled('button')<{
   return base;
 });
 
-const Label = styled(Typography)(() => ({
-  color: '#1E1E1E',
+const Label = styled(Typography)(({ theme }) => ({
+  color: (theme as CoreTheme).vd.palette.textStrong,
   fontSize: '22px',
   fontStyle: 'normal',
   fontWeight: 500,
@@ -108,8 +109,7 @@ const BatchSelection: React.FC<BatchSelectionProps> = ({
   title = 'Batch List',
   subtitle = "Choose a batch based on the semester you've chosen",
 }) => {
-  const theme = useTheme();
-
+  const theme = useCoreTheme() as CoreTheme;
   const handleClick = (opt: BatchOption) => {
     if (disabled || opt.disabled) return;
     onChange(opt.value);
@@ -138,8 +138,8 @@ const BatchSelection: React.FC<BatchSelectionProps> = ({
             const isSelected = value === opt.value;
             const cardBackground =
               index % 2 === 0
-                ? 'linear-gradient(180deg, #FFF 0%, #FFF4DC 100%)'
-                : 'linear-gradient(180deg, #FFF 0%, #F6EDFF 100%)';
+                ? `linear-gradient(180deg, ${theme.palette.common.white} 0%, #FFF4DC 100%)`
+                : `linear-gradient(180deg, ${theme.palette.common.white} 0%, #F6EDFF 100%)`;
             const cardBorder = index % 2 === 0 ? '1px solid #FDE1AA' : '1px solid #E1BFFF';
 
             return (

@@ -2,10 +2,10 @@ import React, { FC } from 'react';
 import { styled } from '@mui/system';
 import { Box } from '../../atom/box';
 import { useMediaQuery } from '@mui/material';
-import { CoreTheme, useCoreTheme } from '../../../theme/core-theme';
 import { Theme } from '@mui/material/styles';
 import BannerContent, { IBannerContent } from './BannerContent';
 import { SystemStyleObject } from '@mui/system/styleFunctionSx/styleFunctionSx';
+import { CoreTheme, useCoreTheme } from '../../../theme/core-theme';
 
 export interface IIntroBannerProps {
   label?: string;

@@ -1,6 +1,8 @@
 import React from 'react';
 import { Snackbar as MuiSnackbar, Box, Typography, IconButton, useTheme } from '@mui/material';
+import { alpha } from '@mui/material/styles';
 import { Close, CheckCircle, Warning, Info } from '@mui/icons-material';
+import { CoreTheme, useCoreTheme } from '../../../theme/core-theme';
 
 export type SnackbarVariant = 'success' | 'error' | 'warning' | 'info' | 'default';
 
@@ -21,13 +23,12 @@ const Snackbar: React.FC<SnackbarProps> = ({
   autoHideDuration = 6000,
   onClose,
 }) => {
-  const theme = useTheme();
-
+  const theme = useCoreTheme() as CoreTheme;
   const getVariantStyles = (variant: SnackbarVariant) => {
     switch (variant) {
       case 'success':
         return {
-          backgroundColor: '#F4FFF6',
+          backgroundColor: alpha(theme.palette.success.main, 0.06),
           border: `1px solid ${theme.palette.success.main}`,
           icon: <CheckCircle sx={{ color: theme.palette.success.main, fontSize: '24px' }} />,
           textColor: theme.palette.success.main,
@@ -36,7 +37,7 @@ const Snackbar: React.FC<SnackbarProps> = ({
         };
       case 'error':
         return {
-          backgroundColor: '#FFF3F3',
+          backgroundColor: alpha(theme.palette.error.main, 0.05),
           border: `1px solid ${theme.palette.error.main}`,
           icon: null,
           textColor: theme.palette.error.main,
@@ -45,7 +46,7 @@ const Snackbar: React.FC<SnackbarProps> = ({
         };
       case 'warning':
         return {
-          backgroundColor: '#FFF7E0',
+          backgroundColor: alpha(theme.palette.warning.main, 0.1),
           border: `1px solid ${theme.palette.warning.main}`,
           icon: <Warning sx={{ color: theme.palette.warning.main, fontSize: '24px' }} />,
           textColor: theme.palette.warning.main,

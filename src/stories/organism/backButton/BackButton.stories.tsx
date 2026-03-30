@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import BackButton from '../../../component/molecule/backButton/BackButton';
+import { CoreTheme, useCoreTheme } from '../../../theme/core-theme';
 
 const meta: Meta<typeof BackButton> = {
   title: 'Molecule/BackButton',
@@ -27,7 +28,7 @@ const meta: Meta<typeof BackButton> = {
       description: 'Border color of the button',
       table: {
         type: { summary: 'string' },
-        defaultValue: { summary: '#C2C2C2' },
+        defaultValue: { summary: 'theme.palette.grey[300]' },
       },
     },
     bgColor: {
@@ -35,7 +36,7 @@ const meta: Meta<typeof BackButton> = {
       description: 'Background color of the button',
       table: {
         type: { summary: 'string' },
-        defaultValue: { summary: '#FFFFFF' },
+        defaultValue: { summary: 'theme.palette.common.white' },
       },
     },
     iconColor: {
@@ -43,7 +44,7 @@ const meta: Meta<typeof BackButton> = {
       description: 'Color of the arrow icon',
       table: {
         type: { summary: 'string' },
-        defaultValue: { summary: '#000000' },
+        defaultValue: { summary: 'theme.palette.common.black' },
       },
     },
   },

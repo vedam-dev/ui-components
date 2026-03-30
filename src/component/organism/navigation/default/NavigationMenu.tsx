@@ -6,7 +6,6 @@ import { PopoverOrigin } from '@mui/material/Popover';
 import Toolbar from '@mui/material/Toolbar';
 import * as React from 'react';
 import { ComponentProps, CSSProperties, FC } from 'react';
-import { useCoreTheme } from '../../../../theme/core-theme';
 import { INavigationItemMultiple, NavigationMenuItems } from '../types';
 import { INavigationMainLogoProps } from './components/NavigationMainLogo';
 import NavigationMenuButton, {
@@ -14,6 +13,7 @@ import NavigationMenuButton, {
 } from './components/NavigationMenuButton';
 import { SystemStyleObject } from '@mui/system/styleFunctionSx/styleFunctionSx';
 import { handleSkipTo } from '../navigationUtils';
+import { CoreTheme, useCoreTheme } from '../../../../theme/core-theme';
 
 export interface INavigationMenuProps extends INavigationMainLogoProps {
   height: string;

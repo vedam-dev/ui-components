@@ -1,6 +1,7 @@
 import { createCoreTheme } from '../../core-theme';
 import defaultTheme from '../default';
 import colors from './colors';
+import { CoreTheme, useCoreTheme } from '../../core-theme';
 
 const defaultFont = { fontFamily: 'system-ui', letterSpacing: 0 };
 
@@ -33,6 +34,34 @@ const index = createCoreTheme({
         letterSpacing: 1.5,
         fontWeight: 'bold',
       },
+    },
+    palette: {
+      maintenanceBanner: colors.warningW100,
+      errorModalBackground: colors.dangerD100,
+      powerball: colors.powerball,
+      lottoAmerica: colors.lottoAmerica,
+      megaMillions: colors.megaMillions,
+
+      surfaceDefault: colors.neutralsNWhite,
+      surfaceSubtle: colors.neutralsN100,
+      surfaceMuted: '#F5F5F5',
+
+      borderDefault: colors.neutralsN200,
+      borderMuted: '#E0E0E0',
+      borderStrong: colors.neutralsN300,
+      borderSubtle: colors.neutralsN200,
+
+      textStrong: colors.textColors1TxPrimary,
+      textMuted: colors.neutralsN500,
+      textSubtle: colors.neutralsN400,
+
+      statusActive: colors.successSc300,
+      statusInactive: colors.neutralsN400,
+      statusPending: colors.warningW400Warning,
+
+      accentPrimary: colors.primaryP500,
+      accentSecondary: colors.secondaryS500Secondary,
+      accentPrimaryLight: colors.primaryP100,
     },
   },
   spacing: 4,

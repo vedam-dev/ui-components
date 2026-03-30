@@ -1,6 +1,7 @@
 import React from 'react';
 import { Box, Typography, IconButton, SxProps, styled, Theme } from '@mui/material';
 import { ChevronRight } from '@mui/icons-material';
+import { CoreTheme, useCoreTheme } from '../../../theme/core-theme';
 
 export interface AttendanceSummaryCardProps {
   keyTitle?: string;
@@ -19,7 +20,7 @@ const CardContainer = styled(Box)(({ theme }) => ({
   alignItems: 'center',
   justifyContent: 'space-between',
   padding: theme.spacing(5.5, 15),
-  background: '#FFF',
+  background: theme.palette.background.paper,
   borderRadius: theme.spacing(6),
   boxShadow: '0 0 10px 1px rgba(0, 0, 0, 0.10)',
   width: '100%',
@@ -39,16 +40,16 @@ const StatBox = styled(Box)({
   alignItems: 'flex-start',
 });
 
-const StatLabel = styled(Typography)(() => ({
-  color: '#777',
+const StatLabel = styled(Typography)(({ theme }) => ({
+  color: (theme as CoreTheme).vd.palette.textMuted,
   fontSize: '16px',
   fontStyle: 'normal',
   fontWeight: 500,
   lineHeight: 'normal',
 }));
 
-const StatValue = styled(Typography)(() => ({
-  color: '#8A18FF',
+const StatValue = styled(Typography)(({ theme }) => ({
+  color: (theme as CoreTheme).vd.palette.accentPrimary,
   fontSize: '18px',
   fontStyle: 'normal',
   fontWeight: 600,
@@ -63,8 +64,8 @@ const StatValueSecondary = styled(Typography)(() => ({
   lineHeight: 'normal',
 }));
 
-const NavigateButton = styled(IconButton)({
-  background: '#E8D1FF',
+const NavigateButton = styled(IconButton)(({ theme }) => ({
+  background: (theme as CoreTheme).vd.palette.accentPrimaryLight,
   width: 40,
   height: 40,
   borderRadius: '50%',
@@ -74,7 +75,7 @@ const NavigateButton = styled(IconButton)({
     background: '#DDB8FF',
     transform: 'translateX(4px)',
   },
-});
+}));
 
 const AttendanceSummaryCard: React.FC<AttendanceSummaryCardProps> = ({
   keyTitle = 'Average Attendance',
@@ -87,6 +88,7 @@ const AttendanceSummaryCard: React.FC<AttendanceSummaryCardProps> = ({
   onNavigate,
   sx,
 }) => {
+  const theme = useCoreTheme() as CoreTheme;
   return (
     <CardContainer sx={sx}>
       <StatsSection>
@@ -107,7 +109,7 @@ const AttendanceSummaryCard: React.FC<AttendanceSummaryCardProps> = ({
 
       {showNavigateButton && (
         <NavigateButton onClick={onNavigate} aria-label="Navigate">
-          <ChevronRight sx={{ color: '#8A18FF', fontSize: 28 }} />
+          <ChevronRight sx={{ color: theme.vd.palette.accentPrimary, fontSize: 28 }} />
         </NavigateButton>
       )}
     </CardContainer>
