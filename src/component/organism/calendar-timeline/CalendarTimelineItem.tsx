@@ -26,8 +26,6 @@ const CalendarTimelineItem: React.FC<CalendarTimelineItemProps> = ({
   lectureNumber,
   eventDate,
 }) => {
-  
-
   const theme = useCoreTheme() as CoreTheme;
   const formatDate = (dateStr: string): string => {
     let day: number, month: number;

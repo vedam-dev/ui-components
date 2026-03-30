@@ -66,7 +66,6 @@ const Card = styled('button')<{
   disabled?: boolean;
   colorscheme?: string;
 }>(({ theme, selected, disabled, colorscheme }) => {
-  const theme = useCoreTheme() as CoreTheme;
   const colorSchemes: Record<string, { bg: string; border: string; ratingColor: string }> = {
     yellow: {
       bg: `linear-gradient(180deg, ${theme.palette.common.white} 0%, #FFF4DC 100%)`,
@@ -194,6 +193,7 @@ const InstructorList: React.FC<InstructorListProps> = ({
   subtitle = 'Choose an instructor to view their ratings',
   variant = 'instructor',
 }) => {
+  const theme = useCoreTheme() as CoreTheme;
   const colorSchemes = ['yellow', 'purple'];
 
   const handleClick = (opt: InstructorOption) => {

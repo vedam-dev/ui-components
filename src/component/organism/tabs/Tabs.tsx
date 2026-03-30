@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useEffect, useId, useRef, useState } from 'react';
-import { Box, Button, useTheme } from '@mui/material';
+import { Box, Button } from '@mui/material';
 import type { ReactNode } from 'react';
 import { CoreTheme, useCoreTheme } from '../../../theme/core-theme';
 
@@ -38,7 +38,7 @@ export default function Tabs({
   tabSx,
   panelSx,
 }: TabsProps) {
-  
+  const theme = useCoreTheme() as CoreTheme;
   const baseId = useId();
   const [activeIdx, setActiveIdx] = useState(() =>
     Math.max(0, Math.min(initialIndex, Math.max(0, tabs.length - 1)))
@@ -49,7 +49,6 @@ export default function Tabs({
 
   // ensure tabRefs length matches tabs length (avoid stale refs)
   useEffect(() => {
-  const theme = useCoreTheme() as CoreTheme;
     tabRefs.current = Array(tabs.length)
       .fill(null)
       .map((_, i) => tabRefs.current[i] ?? null);

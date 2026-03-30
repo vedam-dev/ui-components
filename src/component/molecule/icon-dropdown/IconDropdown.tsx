@@ -20,7 +20,6 @@ const IconDropdown: React.FC<IconDropdownProps> = ({
   autoWidth = false,
   minWidth = 120,
 }) => {
-  
   const theme = useCoreTheme() as CoreTheme;
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [selected, setSelected] = useState<string>(label);

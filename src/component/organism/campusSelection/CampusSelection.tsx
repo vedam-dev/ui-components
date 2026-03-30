@@ -52,7 +52,6 @@ const Header: React.FC<{ sx?: SxProps<Theme>; children?: React.ReactNode }> = ({
 );
 
 const Title: React.FC<{ sx?: SxProps<Theme>; children?: React.ReactNode }> = ({ sx, children }) => {
-  const theme = useCoreTheme() as CoreTheme;
   const titleTheme = useCoreTheme() as CoreTheme;
   return (
     <Typography
@@ -212,8 +211,7 @@ const CampusSelection: React.FC<CampusSelectionProps> = ({
   showNavigationButtons = true,
   itemsPerPage = 3,
 }) => {
-  
-
+  const theme = useCoreTheme() as CoreTheme;
   const [currentPage, setCurrentPage] = useState(0);
 
   const totalPages = Math.ceil(options.length / itemsPerPage);

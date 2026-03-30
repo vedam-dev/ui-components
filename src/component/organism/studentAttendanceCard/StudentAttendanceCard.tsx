@@ -15,7 +15,6 @@ const StudentAttendanceCard: React.FC<StudentAttendanceCardProps> = ({
   attendance,
   value,
 }) => {
-  
   const theme = useCoreTheme() as CoreTheme;
   return (
     <Box

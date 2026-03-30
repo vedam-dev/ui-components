@@ -3,7 +3,6 @@ import { ThemeProvider, ThemeProviderProps } from '@mui/material/styles';
 import { ThemeOptions } from '@mui/material/styles/createTheme';
 import { TypographyStyle } from '@mui/material/styles/createTypography';
 import React from 'react';
-import { CoreTheme, useCoreTheme } from './core-theme';
 export type CoreTypographyVariant = 'buttonS' | 'avatar';
 
 interface LegacyBrandPalette {

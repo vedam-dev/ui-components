@@ -52,8 +52,7 @@ export interface StudentListItemStatusProps {
 }
 
 export const StudentListItemStatus: React.FC<StudentListItemStatusProps> = ({ status }) => {
-  
-
+  const theme = useCoreTheme() as CoreTheme;
   const getStatusColor = (status: string) => {
     return status === 'Active' ? theme.vd.palette.statusActive : theme.vd.palette.textMuted;
   };
@@ -103,8 +102,7 @@ export interface StudentListItemButtonProps {
 }
 
 export const StudentListItemButton: React.FC<StudentListItemButtonProps> = ({ onClick }) => {
-  
-
+  const theme = useCoreTheme() as CoreTheme;
   return (
     <Box
       sx={{
@@ -148,8 +146,7 @@ const StudentListItem: React.FC<StudentListItemProps> = ({
   onViewDetails,
   bgColor,
 }) => {
-  
-
+  const theme = useCoreTheme() as CoreTheme;
   return (
     <Box
       sx={{

@@ -88,8 +88,6 @@ const AttendanceSummaryCard: React.FC<AttendanceSummaryCardProps> = ({
   onNavigate,
   sx,
 }) => {
-  
-
   const theme = useCoreTheme() as CoreTheme;
   return (
     <CardContainer sx={sx}>

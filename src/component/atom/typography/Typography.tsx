@@ -12,7 +12,6 @@ export type TypographyProps = ComponentProps<typeof BaseTypography> &
   DefaultComponentProps<OverridableTypeMap>;
 
 const Typography: FC<TypographyProps> = ({ children, isButtonS, ...props }) => {
-  
   const theme = useCoreTheme() as CoreTheme;
   let styles: React.CSSProperties = {};
   if (isButtonS && props.variant === 'button') {

@@ -21,8 +21,6 @@ export const CustomPagination: React.FC<CustomPaginationProps> = ({
   disabled = false,
   siblingCount = 1,
 }) => {
-  
-
   const theme = useCoreTheme() as CoreTheme;
   const generatePaginationRange = () => {
     const range: (number | string)[] = [];

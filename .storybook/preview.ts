@@ -67,7 +67,14 @@ import '@fontsource/montserrat/700.css';
 import type { Preview } from '@storybook/react';
 import { CssBaseline } from '@mui/material';
 import { withThemeFromJSXProvider } from '@storybook/addon-themes';
-import { defaultTheme, vedamTheme, ksTheme, ks3Theme, miraeTheme, globexTheme } from '../src/theme/customer';
+import {
+  defaultTheme,
+  vedamTheme,
+  ksTheme,
+  ks3Theme,
+  miraeTheme,
+  globexTheme,
+} from '../src/theme/customer';
 import { CoreThemeProvider } from '../src/theme/core-theme';
 import { INITIAL_VIEWPORTS, MINIMAL_VIEWPORTS, DEFAULT_VIEWPORT } from '@storybook/addon-viewport';
 

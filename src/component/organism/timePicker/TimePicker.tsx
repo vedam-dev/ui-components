@@ -33,7 +33,6 @@ const TimePicker: React.FC<TimePickerProps> = ({
   tooltip = 'Select time',
   popoverSx,
 }) => {
-  
   const theme = useCoreTheme() as CoreTheme;
   const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
   const [tempValue, setTempValue] = useState<Dayjs | null>(null);

@@ -115,14 +115,16 @@ const RightContent = styled(Box)(({ theme }) => ({
 }));
 
 const getAttendanceStyles = (theme: CoreTheme, status: AttendanceStatus) => {
-  const theme = useCoreTheme() as CoreTheme;
   const styles: Record<string, { backgroundColor: string; color: string }> = {
     Present: { backgroundColor: theme.palette.success[100], color: theme.palette.success[300] },
     Absent: { backgroundColor: theme.palette.error[100], color: theme.palette.error[300] },
     Late: { backgroundColor: theme.palette.common.white, color: theme.palette.text.secondary },
     Leave: { backgroundColor: theme.palette.common.white, color: theme.palette.info.main },
     Excused: { backgroundColor: theme.palette.common.white, color: theme.palette.text.secondary },
-    'Awaiting Start': { backgroundColor: theme.palette.common.white, color: theme.palette.text.secondary },
+    'Awaiting Start': {
+      backgroundColor: theme.palette.common.white,
+      color: theme.palette.text.secondary,
+    },
     'Session in progress': {
       backgroundColor: theme.palette.common.white,
       color: theme.palette.text.secondary,
@@ -171,8 +173,8 @@ const LectureCard: React.FC<LectureCardProps> = ({
   attendanceStatus,
   menuItems,
 }) => {
-  
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const theme = useCoreTheme() as CoreTheme;
   const menuOpen = Boolean(anchorEl);
 
   const isCompact = variant === 'compact';

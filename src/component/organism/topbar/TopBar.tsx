@@ -141,9 +141,7 @@ const TopBar: React.FC<TopBarProps> = ({
 
         <CollegeInfo>
           <IconButton onClick={onLogoClick}>
-            {collegeLogo && (
-              <Avatar src={collegeLogo} alt={`college logo`} />
-            )}
+            {collegeLogo && <Avatar src={collegeLogo} alt={`college logo`} />}
           </IconButton>
         </CollegeInfo>
       </LeftContainer>

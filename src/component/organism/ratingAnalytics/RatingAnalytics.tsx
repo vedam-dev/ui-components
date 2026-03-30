@@ -9,8 +9,6 @@ export interface RatingAnalyticsDateProps {
 }
 
 export const RatingAnalyticsDate: React.FC<RatingAnalyticsDateProps> = ({ date, day: _day }) => {
-  
-
   const theme = useCoreTheme() as CoreTheme;
   return (
     <Box
@@ -52,8 +50,7 @@ export interface RatingAnalyticsDayProps {
 }
 
 export const RatingAnalyticsDay: React.FC<RatingAnalyticsDayProps> = ({ day }) => {
-  
-
+  const theme = useCoreTheme() as CoreTheme;
   return (
     <Box
       sx={{
@@ -94,8 +91,7 @@ export interface RatingAnalyticsTitleProps {
 }
 
 export const RatingAnalyticsTitle: React.FC<RatingAnalyticsTitleProps> = ({ title }) => {
-  
-
+  const theme = useCoreTheme() as CoreTheme;
   return (
     <Box
       sx={{
@@ -127,8 +123,7 @@ export interface RatingAnalyticsRatingProps {
 }
 
 export const RatingAnalyticsRating: React.FC<RatingAnalyticsRatingProps> = ({ rating }) => {
-  
-
+  const theme = useCoreTheme() as CoreTheme;
   // Determine color based on rating value
   const getRatingColor = (rating: string): string => {
     const numRating = parseFloat(rating);
@@ -184,8 +179,7 @@ const LectureListItem: React.FC<LectureListItemProps> = ({
   borderColor: _borderColor,
   children,
 }) => {
-  
-
+  const theme = useCoreTheme() as CoreTheme;
   return (
     <Box
       sx={{

@@ -29,8 +29,6 @@ const OptionRow: React.FC<{
   selected: boolean;
   onSelect: () => void;
 }> = ({ option, selected, onSelect }) => {
-  
-
   const theme = useCoreTheme() as CoreTheme;
   return (
     <Box
@@ -108,8 +106,7 @@ const SurveyOptions: React.FC<SurveyOptionsProps> = ({
   sx = {},
   showGlobalOther = false,
 }) => {
-  
-
+  const theme = useCoreTheme() as CoreTheme;
   const [internalSelected, setInternalSelected] = useState<string | null>(value ?? null);
   const [internalText, setInternalText] = useState<string>(textValue ?? '');
 

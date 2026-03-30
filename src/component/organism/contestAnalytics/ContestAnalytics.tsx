@@ -8,8 +8,6 @@ export interface ContestAnalyticsTitleProps {
 }
 
 export const ContestAnalyticsTitle: React.FC<ContestAnalyticsTitleProps> = ({ contestNumber }) => {
-  
-
   const theme = useCoreTheme() as CoreTheme;
   return (
     <Box
@@ -41,8 +39,7 @@ export interface ContestAnalyticsDateProps {
 }
 
 export const ContestAnalyticsDate: React.FC<ContestAnalyticsDateProps> = ({ date }) => {
-  
-
+  const theme = useCoreTheme() as CoreTheme;
   return (
     <Box
       sx={{
@@ -85,8 +82,7 @@ export interface ContestAnalyticsSubmissionsProps {
 export const ContestAnalyticsSubmissions: React.FC<ContestAnalyticsSubmissionsProps> = ({
   submissions,
 }) => {
-  
-
+  const theme = useCoreTheme() as CoreTheme;
   return (
     <Box
       sx={{
@@ -127,8 +123,7 @@ export interface ContestAnalyticsAvgScoreProps {
 }
 
 export const ContestAnalyticsAvgScore: React.FC<ContestAnalyticsAvgScoreProps> = ({ avgScore }) => {
-  
-
+  const theme = useCoreTheme() as CoreTheme;
   return (
     <Box
       sx={{
@@ -176,8 +171,7 @@ const ContestAnalyticsListItem: React.FC<ContestAnalyticsListItemProps> = ({
   borderColor: _borderColor,
   children,
 }) => {
-  
-
+  const theme = useCoreTheme() as CoreTheme;
   return (
     <Box
       sx={{

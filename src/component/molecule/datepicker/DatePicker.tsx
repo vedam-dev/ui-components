@@ -52,7 +52,6 @@ export const CustomDatePicker: React.FC<CustomDatePickerProps> = ({
     onChange(tempValue);
     if (onAccept) onAccept(tempValue);
   };
-  
 
   // compute root width style
   const computedWidth: string | number | undefined = fullWidth

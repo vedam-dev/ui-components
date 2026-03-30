@@ -67,7 +67,6 @@ const SidebarDrawer: FC<SidebarDrawerProps> = ({
   })();
 
   const [activeId, setActiveId] = useState<string | null>(initialActiveId);
-  
 
   useEffect(() => {
     const selected = items.find((it) => it.selected);

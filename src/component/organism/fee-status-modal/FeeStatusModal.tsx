@@ -31,7 +31,6 @@ const FeeStatusModal: React.FC<FeeStatusModalProps> = ({
   customDownloadButton,
   ...props
 }) => {
-  
   const theme = useCoreTheme() as CoreTheme;
   return (
     <Modal

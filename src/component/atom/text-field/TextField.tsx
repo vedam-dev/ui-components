@@ -21,7 +21,6 @@ const TextField: React.FC<TextFieldProps> = ({
   value: propValue,
   onChange,
 }) => {
-  
   const theme = useCoreTheme() as CoreTheme;
   const [internalValue, setInternalValue] = useState(propValue || '');
   const [validationError, setValidationError] = useState<string | null>(null);

@@ -49,8 +49,6 @@ const Button: FC<ButtonProps> = ({
   rightIconTooltip,
   ...buttonProps
 }) => {
-  
-
   const theme = useCoreTheme() as CoreTheme;
   const useMaterialButtons = theme.vd.useMaterialButtons;
 

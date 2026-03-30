@@ -80,9 +80,10 @@ const SubjectCard: FC<SubjectCardProps> = ({
   batchTextSx,
   courseInfoTextSx,
 }) => {
-  
   const theme = useCoreTheme() as CoreTheme;
-  const resolvedGradient = gradient ?? `linear-gradient(180deg, ${theme.vd.palette.accentPrimaryLight} 0%, ${theme.palette.common.white} 100%)`;
+  const resolvedGradient =
+    gradient ??
+    `linear-gradient(180deg, ${theme.vd.palette.accentPrimaryLight} 0%, ${theme.palette.common.white} 100%)`;
 
   const defaultCardSx: SxProps<Theme> = {
     width: typeof width === 'number' ? `${width}px` : width,

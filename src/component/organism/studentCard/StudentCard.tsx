@@ -102,8 +102,6 @@ const StudentCard: React.FC<StudentCardProps> = ({
   onNavigate,
   sx,
 }) => {
-  
-
   const theme = useCoreTheme() as CoreTheme;
   return (
     <CardContainer sx={sx}>

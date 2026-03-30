@@ -92,7 +92,6 @@ const EventCard = styled(Box, {
   event_index = 0,
   total_events = 1,
 }) => {
-  const theme = useCoreTheme() as CoreTheme;
   const widthPercentage = 96 / total_events;
   const leftPosition = event_index * widthPercentage;
   const width = `${widthPercentage}%`;
@@ -252,8 +251,7 @@ const ReusableCalendar: React.FC<ReusableCalendarProps> = ({
   onWeekChange: _onWeekChange,
   sx,
 }) => {
-  
-
+  const theme = useCoreTheme() as CoreTheme;
   const [start, setStart] = useState<Date>(
     weekStart ? startOfWeek(weekStart) : startOfWeek(new Date())
   );
@@ -406,7 +404,9 @@ const ReusableCalendar: React.FC<ReusableCalendarProps> = ({
         {timeSlots.map((timeLabel, timeIndex) => (
           <React.Fragment key={timeIndex}>
             <TimeSlot>
-              <Typography sx={{ fontSize: '18px', fontWeight: 600, color: theme.vd.palette.textStrong }}>
+              <Typography
+                sx={{ fontSize: '18px', fontWeight: 600, color: theme.vd.palette.textStrong }}
+              >
                 {timeLabel}
               </Typography>
             </TimeSlot>

@@ -79,7 +79,6 @@ const DayCell = styled(Box, {
   eventType?: string;
   attendanceStatus?: AttendanceStatus;
 }>(({ theme, isToday, isOtherMonth, hasEvent, eventType: _eventType, attendanceStatus }) => {
-  const theme = useCoreTheme() as CoreTheme;
   let backgroundColor = '#F5F5F7';
   let borderRadius = '0px';
 
@@ -215,7 +214,7 @@ const MonthlyCalendar: React.FC<MonthlyCalendarProps> = ({
   sx,
   tooltipData,
 }) => {
-  
+  const theme = useCoreTheme() as CoreTheme;
   const [selectedMonth, setSelectedMonth] = useState(currentDate);
 
   useEffect(() => {

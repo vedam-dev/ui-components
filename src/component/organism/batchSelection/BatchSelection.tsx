@@ -57,7 +57,6 @@ const Card = styled('button')<{
   selected?: boolean;
   disabled?: boolean;
 }>(({ theme, selected: _selected, disabled }) => {
-  const theme = useCoreTheme() as CoreTheme;
   const base: any = {
     display: 'flex',
     gap: theme.spacing(4),
@@ -110,8 +109,7 @@ const BatchSelection: React.FC<BatchSelectionProps> = ({
   title = 'Batch List',
   subtitle = "Choose a batch based on the semester you've chosen",
 }) => {
-  
-
+  const theme = useCoreTheme() as CoreTheme;
   const handleClick = (opt: BatchOption) => {
     if (disabled || opt.disabled) return;
     onChange(opt.value);

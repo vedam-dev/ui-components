@@ -90,7 +90,6 @@ const NavigationMenu: FC<NavigationMobileMenuProps> = ({
   customSkipTo,
   ...mainLogoProps
 }) => {
-  
   const theme = useCoreTheme() as CoreTheme;
   const isMobile = useMediaQuery((theme: Theme) => theme.breakpoints.down('sm'));
   const isTablet = useMediaQuery((theme: Theme) => theme.breakpoints.between('sm', 'md'));

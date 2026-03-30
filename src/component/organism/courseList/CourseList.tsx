@@ -58,7 +58,6 @@ const Card = styled('button')<{
   disabled?: boolean;
   colorscheme?: string;
 }>(({ theme, selected, disabled, colorscheme }) => {
-  const theme = useCoreTheme() as CoreTheme;
   const colorSchemes: Record<string, { bg: string; border: string }> = {
     purple: {
       bg: `linear-gradient(180deg, ${(theme as CoreTheme).vd.palette.accentPrimaryLight} 0%, ${theme.palette.common.white} 100%)`,
@@ -142,6 +141,7 @@ const CourseList: React.FC<CourseListProps> = ({
   title = 'Course List',
   subtitle = "Choose a course to view it's contest details",
 }) => {
+  const theme = useCoreTheme() as CoreTheme;
   const colorSchemes = ['purple', 'yellow', 'orange', 'cyan'];
 
   const handleClick = (opt: CourseOption) => {

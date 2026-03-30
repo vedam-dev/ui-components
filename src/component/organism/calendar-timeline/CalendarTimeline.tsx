@@ -18,7 +18,6 @@ interface CalendarTimelineProps {
 }
 
 const CalendarTimeline: React.FC<CalendarTimelineProps> = ({ events, onViewFullCalendar }) => {
-  
   const theme = useCoreTheme() as CoreTheme;
   const [eventsWithStatus, setEventsWithStatus] = useState<
     (ClassSession & { status: 'completed' | 'ongoing' | 'upcoming' })[]

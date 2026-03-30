@@ -41,7 +41,6 @@ const Chip: FC<ChipProps> = ({
   sx,
   ...props
 }) => {
-  
   const theme = useCoreTheme() as CoreTheme;
   const { palette } = theme;
 

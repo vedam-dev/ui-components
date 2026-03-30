@@ -20,7 +20,6 @@ const DynamicBreadcrumbs: React.FC<DynamicBreadcrumbsProps> = ({
   separator = <NavigateNext fontSize="small" />,
   sx,
 }) => {
-  
   const theme = useCoreTheme() as CoreTheme;
   return (
     <Box sx={{ ...sx }}>
@@ -73,7 +72,10 @@ const DynamicBreadcrumbs: React.FC<DynamicBreadcrumbsProps> = ({
                 cursor: item.href || item.onClick ? 'pointer' : 'default',
                 '&:hover': {
                   textDecoration: item.href || item.onClick ? 'underline' : 'none',
-                  color: item.href || item.onClick ? theme.palette.text.primary : theme.palette.text.secondary,
+                  color:
+                    item.href || item.onClick
+                      ? theme.palette.text.primary
+                      : theme.palette.text.secondary,
                 },
               }}
             >

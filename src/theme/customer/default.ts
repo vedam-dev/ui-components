@@ -1,6 +1,5 @@
 import { CoreTheme, createCoreTheme } from '../core-theme';
 import { createTheme } from '@mui/material';
-import { CoreTheme, useCoreTheme } from '../core-theme';
 
 const muiTheme = createTheme();
 

@@ -29,7 +29,7 @@ const statusIcons = {
 };
 
 const FeeStatusList: React.FC<FeeStatusListProps> = ({ status, feeItems, onPayNow, ...props }) => {
-  const theme = useCoreTheme();
+  const theme = useCoreTheme() as CoreTheme;
 
   const getStatusColor = (status: FeeStatus) => {
     switch (status) {

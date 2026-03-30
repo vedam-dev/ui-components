@@ -38,8 +38,6 @@ type Story = StoryObj<typeof VideoPlayerModal>;
 
 // Play button component to trigger the modal
 const VideoPlayButton = ({ onClick, style = {} }: { onClick: () => void; style?: any }) => {
-  
-
   const theme = useCoreTheme() as CoreTheme;
   return (
     <Box

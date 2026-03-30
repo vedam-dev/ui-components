@@ -25,8 +25,6 @@ const VideoPlayerModal: React.FC<VideoPlayerModalProps> = ({
   width = '100%',
   height = 'auto',
 }) => {
-  
-
   const theme = useCoreTheme() as CoreTheme;
   const handleClose = () => {
     onClose();

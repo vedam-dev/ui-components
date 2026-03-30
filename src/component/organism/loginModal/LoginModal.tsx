@@ -19,8 +19,6 @@ const LoginModal: React.FC<LoginModalProps> = ({
   subtitle = 'Login with your registered email id',
   onGoogleLoginClick,
 }) => {
-  
-
   const theme = useCoreTheme() as CoreTheme;
   return (
     <Paper

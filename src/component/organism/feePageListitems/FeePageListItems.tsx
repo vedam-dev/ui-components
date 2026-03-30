@@ -10,8 +10,6 @@ export interface FeeListItemRowProps {
 }
 
 export const FeeListItemRow: React.FC<FeeListItemRowProps> = ({ title, value }) => {
-  
-
   const theme = useCoreTheme() as CoreTheme;
   return (
     <Box
@@ -61,7 +59,7 @@ export interface FeeListItemStatusProps {
 }
 
 export const FeeListItemStatus: React.FC<FeeListItemStatusProps> = ({ status }) => {
-  
+  const theme = useCoreTheme() as CoreTheme;
   const chipVariant = FeeStatusVariant[status];
 
   return (
@@ -106,7 +104,7 @@ export interface FeeListItemButtonProps {
 }
 
 export const FeeListItemButton: React.FC<FeeListItemButtonProps> = ({ onClick }) => {
-  
+  const theme = useCoreTheme() as CoreTheme;
   // If no onClick handler is provided, don't render the button
   if (!onClick) {
     return null;
@@ -154,7 +152,7 @@ export interface FeeListItemProps {
 }
 
 const FeeListItem: React.FC<FeeListItemProps> = ({ children }) => {
-  
+  const theme = useCoreTheme() as CoreTheme;
   return (
     <Box
       sx={{

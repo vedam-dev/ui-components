@@ -34,7 +34,6 @@ const ResponsiveImages: FC<{
   altText?: string;
   decorativeBanner?: boolean;
 }> = ({ desktopUrl, tabletUrl, mobileUrl, label, title, altText, decorativeBanner }) => {
-  const theme = useCoreTheme() as CoreTheme;
   const theme: CoreTheme = useCoreTheme() as CoreTheme;
   const mobileBreakpoints = theme.breakpoints.values;
 

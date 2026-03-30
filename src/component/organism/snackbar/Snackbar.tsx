@@ -23,8 +23,6 @@ const Snackbar: React.FC<SnackbarProps> = ({
   autoHideDuration = 6000,
   onClose,
 }) => {
-  
-
   const theme = useCoreTheme() as CoreTheme;
   const getVariantStyles = (variant: SnackbarVariant) => {
     switch (variant) {

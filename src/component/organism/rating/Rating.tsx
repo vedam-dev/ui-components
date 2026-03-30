@@ -15,17 +15,16 @@ type Props = {
 };
 
 const RatingCard: React.FC<Props> = (props) => {
-  
   const theme = useCoreTheme() as CoreTheme;
   const {
-  title = 'Overall Rating',
-  value = 4,
-  onChange,
-  readOnly = true,
-  max = 5,
-  backgroundImage = 'https://acjlsquedaotbhbxmtee.supabase.co/storage/v1/object/public/vedam-website-assets/images/videoInfo/Container-2.png',
-  sx,
-} = props;
+    title = 'Overall Rating',
+    value = 4,
+    onChange,
+    readOnly = true,
+    max = 5,
+    backgroundImage = 'https://acjlsquedaotbhbxmtee.supabase.co/storage/v1/object/public/vedam-website-assets/images/videoInfo/Container-2.png',
+    sx,
+  } = props;
 
   return (
     <Box
@@ -69,7 +68,10 @@ const RatingCard: React.FC<Props> = (props) => {
         <Typography
           sx={{
             fontWeight: 500,
-            color: theme.palette.mode === 'light' ? theme.vd.palette.textStrong : theme.palette.common.white,
+            color:
+              theme.palette.mode === 'light'
+                ? theme.vd.palette.textStrong
+                : theme.palette.common.white,
             zIndex: 2,
             position: 'relative',
             textAlign: 'center',

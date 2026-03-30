@@ -7,8 +7,6 @@ export interface ContestListItemTitleProps {
 }
 
 export const ContestListItemTitle: React.FC<ContestListItemTitleProps> = ({ contestNumber }) => {
-  
-
   const theme = useCoreTheme() as CoreTheme;
   return (
     <Box
@@ -40,7 +38,7 @@ export interface ContestListItemSubjectProps {
 }
 
 export const ContestListItemSubject: React.FC<ContestListItemSubjectProps> = ({ subject }) => {
-  
+  const theme = useCoreTheme() as CoreTheme;
   const words = subject.split(' ');
   const shouldSplit = words.length === 2;
 
@@ -84,8 +82,7 @@ export interface ContestListItemDateProps {
 }
 
 export const ContestListItemDate: React.FC<ContestListItemDateProps> = ({ date }) => {
-  
-
+  const theme = useCoreTheme() as CoreTheme;
   return (
     <Box
       sx={{
@@ -129,8 +126,7 @@ export interface ContestListItemStatusProps {
 }
 
 export const ContestListItemStatus: React.FC<ContestListItemStatusProps> = ({ status }) => {
-  
-
+  const theme = useCoreTheme() as CoreTheme;
   const getStatusColor = (status: string) => {
     switch (status) {
       case 'Submitted':
@@ -187,8 +183,7 @@ export interface ContestListItemScoreProps {
 }
 
 export const ContestListItemScore: React.FC<ContestListItemScoreProps> = ({ score }) => {
-  
-
+  const theme = useCoreTheme() as CoreTheme;
   return (
     <Box
       sx={{
@@ -233,8 +228,7 @@ export interface ContestListItemProps {
 }
 
 const ContestListItem: React.FC<ContestListItemProps> = ({ bgColor, borderColor, children }) => {
-  
-
+  const theme = useCoreTheme() as CoreTheme;
   return (
     <Box
       sx={{

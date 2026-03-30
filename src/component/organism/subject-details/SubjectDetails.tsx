@@ -9,8 +9,6 @@ export interface ClassListItemRowProps {
 }
 
 export const ClassListItemRow: React.FC<ClassListItemRowProps> = ({ title, value, highlight }) => {
-  
-
   const theme = useCoreTheme() as CoreTheme;
   return (
     <Box
@@ -53,8 +51,7 @@ export interface ClassListItemSubjectProps {
 }
 
 export const ClassListItemSubject: React.FC<ClassListItemSubjectProps> = ({ subject }) => {
-  
-
+  const theme = useCoreTheme() as CoreTheme;
   return (
     <Box
       sx={{
@@ -89,8 +86,7 @@ export interface ClassListItemStatusProps {
 }
 
 export const ClassListItemStatus: React.FC<ClassListItemStatusProps> = ({ status }) => {
-  
-
+  const theme = useCoreTheme() as CoreTheme;
   // Define custom colors for different statuses
   const getStatusColor = (status: string) => {
     switch (status) {
@@ -214,8 +210,7 @@ export interface ClassListItemProps {
 }
 
 const ClassListItem: React.FC<ClassListItemProps> = ({ bgColor, children }) => {
-  
-
+  const theme = useCoreTheme() as CoreTheme;
   return (
     <Box
       sx={{
