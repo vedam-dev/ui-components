@@ -95,7 +95,7 @@ const SidebarWrapper: FC<SidebarWrapperProps> = ({
   expandedWidth = 200,
   hoverDelayMs = 1000,
 }) => {
-  const topbarHeight = 94;
+  const topbarHeight = 75;
   const hoverTimerRef = useRef<number | null>(null);
   const [isSidebarExpanded, setIsSidebarExpanded] = useState(false);
 
@@ -298,6 +298,7 @@ const SidebarWrapper: FC<SidebarWrapperProps> = ({
         isSidebarExpanded={isSidebarExpanded}
         sx={{
           position: 'fixed',
+          height: topbarHeight,
           top: 0,
           left: 0,
           right: 0,
