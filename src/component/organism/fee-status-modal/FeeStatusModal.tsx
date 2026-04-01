@@ -64,7 +64,7 @@ const FeeStatusModal: React.FC<FeeStatusModalProps> = ({
             pt: theme.spacing(6),
             pb: theme.spacing(8),
             borderRadius: theme.spacing(9),
-            background: 'linear-gradient(180deg, #FFA26B 0%, #8C2BE0 100%)',
+            background: `linear-gradient(180deg, ${theme.vd.palette.accentSecondary} 0%, ${theme.vd.palette.accentPrimary} 100%)`,
             textAlign: 'center',
             width: '100%',
             maxWidth: theme.spacing(108),
