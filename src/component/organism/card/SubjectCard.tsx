@@ -63,7 +63,7 @@ const SubjectCard: FC<SubjectCardProps> = ({
   variant = 'default',
   buttons,
   gradient,
-  border = '1px solid #DAC2F2',
+  border,
   onGoToClass,
 
   width = 303,
@@ -84,13 +84,14 @@ const SubjectCard: FC<SubjectCardProps> = ({
   const resolvedGradient =
     gradient ??
     `linear-gradient(180deg, ${theme.vd.palette.accentPrimaryLight} 0%, ${theme.palette.common.white} 100%)`;
+  const resolvedBorder = border ?? `1px solid ${theme.vd.palette.accentPrimaryLight}`;
 
   const defaultCardSx: SxProps<Theme> = {
     width: typeof width === 'number' ? `${width}px` : width,
     height: typeof height === 'number' ? `${height}px` : height,
     borderRadius: theme.spacing(7),
     padding: '28px 20px',
-    border: border,
+    border: resolvedBorder,
     background: resolvedGradient,
     display: 'flex',
     flexDirection: 'column',
@@ -108,7 +109,7 @@ const SubjectCard: FC<SubjectCardProps> = ({
     border: '1px solid transparent',
     padding: theme.spacing(2.75, 3.25),
     bgcolor: 'white',
-    backgroundImage: 'linear-gradient(white, white), linear-gradient(to right, #FF6B35, #B026FF)',
+    backgroundImage: `linear-gradient(white, white), linear-gradient(to right, ${theme.vd.palette.accentSecondary}, ${theme.vd.palette.accentPrimary})`,
     backgroundOrigin: 'border-box',
     backgroundClip: 'padding-box, border-box',
     ...iconContainerSx,
@@ -197,7 +198,7 @@ const SubjectCard: FC<SubjectCardProps> = ({
   const defaultBatchTextSx: SxProps<Theme> = {
     //FontFamily: theme.typography.//FontFamily,
     fontWeight: 400,
-    color: '#525252',
+    color: theme.palette.text.secondary,
     fontSize: '18px',
     lineHeight: '28px',
     ...batchTextSx,
@@ -206,7 +207,7 @@ const SubjectCard: FC<SubjectCardProps> = ({
   const defaultCourseInfoTextSx: SxProps<Theme> = {
     //FontFamily: theme.typography.//FontFamily,
     fontWeight: 500,
-    color: '#4C4C4C',
+    color: theme.palette.text.secondary,
     fontSize: '13px',
     lineHeight: '18px',
     ...courseInfoTextSx,
@@ -284,7 +285,7 @@ const SubjectCard: FC<SubjectCardProps> = ({
                 sx={{
                   height: '15px',
                   width: '1px',
-                  backgroundColor: '#4C4C4C',
+                  backgroundColor: theme.palette.text.secondary,
                   mx: '8px',
                 }}
               />
