@@ -313,8 +313,11 @@ const CampusSelection: React.FC<CampusSelectionProps> = ({
           const cardBackground =
             globalIndex % 2 === 0
               ? `linear-gradient(180deg, ${theme.palette.common.white} 0%, ${theme.vd.palette.accentPrimaryLight} 100%)`
-              : `linear-gradient(180deg, ${theme.palette.common.white} 0%, #FFEAC0 100%)`;
-          const cardBorder = globalIndex % 2 === 0 ? '1px solid #DAC2F2' : '1px solid #FDE1AA';
+              : `linear-gradient(180deg, ${theme.palette.common.white} 0%, ${theme.palette.secondary[50]} 100%)`;
+          const cardBorder =
+            globalIndex % 2 === 0
+              ? `1px solid ${theme.palette.primary[200]}`
+              : `1px solid ${theme.palette.secondary[200]}`;
           return (
             <Card
               key={opt.value}
@@ -360,8 +363,8 @@ const CampusSelection: React.FC<CampusSelectionProps> = ({
                     <Logo
                       src="https://acjlsquedaotbhbxmtee.supabase.co/storage/v1/object/public/vedam-website-assets/images/videoInfo/favicon%20(1).ico"
                       alt="logo"
-                      height={40}
-                      width={40}
+                      height={60}
+                      width={60}
                     />
                   </Box>
                 </Box>

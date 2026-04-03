@@ -95,10 +95,17 @@ const CalendarTimelineItem: React.FC<CalendarTimelineItemProps> = ({
           viewBox="0 0 21 21"
           fill="none"
         >
-          <circle cx="10.5" cy="10.5" r="10" fill="#E6FFE8" stroke="#48742C" />
+          <circle
+            cx="10.5"
+            cy="10.5"
+            r="10"
+            fill={theme.palette.success.main}
+            fillOpacity={0.15}
+            stroke={theme.palette.success.main}
+          />
           <path
             d="M7 10.5L9.5 13L14 8.5"
-            stroke="#48742C"
+            stroke={theme.palette.success.main}
             strokeWidth="2"
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -114,8 +121,20 @@ const CalendarTimelineItem: React.FC<CalendarTimelineItemProps> = ({
           viewBox="0 0 21 21"
           fill="none"
         >
-          <circle cx="10.5" cy="10.5" r="10" fill="white" stroke="#F97D03" />
-          <circle cx="10.5" cy="10.5" r="6" fill="#F97D03" stroke="#F97D03" />
+          <circle
+            cx="10.5"
+            cy="10.5"
+            r="10"
+            fill="white"
+            stroke={theme.vd.palette.accentSecondary}
+          />
+          <circle
+            cx="10.5"
+            cy="10.5"
+            r="6"
+            fill={theme.vd.palette.accentSecondary}
+            stroke={theme.vd.palette.accentSecondary}
+          />
         </svg>
       );
     } else {
@@ -127,8 +146,20 @@ const CalendarTimelineItem: React.FC<CalendarTimelineItemProps> = ({
           viewBox="0 0 21 21"
           fill="none"
         >
-          <circle cx="10.5" cy="10.5" r="10" fill="white" stroke="#F97D03" />
-          <circle cx="10.5" cy="10.5" r="6" fill="transparent" stroke="#F97D03" />
+          <circle
+            cx="10.5"
+            cy="10.5"
+            r="10"
+            fill="white"
+            stroke={theme.vd.palette.accentSecondary}
+          />
+          <circle
+            cx="10.5"
+            cy="10.5"
+            r="6"
+            fill="transparent"
+            stroke={theme.vd.palette.accentSecondary}
+          />
         </svg>
       );
     }

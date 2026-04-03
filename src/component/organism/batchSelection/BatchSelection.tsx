@@ -138,9 +138,12 @@ const BatchSelection: React.FC<BatchSelectionProps> = ({
             const isSelected = value === opt.value;
             const cardBackground =
               index % 2 === 0
-                ? `linear-gradient(180deg, ${theme.palette.common.white} 0%, #FFF4DC 100%)`
-                : `linear-gradient(180deg, ${theme.palette.common.white} 0%, #F6EDFF 100%)`;
-            const cardBorder = index % 2 === 0 ? '1px solid #FDE1AA' : '1px solid #E1BFFF';
+                ? `linear-gradient(180deg, ${theme.palette.common.white} 0%, ${theme.palette.secondary[50]} 100%)`
+                : `linear-gradient(180deg, ${theme.palette.common.white} 0%, ${theme.vd.palette.accentPrimaryLight} 100%)`;
+            const cardBorder =
+              index % 2 === 0
+                ? `1px solid ${theme.palette.secondary[200]}`
+                : `1px solid ${theme.palette.primary[200]}`;
 
             return (
               <Card
@@ -162,19 +165,36 @@ const BatchSelection: React.FC<BatchSelectionProps> = ({
               >
                 <Box
                   sx={{
+                    width: '60px',
+                    height: '60px',
+                    flexShrink: 0,
+                    borderRadius: '8px',
+                    background: `linear-gradient(to bottom, ${theme.vd.palette.accentSecondary}, ${theme.vd.palette.accentPrimary})`,
+                    padding: '1.5px',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    flexShrink: 0,
                   }}
                 >
-                  <img
-                    src="https://acjlsquedaotbhbxmtee.supabase.co/storage/v1/object/public/vedam-website-assets/images/videoInfo/Logo.png"
-                    alt="logo"
-                    width="60px"
-                    height="60px"
-                    style={{ display: 'block' }}
-                  />
+                  <Box
+                    sx={{
+                      width: '100%',
+                      height: '100%',
+                      borderRadius: '6px',
+                      overflow: 'hidden',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      background: theme.palette.common.white,
+                    }}
+                  >
+                    <img
+                      src="https://acjlsquedaotbhbxmtee.supabase.co/storage/v1/object/public/vedam-website-assets/images/videoInfo/favicon%20(1).ico"
+                      alt="logo"
+                      height={60}
+                      width={60}
+                    />
+                  </Box>
                 </Box>
 
                 <Box display="flex" flexDirection="column" flex="1" minWidth={0}>
