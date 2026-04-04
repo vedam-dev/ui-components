@@ -224,6 +224,8 @@ export const Default: Story = {
 export const WithCustomItems: Story = {
   args: {
     items: customItems,
+    collegeLogo:
+      'https://images.ctfassets.net/wrc4czfp4sk8/4LUdrH0t4U1C85faXgaj8O/3a268801a825ddb4652e1a33d91df655/a19c08cf0281aa052e17edc302ef904b1c753e86.png',
   },
 };
 
@@ -286,5 +288,18 @@ export const SlowHoverDelay: Story = {
   args: {
     items: itemsWithSubmenus,
     hoverDelayMs: 2000,
+  },
+};
+
+export const WithCustomLogoDimensions: Story = {
+  name: 'With Custom Logo Dimensions',
+  args: {
+    items: customItems,
+    collegeLogo:
+      'https://images.ctfassets.net/wrc4czfp4sk8/4LUdrH0t4U1C85faXgaj8O/3a268801a825ddb4652e1a33d91df655/a19c08cf0281aa052e17edc302ef904b1c753e86.png',
+    logoSx: {
+      height: 50,
+      width: 150,
+    },
   },
 };
