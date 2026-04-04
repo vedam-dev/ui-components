@@ -16,6 +16,7 @@ import { CoreTheme, useCoreTheme } from '../../../theme/core-theme';
 
 export interface TopBarProps {
   collegeLogo?: string;
+  logoSx?: SxProps<Theme>;
   studentId?: string;
   label?: string;
   studentName: string;
@@ -88,6 +89,7 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 
 const TopBar: React.FC<TopBarProps> = ({
   collegeLogo,
+  logoSx,
   studentId,
   label = '',
   studentName,
@@ -140,8 +142,20 @@ const TopBar: React.FC<TopBarProps> = ({
         )}
 
         <CollegeInfo>
-          <IconButton onClick={onLogoClick}>
-            {collegeLogo && <Avatar src={collegeLogo} alt={`college logo`} />}
+          <IconButton onClick={onLogoClick} sx={{ p: 0 }}>
+            {collegeLogo && (
+              <Box
+                component="img"
+                src={collegeLogo}
+                alt="college logo"
+                sx={{
+                  height: '40px',
+                  width: 'auto',
+                  objectFit: 'contain',
+                  ...((logoSx as any) || {}),
+                }}
+              />
+            )}
           </IconButton>
         </CollegeInfo>
       </LeftContainer>

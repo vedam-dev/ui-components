@@ -10,6 +10,7 @@ import {
   Assignment as AssignmentIcon,
   EventNote as EventNoteIcon,
 } from '@mui/icons-material';
+import { SxProps, Theme } from '@mui/material';
 
 const defaultItems: SidebarItem[] = [
   {
@@ -77,10 +78,12 @@ interface SidebarWrapperProps extends Partial<TopBarProps> {
   collapsedWidth?: number;
   expandedWidth?: number;
   hoverDelayMs?: number;
+  logoSx?: SxProps<Theme>;
 }
 
 const SidebarWrapper: FC<SidebarWrapperProps> = ({
   collegeLogo,
+  logoSx,
   items = defaultItems,
   studentId = 'VED2025',
   label = 'Student Id:',
@@ -286,6 +289,7 @@ const SidebarWrapper: FC<SidebarWrapperProps> = ({
     <div>
       <TopBar
         collegeLogo={collegeLogo}
+        logoSx={logoSx}
         studentId={studentId}
         label={label}
         studentName={studentName}
