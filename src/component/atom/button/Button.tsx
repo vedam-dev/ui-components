@@ -28,9 +28,13 @@ export type ButtonVariant = 'text' | 'outlined' | 'contained';
 
 export type DefaultColorType = 'primary' | 'secondary' | 'success' | 'error' | 'info' | 'warning';
 
-export type ButtonProps = ComponentProps<typeof BaseButton> &
+export type ButtonProps = (Omit<ComponentProps<typeof BaseButton>, 'variant'> & {
+  variant?: ButtonVariant | 'arrow';
+}) &
   IButtonProps &
   DefaultComponentProps<OverridableTypeMap>;
+
+import { ArrowButton } from './index';
 
 const Button: FC<ButtonProps> = ({
   small,
@@ -50,6 +54,11 @@ const Button: FC<ButtonProps> = ({
   ...buttonProps
 }) => {
   const theme = useCoreTheme() as CoreTheme;
+
+  if (buttonProps.variant === 'arrow') {
+    return <ArrowButton onClick={buttonProps.onClick as any} disabled={buttonProps.disabled} />;
+  }
+
   const useMaterialButtons = theme.vd.useMaterialButtons;
 
   const variant: ButtonVariant = (buttonProps.variant ?? 'contained') as ButtonVariant;

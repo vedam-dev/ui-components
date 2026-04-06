@@ -29,6 +29,20 @@ export const Default: Story = {
   },
 };
 
+export const Arrow: Story = {
+  args: {
+    variant: 'arrow',
+    onClick: fn(),
+  },
+};
+
+export const ArrowDisabled: Story = {
+  args: {
+    variant: 'arrow',
+    disabled: true,
+  },
+};
+
 export const DefaultRound: Story = {
   args: {
     variant: 'contained',
