@@ -68,13 +68,13 @@ const Card = styled('button')<{
 }>(({ theme, selected, disabled, colorscheme }) => {
   const colorSchemes: Record<string, { bg: string; border: string; ratingColor: string }> = {
     yellow: {
-      bg: `linear-gradient(180deg, ${theme.palette.common.white} 0%, #FFF4DC 100%)`,
-      border: '#FDE1AA',
-      ratingColor: '#886B33',
+      bg: `linear-gradient(180deg, ${theme.palette.common.white} 0%, ${theme.palette.secondary[50]} 100%)`,
+      border: theme.palette.secondary[200],
+      ratingColor: theme.palette.secondary[700],
     },
     purple: {
-      bg: `linear-gradient(180deg, ${theme.palette.common.white} 0%, #F6EDFF 100%)`,
-      border: '#E1BFFF',
+      bg: `linear-gradient(180deg, ${theme.palette.common.white} 0%, ${(theme as CoreTheme).vd.palette.accentPrimaryLight} 100%)`,
+      border: theme.palette.primary[200],
       ratingColor: (theme as CoreTheme).vd.palette.accentPrimary,
     },
   };
@@ -87,7 +87,7 @@ const Card = styled('button')<{
     alignItems: 'center',
     justifyContent: 'center',
     padding: theme.spacing(7, 19),
-    borderRadius: theme.spacing(5),
+    borderRadius: theme.spacing(4),
     cursor: disabled ? 'not-allowed' : 'pointer',
     border: `1px solid ${scheme.border}`,
     background: scheme.bg,
@@ -156,8 +156,10 @@ const RatingContainer = styled(Box)({
   gap: '6px',
 });
 
-const RatingText = styled(Typography)<{ colorscheme?: string }>(({ colorscheme }) => {
-  const color = colorscheme === 'purple' ? '#9B6FE8' : '#C8A658';
+const RatingText = styled(Typography)<{ colorscheme?: string }>(({ theme, colorscheme }) => {
+  const coreTheme = theme as CoreTheme;
+  const color =
+    colorscheme === 'purple' ? coreTheme.vd.palette.accentPrimary : theme.palette.secondary[700];
   return {
     color,
     fontSize: '22px',
