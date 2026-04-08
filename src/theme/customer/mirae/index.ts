@@ -239,6 +239,7 @@ const index = createCoreTheme({
       200: colors.dangerD200,
       300: colors.dangerD300,
       400: colors.dangerD400Danger,
+      500: colors.dangerToastBackground,
     },
     warning: {
       main: colors.warningW400Warning,
@@ -247,6 +248,7 @@ const index = createCoreTheme({
       200: colors.warningW200,
       300: colors.warningW300,
       400: colors.warningW400Warning,
+      500: colors.warningToastBackground,
     },
     info: {
       main: colors.infoI400Info,
@@ -262,6 +264,7 @@ const index = createCoreTheme({
       200: colors.successSc200,
       300: colors.successSc300,
       400: colors.successSc400Success,
+      500: colors.successToastBackground,
     },
     background: {
       default: colors.backgroundMain,

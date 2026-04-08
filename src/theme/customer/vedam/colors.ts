@@ -26,10 +26,12 @@ const colors = {
   dangerD200: '#ff88ac',
   dangerD300: '#E74E2C', // for fail chip
   dangerD400Danger: '#DA1414',
+  dangerToastBackground: '#FFF3F3',
   warningW100: '#ffd5c0',
   warningW200: '#ffa273',
   warningW300: '#EEB929', // for warn chip
   warningW400Warning: '#ECAD00',
+  warningToastBackground: '#FFF7E0',
   infoI100: '#d3ebff',
   infoI200: '#5fb6ff',
   infoI300: '#008bff',
@@ -38,6 +40,7 @@ const colors = {
   successSc200: '#68f274',
   successSc300: '#42B657', // for success chip
   successSc400Success: '#287D3C',
+  successToastBackground: '#F4FFF6',
   neutralsNWhite: '#ffffff',
   neutralsN100: '#eff3f5',
   neutralsN200: '#d3dce2',

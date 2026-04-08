@@ -28,7 +28,7 @@ const Snackbar: React.FC<SnackbarProps> = ({
     switch (variant) {
       case 'success':
         return {
-          backgroundColor: alpha(theme.palette.success.main, 0.06),
+          backgroundColor: theme.palette.success[500],
           border: `1px solid ${theme.palette.success.main}`,
           icon: <CheckCircle sx={{ color: theme.palette.success.main, fontSize: '24px' }} />,
           textColor: theme.palette.success.main,
@@ -37,7 +37,7 @@ const Snackbar: React.FC<SnackbarProps> = ({
         };
       case 'error':
         return {
-          backgroundColor: alpha(theme.palette.error.main, 0.05),
+          backgroundColor: theme.palette.error[500],
           border: `1px solid ${theme.palette.error.main}`,
           icon: null,
           textColor: theme.palette.error.main,
@@ -46,7 +46,7 @@ const Snackbar: React.FC<SnackbarProps> = ({
         };
       case 'warning':
         return {
-          backgroundColor: alpha(theme.palette.warning.main, 0.1),
+          backgroundColor: theme.palette.warning[500],
           border: `1px solid ${theme.palette.warning.main}`,
           icon: <Warning sx={{ color: theme.palette.warning.main, fontSize: '24px' }} />,
           textColor: theme.palette.warning.main,
