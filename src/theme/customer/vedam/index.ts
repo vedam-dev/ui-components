@@ -268,7 +268,7 @@ const index = createCoreTheme({
     },
     background: {
       default: colors.backgroundMain,
-      paper: colors.backgroundAlt,
+      paper: '#FFF',
     },
     text: {
       primary: colors.textColors1TxPrimary,

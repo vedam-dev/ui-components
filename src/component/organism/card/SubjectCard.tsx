@@ -361,7 +361,7 @@ const SubjectCard: FC<SubjectCardProps> = ({
                   sx={{
                     ...defaultButtonSx,
                     width: 'auto',
-                    minWidth: '125px',
+                    minWidth: '260px',
                     ...(button.variant === 'contained' && {
                       backgroundColor: theme.vd.palette.accentPrimary,
                       color: theme.palette.background.paper,
