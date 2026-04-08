@@ -20,6 +20,8 @@ const colors = {
   secondaryS700: '#954B02',
   secondaryS800: '#643201',
   secondaryS900: '#321901',
+  backgroundMain: '#F3F1F6',
+  backgroundAlt: '#F5F5F5',
   dangerD100: '#ffd7e3',
   dangerD200: '#ff88ac',
   dangerD300: '#E74E2C', // for fail chip

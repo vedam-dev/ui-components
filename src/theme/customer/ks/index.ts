@@ -43,8 +43,8 @@ const index = createCoreTheme({
       megaMillions: colors.megaMillions,
 
       surfaceDefault: colors.neutralsNWhite,
-      surfaceSubtle: colors.neutralsN100,
-      surfaceMuted: '#F5F5F5',
+      surfaceSubtle: colors.backgroundMain,
+      surfaceMuted: colors.backgroundAlt,
 
       borderDefault: colors.neutralsN200,
       borderMuted: '#E0E0E0',
@@ -239,6 +239,10 @@ const index = createCoreTheme({
       200: colors.successSc200,
       300: colors.successSc300,
       400: colors.successSc400Success,
+    },
+    background: {
+      default: colors.backgroundMain,
+      paper: colors.backgroundAlt,
     },
     text: {
       primary: colors.textColors1TxPrimary,

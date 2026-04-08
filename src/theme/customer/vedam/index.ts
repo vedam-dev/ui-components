@@ -1,7 +1,6 @@
 import { createCoreTheme } from '../../core-theme';
 import defaultTheme from '../default';
 import colors from './colors';
-import { CoreTheme, useCoreTheme } from '../../core-theme';
 
 const index = createCoreTheme({
   isStorybook: true,
@@ -43,8 +42,8 @@ const index = createCoreTheme({
       megaMillions: colors.megaMillions,
 
       surfaceDefault: colors.neutralsNWhite,
-      surfaceSubtle: '#F3F1F6',
-      surfaceMuted: '#F5F5F5',
+      surfaceSubtle: colors.backgroundMain,
+      surfaceMuted: colors.backgroundAlt,
 
       borderDefault: '#E5E5E5',
       borderMuted: '#DCDCD0',
@@ -263,6 +262,10 @@ const index = createCoreTheme({
       200: colors.successSc200,
       300: colors.successSc300,
       400: colors.successSc400Success,
+    },
+    background: {
+      default: colors.backgroundMain,
+      paper: colors.backgroundAlt,
     },
     text: {
       primary: colors.textColors1TxPrimary,

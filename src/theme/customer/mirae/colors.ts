@@ -21,6 +21,9 @@ const colors = {
   secondaryS800: '#0F3D4E',
   secondaryS900: '#071E27',
 
+  backgroundMain: '#F3F6FA',
+  backgroundAlt: '#F5F5F5',
+
   dangerD100: '#FFE2E2',
   dangerD200: '#FFB3B3',
   dangerD300: '#EB5757',
