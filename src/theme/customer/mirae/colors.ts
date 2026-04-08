@@ -25,11 +25,13 @@ const colors = {
   dangerD200: '#FFB3B3',
   dangerD300: '#EB5757',
   dangerD400Danger: '#C62828',
+  dangerToastBackground: '#FFF5F5',
 
   warningW100: '#FFF4DA',
   warningW200: '#FFE0A3',
   warningW300: '#F2B93B',
   warningW400Warning: '#CC8A00',
+  warningToastBackground: '#FFFBF0',
 
   infoI100: '#DCEEFF',
   infoI200: '#9ECFFF',
@@ -40,6 +42,7 @@ const colors = {
   successSc200: '#A8E9B6',
   successSc300: '#4CAF50',
   successSc400Success: '#2E7D32',
+  successToastBackground: '#F5FFF6',
 
   neutralsNWhite: '#FFFFFF',
   neutralsN100: '#F3F6FA',
