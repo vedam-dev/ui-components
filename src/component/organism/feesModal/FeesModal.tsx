@@ -5,13 +5,14 @@ import { Fragment } from 'react';
 import { Modal, Box, Typography, Card, IconButton, useTheme } from '@mui/material';
 import Button from '../../../component/atom/button/Button';
 import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
-import { CoreTheme, useCoreTheme } from '../../../theme/core-theme';
+import { CoreTheme } from '../../../theme/core-theme';
 
 export interface FeeItem {
   id: string;
   description: string;
   amount: string;
   bgColor?: string;
+  borderColor?: string;
   paid?: boolean;
   status?: string;
 }
@@ -44,7 +45,16 @@ const FeeSelectionModal: React.FC<FeeSelectionModalProps> = ({
 
   const getItemBackgroundColor = (index: number, bgColor?: string) => {
     if (bgColor) return bgColor;
-    return index % 2 === 0 ? '#F6EBFF' : '#FFE8D2';
+    return index % 2 === 0
+      ? `${theme.vd.palette.accentPrimaryLight}`
+      : `${theme.palette.secondary[50]}`;
+  };
+
+  const getItemBorderColor = (index: number, borderColor?: string) => {
+    if (borderColor) return borderColor;
+    return index % 2 === 0
+      ? `${theme.vd.palette.accentPrimary}`
+      : `${theme.vd.palette.accentSecondary}`;
   };
 
   return (
@@ -166,7 +176,7 @@ const FeeSelectionModal: React.FC<FeeSelectionModalProps> = ({
                 variant="outlined"
                 sx={{
                   borderRadius: '20px',
-                  border: `1px solid ${getItemBackgroundColor(index, fee.bgColor)}`,
+                  border: `1px solid ${getItemBorderColor(index, fee.borderColor)}`,
                   backgroundColor: getItemBackgroundColor(index, fee.bgColor),
                   boxShadow: '0px 2px 8px rgba(0,0,0,0.08)',
                   px: theme.spacing(7),
