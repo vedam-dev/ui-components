@@ -33,17 +33,7 @@ const FeeStatusModal: React.FC<FeeStatusModalProps> = ({
 }) => {
   const theme = useCoreTheme() as CoreTheme;
   return (
-    <Modal
-      open={open}
-      onClose={onClose}
-      {...props}
-      BackdropProps={{
-        sx: {
-          backgroundColor: 'transparent',
-          backdropFilter: 'blur(4px)',
-        },
-      }}
-    >
+    <Modal open={open} onClose={onClose} {...props}>
       <Box
         sx={{
           display: 'flex',
@@ -64,7 +54,7 @@ const FeeStatusModal: React.FC<FeeStatusModalProps> = ({
             pt: theme.spacing(6),
             pb: theme.spacing(8),
             borderRadius: theme.spacing(9),
-            background: `linear-gradient(180deg, ${theme.vd.palette.accentSecondary} 0%, ${theme.vd.palette.accentPrimary} 100%)`,
+            background: `linear-gradient(180deg, ${theme.palette.primary[400]} 0%, ${theme.palette.secondary[300]} 100%)`,
             textAlign: 'center',
             width: '100%',
             maxWidth: theme.spacing(108),
