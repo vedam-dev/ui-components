@@ -98,7 +98,7 @@ const SwitchButton = styled('button')<{ isLoading?: boolean }>(({ theme, isLoadi
   borderRadius: '14px',
   maxHeight: '40px',
   border: `1px solid ${(theme as CoreTheme).vd.palette.accentPrimary}`,
-  background: 'transparent',
+  background: `${theme.palette.grey[50]}`,
   color: (theme as CoreTheme).vd.palette.accentPrimary,
   fontSize: '15px',
   fontWeight: 500,
@@ -112,7 +112,7 @@ const SwitchButton = styled('button')<{ isLoading?: boolean }>(({ theme, isLoadi
   minHeight: '40px',
   alignSelf: 'stretch',
   '&:hover': {
-    background: 'transparent',
+    background: `${theme.palette.grey[50]}`,
   },
   '&:active': {
     transform: isLoading ? 'none' : 'scale(0.98)',
