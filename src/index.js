@@ -46,6 +46,7 @@ export { default as CampusSelection } from './component/organism/campusSelection
 export { default as TimePicker } from './component/organism/timePicker/TimePicker';
 export { default as Snackbar } from './component/organism/snackbar/Snackbar';
 export { default as AddQuestionModal } from './component/organism/addQuestionModal/AddQuestionModal';
+export { default as Switch } from './component/organism/switch/Switch';
 
 export {
   ClassListItemRow,
