@@ -41,14 +41,8 @@ const PermissionMatrix: React.FC<PermissionMatrixProps> = ({
   const textStrong = theme.vd?.palette?.textStrong || theme.palette.text.primary;
   const textMuted = theme.vd?.palette?.textMuted || theme.palette.text.secondary;
   const headerBgBase = theme.vd?.palette?.accentPrimary || theme.palette.primary.main;
-  const headerBg = alpha(
-    headerBgBase,
-    0.12
-  );
-  const groupBg = alpha(
-    headerBgBase,
-    0.06
-  );
+  const headerBg = alpha(headerBgBase, 0.12);
+  const groupBg = alpha(headerBgBase, 0.06);
   const surfaceDefault = theme.vd?.palette?.surfaceDefault || theme.palette.background.paper;
   const spacing = {
     headerPadding: theme.spacing(2, 4),
@@ -64,7 +58,7 @@ const PermissionMatrix: React.FC<PermissionMatrixProps> = ({
 
     permissions.forEach((permission) => {
       const groupName = permission.groupName || 'Other';
-      if(!groups.has(groupName)) {
+      if (!groups.has(groupName)) {
         groups.set(groupName, []);
       }
       groups.get(groupName)!.push(permission);
@@ -79,7 +73,7 @@ const PermissionMatrix: React.FC<PermissionMatrixProps> = ({
   }, [permissions]);
 
   useEffect(() => {
-    if(groupedPermissions.length === 0) {
+    if (groupedPermissions.length === 0) {
       setExpandedGroups({});
       return;
     }
@@ -116,11 +110,28 @@ const PermissionMatrix: React.FC<PermissionMatrixProps> = ({
           alignItems: 'center',
         }}
       >
-        <Typography sx={{ fontSize: '20px', fontWeight: 600, color: textStrong, fontFamily: 'Outfit, sans-serif' }}>
+        <Typography
+          sx={{
+            fontSize: '20px',
+            fontWeight: 600,
+            color: textStrong,
+            fontFamily: 'Outfit, sans-serif',
+          }}
+        >
           {actionLabel}
         </Typography>
         {PERMISSION_MATRIX_TYPES.map((type) => (
-          <Typography key={type} sx={{ fontSize: '20px', fontWeight: 600, color: textStrong, fontFamily: 'Outfit, sans-serif', textAlign: 'center', textTransform: 'capitalize' }}>
+          <Typography
+            key={type}
+            sx={{
+              fontSize: '20px',
+              fontWeight: 600,
+              color: textStrong,
+              fontFamily: 'Outfit, sans-serif',
+              textAlign: 'center',
+              textTransform: 'capitalize',
+            }}
+          >
             {type}
           </Typography>
         ))}
@@ -143,7 +154,14 @@ const PermissionMatrix: React.FC<PermissionMatrixProps> = ({
                 bgcolor: groupBg,
               }}
             >
-              <Typography sx={{ fontSize: '20px', color: textStrong, fontWeight: 500, fontFamily: 'Outfit, sans-serif' }}>
+              <Typography
+                sx={{
+                  fontSize: '20px',
+                  color: textStrong,
+                  fontWeight: 500,
+                  fontFamily: 'Outfit, sans-serif',
+                }}
+              >
                 {title}
               </Typography>
 
@@ -151,7 +169,10 @@ const PermissionMatrix: React.FC<PermissionMatrixProps> = ({
                 const groupChecked =
                   items.length > 0 && items.every((permission) => permission[type]);
                 return (
-                  <Box key={type} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                  <Box
+                    key={type}
+                    sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+                  >
                     <Checkbox
                       variant="squared"
                       checked={groupChecked}
@@ -186,37 +207,58 @@ const PermissionMatrix: React.FC<PermissionMatrixProps> = ({
               </Button>
             </Box>
 
-            {isExpanded && items.map((permission) => (
-              <Box
-                key={permission.featureCode}
-                sx={{
-                  display: 'grid',
-                  gridTemplateColumns: '2fr 1fr 1fr 1fr 1fr 190px',
-                  p: spacing.rowPadding,
-                  gap: spacing.gap,
-                  borderTop: `1px solid ${borderColor}`,
-                  alignItems: 'center',
-                }}
-              >
-                <Typography sx={{ fontSize: '18px', color: textMuted, fontFamily: 'Outfit, sans-serif', display: 'flex', alignItems: 'center', gap: spacing.subItemGap }}>
-                  <Box component="span" sx={{ fontSize: '26px', lineHeight: 1, color: textMuted, mt: spacing.subItemDashMarginTop }}>
-                    -
-                  </Box>
-                  {permission.featureName}
-                </Typography>
+            {isExpanded &&
+              items.map((permission) => (
+                <Box
+                  key={permission.featureCode}
+                  sx={{
+                    display: 'grid',
+                    gridTemplateColumns: '2fr 1fr 1fr 1fr 1fr 190px',
+                    p: spacing.rowPadding,
+                    gap: spacing.gap,
+                    borderTop: `1px solid ${borderColor}`,
+                    alignItems: 'center',
+                  }}
+                >
+                  <Typography
+                    sx={{
+                      fontSize: '18px',
+                      color: textMuted,
+                      fontFamily: 'Outfit, sans-serif',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: spacing.subItemGap,
+                    }}
+                  >
+                    <Box
+                      component="span"
+                      sx={{
+                        fontSize: '26px',
+                        lineHeight: 1,
+                        color: textMuted,
+                        mt: spacing.subItemDashMarginTop,
+                      }}
+                    >
+                      -
+                    </Box>
+                    {permission.featureName}
+                  </Typography>
 
-                {PERMISSION_MATRIX_TYPES.map((type) => (
-                  <Box key={type} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                    <Checkbox
-                      variant="squared"
-                      checked={permission[type]}
-                      onChange={() => onPermissionToggle(permission.featureCode, type)}
-                    />
-                  </Box>
-                ))}
-                <Box />
-              </Box>
-            ))}
+                  {PERMISSION_MATRIX_TYPES.map((type) => (
+                    <Box
+                      key={type}
+                      sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+                    >
+                      <Checkbox
+                        variant="squared"
+                        checked={permission[type]}
+                        onChange={() => onPermissionToggle(permission.featureCode, type)}
+                      />
+                    </Box>
+                  ))}
+                  <Box />
+                </Box>
+              ))}
           </Box>
         );
       })}

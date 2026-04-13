@@ -8,10 +8,42 @@ import PermissionMatrix, {
 } from '../../../component/organism/permissionMatrix/PermissionMatrix';
 
 const initialPermissions: PermissionMatrixRow[] = [
-  { featureCode: 'users_list', featureName: 'Users List', groupName: 'User Management', read: true, create: false, update: true, delete: false },
-  { featureCode: 'users_edit', featureName: 'Users Edit', groupName: 'User Management', read: true, create: true, update: true, delete: false },
-  { featureCode: 'fees_view', featureName: 'Fees View', groupName: 'Fees', read: true, create: false, update: false, delete: false },
-  { featureCode: 'fees_manage', featureName: 'Fees Manage', groupName: 'Fees', read: true, create: true, update: true, delete: true },
+  {
+    featureCode: 'users_list',
+    featureName: 'Users List',
+    groupName: 'User Management',
+    read: true,
+    create: false,
+    update: true,
+    delete: false,
+  },
+  {
+    featureCode: 'users_edit',
+    featureName: 'Users Edit',
+    groupName: 'User Management',
+    read: true,
+    create: true,
+    update: true,
+    delete: false,
+  },
+  {
+    featureCode: 'fees_view',
+    featureName: 'Fees View',
+    groupName: 'Fees',
+    read: true,
+    create: false,
+    update: false,
+    delete: false,
+  },
+  {
+    featureCode: 'fees_manage',
+    featureName: 'Fees Manage',
+    groupName: 'Fees',
+    read: true,
+    create: true,
+    update: true,
+    delete: true,
+  },
 ];
 
 const meta: Meta<typeof PermissionMatrix> = {
@@ -31,7 +63,11 @@ const meta: Meta<typeof PermissionMatrix> = {
 export default meta;
 type Story = StoryObj<typeof PermissionMatrix>;
 
-const InteractiveMatrix = (args: { actionLabel?: string; permissionsLabel?: string; hidePermissionsLabel?: string }) => {
+const InteractiveMatrix = (args: {
+  actionLabel?: string;
+  permissionsLabel?: string;
+  hidePermissionsLabel?: string;
+}) => {
   const [permissions, setPermissions] = useState<PermissionMatrixRow[]>(initialPermissions);
 
   const onPermissionToggle = (featureCode: string, type: PermissionMatrixType) => {
@@ -46,14 +82,12 @@ const InteractiveMatrix = (args: { actionLabel?: string; permissionsLabel?: stri
 
   const onGroupPermissionToggle = (groupName: string, type: PermissionMatrixType) => {
     const groupItems = permissions.filter((permission) => permission.groupName === groupName);
-    if(groupItems.length === 0) return;
+    if (groupItems.length === 0) return;
 
     const allEnabled = groupItems.every((permission) => permission[type]);
     setPermissions((prev) =>
       prev.map((permission) =>
-        permission.groupName === groupName
-          ? { ...permission, [type]: !allEnabled }
-          : permission
+        permission.groupName === groupName ? { ...permission, [type]: !allEnabled } : permission
       )
     );
   };
