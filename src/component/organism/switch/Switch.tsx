@@ -53,7 +53,7 @@ const CardsRow = styled(Box)({
   flexWrap: 'wrap',
 });
 
-const Card = styled(Box)<{ disabled?: boolean }>(({ theme, disabled }) => ({
+const Card = styled(Box)(({ theme }) => ({
   display: 'flex',
   width: '230px',
   padding: '16px',
@@ -63,8 +63,6 @@ const Card = styled(Box)<{ disabled?: boolean }>(({ theme, disabled }) => ({
   gap: '6px',
   flexShrink: 0,
   borderRadius: theme.spacing(5),
-  cursor: disabled ? 'not-allowed' : 'default',
-  opacity: disabled ? 0.5 : 1,
   boxSizing: 'border-box',
 }));
 
@@ -90,7 +88,7 @@ const InstitutionName = styled(Typography)(({ theme }) => ({
   fontWeight: 400,
   lineHeight: '18px',
   alignSelf: 'flex-start',
-  height: '36px',
+  minHeight: '36px',
   flex: 1,
 }));
 
@@ -118,6 +116,14 @@ const SwitchButton = styled('button')<{ isLoading?: boolean }>(({ theme, isLoadi
   },
   '&:active': {
     transform: isLoading ? 'none' : 'scale(0.98)',
+  },
+  '&:disabled': {
+    borderRadius: '12px',
+    border: `1px solid ${theme.palette.grey[400]}`,
+    background: `${theme.palette.grey[200]}`,
+    color: (theme as CoreTheme).vd.palette.textMuted,
+    cursor: 'not-allowed',
+    pointerEvents: 'all',
   },
 }));
 
@@ -177,7 +183,6 @@ const SwitchRole: React.FC<SwitchRoleProps> = ({
               key={opt.value}
               role="listitem"
               aria-label={`${opt.role} at ${opt.campus}`}
-              disabled={isDisabled}
               style={{
                 background: cardBackground,
                 border: cardBorder,
