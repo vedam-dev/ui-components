@@ -83,7 +83,7 @@ const Card = styled('button')<{
 
   const base: any = {
     display: 'flex',
-    width:"100%",
+    width: '100%',
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
