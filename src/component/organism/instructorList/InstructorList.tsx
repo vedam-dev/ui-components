@@ -50,7 +50,7 @@ const Subtitle = styled(Typography)(({ theme }) => ({
 const CardsGrid = styled(Box)(({ theme }) => ({
   display: 'grid',
   gridTemplateColumns: 'repeat(4, 1fr)',
-  gap: theme.spacing(14),
+  gap: theme.spacing(6),
   marginTop: theme.spacing(13),
   rowGap: theme.spacing(12),
   '@media (max-width: 1400px)': {
@@ -83,10 +83,11 @@ const Card = styled('button')<{
 
   const base: any = {
     display: 'flex',
+    width:"100%",
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
-    padding: theme.spacing(7, 19),
+    padding: theme.spacing(7, 2.5),
     borderRadius: theme.spacing(4),
     cursor: disabled ? 'not-allowed' : 'pointer',
     border: `1px solid ${scheme.border}`,
@@ -97,6 +98,7 @@ const Card = styled('button')<{
     boxShadow: 'none',
     minHeight: '120px',
     overflow: 'hidden',
+    minWidth: '280px',
   };
 
   if (disabled) {
@@ -139,8 +141,8 @@ const SemesterName = styled(Typography)(({ theme }) => ({
   color: (theme as CoreTheme).vd.palette.textStrong,
   textAlign: 'center',
   fontSize: '22px',
-  fontStyle: 'normal',
-  fontWeight: 500,
+  fontStyle: 'semiBold',
+  fontWeight: 600,
   lineHeight: 'normal',
   margin: 0,
   overflow: 'hidden',
