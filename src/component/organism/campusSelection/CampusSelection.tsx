@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef, useMemo, useLayoutEffect } from 'react';
 import { Box, Typography, SxProps, Theme, styled } from '@mui/material';
 import { CoreTheme, useCoreTheme } from '../../../theme/core-theme';
 
@@ -101,7 +101,7 @@ const CardsRow = styled(Box)(({ theme }) => ({
   gap: theme.spacing(13),
   mt: '34px',
   alignItems: 'stretch',
-  flexWrap: 'wrap',
+  flexWrap: 'nowrap',
 }));
 
 const Card = styled(Box)<{
@@ -110,13 +110,14 @@ const Card = styled(Box)<{
 }>(({ theme, selected: _selected, disabled }) => ({
   display: 'flex',
   flexDirection: 'column',
-  flex: '1 1 calc(33.333% - 24px)',
-  maxWidth: '368px',
+  width: '368px',
+  maxWidth: '100%',
+  flexShrink: 0,
   padding: theme.spacing(5.25),
   borderRadius: theme.spacing(5),
   cursor: disabled ? 'not-allowed' : 'pointer',
   outline: 'none',
-  opacity: disabled ? 0.5 : 1,
+  opacity: 1,
 }));
 
 const CardHeader = styled(Box)({
@@ -198,6 +199,12 @@ const SelectButton = styled('button')(({ theme }) => ({
   '&:active': {
     transform: 'scale(0.98)',
   },
+  '&:disabled': {
+    border: `1px solid ${theme.palette.grey[400]}`,
+    background: `${theme.palette.grey[200]}`,
+    color: (theme as CoreTheme).vd.palette.textMuted,
+    cursor: 'not-allowed',
+  },
 }));
 
 const CampusSelection: React.FC<CampusSelectionProps> = ({
@@ -210,10 +217,37 @@ const CampusSelection: React.FC<CampusSelectionProps> = ({
   title = 'Campus List',
   subtitle = 'Choose a campus based on location',
   showNavigationButtons = true,
-  itemsPerPage = 3,
+  itemsPerPage: itemsPerPageProp,
 }) => {
   const theme = useCoreTheme() as CoreTheme;
   const [currentPage, setCurrentPage] = useState(0);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [containerWidth, setContainerWidth] = useState(0);
+
+  useLayoutEffect(() => {
+    if (!containerRef.current) return;
+    setContainerWidth(containerRef.current.offsetWidth);
+
+    const observer = new ResizeObserver((entries) => {
+      for (const entry of entries) {
+        setContainerWidth(entry.contentRect.width);
+      }
+    });
+
+    observer.observe(containerRef.current);
+    return () => observer.disconnect();
+  }, []);
+
+  const itemsPerPage = useMemo(() => {
+    if (itemsPerPageProp && itemsPerPageProp !== 3) return itemsPerPageProp;
+    if (containerWidth === 0) return 1;
+
+    // theme.spacing(13) is 52px based on theme config (spacing: 4)
+    const gap = 52;
+    const cardWidth = 368;
+    const calculated = Math.floor((containerWidth + gap) / (cardWidth + gap));
+    return Math.max(1, calculated);
+  }, [containerWidth, itemsPerPageProp]);
 
   const totalPages = Math.ceil(options.length / itemsPerPage);
   const startIndex = currentPage * itemsPerPage;
@@ -256,10 +290,10 @@ const CampusSelection: React.FC<CampusSelectionProps> = ({
     }
   };
 
-  // Reset to first page if options change
+  // Reset to first page if options change or itemsPerPage changes
   useEffect(() => {
     setCurrentPage(0);
-  }, [options.length]);
+  }, [options.length, itemsPerPage]);
 
   return (
     <Outer sx={sx}>
@@ -307,7 +341,7 @@ const CampusSelection: React.FC<CampusSelectionProps> = ({
         )}
       </Header>
 
-      <CardsRow role="radiogroup" aria-label={title}>
+      <CardsRow ref={containerRef} role="radiogroup" aria-label={title}>
         {visibleOptions.map((opt, index) => {
           const isSelected = value === opt.value;
           const globalIndex = startIndex + index;
@@ -407,6 +441,7 @@ const CampusSelection: React.FC<CampusSelectionProps> = ({
                 <SelectButton
                   onClick={(e) => handleSelectClick(e, opt)}
                   aria-label={`Select ${opt.campus}`}
+                  disabled={disabled || opt.disabled}
                 >
                   Select Campus
                   <svg
@@ -418,7 +453,7 @@ const CampusSelection: React.FC<CampusSelectionProps> = ({
                   >
                     <path
                       d="M0 8C0 8.21216 0.0790138 8.41563 0.219662 8.56565C0.36031 8.71567 0.551069 8.79995 0.749975 8.79995H15.4392L9.96905 14.6336C9.89937 14.708 9.84409 14.7962 9.80638 14.8933C9.76867 14.9904 9.74926 15.0945 9.74926 15.1996C9.74926 15.3047 9.76867 15.4088 9.80638 15.5059C9.84409 15.603 9.89937 15.6912 9.96905 15.7656C10.0387 15.8399 10.1215 15.8988 10.2125 15.9391C10.3035 15.9793 10.4011 16 10.4997 16C10.5982 16 10.6958 15.9793 10.7868 15.9391C10.8779 15.8988 10.9606 15.8399 11.0303 15.7656L17.78 8.56597C17.8498 8.49167 17.9051 8.40345 17.9428 8.30633C17.9806 8.20922 18 8.10513 18 8C18 7.89487 17.9806 7.79078 17.9428 7.69366C17.9051 7.59655 17.8498 7.50832 17.78 7.43403L11.0303 0.234432C10.8895 0.0843276 10.6987 -1.5816e-09 10.4997 0C10.3006 1.5816e-09 10.1098 0.0843276 9.96905 0.234432C9.82832 0.384536 9.74926 0.588121 9.74926 0.8004C9.74926 1.01268 9.82832 1.21626 9.96905 1.36637L15.4392 7.20004H0.749975C0.551069 7.20004 0.36031 7.28432 0.219662 7.43435C0.0790138 7.58437 0 7.78784 0 8Z"
-                      fill={theme.vd.palette.accentPrimary}
+                      fill="currentColor"
                     />
                   </svg>
                 </SelectButton>
