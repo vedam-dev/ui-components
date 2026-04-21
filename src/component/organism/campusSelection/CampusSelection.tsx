@@ -179,19 +179,20 @@ const SelectButton = styled('button')(({ theme }) => ({
   padding: '6px 20px',
   borderRadius: '14px',
   border: `1px solid ${(theme as CoreTheme).vd.palette.accentPrimary}`,
-  background: 'transparent',
+  background: (theme as CoreTheme).palette.grey[50],
   color: (theme as CoreTheme).vd.palette.accentPrimary,
   fontSize: '16px',
   fontWeight: 500,
   cursor: 'pointer',
   lineHeight: '28px',
+  width: '100%',
   display: 'flex',
   gap: '12px',
   alignItems: 'center',
   justifyContent: 'center',
   transition: 'all 200ms ease',
   '&:hover': {
-    background: 'transparent',
+    background: (theme as CoreTheme).palette.grey[50],
     color: (theme as CoreTheme).vd.palette.accentPrimary,
   },
   '&:active': {
@@ -379,6 +380,7 @@ const CampusSelection: React.FC<CampusSelectionProps> = ({
                 sx={{
                   borderRadius: '16px',
                   border: '1px solid #F6EDFF',
+                  minHeight: '220px',
                   backgroundColor: theme.palette.common.white,
                   p: '20px',
                 }}
@@ -392,11 +394,6 @@ const CampusSelection: React.FC<CampusSelectionProps> = ({
                   <InfoLabel>Location</InfoLabel>
                   <InfoValue>{opt.location}</InfoValue>
                 </InfoRow>
-
-                <InfoRow>
-                  <InfoLabel>Pincode</InfoLabel>
-                  <InfoValue>{opt.pincode}</InfoValue>
-                </InfoRow>
               </Box>
 
               <Box
@@ -404,7 +401,7 @@ const CampusSelection: React.FC<CampusSelectionProps> = ({
                   display: 'flex',
                   justifyContent: 'center',
                   alignItems: 'center',
-                  mt: '8px',
+                  mt: '20px',
                 }}
               >
                 <SelectButton
