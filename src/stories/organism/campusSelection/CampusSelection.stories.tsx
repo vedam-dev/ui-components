@@ -32,10 +32,11 @@ type Story = StoryObj<typeof CampusSelection>;
 const defaultOptions = [
   {
     value: 'pune1',
-    collegeName: 'Vedam School of Technology',
+    collegeName: 'Vedam School of Technology sdfghsgdfhgjfhg sdwefgr',
     campus: 'Campus : Pune',
     collegeId: '1',
-    location: 'Ajeenkya DY Patil ABC Campus\nCharholi Budruk\nPune, Maharashtra',
+    location:
+      'Ajeenkya DY Patil ABC Campus\nCharholi Budruk\nPune, Maharashtra asdfg\n asdasdfdgbf a ',
     pincode: '412105',
   },
   {

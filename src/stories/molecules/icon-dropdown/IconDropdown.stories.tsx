@@ -14,6 +14,10 @@ const meta: Meta<typeof IconDropdown> = {
       control: 'number',
       description: 'Minimum width when autoWidth is enabled',
     },
+    disabled: {
+      control: 'boolean',
+      description: 'Disable the dropdown',
+    },
   },
 };
 
@@ -72,5 +76,14 @@ export const TextOnlyAutoWidth: Story = {
     ],
     autoWidth: true,
     minWidth: 120,
+  },
+};
+
+export const DisabledDropdown: Story = {
+  render: (args) => <IconDropdown {...args} />,
+  args: {
+    label: 'Disabled Dropdown',
+    options: ['Option 1', 'Option 2'],
+    disabled: true,
   },
 };
