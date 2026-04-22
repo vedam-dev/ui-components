@@ -10,6 +10,7 @@ interface IconDropdownProps {
   onSelect?: (option: string) => void;
   autoWidth?: boolean;
   minWidth?: number;
+  disabled?: boolean;
 }
 
 const IconDropdown: React.FC<IconDropdownProps> = ({
@@ -19,6 +20,7 @@ const IconDropdown: React.FC<IconDropdownProps> = ({
   onSelect,
   autoWidth = false,
   minWidth = 120,
+  disabled = false,
 }) => {
   const theme = useCoreTheme() as CoreTheme;
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -52,6 +54,7 @@ const IconDropdown: React.FC<IconDropdownProps> = ({
   }, [selected, options, autoWidth, iconUrl, minWidth, theme]);
 
   const handleOpen = (event: React.MouseEvent<HTMLElement>) => {
+    if (disabled) return;
     setAnchorEl(event.currentTarget);
   };
 
@@ -72,8 +75,8 @@ const IconDropdown: React.FC<IconDropdownProps> = ({
       <Box
         onClick={handleOpen}
         role="button"
-        tabIndex={0}
-        onKeyDown={(e) => e.key === 'Enter' && handleOpen(e as any)}
+        tabIndex={disabled ? -1 : 0}
+        onKeyDown={(e) => !disabled && e.key === 'Enter' && handleOpen(e as any)}
         sx={{
           display: 'inline-flex',
           padding: theme.spacing(3, 4),
@@ -81,10 +84,13 @@ const IconDropdown: React.FC<IconDropdownProps> = ({
           gap: theme.spacing(3),
           width: boxWidth,
           borderRadius: theme.spacing(3),
-          border: `1px solid ${theme.vd.palette.borderDefault}`,
-          background: theme.palette.common.white,
-          cursor: 'pointer',
+          border: disabled
+            ? `1px solid ${theme.palette.grey[400]}`
+            : `1px solid ${theme.vd.palette.borderDefault}`,
+          background: disabled ? theme.palette.grey[100] : theme.palette.common.white,
+          cursor: disabled ? 'not-allowed' : 'pointer',
           userSelect: 'none',
+          color: disabled ? theme.vd.palette.textMuted : 'inherit',
         }}
       >
         {iconUrl && (
