@@ -36,6 +36,7 @@ const colors = {
   infoI200: '#5fb6ff',
   infoI300: '#008bff',
   infoI400Info: '#0061b2',
+  infoI500Info: '#3870CA',
   successSc100: '#bbffc1',
   successSc200: '#68f274',
   successSc300: '#42B657', // for success chip
