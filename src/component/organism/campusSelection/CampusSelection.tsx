@@ -23,6 +23,7 @@ export interface CampusSelectionProps {
   subtitle?: string;
   showNavigationButtons?: boolean;
   itemsPerPage?: number;
+  logourl: string;
 }
 
 const Outer = styled(Box)(({ theme }) => ({
@@ -218,6 +219,7 @@ const CampusSelection: React.FC<CampusSelectionProps> = ({
   subtitle = 'Choose a campus based on location',
   showNavigationButtons = true,
   itemsPerPage: itemsPerPageProp,
+  logourl,
 }) => {
   const theme = useCoreTheme() as CoreTheme;
   const [currentPage, setCurrentPage] = useState(0);
@@ -256,6 +258,9 @@ const CampusSelection: React.FC<CampusSelectionProps> = ({
 
   const canGoPrevious = currentPage > 0;
   const canGoNext = currentPage < totalPages - 1;
+
+  const genericLogo =
+    'https://images.ctfassets.net/wrc4czfp4sk8/51DQ7QKLYX46JnqwDUNpFM/8525b9631cf1c7f17b97f9a684f0c455/Whitelabelling_Logo.png';
 
   const handlePrevious = () => {
     if (canGoPrevious) {
@@ -390,17 +395,13 @@ const CampusSelection: React.FC<CampusSelectionProps> = ({
                       borderRadius: '6px',
                       overflow: 'hidden',
                       display: 'flex',
+
                       alignItems: 'center',
                       justifyContent: 'center',
                       background: theme.palette.common.white,
                     }}
                   >
-                    <Logo
-                      src="https://acjlsquedaotbhbxmtee.supabase.co/storage/v1/object/public/vedam-website-assets/images/videoInfo/favicon%20(1).ico"
-                      alt="logo"
-                      height={60}
-                      width={60}
-                    />
+                    <Logo src={logourl ? logourl : genericLogo} alt="logo" height={60} width={60} />
                   </Box>
                 </Box>
 
