@@ -259,7 +259,8 @@ const CampusSelection: React.FC<CampusSelectionProps> = ({
   const canGoPrevious = currentPage > 0;
   const canGoNext = currentPage < totalPages - 1;
 
-  const genericLogo = "https://images.ctfassets.net/wrc4czfp4sk8/51DQ7QKLYX46JnqwDUNpFM/8525b9631cf1c7f17b97f9a684f0c455/Whitelabelling_Logo.png";
+  const genericLogo =
+    'https://images.ctfassets.net/wrc4czfp4sk8/51DQ7QKLYX46JnqwDUNpFM/8525b9631cf1c7f17b97f9a684f0c455/Whitelabelling_Logo.png';
 
   const handlePrevious = () => {
     if (canGoPrevious) {
@@ -394,7 +395,7 @@ const CampusSelection: React.FC<CampusSelectionProps> = ({
                       borderRadius: '6px',
                       overflow: 'hidden',
                       display: 'flex',
-                      
+
                       alignItems: 'center',
                       justifyContent: 'center',
                       background: theme.palette.common.white,
