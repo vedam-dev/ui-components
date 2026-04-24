@@ -41,6 +41,7 @@ const LoginPage: React.FC<VedamLoginPageProps> = ({
   logoAlt,
   title,
   onGoogleLogin,
+  subtitle,
 }) => {
   const theme = useCoreTheme() as CoreTheme;
 
@@ -679,7 +680,7 @@ const LoginPage: React.FC<VedamLoginPageProps> = ({
                 lineHeight: 'normal',
               }}
             >
-              Login with your email-id registered with Vedam
+              {subtitle}
             </Typography>
 
             <Button
