@@ -1,19 +1,10 @@
 import React from 'react';
-import {
-  Box,
-  Typography,
-  Card,
-  Stack,
-  SxProps,
-  Theme,
-  Rating,
-  Slider,
-} from '@mui/material';
-import { styled,keyframes, display } from '@mui/system';
+import { Box, Typography, Card, Stack, SxProps, Theme, Rating, Slider } from '@mui/material';
+import { styled, keyframes, display } from '@mui/system';
 import { CoreTheme, useCoreTheme } from '../../../theme/core-theme';
 import LinearProgress, { linearProgressClasses } from '@mui/material/LinearProgress';
 import Banner from '../../molecule/banner/Banner';
-import { Button } from "../../atom/button";
+import { Button } from '../../atom/button';
 export interface VedamLoginPageProps {
   onGoogleLogin?: () => void;
   loading?: boolean;
@@ -24,7 +15,6 @@ export interface VedamLoginPageProps {
 }
 
 const StyledImageAnalytics = styled('img')({ width: '100%', height: '100%', objectFit: 'fill' });
-
 
 const CIRCLE_BASE_SX = {
   position: 'absolute' as const,
@@ -115,9 +105,9 @@ const LoginPage: React.FC<VedamLoginPageProps> = ({
       <LeftSection>
         {/* Decorative circles */}
         {[
-          { size: '75vw', bottom: '-35vw', left: '-28vw'},
-          { size: '110vw', bottom: '-57vw', left: '-49vw'},
-          { size: '130vw', bottom: '-68vw', left: '-58vw'},
+          { size: '75vw', bottom: '-35vw', left: '-28vw' },
+          { size: '110vw', bottom: '-57vw', left: '-49vw' },
+          { size: '130vw', bottom: '-68vw', left: '-58vw' },
         ].map(({ bottom, left, size }, i) => (
           <Box
             key={i}
@@ -243,7 +233,7 @@ const LoginPage: React.FC<VedamLoginPageProps> = ({
                 }}
               >
                 {/* <StyledImageAnalytics src="https://images.ctfassets.net/wrc4czfp4sk8/4VgPb2KW8RAZ6evI6jVbWf/60e0d6c21e189b789d69c157eb8af253/Frame_1261157036.png" /> */}
-                <Box sx={{display: 'flex'}}>
+                <Box sx={{ display: 'flex' }}>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     xmlnsXlink="http://www.w3.org/1999/xlink"
@@ -253,7 +243,7 @@ const LoginPage: React.FC<VedamLoginPageProps> = ({
                     fill="none"
                   >
                     <g opacity="0.7" filter="url(#filter0_n_8755_21643)">
-                      <rect width="296" height="127" fill="#81ADF1"/>
+                      <rect width="296" height="127" fill="#81ADF1" />
                       <rect
                         x="51"
                         y="15"
@@ -588,7 +578,12 @@ const LoginPage: React.FC<VedamLoginPageProps> = ({
                 >
                   What is the difference between compiled vs interpreted languages?
                 </Typography>
-                <Rating defaultValue={4} max={5} size="large" sx={{ mt: '1vh', width: '100%', alignItems: 'center', justifyContent: 'center' }} />
+                <Rating
+                  defaultValue={4}
+                  max={5}
+                  size="large"
+                  sx={{ mt: '1vh', width: '100%', alignItems: 'center', justifyContent: 'center' }}
+                />
                 <Box sx={{ display: 'flex', justifyContent: 'space-between', mt: '0.5vh' }}>
                   <Typography
                     sx={{ fontSize: 'clamp(10px, 0.9vw, 12px)', color: theme.palette.text.primary }}
