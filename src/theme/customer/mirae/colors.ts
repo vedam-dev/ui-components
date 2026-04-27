@@ -40,6 +40,7 @@ const colors = {
   infoI200: '#9ECFFF',
   infoI300: '#5CAEFF',
   infoI400Info: '#2F80ED',
+  infoI500Info: '#267aeb',
 
   successSc100: '#DDF8E3',
   successSc200: '#A8E9B6',

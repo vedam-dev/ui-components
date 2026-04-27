@@ -256,6 +256,7 @@ const index = createCoreTheme({
       200: colors.infoI200,
       300: colors.infoI300,
       400: colors.infoI400Info,
+      500: colors.infoI500Info,
     },
     success: {
       main: colors.successSc400Success,

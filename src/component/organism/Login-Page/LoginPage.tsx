@@ -1,20 +1,10 @@
 import React from 'react';
-import {
-  Box,
-  Typography,
-  Button,
-  Card,
-  Stack,
-  SxProps,
-  Theme,
-  Rating,
-  Slider,
-} from '@mui/material';
-import { styled } from '@mui/system';
+import { Box, Typography, Card, Stack, SxProps, Theme, Rating, Slider } from '@mui/material';
+import { styled, keyframes, display } from '@mui/system';
 import { CoreTheme, useCoreTheme } from '../../../theme/core-theme';
 import LinearProgress, { linearProgressClasses } from '@mui/material/LinearProgress';
 import Banner from '../../molecule/banner/Banner';
-
+import { Button } from '../../atom/button';
 export interface VedamLoginPageProps {
   onGoogleLogin?: () => void;
   loading?: boolean;
@@ -63,11 +53,7 @@ const LoginPage: React.FC<VedamLoginPageProps> = ({
     left: 0,
     width: '100%',
     height: '100%',
-    background: `
-      radial-gradient(circle at 20% 80%, rgba(120, 144, 255, 0.35), transparent 60%),
-      radial-gradient(circle at 60% 30%, rgba(200, 220, 255, 0.4), transparent 70%),
-      linear-gradient(180deg, ${theme.palette.grey[50]} 0%, #DCF1FF 1%)
-    `,
+    background: `${theme.palette.primary[100]}`,
     display: 'flex',
     alignItems: 'center',
     zIndex: 0,
@@ -83,14 +69,14 @@ const LoginPage: React.FC<VedamLoginPageProps> = ({
     borderRadius: theme.spacing(2),
     border: '1px solid transparent',
     bgcolor: theme.palette.common.white,
-    backgroundImage: `linear-gradient(white, white), linear-gradient(to right, ${theme.vd.palette.accentSecondary}, ${theme.vd.palette.accentPrimary})`,
+    backgroundImage: `linear-gradient(white, white), linear-gradient(to right, ${theme.palette.secondary[500]}, ${theme.palette.primary[500]})`,
     backgroundOrigin: 'border-box',
     backgroundClip: 'padding-box, border-box',
   };
 
   const cardShadow = '0 0 10px 0 rgba(0, 0, 0, 0.15)';
   const darkText = theme.palette.text.primary;
-  const mutedText = theme.vd.palette.textMuted;
+  const mutedText = theme.palette.grey[600];
   const subtleText = theme.vd.palette.textSubtle;
   const white = theme.palette.common.white;
 
@@ -119,9 +105,9 @@ const LoginPage: React.FC<VedamLoginPageProps> = ({
       <LeftSection>
         {/* Decorative circles */}
         {[
-          { size: '70vw', bottom: '-20vw', left: '-20vw' },
-          { size: '100vw', bottom: '-35vw', left: '-30vw' },
-          { size: '130vw', bottom: '-50vw', left: '-40vw' },
+          { size: '75vw', bottom: '-35vw', left: '-28vw' },
+          { size: '110vw', bottom: '-57vw', left: '-49vw' },
+          { size: '130vw', bottom: '-68vw', left: '-58vw' },
         ].map(({ bottom, left, size }, i) => (
           <Box
             key={i}
@@ -140,7 +126,8 @@ const LoginPage: React.FC<VedamLoginPageProps> = ({
           sx={{
             position: 'relative',
             zIndex: 1,
-            width: '60vw',
+            width: '50%',
+            minWidth: '50vw',
             height: '100%',
             display: 'flex',
             flexDirection: 'column',
@@ -239,14 +226,14 @@ const LoginPage: React.FC<VedamLoginPageProps> = ({
               <Box
                 sx={{
                   display: 'flex',
-                  alignItems: 'center',
+                  alignItems: 'flex-end',
                   justifyContent: 'center',
                   flex: 1,
                   overflow: 'hidden',
                 }}
               >
                 {/* <StyledImageAnalytics src="https://images.ctfassets.net/wrc4czfp4sk8/4VgPb2KW8RAZ6evI6jVbWf/60e0d6c21e189b789d69c157eb8af253/Frame_1261157036.png" /> */}
-                <Box>
+                <Box sx={{ display: 'flex' }}>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     xmlnsXlink="http://www.w3.org/1999/xlink"
@@ -256,7 +243,7 @@ const LoginPage: React.FC<VedamLoginPageProps> = ({
                     fill="none"
                   >
                     <g opacity="0.7" filter="url(#filter0_n_8755_21643)">
-                      <rect width="296" height="127" fill={theme.palette.primary[200]} />
+                      <rect width="296" height="127" fill="#81ADF1" />
                       <rect
                         x="51"
                         y="15"
@@ -273,9 +260,9 @@ const LoginPage: React.FC<VedamLoginPageProps> = ({
                         width="296"
                         height="127"
                         filterUnits="userSpaceOnUse"
-                        color-interpolation-filters="sRGB"
+                        colorInterpolationFilters="sRGB"
                       >
-                        <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                        <feFlood floodOpacity="0" result="BackgroundImageFix" />
                         <feBlend
                           mode="normal"
                           in="SourceGraphic"
@@ -303,7 +290,7 @@ const LoginPage: React.FC<VedamLoginPageProps> = ({
                           in="coloredNoise1"
                           result="noise1Clipped"
                         />
-                        <feFlood flood-color="rgba(0, 0, 0, 0.25)" result="color1Flood" />
+                        <feFlood floodColor="rgba(0, 0, 0, 0.25)" result="color1Flood" />
                         <feComposite
                           operator="in"
                           in2="noise1Clipped"
@@ -412,9 +399,9 @@ const LoginPage: React.FC<VedamLoginPageProps> = ({
                     textTransform: 'none',
                     fontWeight: 600,
                     fontSize: 'clamp(11px, 1vw, 14px)',
-                    borderColor: theme.vd.palette.accentPrimary,
-                    color: theme.vd.palette.accentPrimary,
-                    '&:hover': { borderColor: theme.vd.palette.accentPrimary },
+                    borderColor: theme.palette.primary[500],
+                    color: theme.palette.primary[500],
+                    '&:hover': { borderColor: theme.palette.primary[500] },
                   }}
                 >
                   Explore this Class!
@@ -516,7 +503,7 @@ const LoginPage: React.FC<VedamLoginPageProps> = ({
                 height: 'clamp(250px, 23vh, 270px)',
                 position: 'relative',
                 borderRadius: '12px',
-                background: `linear-gradient(180deg, ${theme.vd.palette.accentPrimaryLight} -70%, ${theme.vd.palette.accentPrimary} 130%)`,
+                background: `linear-gradient(180deg, ${theme.palette.primary[50]} -70%, ${theme.palette.primary[500]} 130%)`,
                 filter: 'drop-shadow(0 0 10px rgba(0, 0, 0, 0.15))',
                 display: 'flex',
                 flexDirection: 'column',
@@ -591,7 +578,12 @@ const LoginPage: React.FC<VedamLoginPageProps> = ({
                 >
                   What is the difference between compiled vs interpreted languages?
                 </Typography>
-                <Rating defaultValue={4} max={5} size="large" sx={{ ml: '15%', mt: '1vh' }} />
+                <Rating
+                  defaultValue={4}
+                  max={5}
+                  size="large"
+                  sx={{ mt: '1vh', width: '100%', alignItems: 'center', justifyContent: 'center' }}
+                />
                 <Box sx={{ display: 'flex', justifyContent: 'space-between', mt: '0.5vh' }}>
                   <Typography
                     sx={{ fontSize: 'clamp(10px, 0.9vw, 12px)', color: theme.palette.text.primary }}
@@ -618,7 +610,7 @@ const LoginPage: React.FC<VedamLoginPageProps> = ({
           position: 'absolute',
           top: 0,
           right: 0,
-          width: '40%',
+          width: '500px',
           height: '100%',
           zIndex: 1,
           background: white,
@@ -631,7 +623,7 @@ const LoginPage: React.FC<VedamLoginPageProps> = ({
       >
         <Box
           sx={{
-            width: '100%',
+            width: '420px',
             maxWidth: '85%',
             display: 'flex',
             flexDirection: 'column',
@@ -689,7 +681,6 @@ const LoginPage: React.FC<VedamLoginPageProps> = ({
               onClick={onGoogleLogin}
               disabled={loading}
               sx={{
-                border: `1px solid ${theme.vd.palette.statusInactive}`,
                 borderRadius: theme.spacing(3),
                 display: 'flex',
                 alignItems: 'center',
@@ -698,10 +689,6 @@ const LoginPage: React.FC<VedamLoginPageProps> = ({
                 height: 'clamp(52px, 6vh, 68px)',
                 textTransform: 'none',
                 gap: '4%',
-                '&:hover': {
-                  background: theme.palette.background.default,
-                  borderColor: theme.vd.palette.accentPrimary,
-                },
               }}
             >
               <Box
@@ -716,7 +703,6 @@ const LoginPage: React.FC<VedamLoginPageProps> = ({
                   fontSize: 'clamp(14px, 1.5vw, 20px)',
                   fontWeight: 600,
                   lineHeight: 'normal',
-                  color: theme.palette.info[500],
                 }}
               >
                 Continue with Google
