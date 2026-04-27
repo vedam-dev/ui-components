@@ -3,13 +3,10 @@ import VedamLoginPage from '../../../component/organism/Login-Page/LoginPage';
 import { fn } from '@storybook/test';
 import { JSX } from 'react';
 
-
-
 const meta: Meta<typeof VedamLoginPage> = {
   title: 'Pages/VedamLoginPage',
   component: VedamLoginPage,
-  decorators: [(Story) => <Story />
-  ],
+  decorators: [(Story) => <Story />],
   parameters: {
     layout: 'fullscreen',
     docs: {
