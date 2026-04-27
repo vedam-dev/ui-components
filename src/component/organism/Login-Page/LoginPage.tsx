@@ -270,9 +270,9 @@ const LoginPage: React.FC<VedamLoginPageProps> = ({
                         width="296"
                         height="127"
                         filterUnits="userSpaceOnUse"
-                        color-interpolation-filters="sRGB"
+                        colorInterpolationFilters="sRGB"
                       >
-                        <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                        <feFlood floodOpacity="0" result="BackgroundImageFix" />
                         <feBlend
                           mode="normal"
                           in="SourceGraphic"
@@ -300,7 +300,7 @@ const LoginPage: React.FC<VedamLoginPageProps> = ({
                           in="coloredNoise1"
                           result="noise1Clipped"
                         />
-                        <feFlood flood-color="rgba(0, 0, 0, 0.25)" result="color1Flood" />
+                        <feFlood floodColor="rgba(0, 0, 0, 0.25)" result="color1Flood" />
                         <feComposite
                           operator="in"
                           in2="noise1Clipped"
