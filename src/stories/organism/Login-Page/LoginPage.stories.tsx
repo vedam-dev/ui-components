@@ -1,24 +1,14 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import VedamLoginPage from '../../../component/organism/Login-Page/LoginPage';
 import { fn } from '@storybook/test';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { JSX } from 'react';
 
-const storybookTheme = createTheme({
-  spacing: 4,
-});
+
 
 const meta: Meta<typeof VedamLoginPage> = {
   title: 'Pages/VedamLoginPage',
   component: VedamLoginPage,
-  decorators: [
-    (Story): JSX.Element => (
-      <ThemeProvider theme={storybookTheme}>
-        <div style={{ height: '100vh' }}>
-          <Story />
-        </div>
-      </ThemeProvider>
-    ),
+  decorators: [(Story) => <Story />
   ],
   parameters: {
     layout: 'fullscreen',
