@@ -31,7 +31,7 @@ const FeeTypeModal: React.FC<FeeTypeModalProps> = ({
   const isEdit = variant === 'edit';
   const title = isEdit ? 'Edit Fee Type' : 'Create New Fee Type';
   const subtitle = isEdit ? 'Edit details for the fee type' : 'Enter details for the fee type';
-  const submitLabel = isEdit ? 'Save' : 'Create';
+  const submitLabel = isEdit ? 'Edit Fee Type' : 'Create Fee Type';
 
   const [name, setName] = useState(initialData?.name ?? '');
   const [code, setCode] = useState(initialData?.code ?? '');
