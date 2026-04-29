@@ -76,6 +76,8 @@ export {
   RatingAnalyticsTitle,
 } from './component/organism/ratingAnalytics/RatingAnalytics';
 
+export { default as AddFeeTypeModal } from './component/organism/addFeeTypeModal/AddFeeTypeModal';
+
 export {
   FeeListItemRow,
   FeeListItemStatus,
