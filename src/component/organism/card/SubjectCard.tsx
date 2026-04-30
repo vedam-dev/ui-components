@@ -2,7 +2,7 @@ import { Card, CardActions } from '../../atom/card';
 import { Typography } from '../../atom/typography';
 import { Button } from '../../atom/button';
 import { FC } from 'react';
-import { Box, Stack, SxProps, Theme } from '@mui/material';
+import { Box, Stack, SxProps, Theme, Tooltip } from '@mui/material';
 import MenuBookOutlinedIcon from '@mui/icons-material/MenuBookOutlined';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import React from 'react';
@@ -252,9 +252,11 @@ const SubjectCard: FC<SubjectCardProps> = ({
             />
           </Box>
           <Stack sx={{ width: '100%', overflow: 'hidden' }}>
-            <Typography variant="h6" sx={defaultSubjectTextSx}>
-              {subject}
-            </Typography>
+            <Tooltip title={subject} placement="top" arrow>
+              <Typography variant="h6" sx={defaultSubjectTextSx}>
+                {subject}
+              </Typography>
+            </Tooltip>
             {/* Show batch if provided in course-offering variant */}
             {showBatch && (
               <Typography variant="body2" sx={defaultBatchTextSx}>
