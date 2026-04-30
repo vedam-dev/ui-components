@@ -62,7 +62,7 @@ const FeeStatusList: React.FC<FeeStatusListProps> = ({ status, feeItems, onPayNo
         alignItems: 'center',
         justifyContent: 'space-between',
         borderRadius: theme.spacing(9),
-        padding: theme.spacing(10, 12),
+        padding: { md: theme.spacing(7), lg: theme.spacing(10, 12) },
         background: `
   linear-gradient(${theme.vd.palette.accentPrimaryLight} 0%, ${theme.palette.secondary[50]} 100%) padding-box,
   linear-gradient(${theme.vd.palette.accentPrimary} , ${theme.vd.palette.accentSecondary}) border-box
@@ -110,16 +110,19 @@ const FeeStatusList: React.FC<FeeStatusListProps> = ({ status, feeItems, onPayNo
         sx={{
           display: 'flex',
           alignItems: 'center',
-          gap: theme.spacing(3),
-          minWidth: '200px',
+          gap: { md: '20px', lg: '26px' },
+          minWidth: { md: "156px", lg: "230px" },
         }}
       >
-        <svg
+        <Box
+          component="svg"
           xmlns="http://www.w3.org/2000/svg"
-          width="69"
-          height="69"
           viewBox="0 0 69 69"
           fill="none"
+          sx={{
+            width: { md: '36px', lg: '69px' },
+            height: { md: '36px', lg: '69px' },
+          }}
         >
           <circle
             cx="34.5"
@@ -156,7 +159,7 @@ const FeeStatusList: React.FC<FeeStatusListProps> = ({ status, feeItems, onPayNo
               <stop offset="1" stopColor={iconStrokeLight} />
             </linearGradient>
           </defs>
-        </svg>
+        </Box>
 
         <Box>
           <Typography
@@ -166,7 +169,7 @@ const FeeStatusList: React.FC<FeeStatusListProps> = ({ status, feeItems, onPayNo
               whiteSpace: 'nowrap',
               overflow: 'hidden',
               textOverflow: 'ellipsis',
-              fontSize: '20px',
+              fontSize: { md: '12px', lg: '20px' },
               fontWeight: '500',
             }}
           >
@@ -177,11 +180,11 @@ const FeeStatusList: React.FC<FeeStatusListProps> = ({ status, feeItems, onPayNo
             sx={{
               color: theme.vd.palette.textStrong,
               fontWeight: '600',
-              fontSize: '26px',
+              fontSize: { md: '14px', lg: '28px' },
               whiteSpace: 'nowrap',
               overflow: 'hidden',
               textOverflow: 'ellipsis',
-              lineHeight: '33px',
+            lineHeight: { md: '21px', lg: '33px' },
             }}
           >
             {semesterItem?.value || 'Semester 1 Fees'}
@@ -207,7 +210,7 @@ const FeeStatusList: React.FC<FeeStatusListProps> = ({ status, feeItems, onPayNo
               whiteSpace: 'nowrap',
               overflow: 'hidden',
               textOverflow: 'ellipsis',
-              fontSize: '20px',
+              fontSize: { md: '12px', lg: '20px' },
               fontWeight: '500',
             }}
           >
@@ -221,7 +224,7 @@ const FeeStatusList: React.FC<FeeStatusListProps> = ({ status, feeItems, onPayNo
               overflow: 'hidden',
               textOverflow: 'ellipsis',
               color: theme.vd.palette.textStrong,
-              fontSize: '20px',
+              fontSize:  { md: '14px', lg: '20px' },
             }}
           >
             {item.value}
@@ -235,7 +238,7 @@ const FeeStatusList: React.FC<FeeStatusListProps> = ({ status, feeItems, onPayNo
           variant="contained"
           onClick={onPayNow}
           sx={{
-            minWidth: '250px',
+            minWidth: { md: '200px', lg: '345px' },
           }}
         >
           Pay Now
