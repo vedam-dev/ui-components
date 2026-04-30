@@ -61,7 +61,7 @@ const FeeStatusList: React.FC<FeeStatusListProps> = ({ status, feeItems, onPayNo
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
-        borderRadius: theme.spacing(9),
+          borderRadius: { md: theme.spacing(6), lg: theme.spacing(9)  },
         padding: { md: theme.spacing(7), lg: theme.spacing(10, 12) },
         background: `
   linear-gradient(${theme.vd.palette.accentPrimaryLight} 0%, ${theme.palette.secondary[50]} 100%) padding-box,
