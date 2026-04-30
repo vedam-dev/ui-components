@@ -332,7 +332,7 @@ const buttonStyles = (
   isDownloadable: boolean
 ): SystemStyleObject<Theme> => {
   const roundBorderRadius = small ? theme.spacing(4) : theme.spacing(6);
-  const borderRadius = isRound ? roundBorderRadius : theme.spacing(4);
+  const borderRadius = isRound ? roundBorderRadius : { md: theme.spacing(3.75), lg: theme.spacing(4) };
   const v2Paddings = {
     small: theme.spacing(1.5, 3),
     large: theme.spacing(2.5, 4),
@@ -340,8 +340,7 @@ const buttonStyles = (
 
   const defaultStyles: SystemStyleObject<Theme> = {
     borderRadius: borderRadius,
-    paddingX: isV2 ? v2Paddings.large : theme.spacing(6),
-    paddingY: isV2 ? v2Paddings.large : theme.spacing(3),
+    padding: isV2 ? { md: v2Paddings.small, lg: v2Paddings.large } : { md: theme.spacing(2, 4), lg: theme.spacing(3, 6) },
     borderWidth: 2,
     boxShadow: 'none',
     '&:disabled': {
@@ -369,7 +368,7 @@ const buttonStyles = (
     defaultStyles.borderRadius = '18px';
     defaultStyles.border = `1px solid ${theme.vd.palette.accentSecondary}`;
     defaultStyles.background = theme.palette.background.paper;
-    defaultStyles.padding = '12px 14px';
+    defaultStyles.padding = { md: '8px 10px', lg: '12px 14px' };
     defaultStyles.position = 'relative';
     defaultStyles.color = theme.vd.palette.accentSecondary;
     defaultStyles.minWidth = 'auto';
@@ -392,7 +391,7 @@ const buttonStyles = (
   }
 
   if (isRound) {
-    defaultStyles.padding = isV2 ? v2Paddings.large : theme.spacing(3, 6);
+    defaultStyles.padding = isV2 ? { md: v2Paddings.small, lg: v2Paddings.large } : { md: theme.spacing(2, 3), lg: theme.spacing(3, 6) };
   }
 
   if (small) {
