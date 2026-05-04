@@ -79,7 +79,7 @@ const IconDropdown: React.FC<IconDropdownProps> = ({
         onKeyDown={(e) => !disabled && e.key === 'Enter' && handleOpen(e as any)}
         sx={{
           display: 'inline-flex',
-          padding: theme.spacing(3, 4),
+          padding: { md: '9px 12px', lg: '12px 16px' },
           alignItems: 'center',
           gap: theme.spacing(3),
           width: boxWidth,

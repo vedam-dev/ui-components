@@ -87,10 +87,10 @@ const SubjectCard: FC<SubjectCardProps> = ({
   const resolvedBorder = border ?? `1px solid ${theme.vd.palette.accentPrimaryLight}`;
 
   const defaultCardSx: SxProps<Theme> = {
-    width: typeof width === 'number' ? `${width}px` : width,
-    height: typeof height === 'number' ? `${height}px` : height,
-    borderRadius: theme.spacing(7),
-    padding: '28px 20px',
+    width: { md: '210px', lg: typeof width === 'number' ? `${width}px` : width },
+    height: { md: '184px', lg: typeof height === 'number' ? `${height}px` : height },
+    borderRadius: { md: '18px', lg: '28px' },
+    padding: { md: '14px 12px', lg: '28px 20px' },
     border: resolvedBorder,
     background: resolvedGradient,
     display: 'flex',
@@ -100,14 +100,16 @@ const SubjectCard: FC<SubjectCardProps> = ({
   };
 
   const defaultIconContainerSx: SxProps<Theme> = {
-    width: '56px',
-    height: '56px',
+    width: { md: '40px', lg: '56px' },
+    height: { md: '40px', lg: '56px' },
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    borderRadius: theme.spacing(2),
+    borderRadius: { md: '8px', lg: theme.spacing(2) },
+    gap: '10px',
+    aspectRatio: '1/1',
     border: '1px solid transparent',
-    padding: theme.spacing(2.75, 3.25),
+    padding: { md: '11px 13px', lg: theme.spacing(2.75, 3.25) },
     bgcolor: 'white',
     backgroundImage: `linear-gradient(white, white), linear-gradient(to right, ${theme.vd.palette.accentSecondary}, ${theme.vd.palette.accentPrimary})`,
     backgroundOrigin: 'border-box',
@@ -117,10 +119,10 @@ const SubjectCard: FC<SubjectCardProps> = ({
 
   const defaultSubjectTextSx: SxProps<Theme> = {
     //FontFamily: theme.typography.//FontFamily,
-    fontWeight: 500,
+    fontWeight: { md: 600, lg: 500 },
     color: theme.vd.palette.textStrong,
-    fontSize: '22px',
-    lineHeight: '28px',
+    fontSize: { md: '16px', lg: '22px' },
+    lineHeight: { md: '20px', lg: '28px' },
     width: '100%',
     overflow: 'hidden',
     textOverflow: 'ellipsis',
@@ -132,8 +134,8 @@ const SubjectCard: FC<SubjectCardProps> = ({
     //FontFamily: theme.typography.//FontFamily,
     fontWeight: 400,
     color: theme.palette.text.secondary,
-    fontSize: '1.125rem',
-    lineHeight: '20px',
+    fontSize: { md: '12px', lg: '1.125rem' },
+    lineHeight: { md: '16px', lg: '20px' },
     width: '100%',
     minWidth: theme.spacing(41),
     ...teacherTextSx,
@@ -160,12 +162,12 @@ const SubjectCard: FC<SubjectCardProps> = ({
   const defaultDescriptionTextSx: SxProps<Theme> = {
     //FontFamily: theme.typography.//FontFamily,
     color: theme.vd.palette.textStrong,
-    fontSize: '16px',
-    lineHeight: theme.spacing(4.5),
+    fontSize: { md: '12px', lg: '16px' },
+    lineHeight: { md: theme.spacing(3.5), lg: theme.spacing(4.5) },
     fontWeight: 400,
-    mb: theme.spacing(4.5),
+    mb: { md: theme.spacing(3), lg: theme.spacing(4.5) },
     textWrap: 'stable',
-    minHeight: theme.spacing(9.5),
+    minHeight: { md: theme.spacing(7), lg: theme.spacing(9.5) },
     ...descriptionTextSx,
 
     display: '-webkit-box',
@@ -176,10 +178,10 @@ const SubjectCard: FC<SubjectCardProps> = ({
   };
 
   const defaultButtonSx: SxProps<Theme> = {
-    width: theme.spacing(66.25),
-    height: theme.spacing(9),
+    width: { md: theme.spacing(46.5), lg: theme.spacing(66.25) },
+    height: { md: '36px', lg: theme.spacing(9) },
     padding: theme.spacing(2),
-    mb: theme.spacing(7.5),
+    mb: { md: theme.spacing(3), lg: theme.spacing(7.5) },
     borderWidth: theme.spacing(0.25),
     borderRadius: theme.spacing(3),
     borderColor: theme.palette.primary.main,
@@ -187,7 +189,7 @@ const SubjectCard: FC<SubjectCardProps> = ({
     color: theme.palette.primary.main,
     //FontFamily: theme.typography.//FontFamily,
     fontWeight: 500,
-    fontSize: theme.typography.body1.fontSize,
+    fontSize: { md: '12px', lg: theme.typography.body1.fontSize },
     textTransform: 'none',
     '&:hover': {
       borderColor: theme.palette.primary.main,
@@ -199,8 +201,8 @@ const SubjectCard: FC<SubjectCardProps> = ({
     //FontFamily: theme.typography.//FontFamily,
     fontWeight: 400,
     color: theme.palette.text.secondary,
-    fontSize: '18px',
-    lineHeight: '28px',
+    fontSize: { md: '12px', lg: '18px' },
+    lineHeight: { md: '16px', lg: '28px' },
     ...batchTextSx,
   };
 
@@ -208,8 +210,8 @@ const SubjectCard: FC<SubjectCardProps> = ({
     //FontFamily: theme.typography.//FontFamily,
     fontWeight: 500,
     color: theme.palette.text.secondary,
-    fontSize: '13px',
-    lineHeight: '18px',
+    fontSize: { md: '10px', lg: '13px' },
+    lineHeight: { md: '13px', lg: '18px' },
     ...courseInfoTextSx,
   };
 
@@ -242,13 +244,18 @@ const SubjectCard: FC<SubjectCardProps> = ({
           height: '100%',
         }}
       >
-        <Stack direction="row" spacing={6} alignItems="center" mb="18px">
+        <Stack
+          direction="row"
+          spacing={{ md: 3, lg: 6 }}
+          alignItems="center"
+          mb={{ md: '12px', lg: '18px' }}
+        >
           <Box sx={defaultIconContainerSx}>
             <Box
               component="img"
               src={iconUrl}
               alt={iconAlt}
-              sx={{ width: '34px', height: '34px' }}
+              sx={{ width: { md: '18px', lg: '34px' }, height: { md: '18px', lg: '34px' } }}
             />
           </Box>
           <Stack sx={{ width: '100%', overflow: 'hidden' }}>
@@ -278,17 +285,17 @@ const SubjectCard: FC<SubjectCardProps> = ({
 
         <Box>
           {showCourseInfo && (
-            <Box sx={{ mb: '18px', display: 'flex', alignItems: 'center' }}>
+            <Box sx={{ mb: { md: '14px', lg: '18px' }, display: 'flex', alignItems: 'center' }}>
               {/* Course Code */}
               <Typography sx={defaultCourseInfoTextSx}>Course Code: {courseCode}</Typography>
 
               {/* Custom vertical divider */}
               <Box
                 sx={{
-                  height: '15px',
+                  height: { md: '12px', lg: '15px' },
                   width: '1px',
                   backgroundColor: theme.palette.text.secondary,
-                  mx: '8px',
+                  mx: { md: '4px', lg: '8px' },
                 }}
               />
 
@@ -303,8 +310,8 @@ const SubjectCard: FC<SubjectCardProps> = ({
               sx={{
                 display: 'flex',
                 alignItems: 'center',
-                gap: theme.spacing(2),
-                mb: '18px',
+                gap: { md: theme.spacing(1), lg: theme.spacing(2) },
+                mb: { md: '12px', lg: '18px' },
               }}
             >
               <Stack direction="row" alignItems="center" spacing={1}>
@@ -363,7 +370,7 @@ const SubjectCard: FC<SubjectCardProps> = ({
                   sx={{
                     ...defaultButtonSx,
                     width: 'auto',
-                    minWidth: '260px',
+                    minWidth: { md: '186px', lg: '260px' },
                     ...(button.variant === 'contained' && {
                       backgroundColor: theme.vd.palette.accentPrimary,
                       color: theme.palette.background.paper,

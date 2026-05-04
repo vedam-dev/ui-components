@@ -61,7 +61,7 @@ const FeeStatusList: React.FC<FeeStatusListProps> = ({ status, feeItems, onPayNo
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
-          borderRadius: { md: theme.spacing(6), lg: theme.spacing(9)  },
+        borderRadius: { md: theme.spacing(6), lg: theme.spacing(9) },
         padding: { md: theme.spacing(7), lg: theme.spacing(10, 12) },
         background: `
   linear-gradient(${theme.vd.palette.accentPrimaryLight} 0%, ${theme.palette.secondary[50]} 100%) padding-box,
@@ -111,7 +111,7 @@ const FeeStatusList: React.FC<FeeStatusListProps> = ({ status, feeItems, onPayNo
           display: 'flex',
           alignItems: 'center',
           gap: { md: '20px', lg: '26px' },
-          minWidth: { md: "156px", lg: "230px" },
+          minWidth: { md: '156px', lg: '230px' },
         }}
       >
         <Box
@@ -184,7 +184,7 @@ const FeeStatusList: React.FC<FeeStatusListProps> = ({ status, feeItems, onPayNo
               whiteSpace: 'nowrap',
               overflow: 'hidden',
               textOverflow: 'ellipsis',
-            lineHeight: { md: '21px', lg: '33px' },
+              lineHeight: { md: '21px', lg: '33px' },
             }}
           >
             {semesterItem?.value || 'Semester 1 Fees'}
@@ -224,7 +224,7 @@ const FeeStatusList: React.FC<FeeStatusListProps> = ({ status, feeItems, onPayNo
               overflow: 'hidden',
               textOverflow: 'ellipsis',
               color: theme.vd.palette.textStrong,
-              fontSize:  { md: '14px', lg: '20px' },
+              fontSize: { md: '14px', lg: '20px' },
             }}
           >
             {item.value}
