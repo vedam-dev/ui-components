@@ -34,7 +34,7 @@ export interface SidebarItem {
 
 export interface SidebarDrawerProps extends Omit<MuiDrawerProps, 'open' | 'onClose'> {
   items?: SidebarItem[];
-  collapsedWidth?: number;
+  collapsedWidth?: number | { md: number; lg: number };
   expandedWidth?: number;
   expanded?: boolean;
   defaultExpanded?: boolean;
@@ -181,16 +181,18 @@ const SidebarDrawer: FC<SidebarDrawerProps> = ({
                     <ListItemButton
                       onClick={() => handleItemClick(item)}
                       sx={{
-                        minHeight: 48,
+                        minHeight: { md: 30, lg: 48 },
                         justifyContent: isExpanded ? 'left' : 'center',
-                        padding: theme.spacing(2),
-                        borderRadius: isExpanded ? theme.spacing(2) : '50%',
+                        padding: isExpanded
+                          ? { md: '0 12px', lg: theme.spacing(2) }
+                          : { md: 0, lg: theme.spacing(2) },
+                        borderRadius: isExpanded ? theme.spacing(2) : { md: '8px', lg: '50%' },
                         transition: 'all 0.3s',
                         flexDirection: isExpanded ? 'row' : 'column',
                         alignItems: 'center',
                         gap: isExpanded ? theme.spacing(2) : 0,
                         width: '100%',
-                        maxWidth: isExpanded ? 'auto' : 48,
+                        maxWidth: isExpanded ? 'auto' : { md: 30, lg: 48 },
                         minWidth: 'auto',
                         backgroundColor: isActive ? theme.palette.primary.dark : 'transparent',
                         color: isActive ? palette.primary.contrastText : palette.text.primary,
@@ -212,6 +214,8 @@ const SidebarDrawer: FC<SidebarDrawerProps> = ({
                           '& svg': {
                             display: 'block',
                             color: isActive ? palette.primary.contrastText : palette.text.secondary,
+                            width: { md: 14, lg: '1.5rem' },
+                            height: { md: 14, lg: '1.5rem' },
                           },
                         }}
                       >

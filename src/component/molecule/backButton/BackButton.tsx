@@ -12,7 +12,7 @@ interface BackButtonProps {
 
 const BackButton: React.FC<BackButtonProps> = ({
   onClick,
-  size = '37px',
+  size = { md: '28px', lg: '39px' },
   borderColor = '#C2C2C2',
   bgColor = '#FFFFFF',
   iconColor = '#000000',
@@ -25,7 +25,7 @@ const BackButton: React.FC<BackButtonProps> = ({
       width: size,
       height: size,
       padding: 0,
-      borderRadius: 2,
+      borderRadius: { md: '6px', lg: '8px' },
       borderColor: borderColor,
       backgroundColor: bgColor,
       ':hover': {

@@ -26,7 +26,7 @@ export const FeeListItemRow: React.FC<FeeListItemRowProps> = ({ title, value }) 
         variant="caption"
         sx={{
           color: theme.palette.grey[500],
-          fontSize: '14px',
+          fontSize: { md: '12px', lg: '14px' },
           fontWeight: 500,
         }}
       >
@@ -35,7 +35,7 @@ export const FeeListItemRow: React.FC<FeeListItemRowProps> = ({ title, value }) 
       <Typography
         variant="body1"
         sx={{
-          fontSize: '16px',
+          fontSize: { md: '14px', lg: '16px' },
           fontWeight: 400,
         }}
       >
@@ -75,6 +75,7 @@ export const FeeListItemStatus: React.FC<FeeListItemStatusProps> = ({ status }) 
       <Typography
         variant="caption"
         sx={{
+          display: { md: 'none', lg: 'block' },
           color: theme.palette.grey[500],
           fontSize: '14px',
           fontWeight: 500,
@@ -89,6 +90,8 @@ export const FeeListItemStatus: React.FC<FeeListItemStatusProps> = ({ status }) 
           padding: 0,
           height: 'auto',
           minHeight: 'auto',
+          width: { md: '65px', lg: 'auto' },
+          fontSize: { md: '10px', lg: '14px' },
           '& .MuiChip-label': {
             padding: theme.spacing(0),
             lineHeight: 1.8,
@@ -161,8 +164,8 @@ const FeeListItem: React.FC<FeeListItemProps> = ({ children }) => {
         backgroundColor: 'background.paper',
         mb: theme.spacing(2),
         width: '100%',
-        px: theme.spacing(9),
-        py: theme.spacing(2),
+        px: { md: '24px', lg: '32px' },
+        py: { md: '14px', lg: '24px' },
       }}
     >
       <Box
@@ -171,8 +174,7 @@ const FeeListItem: React.FC<FeeListItemProps> = ({ children }) => {
           alignItems: 'center',
           justifyContent: 'space-between',
           flexWrap: 'wrap',
-          p: theme.spacing(3),
-          gap: theme.spacing(10),
+          gap: { md: theme.spacing(5), lg: theme.spacing(10) },
         }}
       >
         {children}

@@ -10,7 +10,7 @@ import {
   Assignment as AssignmentIcon,
   EventNote as EventNoteIcon,
 } from '@mui/icons-material';
-import { SxProps, Theme } from '@mui/material';
+import { Box, SxProps, Theme } from '@mui/material';
 
 const defaultItems: SidebarItem[] = [
   {
@@ -75,7 +75,7 @@ const defaultItems: SidebarItem[] = [
 
 interface SidebarWrapperProps extends Partial<TopBarProps> {
   items?: SidebarItem[];
-  collapsedWidth?: number;
+  collapsedWidth?: number | { md: number; lg: number };
   expandedWidth?: number;
   hoverDelayMs?: number;
   logoSx?: SxProps<Theme>;
@@ -94,7 +94,7 @@ const SidebarWrapper: FC<SidebarWrapperProps> = ({
   notificationCount = 1,
   hideStatsContainer = false,
   onProfileClick = () => console.log('Profile clicked'),
-  collapsedWidth = 84,
+  collapsedWidth = { md: 54, lg: 84 },
   expandedWidth = 200,
   hoverDelayMs = 1000,
 }) => {
@@ -311,10 +311,10 @@ const SidebarWrapper: FC<SidebarWrapperProps> = ({
         hideStatsContainer={hideStatsContainer}
       />
 
-      <div
+      <Box
         onMouseEnter={handleHoverEnter}
         onMouseLeave={handleHoverLeave}
-        style={{
+        sx={{
           position: 'fixed',
           top: `${topbarHeight}px`,
           left: 0,
@@ -342,7 +342,7 @@ const SidebarWrapper: FC<SidebarWrapperProps> = ({
             overflow: 'hidden',
           }}
         />
-      </div>
+      </Box>
     </div>
   );
 };

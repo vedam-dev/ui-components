@@ -195,7 +195,7 @@ export default function Tabs({
                 px: 0,
                 pb: 2,
                 minWidth: 'unset',
-                fontSize: '20px',
+                fontSize: { md: '14px', lg: '20px' },
                 borderRadius: 0,
                 fontWeight: 600,
                 color: selected ? theme.palette.primary.main : 'text.secondary',

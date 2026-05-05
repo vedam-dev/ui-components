@@ -51,7 +51,10 @@ const TimeSlot = styled(Box)(({ theme }) => ({
   justifyContent: 'center',
   fontWeight: 600,
   color: (theme as CoreTheme).vd.palette.textStrong,
-  fontSize: '18px',
+  fontSize: '16px',
+  [theme.breakpoints.up('lg')]: {
+    fontSize: '18px',
+  },
   fontStyle: 'normal',
   lineHeight: 'normal',
   minHeight: 72,
@@ -180,7 +183,10 @@ const SemesterPill = styled(Box)(({ theme }) => ({
   color: (theme as CoreTheme).vd.palette.accentPrimary,
   padding: theme.spacing(1, 1),
   fontWeight: 600,
-  fontSize: '18px',
+  fontSize: '16px',
+  [theme.breakpoints.up('lg')]: {
+    fontSize: '18px',
+  },
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
@@ -388,7 +394,7 @@ const ReusableCalendar: React.FC<ReusableCalendarProps> = ({
           <DayHeader key={index}>
             <Typography
               sx={{
-                fontSize: '18px',
+                fontSize: { md: '16px', lg: '18px' },
                 fontWeight: 600,
                 color: isToday(day) ? theme.vd.palette.accentPrimary : theme.vd.palette.textStrong,
                 lineHeight: 'normal',
@@ -405,7 +411,11 @@ const ReusableCalendar: React.FC<ReusableCalendarProps> = ({
           <React.Fragment key={timeIndex}>
             <TimeSlot>
               <Typography
-                sx={{ fontSize: '18px', fontWeight: 600, color: theme.vd.palette.textStrong }}
+                sx={{
+                  fontSize: { md: '16px', lg: '18px' },
+                  fontWeight: 600,
+                  color: theme.vd.palette.textStrong,
+                }}
               >
                 {timeLabel}
               </Typography>
