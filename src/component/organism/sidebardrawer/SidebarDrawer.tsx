@@ -61,6 +61,14 @@ const SidebarDrawer: FC<SidebarDrawerProps> = ({
   const [expandedMenus, setExpandedMenus] = useState<Record<string, boolean>>({});
 
   const initialActiveId = (() => {
+    // Check submenus first
+    for (const item of items) {
+      if (item.submenu) {
+        const selectedSub = item.submenu.find((sub) => sub.selected === true);
+        if (selectedSub) return selectedSub.id;
+      }
+    }
+
     const selected = items.find((it) => it.selected);
     if (selected) return selected.id;
     return items[0]?.id ?? null;
@@ -69,13 +77,27 @@ const SidebarDrawer: FC<SidebarDrawerProps> = ({
   const [activeId, setActiveId] = useState<string | null>(initialActiveId);
 
   useEffect(() => {
-    const selected = items.find((it) => it.selected);
-    if (selected) {
-      setActiveId(selected.id);
-    } else {
-      setActiveId(items[0]?.id ?? null);
+    // First check if any submenu item is selected
+    let foundId: string | null = null;
+
+    for (const item of items) {
+      if (item.submenu) {
+        const selectedSub = item.submenu.find((sub) => sub.selected === true);
+        if (selectedSub) {
+          foundId = selectedSub.id;
+          break;
+        }
+      }
     }
+
+    if (!foundId) {
+      const selected = items.find((it) => it.selected && !it.submenu?.length);
+      foundId = selected?.id ?? null;
+    }
+
+    if (foundId) setActiveId(foundId);
   }, [items]);
+
   useEffect(() => {
     const menusToExpand: Record<string, boolean> = {};
 
@@ -270,7 +292,8 @@ const SidebarDrawer: FC<SidebarDrawerProps> = ({
                       }}
                     >
                       {item.submenu?.map((submenuItem) => {
-                        const isSubmenuActive = submenuItem.id === activeId;
+                        const isSubmenuActive =
+                          submenuItem.selected === true || submenuItem.id === activeId;
                         return (
                           <ListItem key={submenuItem.id} disablePadding>
                             <ListItemButton
