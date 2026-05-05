@@ -170,20 +170,19 @@ const CalendarTimelineItem: React.FC<CalendarTimelineItemProps> = ({
       sx={{
         display: 'flex',
         alignItems: 'center',
-        minWidth: theme.spacing(32),
         flexShrink: 0,
       }}
     >
       <Box
         sx={{
           width: theme.spacing(20),
-          fontSize: '18px',
+          fontSize: { md: '16px', lg: '18px' },
           textAlign: 'right',
         }}
       >
         <Typography
           sx={{
-            fontSize: theme.spacing(4.5),
+            fontSize: { md: '16px', lg: '18px' },
             fontWeight: 500,
             color: theme.palette.text.secondary,
             whiteSpace: 'nowrap',
@@ -203,7 +202,7 @@ const CalendarTimelineItem: React.FC<CalendarTimelineItemProps> = ({
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
-          minWidth: theme.spacing(10),
+          minWidth: { md: theme.spacing(8), lg: theme.spacing(10) },
           flexShrink: 0,
         }}
       >
@@ -225,10 +224,16 @@ const CalendarTimelineItem: React.FC<CalendarTimelineItemProps> = ({
       </Box>
 
       {/* Subject card */}
-      <Box sx={{ flex: 1, ml: theme.spacing(6.5), my: theme.spacing(2.5) }}>
+      <Box
+        sx={{
+          flex: 1,
+          ml: { md: theme.spacing(3), lg: theme.spacing(6.5) },
+          my: { md: theme.spacing(1), lg: theme.spacing(2.5) },
+        }}
+      >
         <Card
           sx={{
-            height: theme.spacing(18.5),
+            height: { md: theme.spacing(13.5), lg: theme.spacing(18.5) },
             borderRadius: theme.spacing(5),
             border: `1px solid ${theme.vd.palette.accentPrimaryLight}`,
             boxShadow: 'none',
@@ -238,7 +243,7 @@ const CalendarTimelineItem: React.FC<CalendarTimelineItemProps> = ({
             sx={{
               display: 'flex',
               alignItems: 'center',
-              gap: theme.spacing(7),
+              gap: { md: theme.spacing(3), lg: theme.spacing(7) },
               height: '100%',
               px: theme.spacing(2),
               '&:last-child': { pb: theme.spacing(4) },
@@ -248,9 +253,9 @@ const CalendarTimelineItem: React.FC<CalendarTimelineItemProps> = ({
               component="img"
               src={event.iconUrl}
               sx={{
-                width: theme.spacing(10),
-                height: theme.spacing(10),
-                ml: theme.spacing(4),
+                width: { md: theme.spacing(8), lg: theme.spacing(10) },
+                height: { md: theme.spacing(8), lg: theme.spacing(10) },
+                ml: { md: theme.spacing(2), lg: theme.spacing(4) },
                 objectFit: 'contain',
               }}
               alt="subject icon"
@@ -259,7 +264,7 @@ const CalendarTimelineItem: React.FC<CalendarTimelineItemProps> = ({
               <Typography
                 sx={{
                   fontWeight: 500,
-                  fontSize: theme.spacing(4),
+                  fontSize: { md: theme.spacing(3.5), lg: theme.spacing(4) },
                   color: 'text.primary',
                 }}
               >
@@ -267,7 +272,7 @@ const CalendarTimelineItem: React.FC<CalendarTimelineItemProps> = ({
               </Typography>
               <Typography
                 sx={{
-                  fontSize: theme.spacing(3.5),
+                  fontSize: { md: theme.spacing(3), lg: theme.spacing(3.5) },
                   fontWeight: 500,
                   color: 'text.secondary',
                 }}

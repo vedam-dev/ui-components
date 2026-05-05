@@ -111,7 +111,7 @@ const CalendarTimeline: React.FC<CalendarTimelineProps> = ({ events, onViewFullC
   return (
     <Box
       sx={{
-        maxWidth: '549px',
+        maxWidth: { md: '414px', lg: '549px' },
       }}
     >
       <Box
@@ -119,12 +119,12 @@ const CalendarTimeline: React.FC<CalendarTimelineProps> = ({ events, onViewFullC
           display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'center',
-          mb: theme.spacing(3),
+          mb: { md: theme.spacing(0.5), lg: theme.spacing(3) },
         }}
       >
         <Typography
           sx={{
-            fontSize: theme.spacing(6),
+            fontSize: { md: '16px', lg: '24px' },
             fontWeight: 500,
             color: theme.palette.text.primary,
           }}
@@ -137,7 +137,7 @@ const CalendarTimeline: React.FC<CalendarTimelineProps> = ({ events, onViewFullC
           sx={{
             backgroundColor: 'transparent',
             color: theme.palette.primary.main,
-            fontSize: '16px',
+            fontSize: { md: '12px', lg: '16px' },
             fontWeight: 400,
             textTransform: 'none',
             fontFamily: theme.typography.fontFamily,
