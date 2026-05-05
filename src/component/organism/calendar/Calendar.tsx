@@ -411,7 +411,11 @@ const ReusableCalendar: React.FC<ReusableCalendarProps> = ({
           <React.Fragment key={timeIndex}>
             <TimeSlot>
               <Typography
-                sx={{ fontSize: { md: '16px', lg: '18px' }, fontWeight: 600, color: theme.vd.palette.textStrong }}
+                sx={{
+                  fontSize: { md: '16px', lg: '18px' },
+                  fontWeight: 600,
+                  color: theme.vd.palette.textStrong,
+                }}
               >
                 {timeLabel}
               </Typography>
