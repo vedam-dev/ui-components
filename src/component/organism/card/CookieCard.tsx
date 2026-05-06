@@ -80,7 +80,13 @@ const CookieCard: React.FC<CookieCardProps> = ({
               height: 52,
             }}
           >
-            <ellipse cx="26.2097" cy="26.2653" rx="26.2097" ry="26.2653" fill="#E8D1FF" />
+            <ellipse
+              cx="26.2097"
+              cy="26.2653"
+              rx="26.2097"
+              ry="26.2653"
+              fill={theme.palette.primary[100]}
+            />
           </svg>
 
           {/* Cookie Icon */}
