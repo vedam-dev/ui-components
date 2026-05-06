@@ -49,6 +49,7 @@ export { default as AddQuestionModal } from './component/organism/addQuestionMod
 export { default as Switch } from './component/organism/switch/Switch';
 export { default as PermissionMatrix } from './component/organism/permissionMatrix/PermissionMatrix';
 export { default as LoginPage } from './component/organism/Login-Page/LoginPage';
+export { default as CookieCard } from './component/organism/card/CookieCard';
 
 export {
   ClassListItemRow,
