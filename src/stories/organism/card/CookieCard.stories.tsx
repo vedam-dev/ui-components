@@ -65,7 +65,12 @@ export default meta;
 type Story = StoryObj<typeof CookieCard>;
 
 export const Default: Story = {
-  args: {},
+  args: {
+    title: 'This site uses cookies',
+    description:
+      'We use cookies to enhance your browsing experience and analyze our traffic.\nBy clicking Accept, you consent to our use of cookies.',
+    acceptLabel: 'Got it!',
+  },
 };
 
 export const CustomTitle: Story = {
