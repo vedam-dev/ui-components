@@ -25,10 +25,13 @@ const Outer = styled(Box)(({ theme }) => ({
   borderRadius: theme.spacing(9),
   background: theme.palette.background.paper,
   boxShadow: '0 0 20px 0 rgba(0, 0, 0, 0.10)',
-  border: 'none',
   width: '100%',
   minWidth: 0,
   boxSizing: 'border-box',
+   [theme.breakpoints.between('md', 'lg')]: {
+    padding: theme.spacing(4.5),
+    borderRadius: theme.spacing(6),
+  },
 }));
 
 const Title = styled(Typography)(({ theme }) => ({
@@ -37,6 +40,9 @@ const Title = styled(Typography)(({ theme }) => ({
   fontStyle: 'normal',
   fontWeight: 600,
   lineHeight: 'normal',
+  [theme.breakpoints.between('md', 'lg')]: {
+    fontSize: '16px',
+  },
 }));
 
 const Subtitle = styled(Typography)(({ theme }) => ({
@@ -45,6 +51,9 @@ const Subtitle = styled(Typography)(({ theme }) => ({
   fontStyle: 'normal',
   fontWeight: 400,
   lineHeight: 'normal',
+  [theme.breakpoints.between('md', 'lg')]: {
+    fontSize: '12px',
+  },
 }));
 
 const CardsGrid = styled(Box)(({ theme }) => ({
@@ -52,12 +61,17 @@ const CardsGrid = styled(Box)(({ theme }) => ({
   gridTemplateColumns: 'repeat(4, 1fr)',
   gap: theme.spacing(6),
   marginTop: theme.spacing(13),
-  rowGap: theme.spacing(12),
+  rowGap: theme.spacing(6),
   '@media (max-width: 1400px)': {
-    gridTemplateColumns: 'repeat(3, 1fr)',
+    gridTemplateColumns: 'repeat(4, 1fr)',
   },
   '@media (max-width: 1000px)': {
     gridTemplateColumns: 'repeat(2, 1fr)',
+  },
+  [theme.breakpoints.between('md', 'lg')]: {
+    marginTop: theme.spacing(6.5),
+    gap: theme.spacing(5),
+    rowGap: theme.spacing(5),
   },
 }));
 
@@ -96,10 +110,16 @@ const Card = styled('button')<{
     textAlign: 'center',
     outline: 'none',
     boxShadow: 'none',
-    minHeight: '120px',
+    height: '120px',
     overflow: 'hidden',
-    minWidth: '280px',
+    minWidth: { md: '190px', lg: '280px'},
+      [theme.breakpoints.between('md', 'lg')]: {
+    height: '90px',
+  },
+    
   };
+
+
 
   if (disabled) {
     base.opacity = 0.5;
@@ -135,12 +155,13 @@ const InstructorName = styled(Typography)(({ theme }) => ({
   textOverflow: 'ellipsis',
   whiteSpace: 'nowrap',
   width: '100%',
+  
 }));
 
 const SemesterName = styled(Typography)(({ theme }) => ({
   color: (theme as CoreTheme).vd.palette.textStrong,
   textAlign: 'center',
-  fontSize: '22px',
+  fontSize: '20px',
   fontStyle: 'semiBold',
   fontWeight: 600,
   lineHeight: 'normal',
@@ -149,6 +170,9 @@ const SemesterName = styled(Typography)(({ theme }) => ({
   textOverflow: 'ellipsis',
   whiteSpace: 'nowrap',
   width: '100%',
+   [theme.breakpoints.between('md', 'lg')]: {
+    fontSize: '18px',
+  },
 }));
 
 const RatingContainer = styled(Box)({
