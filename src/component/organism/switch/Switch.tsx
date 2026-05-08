@@ -29,29 +29,43 @@ const Outer = styled(Box)(({ theme }) => ({
   width: '100%',
   minWidth: 0,
   boxSizing: 'border-box',
+  [theme.breakpoints.between('md', 'lg')]: {
+    padding: '18px',
+    borderRadius: theme.spacing(6),
+  },
 }));
 
 const Title = styled(Typography)(({ theme }) => ({
-  fontSize: '22px',
+  fontSize: '20px',
   fontWeight: 600,
   color: (theme as CoreTheme).vd.palette.textStrong,
   lineHeight: 'normal',
+  [theme.breakpoints.between('md', 'lg')]: {
+    fontSize: '16px',
+  },
 }));
 
 const Subtitle = styled(Typography)(({ theme }) => ({
   color: (theme as CoreTheme).vd.palette.textMuted,
-  fontSize: '20px',
+  fontSize: '18px',
   fontWeight: 400,
   lineHeight: 'normal',
+  [theme.breakpoints.between('md', 'lg')]: {
+    fontSize: '12px',
+  },
 }));
 
-const CardsRow = styled(Box)({
+const CardsRow = styled(Box)(({ theme }) => ({
   display: 'flex',
   gap: '16px',
   marginTop: '34px',
   alignItems: 'stretch',
   flexWrap: 'wrap',
-});
+  [theme.breakpoints.between('md', 'lg')]: {
+    gap: '14px',
+    marginTop: '10px',
+  },
+}));
 
 const Card = styled(Box)(({ theme }) => ({
   display: 'flex',
@@ -64,6 +78,10 @@ const Card = styled(Box)(({ theme }) => ({
   flexShrink: 0,
   borderRadius: theme.spacing(5),
   boxSizing: 'border-box',
+  [theme.breakpoints.between('md', 'lg')]: {
+    width: '192px',
+    padding: '14px',
+  },
 }));
 
 const CampusLabel = styled(Typography)(({ theme }) => ({
@@ -80,6 +98,9 @@ const RoleLabel = styled(Typography)(({ theme }) => ({
   fontWeight: 600,
   lineHeight: '24px',
   alignSelf: 'flex-start',
+  [theme.breakpoints.between('md', 'lg')]: {
+    fontSize: '18px',
+  },
 }));
 
 const InstitutionName = styled(Typography)(({ theme }) => ({
@@ -95,7 +116,7 @@ const InstitutionName = styled(Typography)(({ theme }) => ({
 const SwitchButton = styled('button')<{ isLoading?: boolean }>(({ theme, isLoading }) => ({
   width: '100%',
   padding: '8px 20px',
-  borderRadius: '14px',
+  borderRadius: '12px',
   maxHeight: '40px',
   border: `1px solid ${(theme as CoreTheme).vd.palette.accentPrimary}`,
   background: `${theme.palette.grey[50]}`,
@@ -124,6 +145,11 @@ const SwitchButton = styled('button')<{ isLoading?: boolean }>(({ theme, isLoadi
     color: (theme as CoreTheme).vd.palette.textMuted,
     cursor: 'not-allowed',
     pointerEvents: 'all',
+  },
+  [theme.breakpoints.between('md', 'lg')]: {
+    maxHeight: '36px',
+    minHeight: '36px',
+    borderRadius: '10px',
   },
 }));
 

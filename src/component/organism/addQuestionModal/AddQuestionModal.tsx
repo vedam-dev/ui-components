@@ -5,14 +5,18 @@ import { useState, useEffect } from 'react';
 import {
   Box,
   Button,
+  IconButton,
   Modal,
   TextField,
   Typography,
   useTheme,
+  useMediaQuery,
   Radio,
   ToggleButtonGroup,
   ToggleButton,
 } from '@mui/material';
+import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
+import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import type { CoreTheme } from '../../../theme/core-theme';
 
 export interface QuestionType {
@@ -73,6 +77,8 @@ export interface AddQuestionModalProps {
   requireMaximumMarks?: boolean;
 }
 
+const MD_ITEMS_PER_PAGE = 4;
+
 const AddQuestionModal: React.FC<AddQuestionModalProps> = ({
   open,
   onClose,
@@ -106,11 +112,28 @@ const AddQuestionModal: React.FC<AddQuestionModalProps> = ({
 }) => {
   const theme = useTheme() as CoreTheme;
 
+  const isMd = useMediaQuery(theme.breakpoints.down(1200));
+
   const [questionTitle, setQuestionTitle] = useState<string>(initialData?.questionTitle ?? '');
   const [questionLabel, setQuestionLabel] = useState<string>(initialData?.questionLabel ?? '');
   const [maximumMarks, setMaximumMarks] = useState<string>(initialData?.maximumMarks ?? '');
   const [selectedType, setSelectedType] = useState<string>(initialData?.questionType ?? '');
   const [difficulty, setDifficulty] = useState<string>(initialData?.difficulty ?? 'MEDIUM');
+
+  // Pagination state for Question Type on md screens
+  const [currentTypePage, setCurrentTypePage] = useState<number>(0);
+
+  // Derived pagination values
+  const totalTypePages = isMd ? Math.ceil(questionTypes.length / MD_ITEMS_PER_PAGE) : 1;
+  const visibleTypes = isMd
+    ? questionTypes.slice(
+        currentTypePage * MD_ITEMS_PER_PAGE,
+        (currentTypePage + 1) * MD_ITEMS_PER_PAGE
+      )
+    : questionTypes;
+
+  const canGoPrev = currentTypePage > 0;
+  const canGoNext = currentTypePage < totalTypePages - 1;
 
   useEffect(() => {
     if (open) {
@@ -119,6 +142,7 @@ const AddQuestionModal: React.FC<AddQuestionModalProps> = ({
       setMaximumMarks(initialData?.maximumMarks ?? '');
       setSelectedType(initialData?.questionType ?? '');
       setDifficulty(initialData?.difficulty ?? 'MEDIUM');
+      setCurrentTypePage(0);
     }
   }, [open, initialData]);
 
@@ -166,6 +190,7 @@ const AddQuestionModal: React.FC<AddQuestionModalProps> = ({
     setMaximumMarks('');
     setSelectedType('');
     setDifficulty('MEDIUM');
+    setCurrentTypePage(0);
     onClose();
   };
 
@@ -177,10 +202,10 @@ const AddQuestionModal: React.FC<AddQuestionModalProps> = ({
 
   const textFieldSx = {
     '& .MuiOutlinedInput-root': {
-      borderRadius: '12px',
-      lineHeight: '20px',
+      borderRadius: { md: '10px', lg: '12px' },
+      lineHeight: { md: '18px', lg: '20px' },
       backgroundColor: theme.palette.common.white,
-      fontSize: '16px',
+      fontSize: { md: '14px', lg: '16px' },
       '& fieldset': {
         borderColor: theme.palette.grey[300],
       },
@@ -193,17 +218,31 @@ const AddQuestionModal: React.FC<AddQuestionModalProps> = ({
       },
     },
     '& .MuiOutlinedInput-input': {
-      padding: '13px 20px',
+      padding: { md: '9px', lg: '13px 20px' },
     },
   };
 
   const fieldLabelSx = {
     fontWeight: 600,
-    fontSize: '18px',
-    lineHeight: '23px',
     color: theme.palette.text.primary,
-    mb: '8px',
+    mb: { md: '6px', lg: '8px' },
+    fontSize: { md: '14px', lg: '18px' },
+    lineHeight: { md: '18px', lg: '23px' },
   };
+
+  const arrowBtnSx = (enabled: boolean) => ({
+    padding: '2px',
+    width: { md: '16px', lg: '24px' },
+    height: { md: '16px', lg: '24px' },
+    border: `1px solid ${enabled ? theme.palette.primary.main : theme.palette.grey[300]}`,
+    borderRadius: '50%',
+    color: enabled ? theme.palette.primary.main : theme.palette.grey[400],
+    backgroundColor: theme.palette.common.white,
+    '&:hover': {
+      backgroundColor: enabled ? theme.vd.palette.surfaceMuted : theme.palette.common.white,
+    },
+    transition: 'all 0.2s ease',
+  });
 
   return (
     <Modal
@@ -219,12 +258,12 @@ const AddQuestionModal: React.FC<AddQuestionModalProps> = ({
           left: '50%',
           transform: 'translate(-50%, -50%)',
           width: { xs: '90%', sm: '80%', md: '672px' },
-          maxHeight: '90vh',
+          maxHeight: { md: '452px', lg: '90vh' },
           overflowY: 'auto',
           bgcolor: 'background.paper',
           boxShadow: 24,
           borderRadius: '24px',
-          padding: '36px',
+          padding: { md: '18px', lg: '36px' },
           outline: 'none',
           '&::-webkit-scrollbar': { display: 'none' },
           msOverflowStyle: 'none',
@@ -232,12 +271,12 @@ const AddQuestionModal: React.FC<AddQuestionModalProps> = ({
         }}
       >
         {/* Title */}
-        <Box sx={{ mb: '20px' }}>
+        <Box sx={{ mb: { md: '12px', lg: '20px' } }}>
           <Typography
             sx={{
               fontWeight: titleTypographyProps?.fontWeight ?? 600,
-              fontSize: titleTypographyProps?.fontSize ?? '28px',
-              lineHeight: titleTypographyProps?.lineHeight ?? '39px',
+              fontSize: { md: '16px', lg: titleTypographyProps?.fontSize ?? '28px' },
+              lineHeight: { md: '20px', lg: titleTypographyProps?.lineHeight ?? '39px' },
               color: titleTypographyProps?.color ?? theme.palette.text.primary,
             }}
           >
@@ -247,8 +286,8 @@ const AddQuestionModal: React.FC<AddQuestionModalProps> = ({
             sx={{
               fontWeight: subtitleTypographyProps?.fontWeight ?? 400,
               color: subtitleTypographyProps?.color ?? theme.palette.text.secondary,
-              fontSize: subtitleTypographyProps?.fontSize ?? '20px',
-              lineHeight: subtitleTypographyProps?.lineHeight ?? '25px',
+              fontSize: { md: '12px', lg: subtitleTypographyProps?.fontSize ?? '20px' },
+              lineHeight: { md: '15px', lg: subtitleTypographyProps?.lineHeight ?? '25px' },
             }}
           >
             {subtitle}
@@ -256,7 +295,7 @@ const AddQuestionModal: React.FC<AddQuestionModalProps> = ({
         </Box>
 
         {/* Question Title Input */}
-        <Box sx={{ mb: '20px' }}>
+        <Box sx={{ mb: { md: '12px', lg: '20px' } }}>
           <Typography sx={fieldLabelSx}>{questionTitleLabel}</Typography>
           <TextField
             fullWidth
@@ -269,10 +308,10 @@ const AddQuestionModal: React.FC<AddQuestionModalProps> = ({
 
         <Box
           sx={{
-            mb: '20px',
+            mb: { md: '12px', lg: '20px' },
             display: 'grid',
             gridTemplateColumns: showMaximumMarks ? '1fr 1fr' : '1fr',
-            gap: '16px',
+            gap: { md: '12px', lg: '16px' },
           }}
         >
           <Box>
@@ -303,14 +342,14 @@ const AddQuestionModal: React.FC<AddQuestionModalProps> = ({
         </Box>
 
         {/* Difficulty Selection */}
-        <Box sx={{ mb: '20px' }}>
+        <Box sx={{ mb: { md: '12px', lg: '20px' } }}>
           <Typography sx={fieldLabelSx}>{difficultyLabel}</Typography>
           <ToggleButtonGroup
             value={difficulty}
             exclusive
             onChange={handleDifficultyChange}
             sx={{
-              gap: '14px',
+              gap: { md: '10px', lg: '14px' },
               '& .MuiToggleButtonGroup-grouped': {
                 border: `1px solid ${theme.palette.grey[300]}`,
                 borderRadius: '100px !important',
@@ -321,12 +360,12 @@ const AddQuestionModal: React.FC<AddQuestionModalProps> = ({
                 },
               },
               '& .MuiToggleButton-root': {
-                fontSize: '16px',
-                lineHeight: '20px',
+                fontSize: { md: '10px', lg: '16px' },
+                lineHeight: { md: '13px', lg: '20px' },
                 fontWeight: 500,
                 textTransform: 'none',
-                padding: '12px 24px',
-                minWidth: '122px',
+                padding: { md: '2.5px 15px', lg: '12px 24px' },
+                minWidth: { md: '65px', lg: '122px' },
                 color: theme.palette.text.secondary,
                 backgroundColor: theme.palette.common.white,
                 '&.Mui-selected': {
@@ -360,34 +399,72 @@ const AddQuestionModal: React.FC<AddQuestionModalProps> = ({
 
         {/* Question Type Selection */}
         {showQuestionType && (
-          <Box sx={{ mb: '20px' }}>
-            <Typography
+          <Box sx={{ mb: { md: '12px', lg: '20px' } }}>
+            {/* Label row — arrows are only rendered on md */}
+            <Box
               sx={{
-                fontWeight: 600,
-                fontSize: '16px',
-                lineHeight: '20px',
-                color: theme.palette.text.primary,
-                mb: '8px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                mb: { md: '6px', lg: '8px' },
               }}
             >
-              {questionTypeLabel}
-            </Typography>
+              <Typography
+                sx={{
+                  fontWeight: 600,
+                  fontSize: { md: '14px', lg: '16px' },
+                  lineHeight: { md: '18px', lg: '20px' },
+                  color: theme.palette.text.primary,
+                }}
+              >
+                {questionTypeLabel}
+              </Typography>
+
+              {/* Pagination arrows — visible only on md */}
+              {isMd && totalTypePages > 1 && (
+                <Box sx={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                  <IconButton
+                    size="small"
+                    disabled={!canGoPrev}
+                    onClick={() => setCurrentTypePage((p) => p - 1)}
+                    sx={arrowBtnSx(canGoPrev)}
+                    aria-label="Previous question types"
+                  >
+                    <ChevronLeftIcon sx={{ fontSize: '14px' }} />
+                  </IconButton>
+
+                  <IconButton
+                    size="small"
+                    disabled={!canGoNext}
+                    onClick={() => setCurrentTypePage((p) => p + 1)}
+                    sx={arrowBtnSx(canGoNext)}
+                    aria-label="Next question types"
+                  >
+                    <ChevronRightIcon sx={{ fontSize: '14px' }} />
+                  </IconButton>
+                </Box>
+              )}
+            </Box>
+
             <Box
               sx={{
                 display: 'grid',
                 gridTemplateColumns: { xs: '1fr', sm: 'repeat(2, 1fr)' },
+                gridTemplateRows: { md: 'repeat(2, minmax(36px, auto))' },
+                alignContent: 'start',
                 gap: '8px',
+                minHeight: { md: '88px' },
               }}
             >
-              {questionTypes.map((type) => (
+              {visibleTypes.map((type) => (
                 <Box
                   key={type.id}
                   onClick={() => handleTypeSelect(type.id)}
                   sx={{
                     display: 'flex',
                     alignItems: 'center',
-                    padding: '12px 10px',
-                    borderRadius: '12px',
+                    padding: { md: '7px 10px', lg: '12px 10px' },
+                    borderRadius: { md: '10px', lg: '12px' },
                     border: `1px solid ${theme.palette.grey[300]}`,
                     backgroundColor: theme.palette.common.white,
                     cursor: 'pointer',
@@ -408,7 +485,7 @@ const AddQuestionModal: React.FC<AddQuestionModalProps> = ({
                   />
                   <Typography
                     sx={{
-                      fontSize: '16px',
+                      fontSize: { md: '12px', lg: '16px' },
                       fontWeight: selectedType === type.id ? 600 : 400,
                       color: theme.palette.text.primary,
                     }}
@@ -426,8 +503,8 @@ const AddQuestionModal: React.FC<AddQuestionModalProps> = ({
           sx={{
             display: 'flex',
             justifyContent: 'flex-end',
-            gap: '16px',
-            mt: '20px',
+            gap: { md: '10px', lg: '16px' },
+            mt: { md: '12px', lg: '20px' },
           }}
         >
           <Button
@@ -440,8 +517,8 @@ const AddQuestionModal: React.FC<AddQuestionModalProps> = ({
               fontSize: '16px',
               lineHeight: '16px',
               fontWeight: 500,
-              borderRadius: '12px',
-              padding: '13px 24px',
+              borderRadius: { md: '10px', lg: '12px' },
+              padding: { md: '9px 14px', lg: '13px 24px' },
               textTransform: 'none',
               '&:hover': {
                 border: `1px solid ${theme.palette.primary.main}`,
@@ -459,8 +536,8 @@ const AddQuestionModal: React.FC<AddQuestionModalProps> = ({
               backgroundColor: theme.palette.primary.main,
               fontSize: '16px',
               fontWeight: 500,
-              borderRadius: '12px',
-              padding: '14px 24px',
+              borderRadius: { md: '10px', lg: '12px' },
+              padding: { md: '9px 14px', lg: '13px 24px' },
               lineHeight: '16px',
               color: theme.palette.common.white,
               textTransform: 'none',

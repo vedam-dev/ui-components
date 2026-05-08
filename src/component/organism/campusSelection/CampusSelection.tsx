@@ -35,6 +35,10 @@ const Outer = styled(Box)(({ theme }) => ({
   width: '100%',
   minWidth: 0,
   boxSizing: 'border-box',
+  [theme.breakpoints.down(1200)]: {
+    padding: '18px',
+    borderRadius: theme.spacing(6),
+  },
 }));
 
 const Header: React.FC<{ sx?: SxProps<Theme>; children?: React.ReactNode }> = ({
@@ -44,7 +48,7 @@ const Header: React.FC<{ sx?: SxProps<Theme>; children?: React.ReactNode }> = ({
   <Typography
     component="div"
     sx={{
-      marginBottom: '40px',
+      marginBottom: { md: '10px', lg: '26px' },
       ...sx,
     }}
   >
@@ -58,7 +62,7 @@ const Title: React.FC<{ sx?: SxProps<Theme>; children?: React.ReactNode }> = ({ 
     <Typography
       component="div"
       sx={{
-        fontSize: '22px',
+        fontSize: { md: '16px', lg: '20px' },
         color: titleTheme.vd.palette.textStrong,
         ...sx,
       }}
@@ -70,10 +74,13 @@ const Title: React.FC<{ sx?: SxProps<Theme>; children?: React.ReactNode }> = ({ 
 
 const Subtitle = styled(Typography)(({ theme }) => ({
   color: (theme as CoreTheme).vd.palette.textMuted,
-  fontSize: '20px',
+  fontSize: '18px',
   fontStyle: 'normal',
   fontWeight: 400,
   lineHeight: 'normal',
+  [theme.breakpoints.down(1200)]: {
+    fontSize: '12px',
+  },
 }));
 
 const NavButton = styled('button')<{ disabled?: boolean }>(({ theme, disabled }) => ({
@@ -95,6 +102,10 @@ const NavButton = styled('button')<{ disabled?: boolean }>(({ theme, disabled })
   '&:active': {
     transform: disabled ? 'none' : 'scale(0.95)',
   },
+  [theme.breakpoints.down(1200)]: {
+    width: '36px',
+    height: '36px',
+  },
 }));
 
 const CardsRow = styled(Box)(({ theme }) => ({
@@ -103,6 +114,10 @@ const CardsRow = styled(Box)(({ theme }) => ({
   mt: '34px',
   alignItems: 'stretch',
   flexWrap: 'nowrap',
+  [theme.breakpoints.down(1200)]: {
+    gap: theme.spacing(2),
+    mt: '20px',
+  },
 }));
 
 const Card = styled(Box)<{
@@ -119,21 +134,34 @@ const Card = styled(Box)<{
   cursor: disabled ? 'not-allowed' : 'pointer',
   outline: 'none',
   opacity: 1,
+  [theme.breakpoints.down(1200)]: {
+    width: '340px',
+    padding: theme.spacing(3.5),
+    borderRadius: theme.spacing(5),
+  },
 }));
 
-const CardHeader = styled(Box)({
+const CardHeader = styled(Box)(({ theme }) => ({
   display: 'flex',
   alignItems: 'flex-start',
   gap: '16px',
   marginBottom: '20px',
-});
+  [theme.breakpoints.down(1200)]: {
+    marginBottom: '14px',
+    gap: '14px',
+  },
+}));
 
-const Logo = styled('img')({
+const Logo = styled('img')(({ theme }) => ({
   width: '60px',
   height: '60px',
   flexShrink: 0,
   display: 'block',
-});
+  [theme.breakpoints.down(1200)]: {
+    width: '48px',
+    height: '48px',
+  },
+}));
 
 const CollegeName = styled(Typography)(({ theme }) => ({
   background: `linear-gradient(90deg, ${(theme as CoreTheme).vd.palette.accentPrimary} 0%, ${(theme as CoreTheme).vd.palette.accentSecondary} 100%)`,
@@ -149,9 +177,13 @@ const Campus = styled(Typography)(({ theme }) => ({
   fontSize: '18px',
   fontWeight: 500,
   lineHeight: '23px',
+  [theme.breakpoints.down(1200)]: {
+    fontSize: '14px',
+    lineHeight: '21px',
+  },
 }));
 
-const InfoRow = styled(Box)({
+const InfoRow = styled(Box)(({ theme }) => ({
   display: 'flex',
   alignItems: 'flex-start',
   maxWidth: '324px',
@@ -160,7 +192,12 @@ const InfoRow = styled(Box)({
   '&:last-of-type': {
     marginBottom: '0px',
   },
-});
+  [theme.breakpoints.down(1200)]: {
+    maxWidth: '312px',
+    gap: '20px',
+    marginBottom: '18px',
+  },
+}));
 
 const InfoLabel = styled(Typography)(({ theme }) => ({
   color: (theme as CoreTheme).vd.palette.textStrong,
@@ -168,6 +205,11 @@ const InfoLabel = styled(Typography)(({ theme }) => ({
   fontWeight: 600,
   minWidth: '80px',
   flexShrink: 0,
+  [theme.breakpoints.down(1200)]: {
+    fontSize: '14px',
+    lineHeight: '20px',
+    minWidth: '70px',
+  },
 }));
 
 const InfoValue = styled(Typography)(({ theme }) => ({
@@ -175,11 +217,14 @@ const InfoValue = styled(Typography)(({ theme }) => ({
   fontSize: '16px',
   fontWeight: 400,
   flex: 1,
+  [theme.breakpoints.down(1200)]: {
+    fontSize: '14px',
+  },
 }));
 
 const SelectButton = styled('button')(({ theme }) => ({
   padding: '6px 20px',
-  borderRadius: '14px',
+  borderRadius: '12px',
   border: `1px solid ${(theme as CoreTheme).vd.palette.accentPrimary}`,
   background: (theme as CoreTheme).palette.grey[50],
   color: (theme as CoreTheme).vd.palette.accentPrimary,
@@ -205,6 +250,10 @@ const SelectButton = styled('button')(({ theme }) => ({
     background: `${theme.palette.grey[200]}`,
     color: (theme as CoreTheme).vd.palette.textMuted,
     cursor: 'not-allowed',
+  },
+  [theme.breakpoints.down(1200)]: {
+    borderRadius: '10px',
+    padding: '5px 20px',
   },
 }));
 
@@ -307,11 +356,10 @@ const CampusSelection: React.FC<CampusSelectionProps> = ({
           display: 'flex',
           alignItems: 'flex-start',
           justifyContent: 'space-between',
-          marginBottom: '34px',
         }}
       >
         <Box>
-          <Title sx={{ fontSize: '22px', fontWeight: 600 }}>{title}</Title>
+          <Title sx={{ fontWeight: 600 }}>{title}</Title>
           <Subtitle>{subtitle}</Subtitle>
         </Box>
         {showNavigationButtons && totalPages > 1 && (
@@ -377,8 +425,8 @@ const CampusSelection: React.FC<CampusSelectionProps> = ({
               <CardHeader>
                 <Box
                   sx={{
-                    width: '60px',
-                    height: '60px',
+                    width: { md: '48px', lg: '60px' },
+                    height: { md: '48px', lg: '60px' },
                     flexShrink: 0,
                     borderRadius: '8px',
                     background: `linear-gradient(to bottom, ${theme.vd.palette.accentSecondary}, ${theme.vd.palette.accentPrimary})`,
@@ -415,9 +463,9 @@ const CampusSelection: React.FC<CampusSelectionProps> = ({
                 sx={{
                   borderRadius: '16px',
                   border: '1px solid #F6EDFF',
-                  minHeight: '220px',
+                  minHeight: { md: '200px', lg: '220px' },
                   backgroundColor: theme.palette.common.white,
-                  p: '20px',
+                  p: { md: '24px 12px', lg: '25px 19px' },
                 }}
               >
                 <InfoRow>
@@ -436,7 +484,7 @@ const CampusSelection: React.FC<CampusSelectionProps> = ({
                   display: 'flex',
                   justifyContent: 'center',
                   alignItems: 'center',
-                  mt: '20px',
+                  mt: { md: '14px', lg: '20px' },
                 }}
               >
                 <SelectButton
