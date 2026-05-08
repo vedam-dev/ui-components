@@ -35,6 +35,10 @@ const Outer = styled(Box)(({ theme }) => ({
   width: '100%',
   minWidth: 0,
   boxSizing: 'border-box',
+  [theme.breakpoints.between('md', 'lg')]: {
+    padding: '18px',
+    borderRadius: theme.spacing(6),
+  },
 }));
 
 const Header: React.FC<{ sx?: SxProps<Theme>; children?: React.ReactNode }> = ({
@@ -44,7 +48,7 @@ const Header: React.FC<{ sx?: SxProps<Theme>; children?: React.ReactNode }> = ({
   <Typography
     component="div"
     sx={{
-      marginBottom: '40px',
+      marginBottom: {md: '10px', lg: '26px'},
       ...sx,
     }}
   >
@@ -58,7 +62,7 @@ const Title: React.FC<{ sx?: SxProps<Theme>; children?: React.ReactNode }> = ({ 
     <Typography
       component="div"
       sx={{
-        fontSize: '22px',
+        fontSize: {md:'16px', lg:'20px'},
         color: titleTheme.vd.palette.textStrong,
         ...sx,
       }}
@@ -70,10 +74,13 @@ const Title: React.FC<{ sx?: SxProps<Theme>; children?: React.ReactNode }> = ({ 
 
 const Subtitle = styled(Typography)(({ theme }) => ({
   color: (theme as CoreTheme).vd.palette.textMuted,
-  fontSize: '20px',
+  fontSize: '18px',
   fontStyle: 'normal',
   fontWeight: 400,
   lineHeight: 'normal',
+  [theme.breakpoints.between('md', 'lg')]: {
+    fontSize: '12px',
+  },
 }));
 
 const NavButton = styled('button')<{ disabled?: boolean }>(({ theme, disabled }) => ({
@@ -94,6 +101,10 @@ const NavButton = styled('button')<{ disabled?: boolean }>(({ theme, disabled })
   },
   '&:active': {
     transform: disabled ? 'none' : 'scale(0.95)',
+  },
+  [theme.breakpoints.between('md', 'lg')]: {
+    width: '36px',
+    height: '36px',
   },
 }));
 
@@ -119,21 +130,34 @@ const Card = styled(Box)<{
   cursor: disabled ? 'not-allowed' : 'pointer',
   outline: 'none',
   opacity: 1,
+  [theme.breakpoints.between('md', 'lg')]: {
+    width: '340px',   
+    padding: theme.spacing(3.5),
+    borderRadius: theme.spacing(5),
+  },
 }));
 
-const CardHeader = styled(Box)({
+const CardHeader = styled(Box)(({ theme }) => ({
   display: 'flex',
   alignItems: 'flex-start',
   gap: '16px',
   marginBottom: '20px',
-});
+  [theme.breakpoints.between('md', 'lg')]: {
+    marginBottom: '14px',
+    gap: '14px',
+  },
+}));
 
-const Logo = styled('img')({
+const Logo = styled('img')(({ theme }) => ({
   width: '60px',
   height: '60px',
   flexShrink: 0,
   display: 'block',
-});
+  [theme.breakpoints.between('md', 'lg')]: {
+    width: '48px',
+    height: '48px',
+  },
+}));
 
 const CollegeName = styled(Typography)(({ theme }) => ({
   background: `linear-gradient(90deg, ${(theme as CoreTheme).vd.palette.accentPrimary} 0%, ${(theme as CoreTheme).vd.palette.accentSecondary} 100%)`,
@@ -149,9 +173,13 @@ const Campus = styled(Typography)(({ theme }) => ({
   fontSize: '18px',
   fontWeight: 500,
   lineHeight: '23px',
+  [theme.breakpoints.between('md', 'lg')]: {
+    fontSize: '14px',
+    lineHeight: '21px',
+  },
 }));
 
-const InfoRow = styled(Box)({
+const InfoRow = styled(Box)(({ theme }) =>({
   display: 'flex',
   alignItems: 'flex-start',
   maxWidth: '324px',
@@ -160,7 +188,12 @@ const InfoRow = styled(Box)({
   '&:last-of-type': {
     marginBottom: '0px',
   },
-});
+  [theme.breakpoints.between('md', 'lg')]: {
+    maxWidth: '312px',
+    gap: '20px',
+    marginBottom: '18px',
+  },
+}));
 
 const InfoLabel = styled(Typography)(({ theme }) => ({
   color: (theme as CoreTheme).vd.palette.textStrong,
@@ -168,6 +201,11 @@ const InfoLabel = styled(Typography)(({ theme }) => ({
   fontWeight: 600,
   minWidth: '80px',
   flexShrink: 0,
+  [theme.breakpoints.between('md', 'lg')]: {
+    fontSize: '14px',
+    lineHeight: '20px',
+    minWidth: '70px',
+  },
 }));
 
 const InfoValue = styled(Typography)(({ theme }) => ({
@@ -175,11 +213,14 @@ const InfoValue = styled(Typography)(({ theme }) => ({
   fontSize: '16px',
   fontWeight: 400,
   flex: 1,
+  [theme.breakpoints.between('md', 'lg')]: {
+    fontSize: '14px',
+  },
 }));
 
 const SelectButton = styled('button')(({ theme }) => ({
   padding: '6px 20px',
-  borderRadius: '14px',
+  borderRadius: '12px',
   border: `1px solid ${(theme as CoreTheme).vd.palette.accentPrimary}`,
   background: (theme as CoreTheme).palette.grey[50],
   color: (theme as CoreTheme).vd.palette.accentPrimary,
@@ -206,6 +247,9 @@ const SelectButton = styled('button')(({ theme }) => ({
     color: (theme as CoreTheme).vd.palette.textMuted,
     cursor: 'not-allowed',
   },
+  [theme.breakpoints.between('md', 'lg')]: {
+    borderRadius: '10px',
+   },
 }));
 
 const CampusSelection: React.FC<CampusSelectionProps> = ({
