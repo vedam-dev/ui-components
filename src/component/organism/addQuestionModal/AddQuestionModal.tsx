@@ -77,7 +77,6 @@ export interface AddQuestionModalProps {
   requireMaximumMarks?: boolean;
 }
 
-// Items per page on md screens: 2 columns × 2 rows = 4
 const MD_ITEMS_PER_PAGE = 4;
 
 const AddQuestionModal: React.FC<AddQuestionModalProps> = ({
@@ -113,7 +112,6 @@ const AddQuestionModal: React.FC<AddQuestionModalProps> = ({
 }) => {
   const theme = useTheme() as CoreTheme;
 
-  // true when viewport is below 1200px (matches your md breakpoint)
   const isMd = useMediaQuery(theme.breakpoints.down(1200));
 
   const [questionTitle, setQuestionTitle] = useState<string>(initialData?.questionTitle ?? '');
@@ -144,7 +142,7 @@ const AddQuestionModal: React.FC<AddQuestionModalProps> = ({
       setMaximumMarks(initialData?.maximumMarks ?? '');
       setSelectedType(initialData?.questionType ?? '');
       setDifficulty(initialData?.difficulty ?? 'MEDIUM');
-      setCurrentTypePage(0); // reset to first page whenever modal opens
+      setCurrentTypePage(0); 
     }
   }, [open, initialData]);
 
