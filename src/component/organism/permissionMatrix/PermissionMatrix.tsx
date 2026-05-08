@@ -112,7 +112,7 @@ const PermissionMatrix: React.FC<PermissionMatrixProps> = ({
       >
         <Typography
           sx={{
-            fontSize: '20px',
+            fontSize: { md: '16px', lg: '20px' },
             fontWeight: 600,
             color: textStrong,
             fontFamily: 'Outfit, sans-serif',
@@ -124,7 +124,7 @@ const PermissionMatrix: React.FC<PermissionMatrixProps> = ({
           <Typography
             key={type}
             sx={{
-              fontSize: '20px',
+              fontSize: { md: '16px', lg: '20px' },
               fontWeight: 600,
               color: textStrong,
               fontFamily: 'Outfit, sans-serif',
@@ -156,7 +156,7 @@ const PermissionMatrix: React.FC<PermissionMatrixProps> = ({
             >
               <Typography
                 sx={{
-                  fontSize: '20px',
+                  fontSize: { md: '16px', lg: '20px' },
                   color: textStrong,
                   fontWeight: 500,
                   fontFamily: 'Outfit, sans-serif',
@@ -200,7 +200,7 @@ const PermissionMatrix: React.FC<PermissionMatrixProps> = ({
                 <ExpandMoreIcon
                   sx={{
                     ml: spacing.chevronMarginLeft,
-                    fontSize: '18px',
+                    fontSize: { md: '14px', lg: '18px' },
                     transform: isExpanded ? 'rotate(180deg)' : 'rotate(270deg)',
                   }}
                 />
@@ -222,7 +222,7 @@ const PermissionMatrix: React.FC<PermissionMatrixProps> = ({
                 >
                   <Typography
                     sx={{
-                      fontSize: '18px',
+                      fontSize: { md: '14px', lg: '18px' },
                       color: textMuted,
                       fontFamily: 'Outfit, sans-serif',
                       display: 'flex',
@@ -233,7 +233,7 @@ const PermissionMatrix: React.FC<PermissionMatrixProps> = ({
                     <Box
                       component="span"
                       sx={{
-                        fontSize: '26px',
+                        fontSize: { md: '20px', lg: '26px' },
                         lineHeight: 1,
                         color: textMuted,
                         mt: spacing.subItemDashMarginTop,
