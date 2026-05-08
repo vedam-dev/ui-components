@@ -28,7 +28,7 @@ const Outer = styled(Box)(({ theme }) => ({
   width: '100%',
   minWidth: 0,
   boxSizing: 'border-box',
-   [theme.breakpoints.between('md', 'lg')]: {
+  [theme.breakpoints.between('md', 'lg')]: {
     padding: theme.spacing(4.5),
     borderRadius: theme.spacing(6),
   },
@@ -112,14 +112,11 @@ const Card = styled('button')<{
     boxShadow: 'none',
     height: '120px',
     overflow: 'hidden',
-    minWidth: { md: '190px', lg: '280px'},
-      [theme.breakpoints.between('md', 'lg')]: {
-    height: '90px',
-  },
-    
+    minWidth: { md: '190px', lg: '280px' },
+    [theme.breakpoints.between('md', 'lg')]: {
+      height: '90px',
+    },
   };
-
-
 
   if (disabled) {
     base.opacity = 0.5;
@@ -155,7 +152,6 @@ const InstructorName = styled(Typography)(({ theme }) => ({
   textOverflow: 'ellipsis',
   whiteSpace: 'nowrap',
   width: '100%',
-  
 }));
 
 const SemesterName = styled(Typography)(({ theme }) => ({
@@ -170,7 +166,7 @@ const SemesterName = styled(Typography)(({ theme }) => ({
   textOverflow: 'ellipsis',
   whiteSpace: 'nowrap',
   width: '100%',
-   [theme.breakpoints.between('md', 'lg')]: {
+  [theme.breakpoints.between('md', 'lg')]: {
     fontSize: '18px',
   },
 }));
