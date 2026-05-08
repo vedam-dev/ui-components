@@ -142,7 +142,7 @@ const AddQuestionModal: React.FC<AddQuestionModalProps> = ({
       setMaximumMarks(initialData?.maximumMarks ?? '');
       setSelectedType(initialData?.questionType ?? '');
       setDifficulty(initialData?.difficulty ?? 'MEDIUM');
-      setCurrentTypePage(0); 
+      setCurrentTypePage(0);
     }
   }, [open, initialData]);
 
