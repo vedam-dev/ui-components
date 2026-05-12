@@ -2,7 +2,6 @@ import React, { FC, useEffect, useState } from 'react';
 import {
   Drawer as MuiDrawer,
   DrawerProps as MuiDrawerProps,
-  Box,
   List,
   ListItem,
   ListItemButton,
@@ -10,6 +9,7 @@ import {
   Tooltip,
   Collapse,
 } from '@mui/material';
+import { Box } from '../../atom/box';
 import { ExpandMore as ExpandMoreIcon } from '@mui/icons-material';
 import SxOverride from '../../../util/SxOverride';
 import { CoreTheme, useCoreTheme } from '../../../theme/core-theme';

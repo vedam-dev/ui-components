@@ -1,5 +1,8 @@
 import React from 'react';
-import { Box, Typography, Card, Stack, SxProps, Theme, Rating, Slider } from '@mui/material';
+import { Stack, SxProps, Theme, Rating, Slider } from '@mui/material';
+import { Box } from '../../atom/box';
+import { Typography } from '../../atom/typography';
+import { Card } from '../../atom/card';
 import { styled, keyframes, display } from '@mui/system';
 import { CoreTheme, useCoreTheme } from '../../../theme/core-theme';
 import LinearProgress, { linearProgressClasses } from '@mui/material/LinearProgress';
@@ -356,11 +359,10 @@ const LoginPage: React.FC<VedamLoginPageProps> = ({
               >
                 <Stack direction="row" spacing={1.5} alignItems="center">
                   <Box sx={iconContainerSx}>
-                    <Box
-                      component="img"
+                    <img
                       src="https://acjlsquedaotbhbxmtee.supabase.co/storage/v1/object/public/vedam-website-assets/images/footer/Vector.png"
                       alt="icon"
-                      sx={{ width: '55%', height: '55%' }}
+                      style={{ width: '55%', height: '55%' }}
                     />
                   </Box>
                   <Box>
@@ -691,11 +693,10 @@ const LoginPage: React.FC<VedamLoginPageProps> = ({
                 gap: '4%',
               }}
             >
-              <Box
-                component="img"
+              <img
                 src="https://images.ctfassets.net/wrc4czfp4sk8/MlLQWcd5d2243FkvhCHsg/b35a214792ec2c7836fffb81e7e237ab/ce354349ec958587fa057b673078953452f344e9.png"
                 alt="Google"
-                sx={{ width: 'clamp(46px, 5vw, 66px)', height: 'auto', ml: '-2%' }}
+                style={{ width: 'clamp(46px, 5vw, 66px)', height: 'auto', marginLeft: '-2%' }}
               />
               <Box
                 sx={{

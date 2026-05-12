@@ -1,5 +1,5 @@
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import { Button } from '@mui/material';
+import { Button } from '../../atom/button';
 import React from 'react';
 
 interface BackButtonProps {

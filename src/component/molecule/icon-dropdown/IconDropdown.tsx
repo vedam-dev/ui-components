@@ -1,8 +1,9 @@
 import React, { useState, useRef, useLayoutEffect } from 'react';
-import { Menu, MenuItem, Box, Typography } from '@mui/material';
+import { Menu, MenuItem } from '@mui/material';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import { CoreTheme, useCoreTheme } from '../../../theme/core-theme';
-
+import { Box } from '../../atom/box';
+import { Typography } from '../../atom/typography';
 interface IconDropdownProps {
   label: string;
   iconUrl?: string;
@@ -94,7 +95,7 @@ const IconDropdown: React.FC<IconDropdownProps> = ({
         }}
       >
         {iconUrl && (
-          <Box component="img" src={iconUrl} alt="dropdown icon" sx={{ width: 20, height: 20 }} />
+          <img src={iconUrl} alt="dropdown icon" style={{ width: 20, height: 20 }} />
         )}
         <Typography
           ref={textRef}

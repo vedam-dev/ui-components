@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
 import { Chip } from '../../../component/atom/chip';
 import { IChipProps } from '@component/atom/chip/Chip';
-import { Avatar } from '@mui/material';
+import { Avatar } from '../../../component/atom/avatar';
 import { Done, Delete } from '@mui/icons-material';
 
 const meta: Meta<IChipProps> = {

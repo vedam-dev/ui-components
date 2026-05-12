@@ -1,5 +1,7 @@
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import { alpha, Box, Button, Typography } from '@mui/material';
+import { alpha, Button } from '@mui/material';
+import { Box } from '../../atom/box';
+import { Typography } from '../../atom/typography';
 import React, { useEffect, useMemo, useState } from 'react';
 
 import Checkbox from '../../atom/checkbox/Checkbox';
@@ -186,7 +188,7 @@ const PermissionMatrix: React.FC<PermissionMatrixProps> = ({
                 variant="text"
                 onClick={() => toggleGroup(groupName)}
                 sx={{
-                  justifyContent: 'flex-end',
+                  justifyContent: 'end',
                   textTransform: 'none',
                   color: textStrong,
                   fontFamily: 'Outfit, sans-serif',
@@ -230,17 +232,16 @@ const PermissionMatrix: React.FC<PermissionMatrixProps> = ({
                       gap: spacing.subItemGap,
                     }}
                   >
-                    <Box
-                      component="span"
-                      sx={{
-                        fontSize: { md: '20px', lg: '26px' },
+                    <span
+                      style={{
+                        fontSize: 'clamp(20px, 2vw, 26px)',
                         lineHeight: 1,
                         color: textMuted,
-                        mt: spacing.subItemDashMarginTop,
+                        marginTop: spacing.subItemDashMarginTop,
                       }}
                     >
                       -
-                    </Box>
+                    </span>
                     {permission.featureName}
                   </Typography>
 

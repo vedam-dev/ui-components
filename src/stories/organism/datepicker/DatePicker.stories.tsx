@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { CustomDatePicker } from '../../../component/molecule/datepicker/DatePicker';
 import type { CustomDatePickerProps } from '../../../component/molecule/datepicker/DatePicker';
-import { Box } from '@mui/material';
+import { Box } from '../../../component/atom/box';
 import React, { useState } from 'react';
 
 const meta: Meta<typeof CustomDatePicker> = {

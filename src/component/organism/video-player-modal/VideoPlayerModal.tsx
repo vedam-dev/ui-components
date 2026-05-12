@@ -1,7 +1,8 @@
 'use client';
 
 import type React from 'react';
-import { Modal, Box, IconButton, useTheme } from '@mui/material';
+import { Modal, IconButton, useTheme } from '@mui/material';
+import { Box } from '../../atom/box';
 import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
 import { CoreTheme, useCoreTheme } from '../../../theme/core-theme';
 

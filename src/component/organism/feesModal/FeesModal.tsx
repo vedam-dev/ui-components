@@ -2,10 +2,12 @@
 
 import type React from 'react';
 import { Fragment } from 'react';
-import { Modal, Box, Typography, Card, IconButton, useTheme } from '@mui/material';
+import { Modal, Card, IconButton, useTheme } from '@mui/material';
 import Button from '../../../component/atom/button/Button';
 import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
 import { CoreTheme } from '../../../theme/core-theme';
+import { Box } from '../../../component/atom/box';
+import { Typography } from '../../../component/atom/typography';
 
 export interface FeeItem {
   id: string;

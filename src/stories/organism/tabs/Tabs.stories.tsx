@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import Tabs from '../../../component/organism/tabs/Tabs';
-import { Box } from '@mui/material';
+import { Box } from '../../../component/atom/box';
 
 const sampleTabs = [
   {

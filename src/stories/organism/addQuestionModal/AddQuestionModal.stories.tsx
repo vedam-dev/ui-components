@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import AddQuestionModal from '../../../component/organism/addQuestionModal/AddQuestionModal';
 import { useState } from 'react';
-import { Button } from '@mui/material';
+import { Button } from '../../../component/atom/button';
 
 const meta: Meta<typeof AddQuestionModal> = {
   title: 'Organism/AddQuestionModal',

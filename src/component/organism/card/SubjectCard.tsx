@@ -2,7 +2,8 @@ import { Card, CardActions } from '../../atom/card';
 import { Typography } from '../../atom/typography';
 import { Button } from '../../atom/button';
 import { FC } from 'react';
-import { Box, Stack, SxProps, Theme, Tooltip } from '@mui/material';
+import { Stack, SxProps, Theme, Tooltip } from '@mui/material';
+import { Box } from '../../atom/box';
 import MenuBookOutlinedIcon from '@mui/icons-material/MenuBookOutlined';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import React from 'react';
@@ -251,11 +252,10 @@ const SubjectCard: FC<SubjectCardProps> = ({
           mb={{ md: '12px', lg: '18px' }}
         >
           <Box sx={defaultIconContainerSx}>
-            <Box
-              component="img"
+            <img
               src={iconUrl}
               alt={iconAlt}
-              sx={{ width: { md: '18px', lg: '34px' }, height: { md: '18px', lg: '34px' } }}
+              style={{ width: 'clamp(18px, 2vw, 34px)', height: 'clamp(18px, 2vw, 34px)' }}
             />
           </Box>
           <Stack sx={{ width: '100%', overflow: 'hidden' }}>

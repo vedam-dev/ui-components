@@ -1,6 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import AppBar from '../../../component/molecule/appbar/AppBar';
-import { Toolbar, Typography, Button, IconButton, Box } from '@mui/material';
+import { Toolbar, IconButton } from '@mui/material';
+import { Typography } from '../../../component/atom/typography';
+import { Button } from '../../../component/atom/button';
+import { Box } from '../../../component/atom/box';
 import { Menu as MenuIcon } from '@mui/icons-material';
 
 const meta = {
@@ -162,7 +165,9 @@ export const WithButtons: Story = {
         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
           AppBar with Actions
         </Typography>
-        <Button color="inherit">Login</Button>
+        <Button color="inherit" variant="text">
+          Login
+        </Button>
       </Toolbar>
     ),
   },

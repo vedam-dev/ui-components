@@ -1,7 +1,8 @@
 'use client';
 
 import React, { useEffect, useId, useRef, useState } from 'react';
-import { Box, Button } from '@mui/material';
+import { Box } from '../../atom/box';
+import { Button } from '../../atom/button';
 import type { ReactNode } from 'react';
 import { CoreTheme, useCoreTheme } from '../../../theme/core-theme';
 
@@ -179,6 +180,7 @@ export default function Tabs({
           return (
             <Button
               key={tabId}
+              variant="text"
               ref={(el) => {
                 tabRefs.current[i] = el;
               }}
@@ -196,6 +198,7 @@ export default function Tabs({
                 pb: 2,
                 minWidth: 'unset',
                 fontSize: { md: '14px', lg: '20px' },
+                textDecoration: 'none',
                 borderRadius: 0,
                 fontWeight: 600,
                 color: selected ? theme.palette.primary.main : 'text.secondary',

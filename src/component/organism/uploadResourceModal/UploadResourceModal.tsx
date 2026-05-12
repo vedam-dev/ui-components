@@ -2,7 +2,10 @@
 
 import type React from 'react';
 import { useState, useRef } from 'react';
-import { Box, Button, Modal, TextField, Typography, useTheme, IconButton } from '@mui/material';
+import { Modal, TextField, useTheme, IconButton } from '@mui/material';
+import { Box } from '../../atom/box';
+import { Button } from '../../atom/button';
+import { Typography } from '../../atom/typography';
 import CloseIcon from '@mui/icons-material/Close';
 import { CoreTheme, useCoreTheme } from '../../../theme/core-theme';
 

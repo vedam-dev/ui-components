@@ -1,5 +1,7 @@
 import React from 'react';
-import { Snackbar as MuiSnackbar, Box, Typography, IconButton, useTheme } from '@mui/material';
+import { Snackbar as MuiSnackbar, IconButton, useTheme } from '@mui/material';
+import { Box } from '../../atom/box';
+import { Typography } from '../../atom/typography';
 import { alpha } from '@mui/material/styles';
 import { Close, CheckCircle, Warning, Info } from '@mui/icons-material';
 import { CoreTheme, useCoreTheme } from '../../../theme/core-theme';

@@ -1,15 +1,10 @@
 import React, { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import Drawer, { DrawerProps } from '../../../component/atom/drawer/Drawer';
-import {
-  Button,
-  Box,
-  Typography,
-  List,
-  ListItemText,
-  Divider,
-  ListItemButton,
-} from '@mui/material';
+import { List, ListItemText, Divider, ListItemButton } from '@mui/material';
+import { Button } from '../../../component/atom/button';
+import { Box } from '../../../component/atom/box';
+import { Typography } from '../../../component/atom/typography';
 
 const meta: Meta<DrawerProps> = {
   title: 'Atom/Drawer',

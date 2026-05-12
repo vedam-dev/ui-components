@@ -1,5 +1,7 @@
 import React from 'react';
-import { Box, Typography, IconButton } from '@mui/material';
+import { IconButton } from '@mui/material';
+import { Box } from '../../atom/box';
+import { Typography } from '../../atom/typography';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import { CoreTheme, useCoreTheme } from '../../../theme/core-theme';

@@ -1,6 +1,9 @@
 import React from 'react';
-import { Box, Typography, Button, Paper } from '@mui/material';
+import { Box } from '../../atom/box';
+import { Typography } from '../../atom/typography';
+import { Paper } from '../../atom/paper';
 import { CoreTheme, useCoreTheme } from '../../../theme/core-theme';
+import { Button } from '@mui/material';
 
 interface LoginModalProps {
   logo?: string;
@@ -87,16 +90,15 @@ const LoginModal: React.FC<LoginModalProps> = ({
             mb: theme.spacing(3),
           }}
         >
-          <Box
-            component="img"
+          <img
             src="https://images.ctfassets.net/wrc4czfp4sk8/MlLQWcd5d2243FkvhCHsg/b35a214792ec2c7836fffb81e7e237ab/ce354349ec958587fa057b673078953452f344e9.png"
             alt="Google"
-            sx={{
+            style={{
               width: 76,
               height: 72,
             }}
           />
-          <Box sx={{ textAlign: 'left', mr: theme.spacing(32) }}>Continue with Google</Box>
+          <Box sx={{ textAlign: 'left', ml: theme.spacing(0) }}>Continue with Google</Box>
         </Button>
       </Box>
     </Paper>

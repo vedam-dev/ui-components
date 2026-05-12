@@ -1,7 +1,9 @@
 import type React from 'react';
 import { useState, useEffect } from 'react';
-import { Box, Button, Modal, TextField, Typography, useTheme } from '@mui/material';
-
+import { Modal, useTheme, TextField } from '@mui/material';
+import { Box } from '../../atom/box';
+import { Typography } from '../../atom/typography';
+import { Button } from '../../atom/button';
 // ── Types ─────────────────────────────────────────────────────────────────────
 
 export interface FeeTypeModalInitialData {

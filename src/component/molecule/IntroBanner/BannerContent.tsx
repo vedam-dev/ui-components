@@ -1,7 +1,7 @@
 import React from 'react';
 import { styled } from '@mui/system';
 import { Box } from '../../atom/box';
-import { Typography } from '@mui/material';
+import { Typography } from '../../atom/typography';
 import { Button } from '../../atom/button';
 import { CoreTheme, useCoreTheme } from '../../../theme/core-theme';
 

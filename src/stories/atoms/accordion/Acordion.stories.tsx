@@ -1,7 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import React, { ReactNode } from 'react';
 import Accordion from '../../../component/atom/accordion/Accordion';
-import { Typography, Box } from '@mui/material';
+import { Typography } from '../../../component/atom/typography';
+import { Box } from '../../../component/atom/box';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 type AccordionStoryArgs = React.ComponentProps<typeof Accordion> & {

@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { Meta, StoryObj } from '@storybook/react';
 import Snackbar from '../../../component/organism/snackbar/Snackbar';
-import { Box, Button } from '@mui/material';
+import { Box } from '../../../component/atom/box';
+import { Button } from '../../../component/atom/button';
 
 const meta: Meta<typeof Snackbar> = {
   title: 'Organism/Snackbar',

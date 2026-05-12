@@ -10,7 +10,8 @@ import {
   Assignment as AssignmentIcon,
   EventNote as EventNoteIcon,
 } from '@mui/icons-material';
-import { Box, SxProps, Theme } from '@mui/material';
+import { SxProps, Theme } from '@mui/material';
+import { Box } from '../../atom/box';
 
 const defaultItems: SidebarItem[] = [
   {

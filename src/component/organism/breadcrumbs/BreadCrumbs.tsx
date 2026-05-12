@@ -1,5 +1,7 @@
 import React from 'react';
-import { Breadcrumbs, Typography, Box, SxProps, Theme } from '@mui/material';
+import { Breadcrumbs, SxProps, Theme } from '@mui/material';
+import { Typography } from '../../atom/typography';
+import { Box } from '../../atom/box';
 import { NavigateNext } from '@mui/icons-material';
 import { CoreTheme, useCoreTheme } from '../../../theme/core-theme';
 
