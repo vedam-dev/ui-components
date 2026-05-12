@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Box, Typography } from '@mui/material';
+import { Box } from '../../../component/atom/box';
+import { Typography } from '../../../component/atom/typography';
 import CookieCard from '../../../component/organism/card/CookieCard';
 
 const meta: Meta<typeof CookieCard> = {

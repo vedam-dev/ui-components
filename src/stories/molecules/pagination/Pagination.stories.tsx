@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { CustomPagination } from '../../../component/molecule/pagination/Pagination';
 import type { CustomPaginationProps } from '../../../component/molecule/pagination/Pagination';
-import { Box } from '@mui/material';
+import { Box } from '../../../component/atom/box';
 import React, { useState } from 'react';
 
 const meta: Meta<typeof CustomPagination> = {

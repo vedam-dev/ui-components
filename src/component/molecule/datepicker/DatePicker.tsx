@@ -2,7 +2,10 @@ import React, { useState } from 'react';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { DateCalendar } from '@mui/x-date-pickers/DateCalendar';
-import { Box, Typography, Button, IconButton } from '@mui/material';
+import { IconButton } from '@mui/material';
+import { Box } from '../../atom/box';
+import { Typography } from '../../atom/typography';
+import { Button } from '../../atom/button';
 import EditIcon from '@mui/icons-material/Edit';
 import { format } from 'date-fns';
 import { CoreTheme, useCoreTheme } from '../../../theme/core-theme';
@@ -223,11 +226,13 @@ export const CustomDatePicker: React.FC<CustomDatePickerProps> = ({
         >
           <Button
             onClick={handleClear}
+            variant="text"
             sx={{
               color: theme.palette.text.primary,
               textTransform: 'none',
               fontSize: '0.95rem',
               fontWeight: 500,
+              textDecoration: 'none',
               '&:hover': {
                 backgroundColor: 'rgba(0,0,0,0.04)',
               },
@@ -238,11 +243,14 @@ export const CustomDatePicker: React.FC<CustomDatePickerProps> = ({
           <Box sx={{ display: 'flex', gap: '8px' }}>
             <Button
               onClick={handleCancel}
+              variant="text"
               sx={{
                 color: theme.palette.text.primary,
                 textTransform: 'none',
                 fontSize: '0.95rem',
                 fontWeight: 500,
+                textDecoration: 'none',
+                padding: '0 !important',
                 '&:hover': {
                   backgroundColor: 'rgba(0,0,0,0.04)',
                 },
@@ -252,11 +260,13 @@ export const CustomDatePicker: React.FC<CustomDatePickerProps> = ({
             </Button>
             <Button
               onClick={handleOk}
+              variant="text"
               sx={{
                 color: theme.palette.text.primary,
                 textTransform: 'none',
                 fontSize: '0.95rem',
                 fontWeight: 600,
+                textDecoration: 'none',
                 '&:hover': {
                   backgroundColor: 'rgba(0,0,0,0.04)',
                 },

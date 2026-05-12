@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { Box, Typography, TextField, SxProps, Theme } from '@mui/material';
+import { TextField, SxProps, Theme } from '@mui/material';
+import { Box } from '../../atom/box';
+import { Typography } from '../../atom/typography';
 import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked';
 import RadioButtonCheckedIcon from '@mui/icons-material/RadioButtonChecked';
 import { CoreTheme, useCoreTheme } from '../../../theme/core-theme';

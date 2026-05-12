@@ -1,4 +1,5 @@
-import { Button as MuiButton, SxProps, Theme } from '@mui/material';
+import { SxProps, Theme } from '@mui/material';
+import { Button as MuiButton } from '../../../atom/button';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
@@ -101,6 +102,7 @@ const NavigationMenu: FC<NavigationMenuProps> = ({
                 {showSkipContent && (
                   <MuiButton
                     role="link"
+                    variant="text"
                     sx={skipContentStyle}
                     style={{ order: 1 }}
                     onClick={(e) => {

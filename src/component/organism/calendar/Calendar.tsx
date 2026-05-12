@@ -1,5 +1,8 @@
 import React, { useMemo, useState } from 'react';
-import { Box, Paper, Typography, styled, Tooltip, SxProps, Theme } from '@mui/material';
+import { styled, Tooltip, SxProps, Theme } from '@mui/material';
+import { Box } from '../../atom/box';
+import { Paper } from '../../atom/paper';
+import { Typography } from '../../atom/typography';
 import { CoreTheme, useCoreTheme } from '../../../theme/core-theme';
 
 export interface CalendarEvent {

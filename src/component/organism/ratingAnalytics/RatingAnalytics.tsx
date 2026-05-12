@@ -1,5 +1,6 @@
 import React from 'react';
-import { Box, Typography } from '@mui/material';
+import { Box } from '../../atom/box';
+import { Typography } from '../../atom/typography';
 import { CoreTheme, useCoreTheme } from '../../../theme/core-theme';
 
 // Individual column components

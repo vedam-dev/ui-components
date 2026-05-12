@@ -1,4 +1,4 @@
-import { Box, Container, Grid } from '@mui/material';
+import { Container, Grid } from '@mui/material';
 import { FC, JSX } from 'react';
 import { Typography } from '../../../component/atom/typography';
 import { CoreTheme, useCoreTheme } from '../../../theme/core-theme';
@@ -37,18 +37,15 @@ const ColorRenderer: FC = () => {
           <Typography>
             {shade} - {color}
           </Typography>
-          <Box
-            component="span"
-            height={75}
-            width={75}
-            sx={{
+          <span
+            style={{
               background: color,
               width: '75px',
               height: '75px',
               display: 'block',
               border: `2px solid ${palette.common.black}`,
             }}
-          ></Box>
+          ></span>
         </Grid>
       );
     });
@@ -99,48 +96,39 @@ const ColorRenderer: FC = () => {
       </Typography>
       <Grid container spacing={2} sx={{ padding: '8px' }}>
         <Grid size={{ xs: 3 }}>
-          <Box
-            component="span"
-            height={75}
-            width={75}
-            sx={{
+          <span
+            style={{
               background: palette.grey['200'],
               width: '75px',
               height: '75px',
               display: 'block',
               boxShadow: vd.shadows.y8,
             }}
-          ></Box>
+          ></span>
         </Grid>
 
         <Grid size={{ xs: 3 }}>
-          <Box
-            component="span"
-            height={75}
-            width={75}
-            sx={{
+          <span
+            style={{
               background: palette.grey['200'],
               width: '75px',
               height: '75px',
               display: 'block',
               boxShadow: vd.shadows.y12,
             }}
-          ></Box>
+          ></span>
         </Grid>
 
         <Grid size={{ xs: 3 }}>
-          <Box
-            component="span"
-            height={75}
-            width={75}
-            sx={{
+          <span
+            style={{
               background: palette.grey['200'],
               width: '75px',
               height: '75px',
               display: 'block',
               boxShadow: vd.shadows.y16,
             }}
-          ></Box>
+          ></span>
         </Grid>
       </Grid>
     </Container>

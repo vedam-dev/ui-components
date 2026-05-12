@@ -1,6 +1,9 @@
 import React, { useState, useMemo, useEffect } from 'react';
-import { Box, Paper, Typography, styled, Tooltip } from '@mui/material';
+import { styled, Tooltip } from '@mui/material';
+import { Paper } from '../../atom/paper';
 import { CoreTheme, useCoreTheme } from '../../../theme/core-theme';
+import { Box } from '../../atom/box';
+import { Typography } from '../../atom/typography';
 
 export type AttendanceStatus = 'leave' | 'holiday' | 'present' | 'absent';
 

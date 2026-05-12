@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { Meta, StoryObj } from '@storybook/react';
 import TimePicker from '../../../component/organism/timePicker/TimePicker';
-import { Box, Typography } from '@mui/material';
+import { Box } from '../../../component/atom/box';
+import { Typography } from '../../../component/atom/typography';
 
 const meta: Meta<typeof TimePicker> = {
   title: 'Organism/TimePicker',

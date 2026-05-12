@@ -32,7 +32,7 @@ type Story = StoryObj<typeof CampusSelection>;
 const defaultOptions = [
   {
     value: 'pune1',
-    collegeName: 'Vedam School of Technology sdfghsgdfhgjfhg sdwefgr',
+    collegeName: 'Vedam School of Technology',
     campus: 'Campus : Pune',
     collegeId: '1',
     location:

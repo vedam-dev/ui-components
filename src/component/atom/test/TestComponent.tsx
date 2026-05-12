@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { Typography } from '@mui/material';
+import { Typography } from '../typography';
 import { CoreTheme, useCoreTheme } from '../../../theme/core-theme';
 
 const TestComponent: FC = () => {

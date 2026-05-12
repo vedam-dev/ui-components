@@ -2,7 +2,7 @@ import { FC, SyntheticEvent } from 'react';
 import React from 'react';
 import { UseScrollTriggerOptions } from '@mui/material/useScrollTrigger/useScrollTrigger';
 import { OnNavigationClick, onDropdownClick } from '../../types';
-import { Button } from '@mui/material';
+import { Button } from '../../../../atom/button';
 import { CoreTheme, useCoreTheme } from '../../../../../theme/core-theme';
 
 interface LogoIconSize {

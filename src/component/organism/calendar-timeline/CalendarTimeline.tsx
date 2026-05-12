@@ -1,7 +1,9 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { Box, Typography, Button } from '@mui/material';
+import { Box } from '../../atom/box';
+import { Typography } from '../../atom/typography';
+import { Button } from '../../atom/button';
 import CalendarTimelineItem from './CalendarTimelineItem';
 import { CoreTheme, useCoreTheme } from '../../../theme/core-theme';
 
@@ -134,6 +136,7 @@ const CalendarTimeline: React.FC<CalendarTimelineProps> = ({ events, onViewFullC
 
         <Button
           onClick={onViewFullCalendar}
+          variant="text"
           sx={{
             backgroundColor: 'transparent',
             color: theme.palette.primary.main,
@@ -142,6 +145,8 @@ const CalendarTimeline: React.FC<CalendarTimelineProps> = ({ events, onViewFullC
             textTransform: 'none',
             fontFamily: theme.typography.fontFamily,
             textDecoration: 'underline',
+            padding: '0 !important',
+            paddingBottom: theme.spacing(0.7),
             '&:hover': {
               backgroundColor: 'transparent',
               textDecoration: 'underline',

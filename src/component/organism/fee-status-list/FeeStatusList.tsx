@@ -1,5 +1,6 @@
 import React, { ComponentProps } from 'react';
-import { Box, Typography } from '@mui/material';
+import { Box } from '../../atom/box';
+import { Typography } from '../../atom/typography';
 import { Button } from '../../atom/button';
 import { CoreTheme, useCoreTheme } from '../../../theme/core-theme';
 
@@ -114,14 +115,13 @@ const FeeStatusList: React.FC<FeeStatusListProps> = ({ status, feeItems, onPayNo
           minWidth: { md: '156px', lg: '230px' },
         }}
       >
-        <Box
-          component="svg"
+        <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 69 69"
           fill="none"
-          sx={{
-            width: { md: '36px', lg: '69px' },
-            height: { md: '36px', lg: '69px' },
+          style={{
+            width: 'clamp(20px, 5vw, 36px)',
+            height: 'clamp(20px, 5vw, 36px)',
           }}
         >
           <circle
@@ -159,7 +159,7 @@ const FeeStatusList: React.FC<FeeStatusListProps> = ({ status, feeItems, onPayNo
               <stop offset="1" stopColor={iconStrokeLight} />
             </linearGradient>
           </defs>
-        </Box>
+        </svg>
 
         <Box>
           <Typography

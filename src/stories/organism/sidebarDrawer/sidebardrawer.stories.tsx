@@ -3,7 +3,7 @@ import SidebarDrawer, {
   SidebarDrawerProps,
   SidebarItem,
 } from '../../../component/organism/sidebardrawer/SidebarDrawer';
-import { Box } from '@mui/material';
+import { Box } from '../../../component/atom/box';
 import {
   Dashboard as DashboardIcon,
   People as PeopleIcon,

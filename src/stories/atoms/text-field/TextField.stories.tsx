@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { TextField } from '../../../component/atom/text-field';
-import { Box, Stack } from '@mui/material';
+import { Stack } from '@mui/material';
+import { Box } from '../../../component/atom/box';
 
 const meta: Meta<typeof TextField> = {
   title: 'Atom/TextField',

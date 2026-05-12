@@ -1,5 +1,7 @@
 import React, { ComponentProps } from 'react';
-import { Modal, Box, Typography, IconButton } from '@mui/material';
+import { Modal, IconButton } from '@mui/material';
+import { Box } from '../../atom/box';
+import { Typography } from '../../atom/typography';
 import { Close } from '@mui/icons-material';
 import { CoreTheme, useCoreTheme } from '../../../theme/core-theme';
 export type StatusType = 'success' | 'failure' | 'pending';
@@ -61,11 +63,10 @@ const FeeStatusModal: React.FC<FeeStatusModalProps> = ({
           }}
         >
           {/* Status Icon */}
-          <Box
-            component="img"
+          <img
             src={statusIconMap[status]}
             alt={`${status} icon`}
-            sx={{
+            style={{
               width: 64,
               height: 64,
               position: 'absolute',
@@ -75,7 +76,7 @@ const FeeStatusModal: React.FC<FeeStatusModalProps> = ({
               borderRadius: '50%',
               backgroundColor: 'white',
               padding: theme.spacing(2),
-              boxShadow: 2,
+              boxShadow: theme.shadows[2],
             }}
           />
 

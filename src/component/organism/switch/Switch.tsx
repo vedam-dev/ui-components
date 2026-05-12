@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import { Box, Typography, SxProps, Theme, styled, CircularProgress } from '@mui/material';
+import { SxProps, Theme, styled, CircularProgress } from '@mui/material';
+import { Box } from '../../atom/box';
+import { Typography } from '../../atom/typography';
 import { CoreTheme, useCoreTheme } from '../../../theme/core-theme';
 
 export interface RoleOption {

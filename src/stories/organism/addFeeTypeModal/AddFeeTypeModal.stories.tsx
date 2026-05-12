@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
-import { Button } from '@mui/material';
+import { Button } from '../../../component/atom/button';
 import FeeTypeModal from '../../../component/organism/addFeeTypeModal/AddFeeTypeModal';
 
 const meta: Meta<typeof FeeTypeModal> = {

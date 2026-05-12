@@ -1,7 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import VideoPlayerModal from '../../../component/organism/video-player-modal/VideoPlayerModal';
 import { useState } from 'react';
-import { Box, useTheme } from '@mui/material';
+import { useTheme } from '@mui/material';
+import { Box } from '../../../component/atom/box';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import { alpha } from '@mui/material/styles';
 import { CoreTheme, useCoreTheme } from '../../../theme/core-theme';

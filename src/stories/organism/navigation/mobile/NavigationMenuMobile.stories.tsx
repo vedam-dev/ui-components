@@ -1,4 +1,5 @@
-import { Box, Typography } from '@mui/material';
+import { Box } from '../../../../component/atom/box';
+import { Typography } from '../../../../component/atom/typography';
 import type { Meta, StoryObj } from '@storybook/react';
 import MonoToneToken from '../../../../component/atom/icon/MonoToneToken';
 import MonoToneWallet from '../../../../component/atom/icon/MonoToneWallet';

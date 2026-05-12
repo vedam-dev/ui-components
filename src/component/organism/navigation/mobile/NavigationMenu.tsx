@@ -1,12 +1,6 @@
-import {
-  Box,
-  Menu,
-  MenuItem,
-  Typography,
-  useMediaQuery,
-  Color,
-  ClickAwayListener,
-} from '@mui/material';
+import { Menu, MenuItem, useMediaQuery, Color, ClickAwayListener } from '@mui/material';
+import { Box } from '../../../atom/box';
+import { Typography } from '../../../atom/typography';
 import AppBar from '@mui/material/AppBar';
 import Container from '@mui/material/Container';
 import Toolbar from '@mui/material/Toolbar';
@@ -22,8 +16,7 @@ import React, {
   useState,
 } from 'react';
 import { SvgIcon } from '../../../atom/icon';
-import { Button } from '../../../atom/button';
-import { Button as MuiButton } from '@mui/material';
+import { Button, Button as MuiButton } from '../../../atom/button';
 import { INavigationItem, INavigationItemMultiple, NavigationMenuItems } from '../types';
 import MenuSubItems from './components/MenuSubItems';
 import { INavigationMainLogoProps } from './components/NavigationMainLogo';
@@ -238,6 +231,7 @@ const NavigationMenu: FC<NavigationMobileMenuProps> = ({
         {showSkipContent && (
           <MuiButton
             role="link"
+            variant="text"
             sx={skipContentStyle}
             onClick={(e) => {
               handleSkipTo(e);
@@ -375,6 +369,7 @@ const NavigationMenu: FC<NavigationMobileMenuProps> = ({
                           onClick={(e: SyntheticEvent) =>
                             handleItemClick(e, navItem as INavigationItem)
                           }
+                          variant="text"
                           tabIndex={0}
                           sx={{
                             ...menuItemSx,

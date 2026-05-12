@@ -1,7 +1,9 @@
 'use client';
 
 import React from 'react';
-import { Box, Typography, Card, CardContent } from '@mui/material';
+import { Box } from '../../atom/box';
+import { Typography } from '../../atom/typography';
+import { Card, CardContent } from '../../atom/card';
 import { CoreTheme, useCoreTheme } from '../../../theme/core-theme';
 
 interface ClassSession {
@@ -236,7 +238,7 @@ const CalendarTimelineItem: React.FC<CalendarTimelineItemProps> = ({
             height: { md: theme.spacing(13.5), lg: theme.spacing(18.5) },
             borderRadius: theme.spacing(5),
             border: `1px solid ${theme.vd.palette.accentPrimaryLight}`,
-            boxShadow: 'none',
+            boxShadow: 'none !important',
           }}
         >
           <CardContent
@@ -246,16 +248,16 @@ const CalendarTimelineItem: React.FC<CalendarTimelineItemProps> = ({
               gap: { md: theme.spacing(3), lg: theme.spacing(7) },
               height: '100%',
               px: theme.spacing(2),
+              paddingLeft: theme.spacing(0),
               '&:last-child': { pb: theme.spacing(4) },
             }}
           >
-            <Box
-              component="img"
+            <img
               src={event.iconUrl}
-              sx={{
-                width: { md: theme.spacing(8), lg: theme.spacing(10) },
-                height: { md: theme.spacing(8), lg: theme.spacing(10) },
-                ml: { md: theme.spacing(2), lg: theme.spacing(4) },
+              style={{
+                width: `clamp(${theme.spacing(8)}, 3vw, ${theme.spacing(10)})`,
+                height: `clamp(${theme.spacing(8)}, 3vw, ${theme.spacing(10)})`,
+                marginLeft: `clamp(${theme.spacing(2)}, 2vw, ${theme.spacing(4)})`,
                 objectFit: 'contain',
               }}
               alt="subject icon"

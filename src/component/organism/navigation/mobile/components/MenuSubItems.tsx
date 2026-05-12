@@ -1,6 +1,9 @@
 import MonotoneChevronDown from '../../../../../component/atom/icon/MonotoneChevronDown';
 import MonotoneChevronUp from '../../../../../component/atom/icon/MonotoneChevronUp';
-import { Typography, Theme, Box, Button } from '@mui/material';
+import { Theme } from '@mui/material';
+import { Typography } from '../../../../atom/typography';
+import { Box } from '../../../../atom/box';
+import { Button } from '../../../../atom/button';
 import { SxProps } from '@mui/system';
 import React, { SyntheticEvent } from 'react';
 import { SystemStyleObject } from '@mui/system/styleFunctionSx/styleFunctionSx';
@@ -35,6 +38,7 @@ const MenuSubItems: React.FC<{
     <>
       <Button
         onClick={handleToggle}
+        variant="text"
         tabIndex={0}
         aria-label={`${subItem.label}, item ${index + 1} of ${mobileAccountSection ? itemsCount + 1 : itemsCount}`}
         role="button"
@@ -81,6 +85,7 @@ const MenuSubItems: React.FC<{
             return (
               <Button
                 key={`${index}-subMenu`}
+                variant="text"
                 onClick={(e: SyntheticEvent) => {
                   onNavigationClick(e, { ...item, subItems: [] });
                 }}

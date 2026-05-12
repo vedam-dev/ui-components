@@ -1,15 +1,9 @@
 import React from 'react';
-import {
-  Box,
-  Typography,
-  styled,
-  Avatar,
-  Badge,
-  IconButton,
-  SxProps,
-  Theme,
-  Paper,
-} from '@mui/material';
+import { styled, Badge, IconButton, SxProps, Theme } from '@mui/material';
+import { Box } from '../../atom/box';
+import { Typography } from '../../atom/typography';
+import { Avatar } from '../../atom/avatar';
+import { Paper } from '../../atom/paper';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 import { CoreTheme, useCoreTheme } from '../../../theme/core-theme';
@@ -144,15 +138,14 @@ const TopBar: React.FC<TopBarProps> = ({
         <CollegeInfo>
           <IconButton onClick={onLogoClick} sx={{ p: 0 }}>
             {collegeLogo && (
-              <Box
-                component="img"
+              <img
                 src={collegeLogo}
                 alt="college logo"
-                sx={{
+                style={{
                   height: '40px',
                   width: 'auto',
                   objectFit: 'contain',
-                  ...((logoSx as any) || {}),
+                  ...((logoSx as React.CSSProperties) || {}),
                 }}
               />
             )}

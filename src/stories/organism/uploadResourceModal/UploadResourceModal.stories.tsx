@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import UploadResourceModal from '../../../component/organism/uploadResourceModal/UploadResourceModal';
 import { useState } from 'react';
-import { Button } from '@mui/material';
+import { Button } from '../../../component/atom/button';
 
 const meta: Meta<typeof UploadResourceModal> = {
   title: 'Organism/UploadResourceModal',
