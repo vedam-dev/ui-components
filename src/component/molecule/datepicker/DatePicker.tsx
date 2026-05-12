@@ -226,13 +226,13 @@ export const CustomDatePicker: React.FC<CustomDatePickerProps> = ({
         >
           <Button
             onClick={handleClear}
-            variant='text'
+            variant="text"
             sx={{
               color: theme.palette.text.primary,
               textTransform: 'none',
               fontSize: '0.95rem',
               fontWeight: 500,
-              textDecoration:'none',
+              textDecoration: 'none',
               '&:hover': {
                 backgroundColor: 'rgba(0,0,0,0.04)',
               },
@@ -243,13 +243,13 @@ export const CustomDatePicker: React.FC<CustomDatePickerProps> = ({
           <Box sx={{ display: 'flex', gap: '8px' }}>
             <Button
               onClick={handleCancel}
-              variant='text'
+              variant="text"
               sx={{
                 color: theme.palette.text.primary,
                 textTransform: 'none',
                 fontSize: '0.95rem',
                 fontWeight: 500,
-                textDecoration:'none',
+                textDecoration: 'none',
                 padding: '0 !important',
                 '&:hover': {
                   backgroundColor: 'rgba(0,0,0,0.04)',
@@ -260,13 +260,13 @@ export const CustomDatePicker: React.FC<CustomDatePickerProps> = ({
             </Button>
             <Button
               onClick={handleOk}
-              variant='text'
+              variant="text"
               sx={{
                 color: theme.palette.text.primary,
                 textTransform: 'none',
                 fontSize: '0.95rem',
                 fontWeight: 600,
-                textDecoration:'none',
+                textDecoration: 'none',
                 '&:hover': {
                   backgroundColor: 'rgba(0,0,0,0.04)',
                 },

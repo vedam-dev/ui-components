@@ -94,9 +94,7 @@ const IconDropdown: React.FC<IconDropdownProps> = ({
           color: disabled ? theme.vd.palette.textMuted : 'inherit',
         }}
       >
-        {iconUrl && (
-          <img src={iconUrl} alt="dropdown icon" style={{ width: 20, height: 20 }} />
-        )}
+        {iconUrl && <img src={iconUrl} alt="dropdown icon" style={{ width: 20, height: 20 }} />}
         <Typography
           ref={textRef}
           fontSize="16px"
