@@ -209,6 +209,7 @@ export default function Tabs({
                 '&:hover': {
                   backgroundColor: 'transparent',
                   color: theme.palette.primary.main,
+                  textDecoration: 'none',
                 },
                 '&::after': {
                   content: '""',
