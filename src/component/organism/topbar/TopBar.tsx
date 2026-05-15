@@ -201,8 +201,15 @@ const TopBar: React.FC<TopBarProps> = ({
         </StatsContainer>
 
         <Box display="flex" alignItems="center" sx={{ gap: theme.spacing(3) }}>
-          <IconButton onClick={onProfileClick} sx={{ padding: 0 }}>
-            <Avatar src={studentPhoto} alt={studentName} sx={{ width: '48px', height: '48px' }}>
+          <IconButton
+            onClick={onProfileClick}
+            sx={{ padding: 0, backgroundColor: theme.palette.grey[600] }}
+          >
+            <Avatar
+              src={studentPhoto}
+              alt={studentName}
+              sx={{ width: '48px', height: '48px', color: theme.palette.background.paper }}
+            >
               {!studentPhoto && studentName.charAt(0)}
             </Avatar>
           </IconButton>
