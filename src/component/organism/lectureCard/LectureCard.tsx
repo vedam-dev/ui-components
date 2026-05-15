@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { IconButton, styled, SxProps, Theme, Menu, MenuItem } from '@mui/material';
+import { IconButton, styled, SxProps, Theme, Menu, MenuItem, Chip } from '@mui/material';
 import { Box } from '../../atom/box';
 import { Typography } from '../../atom/typography';
 import { Button } from '../../atom/button';
-import { Chip } from '../../atom/chip';
+// import { Chip } from '../../atom/chip';
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 import { CoreTheme, useCoreTheme } from '../../../theme/core-theme';
 
@@ -107,7 +107,7 @@ const RightContent = styled(Box)(({ theme }) => ({
   paddingBottom: theme.spacing(2.5),
 }));
 
-const getAttendanceStyles = (theme: CoreTheme, status: AttendanceStatus) => {
+const getAttendanceStyles = (theme: CoreTheme, status: AttendanceStatus) => { 
   const styles: Record<string, { backgroundColor: string; color: string }> = {
     Present: { backgroundColor: theme.palette.success[100], color: theme.palette.success[300] },
     Absent: { backgroundColor: theme.palette.error[100], color: theme.palette.error[300] },
