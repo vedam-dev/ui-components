@@ -107,7 +107,7 @@ const RightContent = styled(Box)(({ theme }) => ({
   paddingBottom: theme.spacing(2.5),
 }));
 
-const getAttendanceStyles = (theme: CoreTheme, status: AttendanceStatus) => { 
+const getAttendanceStyles = (theme: CoreTheme, status: AttendanceStatus) => {
   const styles: Record<string, { backgroundColor: string; color: string }> = {
     Present: { backgroundColor: theme.palette.success[100], color: theme.palette.success[300] },
     Absent: { backgroundColor: theme.palette.error[100], color: theme.palette.error[300] },
