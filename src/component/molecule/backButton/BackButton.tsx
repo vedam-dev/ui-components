@@ -27,6 +27,7 @@ const BackButton: React.FC<BackButtonProps> = ({
       padding: 0,
       borderRadius: { md: '6px', lg: '8px' },
       borderColor: borderColor,
+      border: `1px solid ${borderColor}`,
       backgroundColor: bgColor,
       ':hover': {
         backgroundColor: bgColor,
