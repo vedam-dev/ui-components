@@ -56,7 +56,7 @@ export const Edit: Story = {
           variant="edit"
           open={open}
           onClose={() => setOpen(false)}
-          initialData={{ name: 'Tuition Fee', code: 'TUITION' }}
+          initialData={{ name: 'Tuition Fee', priority: 0 }}
           onSubmit={async (data) => {
             console.log('Update fee type:', data);
             await new Promise((r) => setTimeout(r, 800));

@@ -4,18 +4,20 @@ import { Modal, useTheme, TextField } from '@mui/material';
 import { Box } from '../../atom/box';
 import { Typography } from '../../atom/typography';
 import { Button } from '../../atom/button';
+import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
+
 // ── Types ─────────────────────────────────────────────────────────────────────
 
 export interface FeeTypeModalInitialData {
   name?: string;
-  code?: string;
+  priority?: number;
 }
 
 export interface FeeTypeModalProps {
   open: boolean;
   onClose: () => void;
   variant: 'create' | 'edit';
-  onSubmit?: (data: { name: string; code: string }) => Promise<void> | void;
+  onSubmit?: (data: { name: string; priority: number }) => Promise<void> | void;
   initialData?: FeeTypeModalInitialData;
 }
 
@@ -36,29 +38,29 @@ const FeeTypeModal: React.FC<FeeTypeModalProps> = ({
   const submitLabel = isEdit ? 'Edit Fee Type' : 'Create Fee Type';
 
   const [name, setName] = useState(initialData?.name ?? '');
-  const [code, setCode] = useState(initialData?.code ?? '');
+  const [priority, setPriority] = useState<number>(initialData?.priority ?? 0);
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     if (open) {
       setName(initialData?.name ?? '');
-      setCode(initialData?.code ?? '');
+      setPriority(initialData?.priority ?? 0);
       setIsLoading(false);
     }
   }, [open, initialData]);
 
   const handleClose = () => {
     setName('');
-    setCode('');
+    setPriority(0);
     onClose();
   };
 
   const handleSubmit = async () => {
-    if (!name.trim() || !code.trim()) return;
+    if (!name.trim()) return;
 
     setIsLoading(true);
     try {
-      await onSubmit?.({ name: name.trim(), code: code.trim() });
+      await onSubmit?.({ name: name.trim(), priority });
       handleClose();
     } catch (err: unknown) {
       // Errors are handled by the parent via snackbar
@@ -68,7 +70,7 @@ const FeeTypeModal: React.FC<FeeTypeModalProps> = ({
     }
   };
 
-  const isDisabled = !name.trim() || !code.trim() || isLoading;
+  const isDisabled = !name.trim() || isLoading;
 
   const textFieldSx = {
     '& .MuiOutlinedInput-root': {
@@ -92,6 +94,12 @@ const FeeTypeModal: React.FC<FeeTypeModalProps> = ({
     color: theme.palette.text.primary,
     mb: '8px',
     fontFamily: 'Outfit, sans-serif',
+  };
+
+  const getPriorityMessage = (p: number) => {
+    if (p === 0) return 'Fee can be paid anytime';
+    if (p === 1) return 'Fee will be paid first';
+    return `Fee will be paid after Priority ${p - 1} fees`;
   };
 
   return (
@@ -139,26 +147,143 @@ const FeeTypeModal: React.FC<FeeTypeModalProps> = ({
 
         {/* Fee Title */}
         <Box sx={{ mb: '20px' }}>
-          <Typography sx={labelSx}>Fee Title</Typography>
+          <Box
+            sx={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              mb: '8px',
+            }}
+          >
+            <Typography sx={{ ...labelSx, mb: 0 }}>Title</Typography>
+            <Typography
+              sx={{
+                fontWeight: 400,
+                fontSize: '16px',
+                lineHeight: '20px',
+                color: theme.palette.text.secondary,
+                fontFamily: 'Outfit, sans-serif',
+              }}
+            >
+              {`(${name.length}/50)`}
+            </Typography>
+          </Box>
           <TextField
             fullWidth
             placeholder="Type"
             value={name}
+            inputProps={{ maxLength: 50 }}
             onChange={(e) => setName(e.target.value)}
             sx={textFieldSx}
           />
         </Box>
 
-        {/* Fee Code */}
+        {/* Priority Order */}
         <Box sx={{ mb: '32px' }}>
-          <Typography sx={labelSx}>Fee Code</Typography>
-          <TextField
-            fullWidth
-            placeholder="Type"
-            value={code}
-            onChange={(e) => setCode(e.target.value.toUpperCase())}
-            sx={textFieldSx}
-          />
+          <Typography sx={labelSx}>Assign a Priority Order</Typography>
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+            {/* Decrement Button */}
+            <Box
+              onClick={() => priority > 0 && setPriority(priority - 1)}
+              sx={{
+                width: '48px',
+                height: '48px',
+                border: `1px solid ${theme.palette.grey[300]}`,
+                borderRadius: '12px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                cursor: priority > 0 ? 'pointer' : 'not-allowed',
+                opacity: priority > 0 ? 1 : 0.5,
+                backgroundColor: theme.palette.common.white,
+                userSelect: 'none',
+                transition: 'background-color 0.2s',
+                '&:hover': {
+                  backgroundColor: priority > 0 ? 'rgba(0,0,0,0.02)' : theme.palette.common.white,
+                },
+              }}
+            >
+              <Typography
+                sx={{ fontSize: '20px', fontWeight: 400, color: theme.palette.text.primary }}
+              >
+                —
+              </Typography>
+            </Box>
+
+            {/* Priority Value */}
+            <Box
+              sx={{
+                width: '140px',
+                height: '48px',
+                border: `1px solid ${theme.palette.grey[300]}`,
+                borderRadius: '12px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                fontSize: '16px',
+                fontWeight: 500,
+                color: theme.palette.text.primary,
+                fontFamily: 'Outfit, sans-serif',
+                backgroundColor: theme.palette.common.white,
+              }}
+            >
+              {priority}
+            </Box>
+
+            {/* Increment Button */}
+            <Box
+              onClick={() => setPriority(priority + 1)}
+              sx={{
+                width: '48px',
+                height: '48px',
+                border: `1px solid ${theme.palette.grey[300]}`,
+                borderRadius: '12px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                cursor: 'pointer',
+                backgroundColor: theme.palette.common.white,
+                userSelect: 'none',
+                transition: 'background-color 0.2s',
+                '&:hover': {
+                  backgroundColor: 'rgba(0,0,0,0.02)',
+                },
+              }}
+            >
+              <Typography
+                sx={{ fontSize: '20px', fontWeight: 400, color: theme.palette.text.primary }}
+              >
+                +
+              </Typography>
+            </Box>
+
+            {/* Info Message Box */}
+            <Box
+              sx={{
+                flex: 1,
+                height: '48px',
+                backgroundColor: theme.palette.grey[100],
+                borderRadius: '12px',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '8px',
+                px: '16px',
+              }}
+            >
+              <InfoOutlinedIcon sx={{ color: theme.palette.info[500], fontSize: '18px' }} />
+              <Typography
+                sx={{
+                  fontFamily: 'Outfit, sans-serif',
+                  fontSize: '14px',
+                  fontWeight: 400,
+                  color: theme.palette.info[500],
+                  lineHeight: 'normal',
+                }}
+              >
+                {getPriorityMessage(priority)}
+              </Typography>
+            </Box>
+          </Box>
         </Box>
 
         {/* Actions */}
