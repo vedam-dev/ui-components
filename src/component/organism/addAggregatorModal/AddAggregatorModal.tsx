@@ -1,17 +1,9 @@
-import type React from "react";
-import { useState, useEffect } from "react";
-import {
-  Modal,
-  useTheme,
-  TextField,
-  IconButton,
-  InputAdornment,
-  Box,
-  alpha,
-} from "@mui/material";
+import type React from 'react';
+import { useState, useEffect } from 'react';
+import { Modal, useTheme, TextField, IconButton, InputAdornment, Box, alpha } from '@mui/material';
 
-import { Typography } from "../../atom/typography";
-import { Button } from "../../atom/button";
+import { Typography } from '../../atom/typography';
+import { Button } from '../../atom/button';
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 
@@ -36,49 +28,46 @@ export interface AggregatorValues {
 export interface AddAggregatorModalProps {
   open: boolean;
   onClose: () => void;
-  variant: "add" | "edit";
+  variant: 'add' | 'edit';
   aggregators?: AggregatorOption[];
   initialAggregatorId?: string;
   initialValues?: Record<string, AggregatorValues>;
-  onSubmit?: (
-    aggregatorId: string,
-    values: AggregatorValues,
-  ) => Promise<void> | void;
+  onSubmit?: (aggregatorId: string, values: AggregatorValues) => Promise<void> | void;
 }
 
 // ── Default Data ──────────────────────────────────────────────────────────────
 
 const DEFAULT_AGGREGATORS: AggregatorOption[] = [
   {
-    id: "cashfree",
-    name: "Cashfree",
+    id: 'cashfree',
+    name: 'Cashfree',
     fields: [
-      { key: "clientId", label: "Client ID", placeholder: "Enter" },
-      { key: "clientSecret", label: "Client Secret", placeholder: "Enter" },
+      { key: 'clientId', label: 'Client ID', placeholder: 'Enter' },
+      { key: 'clientSecret', label: 'Client Secret', placeholder: 'Enter' },
     ],
   },
   {
-    id: "easebuzz",
-    name: "Easebuzz",
+    id: 'easebuzz',
+    name: 'Easebuzz',
     fields: [
-      { key: "clientId", label: "Client ID", placeholder: "Enter" },
-      { key: "clientSecret", label: "Client Secret", placeholder: "Enter" },
+      { key: 'clientId', label: 'Client ID', placeholder: 'Enter' },
+      { key: 'clientSecret', label: 'Client Secret', placeholder: 'Enter' },
     ],
   },
   {
-    id: "razorpay",
-    name: "Razorpay",
+    id: 'razorpay',
+    name: 'Razorpay',
     fields: [
-      { key: "clientId", label: "Client ID", placeholder: "Enter" },
-      { key: "clientSecret", label: "Client Secret", placeholder: "Enter" },
+      { key: 'clientId', label: 'Client ID', placeholder: 'Enter' },
+      { key: 'clientSecret', label: 'Client Secret', placeholder: 'Enter' },
     ],
   },
   {
-    id: "phonepe",
-    name: "PhonePe",
+    id: 'phonepe',
+    name: 'PhonePe',
     fields: [
-      { key: "clientId", label: "Client ID", placeholder: "Enter" },
-      { key: "clientSecret", label: "Client Secret", placeholder: "Enter" },
+      { key: 'clientId', label: 'Client ID', placeholder: 'Enter' },
+      { key: 'clientSecret', label: 'Client Secret', placeholder: 'Enter' },
     ],
   },
 ];
@@ -86,19 +75,19 @@ const DEFAULT_AGGREGATORS: AggregatorOption[] = [
 // ── Masking Helpers ───────────────────────────────────────────────────────────
 
 const partialMask = (value: string): string => {
-  if (!value) return "";
+  if (!value) return '';
   if (value.length <= 6) {
-    return "*".repeat(value.length - 1) + value.slice(-1);
+    return '*'.repeat(value.length - 1) + value.slice(-1);
   }
   const visibleStart = value.slice(0, 3);
   const visibleEnd = value.slice(-3);
-  const maskedMiddle = "*".repeat(Math.max(value.length - 6, 4));
+  const maskedMiddle = '*'.repeat(Math.max(value.length - 6, 4));
   return `${visibleStart}${maskedMiddle}${visibleEnd}`;
 };
 
 const fullMask = (value: string): string => {
-  if (!value) return "";
-  return "*".repeat(Math.max(value.length, 8));
+  if (!value) return '';
+  return '*'.repeat(Math.max(value.length, 8));
 };
 
 // ── Component ─────────────────────────────────────────────────────────────────
@@ -114,17 +103,17 @@ const AddAggregatorModal: React.FC<AddAggregatorModalProps> = ({
 }) => {
   const theme = useTheme();
 
-  const isEdit = variant === "edit";
-  const titleText = isEdit ? "Edit Aggregator" : "Add an Aggregator";
+  const isEdit = variant === 'edit';
+  const titleText = isEdit ? 'Edit Aggregator' : 'Add an Aggregator';
   const subtitleText = isEdit
-    ? "Edit details for the given fields"
-    : "Enter details for the given fields";
-  const submitLabel = isEdit ? "Save" : "Create";
+    ? 'Edit details for the given fields'
+    : 'Enter details for the given fields';
+  const submitLabel = isEdit ? 'Save' : 'Create';
 
-  const [activeTabId, setActiveTabId] = useState<string>("");
+  const [activeTabId, setActiveTabId] = useState<string>('');
   const [startIndex, setStartIndex] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
-  const [submitError, setSubmitError] = useState<string>("");
+  const [submitError, setSubmitError] = useState<string>('');
   const [formValues, setFormValues] = useState<Record<string, AggregatorValues>>({});
 
   useEffect(() => {
@@ -133,14 +122,14 @@ const AddAggregatorModal: React.FC<AddAggregatorModalProps> = ({
       aggregators.forEach((agg) => {
         const existing = initialValues?.[agg.id];
         initial[agg.id] = {
-          title: existing?.title ?? (isEdit ? agg.name : ""),
-          description: existing?.description ?? "",
+          title: existing?.title ?? (isEdit ? agg.name : ''),
+          description: existing?.description ?? '',
           credentials: { ...existing?.credentials },
         };
       });
       setFormValues(initial);
 
-      const defaultTab = initialAggregatorId ?? aggregators[0]?.id ?? "";
+      const defaultTab = initialAggregatorId ?? aggregators[0]?.id ?? '';
       setActiveTabId(defaultTab);
 
       const tabIdx = aggregators.findIndex((a) => a.id === defaultTab);
@@ -155,7 +144,7 @@ const AddAggregatorModal: React.FC<AddAggregatorModalProps> = ({
       }
 
       setIsLoading(false);
-      setSubmitError("");
+      setSubmitError('');
     }
   }, [open, aggregators, initialAggregatorId, initialValues, isEdit]);
 
@@ -164,7 +153,7 @@ const AddAggregatorModal: React.FC<AddAggregatorModalProps> = ({
   const handleTabChange = (id: string) => {
     if (isEdit) return;
     setActiveTabId(id);
-    setSubmitError("");
+    setSubmitError('');
   };
 
   const handlePrevTabs = () => {
@@ -205,7 +194,7 @@ const AddAggregatorModal: React.FC<AddAggregatorModalProps> = ({
       const text = await navigator.clipboard.readText();
       handleCredentialChange(fieldKey, text);
     } catch (err) {
-      console.error("Failed to read from clipboard:", err);
+      console.error('Failed to read from clipboard:', err);
     }
   };
 
@@ -214,18 +203,18 @@ const AddAggregatorModal: React.FC<AddAggregatorModalProps> = ({
     if (!currentForm) return;
 
     setIsLoading(true);
-    setSubmitError("");
+    setSubmitError('');
     try {
       await onSubmit?.(activeTabId, currentForm);
       handleClose();
     } catch (err: unknown) {
-      const body = (err as Record<string, unknown>)?.["body"] as
+      const body = (err as Record<string, unknown>)?.['body'] as
         | Record<string, unknown>
         | undefined;
       const message =
-        typeof body?.["message"] === "string" && body["message"]
-          ? body["message"]
-          : "Something went wrong. Please try again.";
+        typeof body?.['message'] === 'string' && body['message']
+          ? body['message']
+          : 'Something went wrong. Please try again.';
       setSubmitError(message);
     } finally {
       setIsLoading(false);
@@ -233,8 +222,8 @@ const AddAggregatorModal: React.FC<AddAggregatorModalProps> = ({
   };
 
   const currentForm = formValues[activeTabId] || {
-    title: "",
-    description: "",
+    title: '',
+    description: '',
     credentials: {},
   };
 
@@ -243,7 +232,7 @@ const AddAggregatorModal: React.FC<AddAggregatorModalProps> = ({
   const isCredentialsValid = isEdit
     ? true
     : (activeAggregator?.fields.every(
-        (field) => (currentForm.credentials[field.key] ?? "").trim().length > 0,
+        (field) => (currentForm.credentials[field.key] ?? '').trim().length > 0
       ) ?? true);
 
   const isValid = isTitleValid && isCredentialsValid;
@@ -254,63 +243,62 @@ const AddAggregatorModal: React.FC<AddAggregatorModalProps> = ({
     ? aggregators.slice(startIndex, startIndex + 4)
     : aggregators;
 
-
   const modalBoxSx = {
-    position: "absolute",
-    top: "50%",
-    left: "50%",
-    transform: "translate(-50%, -50%)",
-    display: "flex",
-    width: "670px",
-    maxHeight: "672px",
-    padding: "32px 28px",
-    flexDirection: "column",
-    alignItems: "flex-end",
-    gap: "20px",
-    borderRadius: "36px",
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    display: 'flex',
+    width: '670px',
+    maxHeight: '672px',
+    padding: '32px 28px',
+    flexDirection: 'column',
+    alignItems: 'flex-end',
+    gap: '20px',
+    borderRadius: '36px',
     background: theme.palette.background.paper,
-    boxShadow: "0px 0px 30px 0px rgba(0, 0, 0, 0.30)",
-    outline: "none",
-    boxSizing: "border-box",
+    boxShadow: '0px 0px 30px 0px rgba(0, 0, 0, 0.30)',
+    outline: 'none',
+    boxSizing: 'border-box',
   } as const;
 
   const labelSx = {
     fontWeight: 400,
-    fontSize: "16px",
-    lineHeight: "20px",
+    fontSize: '16px',
+    lineHeight: '20px',
     color: theme.palette.text.primary,
-    fontFamily: "Outfit, sans-serif",
+    fontFamily: 'Outfit, sans-serif',
   } as const;
 
   const inputCounterSx = {
     fontWeight: 400,
-    fontSize: "16px",
-    lineHeight: "20px",
+    fontSize: '16px',
+    lineHeight: '20px',
     color: theme.palette.text.secondary,
-    fontFamily: "Outfit, sans-serif",
+    fontFamily: 'Outfit, sans-serif',
   } as const;
 
   const textFieldSx = {
-    "& .MuiOutlinedInput-root": {
-      borderRadius: "12px",
+    '& .MuiOutlinedInput-root': {
+      borderRadius: '12px',
       backgroundColor: theme.palette.background.paper,
-      fontSize: "16px",
-      "& fieldset": { borderColor: theme.palette.grey[300] },
-      "&:hover fieldset": { borderColor: theme.palette.grey[400] },
-      "&.Mui-focused fieldset": {
+      fontSize: '16px',
+      '& fieldset': { borderColor: theme.palette.grey[300] },
+      '&:hover fieldset': { borderColor: theme.palette.grey[400] },
+      '&.Mui-focused fieldset': {
         borderColor: theme.palette.grey[400],
-        borderWidth: "1px",
+        borderWidth: '1px',
       },
-      "&.Mui-disabled": {
+      '&.Mui-disabled': {
         backgroundColor: theme.palette.action.disabledBackground,
-        "& fieldset": { borderColor: theme.palette.grey[300] },
+        '& fieldset': { borderColor: theme.palette.grey[300] },
       },
     },
-    "& .MuiOutlinedInput-input": {
-      padding: "13px 20px",
+    '& .MuiOutlinedInput-input': {
+      padding: '13px 20px',
       color: theme.palette.text.primary,
-      fontFamily: "Outfit, sans-serif",
-      "&.Mui-disabled": {
+      fontFamily: 'Outfit, sans-serif',
+      '&.Mui-disabled': {
         WebkitTextFillColor: theme.palette.text.primary,
       },
     },
@@ -322,14 +310,14 @@ const AddAggregatorModal: React.FC<AddAggregatorModalProps> = ({
     <Modal open={open} onClose={handleClose}>
       <Box sx={modalBoxSx}>
         {/* Header */}
-        <Box sx={{ width: "100%" }}>
+        <Box sx={{ width: '100%' }}>
           <Typography
             sx={{
               fontWeight: 600,
-              fontSize: "32px",
-              lineHeight: "40px",
+              fontSize: '32px',
+              lineHeight: '40px',
               color: theme.palette.text.primary,
-              fontFamily: "Outfit, sans-serif",
+              fontFamily: 'Outfit, sans-serif',
             }}
           >
             {titleText}
@@ -337,11 +325,11 @@ const AddAggregatorModal: React.FC<AddAggregatorModalProps> = ({
           <Typography
             sx={{
               fontWeight: 400,
-              fontSize: "18px",
-              lineHeight: "24px",
+              fontSize: '18px',
+              lineHeight: '24px',
               color: theme.palette.text.secondary,
-              fontFamily: "Outfit, sans-serif",
-              mt: "4px",
+              fontFamily: 'Outfit, sans-serif',
+              mt: '4px',
             }}
           >
             {subtitleText}
@@ -351,13 +339,13 @@ const AddAggregatorModal: React.FC<AddAggregatorModalProps> = ({
         {/* Tab Bar Slider */}
         <Box
           sx={{
-            display: "flex",
-            alignItems: "center",
-            width: "100%",
+            display: 'flex',
+            alignItems: 'center',
+            width: '100%',
             borderBottom: `1.5px solid ${theme.palette.divider}`,
-            gap: "12px",
-            mb: "4px",
-            boxSizing: "border-box",
+            gap: '12px',
+            mb: '4px',
+            boxSizing: 'border-box',
           }}
         >
           {hasArrows && (
@@ -365,9 +353,9 @@ const AddAggregatorModal: React.FC<AddAggregatorModalProps> = ({
               onClick={handlePrevTabs}
               disabled={startIndex === 0 || isEdit}
               sx={{
-                padding: "4px",
+                padding: '4px',
                 color: startIndex === 0 ? arrowDisabledColor : theme.palette.primary.main,
-                "&.Mui-disabled": { color: arrowDisabledColor },
+                '&.Mui-disabled': { color: arrowDisabledColor },
               }}
             >
               <svg
@@ -390,13 +378,13 @@ const AddAggregatorModal: React.FC<AddAggregatorModalProps> = ({
 
           <Box
             sx={{
-              display: "flex",
-              flexDirection: "row",
-              alignItems: "center",
+              display: 'flex',
+              flexDirection: 'row',
+              alignItems: 'center',
               flexGrow: 1,
-              justifyContent: hasArrows ? "space-between" : "flex-start",
-              gap: hasArrows ? "0px" : "32px",
-              px: "4px",
+              justifyContent: hasArrows ? 'space-between' : 'flex-start',
+              gap: hasArrows ? '0px' : '32px',
+              px: '4px',
             }}
           >
             {visibleAggregators.map((agg) => {
@@ -406,43 +394,41 @@ const AddAggregatorModal: React.FC<AddAggregatorModalProps> = ({
                   key={agg.id}
                   onClick={() => handleTabChange(agg.id)}
                   sx={{
-                    cursor: isEdit ? "default" : "pointer",
-                    color: isActive
-                      ? theme.palette.primary.main
-                      : theme.palette.text.secondary,
+                    cursor: isEdit ? 'default' : 'pointer',
+                    color: isActive ? theme.palette.primary.main : theme.palette.text.secondary,
                     fontWeight: 600,
-                    fontSize: "18px",
-                    fontFamily: "Outfit, sans-serif",
+                    fontSize: '18px',
+                    fontFamily: 'Outfit, sans-serif',
                     borderBottom: isActive
                       ? `3.5px solid ${theme.palette.primary.main}`
-                      : "3.5px solid transparent",
-                    marginBottom: "-2px",
-                    transition: "color 0.15s ease-in-out, border-color 0.15s ease-in-out",
-                    textAlign: "center",
-                    minWidth: "80px",
-                    userSelect: "none",
-                    "& span": {
-                      display: "inline-block",
+                      : '3.5px solid transparent',
+                    marginBottom: '-2px',
+                    transition: 'color 0.15s ease-in-out, border-color 0.15s ease-in-out',
+                    textAlign: 'center',
+                    minWidth: '80px',
+                    userSelect: 'none',
+                    '& span': {
+                      display: 'inline-block',
                       fontWeight: isActive ? 600 : 500,
                     },
                     ...(!isEdit && {
-                      "&:hover": { color: theme.palette.primary.main },
+                      '&:hover': { color: theme.palette.primary.main },
                     }),
                   }}
                 >
                   <Box
                     component="span"
                     sx={{
-                      display: "inline-block",
+                      display: 'inline-block',
                       fontWeight: isActive ? 600 : 500,
-                      "&::after": {
+                      '&::after': {
                         content: `"${agg.name}"`,
-                        display: "block",
+                        display: 'block',
                         fontWeight: 600,
                         height: 0,
-                        overflow: "hidden",
-                        visibility: "hidden",
-                        pointerEvents: "none",
+                        overflow: 'hidden',
+                        visibility: 'hidden',
+                        pointerEvents: 'none',
                       },
                     }}
                   >
@@ -458,12 +444,12 @@ const AddAggregatorModal: React.FC<AddAggregatorModalProps> = ({
               onClick={handleNextTabs}
               disabled={startIndex + 4 >= aggregators.length || isEdit}
               sx={{
-                padding: "4px",
+                padding: '4px',
                 color:
                   startIndex + 4 >= aggregators.length
                     ? arrowDisabledColor
                     : theme.palette.primary.main,
-                "&.Mui-disabled": { color: arrowDisabledColor },
+                '&.Mui-disabled': { color: arrowDisabledColor },
               }}
             >
               <svg
@@ -489,14 +475,14 @@ const AddAggregatorModal: React.FC<AddAggregatorModalProps> = ({
         {submitError && (
           <Box
             sx={{
-              width: "100%",
+              width: '100%',
               backgroundColor: alpha(theme.palette.error.main, 0.06),
               border: `1px solid ${alpha(theme.palette.error.main, 0.3)}`,
-              borderRadius: "12px",
-              padding: "12px 16px",
-              display: "flex",
-              alignItems: "flex-start",
-              gap: "10px",
+              borderRadius: '12px',
+              padding: '12px 16px',
+              display: 'flex',
+              alignItems: 'flex-start',
+              gap: '10px',
             }}
           >
             <svg
@@ -505,15 +491,9 @@ const AddAggregatorModal: React.FC<AddAggregatorModalProps> = ({
               height="18"
               viewBox="0 0 24 24"
               fill="none"
-              style={{ flexShrink: 0, marginTop: "1px" }}
+              style={{ flexShrink: 0, marginTop: '1px' }}
             >
-              <circle
-                cx="12"
-                cy="12"
-                r="10"
-                stroke={theme.palette.error.main}
-                strokeWidth="2"
-              />
+              <circle cx="12" cy="12" r="10" stroke={theme.palette.error.main} strokeWidth="2" />
               <path
                 d="M12 7v6"
                 stroke={theme.palette.error.main}
@@ -524,10 +504,10 @@ const AddAggregatorModal: React.FC<AddAggregatorModalProps> = ({
             </svg>
             <Typography
               sx={{
-                fontSize: "14px",
-                lineHeight: "20px",
+                fontSize: '14px',
+                lineHeight: '20px',
                 color: theme.palette.error.main,
-                fontFamily: "Outfit, sans-serif",
+                fontFamily: 'Outfit, sans-serif',
                 fontWeight: 400,
               }}
             >
@@ -539,21 +519,21 @@ const AddAggregatorModal: React.FC<AddAggregatorModalProps> = ({
         {/* Scrollable Fields Container */}
         <Box
           sx={{
-            display: "flex",
-            flexDirection: "column",
-            width: "100%",
-            gap: "16px",
-            overflowY: "auto",
+            display: 'flex',
+            flexDirection: 'column',
+            width: '100%',
+            gap: '16px',
+            overflowY: 'auto',
             flexGrow: 1,
-            maxHeight: "380px",
-            pr: "4px",
-            scrollbarWidth: "none",
-            "&::-webkit-scrollbar": { display: "none" },
+            maxHeight: '380px',
+            pr: '4px',
+            scrollbarWidth: 'none',
+            '&::-webkit-scrollbar': { display: 'none' },
           }}
         >
           {/* Title Field */}
-          <Box sx={{ display: "flex", flexDirection: "column", width: "100%", gap: "8px" }}>
-            <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+          <Box sx={{ display: 'flex', flexDirection: 'column', width: '100%', gap: '8px' }}>
+            <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
               <Typography sx={labelSx}>Title</Typography>
               <Typography sx={inputCounterSx}>{`(${currentForm.title.length}/30)`}</Typography>
             </Box>
@@ -568,10 +548,12 @@ const AddAggregatorModal: React.FC<AddAggregatorModalProps> = ({
           </Box>
 
           {/* Description Field */}
-          <Box sx={{ display: "flex", flexDirection: "column", width: "100%", gap: "8px" }}>
-            <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+          <Box sx={{ display: 'flex', flexDirection: 'column', width: '100%', gap: '8px' }}>
+            <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
               <Typography sx={labelSx}>Description</Typography>
-              <Typography sx={inputCounterSx}>{`(${currentForm.description.length}/255)`}</Typography>
+              <Typography
+                sx={inputCounterSx}
+              >{`(${currentForm.description.length}/255)`}</Typography>
             </Box>
             <TextField
               fullWidth
@@ -585,8 +567,8 @@ const AddAggregatorModal: React.FC<AddAggregatorModalProps> = ({
 
           {/* Dynamic Credentials Fields */}
           {activeAggregator?.fields.map((field, fieldIndex) => {
-            const rawValue = currentForm.credentials[field.key] ?? "";
-            const FALLBACK_SECRET_MASK = "****************";
+            const rawValue = currentForm.credentials[field.key] ?? '';
+            const FALLBACK_SECRET_MASK = '****************';
             const displayValue = isEdit
               ? fieldIndex === 0
                 ? partialMask(rawValue)
@@ -596,23 +578,23 @@ const AddAggregatorModal: React.FC<AddAggregatorModalProps> = ({
             return (
               <Box
                 key={field.key}
-                sx={{ display: "flex", flexDirection: "column", width: "100%", gap: "8px" }}
+                sx={{ display: 'flex', flexDirection: 'column', width: '100%', gap: '8px' }}
               >
                 <Typography sx={labelSx}>{field.label}</Typography>
                 <TextField
                   fullWidth
                   disabled={isEdit}
-                  placeholder={field.placeholder ?? "Enter"}
+                  placeholder={field.placeholder ?? 'Enter'}
                   value={displayValue}
                   onChange={(e) => handleCredentialChange(field.key, e.target.value)}
                   sx={{
                     ...textFieldSx,
                     ...(isEdit && {
-                      "& .MuiOutlinedInput-input": {
-                        ...textFieldSx["& .MuiOutlinedInput-input"],
-                        letterSpacing: fieldIndex > 0 ? "0.2em" : "0.05em",
+                      '& .MuiOutlinedInput-input': {
+                        ...textFieldSx['& .MuiOutlinedInput-input'],
+                        letterSpacing: fieldIndex > 0 ? '0.2em' : '0.05em',
                         color: theme.palette.text.secondary,
-                        "&.Mui-disabled": {
+                        '&.Mui-disabled': {
                           WebkitTextFillColor: theme.palette.text.secondary,
                         },
                       },
@@ -628,8 +610,8 @@ const AddAggregatorModal: React.FC<AddAggregatorModalProps> = ({
                           sx={{
                             // ✅ was: color: "#777777"
                             color: theme.palette.text.secondary,
-                            padding: "4px",
-                            "&.Mui-disabled": { color: theme.palette.action.disabled },
+                            padding: '4px',
+                            '&.Mui-disabled': { color: theme.palette.action.disabled },
                           }}
                         >
                           <svg
@@ -641,7 +623,7 @@ const AddAggregatorModal: React.FC<AddAggregatorModalProps> = ({
                           >
                             <mask
                               id="mask0_10756_26048"
-                              style={{ maskType: "alpha" }}
+                              style={{ maskType: 'alpha' }}
                               maskUnits="userSpaceOnUse"
                               x="0"
                               y="0"
@@ -670,11 +652,11 @@ const AddAggregatorModal: React.FC<AddAggregatorModalProps> = ({
         {/* Action Buttons */}
         <Box
           sx={{
-            display: "flex",
-            justifyContent: "flex-end",
-            gap: "16px",
-            width: "100%",
-            mt: "12px",
+            display: 'flex',
+            justifyContent: 'flex-end',
+            gap: '16px',
+            width: '100%',
+            mt: '12px',
           }}
         >
           <Button
@@ -685,13 +667,13 @@ const AddAggregatorModal: React.FC<AddAggregatorModalProps> = ({
               border: `1px solid ${theme.palette.primary.main}`,
               color: theme.palette.primary.main,
               backgroundColor: theme.palette.common.white,
-              fontSize: "16px",
+              fontSize: '16px',
               fontWeight: 500,
-              borderRadius: "12px",
-              padding: "13px 24px",
-              textTransform: "none",
-              fontFamily: "Outfit, sans-serif",
-              "&:hover": {
+              borderRadius: '12px',
+              padding: '13px 24px',
+              textTransform: 'none',
+              fontFamily: 'Outfit, sans-serif',
+              '&:hover': {
                 border: `1px solid ${theme.palette.primary.main}`,
                 backgroundColor: alpha(theme.palette.primary.main, 0.04),
               },
@@ -705,21 +687,21 @@ const AddAggregatorModal: React.FC<AddAggregatorModalProps> = ({
             disabled={isDisabled}
             sx={{
               backgroundColor: theme.palette.primary.main,
-              fontSize: "16px",
+              fontSize: '16px',
               fontWeight: 500,
-              borderRadius: "12px",
-              padding: "13px 24px",
+              borderRadius: '12px',
+              padding: '13px 24px',
               color: theme.palette.primary.contrastText,
-              textTransform: "none",
-              fontFamily: "Outfit, sans-serif",
-              "&:hover": { backgroundColor: theme.palette.primary.dark },
-              "&:disabled": {
+              textTransform: 'none',
+              fontFamily: 'Outfit, sans-serif',
+              '&:hover': { backgroundColor: theme.palette.primary.dark },
+              '&:disabled': {
                 backgroundColor: theme.palette.action.disabledBackground,
                 color: theme.palette.action.disabled,
               },
             }}
           >
-            {isLoading ? "Saving..." : submitLabel}
+            {isLoading ? 'Saving...' : submitLabel}
           </Button>
         </Box>
       </Box>
