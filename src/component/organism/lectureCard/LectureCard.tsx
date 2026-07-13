@@ -13,6 +13,7 @@ export type AttendanceStatus =
   | 'Late'
   | 'Leave'
   | 'Excused'
+  | 'Awaiting'
   | 'Awaiting Start'
   | 'Session in progress'
   | 'NA';
@@ -114,6 +115,10 @@ const getAttendanceStyles = (theme: CoreTheme, status: AttendanceStatus) => {
     Late: { backgroundColor: theme.palette.common.white, color: theme.palette.text.secondary },
     Leave: { backgroundColor: theme.palette.common.white, color: theme.palette.info.main },
     Excused: { backgroundColor: theme.palette.common.white, color: theme.palette.text.secondary },
+    Awaiting: {
+      backgroundColor: theme.palette.common.white,
+      color: theme.palette.text.secondary,
+    },
     'Awaiting Start': {
       backgroundColor: theme.palette.common.white,
       color: theme.palette.text.secondary,
@@ -175,7 +180,7 @@ const LectureCard: React.FC<LectureCardProps> = ({
   const minHeight = isCompact ? { xs: 120, sm: 140 } : { xs: 140, sm: 200 };
 
   const shouldShowAttendance = attendanceStatus !== undefined;
-  const displayStatus = attendanceStatus;
+  const displayStatus = attendanceStatus === 'NA' ? 'Awaiting' : attendanceStatus;
 
   const handleButtonClick = onButtonClick || onWatch;
 

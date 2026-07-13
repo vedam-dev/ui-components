@@ -9,11 +9,17 @@ import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import React from 'react';
 import { CoreTheme, useCoreTheme } from '../../../theme/core-theme';
 
+export type AttendanceChipVariant = 'success' | 'warning' | 'error';
+
 export interface SubjectCardProps {
   subject: string;
   teacher?: string;
   duration?: string;
   lectureCount?: number;
+  attendance?: number;
+  minAttendance?: number;
+  attendanceVariant?: AttendanceChipVariant;
+  attendanceTooltip?: string;
   description: string;
   iconUrl?: string;
   iconAlt?: string;
@@ -46,13 +52,47 @@ export interface SubjectCardProps {
   buttonSx?: SxProps<Theme>;
   batchTextSx?: SxProps<Theme>;
   courseInfoTextSx?: SxProps<Theme>;
+  attendanceChipSx?: SxProps<Theme>;
 }
+
+const getAttendanceVariantFromValue = (
+  attendance: number,
+  minAttendance = 75
+): AttendanceChipVariant => {
+  if (attendance >= minAttendance) return 'success';
+  // Keep 3 variants while deriving threshold from course minimum.
+  if (attendance >= Math.max(minAttendance - 10, 0)) return 'warning';
+  return 'error';
+};
+
+const getAttendanceChipStyles = (theme: CoreTheme, variant: AttendanceChipVariant) => {
+  const styles: Record<AttendanceChipVariant, { backgroundColor: string; color: string }> = {
+    success: {
+      backgroundColor: theme.palette.success[500],
+      color: theme.palette.success[300],
+    },
+    warning: {
+      backgroundColor: theme.palette.warning[500],
+      color: theme.palette.warning[300],
+    },
+    error: {
+      backgroundColor: theme.palette.error[500],
+      color: theme.palette.error[300],
+    },
+  };
+
+  return styles[variant];
+};
 
 const SubjectCard: FC<SubjectCardProps> = ({
   subject,
   teacher,
   duration,
   lectureCount,
+  attendance,
+  minAttendance,
+  attendanceVariant,
+  attendanceTooltip,
   description,
   iconUrl = 'https://acjlsquedaotbhbxmtee.supabase.co/storage/v1/object/public/vedam-website-assets/images/footer/Vector.png',
   iconAlt = 'Subject icon',
@@ -80,8 +120,14 @@ const SubjectCard: FC<SubjectCardProps> = ({
   buttonSx,
   batchTextSx,
   courseInfoTextSx,
+  attendanceChipSx,
 }) => {
   const theme = useCoreTheme() as CoreTheme;
+  const showAttendance = attendance !== undefined;
+  const resolvedAttendanceVariant =
+    attendanceVariant ??
+    (showAttendance ? getAttendanceVariantFromValue(attendance, minAttendance) : 'success');
+  const attendanceChipColors = getAttendanceChipStyles(theme, resolvedAttendanceVariant);
   const resolvedGradient =
     gradient ??
     `linear-gradient(180deg, ${theme.vd.palette.accentPrimaryLight} 0%, ${theme.palette.common.white} 100%)`;
@@ -89,9 +135,15 @@ const SubjectCard: FC<SubjectCardProps> = ({
 
   const defaultCardSx: SxProps<Theme> = {
     width: { md: '210px', lg: typeof width === 'number' ? `${width}px` : width },
-    height: { md: '184px', lg: typeof height === 'number' ? `${height}px` : height },
-    borderRadius: { md: '18px', lg: '28px' },
-    padding: { md: '14px 12px', lg: '28px 20px' },
+    height: {
+      md: showAttendance ? '200px' : '184px',
+      lg: showAttendance ? '276px' : typeof height === 'number' ? `${height}px` : height,
+    },
+    borderRadius: { md: theme.spacing(4.5), lg: theme.spacing(7) },
+    padding: {
+      md: showAttendance ? theme.spacing(2, 3, 3.5) : theme.spacing(3.5, 3),
+      lg: theme.spacing(5),
+    },
     border: resolvedBorder,
     background: resolvedGradient,
     display: 'flex',
@@ -106,11 +158,11 @@ const SubjectCard: FC<SubjectCardProps> = ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    borderRadius: { md: '8px', lg: theme.spacing(2) },
-    gap: '10px',
+    borderRadius: { md: theme.spacing(2), lg: theme.spacing(2) },
+    gap: theme.spacing(2.5),
     aspectRatio: '1/1',
     border: '1px solid transparent',
-    padding: { md: '11px 13px', lg: theme.spacing(2.75, 3.25) },
+    padding: { md: theme.spacing(2.75, 3.25), lg: theme.spacing(2.75, 3.25) },
     bgcolor: 'white',
     backgroundImage: `linear-gradient(white, white), linear-gradient(to right, ${theme.vd.palette.accentSecondary}, ${theme.vd.palette.accentPrimary})`,
     backgroundOrigin: 'border-box',
@@ -166,7 +218,7 @@ const SubjectCard: FC<SubjectCardProps> = ({
     fontSize: { md: '12px', lg: '16px' },
     lineHeight: { md: theme.spacing(3.5), lg: theme.spacing(4.5) },
     fontWeight: 400,
-    mb: { md: theme.spacing(3), lg: theme.spacing(4.5) },
+    mb: { md: theme.spacing(2.5), lg: theme.spacing(3.75) },
     textWrap: 'stable',
     minHeight: { md: theme.spacing(7), lg: theme.spacing(9.5) },
     ...descriptionTextSx,
@@ -207,6 +259,27 @@ const SubjectCard: FC<SubjectCardProps> = ({
     ...batchTextSx,
   };
 
+  const defaultAttendanceChipSx: SxProps<Theme> = {
+    display: 'inline-flex',
+    height: { md: '16px', lg: '24px' },
+    padding: { md: theme.spacing(0.5, 2.5), lg: theme.spacing(1, 3.25) },
+    justifyContent: 'center',
+    alignItems: 'center',
+    gap: theme.spacing(2.5),
+    flexShrink: 0,
+    borderRadius: theme.spacing(25),
+    width: 'fit-content',
+    mb: { md: theme.spacing(2.5), lg: theme.spacing(3.75) },
+    bgcolor: attendanceChipColors.backgroundColor,
+    color: attendanceChipColors.color,
+    fontFamily: theme.typography.fontFamily ?? 'Outfit, system-ui',
+    fontSize: { md: '10px', lg: '12px' },
+    fontStyle: 'normal',
+    fontWeight: 400,
+    lineHeight: 'normal',
+    ...attendanceChipSx,
+  };
+
   const defaultCourseInfoTextSx: SxProps<Theme> = {
     //FontFamily: theme.typography.//FontFamily,
     fontWeight: 500,
@@ -245,11 +318,24 @@ const SubjectCard: FC<SubjectCardProps> = ({
           height: '100%',
         }}
       >
+        {showAttendance && (
+          <Tooltip
+            title={attendanceTooltip ?? ''}
+            placement="top"
+            arrow
+            disableHoverListener={!attendanceTooltip}
+            disableFocusListener={!attendanceTooltip}
+            disableTouchListener={!attendanceTooltip}
+          >
+            <Box sx={defaultAttendanceChipSx}>Attendance : {attendance}%</Box>
+          </Tooltip>
+        )}
+
         <Stack
           direction="row"
           spacing={{ md: 3, lg: 6 }}
           alignItems="center"
-          mb={{ md: '12px', lg: '18px' }}
+          mb={{ md: theme.spacing(2.5), lg: theme.spacing(3.75) }}
         >
           <Box sx={defaultIconContainerSx}>
             <img
@@ -285,7 +371,13 @@ const SubjectCard: FC<SubjectCardProps> = ({
 
         <Box>
           {showCourseInfo && (
-            <Box sx={{ mb: { md: '14px', lg: '18px' }, display: 'flex', alignItems: 'center' }}>
+            <Box
+              sx={{
+                mb: { md: theme.spacing(2.75), lg: theme.spacing(3.75) },
+                display: 'flex',
+                alignItems: 'center',
+              }}
+            >
               {/* Course Code */}
               <Typography sx={defaultCourseInfoTextSx}>Course Code: {courseCode}</Typography>
 
@@ -295,7 +387,7 @@ const SubjectCard: FC<SubjectCardProps> = ({
                   height: { md: '12px', lg: '15px' },
                   width: '1px',
                   backgroundColor: theme.palette.text.secondary,
-                  mx: { md: '4px', lg: '8px' },
+                  mx: { md: theme.spacing(1), lg: theme.spacing(2) },
                 }}
               />
 
@@ -311,7 +403,7 @@ const SubjectCard: FC<SubjectCardProps> = ({
                 display: 'flex',
                 alignItems: 'center',
                 gap: { md: theme.spacing(1), lg: theme.spacing(2) },
-                mb: { md: '12px', lg: '18px' },
+                mb: { md: theme.spacing(2.5), lg: theme.spacing(3.75) },
               }}
             >
               <Stack direction="row" alignItems="center" spacing={1}>
@@ -348,7 +440,7 @@ const SubjectCard: FC<SubjectCardProps> = ({
         {displayButtons.length > 0 && (
           <CardActions
             sx={{
-              padding: 0,
+              padding: theme.spacing(0),
               mb: theme.spacing(0),
               display: 'flex',
               justifyContent: 'center',

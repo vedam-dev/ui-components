@@ -1,13 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import SubjectCard from '../../../component/organism/card/SubjectCard';
 import { fn } from '@storybook/test';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { JSX } from 'react';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
-
-const storybookTheme = createTheme({
-  spacing: 4,
-});
 
 // Define gradient and border arrays for easy reference
 const gradients = [
@@ -27,13 +22,6 @@ const borders = [
 const meta: Meta<typeof SubjectCard> = {
   title: 'Organism/SubjectCard',
   component: SubjectCard,
-  decorators: [
-    (Story): JSX.Element => (
-      <ThemeProvider theme={storybookTheme}>
-        <Story />
-      </ThemeProvider>
-    ),
-  ],
   parameters: {
     layout: 'centered',
     docs: {
@@ -56,6 +44,11 @@ const meta: Meta<typeof SubjectCard> = {
     border: {
       control: 'text',
       description: 'CSS border for card',
+    },
+    attendanceVariant: {
+      control: 'select',
+      options: ['success', 'warning', 'error'],
+      description: 'Attendance chip color variant',
     },
   },
   args: {
@@ -177,6 +170,51 @@ export const DefaultWithTeacher: Story = {
   },
 };
 
+export const WithAttendance: Story = {
+  args: {
+    subject: 'DSA 101',
+    description: 'Advanced calculus, algebra, and mathematical analysis',
+    courseCode: 'S1202',
+    credits: '100',
+    variant: 'course-offering',
+    attendance: 82,
+    attendanceVariant: 'success',
+    attendanceTooltip: 'Your attendance for this subject is 82%',
+    index: 0,
+    gradient: gradients[0],
+    border: borders[0],
+    onGoToClass: fn(),
+  },
+};
+
+export const WithAttendanceWarning: Story = {
+  args: {
+    subject: 'Physics 201',
+    description: 'Introduction to mechanics and thermodynamics',
+    attendance: 62,
+    attendanceVariant: 'warning',
+    attendanceTooltip: 'Your attendance is below the recommended 75% threshold',
+    index: 1,
+    gradient: gradients[1],
+    border: borders[1],
+    onGoToClass: fn(),
+  },
+};
+
+export const WithAttendanceError: Story = {
+  args: {
+    subject: 'Chemistry 101',
+    description: 'Fundamentals of organic and inorganic chemistry',
+    attendance: 42,
+    attendanceVariant: 'error',
+    attendanceTooltip: 'Your attendance is critically low. Please improve attendance.',
+    index: 2,
+    gradient: gradients[2],
+    border: borders[2],
+    onGoToClass: fn(),
+  },
+};
+
 export const CourseOfferingNoBatch: Story = {
   args: {
     subject: 'Chemistry',
@@ -224,49 +262,47 @@ export const EmptySecondaryText: Story = {
 export const AllGradientVariations: Story = {
   decorators: [
     (_Story): JSX.Element => (
-      <ThemeProvider theme={storybookTheme}>
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(2, 1fr)',
-            gap: '20px',
-            padding: '20px',
-          }}
-        >
-          <SubjectCard
-            subject="Purple Gradient"
-            description="This card uses gradient index 0 (purple)"
-            index={0}
-            gradient={gradients[0]}
-            border={borders[0]}
-            buttons={[{ text: 'View', onClick: fn(), variant: 'outlined' }]}
-          />
-          <SubjectCard
-            subject="Yellow Gradient"
-            description="This card uses gradient index 1 (yellow)"
-            index={1}
-            gradient={gradients[1]}
-            border={borders[1]}
-            buttons={[{ text: 'View', onClick: fn(), variant: 'outlined' }]}
-          />
-          <SubjectCard
-            subject="Orange Gradient"
-            description="This card uses gradient index 2 (orange)"
-            index={2}
-            gradient={gradients[2]}
-            border={borders[2]}
-            buttons={[{ text: 'View', onClick: fn(), variant: 'outlined' }]}
-          />
-          <SubjectCard
-            subject="Cyan Gradient"
-            description="This card uses gradient index 3 (cyan)"
-            index={3}
-            gradient={gradients[3]}
-            border={borders[3]}
-            buttons={[{ text: 'View', onClick: fn(), variant: 'outlined' }]}
-          />
-        </div>
-      </ThemeProvider>
+      <div
+        style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(2, 1fr)',
+          gap: '20px',
+          padding: '20px',
+        }}
+      >
+        <SubjectCard
+          subject="Purple Gradient"
+          description="This card uses gradient index 0 (purple)"
+          index={0}
+          gradient={gradients[0]}
+          border={borders[0]}
+          buttons={[{ text: 'View', onClick: fn(), variant: 'outlined' }]}
+        />
+        <SubjectCard
+          subject="Yellow Gradient"
+          description="This card uses gradient index 1 (yellow)"
+          index={1}
+          gradient={gradients[1]}
+          border={borders[1]}
+          buttons={[{ text: 'View', onClick: fn(), variant: 'outlined' }]}
+        />
+        <SubjectCard
+          subject="Orange Gradient"
+          description="This card uses gradient index 2 (orange)"
+          index={2}
+          gradient={gradients[2]}
+          border={borders[2]}
+          buttons={[{ text: 'View', onClick: fn(), variant: 'outlined' }]}
+        />
+        <SubjectCard
+          subject="Cyan Gradient"
+          description="This card uses gradient index 3 (cyan)"
+          index={3}
+          gradient={gradients[3]}
+          border={borders[3]}
+          buttons={[{ text: 'View', onClick: fn(), variant: 'outlined' }]}
+        />
+      </div>
     ),
   ],
   args: {
