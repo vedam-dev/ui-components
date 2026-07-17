@@ -1,16 +1,18 @@
-import React, { useState, useEffect, useRef, useMemo, useLayoutEffect } from 'react';
 import { SxProps, Theme, styled } from '@mui/material';
+import React, { useState, useEffect, useRef, useMemo, useLayoutEffect } from 'react';
 import { Box } from '../../atom/box';
 import { Typography } from '../../atom/typography';
 import { CoreTheme, useCoreTheme } from '../../../theme/core-theme';
-
+import { Tooltip } from '@mui/material';
 export interface CampusOption {
   value: string;
   collegeName: string;
   campus: string;
+  label: string;
   collegeId: string;
   location: string;
   pincode: string;
+  website: string;
   disabled?: boolean;
 }
 
@@ -26,6 +28,7 @@ export interface CampusSelectionProps {
   showNavigationButtons?: boolean;
   itemsPerPage?: number;
   logourl: string;
+  edit: boolean;
 }
 
 const Outer = styled(Box)(({ theme }) => ({
@@ -189,11 +192,11 @@ const InfoRow = styled(Box)(({ theme }) => ({
   display: 'flex',
   alignItems: 'flex-start',
   maxWidth: '324px',
-  gap: '34px',
-  marginBottom: '26px',
-  '&:last-of-type': {
-    marginBottom: '0px',
-  },
+  // gap: '34px',
+  // marginBottom: '26px',
+  // '&:last-of-type': {
+  //   marginBottom: '0px',
+  // },
   [theme.breakpoints.down(1200)]: {
     maxWidth: '312px',
     gap: '20px',
@@ -202,7 +205,7 @@ const InfoRow = styled(Box)(({ theme }) => ({
 }));
 
 const InfoLabel = styled(Typography)(({ theme }) => ({
-  color: (theme as CoreTheme).vd.palette.textStrong,
+  color: (theme as CoreTheme).vd.palette.accentPrimary,
   fontSize: '16px',
   fontWeight: 600,
   minWidth: '80px',
@@ -259,6 +262,18 @@ const SelectButton = styled('button')(({ theme }) => ({
   },
 }));
 
+const EditButton = styled('button')(({ theme }) => ({
+  display: 'flex',
+  height: '44px',
+  padding: theme.spacing(0, 3.5),
+  justifyContent: 'center',
+  alignItems: 'center',
+  gap: theme.spacing(2.5),
+  borderRadius: theme.spacing(3),
+  border: `1px solid var(--Grey-400, ${theme.palette.grey[400]})`,
+  background: `var(--Base-White, ${theme.palette.background.paper} )`,
+}));
+
 const CampusSelection: React.FC<CampusSelectionProps> = ({
   value,
   onChange,
@@ -270,6 +285,7 @@ const CampusSelection: React.FC<CampusSelectionProps> = ({
   subtitle = 'Choose a campus based on location',
   showNavigationButtons = true,
   itemsPerPage: itemsPerPageProp,
+  edit = true,
   logourl,
 }) => {
   const theme = useCoreTheme() as CoreTheme;
@@ -467,17 +483,98 @@ const CampusSelection: React.FC<CampusSelectionProps> = ({
                   border: '1px solid #F6EDFF',
                   minHeight: { md: '200px', lg: '220px' },
                   backgroundColor: theme.palette.common.white,
-                  p: { md: '24px 12px', lg: '25px 19px' },
+                  p: { md: '16px', lg: '18px' },
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: theme.spacing(3.25),
                 }}
               >
-                <InfoRow>
-                  <InfoLabel>College ID</InfoLabel>
-                  <InfoValue>{opt.collegeId}</InfoValue>
-                </InfoRow>
+                <Box
+                  sx={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    marginBottom: theme.spacing(3),
+                    gap: `${theme.spacing(3.25)} !important`,
+                  }}
+                >
+                  <InfoRow>
+                    <InfoLabel>Label</InfoLabel>
+                    <InfoValue>{opt.label}</InfoValue>
+                  </InfoRow>
 
-                <InfoRow sx={{ minHeight: '96px' }}>
-                  <InfoLabel>Location</InfoLabel>
-                  <InfoValue>{opt.location}</InfoValue>
+                  <InfoRow
+                    sx={{
+                      height: '126px',
+                      overflow: 'hidden',
+                    }}
+                  >
+                    <InfoLabel>Location</InfoLabel>
+                    <Tooltip
+                      title={opt.location}
+                      arrow
+                      placement="top"
+                      slotProps={{
+                        tooltip: {
+                          sx: {
+                            maxWidth: '60%',
+                            whiteSpace: 'normal',
+                          },
+                        },
+                      }}
+                    >
+                      <InfoValue
+                        sx={{
+                          display: '-webkit-box',
+                          WebkitBoxOrient: 'vertical',
+                          WebkitLineClamp: 5,
+                          overflow: 'hidden',
+                          textOverflow: 'ellipsis',
+                          wordBreak: 'break-word',
+                          minWidth: 0,
+                        }}
+                      >
+                        {opt.location}
+                      </InfoValue>
+                    </Tooltip>
+                  </InfoRow>
+                </Box>
+
+                <InfoRow
+                  sx={{
+                    mt: 'auto',
+                    minHeight: '50px',
+                    maxHeight: '50px',
+                    overflow: 'hidden',
+                  }}
+                >
+                  <InfoLabel>Website</InfoLabel>
+                  <Tooltip
+                    title={opt.website}
+                    arrow
+                    placement="top"
+                    slotProps={{
+                      tooltip: {
+                        sx: {
+                          maxWidth: '60%',
+                          whiteSpace: 'normal',
+                        },
+                      },
+                    }}
+                  >
+                    <InfoValue
+                      sx={{
+                        display: '-webkit-box',
+                        WebkitBoxOrient: 'vertical',
+                        WebkitLineClamp: 2,
+                        overflow: 'hidden',
+                        textOverflow: 'ellipsis',
+                        wordBreak: 'break-word',
+                        minWidth: 0,
+                      }}
+                    >
+                      {opt.website}
+                    </InfoValue>
+                  </Tooltip>
                 </InfoRow>
               </Box>
 
@@ -487,8 +584,37 @@ const CampusSelection: React.FC<CampusSelectionProps> = ({
                   justifyContent: 'center',
                   alignItems: 'center',
                   mt: { md: '14px', lg: '20px' },
+                  gap: theme.spacing(2.5),
                 }}
               >
+                {edit ? (
+                  <EditButton>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="20"
+                      height="20"
+                      viewBox="0 0 20 20"
+                      fill="none"
+                    >
+                      <mask
+                        id="mask0_11505_20310"
+                        maskUnits="userSpaceOnUse"
+                        x="0"
+                        y="0"
+                        width="20"
+                        height="20"
+                      >
+                        <rect width="20" height="20" fill="#D9D9D9" />
+                      </mask>
+                      <g mask="url(#mask0_11505_20310)">
+                        <path
+                          d="M1.66797 19.9993V16.666H18.3346V19.9993H1.66797ZM5.0013 13.3327H6.16797L12.668 6.85352L11.4805 5.66602L5.0013 12.166V13.3327ZM3.33464 14.9993V11.4577L12.668 2.14518C12.8207 1.9924 12.9978 1.87435 13.1992 1.79102C13.4006 1.70768 13.6124 1.66602 13.8346 1.66602C14.0569 1.66602 14.2721 1.70768 14.4805 1.79102C14.6888 1.87435 14.8763 1.99935 15.043 2.16602L16.1888 3.33268C16.3555 3.48546 16.477 3.66602 16.5534 3.87435C16.6298 4.08268 16.668 4.29796 16.668 4.52018C16.668 4.72852 16.6298 4.93338 16.5534 5.13477C16.477 5.33615 16.3555 5.52018 16.1888 5.68685L6.8763 14.9993H3.33464Z"
+                          fill="#777777"
+                        />
+                      </g>
+                    </svg>
+                  </EditButton>
+                ) : null}
                 <SelectButton
                   onClick={(e) => handleSelectClick(e, opt)}
                   aria-label={`Select ${opt.campus}`}
