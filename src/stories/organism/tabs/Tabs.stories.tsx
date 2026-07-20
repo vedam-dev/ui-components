@@ -6,14 +6,17 @@ const sampleTabs = [
   {
     label: 'Overview',
     content: <Box sx={{ p: 1 }}>This is the overview panel.</Box>,
+    onDelete: () => alert('Delete Overview'),
   },
   {
     label: 'Details',
     content: <Box sx={{ p: 1 }}>Here are some details.</Box>,
+    onDelete: () => alert('Delete Details'),
   },
   {
     label: 'Settings',
     content: <Box sx={{ p: 1 }}>Settings content goes here.</Box>,
+    onDelete: () => alert('Delete Settings'),
   },
 ];
 
@@ -68,6 +71,8 @@ export const Default: Story = {
     tabs: sampleTabs,
     initialIndex: 0,
     disableTransition: false,
+    onAdd: () => alert('Add Tab'),
+    deleteConfirmMessage: 'Are you sure you want to delete this tab?',
   },
 };
 
@@ -75,6 +80,8 @@ export const WithDisabledTab: Story = {
   args: {
     tabs: [sampleTabs[0], { ...sampleTabs[1], disabled: true }, sampleTabs[2]],
     initialIndex: 0,
+    onAdd: () => alert('Add Tab'),
+    deleteConfirmMessage: 'Are you sure you want to delete this tab?',
   },
 };
 
@@ -82,6 +89,8 @@ export const NoTransition: Story = {
   args: {
     tabs: sampleTabs,
     disableTransition: true,
+    onAdd: () => alert('Add Tab'),
+    deleteConfirmMessage: 'Are you sure you want to delete this tab?',
   },
 };
 
@@ -91,6 +100,8 @@ export const CustomStyling: Story = {
     tabSx: { fontSize: '16px', letterSpacing: '0.2px' },
     panelSx: { minHeight: '120px', display: 'flex', alignItems: 'center' },
     tabGap: 8,
+    onAdd: () => alert('Add Tab'),
+    deleteConfirmMessage: 'Are you sure you want to delete this tab?',
   },
 };
 
@@ -98,5 +109,7 @@ export const StartingAtSecondTab: Story = {
   args: {
     tabs: sampleTabs,
     initialIndex: 1,
+    onAdd: () => alert('Add Tab'),
+    deleteConfirmMessage: 'Are you sure you want to delete this tab?',
   },
 };

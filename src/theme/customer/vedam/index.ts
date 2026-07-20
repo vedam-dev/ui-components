@@ -204,7 +204,7 @@ const index = createCoreTheme({
   palette: {
     mode: 'light',
     primary: {
-      main: colors.primaryP600Primary,
+      main: colors.primaryP500,
       dark: colors.primaryP700,
       50: colors.primaryP800,
       100: colors.primaryP100,
