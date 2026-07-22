@@ -55,8 +55,8 @@ export interface ContestModalProps {
 
 const TITLE_MAX_LENGTH = 80;
 const DEFAULT_DURATION_MINUTES = 120; // 02:00
-const DURATION_STEP_MINUTES = 3;
-const MIN_DURATION_MINUTES = 3;
+const DURATION_STEP_MINUTES = 30;
+const MIN_DURATION_MINUTES = 30;
 const DEFAULT_MAX_SCORE = 100;
 
 function formatDurationHhMm(totalMinutes: number): string {
@@ -555,7 +555,16 @@ const ContestModal: React.FC<ContestModalProps> = ({
                   updateField('maxScore', Number.isNaN(next) ? 0 : next);
                 }}
                 inputProps={{ min: 1 }}
-                sx={textFieldSx}
+                sx={{
+                  ...textFieldSx,
+                  '& input[type=number]': {
+                    MozAppearance: 'textfield',
+                  },
+                  '& input[type=number]::-webkit-outer-spin-button, & input[type=number]::-webkit-inner-spin-button': {
+                    WebkitAppearance: 'none',
+                    margin: 0,
+                  },
+                }}
               />
             </Box>
           </Box>
