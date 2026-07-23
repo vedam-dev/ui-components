@@ -78,6 +78,7 @@ export {
 } from './component/organism/ratingAnalytics/RatingAnalytics';
 
 export { default as AddFeeTypeModal } from './component/organism/addFeeTypeModal/AddFeeTypeModal';
+export { default as ContestModal } from './component/organism/contestModal/ContestModal';
 export { default as AddAggregatorModal } from './component/organism/addAggregatorModal/AddAggregatorModal';
 
 export {
