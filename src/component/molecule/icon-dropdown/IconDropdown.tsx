@@ -186,7 +186,7 @@ const IconDropdown: React.FC<IconDropdownProps> = ({
             width: Math.max(dropdownWidth, minWidth),
             maxHeight: menuMaxHeight,
             overflowY: 'auto',
-            borderRadius: '12px',
+            borderRadius: theme.spacing(3),
             boxShadow: '0px 4px 20px rgba(0,0,0,0.08)',
           },
         }}
@@ -209,12 +209,12 @@ const IconDropdown: React.FC<IconDropdownProps> = ({
                       height: MENU_ITEM_HEIGHT,
                       minHeight: MENU_ITEM_HEIGHT,
                       py: 0,
-                      px: '16px',
+                      px: theme.spacing(4),
                       display: 'flex',
                       flexDirection: 'column',
                       alignItems: 'flex-start',
                       justifyContent: 'center',
-                      gap: '2px',
+                      gap: theme.spacing(0.5),
                       borderBottom:
                         index === options.length - 1
                           ? 'none'

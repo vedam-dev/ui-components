@@ -56,7 +56,8 @@ export interface ContestModalProps {
 }
 
 const TITLE_MAX_LENGTH = 80;
-const DEFAULT_DURATION_MINUTES = 120; // 02:00
+const LABEL_MAX_LENGTH = 15;
+const DEFAULT_DURATION_MINUTES = 120;
 const DURATION_STEP_MINUTES = 30;
 const MIN_DURATION_MINUTES = 30;
 const DEFAULT_MAX_SCORE = 100;
@@ -213,7 +214,7 @@ const ContestModal: React.FC<ContestModalProps> = ({
 
   const textFieldSx = {
     '& .MuiOutlinedInput-root': {
-      borderRadius: '12px',
+      borderRadius: theme.spacing(3),
       backgroundColor: theme.palette.common.white,
       fontSize: '16px',
       fontFamily: 'Outfit, sans-serif',
@@ -227,7 +228,7 @@ const ContestModal: React.FC<ContestModalProps> = ({
         backgroundColor: theme.palette.grey[50],
       },
     },
-    '& .MuiOutlinedInput-input': { padding: '13px 20px' },
+    '& .MuiOutlinedInput-input': { padding: theme.spacing(3.25, 5) },
   };
 
   const labelSx = {
@@ -235,7 +236,7 @@ const ContestModal: React.FC<ContestModalProps> = ({
     fontSize: '16px',
     lineHeight: '20px',
     color: theme.palette.text.primary,
-    mb: '8px',
+    mb: theme.spacing(2),
     fontFamily: 'Outfit, sans-serif',
   };
 
@@ -243,7 +244,7 @@ const ContestModal: React.FC<ContestModalProps> = ({
     width: '48px',
     height: '48px',
     border: `1px solid ${theme.palette.grey[300]}`,
-    borderRadius: '12px',
+    borderRadius: theme.spacing(3),
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
@@ -272,12 +273,12 @@ const ContestModal: React.FC<ContestModalProps> = ({
           overflowY: 'auto',
           bgcolor: 'background.paper',
           boxShadow: 24,
-          borderRadius: '24px',
-          padding: '32px',
+          borderRadius: theme.spacing(6),
+          padding: theme.spacing(8),
           outline: 'none',
         }}
       >
-        <Box sx={{ mb: '24px' }}>
+        <Box sx={{ mb: theme.spacing(6) }}>
           <Typography
             sx={{
               fontWeight: 600,
@@ -296,21 +297,21 @@ const ContestModal: React.FC<ContestModalProps> = ({
               lineHeight: '23px',
               color: theme.palette.text.secondary,
               fontFamily: 'Outfit, sans-serif',
-              mt: '4px',
+              mt: theme.spacing(1),
             }}
           >
             {subtitle}
           </Typography>
         </Box>
 
-        <Box sx={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+        <Box sx={{ display: 'flex', flexDirection: 'column', gap: theme.spacing(5) }}>
           <Box>
             <Box
               sx={{
                 display: 'flex',
                 justifyContent: 'space-between',
                 alignItems: 'center',
-                mb: '8px',
+                mb: theme.spacing(2),
               }}
             >
               <Typography sx={{ ...labelSx, mb: 0 }}>Title</Typography>
@@ -340,15 +341,36 @@ const ContestModal: React.FC<ContestModalProps> = ({
             sx={{
               display: 'grid',
               gridTemplateColumns: { xs: '1fr', sm: '1fr 1fr' },
-              gap: '16px',
+              gap: theme.spacing(4),
             }}
           >
             <Box>
-              <Typography sx={labelSx}>Label</Typography>
+              <Box
+                sx={{
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                  mb: theme.spacing(2),
+                }}
+              >
+                <Typography sx={{ ...labelSx, mb: 0 }}>Label</Typography>
+                <Typography
+                  sx={{
+                    fontWeight: 400,
+                    fontSize: '16px',
+                    lineHeight: '20px',
+                    color: theme.palette.text.secondary,
+                    fontFamily: 'Outfit, sans-serif',
+                  }}
+                >
+                  {`(${form.label.length}/${LABEL_MAX_LENGTH})`}
+                </Typography>
+              </Box>
               <TextField
                 fullWidth
                 placeholder="Type"
                 value={form.label}
+                inputProps={{ maxLength: LABEL_MAX_LENGTH }}
                 onChange={(e) => updateField('label', e.target.value)}
                 sx={textFieldSx}
               />
@@ -368,11 +390,11 @@ const ContestModal: React.FC<ContestModalProps> = ({
                   MenuProps={{
                     PaperProps: {
                       sx: {
-                        borderRadius: '12px',
+                        borderRadius: theme.spacing(3),
                         maxHeight:
                           COURSE_OFFERING_MENU_ITEM_HEIGHT * COURSE_OFFERING_MENU_VISIBLE_ITEMS,
                         overflowY: 'auto',
-                        mt: 0.5,
+                        mt: theme.spacing(1),
                         boxShadow: '0px 4px 20px rgba(0,0,0,0.08)',
                       },
                     },
@@ -383,7 +405,7 @@ const ContestModal: React.FC<ContestModalProps> = ({
                     },
                   }}
                   sx={{
-                    borderRadius: '12px',
+                    borderRadius: theme.spacing(3),
                     fontFamily: 'Outfit, sans-serif',
                     fontSize: '16px',
                     '& .MuiOutlinedInput-notchedOutline': {
@@ -400,7 +422,7 @@ const ContestModal: React.FC<ContestModalProps> = ({
                       backgroundColor: theme.palette.grey[50],
                     },
                     '& .MuiSelect-select': {
-                      padding: '13px 20px',
+                      padding: theme.spacing(3.25, 5),
                     },
                   }}
                   renderValue={(selected) => {
@@ -431,12 +453,12 @@ const ContestModal: React.FC<ContestModalProps> = ({
                         height: COURSE_OFFERING_MENU_ITEM_HEIGHT,
                         minHeight: COURSE_OFFERING_MENU_ITEM_HEIGHT,
                         py: 0,
-                        px: '16px',
+                        px: theme.spacing(4),
                         display: 'flex',
                         flexDirection: 'column',
                         alignItems: 'flex-start',
                         justifyContent: 'center',
-                        gap: '2px',
+                        gap: theme.spacing(0.5),
                         borderBottom:
                           index === courseOfferings.length - 1
                             ? 'none'
@@ -494,7 +516,7 @@ const ContestModal: React.FC<ContestModalProps> = ({
             sx={{
               display: 'grid',
               gridTemplateColumns: { xs: '1fr', sm: '1fr 1fr' },
-              gap: '16px',
+              gap: theme.spacing(4),
             }}
           >
             <Box>
@@ -562,12 +584,12 @@ const ContestModal: React.FC<ContestModalProps> = ({
             sx={{
               display: 'grid',
               gridTemplateColumns: { xs: '1fr', sm: '1fr 1fr' },
-              gap: '16px',
+              gap: theme.spacing(4),
             }}
           >
             <Box>
               <Typography sx={labelSx}>Duration</Typography>
-              <Box sx={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+              <Box sx={{ display: 'flex', alignItems: 'center', gap: theme.spacing(3) }}>
                 <Box
                   onClick={() =>
                     canDecreaseDuration && setDurationMinutes(form.duration - DURATION_STEP_MINUTES)
@@ -598,7 +620,7 @@ const ContestModal: React.FC<ContestModalProps> = ({
                     ...textFieldSx,
                     flex: 1,
                     '& .MuiOutlinedInput-input': {
-                      padding: '13px 20px',
+                      padding: theme.spacing(3.25, 5),
                       textAlign: 'center',
                       fontWeight: 500,
                     },
@@ -653,8 +675,8 @@ const ContestModal: React.FC<ContestModalProps> = ({
           sx={{
             display: 'flex',
             justifyContent: 'flex-end',
-            gap: '16px',
-            mt: '32px',
+            gap: theme.spacing(4),
+            mt: theme.spacing(8),
           }}
         >
           <Button
@@ -667,8 +689,8 @@ const ContestModal: React.FC<ContestModalProps> = ({
               backgroundColor: theme.palette.common.white,
               fontSize: '16px',
               fontWeight: 500,
-              borderRadius: '12px',
-              padding: '13px 24px',
+              borderRadius: theme.spacing(3),
+              padding: theme.spacing(3.25, 6),
               textTransform: 'none',
               fontFamily: 'Outfit, sans-serif',
               '&:hover': {
@@ -687,8 +709,8 @@ const ContestModal: React.FC<ContestModalProps> = ({
               backgroundColor: theme.palette.primary.main,
               fontSize: '16px',
               fontWeight: 500,
-              borderRadius: '12px',
-              padding: '13px 24px',
+              borderRadius: theme.spacing(3),
+              padding: theme.spacing(3.25, 6),
               color: theme.palette.common.white,
               textTransform: 'none',
               fontFamily: 'Outfit, sans-serif',
