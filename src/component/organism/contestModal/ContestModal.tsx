@@ -20,6 +20,8 @@ import { Button } from '../../atom/button';
 export interface ContestCourseOfferingOption {
   id: number;
   label: string;
+  title?: string;
+  batch?: string | null;
 }
 
 export interface ContestModalFormData {
@@ -58,6 +60,8 @@ const DEFAULT_DURATION_MINUTES = 120; // 02:00
 const DURATION_STEP_MINUTES = 30;
 const MIN_DURATION_MINUTES = 30;
 const DEFAULT_MAX_SCORE = 100;
+const COURSE_OFFERING_MENU_ITEM_HEIGHT = 56;
+const COURSE_OFFERING_MENU_VISIBLE_ITEMS = 5;
 
 function formatDurationHhMm(totalMinutes: number): string {
   const safe = Math.max(0, Math.round(totalMinutes));
@@ -361,6 +365,23 @@ const ContestModal: React.FC<ContestModalProps> = ({
                     const value = String(e.target.value);
                     updateField('courseOfferingId', value ? Number(value) : null);
                   }}
+                  MenuProps={{
+                    PaperProps: {
+                      sx: {
+                        borderRadius: '12px',
+                        maxHeight:
+                          COURSE_OFFERING_MENU_ITEM_HEIGHT * COURSE_OFFERING_MENU_VISIBLE_ITEMS,
+                        overflowY: 'auto',
+                        mt: 0.5,
+                        boxShadow: '0px 4px 20px rgba(0,0,0,0.08)',
+                      },
+                    },
+                    MenuListProps: {
+                      sx: {
+                        py: 0,
+                      },
+                    },
+                  }}
                   sx={{
                     borderRadius: '12px',
                     fontFamily: 'Outfit, sans-serif',
@@ -399,12 +420,69 @@ const ContestModal: React.FC<ContestModalProps> = ({
                     const match = courseOfferings.find(
                       (option) => option.id === Number(selectedValue)
                     );
-                    return match?.label ?? selectedValue;
+                    return match?.title || match?.label || selectedValue;
                   }}
                 >
-                  {courseOfferings.map((option) => (
-                    <MenuItem key={option.id} value={String(option.id)}>
-                      {option.label}
+                  {courseOfferings.map((option, index) => (
+                    <MenuItem
+                      key={option.id}
+                      value={String(option.id)}
+                      sx={{
+                        height: COURSE_OFFERING_MENU_ITEM_HEIGHT,
+                        minHeight: COURSE_OFFERING_MENU_ITEM_HEIGHT,
+                        py: 0,
+                        px: '16px',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'flex-start',
+                        justifyContent: 'center',
+                        gap: '2px',
+                        borderBottom:
+                          index === courseOfferings.length - 1
+                            ? 'none'
+                            : `1px solid ${theme.palette.grey[200]}`,
+                        '&:hover': {
+                          bgcolor: theme.palette.grey[50],
+                        },
+                        '&.Mui-selected': {
+                          bgcolor: theme.palette.primary[300] || 'rgba(0,0,0,0.04)',
+                          '&:hover': {
+                            bgcolor: theme.palette.primary[300] || 'rgba(0,0,0,0.06)',
+                          },
+                        },
+                      }}
+                    >
+                      <Typography
+                        sx={{
+                          fontSize: '16px',
+                          lineHeight: '20px',
+                          fontWeight: 400,
+                          color: theme.palette.text.primary,
+                          fontFamily: 'Outfit, sans-serif',
+                          overflow: 'hidden',
+                          textOverflow: 'ellipsis',
+                          whiteSpace: 'nowrap',
+                          width: '100%',
+                        }}
+                      >
+                        {option.title || option.label}
+                      </Typography>
+                      <Typography
+                        sx={{
+                          fontSize: '14px',
+                          lineHeight: '18px',
+                          minHeight: '18px',
+                          fontWeight: 400,
+                          color: theme.palette.text.secondary,
+                          fontFamily: 'Outfit, sans-serif',
+                          overflow: 'hidden',
+                          textOverflow: 'ellipsis',
+                          whiteSpace: 'nowrap',
+                          width: '100%',
+                        }}
+                      >
+                        {option.batch || '\u00A0'}
+                      </Typography>
                     </MenuItem>
                   ))}
                 </Select>
@@ -560,10 +638,11 @@ const ContestModal: React.FC<ContestModalProps> = ({
                   '& input[type=number]': {
                     MozAppearance: 'textfield',
                   },
-                  '& input[type=number]::-webkit-outer-spin-button, & input[type=number]::-webkit-inner-spin-button': {
-                    WebkitAppearance: 'none',
-                    margin: 0,
-                  },
+                  '& input[type=number]::-webkit-outer-spin-button, & input[type=number]::-webkit-inner-spin-button':
+                    {
+                      WebkitAppearance: 'none',
+                      margin: 0,
+                    },
                 }}
               />
             </Box>

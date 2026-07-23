@@ -17,9 +17,12 @@ export default meta;
 type Story = StoryObj<typeof ContestModal>;
 
 const courseOfferings = [
-  { id: 61, label: 'DSA 101' },
-  { id: 60, label: 'Web Development' },
-  { id: 36, label: 'Python' },
+  { id: 61, label: 'DSA 101', title: 'fundamentals of java', batch: 'Batch' },
+  { id: 60, label: 'Web Development', title: 'fundamentals of java', batch: 'Batch' },
+  { id: 36, label: 'Python', title: 'fundamentals of java', batch: null },
+  { id: 37, label: 'Algorithms', title: 'fundamentals of java', batch: 'Batch A' },
+  { id: 38, label: 'Systems', title: 'fundamentals of java', batch: 'Batch B' },
+  { id: 39, label: 'Databases', title: 'fundamentals of java', batch: 'Batch C' },
 ];
 
 export const Create: Story = {
