@@ -3,7 +3,9 @@ import SubjectCard from '../../../component/organism/card/SubjectCard';
 import { fn } from '@storybook/test';
 import { JSX } from 'react';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
-
+import CodeIcon from '../../../component/organism/card/CodeIcon';
+import CreditIcon from '../../../component/organism/card/CreditIcon';
+import ClassSessionIcon from '../../../component/organism/card/ClassSession';
 // Define gradient and border arrays for easy reference
 const gradients = [
   'linear-gradient(180deg, #F3E8FF 0%, #FFF 100%)',
@@ -18,7 +20,7 @@ const borders = [
   '1px solid #FFDBB6',
   '1px solid #A6F5F8',
 ];
-
+// const Icon = require('./icon.svg').ReactComponent;  
 const meta: Meta<typeof SubjectCard> = {
   title: 'Organism/SubjectCard',
   component: SubjectCard,
@@ -63,12 +65,25 @@ type Story = StoryObj<typeof SubjectCard>;
 export const WithBatchOnly: Story = {
   args: {
     subject: 'Dev 102',
-    description:
-      'Advanced calculus, algebra, and mathematical analysis,Advanced calculus, algebra, and mathematical analysis,',
-    batch: 'Batch I',
-    courseCode: '102',
+    // batch: 'Batch I',
     iconUrl: 'https://example.com/icon.png',
-    credits: '200',
+    infoItems: [
+      {
+        label: 'Course Code',
+        value: 'CS101',
+        icon: <CodeIcon />,
+      },
+      {
+        label: 'Course Credit',
+        value: '3',
+        icon: <CreditIcon />,
+      },
+      {
+        label: 'Class Session',
+        value: 120,
+        icon: <ClassSessionIcon />,
+      }
+    ],
     variant: 'course-offering',
     index: 0,
     gradient: gradients[0],
@@ -86,6 +101,7 @@ export const WithBatchOnly: Story = {
         variant: 'contained',
       },
     ],
+    height: '100%',
   },
 };
 
@@ -115,8 +131,6 @@ export const WithBatchAndTeacherShowsOnlyBatch: Story = {
     teacher: 'Dr. Stephen Hawking',
     description: 'Advanced calculus, algebra, and mathematical analysis',
     batch: 'Batch III',
-    courseCode: 'PHY101',
-    credits: '250',
     variant: 'course-offering',
     index: 2,
     gradient: gradients[2],
@@ -174,8 +188,6 @@ export const WithAttendance: Story = {
   args: {
     subject: 'DSA 101',
     description: 'Advanced calculus, algebra, and mathematical analysis',
-    courseCode: 'S1202',
-    credits: '100',
     variant: 'course-offering',
     attendance: 82,
     attendanceVariant: 'success',
@@ -220,8 +232,6 @@ export const CourseOfferingNoBatch: Story = {
     subject: 'Chemistry',
     teacher: 'Dr. Marie Curie',
     description: 'Advanced calculus, algebra, and ',
-    courseCode: 'CHEM1',
-    credits: '200',
     variant: 'course-offering',
     index: 1,
     gradient: gradients[1],
