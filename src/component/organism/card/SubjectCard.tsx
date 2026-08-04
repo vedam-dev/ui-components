@@ -91,9 +91,11 @@ const getAttendanceChipStyles = (theme: CoreTheme, variant: AttendanceChipVarian
 // instead of being recreated on every render.
 const GRADIENT_ACCENT_MAP: Record<string, string> = {
   'linear-gradient(180deg, #F3E8FF 0%, #FFF 100%)': '#8A18FF',
-  'linear-gradient(180deg, #FFEAC0 0%, #FFF 100%)': '#F97D03',
-  'linear-gradient(180deg, #FFDBB6 0%, #FFF 100%)': '#D2A82F',
-  'linear-gradient(180deg, #A6F5F8 0%, #FFF 100%)': '#00CFE5',
+  'linear-gradient(180deg, #FFEAC1 0%, #FFF 100%)': '#F97D03',
+  'linear-gradient(180deg, #FEDBB7 0%, #FFF 100%)': '#D2A82F',
+  'linear-gradient(180deg, #A8F5F8 0%, #FFF 100%)': '#00CFE5',
+  'linear-gradient(180deg, #F3F1F6 0%, #FFF 100%)': '#c3b3dd',
+  'linear-gradient(180deg, #E2F5D0 0%, #FFF 100%)': '#bcdaa0',
 };
 const DEFAULT_ACCENT_COLOR = '#8A18FF';
 
@@ -145,14 +147,15 @@ const SubjectCard: FC<SubjectCardProps> = ({
     `linear-gradient(180deg, ${theme.vd.palette.accentPrimaryLight} 0%, ${theme.palette.common.white} 100%)`;
   const resolvedBorder = border ?? `1px solid ${theme.vd.palette.accentPrimaryLight}`;
 
- const accentColor = GRADIENT_ACCENT_MAP[gradient ?? ''] ?? DEFAULT_ACCENT_COLOR;
+  const accentColor = GRADIENT_ACCENT_MAP[gradient] ?? DEFAULT_ACCENT_COLOR;
 
   const defaultCardSx: SxProps<Theme> = {
     width: { md: '210px', lg: typeof width === 'number' ? `${width}px` : width },
-    height: {
+    minHeight: {
       md: showAttendance ? '200px' : '184px',
       lg: showAttendance ? '276px' : typeof height === 'number' ? `${height}px` : height,
     },
+    height: 'auto',
     borderRadius: { md: theme.spacing(4.5), lg: theme.spacing(7) },
     padding: {
       md: showAttendance ? theme.spacing(2, 3, 3.5) : theme.spacing(3.5, 3),
@@ -192,9 +195,13 @@ const SubjectCard: FC<SubjectCardProps> = ({
     fontSize: { md: '16px', lg: '22px' },
     lineHeight: { md: '20px', lg: '28px' },
     width: '100%',
+    alignItems: 'center',
     overflow: 'hidden',
+    display: '-webkit-box',
+    WebkitBoxOrient: 'vertical',
+    WebkitLineClamp: 2,
     textOverflow: 'ellipsis',
-    whiteSpace: 'nowrap',
+    wordBreak: 'break-word',
     ...subjectTextSx,
   };
 
@@ -303,9 +310,9 @@ const SubjectCard: FC<SubjectCardProps> = ({
   };
 
   const defaultCourseInfoTextSx: SxProps<Theme> = {
-    fontWeight: 400,
+    fontWeight: 500,
     color: theme.palette.text.secondary,
-    fontSize: { md: '10px', lg: '12px' },
+    fontSize: { md: '10px', lg: '13px' },
     lineHeight: { md: '13px', lg: '18px' },
     ...courseInfoTextSx,
   };
@@ -315,16 +322,17 @@ const SubjectCard: FC<SubjectCardProps> = ({
     buttons ||
     (onGoToClass
       ? [
-          {
-            text: buttonText,
-            onClick: onGoToClass,
-            variant: 'outlined' as const,
-          },
-        ]
+        {
+          text: buttonText,
+          onClick: onGoToClass,
+          variant: 'outlined' as const,
+        },
+      ]
       : []);
 
   // Determine which info section to show (course info OR duration/lectures)
   const showInfoItems = variant === 'course-offering' && infoItems?.length;
+
   const showDurationLectures = duration && lectureCount !== undefined;
 
   // Determine which secondary text to show (batch OR teacher)
@@ -336,8 +344,10 @@ const SubjectCard: FC<SubjectCardProps> = ({
       <Box
         sx={{
           width: '100%',
-          minHeight: '100%',
-          
+          height: '100%',
+          display: 'flex',
+          flexDirection: 'column',
+          flex: 1,
         }}
       >
         {showAttendance && (
@@ -353,13 +363,17 @@ const SubjectCard: FC<SubjectCardProps> = ({
           </Tooltip>
         )}
         {/* Show batch if provided in course-offering variant */}
-        {showBatch && (
+        {showBatch ? (
           <Box sx={defaultBatchChipSx}>
             <Typography variant="body2" sx={defaultBatchTextSx}>
               {batch}
             </Typography>
           </Box>
-        )}
+        ) : showAttendance ? null : <Box sx={defaultBatchChipSx}>
+          <Typography variant="body2" sx={defaultBatchTextSx}>
+            NA
+          </Typography>
+        </Box>}
         <Stack
           direction="row"
           spacing={{ md: 3, lg: 6 }}
@@ -374,22 +388,19 @@ const SubjectCard: FC<SubjectCardProps> = ({
             />
           </Box>
           <Stack sx={{ width: '100%', overflow: 'hidden' }}>
-            <Tooltip title={subject} placement="top" arrow>
-              <Typography variant="h6" sx={defaultSubjectTextSx}>
-                {subject}
-              </Typography>
-            </Tooltip>
-
+            <Typography variant="h6" sx={defaultSubjectTextSx}>
+              {subject}
+            </Typography>
             {/* Show teacher only if batch is not shown */}
             {showTeacher && (
               <Typography variant="body1" color="text.secondary" sx={defaultTeacherTextSx}>
                 {teacher}
               </Typography>
             )}
-            {/* Empty space if neither batch nor teacher is provided */}
+            {/* Empty space if neither batch nor teacher is provided
             {!showBatch && !showTeacher && (
               <Box sx={{ height: '20px' }} /> // Empty space to maintain layout
-            )}
+            )} */}
           </Stack>
         </Stack>
 
@@ -410,6 +421,8 @@ const SubjectCard: FC<SubjectCardProps> = ({
                       alignItems: 'center',
                       gap: theme.spacing(2.5),
                       mb: theme.spacing(3.5),
+                      // Falls back to the card's accent color so info icons match the
+                      // gradient/batch chip unless a semantic status color is set explicitly.
                       color: accentColor,
                       '& svg': {
                         width: 20,
@@ -474,6 +487,8 @@ const SubjectCard: FC<SubjectCardProps> = ({
             sx={{
               padding: theme.spacing(0),
               mb: theme.spacing(0),
+              mt: 'auto',
+              pt: theme.spacing(3),
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'center',

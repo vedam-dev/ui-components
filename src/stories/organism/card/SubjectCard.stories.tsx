@@ -64,7 +64,7 @@ type Story = StoryObj<typeof SubjectCard>;
 
 export const WithBatchOnly: Story = {
   args: {
-    subject: 'Dev 102',
+    subject: 'Fundamentals of Machine Learning & Programming',
     // batch: 'Batch I',
     iconUrl: 'https://example.com/icon.png',
     infoItems: [
