@@ -20,7 +20,7 @@ const borders = [
   '1px solid #FFDBB6',
   '1px solid #A6F5F8',
 ];
-// const Icon = require('./icon.svg').ReactComponent;  
+// const Icon = require('./icon.svg').ReactComponent;
 const meta: Meta<typeof SubjectCard> = {
   title: 'Organism/SubjectCard',
   component: SubjectCard,
@@ -82,7 +82,7 @@ export const WithBatchOnly: Story = {
         label: 'Class Session',
         value: 120,
         icon: <ClassSessionIcon />,
-      }
+      },
     ],
     variant: 'course-offering',
     index: 0,

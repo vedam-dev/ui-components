@@ -1,8 +1,23 @@
 import { SVGProps } from 'react';
 
 const CodeIcon = (props: SVGProps<SVGSVGElement>) => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none" {...props}>
-    <mask id="mask0_13100_18159" style={{ maskType: 'alpha' }} maskUnits="userSpaceOnUse" x="0" y="0" width="14" height="14">
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="14"
+    height="14"
+    viewBox="0 0 14 14"
+    fill="none"
+    {...props}
+  >
+    <mask
+      id="mask0_13100_18159"
+      style={{ maskType: 'alpha' }}
+      maskUnits="userSpaceOnUse"
+      x="0"
+      y="0"
+      width="14"
+      height="14"
+    >
       <rect width="14" height="14" fill="currentColor" />
     </mask>
     <g mask="url(#mask0_13100_18159)">

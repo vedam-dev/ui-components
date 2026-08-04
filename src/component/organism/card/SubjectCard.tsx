@@ -322,12 +322,12 @@ const SubjectCard: FC<SubjectCardProps> = ({
     buttons ||
     (onGoToClass
       ? [
-        {
-          text: buttonText,
-          onClick: onGoToClass,
-          variant: 'outlined' as const,
-        },
-      ]
+          {
+            text: buttonText,
+            onClick: onGoToClass,
+            variant: 'outlined' as const,
+          },
+        ]
       : []);
 
   // Determine which info section to show (course info OR duration/lectures)
@@ -369,11 +369,13 @@ const SubjectCard: FC<SubjectCardProps> = ({
               {batch}
             </Typography>
           </Box>
-        ) : showAttendance ? null : <Box sx={defaultBatchChipSx}>
-          <Typography variant="body2" sx={defaultBatchTextSx}>
-            NA
-          </Typography>
-        </Box>}
+        ) : showAttendance ? null : (
+          <Box sx={defaultBatchChipSx}>
+            <Typography variant="body2" sx={defaultBatchTextSx}>
+              NA
+            </Typography>
+          </Box>
+        )}
         <Stack
           direction="row"
           spacing={{ md: 3, lg: 6 }}
