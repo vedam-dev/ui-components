@@ -26,8 +26,6 @@ export interface SubjectCardProps {
   buttonText?: string;
   batch?: string;
   index: number;
-  courseCode?: string;
-  credits?: string;
   variant?: 'default' | 'course-offering';
   buttons?: Array<{
     text: string;
@@ -35,7 +33,12 @@ export interface SubjectCardProps {
     variant?: 'contained' | 'outlined' | 'text';
     startIcon?: React.ReactNode;
   }>;
-  gradient?: string;
+  infoItems?: Array<{
+    label: string;
+    value: React.ReactNode;
+    icon?: React.ReactNode;
+  }>;
+  gradient: string;
   border?: string;
 
   onGoToClass?: () => void;
@@ -84,6 +87,18 @@ const getAttendanceChipStyles = (theme: CoreTheme, variant: AttendanceChipVarian
   return styles[variant];
 };
 
+// Static lookup — doesn't depend on props/theme, so it lives outside the component
+// instead of being recreated on every render.
+const GRADIENT_ACCENT_MAP: Record<string, string> = {
+  'linear-gradient(180deg, #F3E8FF 0%, #FFF 100%)': '#8A18FF',
+  'linear-gradient(180deg, #FFEAC1 0%, #FFF 100%)': '#F97D03',
+  'linear-gradient(180deg, #FEDBB7 0%, #FFF 100%)': '#D2A82F',
+  'linear-gradient(180deg, #A8F5F8 0%, #FFF 100%)': '#00CFE5',
+  'linear-gradient(180deg, #F3F1F6 0%, #FFF 100%)': '#c3b3dd',
+  'linear-gradient(180deg, #E2F5D0 0%, #FFF 100%)': '#bcdaa0',
+};
+const DEFAULT_ACCENT_COLOR = '#8A18FF';
+
 const SubjectCard: FC<SubjectCardProps> = ({
   subject,
   teacher,
@@ -99,8 +114,6 @@ const SubjectCard: FC<SubjectCardProps> = ({
   buttonText = 'Go to Class',
   batch,
   index: _index,
-  courseCode,
-  credits,
   variant = 'default',
   buttons,
   gradient,
@@ -121,6 +134,7 @@ const SubjectCard: FC<SubjectCardProps> = ({
   batchTextSx,
   courseInfoTextSx,
   attendanceChipSx,
+  infoItems,
 }) => {
   const theme = useCoreTheme() as CoreTheme;
   const showAttendance = attendance !== undefined;
@@ -133,12 +147,15 @@ const SubjectCard: FC<SubjectCardProps> = ({
     `linear-gradient(180deg, ${theme.vd.palette.accentPrimaryLight} 0%, ${theme.palette.common.white} 100%)`;
   const resolvedBorder = border ?? `1px solid ${theme.vd.palette.accentPrimaryLight}`;
 
+  const accentColor = GRADIENT_ACCENT_MAP[gradient] ?? DEFAULT_ACCENT_COLOR;
+
   const defaultCardSx: SxProps<Theme> = {
     width: { md: '210px', lg: typeof width === 'number' ? `${width}px` : width },
-    height: {
+    minHeight: {
       md: showAttendance ? '200px' : '184px',
       lg: showAttendance ? '276px' : typeof height === 'number' ? `${height}px` : height,
     },
+    height: 'auto',
     borderRadius: { md: theme.spacing(4.5), lg: theme.spacing(7) },
     padding: {
       md: showAttendance ? theme.spacing(2, 3, 3.5) : theme.spacing(3.5, 3),
@@ -164,6 +181,8 @@ const SubjectCard: FC<SubjectCardProps> = ({
     border: '1px solid transparent',
     padding: { md: theme.spacing(2.75, 3.25), lg: theme.spacing(2.75, 3.25) },
     bgcolor: 'white',
+    // Drives any inline SVG icon that uses fill="currentColor" instead of a hardcoded hex.
+    color: accentColor,
     backgroundImage: `linear-gradient(white, white), linear-gradient(to right, ${theme.vd.palette.accentSecondary}, ${theme.vd.palette.accentPrimary})`,
     backgroundOrigin: 'border-box',
     backgroundClip: 'padding-box, border-box',
@@ -171,20 +190,22 @@ const SubjectCard: FC<SubjectCardProps> = ({
   };
 
   const defaultSubjectTextSx: SxProps<Theme> = {
-    //FontFamily: theme.typography.//FontFamily,
     fontWeight: { md: 600, lg: 500 },
     color: theme.vd.palette.textStrong,
     fontSize: { md: '16px', lg: '22px' },
     lineHeight: { md: '20px', lg: '28px' },
     width: '100%',
+    alignItems: 'center',
     overflow: 'hidden',
+    display: '-webkit-box',
+    WebkitBoxOrient: 'vertical',
+    WebkitLineClamp: 2,
     textOverflow: 'ellipsis',
-    whiteSpace: 'nowrap',
+    wordBreak: 'break-word',
     ...subjectTextSx,
   };
 
   const defaultTeacherTextSx: SxProps<Theme> = {
-    //FontFamily: theme.typography.//FontFamily,
     fontWeight: 400,
     color: theme.palette.text.secondary,
     fontSize: { md: '12px', lg: '1.125rem' },
@@ -195,7 +216,6 @@ const SubjectCard: FC<SubjectCardProps> = ({
   };
 
   const defaultDurationTextSx: SxProps<Theme> = {
-    //FontFamily: theme.typography.//FontFamily,
     fontWeight: 500,
     color: theme.palette.text.secondary,
     fontSize: theme.typography.caption.fontSize,
@@ -204,7 +224,6 @@ const SubjectCard: FC<SubjectCardProps> = ({
   };
 
   const defaultLectureTextSx: SxProps<Theme> = {
-    //FontFamily: theme.typography.//FontFamily,
     fontWeight: 500,
     color: theme.palette.text.secondary,
     fontSize: theme.typography.caption.fontSize,
@@ -213,7 +232,6 @@ const SubjectCard: FC<SubjectCardProps> = ({
   };
 
   const defaultDescriptionTextSx: SxProps<Theme> = {
-    //FontFamily: theme.typography.//FontFamily,
     color: theme.vd.palette.textStrong,
     fontSize: { md: '12px', lg: '16px' },
     lineHeight: { md: theme.spacing(3.5), lg: theme.spacing(4.5) },
@@ -234,13 +252,11 @@ const SubjectCard: FC<SubjectCardProps> = ({
     width: { md: theme.spacing(46.5), lg: theme.spacing(66.25) },
     height: { md: '36px', lg: theme.spacing(9) },
     padding: theme.spacing(2),
-    mb: { md: theme.spacing(3), lg: theme.spacing(7.5) },
     borderWidth: theme.spacing(0.25),
     borderRadius: theme.spacing(3),
     borderColor: theme.palette.primary.main,
     backgroundColor: theme.palette.background.paper,
     color: theme.palette.primary.main,
-    //FontFamily: theme.typography.//FontFamily,
     fontWeight: 500,
     fontSize: { md: '12px', lg: theme.typography.body1.fontSize },
     textTransform: 'none',
@@ -251,11 +267,10 @@ const SubjectCard: FC<SubjectCardProps> = ({
   };
 
   const defaultBatchTextSx: SxProps<Theme> = {
-    //FontFamily: theme.typography.//FontFamily,
     fontWeight: 400,
-    color: theme.palette.text.secondary,
-    fontSize: { md: '12px', lg: '18px' },
-    lineHeight: { md: '16px', lg: '28px' },
+    color: theme.palette.background.paper,
+    fontSize: { md: '10px', lg: '12px' },
+    lineHeight: 'normal',
     ...batchTextSx,
   };
 
@@ -272,6 +287,7 @@ const SubjectCard: FC<SubjectCardProps> = ({
     mb: { md: theme.spacing(2.5), lg: theme.spacing(3.75) },
     bgcolor: attendanceChipColors.backgroundColor,
     color: attendanceChipColors.color,
+    border: `1px solid ${attendanceChipColors.color}`,
     fontFamily: theme.typography.fontFamily ?? 'Outfit, system-ui',
     fontSize: { md: '10px', lg: '12px' },
     fontStyle: 'normal',
@@ -280,8 +296,20 @@ const SubjectCard: FC<SubjectCardProps> = ({
     ...attendanceChipSx,
   };
 
+  const defaultBatchChipSx: SxProps<Theme> = {
+    display: 'flex',
+    height: { md: '16px', lg: '20px' },
+    padding: { md: theme.spacing(0.5, 2.5), lg: theme.spacing(1, 2) },
+    justifyContent: 'center',
+    alignItems: 'center',
+    gap: theme.spacing(5),
+    borderRadius: theme.spacing(9),
+    width: 'fit-content',
+    mb: { md: theme.spacing(2.5), lg: theme.spacing(3.5) },
+    bgcolor: accentColor,
+  };
+
   const defaultCourseInfoTextSx: SxProps<Theme> = {
-    //FontFamily: theme.typography.//FontFamily,
     fontWeight: 500,
     color: theme.palette.text.secondary,
     fontSize: { md: '10px', lg: '13px' },
@@ -303,7 +331,8 @@ const SubjectCard: FC<SubjectCardProps> = ({
       : []);
 
   // Determine which info section to show (course info OR duration/lectures)
-  const showCourseInfo = variant === 'course-offering' && courseCode && credits;
+  const showInfoItems = variant === 'course-offering' && infoItems?.length;
+
   const showDurationLectures = duration && lectureCount !== undefined;
 
   // Determine which secondary text to show (batch OR teacher)
@@ -316,6 +345,9 @@ const SubjectCard: FC<SubjectCardProps> = ({
         sx={{
           width: '100%',
           height: '100%',
+          display: 'flex',
+          flexDirection: 'column',
+          flex: 1,
         }}
       >
         {showAttendance && (
@@ -327,10 +359,23 @@ const SubjectCard: FC<SubjectCardProps> = ({
             disableFocusListener={!attendanceTooltip}
             disableTouchListener={!attendanceTooltip}
           >
-            <Box sx={defaultAttendanceChipSx}>Attendance : {attendance}%</Box>
+            <Box sx={defaultAttendanceChipSx}>Att : {attendance}%</Box>
           </Tooltip>
         )}
-
+        {/* Show batch if provided in course-offering variant */}
+        {showBatch ? (
+          <Box sx={defaultBatchChipSx}>
+            <Typography variant="body2" sx={defaultBatchTextSx}>
+              {batch}
+            </Typography>
+          </Box>
+        ) : showAttendance ? null : (
+          <Box sx={defaultBatchChipSx}>
+            <Typography variant="body2" sx={defaultBatchTextSx}>
+              NA
+            </Typography>
+          </Box>
+        )}
         <Stack
           direction="row"
           spacing={{ md: 3, lg: 6 }}
@@ -345,59 +390,60 @@ const SubjectCard: FC<SubjectCardProps> = ({
             />
           </Box>
           <Stack sx={{ width: '100%', overflow: 'hidden' }}>
-            <Tooltip title={subject} placement="top" arrow>
-              <Typography variant="h6" sx={defaultSubjectTextSx}>
-                {subject}
-              </Typography>
-            </Tooltip>
-            {/* Show batch if provided in course-offering variant */}
-            {showBatch && (
-              <Typography variant="body2" sx={defaultBatchTextSx}>
-                {batch}
-              </Typography>
-            )}
+            <Typography variant="h6" sx={defaultSubjectTextSx}>
+              {subject}
+            </Typography>
             {/* Show teacher only if batch is not shown */}
             {showTeacher && (
               <Typography variant="body1" color="text.secondary" sx={defaultTeacherTextSx}>
                 {teacher}
               </Typography>
             )}
-            {/* Empty space if neither batch nor teacher is provided */}
+            {/* Empty space if neither batch nor teacher is provided
             {!showBatch && !showTeacher && (
               <Box sx={{ height: '20px' }} /> // Empty space to maintain layout
-            )}
+            )} */}
           </Stack>
         </Stack>
 
         <Box>
-          {showCourseInfo && (
+          {showInfoItems && (
             <Box
               sx={{
                 mb: { md: theme.spacing(2.75), lg: theme.spacing(3.75) },
-                display: 'flex',
                 alignItems: 'center',
+                flexWrap: 'wrap',
               }}
             >
-              {/* Course Code */}
-              <Typography sx={defaultCourseInfoTextSx}>Course Code: {courseCode}</Typography>
-
-              {/* Custom vertical divider */}
-              <Box
-                sx={{
-                  height: { md: '12px', lg: '15px' },
-                  width: '1px',
-                  backgroundColor: theme.palette.text.secondary,
-                  mx: { md: theme.spacing(1), lg: theme.spacing(2) },
-                }}
-              />
-
-              {/* Course Credit */}
-              <Typography sx={defaultCourseInfoTextSx}>Course Credit: {credits}</Typography>
+              {infoItems?.map((item, index) => (
+                <React.Fragment key={index}>
+                  <Box
+                    sx={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: theme.spacing(2.5),
+                      mb: theme.spacing(3.5),
+                      // Falls back to the card's accent color so info icons match the
+                      // gradient/batch chip unless a semantic status color is set explicitly.
+                      color: accentColor,
+                      '& svg': {
+                        width: 20,
+                        height: 20,
+                      },
+                    }}
+                  >
+                    {item.icon}
+                    <Typography sx={defaultCourseInfoTextSx}>
+                      {item.label}: {item.value}
+                    </Typography>
+                  </Box>
+                </React.Fragment>
+              ))}
             </Box>
           )}
 
           {/* Show duration and lectures if provided and NOT showing course info */}
-          {showDurationLectures && !showCourseInfo && (
+          {showDurationLectures && !showInfoItems && (
             <Box
               sx={{
                 display: 'flex',
@@ -431,10 +477,11 @@ const SubjectCard: FC<SubjectCardProps> = ({
               </Stack>
             </Box>
           )}
-
-          <Typography variant="body1" sx={defaultDescriptionTextSx}>
-            {description}
-          </Typography>
+          {description && (
+            <Typography variant="body1" sx={defaultDescriptionTextSx}>
+              {description}
+            </Typography>
+          )}
         </Box>
         {/* Buttons Section */}
         {displayButtons.length > 0 && (
@@ -442,7 +489,11 @@ const SubjectCard: FC<SubjectCardProps> = ({
             sx={{
               padding: theme.spacing(0),
               mb: theme.spacing(0),
+              mt: 'auto',
+              pt: theme.spacing(3),
               display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
               justifyContent: 'center',
             }}
           >
