@@ -3,9 +3,9 @@ import SubjectCard from '../../../component/organism/card/SubjectCard';
 import { fn } from '@storybook/test';
 import { JSX } from 'react';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
-import CodeIcon from '../../../component/organism/card/CodeIcon';
-import CreditIcon from '../../../component/organism/card/CreditIcon';
-import ClassSessionIcon from '../../../component/organism/card/ClassSession';
+import LooksOneOutlinedIcon from '@mui/icons-material/LooksOneOutlined';
+import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
+import WorkspacePremiumOutlinedIcon from '@mui/icons-material/WorkspacePremiumOutlined';
 // Define gradient and border arrays for easy reference
 const gradients = [
   'linear-gradient(180deg, #F3E8FF 0%, #FFF 100%)',
@@ -71,17 +71,17 @@ export const WithBatchOnly: Story = {
       {
         label: 'Course Code',
         value: 'CS101',
-        icon: <CodeIcon />,
+        icon: <LooksOneOutlinedIcon />,
       },
       {
         label: 'Course Credit',
         value: '3',
-        icon: <CreditIcon />,
+        icon: <WorkspacePremiumOutlinedIcon />,
       },
       {
-        label: 'Class Session',
+        label: 'Enrolled',
         value: 120,
-        icon: <ClassSessionIcon />,
+        icon: <PeopleAltIcon />,
       },
     ],
     variant: 'course-offering',
